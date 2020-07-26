@@ -1,8 +1,8 @@
 package com.gmail.picono435.picojobs;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bukkit.Bukkit;
@@ -14,8 +14,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
+import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.vars.Job;
+import com.gmail.picono435.picojobs.vars.JobPlayer;
 import com.gmail.picono435.picojobs.vars.Type;
 
 public class PicoJobsPlugin extends JavaPlugin {
@@ -28,7 +30,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	//JOBS DATA
 	public static Map<String, Job> jobs = new HashMap<String, Job>(); 
 	//PLAYERS DATA
-	public static Map<String, List<String>> playersdata = new HashMap<String, List<String>>();
+	public static Map<UUID, JobPlayer> playersdata = new HashMap<UUID, JobPlayer>();
 	public static Map<String, Integer> salary = new HashMap<String, Integer>();
 	public static Map<String, Boolean> inJob = new HashMap<String, Boolean>();
 	
@@ -57,7 +59,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 		PlaceholdersHook.setupPlaceholderAPI();
 	
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Finishing enabling the plugin...");
+		//REGISTERING COMMANDS
 		this.getCommand("jobs").setExecutor(new JobsCommand());
+		//REGISTERING LISTENERS
+		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 	}
@@ -111,7 +116,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
 			String type = jobc.getString("type");
-			int reqmethod = getJobRequiredMethodFromConfig(jobname, type);
+			double reqmethod = getJobRequiredMethodFromConfig(jobname, type);
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
@@ -124,16 +129,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 		return true;
 	}
 	
-	private static int getJobRequiredMethodFromConfig(String jobname, String type) {
+	private static double getJobRequiredMethodFromConfig(String jobname, String type) {
 		ConfigurationSection cat =  instance.getConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
 		if(type.equals("miner")) {
-			return cat.getInt("blocks");
+			return cat.getDouble("blocks");
 		}
 		if(type.startsWith("kill")) {
-			return cat.getInt("kills");
+			return cat.getDouble("kills");
 		}
 		if(type.equals("fisher")) {
-			return cat.getInt("fish");
+			return cat.getDouble("fish");
 		}
 		return 0;
 	}

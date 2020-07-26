@@ -14,7 +14,7 @@ public class Job {
 	private String displayname;
 	private String tag;
 	private Type type;
-	private int reqmethod;
+	private double reqmethod;
 	
 	// GUI SETTINGS
 	private int slot;
@@ -22,7 +22,7 @@ public class Job {
 	private int itemData;
 	private boolean enchanted;
 	
-	public Job(String name, String displayname, String tag, Type type, int reqmethod, int slot, String item, int itemData, boolean enchanted) {
+	public Job(String name, String displayname, String tag, Type type, double reqmethod, int slot, String item, int itemData, boolean enchanted) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -56,7 +56,7 @@ public class Job {
 		return type;
 	}
 	
-	public int getRequiredMethod() {
+	public double getRequiredMethod() {
 		return reqmethod;
 	}
 	
