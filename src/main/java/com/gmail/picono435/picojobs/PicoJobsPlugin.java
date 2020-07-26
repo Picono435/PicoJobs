@@ -1,6 +1,10 @@
 package com.gmail.picono435.picojobs;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -12,6 +16,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
@@ -71,6 +78,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
+		
+		checkVersion();
 	}
 	
 	public void onDisable() {
@@ -113,26 +122,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	public static boolean isLegacy() {
 		return legacy;
-	}
-	
-	private static boolean checkLegacy() {
-		try {
-			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
-			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(Bukkit.getVersion());
-			if(serverVersion.compareTo(legacyVersion) > 0) {
-				legacy = true;
-			}
-			return legacy;
-		} catch (Exception e) {
-			return legacy;
-		}
-	}
-	
-	private boolean verificarLicenca() {
-		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] You are using the FREE version of the plugin!");
-		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Want to buy the premium version? Buy it in our site.");
-		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Our site is: https://piconodev.tk/plugins/premium");
-		return true;
 	}
 	
 	private static boolean generateJobsFromConfig() {
@@ -181,5 +170,76 @@ public class PicoJobsPlugin extends JavaPlugin {
 			playersdata.put(UUID.fromString(uuid), jp);
 		}
 		return true;
+	}
+	
+	private boolean verificarLicenca() {
+		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] You are using the FREE version of the plugin!");
+		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Want to buy the premium version? Buy it in our site.");
+		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Our site is: https://piconodev.tk/plugins/premium");
+		return true;
+	}
+	
+	private static boolean checkLegacy() {
+		try {
+			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
+			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(Bukkit.getVersion());
+			if(serverVersion.compareTo(legacyVersion) > 0) {
+				legacy = true;
+			}
+			return legacy;
+		} catch (Exception e) {
+			return legacy;
+		}
+	}
+	
+	private void checkVersion() {
+		String version = "1.0";
+		try {
+            URL url = new URL("https://api.github.com/repos/Picono435/PicoJobs/releases/latest");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(5000);
+            con.setInstanceFollowRedirects(false);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+
+            JSONParser parser = new JSONParser();
+            JSONObject json = (JSONObject) parser.parse(content.toString());
+            
+            version = (String)json.get("tag_name");
+			
+		} catch(Exception ex) {
+			sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] Could not get the lastest version.");
+			return;
+		}
+		try {
+			DefaultArtifactVersion pluginVesion = new DefaultArtifactVersion(getPlugin().getDescription().getVersion());
+			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
+			if(lastestVersion.compareTo(pluginVesion) > 0) {
+				new BukkitRunnable() {
+					public void run() {
+						sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] You are using a old version of the plugin. Please download the new version in our pages.");
+						return;
+					}
+				}.runTaskLater(this, 5L);
+			} else {
+				new BukkitRunnable() {
+					public void run() {
+						sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] You are using the lastest version of the plugin.");
+						return;
+					}
+				}.runTaskLater(this, 5L);
+			}
+		} catch (Exception e) {
+			sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] Could not get the lastest version.");
+			return;
+		}
 	}
 }
