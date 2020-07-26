@@ -1,0 +1,11 @@
+name: PicoJobs
+author: [Picono435]
+version: ${project.version}
+softdepend: [Citizens, Vault, PlaceholderAPI]
+api-version: 1.16
+main: com.gmail.picono435.picojobs.PicoJobsPlugin
+commands:
+  jobs:
+    aliases: [empregos, emprego, job, getjob, wantjob, picojobs, piconojobs]
+  jobsadmin:
+    aliases: [empregosadmin, empregoadmin, jobadmin, picojobsadmin, piconojobsadmin]

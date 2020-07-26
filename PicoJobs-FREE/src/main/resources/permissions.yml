@@ -1,0 +1,3 @@
+# All the permissions of the plugins
+# picojobs.use.basic  - Use the command /jobs and speak with npcs
+# picojobs.job.<jobname> - Get a job that has the required-permission set to true

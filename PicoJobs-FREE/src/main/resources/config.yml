@@ -1,0 +1,147 @@
+# IMPORTANT #
+# Some configurations have the ** PREMIUM ONLY ** tag, this means that the configurations are only for the premium version.
+# Our plugin uses PlaceholderAPI to make placeholders, it's not required but if you want to use it you need to add it
+# A detailed wiki of our plugin can be found here: https://github.com/Picono435/wiki
+# All the configurations are commented, but if you still need help check the wiki or send a message in our discord
+# IMPORTANT #
+
+#################################################################################
+#                                                                               #
+# Important configurations                                                      #
+#                                                                               #
+#################################################################################
+# In this category there is a lot of important configurations that should be read and changed with your necessities
+# Put here the language that you want to use!
+# A list of all the possible languages can be found here: https://github.com/Picono435/PicoJobs/tree/master/src/main/resources/langs
+# The translations can be INCORRECT or INCOMPLETE because they are made by the community, but you can always change them.
+lang: "en-GB"
+# Here you can put the name of your server, this message will appier in the start of all messages. To disable just put nothing.
+prefix: "&6[PicoJobs] "
+
+#################################################################################
+#                                                                               #
+# Basic configurations                                                          #
+#                                                                               #
+#################################################################################
+# In this category you can change the basic configurations of the plugin
+# Do you  want to use the NPC system Tutorial here: https://github.com/Picono435/wiki/npcs ** PREMIUM ONLY**
+use-citizens: false
+# What should happen when execute /jobs command?
+# 1 = Ignore and send a message, recommended for use a NPC
+# 2 = Execute basic commands, enter a job, get salary etc... etc...
+# 3 = Open Jobs Menu
+jobs-action: 3
+
+#################################################################################
+#                                                                               #
+# GUI configurations                                                            #
+#                                                                               #
+#################################################################################
+# In this category you can change ALL the GUIs of the plugin
+gui-settings:
+  # Choose Jobs Menu GUI, some settings are avaiable only in the specific job configuration
+  choose-job:
+    # The title of the GUI
+    title: "Choose a Job"
+    # The size of the GUI
+    size: 27
+    # If it has a item in the place where there is no jobs ;)
+    put-background-item: false
+    # Background item name
+    item-name: "&cChoose Your Job, PicoJobs"
+    # The item namespace...
+    item: "WHITE_STAINED_GLASS"
+    # The item data of the item, ONLY LEGACY VERSIONS
+    item-data: 1
+    # If the item should be enchanted or not
+    enchanted: false
+
+
+#################################################################################
+#                                                                               #
+# Jobs configurations                                                           #
+#                                                                               #
+#################################################################################
+# In this category you can create, edit and change jobs for the plugin
+# If you want to know a full list of job types please go https://github.com/Picono435/PicoJobs/wiki/Types-of-jobs
+jobs:
+  # This is a example of a  thief job
+  thief:
+    # The display name of the job
+    displayname: "&cThief"
+    # The tag of the job
+    tag: "&c[T]"
+    # The type of the job
+    type: "killpolice"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 10;
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false;
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 13
+      # The item that you want to represent the job
+      item: "IRON_SWORD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.thief
+      
+  # This is a example of a  police job
+  police:
+    # The display name of the job
+    displayname: "&bPolice"
+    # The tag of the job
+    tag: "&b[P]"
+    # The type of the job
+    type: "killthief"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 10;
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false;
+    # GUI Choose Job settings
+    gui:
+      # The slot where the item will go
+      slot: 15
+      # The item that you want to represent the job
+      item: "DIAMOND_AXE"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.police
+      
+  # This is a example of a  miner job
+  miner:
+    # The display name of the job
+    displayname: "&7Miner"
+    # The tag of the job
+    tag: "&7[M]"
+    # The type of the job
+    type: "m"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 10;
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false;
+    # GUI Choose Job settings
+    gui:
+      # The slot where the item will go
+      slot: 15
+      # The item that you want to represent the job
+      item: "DIAMOND_AXE"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.police
