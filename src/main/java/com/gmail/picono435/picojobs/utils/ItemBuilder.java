@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Color;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -73,7 +72,8 @@ public class ItemBuilder {
     * @param dur The durability to set it to.
     */
    
-   public ItemBuilder setDurability(short dur){
+   @SuppressWarnings("deprecation")
+public ItemBuilder setDurability(short dur){
      is.setDurability(dur);
      return this;
    }
@@ -108,7 +108,8 @@ public class ItemBuilder {
     * Set the skull owner for the item. Works on skulls only.
     * @param owner The name of the skull's owner.
     */
-   public ItemBuilder setSkullOwner(String owner){
+   @SuppressWarnings("deprecation")
+public ItemBuilder setSkullOwner(String owner){
      try{
        SkullMeta im = (SkullMeta)is.getItemMeta();
        im.setOwner(owner);
@@ -138,7 +139,8 @@ public class ItemBuilder {
    /**
     * Sets infinity durability on the item by setting the durability to Short.MAX_VALUE.
     */
-   public ItemBuilder setInfinityDurability(){
+   @SuppressWarnings("deprecation")
+public ItemBuilder setInfinityDurability(){
      is.setDurability(Short.MAX_VALUE);
      return this;
    }

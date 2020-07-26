@@ -65,7 +65,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onDisable() {
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Saving data and configurations...");
 		jobs.clear();
-		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugins was succefully disabled.");
+		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully disabled.");
 	}
 	
 	public static Plugin getPlugin() {
@@ -85,12 +85,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 	
 	private static boolean checkLegacy() {
-		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
-		DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(Bukkit.getVersion());
-		if(serverVersion.compareTo(legacyVersion) > 0) {
-			legacy = true;
+		try {
+			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
+			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(Bukkit.getVersion());
+			if(serverVersion.compareTo(legacyVersion) > 0) {
+				legacy = true;
+			}
+			return legacy;
+		} catch (Exception e) {
+			return legacy;
 		}
-		return legacy;
 	}
 	
 	private boolean verificarLicenca() {
