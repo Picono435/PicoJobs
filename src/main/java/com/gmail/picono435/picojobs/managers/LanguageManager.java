@@ -25,7 +25,7 @@ public class LanguageManager {
     	return getPrefix() + PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', language.getString(message)));
     }
     
-    private static String getPrefix() {
+    public static String getPrefix() {
     	return ChatColor.translateAlternateColorCodes('&', PicoJobsPlugin.getPlugin().getConfig().getString("prefix"));
     }
     

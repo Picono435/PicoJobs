@@ -17,5 +17,4 @@ public class CreatePlayerListener implements Listener {
 			PicoJobsPlugin.playersdata.put(p.getUniqueId(), new JobPlayer(null, 0.0));
 		}
 	}
-	
 }

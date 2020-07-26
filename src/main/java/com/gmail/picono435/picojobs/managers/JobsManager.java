@@ -29,6 +29,9 @@ public class JobsManager {
 	 * @author Picono435
 	 */
 	public Job getJob(String jobname) {
+		if(!PicoJobsPlugin.jobs.containsKey(jobname)) {
+			return null;
+		}
 		return PicoJobsPlugin.jobs.get(jobname);
 	}
 	

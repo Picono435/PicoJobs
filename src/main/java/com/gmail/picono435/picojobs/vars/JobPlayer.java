@@ -18,7 +18,7 @@ public class JobPlayer {
 		return job;
 	}
 	
-	public double getRequiredMethid() {
+	public double getRequiredMethod() {
 		return reqmethod;
 	}
 

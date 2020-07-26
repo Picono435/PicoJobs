@@ -18,7 +18,7 @@ public class JobsMenu {
 	
 	public static void openMenu(Player p) {
 		ConfigurationSection guiSettings = PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("gui-settings");
-		if(PicoJobsAPI.getPlayersManager().hasJob(p)) {
+		if(PicoJobsAPI.getPlayersManager().getJobPlayer(p).hasJob()) {
 			
 		} else {
 			p.openInventory(getChooseJobMenu(guiSettings));

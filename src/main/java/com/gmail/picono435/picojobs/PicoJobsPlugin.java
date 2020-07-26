@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -8,14 +9,17 @@ import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.vars.Job;
 import com.gmail.picono435.picojobs.vars.JobPlayer;
 import com.gmail.picono435.picojobs.vars.Type;
@@ -48,11 +52,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 			sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] You are using a UPDATED spigot/bukkit. We will use the new Material Support.");
 		}
 		
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Creating and configurating the language file selected...");
+		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Creating and configuring internal files...");
 		LanguageManager.createLanguageFile();
+		if(!FileCreator.generateFiles());
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from configuration files...");
 		if(!generateJobsFromConfig()) return;
+		if(!generatePlayers()) return;
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Setting up optional and required dependencies...");
 		VaultHook.setupVault();
@@ -70,6 +76,26 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onDisable() {
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Saving data and configurations...");
 		jobs.clear();
+		FileCreator.getDataFile().delete();
+		if(!FileCreator.createDataFile()) return;
+		ConfigurationSection playerDataCategory = FileCreator.getData().getConfigurationSection("playerdata");
+		for(UUID uuid : playersdata.keySet()) {
+			JobPlayer jp = playersdata.get(uuid);
+			ConfigurationSection player = playerDataCategory.createSection(uuid.toString());
+			if(jp.getJob() == null) {
+				player.set("job", null);
+			} else {
+				player.set("job", jp.getJob().getName());
+			}
+			player.set("reqmethod", jp.getRequiredMethod());
+		}
+		
+		try {
+			FileCreator.getData().save(FileCreator.getDataFile());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully disabled.");
 	}
 	
@@ -140,6 +166,20 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(type.equals("fisher")) {
 			return cat.getDouble("fish");
 		}
-		return 0;
+		return 0.0;
+	}
+	
+	private static boolean generatePlayers() {
+		FileConfiguration data = FileCreator.getData();
+		if(data.getConfigurationSection("playerdata") == null) return true;
+		for(String uuid : data.getConfigurationSection("playerdata").getKeys(false)) {
+			if(uuid.equals("none")) continue;
+			ConfigurationSection playerCategory = data.getConfigurationSection("playerdata").getConfigurationSection(uuid);
+			Job job = PicoJobsAPI.getJobsManager().getJob(playerCategory.getString("job"));
+			double reqmethod = playerCategory.getDouble("reqmethod");
+			JobPlayer jp = new JobPlayer(job, reqmethod);
+			playersdata.put(UUID.fromString(uuid), jp);
+		}
+		return true;
 	}
 }
