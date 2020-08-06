@@ -13,17 +13,33 @@ import com.gmail.picono435.picojobs.vars.JobPlayer;
 
 public class ClickInventoryListener implements Listener {
 	
-	// CHOOSE JOBS MENU
 	@EventHandler()
 	public void onChooseJob(InventoryClickEvent e) {
 		if(e.getCurrentItem() == null || e.getCurrentItem().getItemMeta() == null || e.getCurrentItem().getItemMeta().getDisplayName() == null) return;
-		if(!e.getView().getTitle().equals(PicoJobsPlugin.getPlugin().getConfig().getString("gui-settings.choose-job.title"))) return;
-		e.setCancelled(true);
-		Player p = (Player) e.getWhoClicked();
-		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
-		Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
-		jp.setJob(job);
-		p.sendMessage(LanguageManager.getMessage("choosed-job", p));
-		p.closeInventory();
+		
+		/*
+		 * Choose Jobs Menu Clicking Event
+		 */
+		if(e.getView().getTitle().equals(PicoJobsPlugin.getPlugin().getConfig().getString("gui-settings.choose-job.title"))) {
+			e.setCancelled(true);
+			Player p = (Player) e.getWhoClicked();
+			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
+			jp.setJob(job);
+			p.sendMessage(LanguageManager.getMessage("choosed-job", p));
+			p.closeInventory();
+			return;
+		}
+		
+		/*
+		 * Accept Work Menu Clicking Event
+		 */
+		if(e.getView().getTitle().equals(PicoJobsPlugin.getPlugin().getConfig().getString("gui-settings.need-work.title"))) {
+			e.setCancelled(true);
+			Player p = (Player) e.getWhoClicked();
+			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+			Job job = jp.getJob();
+			return;
+		}
 	}
 }
