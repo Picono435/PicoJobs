@@ -9,4 +9,4 @@
 # All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 no-permission: "&cHey! You do not have permission to execute that command."
 ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job &e%jobplayer_job%&a."
+choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."

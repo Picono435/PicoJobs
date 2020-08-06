@@ -16,7 +16,7 @@ public class ClickInventoryListener implements Listener {
 	// CHOOSE JOBS MENU
 	@EventHandler()
 	public void onChooseJob(InventoryClickEvent e) {
-		if(e.getCurrentItem() == null || e.getCurrentItem().getItemMeta() == null || e.getCurrentItem().getItemMeta().getDisplayName() == null || e.getCurrentItem().getItemMeta().getLore() == null) return;
+		if(e.getCurrentItem() == null || e.getCurrentItem().getItemMeta() == null || e.getCurrentItem().getItemMeta().getDisplayName() == null) return;
 		if(!e.getView().getTitle().equals(PicoJobsPlugin.getPlugin().getConfig().getString("gui-settings.choose-job.title"))) return;
 		e.setCancelled(true);
 		Player p = (Player) e.getWhoClicked();
@@ -24,5 +24,6 @@ public class ClickInventoryListener implements Listener {
 		Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
 		jp.setJob(job);
 		p.sendMessage(LanguageManager.getMessage("choosed-job", p));
+		p.closeInventory();
 	}
 }
