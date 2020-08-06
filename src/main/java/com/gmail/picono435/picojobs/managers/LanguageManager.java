@@ -18,11 +18,19 @@ public class LanguageManager {
 	private static File language_file;
     
     public static String getMessage(String message) {
-    	return getPrefix() + ChatColor.translateAlternateColorCodes('&', language.getString(message));
+    	String chat = language.getString(message);
+    	if(chat == null) {
+    		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
+    	}
+    	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
     public static String getMessage(String message, Player p) {
-    	return getPrefix() + PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', language.getString(message)));
+    	String chat = language.getString(message);
+    	if(chat == null) {
+    		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
+    	}
+    	return getPrefix() + PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
     public static String getPrefix() {
