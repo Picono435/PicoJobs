@@ -19,14 +19,14 @@ public class JobsMenu {
 	public static void openMenu(Player p) {
 		ConfigurationSection guiSettings = PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("gui-settings");
 		if(PicoJobsAPI.getPlayersManager().getJobPlayer(p).hasJob()) {
-			
+			p.sendMessage("LoL");
 		} else {
 			p.openInventory(getChooseJobMenu(guiSettings));
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static Inventory getChooseJobMenu(ConfigurationSection guiSettings) {
+	public static Inventory getChooseJobMenu(ConfigurationSection guiSettings) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("choose-job");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		

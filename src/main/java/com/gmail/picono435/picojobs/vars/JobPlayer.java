@@ -11,7 +11,7 @@ public class JobPlayer {
 	}
 	
 	public boolean hasJob() {
-		return job == null;
+		return job != null;
 	}
 	
 	public Job getJob() {
@@ -20,6 +20,10 @@ public class JobPlayer {
 	
 	public double getRequiredMethod() {
 		return reqmethod;
+	}
+	
+	public void setJob(Job job) {
+		this.job = job;
 	}
 
 }

@@ -36,6 +36,22 @@ public class JobsManager {
 	}
 	
 	/**
+	 * Gets a job with job displayname
+	 * 
+	 * @param displayname - the job display name
+	 * @return the job
+	 * @author Picono435
+	 */
+	public Job getJobByDisplayname(String displayname) {
+		for(Job job : getJobs()) {
+			if(job.getDisplayName().equals(displayname)) {
+				return job;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Gets all the jobs
 	 * 
 	 * @return all the jobs
