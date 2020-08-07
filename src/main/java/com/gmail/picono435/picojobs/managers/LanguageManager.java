@@ -37,6 +37,13 @@ public class LanguageManager {
     	return ChatColor.translateAlternateColorCodes('&', PicoJobsPlugin.getPlugin().getConfig().getString("prefix"));
     }
     
+    public static String formatMessage(String message) {
+    	if(message == null) {
+    		message = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
+    	}
+    	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', message));
+    }
+    
     public static void createLanguageFile() {
     	String lang = PicoJobsPlugin.getPlugin().getConfig().getString("lang");
     	language_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");

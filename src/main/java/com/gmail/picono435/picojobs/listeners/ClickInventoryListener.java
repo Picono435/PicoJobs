@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.vars.Job;
 import com.gmail.picono435.picojobs.vars.JobPlayer;
@@ -44,15 +45,24 @@ public class ClickInventoryListener implements Listener {
 			e.setCancelled(true);
 			Player p = (Player) e.getWhoClicked();
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
-			Job job = jp.getJob();
+			//Job job = jp.getJob();
 			String action = actionItems.get(e.getCurrentItem());
 			if(action.equalsIgnoreCase("salary")) {
 				double salary = jp.getSalary();
-				p.sendMessage("Recebeste " + salary + "o teu salário com sucesso.");
+				if(salary >= 0) {
+					p.sendMessage(LanguageManager.getMessage("no-salary", p));
+					return;
+				}
+				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
+					return;
+				}
+				p.sendMessage(LanguageManager.getMessage("got-salary", p));
+				jp.removeSalary(salary);
 				return;
 			}
 			if(action.equalsIgnoreCase("acceptwork")) {
-				p.sendMessage("Aceitaste o teu trabalho com sucesso.");
+				p.sendMessage(LanguageManager.getMessage("accepted-work", p));
 				jp.setWorking(true);
 				return;
 			}
