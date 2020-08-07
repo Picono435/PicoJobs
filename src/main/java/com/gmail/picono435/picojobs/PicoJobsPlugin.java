@@ -183,9 +183,15 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	private static boolean checkLegacy() {
 		try {
+			String serverVersionString = Bukkit.getBukkitVersion();
+			int spaceIndex = serverVersionString.indexOf("-");
+			serverVersionString = serverVersionString.substring(0, spaceIndex);
 			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
-			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(Bukkit.getVersion());
-			if(serverVersion.compareTo(legacyVersion) > 0) {
+			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(serverVersionString);
+			sendConsoleMessage("LEGACY: " + legacyVersion);
+			sendConsoleMessage("SERVER: " + serverVersion);
+			sendConsoleMessage(serverVersion.compareTo(legacyVersion) + "");
+			if(serverVersion.compareTo(legacyVersion) <= 0) {
 				legacy = true;
 			}
 			return legacy;

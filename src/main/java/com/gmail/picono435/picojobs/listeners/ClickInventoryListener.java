@@ -39,6 +39,7 @@ public class ClickInventoryListener implements Listener {
 			Player p = (Player) e.getWhoClicked();
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 			Job job = jp.getJob();
+			
 			return;
 		}
 	}

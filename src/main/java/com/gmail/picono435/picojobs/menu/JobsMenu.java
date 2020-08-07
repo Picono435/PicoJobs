@@ -84,7 +84,7 @@ public class JobsMenu {
 				lore = PlaceholderAPI.setPlaceholders(p, lore);
 			}
 			builder.setLore(lore);
-			
+						
 			inv.setItem(itemConfig.getInt("slot") + 1, builder.toItemStack());
 		}
 		
