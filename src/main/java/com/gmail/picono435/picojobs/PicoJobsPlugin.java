@@ -98,7 +98,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 			} else {
 				player.set("job", jp.getJob().getName());
 			}
-			player.set("reqmethod", jp.getRequiredMethod());
+			player.set("method", jp.getMethod());
+			player.set("salary", jp.getSalary());
+			player.set("is-working", jp.isWorking());
 		}
 		
 		try {
@@ -167,8 +169,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(uuid.equals("none")) continue;
 			ConfigurationSection playerCategory = data.getConfigurationSection("playerdata").getConfigurationSection(uuid);
 			Job job = PicoJobsAPI.getJobsManager().getJob(playerCategory.getString("job"));
-			double reqmethod = playerCategory.getDouble("reqmethod");
-			JobPlayer jp = new JobPlayer(job, reqmethod);
+			double method = playerCategory.getDouble("method");
+			double salary = playerCategory.getDouble("salary");
+			boolean isWorking = playerCategory.getBoolean("is-working");
+			JobPlayer jp = new JobPlayer(job, method, salary, isWorking);
 			playersdata.put(UUID.fromString(uuid), jp);
 		}
 		return true;

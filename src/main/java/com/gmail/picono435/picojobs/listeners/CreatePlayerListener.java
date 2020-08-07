@@ -14,7 +14,7 @@ public class CreatePlayerListener implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		if(!PicoJobsPlugin.playersdata.containsKey(p.getUniqueId())) {
-			PicoJobsPlugin.playersdata.put(p.getUniqueId(), new JobPlayer(null, 0.0));
+			PicoJobsPlugin.playersdata.put(p.getUniqueId(), new JobPlayer(null, 0, 0, false));
 		}
 	}
 }
