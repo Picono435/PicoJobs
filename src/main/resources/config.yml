@@ -132,6 +132,24 @@ gui-settings:
         item-data: 0
         # If the item is enchanted or not
         enchanted: false
+        
+  # With Jobs Menu GUI that already has a work
+  has-work:
+    # The title of the GUI
+    title: "Job Menu - Accept your Work"
+    # The size of the GUI
+    size: 27
+    # If it has a item in the place where there is no jobs ;)
+    put-background-item: false
+    # Background item name
+    item-name: "&cChoose Your Job, PicoJobs"
+    # The item namespace...
+    item: "WHITE_STAINED_GLASS"
+    # The item data of the background item, ONLY LEGACY VERSIONS
+    item-data: 1
+    # If the item should be enchanted or not
+    enchanted: false
+    items:
 
 
 #################################################################################
