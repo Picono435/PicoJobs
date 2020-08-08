@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
+import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
 import com.gmail.picono435.picojobs.vars.Job;
 import com.gmail.picono435.picojobs.vars.JobPlayer;
@@ -24,7 +25,7 @@ import net.md_5.bungee.api.ChatColor;
 public class JobsMenu {
 	
 	public static void openMenu(Player p) {
-		ConfigurationSection guiSettings = PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("gui-settings");
+		ConfigurationSection guiSettings = FileCreator.getGUI().getConfigurationSection("gui-settings");
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(jp.hasJob()) {
 			if(jp.isWorking()) {

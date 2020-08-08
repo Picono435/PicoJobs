@@ -64,6 +64,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		
+		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from configuration files...");
 		if(!generateJobsFromConfig()) return;
 		if(!generatePlayers()) return;
