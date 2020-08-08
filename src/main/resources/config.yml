@@ -65,7 +65,7 @@ gui-settings:
     # If it has a item in the place where there is no jobs ;)
     put-background-item: false
     # Background item name
-    item-name: "&cChoose Your Job, PicoJobs"
+    item-name: "&cAccept your work, PicoJobs"
     # The item namespace...
     item: "WHITE_STAINED_GLASS"
     # The item data of the background item, ONLY LEGACY VERSIONS
@@ -136,7 +136,7 @@ gui-settings:
   # With Jobs Menu GUI that already has a work
   has-work:
     # The title of the GUI
-    title: "Job Menu - Accept your Work"
+    title: "Job Menu - See the status of your work"
     # The size of the GUI
     size: 27
     # If it has a item in the place where there is no jobs ;)
@@ -150,6 +150,65 @@ gui-settings:
     # If the item should be enchanted or not
     enchanted: false
     items:
+      salary:
+        # The name of the item
+        name: "&eSalary"
+        # The slot of the item
+        slot: 9
+        # The lore of the item
+        lore:
+          - ""
+          - "&7Click to get your salary!"
+          - "&7Your salary is: %jobplayer_salary%"
+        # The action that will execute when someone clicks on the item
+        action: salary
+        # The material name
+        material: "PAPER"
+        # The item data of the item, ONLY LEGACY VERSIONS
+        item-data: 0
+        # If the item is enchanted or not
+        enchanted: false
+      # ATTENTION: THIS ITEM CAN BE REMOVED, EDITED OR USE PLACEHOLDERS TO MAKE A JOB STATUS WITH IT xD
+      plugin-info:
+        # The name of the item
+        name: "&6PicoJobs"
+        # The slot of the item
+        slot: 12
+        # The lore of the item
+        lore:
+          - ""
+          - "&7Thanks for using my plugin!"
+          - "&7Check our &8&ndiscord&r&7 to"
+          - "&7get more information"
+          - ""
+          - "&7If you want to buy the premium"
+          - "&7version go to our &8&nwebsite"
+        # The action that will execute when someone clicks on the item
+        action: none
+        # The material name
+        material: "BOOKSHELF"
+        # The item data of the item, ONLY LEGACY VERSIONS
+        item-data: 0
+        # If the item is enchanted or not
+        enchanted: true
+      status-work:
+        # The name of the item
+        name: "&aStatus of the work"
+        # The slot of the item
+        slot: 15
+        # The lore of the item
+        lore:
+          - ""
+          - "&7Check down here the status of your work!"
+          - "&7What you need to do: "
+        # The action that will execute when someone clicks on the item
+        action: none
+        # The material name
+        material: "REDSTONE_TORCH"
+        # The item data of the item, ONLY LEGACY VERSIONS
+        item-data: 0
+        # If the item is enchanted or not
+        enchanted: true
 
 
 #################################################################################
