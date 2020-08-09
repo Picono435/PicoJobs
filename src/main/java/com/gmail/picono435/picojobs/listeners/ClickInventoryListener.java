@@ -50,7 +50,7 @@ public class ClickInventoryListener implements Listener {
 			String action = actionItems.get(e.getCurrentItem());
 			if(action.equalsIgnoreCase("salary")) {
 				double salary = jp.getSalary();
-				if(salary >= 0) {
+				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
 					return;
 				}
@@ -81,7 +81,7 @@ public class ClickInventoryListener implements Listener {
 			String action = actionItems.get(e.getCurrentItem());
 			if(action.equalsIgnoreCase("salary")) {
 				double salary = jp.getSalary();
-				if(salary >= 0) {
+				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
 					return;
 				}

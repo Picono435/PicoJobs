@@ -15,6 +15,7 @@ public class Job {
 	private String tag;
 	private Type type;
 	private double method;
+	private double salary;
 	
 	// GUI SETTINGS
 	private int slot;
@@ -22,12 +23,14 @@ public class Job {
 	private int itemData;
 	private boolean enchanted;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, int slot, String item, int itemData, boolean enchanted) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, int slot, String item, int itemData, boolean enchanted) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
 		this.type = type;
 		this.method = method;
+		this.salary = salary;
+		
 		this.slot = slot;
 		Material m;
 		if(PicoJobsPlugin.isLegacy()) {
@@ -58,6 +61,10 @@ public class Job {
 	
 	public double getMethod() {
 		return method;
+	}
+	
+	public double getSalary() {
+		return salary;
 	}
 	
 	public int getSlot() {

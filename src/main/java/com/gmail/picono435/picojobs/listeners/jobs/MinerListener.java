@@ -29,9 +29,11 @@ public class MinerListener implements Listener {
 		double reqmethod = jp.getMethod() * level;
 		
 		if(reqmethod >= job.getMethod()) {
+			double salary = job.getSalary() * level;
 			jp.setMethodLevel(level + 1);
 			jp.setMethod(0);
 			jp.setWorking(false);
+			jp.setSalary(jp.getSalary() + salary);
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}

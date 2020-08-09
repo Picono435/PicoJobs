@@ -140,13 +140,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String tag = jobc.getString("tag");
 			String type = jobc.getString("type");
 			double method = getJobMethodFromConfig(jobname, type);
+			double salary = jobc.getDouble("salary");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
 			int itemData = guic.getInt("item-data");
 			boolean enchanted = guic.getBoolean("enchanted");
 			
-			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, slot, item, itemData, enchanted);
+			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, salary, slot, item, itemData, enchanted);
 			jobs.put(jobname, job);
 		}
 		return true;
