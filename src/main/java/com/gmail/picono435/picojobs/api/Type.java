@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.vars;
+package com.gmail.picono435.picojobs.api;
 
 import java.util.Map;
 

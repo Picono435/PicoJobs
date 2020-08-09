@@ -20,7 +20,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.gmail.picono435.picojobs.api.Job;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
@@ -28,9 +31,6 @@ import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
-import com.gmail.picono435.picojobs.vars.Job;
-import com.gmail.picono435.picojobs.vars.JobPlayer;
-import com.gmail.picono435.picojobs.vars.Type;
 
 public class PicoJobsPlugin extends JavaPlugin {
 

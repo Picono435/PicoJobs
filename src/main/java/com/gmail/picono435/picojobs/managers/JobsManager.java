@@ -3,7 +3,7 @@ package com.gmail.picono435.picojobs.managers;
 import java.util.Collection;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.vars.Job;
+import com.gmail.picono435.picojobs.api.Job;
 
 public class JobsManager {
 	

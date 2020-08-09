@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.vars.JobPlayer;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 
 public class CreatePlayerListener implements Listener {
 	

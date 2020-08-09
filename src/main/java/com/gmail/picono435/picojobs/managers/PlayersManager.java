@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.vars.JobPlayer;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 
 public class PlayersManager {
 	

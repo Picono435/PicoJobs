@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.vars;
+package com.gmail.picono435.picojobs.api;
 
 public class JobPlayer {
 	
