@@ -69,5 +69,31 @@ public class ClickInventoryListener implements Listener {
 			}
 			return;
 		}
+		
+		/*
+		 * Status Work Menu Clicking Event
+		 */
+		if(e.getView().getTitle().equals(FileCreator.getGUI().getString("gui-settings.has-work.title"))) {
+			e.setCancelled(true);
+			Player p = (Player) e.getWhoClicked();
+			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+			//Job job = jp.getJob();
+			String action = actionItems.get(e.getCurrentItem());
+			if(action.equalsIgnoreCase("salary")) {
+				double salary = jp.getSalary();
+				if(salary >= 0) {
+					p.sendMessage(LanguageManager.getMessage("no-salary", p));
+					return;
+				}
+				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
+					return;
+				}
+				p.sendMessage(LanguageManager.getMessage("got-salary", p));
+				jp.removeSalary(salary);
+				return;
+			}
+			return;
+		}
 	}
 }

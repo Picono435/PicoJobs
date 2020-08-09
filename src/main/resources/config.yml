@@ -52,13 +52,15 @@ jobs:
     # The type of the job
     type: "killpolice"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 10;
+    kills: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
-    require-permission: false;
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
-      slot: 13
+      slot: 12
       # The item that you want to represent the job
       item: "IRON_SWORD"
       # The item data LEGACY ONLY
@@ -79,13 +81,15 @@ jobs:
     # The type of the job
     type: "killthief"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 10;
+    kills: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
-    require-permission: false;
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
     # GUI Choose Job settings
     gui:
       # The slot where the item will go
-      slot: 15
+      slot: 14
       # The item that you want to represent the job
       item: "DIAMOND_AXE"
       # The item data LEGACY ONLY
@@ -104,17 +108,19 @@ jobs:
     # The tag of the job
     tag: "&7[M]"
     # The type of the job
-    type: "m"
+    type: "miner"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 10;
+    blocks: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
-    require-permission: false;
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
     # GUI Choose Job settings
     gui:
       # The slot where the item will go
-      slot: 15
+      slot: 16
       # The item that you want to represent the job
-      item: "DIAMOND_AXE"
+      item: "DIAMOND_PICKAXE"
       # The item data LEGACY ONLY
       item-data: 0
       # If you want to the item be enchanted or not
@@ -122,4 +128,4 @@ jobs:
     # Set the permissions that this job should have ** PREMIUM ONLY **
     # REQUIRES VAULT
     permissions: 
-      - kit.use.police
+      - kit.use.miner

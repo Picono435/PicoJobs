@@ -4,12 +4,14 @@ public class JobPlayer {
 	
 	private Job job;
 	private double method;
+	private double level;
 	private boolean isWorking;
 	private double salary;
 	
-	public JobPlayer(Job job, double method, double salary, boolean isWorking) {
+	public JobPlayer(Job job, double method, double level, double salary, boolean isWorking) {
 		this.job = job;
 		this.method = method;
+		this.level = level;
 		this.salary = salary;
 		this.isWorking = isWorking;
 	}
@@ -24,6 +26,18 @@ public class JobPlayer {
 	
 	public double getMethod() {
 		return method;
+	}
+	
+	public void setMethod(double method) {
+		this.method = method;
+	}
+	
+	public double getMethodLevel() {
+		return level;
+	}
+	
+	public void setMethodLevel(double level) {
+		this.level = level;
 	}
 	
 	public void setJob(Job job) {

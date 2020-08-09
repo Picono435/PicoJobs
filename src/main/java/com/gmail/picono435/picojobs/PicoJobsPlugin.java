@@ -29,6 +29,7 @@ import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
+import com.gmail.picono435.picojobs.listeners.jobs.MinerListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
@@ -79,6 +80,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		//REGISTERING LISTENERS
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
+		Bukkit.getPluginManager().registerEvents(new MinerListener(), this);
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 		
@@ -100,6 +102,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 				player.set("job", jp.getJob().getName());
 			}
 			player.set("method", jp.getMethod());
+			player.set("level", jp.getMethodLevel());
 			player.set("salary", jp.getSalary());
 			player.set("is-working", jp.isWorking());
 		}
@@ -136,20 +139,20 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
 			String type = jobc.getString("type");
-			double reqmethod = getJobRequiredMethodFromConfig(jobname, type);
+			double method = getJobMethodFromConfig(jobname, type);
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
 			int itemData = guic.getInt("item-data");
 			boolean enchanted = guic.getBoolean("enchanted");
 			
-			Job job = new Job(jobname, displayname, tag, Type.getType(type), reqmethod, slot, item, itemData, enchanted);
+			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, slot, item, itemData, enchanted);
 			jobs.put(jobname, job);
 		}
 		return true;
 	}
 	
-	private static double getJobRequiredMethodFromConfig(String jobname, String type) {
+	private static double getJobMethodFromConfig(String jobname, String type) {
 		ConfigurationSection cat =  instance.getConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
 		if(type.equals("miner")) {
 			return cat.getDouble("blocks");
@@ -171,9 +174,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 			ConfigurationSection playerCategory = data.getConfigurationSection("playerdata").getConfigurationSection(uuid);
 			Job job = PicoJobsAPI.getJobsManager().getJob(playerCategory.getString("job"));
 			double method = playerCategory.getDouble("method");
+			double level = playerCategory.getDouble("level");
 			double salary = playerCategory.getDouble("salary");
 			boolean isWorking = playerCategory.getBoolean("is-working");
-			JobPlayer jp = new JobPlayer(job, method, salary, isWorking);
+			JobPlayer jp = new JobPlayer(job, method, level, salary, isWorking);
 			playersdata.put(UUID.fromString(uuid), jp);
 		}
 		return true;
