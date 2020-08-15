@@ -42,7 +42,6 @@ public class StorageManager {
 		MySQLAPI api = new MySQLAPI();
 		api.startConnection();
 		for(String uuid : api.getAllUsers()) {
-			System.out.println(uuid);
 			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
 		}
 		api.close();

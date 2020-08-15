@@ -93,7 +93,6 @@ public class MySQLAPI {
             stm.setDouble(5, salary);
             stm.setBoolean(6, isWorking);
             stm.executeUpdate();
-            System.out.println(uuid);
         }
         catch (SQLException ex) {
         	 ex.printStackTrace();
