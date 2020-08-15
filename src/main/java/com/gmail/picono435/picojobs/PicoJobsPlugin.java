@@ -29,6 +29,7 @@ import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
+import com.gmail.picono435.picojobs.listeners.jobs.FisherListener;
 import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
 import com.gmail.picono435.picojobs.listeners.jobs.MinerListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
@@ -83,6 +84,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
 		Bukkit.getPluginManager().registerEvents(new MinerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
+		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 		
