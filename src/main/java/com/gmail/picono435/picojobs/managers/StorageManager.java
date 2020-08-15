@@ -18,7 +18,7 @@ public class StorageManager {
 	public StorageMethod storageMethod = StorageMethod.YAML;
 	
 	public void getData() {
-		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getString("storage-method"));
+		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("storage").getString("storage-method"));
 		if(storageMethod == StorageMethod.YAML) {
 			getDataInConfig();
 			return;

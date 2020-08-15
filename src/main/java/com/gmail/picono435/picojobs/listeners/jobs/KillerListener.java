@@ -31,7 +31,7 @@ public class KillerListener implements Listener {
 		double method = jp.getMethod();
 		jp.setMethod(method + 1);
 				
-		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getMethodFrequency();
+		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency();
 		
 		if(jp.getMethod() >= reqmethod) {
 			double salary = job.getSalary() * level * PicoJobsAPI.getSettingsManager().getSalaryFrequency();

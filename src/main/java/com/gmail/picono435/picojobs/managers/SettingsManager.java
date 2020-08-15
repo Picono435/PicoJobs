@@ -6,7 +6,11 @@ public class SettingsManager {
 		return 0.3D;
 	}
 	
-	public double getMethodFrequency() {
+	public double getBlocksFrequency() {
+		return 0.3D;
+	}
+	
+	public double getKillsFrequency() {
 		return 0.3D;
 	}
 
