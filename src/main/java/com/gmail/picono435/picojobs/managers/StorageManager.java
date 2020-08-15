@@ -49,6 +49,11 @@ public class StorageManager {
 	public void saveData() {
 		if(storageMethod == StorageMethod.YAML) {
 			saveInConfig();
+			return;
+		}
+		if(storageMethod == StorageMethod.MYSQL) {
+			
+			return;
 		}
 	}
 	
@@ -57,7 +62,9 @@ public class StorageManager {
 	}
 	
 	private void saveInConfig() {
-		FileCreator.getDataFile().delete();
+		if(FileCreator.getDataFile() != null) {
+			FileCreator.getDataFile().delete();
+		}
 		if(!FileCreator.createDataFile()) return;
 		ConfigurationSection playerDataCategory = FileCreator.getData().getConfigurationSection("playerdata");
 		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {

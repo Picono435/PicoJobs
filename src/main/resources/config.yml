@@ -18,14 +18,30 @@
 # A list of all the possible languages can be found here: https://github.com/Picono435/PicoJobs/tree/master/src/main/resources/langs
 # The translations can be INCORRECT or INCOMPLETE because they are made by the community, but you can always change them.
 lang: "en-GB"
-# In this configuration you can select the storage method that you want to use.
-# Here is a list of storage methods that you can choose:
-# YAML - Save the data in a YAML file inside the plugin directory
-# MySQL - Save the data in a MySQL database
-# MongoDB - Save the data in a MongoDB database [SOON]
-storage-method: YAML
 # Here you can put the name of your server, this message will appier in the start of all messages. To disable just put nothing.
 prefix: "&6[PicoJobs] "
+
+#################################################################################
+#                                                                               #
+# Storage configurations                                                      #
+#                                                                               #
+#################################################################################
+# In this configuration you can select the storage method that you want to use and config it.
+storage:
+  # Here is a list of storage methods that you can choose:
+  # YAML - Save the data in a YAML file inside the plugin directory
+  # MySQL - Save the data in a MySQL database
+  # MongoDB - Save the data in a MongoDB database [SOON]
+  storage-method: YAML
+  # MySQL configuration, required only if the method is MySQL
+  mysql:
+    host: localhost
+    port: 3306
+    database: mydb
+    username: root
+    password: ""
+  mongodb:
+    uri: "mongodb+srv:://MongoDBURI"
 
 #################################################################################
 #                                                                               #
