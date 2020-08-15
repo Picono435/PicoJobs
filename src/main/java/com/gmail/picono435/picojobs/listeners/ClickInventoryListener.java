@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
@@ -52,19 +51,24 @@ public class ClickInventoryListener implements Listener {
 				double salary = jp.getSalary();
 				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
+					p.closeInventory();
 					return;
 				}
 				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
 					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
+					p.closeInventory();
 					return;
 				}
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
+				VaultHook.getEconomy().depositPlayer(p, salary);
 				jp.removeSalary(salary);
+				p.closeInventory();
 				return;
 			}
 			if(action.equalsIgnoreCase("acceptwork")) {
 				p.sendMessage(LanguageManager.getMessage("accepted-work", p));
 				jp.setWorking(true);
+				p.closeInventory();
 				return;
 			}
 			return;
@@ -83,14 +87,18 @@ public class ClickInventoryListener implements Listener {
 				double salary = jp.getSalary();
 				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
+					p.closeInventory();
 					return;
 				}
 				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
 					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
+					p.closeInventory();
 					return;
 				}
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
+				VaultHook.getEconomy().depositPlayer(p, salary);
 				jp.removeSalary(salary);
+				p.closeInventory();
 				return;
 			}
 			return;

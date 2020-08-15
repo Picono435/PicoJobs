@@ -4,6 +4,7 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.managers.JobsManager;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.managers.PlayersManager;
+import com.gmail.picono435.picojobs.managers.SettingsManager;
 
 public class PicoJobsAPI {
 	
@@ -35,5 +36,15 @@ public class PicoJobsAPI {
 	 */
 	public static LanguageManager getLanguageManager() {
 		return new LanguageManager();
+	}
+	
+	/**
+	 * Use this method to get the LanguageManager of the plugin, with it you can get all the messages of the plugin.
+	 * 
+	 * @return The language manager of the plugin
+	 * @author Picono435
+	 */
+	public static SettingsManager getSettingsManager() {
+		return new SettingsManager();
 	}
 }

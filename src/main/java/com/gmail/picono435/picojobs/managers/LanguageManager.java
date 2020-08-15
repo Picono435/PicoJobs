@@ -44,6 +44,14 @@ public class LanguageManager {
     	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', message));
     }
     
+    public static String getFormat(String message, Player p) {
+    	String chat = language.getString(message);
+    	if(chat == null) {
+    		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
+    	}
+    	return PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
+    }
+    
     public static void createLanguageFile() {
     	String lang = PicoJobsPlugin.getPlugin().getConfig().getString("lang");
     	language_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");

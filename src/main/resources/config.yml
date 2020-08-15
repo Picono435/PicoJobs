@@ -50,7 +50,9 @@ jobs:
     # The tag of the job
     tag: "&c[T]"
     # The type of the job
-    type: "killpolice"
+    type: "kill"
+    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
+    kill-job: "police"
     # Put here the default kills, (this change depends on the frequency)
     kills: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -79,7 +81,9 @@ jobs:
     # The tag of the job
     tag: "&b[P]"
     # The type of the job
-    type: "killthief"
+    type: "kill"
+    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
+    kill-job: "thief"
     # Put here the default kills, (this change depends on the frequency)
     kills: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions

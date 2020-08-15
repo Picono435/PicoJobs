@@ -19,7 +19,7 @@ public class PlaceholdersHook {
 		}
 		isEnabled = true;
 		PicoJobsPlugin.sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] PlaceholderAPI was found! We are configuring the connection between us and PlaceholderAPI.");
-		
+		new JobPlayerExpansion(PicoJobsPlugin.getInstance()).register();
 	}
 	
 	public static String setPlaceholders(Player p, String message) {

@@ -29,6 +29,7 @@ import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
+import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
 import com.gmail.picono435.picojobs.listeners.jobs.MinerListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
@@ -81,6 +82,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
 		Bukkit.getPluginManager().registerEvents(new MinerListener(), this);
+		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 		
@@ -147,7 +149,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 			int itemData = guic.getInt("item-data");
 			boolean enchanted = guic.getBoolean("enchanted");
 			
-			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, salary, slot, item, itemData, enchanted);
+			String killJob = "";
+			if(type.equals("kill") && !jobc.getString("kill-job").equals("all")) {
+				type = "KILL_JOB";
+				killJob = jobc.getString("kill-job");
+			}
+			
+			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, salary, slot, item, itemData, enchanted, killJob);
 			jobs.put(jobname, job);
 		}
 		return true;
@@ -158,7 +166,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(type.equals("miner")) {
 			return cat.getDouble("blocks");
 		}
-		if(type.startsWith("kill")) {
+		if(type.equals("kill")) {
 			return cat.getDouble("kills");
 		}
 		if(type.equals("fisher")) {

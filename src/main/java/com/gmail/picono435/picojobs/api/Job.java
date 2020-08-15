@@ -23,7 +23,10 @@ public class Job {
 	private int itemData;
 	private boolean enchanted;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, int slot, String item, int itemData, boolean enchanted) {
+	// OPTIONAL
+	private String killJob;
+	
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, int slot, String item, int itemData, boolean enchanted, String killJob) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -41,6 +44,8 @@ public class Job {
 		this.item = m;
 		this.itemData = itemData;
 		this.enchanted = enchanted;
+		
+		this.killJob = killJob;
 	}
 	
 	public String getName() {
@@ -93,5 +98,9 @@ public class Job {
 		}
 		builder.setName(getDisplayName());
 		return builder.toItemStack();
+	}
+	
+	public String getKillJob() {
+		return killJob;
 	}
 }

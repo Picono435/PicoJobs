@@ -87,7 +87,7 @@ gui-settings:
         lore:
           - ""
           - "&7Click here to accept your work"
-          - "&7What you need to do: "
+          - "&7What you need to do: %jobplayer_work%"
         action: acceptwork
         material: "REDSTONE_TORCH"
         item-data: 0
@@ -139,7 +139,7 @@ gui-settings:
         lore:
           - ""
           - "&7Check down here the status of your work!"
-          - "&7What you need to do: "
+          - "&7What you need to do: %jobplayer_work%"
         action: none
         material: "REDSTONE_TORCH"
         item-data: 0

@@ -67,8 +67,8 @@ public class VaultHook {
         return econ != null;
     }
 	
-	public static Permission getEconomy() {
-		return perm;
+	public static Economy getEconomy() {
+		return econ;
 	}
 	
 	public static boolean hasEconomyPlugin() {
