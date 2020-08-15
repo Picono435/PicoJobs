@@ -33,13 +33,15 @@ storage:
   # MySQL - Save the data in a MySQL database
   # MongoDB - Save the data in a MongoDB database [SOON]
   storage-method: YAML
-  # MySQL configuration, required only if the method is MySQL
+  # MySQL configuration, required only if the storage method is MySQL
   mysql:
     host: localhost
     port: 3306
     database: mydb
     username: root
     password: ""
+    tablename: "jobplayers"
+  # MongoDB configuration, required only if the storage method is MongoDB
   mongodb:
     uri: "mongodb+srv:://MongoDBURI"
 
