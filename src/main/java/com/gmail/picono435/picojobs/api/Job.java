@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.api;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
@@ -97,6 +98,7 @@ public class Job {
 			builder = new ItemBuilder(getMaterial());
 		}
 		builder.setName(getDisplayName());
+		if(isEnchanted()) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 		return builder.toItemStack();
 	}
 	

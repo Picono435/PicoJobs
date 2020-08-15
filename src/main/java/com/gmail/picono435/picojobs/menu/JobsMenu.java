@@ -54,7 +54,7 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()));
 			}
-			if(category.getBoolean("enchanted")) builder.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
@@ -83,7 +83,7 @@ public class JobsMenu {
 			}
 			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
 			
-			if(itemConfig.getBoolean("enchanted")) builder.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			
 			builder.removeAttributes();
 			
@@ -108,7 +108,7 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()));
 			}
-			if(category.getBoolean("enchanted")) builder.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
@@ -137,7 +137,7 @@ public class JobsMenu {
 			}
 			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
 			
-			if(itemConfig.getBoolean("enchanted")) builder.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			
 			builder.removeAttributes();
 			
@@ -162,7 +162,7 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()));
 			}
-			if(category.getBoolean("enchanted")) builder.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
