@@ -114,7 +114,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 	
 	private static boolean generateJobsFromConfig() {
-		ConfigurationSection jobsc = instance.getConfig().getConfigurationSection("jobs");
+		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
 		for(String jobname : jobsc.getKeys(false)) {
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobname);
 			String displayname = jobc.getString("displayname");
@@ -140,14 +140,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 	
 	private static double getJobMethodFromConfig(String jobname, String type) {
-		ConfigurationSection cat =  instance.getConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
-		if(type.equals("miner")) {
+		ConfigurationSection cat =  FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
+		if(type.equalsIgnoreCase("miner")) {
 			return cat.getDouble("blocks");
 		}
-		if(type.equals("kill") || type.equals("kill_job")) {
+		if(type.equalsIgnoreCase("kill") || type.equalsIgnoreCase("kill_job")) {
 			return cat.getDouble("kills");
 		}
-		if(type.equals("fisher")) {
+		if(type.equalsIgnoreCase("fisher")) {
 			return cat.getDouble("fish");
 		}
 		return 0.0;

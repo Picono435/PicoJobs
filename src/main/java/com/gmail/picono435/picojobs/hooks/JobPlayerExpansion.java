@@ -129,7 +129,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	Type type = job.getType();
         	if(type == Type.MINER) {
         		double level = jp.getMethodLevel();
-        		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getBlocksFrequency();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getBlocksFrequency());
         		double value = reqmethod - jp.getMethod();
         		String work = LanguageManager.getFormat("general-work", p);
         		work = work.replace("%a%", LanguageManager.getFormat("blocks-work", p));
@@ -138,7 +138,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	}
         	if(type == Type.KILL) {
         		double level = jp.getMethodLevel();
-        		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency());
         		double value = reqmethod - jp.getMethod();
         		String work = LanguageManager.getFormat("general-work", p);
         		work = work.replace("%a%", LanguageManager.getFormat("kill-work", p));
@@ -147,7 +147,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	}
         	if(type == Type.KILL_JOB) {
         		double level = jp.getMethodLevel();
-        		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency());
         		double value = reqmethod - jp.getMethod();
         		String work = LanguageManager.getFormat("general-work", p);
         		work = work.replace("%a%", LanguageManager.getFormat("kill-specific-work", p));
@@ -157,7 +157,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	}
         	if(type == Type.FISHER) {
         		double level = jp.getMethodLevel();
-        		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
         		double value = reqmethod - jp.getMethod();
         		String work = LanguageManager.getFormat("general-work", p);
         		work = work.replace("%a%", LanguageManager.getFormat("fish-work", p));

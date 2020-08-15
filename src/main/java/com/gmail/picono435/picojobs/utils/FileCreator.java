@@ -17,8 +17,12 @@ public class FileCreator {
 	private static FileConfiguration gui;
 	private static File gui_file;
 	
+	private static FileConfiguration jobs;
+	private static File jobs_file;
+	
 	public static boolean generateFiles() {
 		createGUIFile();
+		createJobsFile();
 		return true;
 	}
 	
@@ -71,6 +75,34 @@ public class FileCreator {
         gui = new YamlConfiguration();
         try {
         	gui.load(gui_file);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+	
+	/*
+	 * Jobs file
+	 */
+	public static FileConfiguration getJobsConfig() {
+		return jobs;
+	}
+	
+	public static File getJobsFile() {
+		return jobs_file;
+	}
+	
+	public static boolean createJobsFile() {
+		jobs_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "settings" + File.separatorChar + "jobs.yml");
+        if (!jobs_file.exists()) {
+        	jobs_file.getParentFile().mkdirs();
+        	PicoJobsPlugin.getPlugin().saveResource("settings" + File.separatorChar + "jobs.yml", false);
+         }
+
+        jobs = new YamlConfiguration();
+        try {
+        	jobs.load(jobs_file);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
             return false;

@@ -1,0 +1,158 @@
+#################################################################################
+#                                                                               #
+# Jobs configurations                                                           #
+#                                                                               #
+#################################################################################
+# In this category you can create, edit and change jobs for the plugin
+# If you want to know a full list of job types please go https://github.com/Picono435/PicoJobs/wiki/Types-of-jobs
+jobs:
+  # This is a example of a thief job
+  thief:
+    # The display name of the job
+    displayname: "&cThief"
+    # The tag of the job
+    tag: "&c[T]"
+    # The type of the job
+    type: "kill"
+    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
+    kill-job: "police"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 10
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 12
+      # The item that you want to represent the job
+      item: "IRON_SWORD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.thief
+      
+  # This is a example of a police job
+  police:
+    # The display name of the job
+    displayname: "&bPolice"
+    # The tag of the job
+    tag: "&b[P]"
+    # The type of the job
+    type: "kill"
+    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
+    kill-job: "thief"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 10
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
+    # GUI Choose Job settings
+    gui:
+      # The slot where the item will go
+      slot: 14
+      # The item that you want to represent the job
+      item: "DIAMOND_SWORD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.police
+      
+  # This is a example of a miner job
+  miner:
+    # The display name of the job
+    displayname: "&7Miner"
+    # The tag of the job
+    tag: "&7[M]"
+    # The type of the job
+    type: "miner"
+    # Put here the default blocks, (this change depends on the frequency)
+    blocks: 10
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
+    # GUI Choose Job settings
+    gui:
+      # The slot where the item will go
+      slot: 16
+      # The item that you want to represent the job
+      item: "DIAMOND_PICKAXE"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.miner
+      
+  # This is a example of a assassin job
+  assassin:
+    # The display name of the job
+    displayname: "&eAssassin"
+    # The tag of the job
+    tag: "&e[A]"
+    # The type of the job
+    type: "kill"
+    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
+    kill-job: "all"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 50
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 250
+    # GUI Choose Job settings
+    gui:
+      # The slot where the item will go
+      slot: 31
+      # The item that you want to represent the job
+      item: "GOLDEN_SWORD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: true
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.assassin
+      
+  # This is a example of a assassin job
+  fisher:
+    # The display name of the job
+    displayname: "&9Fisher"
+    # The tag of the job
+    tag: "&9[F]"
+    # The type of the job
+    type: "fisher"
+    # Put here the default kills, (this change depends on the frequency)
+    fish: 1
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 500
+    # GUI Choose Job settings
+    gui:
+      # The slot where the item will go
+      slot: 33
+      # The item that you want to represent the job
+      item: "FISHING_ROD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: true
+    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # REQUIRES VAULT
+    permissions: 
+      - kit.use.fisher

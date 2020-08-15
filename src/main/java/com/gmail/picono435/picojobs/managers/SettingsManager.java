@@ -13,5 +13,9 @@ public class SettingsManager {
 	public double getKillsFrequency() {
 		return 0.3D;
 	}
+	
+	public double getFishFrequency() {
+		return 0.3D;
+	}
 
 }

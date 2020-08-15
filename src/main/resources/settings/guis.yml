@@ -15,7 +15,7 @@ gui-settings:
     # The title of the GUI
     title: "Choose a Job"
     # The size of the GUI
-    size: 27
+    size: 54
     # If it has a item in the place where there is no jobs ;)
     put-background-item: false
     # Background item name

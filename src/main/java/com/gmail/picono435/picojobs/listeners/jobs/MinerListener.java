@@ -26,7 +26,7 @@ public class MinerListener implements Listener {
 		double method = jp.getMethod();
 		jp.setMethod(method + 1);
 				
-		double reqmethod = job.getMethod() * level * PicoJobsAPI.getSettingsManager().getBlocksFrequency();
+		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getBlocksFrequency());
 		
 		if(jp.getMethod() >= reqmethod) {
 			double salary = job.getSalary() * level * PicoJobsAPI.getSettingsManager().getSalaryFrequency();
