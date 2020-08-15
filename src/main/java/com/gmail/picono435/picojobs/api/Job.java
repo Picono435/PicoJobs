@@ -17,6 +17,7 @@ public class Job {
 	private Type type;
 	private double method;
 	private double salary;
+	private boolean requiresPermission;
 	
 	// GUI SETTINGS
 	private int slot;
@@ -27,13 +28,14 @@ public class Job {
 	// OPTIONAL
 	private String killJob;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, int slot, String item, int itemData, boolean enchanted, String killJob) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, int slot, String item, int itemData, boolean enchanted, String killJob) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
 		this.type = type;
 		this.method = method;
 		this.salary = salary;
+		this.requiresPermission = requiresPermission;
 		
 		this.slot = slot;
 		Material m;
@@ -71,6 +73,10 @@ public class Job {
 	
 	public double getSalary() {
 		return salary;
+	}
+	
+	public boolean requiresPermission() {
+		return requiresPermission;
 	}
 	
 	public int getSlot() {

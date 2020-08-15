@@ -124,6 +124,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String type = jobc.getString("type");
 			double method = getJobMethodFromConfig(jobname, type);
 			double salary = jobc.getDouble("salary");
+			boolean requiresPermission = jobc.getBoolean("require-permission");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
@@ -135,7 +136,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 				killJob = jobc.getString("kill-job");
 			}
 			
-			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, salary, slot, item, itemData, enchanted, killJob);
+			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, salary, requiresPermission, slot, item, itemData, enchanted, killJob);
 			jobs.put(jobname, job);
 		}
 		return true;
