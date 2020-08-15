@@ -5,7 +5,7 @@
 
 [statistics]: https://bstats.org/plugin/bukkit/PicoJobs
 
-# PicoJobs
+# PicoJobs - In Devolpment
 
 [![releaseImg]][release] [![licenseImg]][license]
 
