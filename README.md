@@ -1,4 +1,4 @@
-[licenseImg]: https://img.shields.io/github/license/PicoJobs/PicoJobs.svg
+[licenseImg]: https://img.shields.io/github/license/Picono435/PicoJobs.svg
 [license]: https://github.com/Picono435/PicoJobs/blob/master/LICENSE
 [releaseImg]: https://img.shields.io/github/release/PicoJobs/PicoJobs.svg?label=github%20release
 [release]: https://github.com/Picono435/PicoJobs/releases/latest
