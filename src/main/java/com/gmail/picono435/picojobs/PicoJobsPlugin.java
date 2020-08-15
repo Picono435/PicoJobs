@@ -69,7 +69,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from configuration files...");
 		if(!generateJobsFromConfig()) return;
-		PicoJobsAPI.getStorageManager().saveData();
+		PicoJobsAPI.getStorageManager().getData();
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Setting up optional and required dependencies...");
 		VaultHook.setupVault();
