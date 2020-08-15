@@ -18,7 +18,6 @@ public class FileCreator {
 	private static File gui_file;
 	
 	public static boolean generateFiles() {
-		createDataFile();
 		createGUIFile();
 		return true;
 	}

@@ -5,6 +5,7 @@ import com.gmail.picono435.picojobs.managers.JobsManager;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.managers.PlayersManager;
 import com.gmail.picono435.picojobs.managers.SettingsManager;
+import com.gmail.picono435.picojobs.managers.StorageManager;
 
 public class PicoJobsAPI {
 	
@@ -39,12 +40,22 @@ public class PicoJobsAPI {
 	}
 	
 	/**
-	 * Use this method to get the LanguageManager of the plugin, with it you can get all the messages of the plugin.
+	 * Use this method to get the SettingsManager of the plugin, with it you can access some configurations of the plugin.
 	 * 
-	 * @return The language manager of the plugin
+	 * @return The settings manager of the plugin
 	 * @author Picono435
 	 */
 	public static SettingsManager getSettingsManager() {
 		return new SettingsManager();
+	}
+	
+	/**
+	 * Use this method to get the StorageManager of the plugin, with it you can save and delete data of the plugin.
+	 * 
+	 * @return The storage manager of the plugin
+	 * @author Picono435
+	 */
+	public static StorageManager getStorageManager() {
+		return new StorageManager();
 	}
 }

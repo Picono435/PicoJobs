@@ -69,7 +69,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from configuration files...");
 		if(!generateJobsFromConfig()) return;
-		if(!generatePlayers()) return;
+		PicoJobsAPI.getStorageManager().saveData();
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Setting up optional and required dependencies...");
 		VaultHook.setupVault();
@@ -92,28 +92,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onDisable() {
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Saving data and configurations...");
 		jobs.clear();
-		FileCreator.getDataFile().delete();
-		if(!FileCreator.createDataFile()) return;
-		ConfigurationSection playerDataCategory = FileCreator.getData().getConfigurationSection("playerdata");
-		for(UUID uuid : playersdata.keySet()) {
-			JobPlayer jp = playersdata.get(uuid);
-			ConfigurationSection player = playerDataCategory.createSection(uuid.toString());
-			if(jp.getJob() == null) {
-				player.set("job", null);
-			} else {
-				player.set("job", jp.getJob().getName());
-			}
-			player.set("method", jp.getMethod());
-			player.set("level", jp.getMethodLevel());
-			player.set("salary", jp.getSalary());
-			player.set("is-working", jp.isWorking());
-		}
-		
-		try {
-			FileCreator.getData().save(FileCreator.getDataFile());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		PicoJobsAPI.getStorageManager().saveData();
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully disabled.");
 	}
@@ -173,23 +152,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 			return cat.getDouble("fish");
 		}
 		return 0.0;
-	}
-	
-	private static boolean generatePlayers() {
-		FileConfiguration data = FileCreator.getData();
-		if(data.getConfigurationSection("playerdata") == null) return true;
-		for(String uuid : data.getConfigurationSection("playerdata").getKeys(false)) {
-			if(uuid.equals("none")) continue;
-			ConfigurationSection playerCategory = data.getConfigurationSection("playerdata").getConfigurationSection(uuid);
-			Job job = PicoJobsAPI.getJobsManager().getJob(playerCategory.getString("job"));
-			double method = playerCategory.getDouble("method");
-			double level = playerCategory.getDouble("level");
-			double salary = playerCategory.getDouble("salary");
-			boolean isWorking = playerCategory.getBoolean("is-working");
-			JobPlayer jp = new JobPlayer(job, method, level, salary, isWorking);
-			playersdata.put(UUID.fromString(uuid), jp);
-		}
-		return true;
 	}
 	
 	private boolean verificarLicenca() {
