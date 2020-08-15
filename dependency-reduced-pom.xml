@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gmail.picono435</groupId>
   <artifactId>picojobs</artifactId>
-  <version>1.0</version>
+  <version>1.0-alpha</version>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
@@ -12,6 +12,7 @@
         <directory>${basedir}/src/main/resources/</directory>
       </resource>
     </resources>
+    <finalName>PicoJobs-FREE-${project.version}</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
