@@ -56,11 +56,13 @@ public class Job {
 		
 		this.killJob = killJob;
 		this.useWhitelist = useWhitelist;
-		List<Material> blockWhitelistt = new ArrayList<Material>();
-		for(String mm : blockWhitelist) {
-			blockWhitelistt.add(Material.matchMaterial(mm));
+		if(blockWhitelist != null && blockWhitelist.size() > 0) {
+			List<Material> blockWhitelistt = new ArrayList<Material>();
+			for(String mm : blockWhitelist) {
+				blockWhitelistt.add(Material.matchMaterial(mm));
+			}
+			this.blockWhitelist = blockWhitelistt;
 		}
-		this.blockWhitelist = blockWhitelistt;
 	}
 	
 	/**
@@ -207,6 +209,7 @@ public class Job {
 	
 	public boolean inWhitelist(Material material) {
 		if(blockWhitelist == null) return true;
+		if(blockWhitelist.size() <= 0) return true;
 		if(useWhitelist) {
 			return blockWhitelist.contains(material);
 		} else {

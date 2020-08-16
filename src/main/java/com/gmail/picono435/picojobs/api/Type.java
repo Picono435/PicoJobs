@@ -14,7 +14,8 @@ public enum Type {
 	BREAK(),
 	KILL(),
 	FISHING(),
-	PLACE();
+	PLACE(),
+	CRAFT();
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	

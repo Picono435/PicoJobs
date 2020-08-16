@@ -14,7 +14,7 @@ import com.gmail.picono435.picojobs.managers.LanguageManager;
 public class PlaceListener implements Listener {
 	
 	@EventHandler()
-	public void onBreakBlock(BlockPlaceEvent e) {
+	public void onPlaceBlock(BlockPlaceEvent e) {
 		if(e.getPlayer() == null) return;
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
@@ -22,6 +22,8 @@ public class PlaceListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(job.getType() != Type.BREAK) return;
+		
+		if(!job.inWhitelist(e.getBlock().getType())) return;
 		
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));

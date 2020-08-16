@@ -23,6 +23,8 @@ public class BreakListener implements Listener {
 		Job job = jp.getJob();
 		if(job.getType() != Type.BREAK) return;
 		
+		if(!job.inWhitelist(e.getBlock().getType())) return;
+		
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}

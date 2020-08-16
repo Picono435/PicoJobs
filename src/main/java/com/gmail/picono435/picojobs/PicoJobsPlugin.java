@@ -38,6 +38,7 @@ import com.gmail.picono435.picojobs.listeners.jobs.FisherListener;
 import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
 import com.gmail.picono435.picojobs.listeners.jobs.PlaceListener;
 import com.gmail.picono435.picojobs.listeners.jobs.BreakListener;
+import com.gmail.picono435.picojobs.listeners.jobs.CraftListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
@@ -93,6 +94,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);
 		Bukkit.getPluginManager().registerEvents(new PlaceListener(), this);
+		Bukkit.getPluginManager().registerEvents(new CraftListener(), this);
 		
 		//STARTING BSTATS
         Metrics metrics = new Metrics(this, 8553);
@@ -162,6 +164,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(type == Type.BREAK || type == Type.PLACE) {
 				blockWhitelist = jobc.getStringList("block-whitelist");
 			}
+			if(type == Type.CRAFT) {
+				blockWhitelist = jobc.getStringList("item-whitelist");
+			}
 			
 			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
 			jobs.put(jobname, job);
@@ -179,6 +184,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 		}
 		if(type == Type.FISHING) {
 			return cat.getDouble("fish");
+		}
+		if(type == Type.CRAFT) {
+			return cat.getDouble("items");
 		}
 		return 0.0;
 	}

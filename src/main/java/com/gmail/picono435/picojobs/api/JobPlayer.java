@@ -173,6 +173,7 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean simulateEvent() {
+		if(!isWorking()) return false;
 		double level = getMethodLevel();
 		double method = getMethod();
 		setMethod(method + 1);
