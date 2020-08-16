@@ -7,7 +7,7 @@
 
 # PicoJobs - In Devolpment
 
-[![releaseImg]][release] [![licenseImg]][license]
+[![licenseImg]][license]
 
 PicoJobs is a jobs plugin 100% configurable that allow you to join in a job and earn more money! You can setup this plugin in almost all the server minigames, like Factions, RankUP, FullPvP, and SkyWars too! (Plugin does not support bungee yet). Unfornatly the plugin is still in devolpment so there is not any stable build for you download... If you want to see how the plugin is you can either join our discord and check for spoilers or build our plugin using Maven.
 
