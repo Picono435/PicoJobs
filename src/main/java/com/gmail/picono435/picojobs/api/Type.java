@@ -4,6 +4,12 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+/**
+ * Represents a job type
+ * 
+ * @author Picono435
+ *
+ */
 public enum Type {
 	BREAK(),
 	KILL(),

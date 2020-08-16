@@ -4,6 +4,12 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+/**
+ * Represents a storage method
+ * 
+ * @author Picono435
+ *
+ */
 public enum StorageMethod {
 	MYSQL(),
 	MONGODB(),

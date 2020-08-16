@@ -17,6 +17,14 @@ public class LanguageManager {
 	private static FileConfiguration language;
 	private static File language_file;
     
+	/**
+	 * Get a message from the language file without using player placeholders (PlaceholderAPI)
+	 * 
+	 * @param message - the message key
+	 * @return the formatted message value
+	 * @author Picono435
+	 *
+	 */
     public static String getMessage(String message) {
     	String chat = language.getString(message);
     	if(chat == null) {
@@ -25,6 +33,15 @@ public class LanguageManager {
     	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
+	/**
+	 * Get a message from the language file using player placeholders (PlaceholderAPI)
+	 * 
+	 * @param message - the message key
+	 * @param p - the player
+	 * @return the formatted message value
+	 * @author Picono435
+	 *
+	 */
     public static String getMessage(String message, Player p) {
     	String chat = language.getString(message);
     	if(chat == null) {
@@ -33,10 +50,25 @@ public class LanguageManager {
     	return getPrefix() + PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
+	/**
+	 * Gets the prefix of the plugin declared on the config
+	 * 
+	 * @return the formatted prefix
+	 * @author Picono435
+	 *
+	 */
     public static String getPrefix() {
     	return ChatColor.translateAlternateColorCodes('&', PicoJobsPlugin.getPlugin().getConfig().getString("prefix"));
     }
     
+    /**
+	 * Get a message from the language file without using player placeholders (PlaceholderAPI)
+	 * 
+	 * @param message - the message
+	 * @return the formatted message
+	 * @author Picono435
+	 *
+	 */
     public static String formatMessage(String message) {
     	if(message == null) {
     		message = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
@@ -44,6 +76,15 @@ public class LanguageManager {
     	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', message));
     }
     
+    /**
+	 * Gets a message format from the language config file
+	 * 
+	 * @param message - the message key
+	 * @param p - the player
+	 * @return the formatted message value
+	 * @author Picono435
+	 *
+	 */
     public static String getFormat(String message, Player p) {
     	String chat = language.getString(message);
     	if(chat == null) {
@@ -52,6 +93,12 @@ public class LanguageManager {
     	return PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
+    /**
+	 * Creates and saves thew Language Config File
+	 * 
+	 * @author Picono435
+	 *
+	 */
     public static void createLanguageFile() {
     	String lang = PicoJobsPlugin.getPlugin().getConfig().getString("lang");
     	language_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");

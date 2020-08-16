@@ -14,7 +14,6 @@ public class JobsManager {
 	 * Create the manager of jobs, with it you can change everything of jobs.
 	 * 
 	 * @param main - the main class of the plugin.
-	 * @return JobsManager
 	 * @author Picono435
 	 */
 	public JobsManager(PicoJobsPlugin main) {

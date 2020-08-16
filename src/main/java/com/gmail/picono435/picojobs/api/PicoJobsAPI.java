@@ -7,6 +7,12 @@ import com.gmail.picono435.picojobs.managers.PlayersManager;
 import com.gmail.picono435.picojobs.managers.SettingsManager;
 import com.gmail.picono435.picojobs.managers.StorageManager;
 
+/**
+ * Represents the API from PicoJobs plugin
+ * 
+ * @author Picono435
+ *
+ */
 public class PicoJobsAPI {
 	
 	/**
