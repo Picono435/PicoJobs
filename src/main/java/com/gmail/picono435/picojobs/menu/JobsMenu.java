@@ -50,9 +50,14 @@ public class JobsMenu {
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
 			if(PicoJobsPlugin.isLegacy()) {
-				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()), 1, (byte)category.getInt("item-data"));
+				int itemData = category.getInt("item-data");
+				if(itemData == -1) {
+					builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()));
+				} else {
+					builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()), 1, (byte)itemData);
+				}
 			} else {
-				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()));
+				builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
@@ -77,7 +82,12 @@ public class JobsMenu {
 			ConfigurationSection itemConfig = items.getConfigurationSection(itemName);
 			ItemBuilder builder;
 			if(PicoJobsPlugin.isLegacy()) {
-				builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()), 1, (byte)category.getInt("item-data"));
+				int itemData = itemConfig.getInt("item-data");
+				if(itemData == -1) {
+					builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()));
+				} else {
+					builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()), 1, (byte)itemData);
+				}
 			} else {
 				builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()));
 			}
@@ -104,9 +114,14 @@ public class JobsMenu {
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
 			if(PicoJobsPlugin.isLegacy()) {
-				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()), 1, (byte)category.getInt("item-data"));
+				int itemData = category.getInt("item-data");
+				if(itemData == -1) {
+					builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()));
+				} else {
+					builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()), 1, (byte)itemData);
+				}
 			} else {
-				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()));
+				builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
@@ -131,7 +146,12 @@ public class JobsMenu {
 			ConfigurationSection itemConfig = items.getConfigurationSection(itemName);
 			ItemBuilder builder;
 			if(PicoJobsPlugin.isLegacy()) {
-				builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()), 1, (byte)category.getInt("item-data"));
+				int itemData = itemConfig.getInt("item-data");
+				if(itemData == -1) {
+					builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()));
+				} else {
+					builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()), 1, (byte)itemData);
+				}
 			} else {
 				builder = new ItemBuilder(Material.getMaterial(itemConfig.getString("material").toUpperCase()));
 			}
@@ -158,9 +178,14 @@ public class JobsMenu {
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
 			if(PicoJobsPlugin.isLegacy()) {
-				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()), 1, (byte)category.getInt("item-data"));
+				int itemData = category.getInt("item-data");
+				if(itemData == -1) {
+					builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()));
+				} else {
+					builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()), 1, (byte)itemData);
+				}
 			} else {
-				builder = new ItemBuilder(Material.getMaterial(category.getString("item").toUpperCase()));
+				builder = new ItemBuilder(Material.getMaterial(category.getString("material").toUpperCase()));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));

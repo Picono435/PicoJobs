@@ -99,7 +99,12 @@ public class Job {
 	public ItemStack getFormattedItem() {
 		ItemBuilder builder;
 		if(PicoJobsPlugin.isLegacy()) {
-			builder = new ItemBuilder(getMaterial(), 1, (byte)getItemData());
+			int itemData = getItemData() - 1;
+			if(itemData == -1) {
+				builder = new ItemBuilder(getMaterial());
+			} else {
+				builder = new ItemBuilder(getMaterial(), 1, (byte)itemData);
+			}
 		} else {
 			builder = new ItemBuilder(getMaterial());
 		}
