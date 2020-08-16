@@ -8,13 +8,13 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+no-permission: "&chhe! 您没有执行该命令的权限。"
+ignore-action: "&chhe! 不要迟缓，要与 NPC 交谈。"
+choosed-job: "恭喜！您选择了作业 %jobplayer_job%&a。"
+accepted-work: "&a你接受了 %jobplayer_work% 的工作。"
+no-salary: "&c你没有足够的工资！请去工作;("
+got-salary: "&a棒的工作！你刚刚得到你的 %jobplayer_salary% 薪水！"
+finished-work: "恭喜！您刚刚完成了您的工作。使用 /job来获得更多有关它的信息。"
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -23,10 +23,10 @@ finished-work: "&aCongratulations! You just finished your work. Use /jobs to get
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "break %a% blocks."
-kill-work: "kill %a% people."
-kill-specific-work: "kill %a% people of the job %b%."
-fish-work: "fish %a% fishes."
+blocks-work: "断开 %a% 块。"
+kill-work: "杀死 %a%的人。"
+kill-specific-work: "击杀作业中的 %a% %b 人。"
+fish-work: "鱼量 %a%"
 general-work: "%a%"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "无"
