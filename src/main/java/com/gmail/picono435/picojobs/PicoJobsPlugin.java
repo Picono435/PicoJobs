@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -35,7 +36,8 @@ import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FisherListener;
 import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
-import com.gmail.picono435.picojobs.listeners.jobs.MinerListener;
+import com.gmail.picono435.picojobs.listeners.jobs.PlaceListener;
+import com.gmail.picono435.picojobs.listeners.jobs.BreakListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
@@ -87,9 +89,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 		//REGISTERING LISTENERS
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
-		Bukkit.getPluginManager().registerEvents(new MinerListener(), this);
+		Bukkit.getPluginManager().registerEvents(new BreakListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);
+		Bukkit.getPluginManager().registerEvents(new PlaceListener(), this);
 		
 		//STARTING BSTATS
         Metrics metrics = new Metrics(this, 8553);
@@ -136,7 +139,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobname);
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
-			String type = jobc.getString("type");
+			String typeString = jobc.getString("type");
+			Type type = Type.getType(typeString.toUpperCase());
 			double method = getJobMethodFromConfig(jobname, type);
 			double salary = jobc.getDouble("salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
@@ -146,26 +150,34 @@ public class PicoJobsPlugin extends JavaPlugin {
 			int itemData = guic.getInt("item-data");
 			boolean enchanted = guic.getBoolean("enchanted");
 			
+			// CALCULATING OPTIONALS
+			
 			String killJob = "";
-			if(type.equals("kill") && jobc.getString("kill-job") != null && !jobc.getString("kill-job").equalsIgnoreCase("all")) {
+			if(type == Type.KILL && jobc.getString("kill-job") != null && !jobc.getString("kill-job").equalsIgnoreCase("all")) {
 				killJob = jobc.getString("kill-job");
 			}
 			
-			Job job = new Job(jobname, displayname, tag, Type.getType(type.toUpperCase()), method, salary, requiresPermission, slot, item, itemData, enchanted, killJob);
+			boolean useWhitelist = jobc.getBoolean("use-whitelist");
+			List<String> blockWhitelist = null;
+			if(type == Type.BREAK || type == Type.PLACE) {
+				blockWhitelist = jobc.getStringList("block-whitelist");
+			}
+			
+			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
 			jobs.put(jobname, job);
 		}
 		return true;
 	}
 	
-	private static double getJobMethodFromConfig(String jobname, String type) {
+	private static double getJobMethodFromConfig(String jobname, Type type) {
 		ConfigurationSection cat =  FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
-		if(type.equalsIgnoreCase("break")) {
+		if(type == Type.BREAK || type == Type.PLACE) {
 			return cat.getDouble("blocks");
 		}
-		if(type.equalsIgnoreCase("kill")) {
+		if(type == Type.KILL) {
 			return cat.getDouble("kills");
 		}
-		if(type.equalsIgnoreCase("fishing")) {
+		if(type == Type.FISHING) {
 			return cat.getDouble("fish");
 		}
 		return 0.0;

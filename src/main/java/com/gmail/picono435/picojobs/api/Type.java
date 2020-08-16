@@ -13,7 +13,8 @@ import com.google.common.collect.Maps;
 public enum Type {
 	BREAK(),
 	KILL(),
-	FISHING();
+	FISHING(),
+	PLACE();
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	

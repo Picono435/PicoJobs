@@ -11,7 +11,7 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
-public class MinerListener implements Listener {
+public class BreakListener implements Listener {
 	
 	@EventHandler()
 	public void onBreakBlock(BlockBreakEvent e) {

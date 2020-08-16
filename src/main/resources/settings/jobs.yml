@@ -82,6 +82,10 @@ jobs:
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
     salary: 100
+    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    block-whitelist: ["gold_ore", "iron_ore", "coal_ore", "lapis_ore", "diamond_ore", "redstone_ore", "emerald_ore", "nether_quartz_ore"]
     # GUI Choose Job settings
     gui:
       # The slot where the item will go

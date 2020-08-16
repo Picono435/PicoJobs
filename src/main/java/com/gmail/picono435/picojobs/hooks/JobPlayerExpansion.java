@@ -103,6 +103,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
      * <br>Since version 2.9.1 can you use OfflinePlayers in your requests.
      *
      * @param  p
+     *         A player.
      * @param  identifier
      *         A String containing the identifier/value.
      *
@@ -150,6 +151,15 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         		double value = reqmethod - jp.getMethod();
         		String work = LanguageManager.getFormat("general-work", p);
         		work = work.replace("%a%", LanguageManager.getFormat("fish-work", p));
+        		work = work.replace("%a%", df.format(value));
+        		return work;
+        	}
+        	if(type == Type.PLACE) {
+        		double level = jp.getMethodLevel();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
+        		double value = reqmethod - jp.getMethod();
+        		String work = LanguageManager.getFormat("general-work", p);
+        		work = work.replace("%a%", LanguageManager.getFormat("place-work", p));
         		work = work.replace("%a%", df.format(value));
         		return work;
         	}

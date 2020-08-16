@@ -1,5 +1,8 @@
 package com.gmail.picono435.picojobs.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -33,8 +36,10 @@ public class Job {
 	
 	// OPTIONAL
 	private String killJob;
+	private boolean useWhitelist;
+	private List<Material> blockWhitelist;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, int slot, String item, int itemData, boolean enchanted, String killJob) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -50,6 +55,12 @@ public class Job {
 		this.enchanted = enchanted;
 		
 		this.killJob = killJob;
+		this.useWhitelist = useWhitelist;
+		List<Material> blockWhitelistt = new ArrayList<Material>();
+		for(String mm : blockWhitelist) {
+			blockWhitelistt.add(Material.matchMaterial(mm));
+		}
+		this.blockWhitelist = blockWhitelistt;
 	}
 	
 	/**
@@ -192,5 +203,14 @@ public class Job {
 	
 	public String getKillJob() {
 		return killJob;
+	}
+	
+	public boolean inWhitelist(Material material) {
+		if(blockWhitelist == null) return true;
+		if(useWhitelist) {
+			return blockWhitelist.contains(material);
+		} else {
+			return !blockWhitelist.contains(material);
+		}
 	}
 }
