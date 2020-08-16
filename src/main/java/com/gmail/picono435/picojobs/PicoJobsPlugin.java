@@ -26,6 +26,7 @@ import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
+import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
@@ -81,6 +82,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Finishing enabling the plugin...");
 		//REGISTERING COMMANDS
 		this.getCommand("jobs").setExecutor(new JobsCommand());
+		this.getCommand("jobsadmin").setExecutor(new JobsAdminCommand());
 		//REGISTERING LISTENERS
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
@@ -155,13 +157,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	private static double getJobMethodFromConfig(String jobname, String type) {
 		ConfigurationSection cat =  FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
-		if(type.equalsIgnoreCase("miner")) {
+		if(type.equalsIgnoreCase("break")) {
 			return cat.getDouble("blocks");
 		}
 		if(type.equalsIgnoreCase("kill")) {
 			return cat.getDouble("kills");
 		}
-		if(type.equalsIgnoreCase("fisher")) {
+		if(type.equalsIgnoreCase("fishing")) {
 			return cat.getDouble("fish");
 		}
 		return 0.0;

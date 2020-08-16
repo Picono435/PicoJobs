@@ -55,6 +55,6 @@ storage:
 use-citizens: false
 # What should happen when execute /jobs command?
 # 1 = Ignore and send a message, recommended for use a NPC
-# 2 = Execute basic commands, enter a job, get salary etc... etc...
+# 2 = Execute basic commands, enter a job, get salary etc... etc... [SOON]
 # 3 = Open Jobs Menu
 jobs-action: 3

@@ -22,7 +22,7 @@ public class FisherListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.FISHER) return;
+		if(job.getType() != Type.FISHING) return;
 		double level = jp.getMethodLevel();
 		double method = jp.getMethod();
 		jp.setMethod(method + 1);

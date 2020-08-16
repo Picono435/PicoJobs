@@ -36,7 +36,7 @@ public class JobsCommand implements CommandExecutor {
 			return true;
 		} else if(action == 2) {
 			if(args.length < 1) {
-				p.sendMessage("This feature is not added yet.");
+				p.sendMessage(LanguageManager.formatMessage("&cThis feature is not added yet. ;("));
 				return true;
 			}
 			return true;

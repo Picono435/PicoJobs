@@ -5,9 +5,9 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 public enum Type {
-	MINER(),
+	BREAK(),
 	KILL(),
-	FISHER();
+	FISHING();
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	

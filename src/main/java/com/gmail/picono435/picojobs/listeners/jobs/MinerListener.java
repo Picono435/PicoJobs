@@ -21,7 +21,7 @@ public class MinerListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.MINER) return;
+		if(job.getType() != Type.BREAK) return;
 		double level = jp.getMethodLevel();
 		double method = jp.getMethod();
 		jp.setMethod(method + 1);

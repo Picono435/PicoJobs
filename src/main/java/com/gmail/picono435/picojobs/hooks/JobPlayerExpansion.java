@@ -127,7 +127,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         		return LanguageManager.getMessage("none-format", p);
         	}
         	Type type = job.getType();
-        	if(type == Type.MINER) {
+        	if(type == Type.BREAK) {
         		double level = jp.getMethodLevel();
         		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getBlocksFrequency());
         		double value = reqmethod - jp.getMethod();
@@ -145,7 +145,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         		work = work.replace("%a%", df.format(value));
         		return work;
         	}
-        	if(type == Type.FISHER) {
+        	if(type == Type.FISHING) {
         		double level = jp.getMethodLevel();
         		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
         		double value = reqmethod - jp.getMethod();

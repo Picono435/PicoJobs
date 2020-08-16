@@ -75,7 +75,7 @@ jobs:
     # The tag of the job
     tag: "&7[M]"
     # The type of the job
-    type: "miner"
+    type: "break"
     # Put here the default blocks, (this change depends on the frequency)
     blocks: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -135,7 +135,7 @@ jobs:
     # The tag of the job
     tag: "&9[F]"
     # The type of the job
-    type: "fisher"
+    type: "fishing"
     # Put here the default kills, (this change depends on the frequency)
     fish: 1
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
