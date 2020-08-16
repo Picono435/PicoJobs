@@ -8,13 +8,13 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+no-permission: "&cЭй! У вас нет прав на выполнение этой команды."
+ignore-action: "&cПривет! Не ленитесь и поговорите с NPC."
+choosed-job: "&aПоздравляем! Вы выбрали %jobplayer_job%&a."
+accepted-work: "&aВы приняли работу %jobplayer_work%."
+no-salary: "&cУ вас недостаточно зарплаты для получения! Пожалуйста, перейдите на работу ;("
+got-salary: "&aОтличная работа! Вы только что получили зарплату в %jobplayer_salary%!"
+finished-work: "&aПоздравляем! Вы только что закончили работу. Используйте /jobs для получения дополнительной информации об этом."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -23,10 +23,10 @@ finished-work: "&aCongratulations! You just finished your work. Use /jobs to get
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "break %a% blocks."
-kill-work: "kill %a% people."
-kill-specific-work: "kill %a% people of the job %b%."
-fish-work: "fish %a% fishes."
+blocks-work: "сломать %aблоков."
+kill-work: "убить %a% человек."
+kill-specific-work: "Убить %a% людей из работы %b%."
+fish-work: "рыбья %a%."
 general-work: "%a%"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "Нет"
