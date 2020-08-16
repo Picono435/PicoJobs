@@ -105,6 +105,7 @@ public class Job {
 		}
 		builder.setName(getDisplayName());
 		if(isEnchanted()) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+		builder.removeAttributes();
 		return builder.toItemStack();
 	}
 	
