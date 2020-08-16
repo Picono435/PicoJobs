@@ -145,16 +145,6 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         		work = work.replace("%a%", df.format(value));
         		return work;
         	}
-        	if(type == Type.KILL_JOB) {
-        		double level = jp.getMethodLevel();
-        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency());
-        		double value = reqmethod - jp.getMethod();
-        		String work = LanguageManager.getFormat("general-work", p);
-        		work = work.replace("%a%", LanguageManager.getFormat("kill-specific-work", p));
-        		work = work.replace("%a%", df.format(value));
-        		work = work.replace("%b%", "IAmAJob");
-        		return work;
-        	}
         	if(type == Type.FISHER) {
         		double level = jp.getMethodLevel();
         		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());

@@ -7,7 +7,6 @@ import com.google.common.collect.Maps;
 public enum Type {
 	MINER(),
 	KILL(),
-	KILL_JOB(),
 	FISHER();
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();

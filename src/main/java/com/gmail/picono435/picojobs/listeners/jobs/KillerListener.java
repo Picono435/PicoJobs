@@ -21,8 +21,8 @@ public class KillerListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.KILL && job.getType() != Type.KILL_JOB) return;
-		if(job.getType() == Type.KILL_JOB) {
+		if(job.getType() != Type.KILL) return;
+		if(!job.getKillJob().equals("")) {
 			JobPlayer jdead = PicoJobsAPI.getPlayersManager().getJobPlayer(e.getEntity());
 			if(jdead.getJob() == null) return;
 			if(!jdead.getJob().getName().equals(job.getKillJob())) return;

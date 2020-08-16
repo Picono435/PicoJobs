@@ -143,7 +143,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			boolean enchanted = guic.getBoolean("enchanted");
 			
 			String killJob = "";
-			if(type.equals("kill_job") && jobc.getString("kill-job") != null && !jobc.getString("kill-job").equals("all")) {
+			if(type.equals("kill") && jobc.getString("kill-job") != null && !jobc.getString("kill-job").equalsIgnoreCase("all")) {
 				killJob = jobc.getString("kill-job");
 			}
 			
@@ -158,7 +158,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(type.equalsIgnoreCase("miner")) {
 			return cat.getDouble("blocks");
 		}
-		if(type.equalsIgnoreCase("kill") || type.equalsIgnoreCase("kill_job")) {
+		if(type.equalsIgnoreCase("kill")) {
 			return cat.getDouble("kills");
 		}
 		if(type.equalsIgnoreCase("fisher")) {
