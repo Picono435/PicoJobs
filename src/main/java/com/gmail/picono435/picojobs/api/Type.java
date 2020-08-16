@@ -15,7 +15,13 @@ public enum Type {
 	KILL(),
 	FISHING(),
 	PLACE(),
-	CRAFT();
+	CRAFT(),
+	// TO DO
+	SMELT(),
+	EAT(),
+	ENCHANTING(),
+	REPAIR(),
+	MILK();
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	

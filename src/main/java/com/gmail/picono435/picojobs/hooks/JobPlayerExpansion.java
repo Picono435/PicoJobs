@@ -172,6 +172,51 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         		work = work.replace("%a%", df.format(value));
         		return work;
         	}
+        	if(type == Type.SMELT) {
+        		double level = jp.getMethodLevel();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
+        		double value = reqmethod - jp.getMethod();
+        		String work = LanguageManager.getFormat("general-work", p);
+        		work = work.replace("%a%", LanguageManager.getFormat("smelt-work", p));
+        		work = work.replace("%a%", df.format(value));
+        		return work;
+        	}
+        	if(type == Type.EAT) {
+        		double level = jp.getMethodLevel();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
+        		double value = reqmethod - jp.getMethod();
+        		String work = LanguageManager.getFormat("general-work", p);
+        		work = work.replace("%a%", LanguageManager.getFormat("eat-work", p));
+        		work = work.replace("%a%", df.format(value));
+        		return work;
+        	}
+        	if(type == Type.ENCHANTING) {
+        		double level = jp.getMethodLevel();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
+        		double value = reqmethod - jp.getMethod();
+        		String work = LanguageManager.getFormat("general-work", p);
+        		work = work.replace("%a%", LanguageManager.getFormat("enchant-work", p));
+        		work = work.replace("%a%", df.format(value));
+        		return work;
+        	}
+        	if(type == Type.REPAIR) {
+        		double level = jp.getMethodLevel();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
+        		double value = reqmethod - jp.getMethod();
+        		String work = LanguageManager.getFormat("general-work", p);
+        		work = work.replace("%a%", LanguageManager.getFormat("repair-work", p));
+        		work = work.replace("%a%", df.format(value));
+        		return work;
+        	}
+        	if(type == Type.MILK) {
+        		double level = jp.getMethodLevel();
+        		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getFishFrequency());
+        		double value = reqmethod - jp.getMethod();
+        		String work = LanguageManager.getFormat("general-work", p);
+        		work = work.replace("%a%", LanguageManager.getFormat("milk-work", p));
+        		work = work.replace("%a%", df.format(value));
+        		return work;
+        	}
         	return "";
         }
         
