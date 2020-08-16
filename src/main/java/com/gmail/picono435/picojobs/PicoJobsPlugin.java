@@ -98,6 +98,7 @@ public class PicoJobsPlugin extends JavaPlugin {
         		return jobs.size();
         	}
         }));
+        metrics.addCustomChart(new Metrics.SimplePie("premium_version", () -> "Free"));
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 		
