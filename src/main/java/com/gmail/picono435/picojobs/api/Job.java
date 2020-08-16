@@ -44,12 +44,7 @@ public class Job {
 		this.requiresPermission = requiresPermission;
 		
 		this.slot = slot;
-		Material m;
-		if(PicoJobsPlugin.isLegacy()) {
-			m = Material.getMaterial(item.toUpperCase());
-		} else {
-			m = Material.getMaterial(item.toUpperCase());
-		}
+		Material m = Material.matchMaterial(item);
 		this.item = m;
 		this.itemData = itemData;
 		this.enchanted = enchanted;
