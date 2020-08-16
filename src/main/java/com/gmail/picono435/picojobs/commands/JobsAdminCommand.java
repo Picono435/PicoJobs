@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 public class JobsAdminCommand implements CommandExecutor {
@@ -13,10 +14,10 @@ public class JobsAdminCommand implements CommandExecutor {
 		if(!cmd.getName().equals("jobsadmin")) return false;
 		CommandSender p = sender;
 		if(!p.hasPermission("picojobs.admin")) {
-			p.sendMessage(LanguageManager.getMessage("no-permission"));
+			p.sendMessage(LanguageManager.formatMessage("&7PicoJobs v" + PicoJobsPlugin.getInstance().getDescription().getVersion() + ". (&8&nhttps://discord.gg/wQj53Hy&r&7)"));
 			return true;
 		}
-		p.sendMessage(LanguageManager.formatMessage("&cThis feature is not added yet. ;("));
+		p.sendMessage(LanguageManager.formatMessage("&7PicoJobs v" + PicoJobsPlugin.getInstance().getDescription().getVersion() + ". (&8&nhttps://discord.gg/wQj53Hy&r&7)"));
 		return false;
 	}
 

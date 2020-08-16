@@ -34,6 +34,22 @@
           </relocations>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <show>public</show>
+          <windowtitle>PicoJobs</windowtitle>
+          <verbose>false</verbose>
+          <author>true</author>
+          <version>true</version>
+          <linksource>true</linksource>
+          <notimestamp>true</notimestamp>
+          <bottom>&lt;b&gt;Milkbowl, 2020&lt;/b&gt;</bottom>
+          <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+          <destDir>javadoc-latest</destDir>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <repositories>
