@@ -1,5 +1,7 @@
 package com.gmail.picono435.picojobs.api;
 
+import com.gmail.picono435.picojobs.managers.LanguageManager;
+
 public class JobPlayer {
 	
 	private Job job;
@@ -66,5 +68,23 @@ public class JobPlayer {
 	
 	public void removeSalary(double salary) {
 		setSalary(getSalary() - salary);
+	}
+	
+	public boolean simulateEvent() {
+		double level = getMethodLevel();
+		double method = getMethod();
+		setMethod(method + 1);
+				
+		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency());
+		
+		if(getMethod() >= reqmethod) {
+			double salary = job.getSalary() * level * PicoJobsAPI.getSettingsManager().getSalaryFrequency();
+			setMethodLevel(level + 1);
+			setMethod(0);
+			setWorking(false);
+			setSalary(getSalary() + salary);
+			return true;
+		}
+		return false;
 	}
 }

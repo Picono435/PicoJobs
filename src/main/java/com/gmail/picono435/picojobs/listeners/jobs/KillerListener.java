@@ -27,18 +27,8 @@ public class KillerListener implements Listener {
 			if(jdead.getJob() == null) return;
 			if(!jdead.getJob().getName().equals(job.getKillJob())) return;
 		}
-		double level = jp.getMethodLevel();
-		double method = jp.getMethod();
-		jp.setMethod(method + 1);
-				
-		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency());
 		
-		if(jp.getMethod() >= reqmethod) {
-			double salary = job.getSalary() * level * PicoJobsAPI.getSettingsManager().getSalaryFrequency();
-			jp.setMethodLevel(level + 1);
-			jp.setMethod(0);
-			jp.setWorking(false);
-			jp.setSalary(jp.getSalary() + salary);
+		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}
