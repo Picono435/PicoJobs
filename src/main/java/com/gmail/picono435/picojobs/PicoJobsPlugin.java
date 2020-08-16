@@ -8,8 +8,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
@@ -85,6 +87,15 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new MinerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);
+		
+		//STARTING BSTATS
+        Metrics metrics = new Metrics(this, 8553);
+        metrics.addCustomChart(new Metrics.SingleLineChart("created_jobs", new Callable<Integer>() {
+        	@Override
+        	public Integer call() throws Exception {
+        		return jobs.size();
+        	}
+        }));
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 		
