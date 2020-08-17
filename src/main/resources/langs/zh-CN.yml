@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&chhe! 您没有执行该命令的权限。"
+ignore-action: "&chhe! 不要迟缓，要与 NPC 交谈。"
+choosed-job: "恭喜！您选择了作业 %jobplayer_job%&a。"
+accepted-work: "&a你接受了 %jobplayer_work% 的工作。"
+no-salary: "&c你没有足够的工资！请去工作;("
+got-salary: "&a棒的工作！你刚刚得到你的 %jobplayer_salary% 薪水！"
+finished-work: "恭喜！您刚刚完成了您的工作。使用 /job来获得更多有关它的信息。"
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "课间休息 %a% 块"
+kill-work: "杀死 %a%"
+kill-specific-work: "击杀作业中的 %a%的人 %b%"
+fish-work: "鱼鱼 %a%"
+place-work: "位置 %a% 块"
+craft-work: "制作 %a%物品"
+smelt-work: "熔化 %a% 项"
+eat-work: "吃了 %a% 物品"
+enchant-work: "%a%物品"
+repair-work: "维修 %a%物品"
+milk-work: "从奶牛中拿取 %a%的牛奶。"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "无"
