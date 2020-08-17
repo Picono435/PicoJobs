@@ -23,10 +23,17 @@ finished-work: "&aCongratulazioni! Hai appena finito il tuo lavoro. Usa /jobs pe
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "rompere %a% blocchi."
-kill-work: "uccidi %a% persone."
-kill-specific-work: "uccidi %a% persone del lavoro %b%."
-fish-work: "pesce %a% pesci."
+blocks-work: "rompere %a% blocchi"
+kill-work: "uccidi %a% persone"
+kill-specific-work: "uccidi %a% persone del lavoro %b%"
+fish-work: "pesce %a% pesci"
+place-work: "posiziona %a% blocchi"
+craft-work: "mestiere %a% elementi"
+smelt-work: "smelt %a% elementi"
+eat-work: "mangia %a% oggetti"
+enchant-work: "incanta %a% elementi"
+repair-work: "riparazione %a% oggetti"
+milk-work: "prendere il %a% di latte dalle vacche"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Nessuno"
