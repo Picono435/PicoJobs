@@ -216,7 +216,7 @@ public class Job {
 	/**
 	 * Checks if a material is in the whitelist, this does not verify if there is a whitelist.
 	 * 
-	 * @param material - the material that you want to check
+	 * @param material the material that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
 	 * @author Picono435
 	 */

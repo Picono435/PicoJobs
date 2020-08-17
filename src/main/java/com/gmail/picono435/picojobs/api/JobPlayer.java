@@ -58,7 +58,7 @@ public class JobPlayer {
 	/**
 	 * Sets the current method (broken blocks, fish caugh etc..) of a player
 	 * 
-	 * @param method - The method
+	 * @param method The method
 	 * @author Picono435
 	 *
 	 */
@@ -80,7 +80,7 @@ public class JobPlayer {
 	/**
 	 * Sets the current method level (amount of works done) of a player
 	 * 
-	 * @param level - the level
+	 * @param level the level
 	 * @author Picono435
 	 *
 	 */
@@ -91,7 +91,7 @@ public class JobPlayer {
 	/**
 	 * Sets the job of a player
 	 * 
-	 * @param job - The Job
+	 * @param job The Job
 	 * @author Picono435
 	 *
 	 */
@@ -113,7 +113,7 @@ public class JobPlayer {
 	/**
 	 * Set if the player is working or not
 	 * 
-	 * @param isWorking - if it's working or not
+	 * @param isWorking if it's working or not
 	 * @author Picono435
 	 *
 	 */
@@ -135,7 +135,7 @@ public class JobPlayer {
 	/**
 	 * Sets the current salary of a player
 	 * 
-	 * @param salary - the salary to set
+	 * @param salary the salary to set
 	 * @author Picono435
 	 *
 	 */
@@ -146,7 +146,7 @@ public class JobPlayer {
 	/**
 	 * Adds some salary from the current salary of a player
 	 * 
-	 * @param salary - the salary to add
+	 * @param salary the salary to add
 	 * @author Picono435
 	 *
 	 */
@@ -157,7 +157,7 @@ public class JobPlayer {
 	/**
 	 * Removes some salary from the current salary of a player
 	 * 
-	 * @param salary - the salary to remove
+	 * @param salary the salary to remove
 	 * @author Picono435
 	 *
 	 */
