@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHei! Nu ai permisiunea de a executa aceasta comanda."
+ignore-action: "&cHei! Nu fii leneș și mergi să vorbești cu NPC-ul."
+choosed-job: "&aFelicitari! Ai ales jobul %jobplayer_job%&a."
+accepted-work: "&aAi acceptat munca lui %jobplayer_work%."
+no-salary: "&cNu ai suficient salariu pentru a obtine ! Te rog mergi la treaba ;("
+got-salary: "&aBună treabă! Tocmai ai primit salariul tău de %jobplayer_salary%!"
+finished-work: "&aFelicitari! Tocmai ai terminat treaba. Foloseste /job-uri pentru a obtine mai multe informatii despre ea."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "distruge blocuri %a%"
+kill-work: "omoară %a% persoane"
+kill-specific-work: "omoară %a% persoane de la locul de muncă %b%"
+fish-work: "pescuiește %a% pește"
+place-work: "plasează %a% blocuri"
+craft-work: "meșteșugește %a% obiecte"
+smelt-work: "topitor %a% elemente"
+eat-work: "mănâncă %a% obiecte"
+enchant-work: "enchant %a% articole"
+repair-work: "repară %a% elemente"
+milk-work: "ia %a% lapte de la vaci"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Niciunul"
