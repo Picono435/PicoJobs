@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHej! Nie masz uprawnień do wykonania tej komendy."
+ignore-action: "&cHej! Bądź leniwy i porozmawiaj z NPC."
+choosed-job: "&aGratulacje! Wybrałeś zadanie %jobplayer_job%&a."
+accepted-work: "&aAkceptowałeś pracę %jobplayer_work%."
+no-salary: "&cNie masz wystarczająco dużo wynagrodzenia, aby dotrzeć! Przejdź do pracy ;("
+got-salary: "&aŚwietna robota! Właśnie otrzymałeś %jobplayer_salary% pensję!"
+finished-work: "&aGratulacje! Właśnie zakończyłeś swoją pracę. Użyj /jobs aby uzyskać więcej informacji na ten temat."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "niszcz %a% bloków"
+kill-work: "zabij %a% osób"
+kill-specific-work: "zabij %a% osób w pracy %b%"
+fish-work: "ryby %a% ryb"
+place-work: "umieść %a% bloków"
+craft-work: "twórz %a% przedmiotów"
+smelt-work: "przetapianie %a% przedmiotów"
+eat-work: "zjedz %a% przedmiotów"
+enchant-work: "zaklęcie %a% przedmiotów"
+repair-work: "napraw %a% przedmiotów"
+milk-work: "zabij %a% mleka od krów"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Brak"

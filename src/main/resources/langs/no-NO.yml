@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! Du har ikke tillatelse til å utføre den kommandoen."
+ignore-action: "&cHey! Ikke vær lat og gå snakke med NPC."
+choosed-job: "&aGratulerer! Du valgte jobben %jobplayer_job%&a."
+accepted-work: "&aDu aksepterte arbeidet til %jobplayer_work%."
+no-salary: "&cDu har ikke nok lønn til å få! Gå til arbeidet ;("
+got-salary: "&aBra jobbet! Du har akkurat din %jobplayer_salary% salg!"
+finished-work: "&Gratulerer! Du har nettopp fullført arbeidet ditt. Bruk /jobs for å få mer informasjon om det."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "knus %a% blokker"
+kill-work: "drep %a% personer"
+kill-specific-work: "drep %a% folk av jobben %b%"
+fish-work: "fisk %a% fisk"
+place-work: "plasser %a% blokker"
+craft-work: "Lag %a% gjenstander"
+smelt-work: "smelte %a% artikler"
+eat-work: "spis %a% gjenstander"
+enchant-work: "fortrylle %a% gjenstander"
+repair-work: "reparasjon %a% elementer"
+milk-work: "ta %a% melker fra kuer"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Ingen"

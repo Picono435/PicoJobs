@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cEi! Você não tem permissão para executar esse comando."
+ignore-action: "&cEi! Não seja preguiçoso e vá falar com o NPC."
+choosed-job: "&aParabéns! Você escolheu o trabalho %jobplayer_job%&a."
+accepted-work: "&aVocê aceitou o trabalho de %jobplayer_work%."
+no-salary: "&cVocê não tem salário suficiente para receber! Por favor, vá trabalhar ;("
+got-salary: "&aGrande trabalho! Você recebeu seu salário de %jobplayer_salary%!"
+finished-work: "&aParabéns! Você acabou de terminar seu trabalho. Use /jobs para obter mais informações sobre isso."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "quebrar %a% de blocos"
+kill-work: "matar %a% de pessoas"
+kill-specific-work: "matar %a% pessoas do trabalho %b%"
+fish-work: "peixes de %a%"
+place-work: "colocar %a% de blocos"
+craft-work: "fabricar %a% de itens"
+smelt-work: "fundir %a% itens"
+eat-work: "comer %a% de itens"
+enchant-work: "%a% de itens encantados"
+repair-work: "reparar %a% itens"
+milk-work: "pegar %a% de leite de vacas"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Nenhuma"

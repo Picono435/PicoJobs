@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! You do not have permission to execute that command."
+ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
+choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
+accepted-work: "&aYou accepted the work of %jobplayer_work%."
+no-salary: "&cYou do not have enough salary to get! Please go work ;("
+got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
+finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "bryde %a% blokke"
+kill-work: "dræbe %a% personer"
+kill-specific-work: "dræbe %a% personer af jobbet %b%"
+fish-work: "fisk %a% fisk"
+place-work: "placer %a% blokke"
+craft-work: "håndværk %a% varer"
+smelt-work: "smelt %a% varer"
+eat-work: "spis %a% varer"
+enchant-work: "fortrylle %a% elementer"
+repair-work: "reparere %a% varer"
+milk-work: "tager %a% mælk fra køer"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "None"
