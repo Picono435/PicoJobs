@@ -23,10 +23,17 @@ finished-work: "&aFelicitari! Tocmai ai terminat treaba. Foloseste /job-uri pent
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "sparge blocuri %a%."
-kill-work: "omoară %a% persoane."
-kill-specific-work: "omoară %a% persoane de la locul de muncă %b%."
-fish-work: "pescuiește %a% pești."
+blocks-work: "distruge blocuri %a%"
+kill-work: "omoară %a% persoane"
+kill-specific-work: "omoară %a% persoane de la locul de muncă %b%"
+fish-work: "pescuiește %a% pește"
+place-work: "plasează %a% blocuri"
+craft-work: "meșteșugește %a% obiecte"
+smelt-work: "topitor %a% elemente"
+eat-work: "mănâncă %a% obiecte"
+enchant-work: "enchant %a% articole"
+repair-work: "repară %a% elemente"
+milk-work: "ia %a% lapte de la vaci"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Niciunul"
