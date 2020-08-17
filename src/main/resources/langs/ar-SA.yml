@@ -1,0 +1,39 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! ليس لديك الإذن لتنفيذ هذا الأمر."
+ignore-action: "&cمرحبًا! لا تكسروا وتذهبوا للتحدث مع NPC."
+choosed-job: "تهانينا! لقد اخترت الوظيفة %jobplayer_job%&a."
+accepted-work: "&aلقد قبلت عمل %jobplayer_work%."
+no-salary: "&cليس لديك ما يكفي من الراتب! الرجاء الذهاب إلى العمل ;("
+got-salary: "&aعمل رائع! لقد حصلت للتو على مرتباتك %jobplayer_salary%!"
+finished-work: "تهانينا! لقد انتهيت لتوك من عملك. استخدم /وظائف للحصول على مزيد من المعلومات عنها."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+blocks-work: "قطع %a% كتل"
+kill-work: "قتل %a% من الناس"
+kill-specific-work: "اقتل %a% من الناس في الوظيفة %b%"
+fish-work: "السمك %a% من الأسماك"
+place-work: "وضع %a% كتل"
+craft-work: "صنع %a% عنصر"
+smelt-work: "صهر %a% عنصر"
+eat-work: "أكل %a٪ من العناصر"
+enchant-work: "عنصر مشعل %a%"
+repair-work: "إصلاح %a% عنصر"
+milk-work: "أخذ %a% من الحليب من الأبقار"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "لا"
