@@ -23,10 +23,17 @@ finished-work: "&aGrattis! Du har precis avslutat ditt arbete. Använd /jobs fö
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "bryta %a% block."
-kill-work: "döda %a% personer."
-kill-specific-work: "döda %a% personer av jobbet %b%."
-fish-work: "fisk %a% fiskar."
+blocks-work: "bryta %a% block"
+kill-work: "döda %a% personer"
+kill-specific-work: "döda %a% personer av jobbet %b%"
+fish-work: "fisk %a% fiskar"
+place-work: "placera %a% block"
+craft-work: "tillverka %a% objekt"
+smelt-work: "smält %a% objekt"
+eat-work: "äta %a% objekt"
+enchant-work: "förtrolla %a% objekt"
+repair-work: "reparera %a% objekt"
+milk-work: "ta %a% mjölk från kor"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Ingen"
