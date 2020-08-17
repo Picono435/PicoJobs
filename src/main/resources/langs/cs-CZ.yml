@@ -23,10 +23,17 @@ finished-work: "&aGratulujeme! Právě jste dokončili svou práci. Použij /job
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "přerušit %a% bloků."
-kill-work: "zabít %a% lidí."
-kill-specific-work: "zabít %a% lidí z pracovního místa %b%."
-fish-work: "ryba %a% ryb."
+blocks-work: "přerušit %a% bloků"
+kill-work: "zabít %a% lidí"
+kill-specific-work: "zabít %a% lidí z pracovního místa %b%"
+fish-work: "ryba %a% ryb"
+place-work: "umístit %a% bloků"
+craft-work: "vyrobit %a% položek"
+smelt-work: "tavit %a% položek"
+eat-work: "jíst %a% položek"
+enchant-work: "okouzlující %a% položek"
+repair-work: "opravit %a% položek"
+milk-work: "odebrat %a% mléka od krav"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Nic"
