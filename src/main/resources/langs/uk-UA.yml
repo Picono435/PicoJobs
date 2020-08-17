@@ -23,10 +23,17 @@ finished-work: "&aВітаємо! Ви щойно завершили робот�
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "перервати %a%-блоків."
-kill-work: "вбити %a% людей."
-kill-specific-work: "вбити %a% людей роботи %b%."
-fish-work: "риби %a%."
+blocks-work: "зупинити %a% блоків"
+kill-work: "вбити %a% людей"
+kill-specific-work: "вбити %a% людей у роботі %b%"
+fish-work: "риби %a% риб"
+place-work: "розмістити %a% блоків"
+craft-work: "виробити %a% товарів"
+smelt-work: "переплавити %a% товарів"
+eat-work: "їжте %a% елементів"
+enchant-work: "зачаровані %a% елементи"
+repair-work: "ремонтувати %a% товарів"
+milk-work: "взяти %a% молока з корів"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Без ефекту"
