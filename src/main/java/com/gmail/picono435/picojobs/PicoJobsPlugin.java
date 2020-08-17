@@ -199,7 +199,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			return cat.getDouble("food");
 		}
 		if(type == Type.MILK) {
-			return cat.getDouble("milk");
+			return cat.getDouble("buckets");
 		}
 		return 0.0;
 	}
