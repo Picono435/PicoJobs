@@ -203,10 +203,23 @@ public class Job {
 		return builder.toItemStack();
 	}
 	
+	/**
+	 * Gets the job that needs to be killed. This does not verify if its a KILL job type, it will return an empty string if there is no kill job.
+	 * 
+	 * @return the kill job, an empty string if there is none
+	 * @author Picono435
+	 */
 	public String getKillJob() {
 		return killJob;
 	}
 	
+	/**
+	 * Checks if a material is in the whitelist, this does not verify if there is a whitelist.
+	 * 
+	 * @param material - the material that you want to check
+	 * @return true if it's in the whitelist or there is no whitelist, false if not
+	 * @author Picono435
+	 */
 	public boolean inWhitelist(Material material) {
 		if(blockWhitelist == null) return true;
 		if(blockWhitelist.size() <= 0) return true;

@@ -16,7 +16,6 @@ public enum Type {
 	FISHING(),
 	PLACE(),
 	CRAFT(),
-	// TO DO
 	SMELT(),
 	EAT(),
 	ENCHANTING(),
