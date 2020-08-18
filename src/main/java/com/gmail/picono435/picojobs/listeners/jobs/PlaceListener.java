@@ -21,7 +21,7 @@ public class PlaceListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.BREAK) return;
+		if(job.getType() != Type.PLACE) return;
 		
 		if(!job.inWhitelist(e.getBlock().getType())) return;
 		
