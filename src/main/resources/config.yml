@@ -31,7 +31,7 @@ storage:
   # Here is a list of storage methods that you can choose:
   # YAML - Save the data in a YAML file inside the plugin directory
   # MySQL - Save the data in a MySQL database
-  # MongoDB - Save the data in a MongoDB database [SOON]
+  # MongoDB - Save the data in a MongoDB database
   storage-method: YAML
   # MySQL configuration, required only if the storage method is MySQL
   mysql:
@@ -43,7 +43,11 @@ storage:
     tablename: "jobplayers"
   # MongoDB configuration, required only if the storage method is MongoDB
   mongodb:
-    uri: "mongodb+srv:://MongoDBURI"
+    # Here you need to put the MongoDB Connection URI
+    # For more information check https://docs.mongodb.com/manual/reference/connection-string/
+    URI: "mongodb+srv://<user>:<password>@mydatabases-host.mongodb.net/"
+    database: "mcserver"
+    collection: "jobplayers"
 
 #################################################################################
 #                                                                               #

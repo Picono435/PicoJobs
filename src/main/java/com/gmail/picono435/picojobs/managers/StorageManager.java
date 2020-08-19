@@ -13,12 +13,17 @@ import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.StorageMethod;
 import com.gmail.picono435.picojobs.utils.FileCreator;
+import com.gmail.picono435.picojobs.utils.MongoDBAPI;
 import com.gmail.picono435.picojobs.utils.MySQLAPI;
 
 public class StorageManager {
 	
 	public StorageMethod storageMethod = StorageMethod.YAML;
 	
+	/*
+	 * GET DATA METHODS 
+	 */
+	// GENERAL
 	public void getData() {
 		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("storage").getString("storage-method"));
 		
@@ -34,19 +39,17 @@ public class StorageManager {
 			return;
 		}
 		
+		if(storageMethod == StorageMethod.MONGODB) {
+			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
+			getDataInMongoDB();
+			return;
+		}
+		
 		PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any storage method with that name. Using YAML storage method as default.");
 		getDataInConfig();
 	}
 	
-	private void getDataInMySQL() {
-		MySQLAPI api = new MySQLAPI();
-		api.startConnection();
-		for(String uuid : api.getAllUsers()) {
-			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
-		}
-		api.close();
-	}
-	
+	// YAML
 	private void getDataInConfig() {
 		FileCreator.createDataFile();
 		FileConfiguration data = FileCreator.getData();
@@ -64,6 +67,30 @@ public class StorageManager {
 		}
 	}
 	
+	// MYSQL
+	private void getDataInMySQL() {
+		MySQLAPI api = new MySQLAPI();
+		api.startConnection();
+		for(String uuid : api.getAllUsers()) {
+			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
+		}
+		api.close();
+	}
+	
+	// MYSQL
+	private void getDataInMongoDB() {
+		MongoDBAPI api = new MongoDBAPI();
+		api.startConnection();
+		for(String uuid : api.getAllUsers()) {
+			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
+		}
+		api.close();
+	}
+	
+	/*
+	 * SAVE DATA METHODS 
+	 */
+	// GENERAL
 	public void saveData() {
 		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("storage").getString("storage-method"));
 		
@@ -79,21 +106,17 @@ public class StorageManager {
 			return;
 		}
 		
+		if(storageMethod == StorageMethod.MONGODB) {
+			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
+			saveInMongoDB();
+			return;
+		}
+		
 		PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any storage method with that name. Using YAML storage method as default.");
 		saveInConfig();
 	}
 	
-	private void saveInMySQL() {
-		MySQLAPI api = new MySQLAPI();
-		api.startConnection();
-		api.deleteMysqlRecords();
-		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
-			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
-			api.addINDB(uuid.toString(), jp.getJob().getName(), jp.getMethod(), jp.getMethodLevel(), jp.getSalary(), jp.isWorking());
-		}
-		api.close();
-	}
-	
+	// YAML
 	private void saveInConfig() {
 		if(FileCreator.getDataFile() != null) {
 			FileCreator.getDataFile().delete();
@@ -119,5 +142,29 @@ public class StorageManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// MYSQL
+	private void saveInMySQL() {
+		MySQLAPI api = new MySQLAPI();
+		api.startConnection();
+		api.deleteMysqlRecords();
+		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
+			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
+			api.addINDB(uuid.toString(), jp.getJob().getName(), jp.getMethod(), jp.getMethodLevel(), jp.getSalary(), jp.isWorking());
+		}
+		api.close();
+	}
+	
+	// MYSQL
+	private void saveInMongoDB() {
+		MongoDBAPI api = new MongoDBAPI();
+		api.startConnection();
+		api.deleteAllDocuments();
+		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
+			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
+			api.addINDB(uuid.toString(), jp.getJob().getName(), jp.getMethod(), jp.getMethodLevel(), jp.getSalary(), jp.isWorking());
+		}
+		api.close();
 	}
 }

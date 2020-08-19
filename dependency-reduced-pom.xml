@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gmail.picono435</groupId>
   <artifactId>picojobs</artifactId>
-  <version>1.0-alpha-1</version>
+  <version>1.0-alpha-1a</version>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
