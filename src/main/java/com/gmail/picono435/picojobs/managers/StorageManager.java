@@ -91,23 +91,29 @@ public class StorageManager {
 	 * SAVE DATA METHODS 
 	 */
 	// GENERAL
-	public void saveData() {
+	public void saveData(boolean log) {
 		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("storage").getString("storage-method"));
 		
 		if(storageMethod == StorageMethod.YAML) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
+			if(log) {
+				PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
+			}
 			saveInConfig();
 			return;
 		}
 		
 		if(storageMethod == StorageMethod.MYSQL) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MySQL storage method.");
+			if(log) {
+				PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MySQL storage method.");
+			}
 			saveInMySQL();
 			return;
 		}
 		
 		if(storageMethod == StorageMethod.MONGODB) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
+			if(log) {
+				PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
+			}
 			saveInMongoDB();
 			return;
 		}
@@ -118,14 +124,13 @@ public class StorageManager {
 	
 	// YAML
 	private void saveInConfig() {
-		if(FileCreator.getDataFile() != null) {
-			FileCreator.getDataFile().delete();
-		}
-		if(!FileCreator.createDataFile()) return;
 		ConfigurationSection playerDataCategory = FileCreator.getData().getConfigurationSection("playerdata");
 		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
 			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
-			ConfigurationSection player = playerDataCategory.createSection(uuid.toString());
+			ConfigurationSection player = playerDataCategory.getConfigurationSection(uuid.toString());
+			if(player == null) {
+				player = playerDataCategory.createSection(uuid.toString());
+			}
 			if(jp.getJob() == null) {
 				player.set("job", null);
 			} else {

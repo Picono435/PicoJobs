@@ -18,6 +18,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -50,6 +51,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private static Plugin plugin;
 	private static PicoJobsPlugin instance;
 	private static boolean legacy;
+	private static boolean oldVersion;
 	//DATA
 	//JOBS DATA
 	public static Map<String, Job> jobs = new HashMap<String, Job>(); 
@@ -61,7 +63,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 		instance = this;
-		saveDefaultConfig();
 		Bukkit.getServer();
 		sendConsoleMessage("[PicoJobs] Plugin created by: Picono435#2011. Thank you for use it.");
 		if(!verificarLicenca()) return;
@@ -73,11 +74,18 @@ public class PicoJobsPlugin extends JavaPlugin {
 		}
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Creating and configuring internal files...");
+		saveDefaultConfig();
+		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
+			sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] You were using a old configuration file... Updating it and removing comments, for more information check our WIKI.");
+			getConfig().options().copyDefaults(true);
+			getConfig().set("config-version", getDescription().getVersion());
+			saveConfig();
+		}
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		
 		
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from configuration files...");
+		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from storage...");
 		if(!generateJobsFromConfig()) return;
 		PicoJobsAPI.getStorageManager().getData();
 		
@@ -116,12 +124,21 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
 		
 		checkVersion();
+				
+		long saveInterval = getConfig().getConfigurationSection("storage").getInt("save-interval");
+		if(saveInterval != 0) {
+			new BukkitRunnable() {
+				public void run() {
+					PicoJobsAPI.getStorageManager().saveData(false);
+				}
+			}.runTaskTimerAsynchronously(this, saveInterval, saveInterval);
+		}
 	}
 	
 	public void onDisable() {
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Saving data and configurations...");
 		jobs.clear();
-		PicoJobsAPI.getStorageManager().saveData();
+		PicoJobsAPI.getStorageManager().saveData(true);
 		
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully disabled.");
 	}
@@ -140,6 +157,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	public static boolean isLegacy() {
 		return legacy;
+	}
+	
+	public static boolean isOldVersion() {
+		return oldVersion;
 	}
 	
 	private static boolean generateJobsFromConfig() {
@@ -230,7 +251,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private void checkVersion() {
 		String version = "1.0";
 		try {
-            URL url = new URL("https://api.github.com/repos/Picono435/PicoJobs/releases/latest");
+            URL url = new URL("https://api.github.com/repos/Picono435/PicoJobs/releases");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setConnectTimeout(5000);
@@ -246,8 +267,8 @@ public class PicoJobsPlugin extends JavaPlugin {
             in.close();
 
             JSONParser parser = new JSONParser();
-            JSONObject json = (JSONObject) parser.parse(content.toString());
-            
+            JSONArray jsonArray = (JSONArray) parser.parse(content.toString());
+            JSONObject json = (JSONObject) jsonArray.get(0);
             version = (String)json.get("tag_name");
 			
 		} catch(Exception ex) {
@@ -261,6 +282,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 				new BukkitRunnable() {
 					public void run() {
 						sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] You are using a old version of the plugin. Please download the new version in our pages.");
+						oldVersion = true;
 						return;
 					}
 				}.runTaskLater(this, 5L);

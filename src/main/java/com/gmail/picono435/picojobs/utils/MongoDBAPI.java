@@ -37,8 +37,9 @@ public class MongoDBAPI {
         return true;
     }
 	
-	public void addINDB(final String uuid, final String job, final double method, final double level, final double salary, final boolean isWorking) {
+	public void addINDB(final String uuid, String job, final double method, final double level, final double salary, final boolean isWorking) {
 		Document obj = new Document("uuid", uuid);
+		if(job == null) job = "";
         obj.put("job", job);
         obj.put("method", method);
         obj.put("level", level);
