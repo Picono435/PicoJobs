@@ -31,6 +31,7 @@ import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
+import com.gmail.picono435.picojobs.listeners.AliasesListeners;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.listeners.ExecuteCommandListener;
@@ -103,6 +104,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ExecuteCommandListener(), this);
+		Bukkit.getPluginManager().registerEvents(new AliasesListeners(), this);
 		Bukkit.getPluginManager().registerEvents(new BreakListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);

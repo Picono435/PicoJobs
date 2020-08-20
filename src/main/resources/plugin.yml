@@ -7,6 +7,6 @@ main: com.gmail.picono435.picojobs.PicoJobsPlugin
 description: "The best jobs plugin ever! You can customize every single thing on it ;)."
 commands:
   jobs:
-    aliases: [empregos, emprego, job, getjob, wantjob, picojobs, piconojobs]
+    aliases: [picojobs, piconojobs]
   jobsadmin:
-    aliases: [empregosadmin, empregoadmin, jobadmin, picojobsadmin, piconojobsadmin]
+    aliases: [picojobsadmin, piconojobsadmin]

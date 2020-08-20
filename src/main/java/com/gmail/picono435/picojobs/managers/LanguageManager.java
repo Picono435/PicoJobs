@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.managers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -15,13 +16,13 @@ import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 
 public class LanguageManager {
 	
-	public static FileConfiguration language;
-	public static File language_file;
+	private static FileConfiguration language;
+	private static File language_file;
     
 	/**
 	 * Get a message from the language file without using player placeholders (PlaceholderAPI)
 	 * 
-	 * @param message - the message key
+	 * @param message the message key
 	 * @return the formatted message value
 	 * @author Picono435
 	 *
@@ -37,8 +38,8 @@ public class LanguageManager {
 	/**
 	 * Get a message from the language file using player placeholders (PlaceholderAPI)
 	 * 
-	 * @param message - the message key
-	 * @param p - the player
+	 * @param message the message key
+	 * @param p the player
 	 * @return the formatted message value
 	 * @author Picono435
 	 *
@@ -65,7 +66,7 @@ public class LanguageManager {
     /**
 	 * Get a message from the language file without using player placeholders (PlaceholderAPI)
 	 * 
-	 * @param message - the message
+	 * @param message the message
 	 * @return the formatted message
 	 * @author Picono435
 	 *
@@ -80,8 +81,8 @@ public class LanguageManager {
     /**
 	 * Gets a message format from the language config file
 	 * 
-	 * @param message - the message key
-	 * @param p - the player
+	 * @param message the message key
+	 * @param p the player
 	 * @return the formatted message value
 	 * @author Picono435
 	 *
@@ -92,6 +93,19 @@ public class LanguageManager {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
     	return PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
+    }
+    
+    /**
+	 * Gets a list of all command aliases of a command
+	 * 
+	 * @param cmd the command
+	 * @return the list of aliases
+	 * @author Picono435
+	 *
+	 */
+    public static List<String> getCommandAliases(String cmd) {
+    	List<String> chat = language.getConfigurationSection("aliases").getStringList(cmd);
+    	return chat;
     }
     
     /**
