@@ -38,3 +38,7 @@ milk-work: "взяти %a% молока з корів"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Без ефекту"
+test:
+  - "a"
+  - "б"
+test-2: "adadada Comida"
