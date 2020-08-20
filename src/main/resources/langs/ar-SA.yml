@@ -38,3 +38,7 @@ milk-work: "أخذ %a% من الحليب من الأبقار"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "لا"
+test:
+  - "أ"
+  - "ب"
+test-2: "adadada Comida"
