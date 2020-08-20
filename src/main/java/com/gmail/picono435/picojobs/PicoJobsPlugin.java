@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -32,6 +33,7 @@ import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
+import com.gmail.picono435.picojobs.listeners.ExecuteCommandListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FisherListener;
 import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
 import com.gmail.picono435.picojobs.listeners.jobs.MilkListener;
@@ -75,14 +77,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Creating and configuring internal files...");
 		saveDefaultConfig();
+		LanguageManager.createLanguageFile();
+		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
 			sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] You were using a old configuration file... Updating it and removing comments, for more information check our WIKI.");
 			getConfig().options().copyDefaults(true);
 			getConfig().set("config-version", getDescription().getVersion());
 			saveConfig();
 		}
-		LanguageManager.createLanguageFile();
-		if(!FileCreator.generateFiles());
 		
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from storage...");
@@ -100,6 +102,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		//REGISTERING LISTENERS
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
+		Bukkit.getPluginManager().registerEvents(new ExecuteCommandListener(), this);
 		Bukkit.getPluginManager().registerEvents(new BreakListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);
@@ -125,7 +128,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		checkVersion();
 				
-		long saveInterval = getConfig().getConfigurationSection("storage").getInt("save-interval");
+		long saveInterval = PicoJobsAPI.getSettingsManager().getSaveInterval();
 		if(saveInterval != 0) {
 			new BukkitRunnable() {
 				public void run() {

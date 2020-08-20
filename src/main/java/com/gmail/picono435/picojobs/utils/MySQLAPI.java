@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.bukkit.configuration.ConfigurationSection;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 
@@ -43,7 +42,7 @@ public class MySQLAPI {
             }
             Class.forName("com.mysql.jdbc.Driver");
             
-            config = PicoJobsPlugin.getInstance().getConfig().getConfigurationSection("storage").getConfigurationSection("mysql");
+            config = PicoJobsAPI.getSettingsManager().getMySQLConfiguration();
             String host = config.getString("host");
             int port = config.getInt("port");
             String database = config.getString("database");

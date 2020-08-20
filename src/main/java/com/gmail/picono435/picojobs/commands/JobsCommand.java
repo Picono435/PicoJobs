@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.JobsMenu;
 
@@ -29,7 +30,7 @@ public class JobsCommand implements CommandExecutor {
 			return true;
 		}
 		
-		int action = PicoJobsPlugin.getPlugin().getConfig().getInt("jobs-action");
+		int action = PicoJobsAPI.getSettingsManager().getCommandAction();
 		
 		if(action == 1) {
 			p.sendMessage(LanguageManager.getMessage("ignore-action", p));

@@ -172,13 +172,13 @@ public class JobPlayer {
 	 * @author Picono435
 	 *
 	 */
-	public boolean simulateEvent() {
+	public boolean simulateEvent(Type type) {
 		if(!isWorking()) return false;
 		double level = getMethodLevel();
 		double method = getMethod();
 		setMethod(method + 1);
 				
-		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getKillsFrequency());
+		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getMethodFrequency());
 		
 		if(getMethod() >= reqmethod) {
 			double salary = job.getSalary() * level * PicoJobsAPI.getSettingsManager().getSalaryFrequency();

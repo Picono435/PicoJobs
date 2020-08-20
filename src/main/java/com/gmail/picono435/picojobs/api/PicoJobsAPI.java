@@ -15,6 +15,12 @@ import com.gmail.picono435.picojobs.managers.StorageManager;
  */
 public class PicoJobsAPI {
 	
+	private static JobsManager jobsManager = new JobsManager(PicoJobsPlugin.getInstance());
+	private static PlayersManager playersManager = new PlayersManager(PicoJobsPlugin.getInstance());
+	private static LanguageManager languageManager = new LanguageManager();
+	private static SettingsManager settingsManager = new SettingsManager(PicoJobsPlugin.getInstance());
+	private static StorageManager storageManager = new StorageManager();
+	
 	/**
 	 * Use this method to get the JobsManager of the plugin, with it you can edit/get most of the things of a job. 
 	 * 
@@ -22,7 +28,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static JobsManager getJobsManager() {
-		return new JobsManager(PicoJobsPlugin.getInstance());
+		return jobsManager;
 	}
 	
 	/**
@@ -32,7 +38,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static PlayersManager getPlayersManager() {
-		return new PlayersManager(PicoJobsPlugin.getInstance());
+		return playersManager;
 	}
 	
 	/**
@@ -42,7 +48,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static LanguageManager getLanguageManager() {
-		return new LanguageManager();
+		return languageManager;
 	}
 	
 	/**
@@ -52,7 +58,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static SettingsManager getSettingsManager() {
-		return new SettingsManager();
+		return settingsManager;
 	}
 	
 	/**
@@ -62,6 +68,6 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static StorageManager getStorageManager() {
-		return new StorageManager();
+		return storageManager;
 	}
 }

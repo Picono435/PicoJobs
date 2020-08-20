@@ -67,3 +67,12 @@ use-citizens: false
 # 2 = Execute basic commands, enter a job, get salary etc... etc... [SOON]
 # 3 = Open Jobs Menu
 jobs-action: 3
+
+#################################################################################
+#                                                                               #
+# Commands allow                                                                #
+#                                                                               #
+#################################################################################
+# In this category you can select all the commands that can only be used after a specific level (amount of works done)
+commands:
+  /examplecommand: 5

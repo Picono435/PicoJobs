@@ -28,7 +28,7 @@ public class KillerListener implements Listener {
 			if(!jdead.getJob().getName().equals(job.getKillJob())) return;
 		}
 		
-		if(jp.simulateEvent()) {
+		if(jp.simulateEvent(job.getType())) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}

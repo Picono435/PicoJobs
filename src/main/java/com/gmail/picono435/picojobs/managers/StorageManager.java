@@ -25,7 +25,7 @@ public class StorageManager {
 	 */
 	// GENERAL
 	public void getData() {
-		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("storage").getString("storage-method"));
+		storageMethod = StorageMethod.getStorageMethod(PicoJobsAPI.getSettingsManager().getStorageMethod());
 		
 		if(storageMethod == StorageMethod.YAML) {
 			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
@@ -92,7 +92,7 @@ public class StorageManager {
 	 */
 	// GENERAL
 	public void saveData(boolean log) {
-		storageMethod = StorageMethod.getStorageMethod(PicoJobsPlugin.getPlugin().getConfig().getConfigurationSection("storage").getString("storage-method"));
+		storageMethod = StorageMethod.getStorageMethod(PicoJobsAPI.getSettingsManager().getStorageMethod());
 		
 		if(storageMethod == StorageMethod.YAML) {
 			if(log) {

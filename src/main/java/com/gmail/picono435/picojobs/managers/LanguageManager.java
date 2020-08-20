@@ -10,12 +10,13 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
 
 public class LanguageManager {
 	
-	private static FileConfiguration language;
-	private static File language_file;
+	public static FileConfiguration language;
+	public static File language_file;
     
 	/**
 	 * Get a message from the language file without using player placeholders (PlaceholderAPI)
@@ -58,7 +59,7 @@ public class LanguageManager {
 	 *
 	 */
     public static String getPrefix() {
-    	return ChatColor.translateAlternateColorCodes('&', PicoJobsPlugin.getPlugin().getConfig().getString("prefix"));
+    	return ChatColor.translateAlternateColorCodes('&', PicoJobsAPI.getSettingsManager().getPrefix());
     }
     
     /**
@@ -100,7 +101,7 @@ public class LanguageManager {
 	 *
 	 */
     public static void createLanguageFile() {
-    	String lang = PicoJobsPlugin.getPlugin().getConfig().getString("lang");
+    	String lang = PicoJobsAPI.getSettingsManager().getLanguage();
     	language_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");
         if (!language_file.exists()) {
         	language_file.getParentFile().mkdirs();

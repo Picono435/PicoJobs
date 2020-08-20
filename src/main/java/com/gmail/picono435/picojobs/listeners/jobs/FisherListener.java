@@ -24,7 +24,7 @@ public class FisherListener implements Listener {
 		Job job = jp.getJob();
 		if(job.getType() != Type.FISHING) return;
 		
-		if(jp.simulateEvent()) {
+		if(jp.simulateEvent(job.getType())) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}

@@ -23,7 +23,7 @@ public class MilkListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(job.getType() != Type.MILK) return;
-		if(jp.simulateEvent()) {
+		if(jp.simulateEvent(job.getType())) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}

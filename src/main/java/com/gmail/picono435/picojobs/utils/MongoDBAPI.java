@@ -6,7 +6,6 @@ import java.util.List;
 import org.bson.Document;
 import org.bukkit.configuration.ConfigurationSection;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
@@ -24,7 +23,7 @@ public class MongoDBAPI {
     private MongoClient client;
     
 	public boolean startConnection() {
-		conf = PicoJobsPlugin.getInstance().getConfig().getConfigurationSection("storage").getConfigurationSection("mongodb");
+		conf = PicoJobsAPI.getSettingsManager().getMongoDBConfiguration();
          openConnection();
          return true;
 	}

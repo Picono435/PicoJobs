@@ -32,7 +32,7 @@ public class SmeltListener implements Listener {
 		if(!job.inWhitelist(e.getCurrentItem().getType())) return;
 		
 		for(int i = 0; i < e.getCurrentItem().getAmount(); i++) {
-			if(jp.simulateEvent()) {
+			if(jp.simulateEvent(job.getType())) {
 				p.sendMessage(LanguageManager.getMessage("finished-work", p));
 			}
 		}
