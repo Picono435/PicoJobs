@@ -38,3 +38,7 @@ milk-work: "zabij %a% mleka od krów"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Brak"
+test:
+  - "ob z"
+  - "b"
+test-2: "adadada Comida"
