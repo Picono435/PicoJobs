@@ -15,6 +15,7 @@ accepted-work: "&aPřijali jste práci %jobplayer_work%."
 no-salary: "&cNemáš dostatek platu, abys mohl získat! Prosím, jdi do práce ;("
 got-salary: "&aSkvělá práce! Právě jste dostali svůj %jobplayer_salary% plat!"
 finished-work: "&aGratulujeme! Právě jste dokončili svou práci. Použij /jobs pro získání více informací o tom."
+need-level: "&cHej! Pro provedení této akce musíš udělat %a% práce."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -23,15 +24,15 @@ finished-work: "&aGratulujeme! Právě jste dokončili svou práci. Použij /job
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "přerušit %a% bloků"
+break-work: "přerušit %a% bloků"
 kill-work: "zabít %a% lidí"
 kill-specific-work: "zabít %a% lidí z pracovního místa %b%"
-fish-work: "ryba %a% ryb"
+fishing-work: "ryba %a% ryb"
 place-work: "umístit %a% bloků"
 craft-work: "vyrobit %a% položek"
 smelt-work: "tavit %a% položek"
 eat-work: "jíst %a% položek"
-enchant-work: "okouzlující %a% položek"
+enchanting-work: "okouzlující %a% položek"
 repair-work: "opravit %a% položek"
 milk-work: "odebrat %a% mléka od krav"
 general-work: "%a%"
