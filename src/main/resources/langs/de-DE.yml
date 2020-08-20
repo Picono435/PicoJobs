@@ -38,3 +38,7 @@ milk-work: "nehme %a% Milch von Kühen"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Keine"
+test:
+  - "a"
+  - "b"
+test-2: "adadada Comida"
