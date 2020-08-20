@@ -15,6 +15,7 @@ accepted-work: "&a %jobplayer_work% の作業を承認しました。"
 no-salary: "&cあなたには給料が足りません！仕事に行ってください ;("
 got-salary: "&a素晴らしい仕事です！ %jobplayer_salary% の報酬を受け取りました！"
 finished-work: "&aおめでとうございます！完了しました。/jobsを使って詳細を確認してください。"
+need-level: "&cHey! このアクションを実行するには %a%の動作が必要です。"
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -23,15 +24,15 @@ finished-work: "&aおめでとうございます！完了しました。/jobsを
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "%a%ブロックを破壊する"
+break-work: "%a%ブロックを破壊する"
 kill-work: "%a%の人を殺す"
 kill-specific-work: "kill %a% people of the job %b%"
-fish-work: "魚 %a% 魚"
+fishing-work: "魚 %a% 魚"
 place-work: "%a%ブロックを置く"
 craft-work: "%a%のアイテムをクラフトする"
 smelt-work: "%a%のアイテムを精錬する"
 eat-work: "%a%のアイテムを食べる"
-enchant-work: "%a%のアイテムをエンチャントする"
+enchanting-work: "%a%のアイテムをエンチャントする"
 repair-work: "%a%のアイテムを修理する"
 milk-work: "牛乳から %a% ミルクを採取する"
 general-work: "%a%"
