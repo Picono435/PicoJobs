@@ -38,3 +38,7 @@ milk-work: "从奶牛中拿取 %a%的牛奶。"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "无"
+test:
+  - "a"
+  - "b"
+test-2: "adadada Comida"
