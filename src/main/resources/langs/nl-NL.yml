@@ -38,3 +38,7 @@ milk-work: "neem %a% melk van koeien"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "geen"
+test:
+  - "een"
+  - "B"
+test-2: "adadada Comida"
