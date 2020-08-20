@@ -15,6 +15,7 @@ accepted-work: "&aJe hebt het werk van %jobplayer_work% geaccepteerd."
 no-salary: "&cJe hebt niet genoeg salaris om te krijgen! Ga naar werk ;("
 got-salary: "&aGoed werk! Je hebt zojuist je %jobplayer_salary% salaris!"
 finished-work: "&aGefeliciteerd! Je hebt zojuist je werk voltooid. Gebruik /jobs om meer informatie erover te krijgen."
+need-level: "&cHey! Je moet %a% doen om die actie uit te voeren."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -23,15 +24,15 @@ finished-work: "&aGefeliciteerd! Je hebt zojuist je werk voltooid. Gebruik /jobs
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-blocks-work: "pak %a% blokken"
+break-work: "pak %a% blokken"
 kill-work: "versla %a% mensen"
 kill-specific-work: "dood %a% mensen van de baan %b%"
-fish-work: "Vis %a% vissen"
+fishing-work: "Vis %a% vissen"
 place-work: "plaats %a% blokken"
 craft-work: "maak %a% voorwerpen"
 smelt-work: "smelt %a% voorwerpen"
 eat-work: "%a% voorwerpen eten"
-enchant-work: "betover %a% items"
+enchanting-work: "betover %a% items"
 repair-work: "repareer %a% items"
 milk-work: "neem %a% melk van koeien"
 general-work: "%a%"
