@@ -24,17 +24,21 @@ need-level: "&cHey! Du må gjøre %a% for å utføre den handlingen."
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-break-work: "break %a% blocks"
+break-work: "knus %a% blokker"
 kill-work: "drep %a% personer"
 kill-specific-work: "drep %a% folk av jobben %b%"
-fishing-work: "fish %a% fishes"
+fishing-work: "fisk %a% fisk"
 place-work: "plasser %a% blokker"
 craft-work: "Lag %a% gjenstander"
 smelt-work: "smelte %a% artikler"
 eat-work: "spis %a% gjenstander"
-enchanting-work: "enchant %a% items"
+enchanting-work: "fortrylle %a% gjenstander"
 repair-work: "reparasjon %a% elementer"
 milk-work: "ta %a% melker fra kuer"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Ingen"
+test:
+  - "en"
+  - "b"
+test-2: "adadada Comida"
