@@ -24,17 +24,21 @@ need-level: "&cEi! Você precisa fazer %a% de trabalho para executar essa ação
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed.
-break-work: "break %a% blocks"
+break-work: "quebrar %a% de blocos"
 kill-work: "matar %a% de pessoas"
 kill-specific-work: "matar %a% pessoas do trabalho %b%"
-fishing-work: "fish %a% fishes"
+fishing-work: "peixes de %a%"
 place-work: "colocar %a% de blocos"
 craft-work: "fabricar %a% de itens"
 smelt-work: "fundir %a% itens"
 eat-work: "comer %a% de itens"
-enchanting-work: "enchant %a% items"
+enchanting-work: "%a% de itens encantados"
 repair-work: "reparar %a% itens"
 milk-work: "pegar %a% de leite de vacas"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Nenhuma"
+test:
+  - "um(a)"
+  - "b"
+test-2: "adadada Comida"
