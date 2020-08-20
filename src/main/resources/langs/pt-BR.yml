@@ -40,5 +40,5 @@ general-work: "%a%"
 none-format: "Nenhuma"
 test:
   - "um(a)"
-  - "b"
+  - "dz"
 test-2: "adadada Comida"
