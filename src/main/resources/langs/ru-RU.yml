@@ -16,6 +16,25 @@ no-salary: "&cУ вас недостаточно зарплаты для пол�
 got-salary: "&aОтличная работа! Вы только что получили зарплату в %jobplayer_salary%!"
 finished-work: "&aПоздравляем! Вы только что закончили работу. Используйте /jobs для получения дополнительной информации об этом."
 need-level: "&cПривет! Вы должны выполнить %a% для выполнения этого действия."
+no-args: "&cЭ! Пожалуйста, используйте корректный синтаксис."
+my-salary: "&aYou have %jobplayer_salary%$ of salary."
+unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+work-status: "&aHere is what you need to do: %jobplayer_work%"
+admin-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+info-command: |-
+  &6Status of the player %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Working: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Settings were reloaded succefully."
+player-not-found: "&cThat player is not online, please put a valid player."
+unknow-error: "&cAn unknow error occuried, please check the console for more information."
+left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lost a lot of money."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -38,7 +57,28 @@ milk-work: "возьмите %a% молока у коров"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Нет"
-test:
-  - "а"
-  - "т"
-test-2: "adadada Comida"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobs"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "choose"
+  work: "work"
+  salary: "salary"
+  withdraw: "withdraw"
+  leave: "leave"
+  help: "help"
+  info: "info"
+  reload: "reload"
