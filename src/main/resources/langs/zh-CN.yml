@@ -16,6 +16,25 @@ no-salary: "&c你没有足够的工资！请去工作;("
 got-salary: "&a棒的工作！你刚刚得到你的 %jobplayer_salary% 薪水！"
 finished-work: "恭喜！您刚刚完成了您的工作。使用 /job来获得更多有关它的信息。"
 need-level: "&chhe! 您需要处理 %a% 来执行此操作。"
+no-args: "&chhe! 请使用一个有效的语法。"
+my-salary: "&aYou have %jobplayer_salary%$ of salary."
+unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+work-status: "&aHere is what you need to do: %jobplayer_work%"
+admin-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+info-command: |-
+  &6Status of the player %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Working: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Settings were reloaded succefully."
+player-not-found: "&cThat player is not online, please put a valid player."
+unknow-error: "&cAn unknow error occuried, please check the console for more information."
+left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lost a lot of money."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -38,7 +57,28 @@ milk-work: "从奶牛中拿取 %a%的牛奶。"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "无"
-test:
-  - "a"
-  - "b"
-test-2: "adadada Comida"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobs"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "choose"
+  work: "work"
+  salary: "salary"
+  withdraw: "withdraw"
+  leave: "leave"
+  help: "help"
+  info: "info"
+  reload: "reload"
