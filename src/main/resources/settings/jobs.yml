@@ -22,6 +22,10 @@ jobs:
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
     salary: 100
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -53,6 +57,10 @@ jobs:
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
     salary: 100
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
     # GUI Choose Job settings
     gui:
       # The slot where the item will go
@@ -82,6 +90,10 @@ jobs:
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
     salary: 100
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
     # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -117,6 +129,10 @@ jobs:
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
     salary: 250
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
     # GUI Choose Job settings
     gui:
       # The slot where the item will go
@@ -146,6 +162,10 @@ jobs:
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
     salary: 500
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
     # GUI Choose Job settings
     gui:
       # The slot where the item will go

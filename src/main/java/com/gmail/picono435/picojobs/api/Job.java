@@ -27,6 +27,8 @@ public class Job {
 	private double method;
 	private double salary;
 	private boolean requiresPermission;
+	private double salaryFrequency;
+	private double methodFrequency;
 	
 	// GUI SETTINGS
 	private int slot;
@@ -39,7 +41,7 @@ public class Job {
 	private boolean useWhitelist;
 	private List<Material> blockWhitelist;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -47,6 +49,8 @@ public class Job {
 		this.method = method;
 		this.salary = salary;
 		this.requiresPermission = requiresPermission;
+		this.salaryFrequency = salaryFrequency;
+		this.methodFrequency = methodFrequency;
 		
 		this.slot = slot;
 		Material m = Material.matchMaterial(item);
@@ -133,6 +137,32 @@ public class Job {
 	 */
 	public boolean requiresPermission() {
 		return requiresPermission;
+	}
+	
+	/**
+	 * Gets the salary frequency of the job
+	 * 
+	 * @return the salary frequency of the job
+	 * @author Picono435
+	 */
+	public double getSalaryFrequency() {
+		if(salaryFrequency == 0) {
+			salaryFrequency = 0.3D;
+		}
+		return salaryFrequency;
+	}
+	
+	/**
+	 * Gets the method frequency of the job
+	 * 
+	 * @return the method frequency of the job
+	 * @author Picono435
+	 */
+	public double getMethodFrequency() {
+		if(methodFrequency == 0) {
+			methodFrequency = 0.3D;
+		}
+		return methodFrequency;
 	}
 	
 	/**

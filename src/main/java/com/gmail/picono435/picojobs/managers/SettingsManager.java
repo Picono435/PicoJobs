@@ -23,8 +23,17 @@ public class SettingsManager {
 	
 	public SettingsManager(PicoJobsPlugin plugin) {
 		this.plugin = plugin;
-		FileConfiguration config = this.plugin.getConfig();
 		
+		reloadConfigurations();
+	}
+	
+	/**
+	 * Reload all the configurations
+	 * 
+	 * @return true if no errors, false if there is errors
+	 */
+	public boolean reloadConfigurations() {
+		FileConfiguration config = this.plugin.getConfig();
 		this.prefix = config.getString("prefix");
 		this.lang = config.getString("lang");
 		this.storageMethod = config.getConfigurationSection("storage").getString("storage-method");
@@ -35,14 +44,6 @@ public class SettingsManager {
 		}
 		this.mysqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mysql");
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
-	}
-	
-	/**
-	 * Reload all the configurations
-	 * 
-	 * @return true if no errors, false if there is errors
-	 */
-	public boolean reloadConfigurations() {
 		return true;
 	}
 	

@@ -116,7 +116,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
     	
         if(identifier.equals("job")) {
             if(!jp.hasJob()) {
-            	return LanguageManager.getMessage("none-format", p);
+            	return LanguageManager.getFormat("none-format", p);
             }
             return jp.getJob().getDisplayName();
         }
@@ -124,7 +124,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         if(identifier.equals("work")) {
         	Job job = jp.getJob();
         	if(job == null) {
-        		return LanguageManager.getMessage("none-format", p);
+        		return LanguageManager.getFormat("none-format", p);
         	}
         	Type type = job.getType();
         	String configString = type.name().toLowerCase() + "-work";
@@ -142,6 +142,10 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         
         if(identifier.equals("salary")) {
             return df.format(jp.getSalary());
+        }
+        
+        if(identifier.equals("working")) {
+        	return jp.isWorking() + "";
         }
 
         return "Incorrect Placeholder.";

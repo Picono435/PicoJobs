@@ -8,6 +8,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 public class FileCreator {
 	
@@ -24,6 +26,20 @@ public class FileCreator {
 		createGUIFile();
 		createJobsFile();
 		return true;
+	}
+	
+	public static boolean reloadFiles() {
+		try {
+			gui = YamlConfiguration.loadConfiguration(gui_file);
+			jobs = YamlConfiguration.loadConfiguration(jobs_file);
+			PicoJobsPlugin.getInstance().reloadConfig();
+			PicoJobsAPI.getSettingsManager().reloadConfigurations();
+			LanguageManager.createLanguageFile();
+			return true;
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
 	}
 	
 	/*

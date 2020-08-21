@@ -109,6 +109,19 @@ public class LanguageManager {
     }
     
     /**
+	 * Gets the alias of a subcmd
+	 * 
+	 * @param subcmd the subcommand
+	 * @return the list of aliases
+	 * @author Picono435
+	 *
+	 */
+    public static String getSubCommandAlias(String subcmd) {
+    	String chat = language.getConfigurationSection("aliases").getString(subcmd);
+    	return chat;
+    }
+    
+    /**
 	 * Creates and saves thew Language Config File
 	 * 
 	 * @author Picono435

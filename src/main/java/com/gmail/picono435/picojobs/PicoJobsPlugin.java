@@ -1,7 +1,6 @@
 package com.gmail.picono435.picojobs;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -179,6 +178,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 			double method = getJobMethodFromConfig(jobname, type);
 			double salary = jobc.getDouble("salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
+			double salaryFrequency = jobc.getDouble("salary-frequency");
+			double methodFrequency = jobc.getDouble("method-frequency");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
@@ -201,7 +202,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 				blockWhitelist = jobc.getStringList("item-whitelist");
 			}
 			
-			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
+			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
 			jobs.put(jobname, job);
 		}
 		return true;
