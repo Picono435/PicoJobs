@@ -1,0 +1,84 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHej! Nemáte oprávnění k provedení tohoto příkazu."
+ignore-action: "&cHej! Nebuďte líní a nemluvte s NPC."
+choosed-job: "&aGratulujeme! Vybrali jste pracovní pozici %jobplayer_job%&a."
+accepted-work: "&aPřijali jste práci %jobplayer_work%."
+no-salary: "&cNemáš dostatek platu, abys mohl získat! Prosím, jdi do práce ;("
+got-salary: "&aSkvělá práce! Právě jste dostali svůj %jobplayer_salary% plat!"
+finished-work: "&aGratulujeme! Právě jste dokončili svou práci. Použij /jobs pro získání více informací o tom."
+need-level: "&cHej! Pro provedení této akce musíš udělat %a% práce."
+no-args: "&cHej! Použijte platnou syntaxi."
+my-salary: "&aMáte mzdu ve výši %jobplayer_salary%$."
+unknow-job: "&cTato práce nebyla nalezena, prosím použijte TAB COMPLETE pro získání seznamu pracovních míst."
+work-status: "&aZde je to, co potřebujete udělat: %jobplayer_work%"
+admin-commands: |-
+  &6Plný seznam příkazů:
+  &e/jobsadmin help &6- &eViz tyto zprávy
+  &e/jobsadmin info <player> &6- &eGens informace o hráči
+  &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
+info-command: |-
+  &6Stav hráče %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Working: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aKonfigurace, Úlohy & nastavení byly znovu načteny."
+player-not-found: "&cTento hráč není online, prosím vložte platného hráče."
+unknow-error: "&cVyskytla se neznámá chyba, zkontrolujte prosím konzoli pro více informací."
+left-job: "&cNejste nezaměstnaný! Doporučujeme si vybrat novou práci, nebo přijdete o spoustu peněz."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "přerušit %a% bloků"
+kill-work: "zabít %a% lidí"
+kill-specific-work: "zabít %a% lidí z pracovního místa %b%"
+fishing-work: "ryba %a% ryb"
+place-work: "umístit %a% bloků"
+craft-work: "vyrobit %a% položek"
+smelt-work: "tavit %a% položek"
+eat-work: "jíst %a% položek"
+enchanting-work: "okouzlující %a% položek"
+repair-work: "opravit %a% položek"
+milk-work: "odebrat %a% mléka od krav"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Nic"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobů"
+    - "/pracovní pozice"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "vybrat"
+  work: "práce"
+  salary: "Mzdy"
+  withdraw: "odebrat"
+  leave: "opustit"
+  help: "Nápověda"
+  info: "informace"
+  reload: "reload"

@@ -1,0 +1,84 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cEi! Você não tem permissão para executar esse comando."
+ignore-action: "&cEi! Não seja preguiçoso e vá falar com o NPC."
+choosed-job: "&aParabéns! Você escolheu o trabalho %jobplayer_job%&a."
+accepted-work: "&aVocê aceitou o trabalho de %jobplayer_work%."
+no-salary: "&cVocê não tem salário suficiente para receber! Por favor, vá trabalhar ;("
+got-salary: "&aGrande trabalho! Você recebeu seu salário de %jobplayer_salary%!"
+finished-work: "&aParabéns! Você acabou de terminar seu trabalho. Use /jobs para obter mais informações sobre isso."
+need-level: "&cEi! Você precisa fazer %a% de trabalho para executar essa ação."
+no-args: "&cHey! Use uma sintaxe válida."
+my-salary: "&aVocê tem %jobplayer_salary%$ de salário."
+unknow-job: "&cEssa tarefa não foi encontrada, por favor, use a TAB COMPLETE para obter uma lista de trabalhos."
+work-status: "&aAqui é o que você precisa fazer: %jobplayer_work%"
+admin-commands: |-
+  &6Lista completa de comandos:
+  &e/jobsadmin help &6- &eVeja esta mensagem
+  &e/jobsadmin info <player> &6- &eObtém as informações sobre um jogador
+  &e/jobsadmin recarrega &6- &eRecarregar todas as configurações possíveis.
+info-command: |-
+  &6Status do jogador %player_name%
+  &eSalário: %jobplayer_salary%
+  &eEstá funcionando: %jobplayer_working%
+  &eTrabalho: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurações, tarefas e configurações foram recarregadas com sucesso."
+player-not-found: "&cEsse jogador não está online, por favor coloque um jogador válido."
+unknow-error: "&cUm erro desconhecido occurioso, por favor, verifique o console para mais informações."
+left-job: "&cVocê não está desempregado! Nós recomendamos que você escolha um novo emprego ou você vai perder muito dinheiro."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "quebrar %a% de blocos"
+kill-work: "matar %a% de pessoas"
+kill-specific-work: "matar %a% pessoas do trabalho %b%"
+fishing-work: "peixes de %a%"
+place-work: "colocar %a% de blocos"
+craft-work: "fabricar %a% de itens"
+smelt-work: "fundir %a% itens"
+eat-work: "comer %a% de itens"
+enchanting-work: "%a% de itens encantados"
+repair-work: "reparar %a% itens"
+milk-work: "pegar %a% de leite de vacas"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Nenhuma"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/pt_BR/wantjob"
+    - "/Trabalhos"
+    - "/tarefa"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "Selecionar"
+  work: "Trabalho"
+  salary: "Salário"
+  withdraw: "retirar"
+  leave: "sair"
+  help: "Ajuda"
+  info: "informações"
+  reload: "reload"

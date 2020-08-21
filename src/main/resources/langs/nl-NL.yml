@@ -1,0 +1,84 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! Je hebt geen toestemming om dat commando uit te voeren."
+ignore-action: "&cHey! Wees niet lui en praat met de NPC."
+choosed-job: "&aGefeliciteerd! Je hebt de job %jobplayer_job%&a gekozen."
+accepted-work: "&aJe hebt het werk van %jobplayer_work% geaccepteerd."
+no-salary: "&cJe hebt niet genoeg salaris om te krijgen! Ga naar werk ;("
+got-salary: "&aGoed werk! Je hebt zojuist je %jobplayer_salary% salaris!"
+finished-work: "&aGefeliciteerd! Je hebt zojuist je werk voltooid. Gebruik /jobs om meer informatie erover te krijgen."
+need-level: "&cHey! Je moet %a% doen om die actie uit te voeren."
+no-args: "&cHey! Gebruik alstublieft een geldige syntaxis."
+my-salary: "&aJe hebt %jobplayer_salary%$ salaris."
+unknow-job: "&cDie taak is niet gevonden. Gebruik de TAB COMPLETE om een lijst met taken te krijgen."
+work-status: "&aHier is wat je moet doen: %jobplayer_work%"
+admin-commands: |-
+  &6Volledige lijst van commando's:
+  &e/jobsadmin hulp &6- &eSee this message
+  &e/jobsadmin info <player> &6- &eHaalt de informatie over een speler
+  &e/jobsadmin herladen &6- &eHerlaad alle mogelijke configuraties.
+info-command: |-
+  &6Status van de speler %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Bewerking: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfiguraties, Jobs & Instellingen zijn succesvol herladen."
+player-not-found: "&cDie speler is niet online, plaats een geldige speler."
+unknow-error: "&cEen onbekende fout is opgetreden, controleer de console voor meer informatie."
+left-job: "&cJe bent niet werkloos! We raden je aan een nieuwe baan te kiezen, anders verlies je veel geld."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "pak %a% blokken"
+kill-work: "versla %a% mensen"
+kill-specific-work: "dood %a% mensen van de baan %b%"
+fishing-work: "Vis %a% vissen"
+place-work: "plaats %a% blokken"
+craft-work: "maak %a% voorwerpen"
+smelt-work: "smelt %a% voorwerpen"
+eat-work: "%a% voorwerpen eten"
+enchanting-work: "betover %a% items"
+repair-work: "repareer %a% items"
+milk-work: "neem %a% melk van koeien"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "geen"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/kwakkelende"
+    - "/taken"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "kies"
+  work: "werk"
+  salary: "salaris"
+  withdraw: "opnemen"
+  leave: "verlaten"
+  help: "Help"
+  info: "info"
+  reload: "reload"

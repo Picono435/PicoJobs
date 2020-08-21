@@ -1,0 +1,84 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! You do not have permission to execute that command."
+ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
+choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
+accepted-work: "&aYou accepted the work of %jobplayer_work%."
+no-salary: "&cYou do not have enough salary to get! Please go work ;("
+got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
+finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+need-level: "&cHey! You need to do %a% works to execute that action."
+no-args: "&cHey! Please use a valid syntax."
+my-salary: "&aYou have %jobplayer_salary%$ of salary."
+unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+work-status: "&aHere is what you need to do: %jobplayer_work%"
+admin-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+info-command: |-
+  &6Status of the player %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Working: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Settings were reloaded succefully."
+player-not-found: "&cThat player is not online, please put a valid player."
+unknow-error: "&cAn unknow error occuried, please check the console for more information."
+left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lost a lot of money."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "break %a% blocks"
+kill-work: "kill %a% people"
+kill-specific-work: "kill %a% people of the job %b%"
+fishing-work: "fish %a% fishes"
+place-work: "place %a% blocks"
+craft-work: "craft %a% items"
+smelt-work: "smelt %a% items"
+eat-work: "eat %a% items"
+enchanting-work: "enchant %a% items"
+repair-work: "repair %a% items"
+milk-work: "take %a% milks from cows"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "None"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobs"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "choose"
+  work: "work"
+  salary: "salary"
+  withdraw: "withdraw"
+  leave: "leave"
+  help: "help"
+  info: "info"
+  reload: "reload"
