@@ -1,0 +1,84 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! You do not have permission to execute that command."
+ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
+choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
+accepted-work: "&aYou accepted the work of %jobplayer_work%."
+no-salary: "&cYou do not have enough salary to get! Please go work ;("
+got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
+finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+need-level: "&cHey! Du skal gøre %a% værker for at udføre denne handling."
+no-args: "&cHey! Brug venligst en gyldig syntaks."
+my-salary: "&aDu har %jobplayer_salary%$ løn."
+unknow-job: "&cDette job blev ikke fundet, benyt TAB KOMPLET for at få en liste over job."
+work-status: "&aHer er hvad du skal gøre: %jobplayer_work%"
+admin-commands: |-
+  &6Fuld liste over kommandoer:
+  &e/jobsadmin help &6- &eSe disse beskeder
+  &e/jobsadmin info <player> &6- &eHenter oplysningerne om en spiller
+  &e/jobsadmin genindlæs &6- &eReload alle mulige konfigurationer.
+info-command: |-
+  &6Spillerens status %player_name%
+  &eLøn: %jobplayer_salary%
+  &eArbejder: %jobplayer_working%
+  &eArbejde: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Indstillinger blev genindlæst med succes."
+player-not-found: "&cDen spiller er ikke online, angiv venligst en gyldig spiller."
+unknow-error: "&cDer opstod en unknow fejl, tjek venligst konsollen for mere information."
+left-job: "&cDu er ikke arbejdsløst! Vi anbefaler, at du vælger et nyt job, eller at du vil miste en masse penge."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "bryde %a% blokke"
+kill-work: "dræbe %a% personer"
+kill-specific-work: "dræbe %a% personer af jobbet %b%"
+fishing-work: "fisk %a% fisk"
+place-work: "placer %a% blokke"
+craft-work: "håndværk %a% varer"
+smelt-work: "smelt %a% varer"
+eat-work: "spis %a% varer"
+enchanting-work: "fortrylle %a% elementer"
+repair-work: "reparere %a% varer"
+milk-work: "tager %a% mælk fra køer"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "None"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobs"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "vælg"
+  work: "arbejde"
+  salary: "løn"
+  withdraw: "udbetal"
+  leave: "orlov"
+  help: "hjælp"
+  info: "info"
+  reload: "reload"
