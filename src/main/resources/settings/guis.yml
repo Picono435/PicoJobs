@@ -50,7 +50,7 @@ gui-settings:
         # The name of the item
         name: "&eSalary"
         # The slot of the item
-        slot: 9
+        slot: 11
         # The lore of the item
         lore:
           - ""
@@ -67,7 +67,7 @@ gui-settings:
         
       plugin-info:
         name: "&6PicoJobs"
-        slot: 12
+        slot: 14
         lore:
           - ""
           - "&7Thanks for using my plugin!"
@@ -83,7 +83,7 @@ gui-settings:
         
       accept-work:
         name: "&aAccept the work"
-        slot: 15
+        slot: 17
         lore:
           - ""
           - "&7Click here to accept your work"
@@ -119,7 +119,7 @@ gui-settings:
     items:
       salary:
         name: "&eSalary"
-        slot: 9
+        slot: 11
         lore:
           - ""
           - "&7Click to get your salary!"
@@ -131,7 +131,7 @@ gui-settings:
         
       plugin-info:
         name: "&6PicoJobs"
-        slot: 12
+        slot: 14
         lore:
           - ""
           - "&7Thanks for using my plugin!"
@@ -147,7 +147,7 @@ gui-settings:
         
       status-work:
         name: "&aStatus of the work"
-        slot: 15
+        slot: 17
         lore:
           - ""
           - "&7Check down here the status of your work!"
