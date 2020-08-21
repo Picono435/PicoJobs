@@ -1,0 +1,84 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Remember that some messages may not be used because they are PREMIUM ONLY
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+no-permission: "&cHey! Du har ikke tillatelse til å utføre den kommandoen."
+ignore-action: "&cHey! Ikke vær lat og gå snakke med NPC."
+choosed-job: "&aGratulerer! Du valgte jobben %jobplayer_job%&a."
+accepted-work: "&aDu aksepterte arbeidet til %jobplayer_work%."
+no-salary: "&cDu har ikke nok lønn til å få! Gå til arbeidet ;("
+got-salary: "&aBra jobbet! Du har akkurat din %jobplayer_salary% salg!"
+finished-work: "&Gratulerer! Du har nettopp fullført arbeidet ditt. Bruk /jobs for å få mer informasjon om det."
+need-level: "&cHey! Du må gjøre %a% for å utføre den handlingen."
+no-args: "&cHey! Vennligst bruk en gyldig syntaks."
+my-salary: "&aYou have %jobplayer_salary%$ of salary."
+unknow-job: "&cDen jobben ble ikke funnet, bruk TAB COMPLETE for å få en liste over jobber."
+work-status: "&aHer er det du trenger å gjøre: %jobplayer_work%"
+admin-commands: |-
+  &6Full liste over kommandoer:
+  &e/jobsadmin help &6- &eSe denne meldingene
+  &/jobsadmin info <player> &6- &eGetter informasjonen om en spiller
+  &/ jobsadmin reload &6- &eOppdater alle mulige konfigurasjoner.
+info-command: |-
+  &6Status for spiller %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Working: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aKonfigurasjoner, Jober og Innstillinger ble lastet på nytt."
+player-not-found: "&cDen spilleren er ikke online, vennligst legg til en gyldig spiller."
+unknow-error: "&cAn unknow feil oppsto, vennligst sjekk konsollen for mer informasjon."
+left-job: "&cDu er ikke arbeidsledig! Vi anbefaler deg å velge en ny jobb eller du vil miste masse penger."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "knus %a% blokker"
+kill-work: "drep %a% personer"
+kill-specific-work: "drep %a% folk av jobben %b%"
+fishing-work: "fisk %a% fisk"
+place-work: "plasser %a% blokker"
+craft-work: "Lag %a% gjenstander"
+smelt-work: "smelte %a% artikler"
+eat-work: "spis %a% gjenstander"
+enchanting-work: "fortrylle %a% gjenstander"
+repair-work: "reparasjon %a% elementer"
+milk-work: "ta %a% melker fra kuer"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Ingen"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobber"
+    - "/jobb"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "velg"
+  work: "arbeid"
+  salary: "lønn"
+  withdraw: "trekk"
+  leave: "forlat"
+  help: "hjelp"
+  info: "informasjon"
+  reload: "reload"
