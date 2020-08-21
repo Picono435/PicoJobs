@@ -16,6 +16,25 @@ no-salary: "&cNu ai suficient salariu pentru a obtine ! Te rog mergi la treaba ;
 got-salary: "&aBună treabă! Tocmai ai primit salariul tău de %jobplayer_salary%!"
 finished-work: "&aFelicitari! Tocmai ai terminat treaba. Foloseste /job-uri pentru a obtine mai multe informatii despre ea."
 need-level: "&cHei! Trebuie sa faci %a% functioneaza pentru a executa aceasta actiune."
+no-args: "&fHei! Te rog foloseste o sintaxa valida."
+my-salary: "&aAi %jobplayer_salary%$ din salariu."
+unknow-job: "&cAcea treaba nu a fost gasita, te rugam sa folosesti TAB COMPLETE pentru a obtine o lista de joburi."
+work-status: "&aIata ce trebuie sa faci: %jobplayer_work%"
+admin-commands: |-
+  &6Lista completă de comenzi:
+  &e/jobsadmin ajutor &6- &eVezi aceste mesaje
+  &e/jobsadmin info <player> &6- &ePrimește informațiile despre un jucător
+  &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
+info-command: |-
+  &6Starea jucatorului %player_name%
+  &eSalary: %jobplayer_salary%
+  &eFunctioneaza: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfiguratiile, Jobs & Settings au fost reincarcate cu succes."
+player-not-found: "&cAcest jucator nu este online, te rog pune un jucator valid."
+unknow-error: "&cA aparut o eroare necunoscuta, verificati consola pentru mai multe informatii."
+left-job: "&cNu sunteti şomeri! Va recomandam sa alegeti un nou job sau veti pierde o gramada de bani."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -38,7 +57,28 @@ milk-work: "ia %a% lapte de la vaci"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Niciunul"
-test:
-  - "c"
-  - "b"
-test-2: "adadada Comida"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/joburi"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "alege"
+  work: "muncă"
+  salary: "salariu"
+  withdraw: "retragere"
+  leave: "pleacă"
+  help: "ajutor"
+  info: "informaţii"
+  reload: "reload"
