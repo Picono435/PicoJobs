@@ -16,6 +16,25 @@ no-salary: "&cليس لديك ما يكفي من الراتب! الرجاء ال
 got-salary: "&aعمل رائع! لقد حصلت للتو على مرتباتك %jobplayer_salary%!"
 finished-work: "تهانينا! لقد انتهيت لتوك من عملك. استخدم /وظائف للحصول على مزيد من المعلومات عنها."
 need-level: "&cHey! تحتاج إلى القيام بـ %a% يعمل لتنفيذ هذا الإجراء."
+no-args: "&cHey! الرجاء استخدام بناء بناء صحيح."
+my-salary: "&aلديك %jobplayer_salary%دولار من الراتب."
+unknow-job: "&cلم يتم العثور على الوظيفة ، يرجى استخدام TB COMPLETE للحصول على قائمة بالوظائف."
+work-status: "&aهنا ما عليك القيام به: %jobplayer_work%"
+admin-commands: |-
+  &6قائمة الأوامر الكاملة:
+  &e/jobsadmin help &6-&eعرض هذه الرسائل
+  &e/jobsadmin info <player> &6- &eالحصول على معلومات حول اللاعب
+  &e/jobsadmin reload &6- &eReload جميع التكوينات الممكنة.
+info-command: |-
+  &6 حالة اللاعب %player_name%
+  &eSalary: %jobplayer_salary%
+  &eيجري العمل: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "تم إعادة تحميل &aConfigurations, Jobs & إعدادات بنجاح"
+player-not-found: "&cهذا اللاعب غير متصل، الرجاء وضع لاعب صالح."
+unknow-error: "&cحدث خطأ غير معروف، الرجاء التحقق من وحدة التحكم للحصول على مزيد من المعلومات."
+left-job: "&cأنت لست عاطلاً عن العمل! ننصحك باختيار وظيفة جديدة أو سوف تفقد الكثير من المال."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -38,7 +57,28 @@ milk-work: "أخذ %a% من الحليب من الأبقار"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "لا"
-test:
-  - "أ"
-  - "ب"
-test-2: "adadada Comida"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/وظائف"
+    - "/مهمة"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "اختر"
+  work: "العمل"
+  salary: "الراتب"
+  withdraw: "سحب"
+  leave: "المغادرة"
+  help: "المساعدة"
+  info: "معلومات"
+  reload: "reload"
