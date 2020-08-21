@@ -80,8 +80,6 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			String infoString = LanguageManager.getSubCommandAlias("info");
 			String reloadString = LanguageManager.getSubCommandAlias("reload");
 			
-			int action = PicoJobsAPI.getSettingsManager().getCommandAction();
-			if(action != 2) return null;
 			if(args.length == 1) {
 				List<String> list = new ArrayList<String>();
 				if(p.hasPermission("picojobs.admin")) {
