@@ -48,6 +48,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			String workString = LanguageManager.getSubCommandAlias("work");
 			String salaryString = LanguageManager.getSubCommandAlias("salary");
 			String withdrawString = LanguageManager.getSubCommandAlias("withdraw");
+			String leaveString = LanguageManager.getSubCommandAlias("leave");
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 			
 			if(args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase(chooseString)) {
@@ -99,7 +100,12 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
 				VaultHook.getEconomy().depositPlayer(p, salary);
 				jp.removeSalary(salary);
-				p.closeInventory();
+				return true;
+			}
+			
+			if(args[0].equalsIgnoreCase("leave") || args[0].equalsIgnoreCase(leaveString)) {
+				jp.removePlayerStats();
+				p.sendMessage(LanguageManager.getMessage("left-job", p));
 				return true;
 			}
 			
@@ -109,11 +115,6 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}
 	}
-	
-	// /jobs choose
-	// /jobs work
-	// /jobs salary
-	// /jobs withdraw
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
@@ -123,6 +124,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			String work = LanguageManager.getSubCommandAlias("work");
 			String salary = LanguageManager.getSubCommandAlias("salary");
 			String withdraw = LanguageManager.getSubCommandAlias("withdraw");
+			String leave = LanguageManager.getSubCommandAlias("leave");
 			
 			int action = PicoJobsAPI.getSettingsManager().getCommandAction();
 			if(action != 2) return null;
@@ -135,6 +137,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 					list.add(work);
 					list.add(salary);
 					list.add(withdraw);
+					list.add(leave);
 				}
 				return list;
 			}

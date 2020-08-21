@@ -75,6 +75,12 @@ public class ClickInventoryListener implements Listener {
 				p.closeInventory();
 				return;
 			}
+			if(action.equalsIgnoreCase("leavejob")) {
+				jp.removePlayerStats();
+				p.sendMessage(LanguageManager.getMessage("left-job", p));
+				p.closeInventory();
+				return;
+			}
 			return;
 		}
 		
@@ -102,6 +108,12 @@ public class ClickInventoryListener implements Listener {
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
 				VaultHook.getEconomy().depositPlayer(p, salary);
 				jp.removeSalary(salary);
+				p.closeInventory();
+				return;
+			}
+			if(action.equalsIgnoreCase("leavejob")) {
+				jp.removePlayerStats();
+				p.sendMessage(LanguageManager.getMessage("left-job", p));
 				p.closeInventory();
 				return;
 			}

@@ -93,6 +93,18 @@ gui-settings:
         item-data: 0
         enchanted: false
         
+      leave-job:
+        name: "&aLeave your job"
+        slot: 27
+        lore:
+          - ""
+          - "&7Click here to leave your job"
+          - "&7You will lose half of your salary"
+        action: leavejob
+        material: "BARRIER"
+        item-data: 0
+        enchanted: true
+        
   ##############################################
   # With Jobs Menu GUI that already has a work #
   ##############################################
@@ -142,5 +154,17 @@ gui-settings:
           - "&7What you need to do: %jobplayer_work%"
         action: none
         material: "REDSTONE_TORCH"
+        item-data: 0
+        enchanted: true
+        
+      leave-job:
+        name: "&aLeave your job"
+        slot: 27
+        lore:
+          - ""
+          - "&7Click here to leave your job"
+          - "&7You will lose half of your salary"
+        action: leavejob
+        material: "BARRIER"
         item-data: 0
         enchanted: true

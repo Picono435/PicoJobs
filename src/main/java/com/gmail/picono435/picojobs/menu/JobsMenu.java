@@ -108,7 +108,7 @@ public class JobsMenu {
 			
 			ClickInventoryListener.actionItems.put(item, itemConfig.getString("action"));
 			
-			inv.setItem(itemConfig.getInt("slot") + 1, item);
+			inv.setItem(itemConfig.getInt("slot") - 1, item);
 		}
 		
 		if(category.getBoolean("put-background-item")) {
@@ -172,7 +172,7 @@ public class JobsMenu {
 			
 			ClickInventoryListener.actionItems.put(item, itemConfig.getString("action"));
 			
-			inv.setItem(itemConfig.getInt("slot") + 1, item);
+			inv.setItem(itemConfig.getInt("slot") - 1, item);
 		}
 		
 		if(category.getBoolean("put-background-item")) {

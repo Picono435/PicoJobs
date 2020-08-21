@@ -190,4 +190,18 @@ public class JobPlayer {
 		}
 		return false;
 	}
+	
+	/**
+	 * Resets completly the player, including the job, if its working the method and etc... but keeps half of the salary
+	 * 
+	 * @author Picono435
+	 *
+	 */
+	public void removePlayerStats() {
+		setWorking(false);
+		setSalary(getSalary() / 2);
+		setMethod(0);
+		setMethodLevel(0);
+		setJob(null);
+	}
 }
