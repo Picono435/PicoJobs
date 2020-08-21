@@ -16,6 +16,25 @@ no-salary: "&cYou do not have enough salary to get! Please go work ;("
 got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
 finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
 need-level: "&cHey! Du skal gøre %a% værker for at udføre denne handling."
+no-args: "&cHey! Brug venligst en gyldig syntaks."
+my-salary: "&aDu har %jobplayer_salary%$ løn."
+unknow-job: "&cDette job blev ikke fundet, benyt TAB KOMPLET for at få en liste over job."
+work-status: "&aHer er hvad du skal gøre: %jobplayer_work%"
+admin-commands: |-
+  &6Fuld liste over kommandoer:
+  &e/jobsadmin help &6- &eSe disse beskeder
+  &e/jobsadmin info <player> &6- &eHenter oplysningerne om en spiller
+  &e/jobsadmin genindlæs &6- &eReload alle mulige konfigurationer.
+info-command: |-
+  &6Spillerens status %player_name%
+  &eLøn: %jobplayer_salary%
+  &eArbejder: %jobplayer_working%
+  &eArbejde: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Indstillinger blev genindlæst med succes."
+player-not-found: "&cDen spiller er ikke online, angiv venligst en gyldig spiller."
+unknow-error: "&cDer opstod en unknow fejl, tjek venligst konsollen for mere information."
+left-job: "&cDu er ikke arbejdsløst! Vi anbefaler, at du vælger et nyt job, eller at du vil miste en masse penge."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -38,7 +57,28 @@ milk-work: "tager %a% mælk fra køer"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "None"
-test:
-  - "a"
-  - "b"
-test-2: "adadada Comida"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/getjob"
+    - "/wantjob"
+    - "/jobs"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "vælg"
+  work: "arbejde"
+  salary: "løn"
+  withdraw: "udbetal"
+  leave: "orlov"
+  help: "hjælp"
+  info: "info"
+  reload: "reload"
