@@ -52,6 +52,10 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 			
 			if(args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase(chooseString)) {
+				if(jp.hasJob()) {
+					p.sendMessage(LanguageManager.getMessage("no-args", p));
+					return true;
+				}
 				if(args.length < 2) {
 					p.sendMessage(LanguageManager.getMessage("no-args", p));
 					return true;
@@ -71,6 +75,10 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			}
 			
 			if(args[0].equalsIgnoreCase("work") || args[0].equalsIgnoreCase(workString)) {
+				if(!jp.hasJob()) {
+					p.sendMessage(LanguageManager.getMessage("no-args", p));
+					return true;
+				}
 				if(jp.isWorking()) {
 					p.sendMessage(LanguageManager.getMessage("work-status", p));
 					return true;
@@ -81,11 +89,19 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			}
 			
 			if(args[0].equalsIgnoreCase("salary") || args[0].equalsIgnoreCase(salaryString)) {
+				if(!jp.hasJob()) {
+					p.sendMessage(LanguageManager.getMessage("no-args", p));
+					return true;
+				}
 				p.sendMessage(LanguageManager.getMessage("my-salary", p));
 				return true;
 			}
 			
 			if(args[0].equalsIgnoreCase("withdraw") || args[0].equalsIgnoreCase(withdrawString)) {
+				if(!jp.hasJob()) {
+					p.sendMessage(LanguageManager.getMessage("no-args", p));
+					return true;
+				}
 				double salary = jp.getSalary();
 				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
@@ -104,11 +120,16 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			}
 			
 			if(args[0].equalsIgnoreCase("leave") || args[0].equalsIgnoreCase(leaveString)) {
+				if(!jp.hasJob()) {
+					p.sendMessage(LanguageManager.getMessage("no-args", p));
+					return true;
+				}
 				jp.removePlayerStats();
 				p.sendMessage(LanguageManager.getMessage("left-job", p));
 				return true;
 			}
 			
+			p.sendMessage(LanguageManager.getMessage("no-args", p));
 			return true;
 		} else {
 			JobsMenu.openMenu(p);
