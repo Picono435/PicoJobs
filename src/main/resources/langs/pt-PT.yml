@@ -68,7 +68,7 @@ none-format: "Nenhuma"
 aliases:
   jobs:
     - "/getjob"
-    - "/pt_BR/wantjob"
+    - "/wantjob"
     - "/Trabalhos"
     - "/tarefa"
   jobsadmin:
