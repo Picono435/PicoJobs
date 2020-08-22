@@ -25,6 +25,8 @@ admin-commands: |-
   &e/jobsadmin help &6- &eViz tyto zprávy
   &e/jobsadmin info <player> &6- &eGens informace o hráči
   &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
+  &e/jobsadmin aktualizuje &6- &eInstalls aktualizaci pluginu
+  &e/jobsadmin o &6- &eGets informace o serveru a pluginu
 info-command: |-
   &6Stav hráče %player_name%
   &eSalary: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&aKonfigurace, Úlohy & nastavení byly znovu načteny."
 player-not-found: "&cTento hráč není online, prosím vložte platného hráče."
 unknow-error: "&cVyskytla se neznámá chyba, zkontrolujte prosím konzoli pro více informací."
 left-job: "&cNejste nezaměstnaný! Doporučujeme si vybrat novou práci, nebo přijdete o spoustu peněz."
+already-updated: "&cPlugin je již v poslední verzi, pro více informací se podívejte na naši WIKI."
+update-started: "&aAktualizace pluginu PicoJobs začala, prosím čekejte..."
+updated-sucefully: "&aDoplněk byl bezpečně aktualizován, prosím restartujte server pro dokončení aktualizace."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "Nápověda"
   info: "informace"
   reload: "reload"
+  update: "aktualizovat"
+  about: "asi"
