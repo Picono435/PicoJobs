@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bson.Document;
 import org.bukkit.configuration.ConfigurationSection;
@@ -58,7 +59,7 @@ public class MongoDBAPI {
 		double salary = obj.getDouble("salary");
 		boolean isWorking = obj.getBoolean("isWorking");
 		
-		return new JobPlayer(job, method, level, salary, isWorking);
+		return new JobPlayer(job, method, level, salary, isWorking, UUID.fromString(uuid));
 	}
 	
 	public List<String> getAllUsers() {

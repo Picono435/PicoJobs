@@ -1,5 +1,15 @@
 package com.gmail.picono435.picojobs.api;
 
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
+
+import com.gmail.picono435.picojobs.events.PlayerEnterJobEvent;
+import com.gmail.picono435.picojobs.events.PlayerFinishWorkEvent;
+import com.gmail.picono435.picojobs.events.PlayerLeaveJobEvent;
+import com.gmail.picono435.picojobs.events.PlayerStartWorkEvent;
+import com.gmail.picono435.picojobs.events.PlayerWithdrawEvent;
+
 /**
  * Represents a player from PicoJobs
  * 
@@ -13,13 +23,25 @@ public class JobPlayer {
 	private double level;
 	private boolean isWorking;
 	private double salary;
+	private UUID uuid;
 	
-	public JobPlayer(Job job, double method, double level, double salary, boolean isWorking) {
+	public JobPlayer(Job job, double method, double level, double salary, boolean isWorking, UUID uuid) {
 		this.job = job;
 		this.method = method;
 		this.level = level;
 		this.salary = salary;
 		this.isWorking = isWorking;
+	}
+	
+	/**
+	 * Gets the UUID of the player
+	 * 
+	 * @return the uuid
+	 * @author Picono435
+	 *
+	 */
+	public UUID getUUID() {
+		return uuid;
 	}
 	
 	/**
@@ -96,6 +118,15 @@ public class JobPlayer {
 	 *
 	 */
 	public void setJob(Job job) {
+		if(job == null) {
+			PlayerLeaveJobEvent event = new PlayerLeaveJobEvent(this, Bukkit.getPlayer(uuid), job);
+			Bukkit.getPluginManager().callEvent(event);
+		}
+		PlayerEnterJobEvent event = new PlayerEnterJobEvent(this, Bukkit.getPlayer(uuid), job);
+		Bukkit.getPluginManager().callEvent(event);
+		if(event.isCancelled()) {
+			return;
+		}
 		this.job = job;
 	}
 	
@@ -118,6 +149,10 @@ public class JobPlayer {
 	 *
 	 */
 	public void setWorking(boolean isWorking) {
+		if(isWorking) {
+			PlayerStartWorkEvent event = new PlayerStartWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
+			Bukkit.getPluginManager().callEvent(event);
+		}
 		this.isWorking = isWorking;
 	}
 	
@@ -162,6 +197,8 @@ public class JobPlayer {
 	 *
 	 */
 	public void removeSalary(double salary) {
+		PlayerWithdrawEvent event = new PlayerWithdrawEvent(this, Bukkit.getPlayer(uuid), salary);
+		Bukkit.getPluginManager().callEvent(event);
 		setSalary(getSalary() - salary);
 	}
 	
@@ -181,6 +218,11 @@ public class JobPlayer {
 		int reqmethod = (int) (job.getMethod() * level * getJob().getMethodFrequency());
 		
 		if(getMethod() >= reqmethod) {
+			PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
+			Bukkit.getPluginManager().callEvent(event);
+			if(event.isCancelled()) {
+				return false;
+			}
 			double salary = job.getSalary() * level * getJob().getSalaryFrequency();
 			setMethodLevel(level + 1);
 			setMethod(0);

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -110,7 +111,7 @@ public class MySQLAPI {
             	double level = rs.getDouble("level");
             	double salary = rs.getDouble("salary");
             	boolean isWorking = rs.getBoolean("is-working");
-                return new JobPlayer(PicoJobsAPI.getJobsManager().getJob(job), method, level, salary, isWorking);
+                return new JobPlayer(PicoJobsAPI.getJobsManager().getJob(job), method, level, salary, isWorking, UUID.fromString(uuid));
             }
             return null;
         }

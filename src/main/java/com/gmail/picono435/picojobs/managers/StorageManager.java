@@ -62,7 +62,7 @@ public class StorageManager {
 			double level = playerCategory.getDouble("level");
 			double salary = playerCategory.getDouble("salary");
 			boolean isWorking = playerCategory.getBoolean("is-working");
-			JobPlayer jp = new JobPlayer(job, method, level, salary, isWorking);
+			JobPlayer jp = new JobPlayer(job, method, level, salary, isWorking, UUID.fromString(uuid));
 			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), jp);
 		}
 	}
