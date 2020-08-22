@@ -29,6 +29,7 @@ admin-commands: |-
   &e/jobsadmin reload &6- &eПерезагрузить все возможные конфигурации.
   &e/jobsadmin update &6- &eУстанавливает обновление плагина
   &e/jobsadmin о &6- &eGets информация о сервере и плагине
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eУстанавливает зарплату/метод игрока
 info-command: |-
   &6Статус игрока %player_name%
   &eSalary: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cВы не безработны! Мы рекомендуем вам 
 already-updated: "&cПлагин уже находится в последней версии, для получения дополнительной информации ознакомьтесь с нашим WIKI."
 update-started: "&aОбновление плагина PicoJobs началось, пожалуйста, подождите..."
 updated-sucefully: "&aПлагин был обновлён, пожалуйста, перезапустите сервер, чтобы завершить обновление."
+sucefully: "&aThe action was made sucefully."
 ##################################################################################
 ##
 #Format messages                                                               #
