@@ -75,7 +75,7 @@ none-format: "Ingen"
 aliases:
   jobs:
     - "/jobber"
-    - "/job"
+    - "/jobb"
   jobsadmin:
     - "/jobsadmin"
     - "/jobadmin"
@@ -89,5 +89,5 @@ aliases:
   reload: "reload"
   update: "oppdater"
   about: "om"
-  set: "set"
-  method: "method"
+  set: "sett"
+  method: "metode"
