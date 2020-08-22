@@ -23,12 +23,13 @@ my-salary: "&aDu hast %jobplayer_salary%$ Gehalt."
 unknow-job: "&cDieser Job wurde nicht gefunden, bitte benutzen Sie das TAB COMPLETE um eine Liste der Jobs zu erhalten."
 work-status: "&aHier ist das, was Sie tun müssen: %jobplayer_work%"
 admin-commands: |-
-  &6Liste der Befehle:
-  &e/jobsadmin help &6- &eSehen Sie diese Nachrichten
-  &e/jobsadmin info <player> &6- &eGets die Informationen über einen Spieler
-  &e/jobsadmin reload &6- &eNeuladen Sie alle möglichen Konfigurationen.
-  &e/jobsadmin update &6- &eInstalliert ein Update des Plugins
-  &e/jobsadmin über &6- &eGets Informationen über den Server und das Plugin
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
 info-command: |-
   &6Status des Spielers %player_name%
   &eSalary: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cDu bist nicht arbeitslos! Wir empfehlen dir einen neuen Job zu wäh
 already-updated: "&cDas Plugin ist bereits in der aktuellsten Version, für weitere Informationen schauen Sie sich unser WIKI an."
 update-started: "&aDie Aktualisierung des Plugins PicoJobs wurde gestartet, bitte warten..."
 updated-sucefully: "&aDas Plugin wurde erfolgreich aktualisiert, bitte starten Sie den Server neu, um die Aktualisierung abzuschließen."
+sucefully: "&aDie Aktion wurde erfolgreich durchgeführt."
 ##################################################################################
 ##
 #Format messages                                                               #
