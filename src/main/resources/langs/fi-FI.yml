@@ -27,8 +27,9 @@ admin-commands: |-
   &e/jobsadmin help &6- &eKatso nämä viestit
   &e/jobsadmin info <player> &6- &eGets the information about a player
   &e/jobsadmin reload &6- &eLataa kaikki mahdolliset asetukset.
-  &/ jobsadmin päivitys &6- &eAsenna lisäosan päivityksen
-  &e/jobsadminista &6- &eGets palvelimen ja liitännäisen tiedoista
+  &e/jobsadmin päivitys &6- &eAsentaa lisäosan päivityksen
+  &e/jobsadminista &6- &eGets palvelimen tiedoista ja lisäosan
+  &e/jobsadmin asetukset <salary | method> <player> <amount> &6- &eAsettaa pelaajan palkan/tavan
 info-command: |-
   &6Pelaajan %player_name%
   &ePalkka: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cEt ole työttömänä! Suosittelemme, että valitset uuden työpaik
 already-updated: "&cLiitännäinen on jo viimeisimmässä versiossa, ja lisää tietoa saat meidän WIKI."
 update-started: "&aLiitännäisen PicoJobs päivitys alkoi, odota hetki..."
 updated-sucefully: "&aLiitännäinen päivitettiin onnistuneesti, ole hyvä ja käynnistä palvelin uudelleen lopettaaksesi päivityksen."
+sucefully: "&aToiminto tehtiin erinomaisesti."
 ##################################################################################
 ##
 #Format messages                                                               #
