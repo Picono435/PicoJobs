@@ -75,7 +75,7 @@ none-format: "Nenhuma"
 aliases:
   jobs:
     - "/Trabalhos"
-    - "/job"
+    - "/tarefa"
   jobsadmin:
     - "/jobsadmin"
     - "/jobadmin"
@@ -89,5 +89,5 @@ aliases:
   reload: "reload"
   update: "atualização"
   about: "Sobre"
-  set: "set"
-  method: "method"
+  set: "definir"
+  method: "Método"
