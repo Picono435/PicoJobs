@@ -1,6 +1,6 @@
 ---
 #This file is a language file, here you can change all the messages for this language
-#Remember that some messages may not be used because they are PREMIUM ONLY
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
 #NOTE:
 #In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
 #plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
