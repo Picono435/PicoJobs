@@ -29,6 +29,7 @@ admin-commands: |-
   &e/jobsadmin herladen &6- &eHerlaad alle mogelijke configuraties.
   &e/jobsadmin update &6- &eInstalleert een update van de plugin
   &e/jobsadmin over &6- &eGets informatie over de server en de plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSstelt de salaris/methode van een speler in
 info-command: |-
   &6Status van de speler %player_name%
   &eSalary: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cJe bent niet werkloos! We raden je aan een nieuwe baan te kiezen, a
 already-updated: "&cDe plugin is al in de laatste versie, voor meer informatie bekijk onze WIKI."
 update-started: "&aDe update van de plugin PicoJobs is gestart, even geduld..."
 updated-sucefully: "&aDe plugin is succesvol bijgewerkt, herstart de server om de update af te ronden."
+sucefully: "&aDe actie is overvloedig."
 ##################################################################################
 ##
 #Format messages                                                               #
