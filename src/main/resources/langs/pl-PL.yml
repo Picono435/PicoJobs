@@ -29,6 +29,7 @@ admin-commands: |-
   &e/jobsadmin przeładuj &6- &eOdśwież wszystkie możliwe konfiguracje.
   &e/jobsadmin aktualizacja &6- &eInstaluje aktualizację wtyczki
   &e/jobsadmin o &6- &eGets informacje o serwerze i wtyczce
+  &e/jobsadmin ustawione <salary | method> <player> <amount> &6- &eUstawia salary/metodę gracza
 info-command: |-
   &6Status gracza %player_name%
   &eSalary: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cNie jesteś bezrobotny! Zalecamy wybrać nową pracę lub stracisz 
 already-updated: "&cWtyczka jest już w ostatniej wersji, aby uzyskać więcej informacji sprawdź naszą WIKI."
 update-started: "&aAktualizacja wtyczki PicoJobs rozpoczęta, proszę czekać..."
 updated-sucefully: "&aWtyczka została zaktualizowana, uruchom ponownie serwer, aby zakończyć aktualizację."
+sucefully: "&aAkcja została wykonana z pewnością."
 ##################################################################################
 ##
 #Format messages                                                               #
