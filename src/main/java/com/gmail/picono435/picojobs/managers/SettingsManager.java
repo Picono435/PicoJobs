@@ -78,14 +78,4 @@ public class SettingsManager {
 	public ConfigurationSection getMongoDBConfiguration() {
 		return mongodbConfiguration;
 	}
-
-	// NOT DEFINED YET
-	
-	public double getSalaryFrequency() {
-		return 0.3D;
-	}
-	
-	public double getMethodFrequency() {
-		return 0.3D;
-	}
 }

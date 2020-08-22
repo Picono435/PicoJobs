@@ -178,10 +178,10 @@ public class JobPlayer {
 		double method = getMethod();
 		setMethod(method + 1);
 				
-		int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getMethodFrequency());
+		int reqmethod = (int) (job.getMethod() * level * getJob().getMethodFrequency());
 		
 		if(getMethod() >= reqmethod) {
-			double salary = job.getSalary() * level * PicoJobsAPI.getSettingsManager().getSalaryFrequency();
+			double salary = job.getSalary() * level * getJob().getSalaryFrequency();
 			setMethodLevel(level + 1);
 			setMethod(0);
 			setWorking(false);
