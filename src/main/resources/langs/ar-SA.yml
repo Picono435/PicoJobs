@@ -27,8 +27,9 @@ admin-commands: |-
   &e/jobsadmin help &6-&eعرض هذه الرسائل
   &e/jobsadmin info <player> &6- &eالحصول على معلومات حول اللاعب
   &e/jobsadmin reload &6- &eReload جميع التكوينات الممكنة.
-  &e/jobsadmin upd&6- &eInstalls تحديث للملحق
+  &e/jobsadmin upd&6- &eInstalls تحديث من البرنامج المساعد
   &e/jobsadmin حول &6- معلومات &eGets حول الخادم والملحق
+  &e/jobsadmin مجموعة <salary | method> <player> <amount> &6- &eيحدد الراتب/الأسلوب الخاص باللاعب
 info-command: |-
   &6 حالة اللاعب %player_name%
   &eSalary: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cأنت لست عاطلاً عن العمل! ننصحك باختيا
 already-updated: "&cالبرنامج المساعد موجود بالفعل في الإصدار الأخير، للمزيد من المعلومات تحقق من WIKI لدينا."
 update-started: "&aبدأ تحديث البرنامج المساعد PicoJobs، الرجاء الانتظار..."
 updated-sucefully: "&aتم تحديث الملحق بشكل دقيق، الرجاء إعادة تشغيل الخادم لإنهاء التحديث."
+sucefully: "&aتم اتخاذ الإجراء بشكل مناسب."
 ##################################################################################
 ##
 #Format messages                                                               #
