@@ -1,13 +1,15 @@
 ---
 #This file is a language file, here you can change all the messages for this language
 #Remember that some messages may not be used because they are PREMIUM ONLY
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
 #################################################################################
 ##
 #General messages                                                              #
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 no-permission: "&cHey! このコマンドを実行する権限がありません。"
 ignore-action: "&cHey! 怠惰にならないで、NPCと話をしに行ってください。"
 choosed-job: "&aおめでとうございます！ジョブ %jobplayer_job%&aを選択しました。"
@@ -72,8 +74,6 @@ none-format: "なし"
 #Change how the works should be displayed.
 aliases:
   jobs:
-    - "/getjob"
-    - "/wantjob"
     - "/jobs"
     - "/job"
   jobsadmin:
@@ -89,3 +89,5 @@ aliases:
   reload: "reload"
   update: "更新"
   about: "about"
+  set: "セット"
+  method: "method"
