@@ -85,6 +85,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			getConfig().options().copyDefaults(true);
 			getConfig().set("config-version", getDescription().getVersion());
 			saveConfig();
+			LanguageManager.updateFile();
 		}
 		
 		

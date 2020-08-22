@@ -142,4 +142,25 @@ public class LanguageManager {
             e.printStackTrace();
         }
     }
+    
+    public static void updateFile() {
+    	String lang = PicoJobsAPI.getSettingsManager().getLanguage();
+    	File old = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + "_old.yml");
+        language_file.renameTo(old);
+        File f = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");
+        PicoJobsPlugin.getPlugin().saveResource("langs" + File.separatorChar + lang + ".yml", false);
+        FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(f);
+        f.delete();
+        old.delete();
+        
+        language.setDefaults(fileConfiguration);
+        
+        language.options().copyDefaults(true);
+        
+        try {
+			language.save(language_file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 }
