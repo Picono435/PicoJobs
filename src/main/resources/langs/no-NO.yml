@@ -1,13 +1,15 @@
 ---
 #This file is a language file, here you can change all the messages for this language
 #Remember that some messages may not be used because they are PREMIUM ONLY
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
 #################################################################################
 ##
 #General messages                                                              #
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 no-permission: "&cHey! Du har ikke tillatelse til å utføre den kommandoen."
 ignore-action: "&cHey! Ikke vær lat og gå snakke med NPC."
 choosed-job: "&aGratulerer! Du valgte jobben %jobplayer_job%&a."
@@ -72,10 +74,8 @@ none-format: "Ingen"
 #Change how the works should be displayed.
 aliases:
   jobs:
-    - "/getjob"
-    - "/wantjob"
     - "/jobber"
-    - "/jobb"
+    - "/job"
   jobsadmin:
     - "/jobsadmin"
     - "/jobadmin"
@@ -89,3 +89,5 @@ aliases:
   reload: "reload"
   update: "oppdater"
   about: "om"
+  set: "set"
+  method: "method"
