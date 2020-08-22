@@ -12,7 +12,7 @@
         <directory>${basedir}/src/main/resources/</directory>
       </resource>
     </resources>
-    <finalName>PicoJobs-FREE-${project.version}</finalName>
+    <finalName>PicoJobs-${project.version}</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>

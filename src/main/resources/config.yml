@@ -23,6 +23,8 @@ config-version: ${project.version}
 lang: "en-GB"
 # Here you can put the name of your server, this message will appier in the start of all messages. To disable just put nothing.
 prefix: "&6[PicoJobs] "
+# Here you can disable the messages that are sent when a ADMIN join saying that a dependencie was not found
+dependencie-warn: true
 
 #################################################################################
 #                                                                               #

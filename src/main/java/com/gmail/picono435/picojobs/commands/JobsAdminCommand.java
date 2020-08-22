@@ -3,9 +3,9 @@ package com.gmail.picono435.picojobs.commands;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +20,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.codehaus.plexus.util.FileUtils;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
@@ -140,9 +143,17 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		try {
 			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
 			
-			String downloadUrl = "https://github.com/Picono435/PicoJobs/releases/download/" + PicoJobsPlugin.getLastestPluginVersion() + "/PicoJobs-FREE-" + PicoJobsPlugin.getLastestPluginVersion() + ".jar";
+			String downloadUrl = "https://github.com/Picono435/PicoJobs/releases/download/" + PicoJobsPlugin.getLastestPluginVersion() + "/PicoJobs-" + PicoJobsPlugin.getLastestPluginVersion() + ".jar";
 			URL url = new URL(downloadUrl);
-			File fileOutput = new File(PicoJobsPlugin.getInstance().getDataFolder().getParentFile().getPath() + File.separatorChar + "PicoJobs-FREE-" + PicoJobsPlugin.getLastestPluginVersion() + ".jar");
+			
+			Method getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
+			getFileMethod.setAccessible(true);
+			File oldFile = (File) getFileMethod.invoke(PicoJobsPlugin.getPlugin());
+			
+			File fileOutput = new File(PicoJobsPlugin.getInstance().getDataFolder().getParentFile().getPath() + File.separatorChar + "update" + File.separatorChar + oldFile.getName());
+			if(!fileOutput.exists()) {
+				fileOutput.mkdirs();
+			}
 			
 			downloadFile(url, fileOutput);
 			
@@ -154,27 +165,35 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 	
-	public void downloadFile(URL url, File localFile) throws IOException {
-	    if (localFile.exists()) {
-	        localFile.delete();
-	    }
-	    localFile.createNewFile();
-	    OutputStream out = new BufferedOutputStream(new FileOutputStream(localFile.getPath()));
-	    URLConnection conn = url.openConnection();
-	    String encoded = Base64.getEncoder().encodeToString(("username"+":"+"password").getBytes(StandardCharsets.UTF_8));  //Java 8
-	    conn.setRequestProperty("Authorization", "Basic "+ encoded);
-	    InputStream in = conn.getInputStream();
-	    byte[] buffer = new byte[1024];
+	public void downloadFile(URL url, File localFile) {
+		new BukkitRunnable() {
+			public void run() {
+				try {
+					if (localFile.exists()) {
+				        localFile.delete();
+				    }
+				    localFile.createNewFile();
+				    OutputStream out = new BufferedOutputStream(new FileOutputStream(localFile.getPath()));
+				    URLConnection conn = url.openConnection();
+				    String encoded = Base64.getEncoder().encodeToString(("username"+":"+"password").getBytes(StandardCharsets.UTF_8));  //Java 8
+				    conn.setRequestProperty("Authorization", "Basic "+ encoded);
+				    InputStream in = conn.getInputStream();
+				    byte[] buffer = new byte[1024];
 
-	    int numRead;
-	    while ((numRead = in.read(buffer)) != -1) {
-	        out.write(buffer, 0, numRead);
-	    }
-	    if (in != null) {
-	        in.close();
-	    }
-	    if (out != null) {
-	        out.close();
-	    }
+				    int numRead;
+				    while ((numRead = in.read(buffer)) != -1) {
+				        out.write(buffer, 0, numRead);
+				    }
+				    if (in != null) {
+				        in.close();
+				    }
+				    if (out != null) {
+				        out.close();
+				    }
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}.runTaskAsynchronously(PicoJobsPlugin.getPlugin());
 	}
 }
