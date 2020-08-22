@@ -23,13 +23,13 @@ my-salary: "&a你有 %jobplayer_salary%美元的工资。"
 unknow-job: "&c找不到此作业，请使用 TAB 补全以获取作业列表。"
 work-status: "&a这里是您需要做的： %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
+  &6完整的命令列表：
+  &e/jobsadmin帮助 &6- &e查看此消息
+  &e/jobsadmin信息 <player> &6- &eGets 关于玩家的信息
+  &e/jobsadmin重新加载&6- &eReload 所有可能的配置。
+  &e/jobsadmin更新 &6- &eInstalls 更新插件
+  &e/jobsadmin关于&6- &eGets 关于服务器和插件的信息
+  &e/jobsadmin设置 <salary | method> <player> <amount> &6- &eSets 一个玩家的薪金/方法
 info-command: |-
   &6玩家的状态 %player_name%
   &eSalary: %jobplayer_salary%
@@ -43,7 +43,7 @@ left-job: "&c你没有失业！我们建议你选择一个新的工作或者你�
 already-updated: "&c此插件已经在最后测试版本中，以获取更多信息检查我们的 WIKI。"
 update-started: "&a插件PicoJobs的更新已开始，请稍候..."
 updated-sucefully: "&a此插件已成功更新，请重新启动服务器以完成更新。"
-sucefully: "&aThe action was made sucefully."
+sucefully: "&a该行动已经正式作出。"
 ##################################################################################
 ##
 #Format messages                                                               #
