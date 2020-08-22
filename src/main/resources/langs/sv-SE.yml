@@ -25,6 +25,8 @@ admin-commands: |-
   &e/jobsadmin help &6- &eSe detta meddelande
   &e/jobsadmin info <player> &6- &eHämtar information om en spelare
   &e/jobsadmin ladda om &6- &eLadda om alla möjliga konfigurationer.
+  &e/jobsadmin uppdatera &6- &eInstallerar en uppdatering av pluginen
+  &e/jobsadmin om &6- &eHämtar information om servern och pluginen
 info-command: |-
   &6Status för spelaren %player_name%
   &eSalary: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&aKonfigurationer, jobb och inställningar laddades om."
 player-not-found: "&cDen spelaren är inte online, ange en giltig spelare."
 unknow-error: "&cEtt okänt fel uppstod, kontrollera konsolen för mer information."
 left-job: "&cYou är inte arbetslös! Vi rekommenderar att du väljer ett nytt jobb eller att du förlorar en massa pengar."
+already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
+update-started: "&aThe update of the plugin PicoJobs started, please wait..."
+updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "hjälp"
   info: "information"
   reload: "reload"
+  update: "update"
+  about: "about"
