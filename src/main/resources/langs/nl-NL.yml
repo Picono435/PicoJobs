@@ -25,6 +25,8 @@ admin-commands: |-
   &e/jobsadmin hulp &6- &eSee this message
   &e/jobsadmin info <player> &6- &eHaalt de informatie over een speler
   &e/jobsadmin herladen &6- &eHerlaad alle mogelijke configuraties.
+  &e/jobsadmin update &6- &eInstalleert een update van de plugin
+  &e/jobsadmin over &6- &eGets informatie over de server en de plugin
 info-command: |-
   &6Status van de speler %player_name%
   &eSalary: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&aConfiguraties, Jobs & Instellingen zijn succesvol herladen."
 player-not-found: "&cDie speler is niet online, plaats een geldige speler."
 unknow-error: "&cEen onbekende fout is opgetreden, controleer de console voor meer informatie."
 left-job: "&cJe bent niet werkloos! We raden je aan een nieuwe baan te kiezen, anders verlies je veel geld."
+already-updated: "&cDe plugin is al in de laatste versie, voor meer informatie bekijk onze WIKI."
+update-started: "&aDe update van de plugin PicoJobs is gestart, even geduld..."
+updated-sucefully: "&aDe plugin is succesvol bijgewerkt, herstart de server om de update af te ronden."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "Help"
   info: "info"
   reload: "reload"
+  update: "Bijwerken"
+  about: "Over"
