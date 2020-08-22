@@ -21,10 +21,12 @@ my-salary: "&aあなたには %jobplayer_salary%$ の給料があります。"
 unknow-job: "&cジョブが見つかりませんでした。ジョブのリストを取得するには、TABCOMPLETEを使用してください。"
 work-status: "&a必要な作業は次の通りです: %jobplayer_work%"
 admin-commands: |-
-  &6コマンドの完全な一覧:
-  &e/jobsadmin help &6- &eこのメッセージを参照してください
-  &e/jobsadmin info <player> &6- &eプレイヤーに関する情報を取得します
-  &e/jobsadmin reload &6- &e可能な設定をすべてリロードします。
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
 info-command: |-
   &6プレイヤー %player_name%のステータス
   &e給与: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&a設定、ジョブと設定が正常に再読み込みされ�
 player-not-found: "&cそのプレイヤーはオンラインではありません。有効なプレイヤーを入れてください。"
 unknow-error: "&c不明なエラーが発生しました。詳細についてはコンソールを確認してください。"
 left-job: "&cあなたは失業中です！新しい仕事を選択するか、多額のお金を失うことになります。"
+already-updated: "&cプラグインはすでに最新バージョンです。詳細はWIKIをご覧ください。"
+update-started: "&aプラグインPicoJobsの更新が開始されました。お待ちください..."
+updated-sucefully: "&aプラグインが正常に更新されました。更新を完了するにはサーバーを再起動してください。"
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "ヘルプ"
   info: "情報"
   reload: "reload"
+  update: "更新"
+  about: "about"
