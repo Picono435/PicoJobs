@@ -1,0 +1,95 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&chhe! 您没有执行该命令的权限。"
+ignore-action: "&chhe! 不要迟缓，要与 NPC 交谈。"
+choosed-job: "恭喜！您选择了作业 %jobplayer_job%&a。"
+accepted-work: "&a你接受了 %jobplayer_work% 的工作。"
+no-salary: "&c你没有足够的工资！请去工作;("
+got-salary: "&a棒的工作！你刚刚得到你的 %jobplayer_salary% 薪水！"
+finished-work: "恭喜！您刚刚完成了您的工作。使用 /job来获得更多有关它的信息。"
+need-level: "&chhe! 您需要处理 %a% 来执行此操作。"
+no-args: "&chhe! 请使用一个有效的语法。"
+my-salary: "&a你有 %jobplayer_salary%美元的工资。"
+unknow-job: "&c找不到此作业，请使用 TAB 补全以获取作业列表。"
+work-status: "&a这里是您需要做的： %jobplayer_work%"
+admin-commands: |-
+  &6完整的命令列表：
+  &e/jobsadmin帮助 &6- &e查看此消息
+  &e/jobsadmin信息 <player> &6- &eGets 关于玩家的信息
+  &e/jobsadmin重新加载&6- &eReload 所有可能的配置。
+  &e/jobsadmin更新 &6- &eInstalls 更新插件
+  &e/jobsadmin关于&6- &eGets 关于服务器和插件的信息
+  &e/jobsadmin设置 <salary | method> <player> <amount> &6- &eSets 一个玩家的薪金/方法
+info-command: |-
+  &6玩家的状态 %player_name%
+  &eSalary: %jobplayer_salary%
+  &ee是否正常工作: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & 设置重新加载成功。"
+player-not-found: "&c该玩家未上线，请放置一个有效的玩家。"
+unknow-error: "&c发生未知错误，请检查控制台获取更多信息。"
+left-job: "&c你没有失业！我们建议你选择一个新的工作或者你会失去很多钱。"
+already-updated: "&c此插件已经在最后测试版本中，以获取更多信息检查我们的 WIKI。"
+update-started: "&a插件PicoJobs的更新已开始，请稍候..."
+updated-sucefully: "&a此插件已成功更新，请重新启动服务器以完成更新。"
+sucefully: "&a该行动已经正式作出。"
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+break-work: "课间休息 %a% 块"
+kill-work: "杀死 %a%"
+kill-specific-work: "击杀作业中的 %a%的人 %b%"
+fishing-work: "鱼鱼 %a%"
+place-work: "位置 %a% 块"
+craft-work: "制作 %a%物品"
+smelt-work: "熔化 %a% 项"
+eat-work: "吃了 %a% 物品"
+enchanting-work: "%a%物品"
+repair-work: "维修 %a%物品"
+milk-work: "从奶牛中拿取 %a%的牛奶。"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "无"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/jobs"
+    - "/作业"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "选择"
+  work: "工作"
+  salary: "工作人员薪金税"
+  withdraw: "取款"
+  leave: "离开"
+  help: "帮助"
+  info: "信息"
+  reload: "reload"
+  update: "更新"
+  about: "关于"
+  set: "设置"
+  method: "方法"
