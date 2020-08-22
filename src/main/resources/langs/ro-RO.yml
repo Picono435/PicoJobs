@@ -25,6 +25,8 @@ admin-commands: |-
   &e/jobsadmin ajutor &6- &eVezi aceste mesaje
   &e/jobsadmin info <player> &6- &ePrimește informațiile despre un jucător
   &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
+  Actualizare &/jobsadmin &6- &eInstaleaza o actualizare a plugin-ului
+  &e/jobsadmin despre &6- &ePrimeste informatii despre server si plugin
 info-command: |-
   &6Starea jucatorului %player_name%
   &eSalary: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&aConfiguratiile, Jobs & Settings au fost reincarcate cu succes
 player-not-found: "&cAcest jucator nu este online, te rog pune un jucator valid."
 unknow-error: "&cA aparut o eroare necunoscuta, verificati consola pentru mai multe informatii."
 left-job: "&cNu sunteti şomeri! Va recomandam sa alegeti un nou job sau veti pierde o gramada de bani."
+already-updated: "&cPlugin-ul este deja in ultima versiune, pentru mai multe informatii verificati WIKI-ul nostru."
+update-started: "&aActualizarea plugin-ului PicoJobs a pornit, te rugam sa astepti..."
+updated-sucefully: "&aPlugin-ul a fost actualizat complet, te rugam restarteaza serverul pentru a termina actualizarea."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "ajutor"
   info: "informaţii"
   reload: "reload"
+  update: "actualizează"
+  about: "despre"
