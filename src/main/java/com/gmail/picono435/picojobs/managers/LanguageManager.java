@@ -117,7 +117,11 @@ public class LanguageManager {
 	 *
 	 */
     public static String getSubCommandAlias(String subcmd) {
-    	String chat = language.getConfigurationSection("aliases").getString(subcmd).toLowerCase();
+    	String chat = language.getConfigurationSection("aliases").getString(subcmd);
+    	if(chat == null) {
+    		chat = subcmd;
+    	}
+    	chat = chat.toLowerCase();
     	return chat;
     }
     

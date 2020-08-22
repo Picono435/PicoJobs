@@ -22,14 +22,16 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.codehaus.plexus.util.FileUtils;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(!cmd.getName().equals("jobsadmin")) return false;
@@ -48,6 +50,11 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		String reloadString = LanguageManager.getSubCommandAlias("reload");
 		String updateString = LanguageManager.getSubCommandAlias("update");
 		String aboutString = LanguageManager.getSubCommandAlias("about");
+		String setString = LanguageManager.getSubCommandAlias("set");
+		
+		String salaryString = LanguageManager.getSubCommandAlias("salary");
+		String methodString = LanguageManager.getSubCommandAlias("method");
+		
 		Player pl = null;
 		if(sender instanceof Player) {
 			pl = (Player)sender;
@@ -100,7 +107,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}
 		
-		// UPDATE COMMAND
+		// ABOUT COMMAND
 		if(subcmd.equalsIgnoreCase("about") || subcmd.equalsIgnoreCase(aboutString)) {
 			String message = "&eHere are some information about the plugin\n"
 					+ "&ePlugin version:&6 v" + PicoJobsPlugin.getInstance().getDescription().getVersion() + "\n"
@@ -110,6 +117,60 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 									+ "&eIssues Tracker:&6 https://github.com/Picono435/PicoJobs/issues";
 			p.sendMessage(LanguageManager.formatMessage(message));
 			return true;
+		}
+		
+		// SET COMMAND
+		if(subcmd.equalsIgnoreCase("set") || subcmd.equalsIgnoreCase(setString)) {
+			if(args.length < 2) {
+				p.sendMessage(LanguageManager.getMessage("no-args", pl));
+				return true;
+			}
+			// /jobsadmin set salary Frankandstile 1000
+			if(args[1].equalsIgnoreCase("salary") || args[1].equalsIgnoreCase(salaryString)) {
+				if(args.length < 4) {
+					p.sendMessage(LanguageManager.getMessage("no-args", pl));
+					return true;
+				}
+				JobPlayer jpNew = PicoJobsAPI.getPlayersManager().getJobPlayer(args[2]);
+				if(jpNew == null)  {
+					p.sendMessage(LanguageManager.getMessage("player-not-found", pl));
+					return true;
+				}
+				int newSalary = 0;
+				try {
+					newSalary = Integer.parseInt(args[3]);
+				} catch(Exception ex) {
+					p.sendMessage(LanguageManager.getMessage("no-args", pl));
+					return true;
+				}
+				jpNew.setSalary(newSalary);
+				p.sendMessage(LanguageManager.getMessage("sucefully", pl));
+				return true;
+			}
+			
+			if(args[1].equalsIgnoreCase("method") || args[1].equalsIgnoreCase(methodString)) {
+				if(args.length < 4) {
+					p.sendMessage(LanguageManager.getMessage("no-args", pl));
+					return true;
+				}
+				JobPlayer jpNew = PicoJobsAPI.getPlayersManager().getJobPlayer(args[2]);
+				if(jpNew == null)  {
+					p.sendMessage(LanguageManager.getMessage("player-not-found", pl));
+					return true;
+				}
+				int newMethod = 0;
+				try {
+					newMethod = Integer.parseInt(args[3]);
+				} catch(Exception ex) {
+					p.sendMessage(LanguageManager.getMessage("no-args", pl));
+					return true;
+				}
+				jpNew.setMethod(newMethod);
+				p.sendMessage(LanguageManager.getMessage("sucefully", pl));
+				return true;
+			}
+			
+			p.sendMessage(LanguageManager.getFormat("admin-commands", null));
 		}
 		return true;
 	}
@@ -123,17 +184,49 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			String reloadString = LanguageManager.getSubCommandAlias("reload");
 			String updateString = LanguageManager.getSubCommandAlias("update");
 			String aboutString = LanguageManager.getSubCommandAlias("about");
+			String setString = LanguageManager.getSubCommandAlias("set");
+			
+			String salaryString = LanguageManager.getSubCommandAlias("salary");
+			String methodString = LanguageManager.getSubCommandAlias("method");
+			
+			if(!p.hasPermission("picojobs.admin")) return null;
+			
+			List<String> list = new ArrayList<String>();
 			
 			if(args.length == 1) {
-				List<String> list = new ArrayList<String>();
-				if(p.hasPermission("picojobs.admin")) {
-					list.add(helpString);
-					list.add(infoString);
-					list.add(reloadString);
-					list.add(updateString);
-					list.add(aboutString);
-				}
+				list.add(helpString);
+				list.add(infoString);
+				list.add(reloadString);
+				list.add(updateString);
+				list.add(aboutString);
+				list.add(setString);
 				return list;
+			}
+			
+			if(args.length == 2) {
+				if(args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase(setString)) {
+					list.add(salaryString);
+					list.add(methodString);
+					return list;
+				}
+			}
+			
+			if(args.length == 3) {
+				if(args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase(setString)) {
+					list.add("[<player>]");
+					return list;
+				}
+			}
+			
+			if(args.length == 4) {
+				if(args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase(setString)) {
+					if(args[1].equalsIgnoreCase("salary") || args[1].equalsIgnoreCase(salaryString)) {
+						list.add("[<" + salaryString + ">]");
+					} else if(args[1].equalsIgnoreCase("method") || args[1].equalsIgnoreCase(methodString)) {
+						list.add("[<" + methodString + ">]");
+					}
+					return list;
+				}
 			}
 		}
 		return null;

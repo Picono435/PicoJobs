@@ -30,6 +30,7 @@ admin-commands: |-
   &e/jobsadmin reload &6- &eReload all the possible configurations.
   &e/jobsadmin update &6- &eInstalls a update of the plugin
   &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
 info-command: |-
   &6Status of the player %player_name%
   &eSalary: %jobplayer_salary%
@@ -43,7 +44,7 @@ left-job: "&cYou are not unemployed! We recommend you choose a new job or you wi
 already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
 update-started: "&aThe update of the plugin PicoJobs started, please wait..."
 updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
-  
+sucefully: "&aThe action was made sucefully."
 
 ##################################################################################
 #                                                                               #

@@ -36,9 +36,9 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
-    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # Set the permissions that this job should have
     # REQUIRES VAULT
-    permissions: 
+    permissions:  # [SOON]
       - kit.use.thief
       
   # This is a example of a police job
@@ -71,9 +71,9 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
-    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # Set the permissions that this job should have
     # REQUIRES VAULT
-    permissions: 
+    permissions: # [SOON]
       - kit.use.police
       
   # This is a example of a miner job
@@ -108,9 +108,9 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
-    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # Set the permissions that this job should have
     # REQUIRES VAULT
-    permissions: 
+    permissions: # [SOON]
       - kit.use.miner
       
   # This is a example of a assassin job
@@ -143,9 +143,9 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: true
-    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # Set the permissions that this job should have
     # REQUIRES VAULT
-    permissions: 
+    permissions: # [SOON]
       - kit.use.assassin
       
   # This is a example of a assassin job
@@ -176,7 +176,7 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: true
-    # Set the permissions that this job should have ** PREMIUM ONLY **
+    # Set the permissions that this job should have
     # REQUIRES VAULT
-    permissions: 
+    permissions: # [SOON]
       - kit.use.fisher
