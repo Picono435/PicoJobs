@@ -1,9 +1,20 @@
 package com.gmail.picono435.picojobs.commands;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,6 +43,8 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		String helpString = LanguageManager.getSubCommandAlias("help");
 		String infoString = LanguageManager.getSubCommandAlias("info");
 		String reloadString = LanguageManager.getSubCommandAlias("reload");
+		String updateString = LanguageManager.getSubCommandAlias("update");
+		String aboutString = LanguageManager.getSubCommandAlias("about");
 		Player pl = null;
 		if(sender instanceof Player) {
 			pl = (Player)sender;
@@ -68,6 +81,33 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.getMessage("reload-command", pl));
 			return true;
 		}
+		
+		// UPDATE COMMAND
+		if(subcmd.equalsIgnoreCase("update") || subcmd.equalsIgnoreCase(updateString)) {
+			if(!PicoJobsPlugin.isOldVersion()) {
+				p.sendMessage(LanguageManager.getMessage("already-updated", pl));
+				return true;
+			}
+			p.sendMessage(LanguageManager.getMessage("update-started", pl));
+			if(!updatePlugin()) {
+				p.sendMessage(LanguageManager.getMessage("unknow-error", pl));
+				return true;
+			}
+			p.sendMessage(LanguageManager.getMessage("updated-sucefully", pl));
+			return true;
+		}
+		
+		// UPDATE COMMAND
+		if(subcmd.equalsIgnoreCase("about") || subcmd.equalsIgnoreCase(aboutString)) {
+			String message = "&eHere are some information about the plugin\n"
+					+ "&ePlugin version:&6 v" + PicoJobsPlugin.getInstance().getDescription().getVersion() + "\n"
+							+ "&eBukkit Version:&6 " + Bukkit.getVersion() + "\n"
+									+ "&eDiscord Server:&6 https://discord.gg/wQj53Hy\n"
+									+ "&eGitHub Repo:&6 https://github.com/Picono435/PicoJobs\n"
+									+ "&eIssues Tracker:&6 https://github.com/Picono435/PicoJobs/issues";
+			p.sendMessage(LanguageManager.formatMessage(message));
+			return true;
+		}
 		return true;
 	}
 	
@@ -78,6 +118,8 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			String helpString = LanguageManager.getSubCommandAlias("help");
 			String infoString = LanguageManager.getSubCommandAlias("info");
 			String reloadString = LanguageManager.getSubCommandAlias("reload");
+			String updateString = LanguageManager.getSubCommandAlias("update");
+			String aboutString = LanguageManager.getSubCommandAlias("about");
 			
 			if(args.length == 1) {
 				List<String> list = new ArrayList<String>();
@@ -85,11 +127,54 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 					list.add(helpString);
 					list.add(infoString);
 					list.add(reloadString);
+					list.add(updateString);
+					list.add(aboutString);
 				}
 				return list;
 			}
 		}
 		return null;
 	}
+	
+	private boolean updatePlugin() {
+		try {
+			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
+			
+			String downloadUrl = "https://github.com/Picono435/PicoJobs/releases/download/" + PicoJobsPlugin.getLastestPluginVersion() + "/PicoJobs-FREE-" + PicoJobsPlugin.getLastestPluginVersion() + ".jar";
+			URL url = new URL(downloadUrl);
+			File fileOutput = new File(PicoJobsPlugin.getInstance().getDataFolder().getParentFile().getPath() + File.separatorChar + "PicoJobs-FREE-" + PicoJobsPlugin.getLastestPluginVersion() + ".jar");
+			
+			downloadFile(url, fileOutput);
+			
+            PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updated PicoJobs plugin to version v" + PicoJobsPlugin.getLastestPluginVersion() + " succefully.");
+			return true;
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
+	public void downloadFile(URL url, File localFile) throws IOException {
+	    if (localFile.exists()) {
+	        localFile.delete();
+	    }
+	    localFile.createNewFile();
+	    OutputStream out = new BufferedOutputStream(new FileOutputStream(localFile.getPath()));
+	    URLConnection conn = url.openConnection();
+	    String encoded = Base64.getEncoder().encodeToString(("username"+":"+"password").getBytes(StandardCharsets.UTF_8));  //Java 8
+	    conn.setRequestProperty("Authorization", "Basic "+ encoded);
+	    InputStream in = conn.getInputStream();
+	    byte[] buffer = new byte[1024];
 
+	    int numRead;
+	    while ((numRead = in.read(buffer)) != -1) {
+	        out.write(buffer, 0, numRead);
+	    }
+	    if (in != null) {
+	        in.close();
+	    }
+	    if (out != null) {
+	        out.close();
+	    }
+	}
 }

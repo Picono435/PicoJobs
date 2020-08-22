@@ -3,7 +3,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.gmail.picono435</groupId>
    <artifactId>picojobs</artifactId>
-   <version>1.0-beta</version>
+   <version>1.0-beta-1</version>
    <packaging>jar</packaging>
    <properties>
       <maven.compiler.source>1.8</maven.compiler.source>
@@ -109,11 +109,13 @@
          <groupId>com.googlecode.json-simple</groupId>
          <artifactId>json-simple</artifactId>
          <version>1.1</version>
+         <scope>compile</scope>
       </dependency>
       <dependency>
          <groupId>org.apache.maven</groupId>
          <artifactId>maven-artifact</artifactId>
          <version>3.0.3</version>
+         <scope>compile</scope>
       </dependency>
       <dependency>
          <groupId>org.bstats</groupId>
@@ -125,6 +127,13 @@
         <groupId>org.mongodb</groupId>
         <artifactId>mongodb-driver-sync</artifactId>
         <version>4.1.0</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.mkremins</groupId>
+        <artifactId>fanciful</artifactId>
+        <version>18dc039f5b</version>
+        <scope>compile</scope>
       </dependency>
    </dependencies>
 </project>

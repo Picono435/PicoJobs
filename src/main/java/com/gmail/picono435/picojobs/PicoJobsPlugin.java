@@ -54,6 +54,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private static PicoJobsPlugin instance;
 	private static boolean legacy;
 	private static boolean oldVersion;
+	private static String lastestPluginVersion;
 	//DATA
 	//JOBS DATA
 	public static Map<String, Job> jobs = new HashMap<String, Job>(); 
@@ -165,6 +166,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	public static boolean isOldVersion() {
 		return oldVersion;
+	}
+	
+	public static String getLastestPluginVersion() {
+		return lastestPluginVersion;
 	}
 	
 	private static boolean generateJobsFromConfig() {
@@ -284,6 +289,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		try {
 			DefaultArtifactVersion pluginVesion = new DefaultArtifactVersion(getPlugin().getDescription().getVersion());
 			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
+			lastestPluginVersion = version;
 			if(lastestVersion.compareTo(pluginVesion) > 0) {
 				new BukkitRunnable() {
 					public void run() {

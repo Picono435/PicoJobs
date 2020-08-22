@@ -11,6 +11,9 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
+import mkremins.fanciful.FancyMessage;
+import net.md_5.bungee.api.ChatColor;
+
 public class CreatePlayerListener implements Listener {
 	
 	@EventHandler()
@@ -27,7 +30,11 @@ public class CreatePlayerListener implements Listener {
 		new BukkitRunnable() {
 			public void run() {
 				if(p.hasPermission("picojobs.admin") && PicoJobsPlugin.isOldVersion()) {
-					p.sendMessage("\n" + LanguageManager.formatMessage("&cYou are using an old version of PicoJobs, please update. This new version can include fixes to current errors.\n&c"));
+					String message = "\n" + LanguageManager.formatMessage("&cYou are using an old version of PicoJobs. This new version can include fixes to current errors.\n&7 You can update automatically by clicking in this message.\n&c");
+					new FancyMessage(message)
+							.command("/jobsadmin update")
+							.tooltip(ChatColor.RED + "Click here to update PicoJobs plugin to v" + PicoJobsPlugin.getLastestPluginVersion())
+							.send(p);
 				}
 			}
 		}.runTaskLater(PicoJobsPlugin.getPlugin(), 20L);
