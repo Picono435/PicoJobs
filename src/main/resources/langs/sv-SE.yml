@@ -37,9 +37,9 @@ reload-command: "&aKonfigurationer, jobb och inställningar laddades om."
 player-not-found: "&cDen spelaren är inte online, ange en giltig spelare."
 unknow-error: "&cEtt okänt fel uppstod, kontrollera konsolen för mer information."
 left-job: "&cYou är inte arbetslös! Vi rekommenderar att du väljer ett nytt jobb eller att du förlorar en massa pengar."
-already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
-update-started: "&aThe update of the plugin PicoJobs started, please wait..."
-updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
+already-updated: "&cPluginen är redan i den senaste versionen, för mer information kolla vår WIKI."
+update-started: "&aUppdateringen av pluginen PicoJobs startade, vänligen vänta..."
+updated-sucefully: "&aPluginen har uppdaterats noggrant, vänligen starta om servern för att slutföra uppdateringen."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -87,5 +87,5 @@ aliases:
   help: "hjälp"
   info: "information"
   reload: "reload"
-  update: "update"
-  about: "about"
+  update: "uppdatera"
+  about: "om"
