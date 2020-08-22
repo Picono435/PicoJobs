@@ -27,8 +27,9 @@ admin-commands: |-
   &e/jobsadmin help &6- &eGuarda questo messaggio
   &e/jobsadmin info <player> &6- &eOttiene le informazioni su un giocatore
   &e/jobsadmin reload &6- &eRicarica tutte le configurazioni possibili.
-  &e/jobsadmin update &6- &eInstalla un aggiornamento del plugin
-  &e/jobsadmin su &6- &eOttiene informazioni sul server e sul plugin
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets information about the server and the plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eImposta lo stipendio/metodo di un giocatore
 info-command: |-
   &6Stato del giocatore %player_name%
   &eSalary: %jobplayer_salary%
@@ -42,6 +43,7 @@ left-job: "&cNon sei disoccupato! Ti consigliamo di scegliere un nuovo lavoro o 
 already-updated: "&cIl plugin è già nell'ultima versione, per maggiori informazioni controllare il nostro WIKI."
 update-started: "&aL'aggiornamento del plugin PicoJobs avviato, attendere prego..."
 updated-sucefully: "&aIl plugin è stato aggiornato abbondantemente, si prega di riavviare il server per completare l'aggiornamento."
+sucefully: "&aL'azione è stata fatta in modo succoso."
 ##################################################################################
 ##
 #Format messages                                                               #
