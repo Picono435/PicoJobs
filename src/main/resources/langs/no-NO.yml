@@ -21,10 +21,12 @@ my-salary: "&aYou have %jobplayer_salary%$ of salary."
 unknow-job: "&cDen jobben ble ikke funnet, bruk TAB COMPLETE for å få en liste over jobber."
 work-status: "&aHer er det du trenger å gjøre: %jobplayer_work%"
 admin-commands: |-
-  &6Full liste over kommandoer:
-  &e/jobsadmin help &6- &eSe denne meldingene
-  &/jobsadmin info <player> &6- &eGetter informasjonen om en spiller
-  &/ jobsadmin reload &6- &eOppdater alle mulige konfigurasjoner.
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
 info-command: |-
   &6Status for spiller %player_name%
   &eSalary: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&aKonfigurasjoner, Jober og Innstillinger ble lastet på nytt."
 player-not-found: "&cDen spilleren er ikke online, vennligst legg til en gyldig spiller."
 unknow-error: "&cAn unknow feil oppsto, vennligst sjekk konsollen for mer informasjon."
 left-job: "&cDu er ikke arbeidsledig! Vi anbefaler deg å velge en ny jobb eller du vil miste masse penger."
+already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
+update-started: "&aThe update of the plugin PicoJobs started, please wait..."
+updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "hjelp"
   info: "informasjon"
   reload: "reload"
+  update: "update"
+  about: "about"
