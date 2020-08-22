@@ -21,10 +21,12 @@ my-salary: "&aУ вас є %jobplayer_salary%$ зарплатні."
 unknow-job: "&cЦе завдання не знайдено, будь ласка, використовуйте TAB COMPLETE для отримання списку завдань."
 work-status: "&aОсь що вам необхідно зробити: %jobplayer_work%"
 admin-commands: |-
-  &6Повний список команд:
-  &e/jobsadmin help &6- &eSee ці повідомлення
-  &e/jobsadmin info <player> &6- &eGet відображає інформацію про програвач
-  &e/jobsadmin перезавантажує &6- &eПерезавантажити всі можливі конфігурації.
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
 info-command: |-
   &6Статус гравця %player_name%
   &eSalary: %jobplayer_salary%
@@ -35,6 +37,9 @@ reload-command: "&aКонфігурації, завдання та настро�
 player-not-found: "&cЦей гравець не в мережі, будь ласка, поставте дійсного гравця."
 unknow-error: "&cВиникла невідома помилка, будь ласка, перевірте консоль для отримання додаткової інформації."
 left-job: "&cВи не безробітні! Ми рекомендуємо вибрати нову роботу, або ви втратите багато грошей."
+already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
+update-started: "&aThe update of the plugin PicoJobs started, please wait..."
+updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
 ##################################################################################
 ##
 #Format messages                                                               #
@@ -82,3 +87,5 @@ aliases:
   help: "допомога"
   info: "інформація"
   reload: "reload"
+  update: "update"
+  about: "about"
