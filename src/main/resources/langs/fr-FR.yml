@@ -43,7 +43,7 @@ left-job: "&cVous n'êtes pas au chômage ! Nous vous recommandons de choisir un
 already-updated: "&cLe plugin est déjà dans la dernière version, pour plus d'informations, consultez notre WIKI."
 update-started: "&aLa mise à jour du plugin PicoJobs a commencé, veuillez patienter..."
 updated-sucefully: "&aLe plugin a été mis à jour avec succès, veuillez redémarrer le serveur pour terminer la mise à jour."
-sucefully: "&aThe action was made sucefully."
+sucefully: "&aL'action a été faite avec succès."
 ##################################################################################
 ##
 #Format messages                                                               #
