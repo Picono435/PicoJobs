@@ -19,14 +19,29 @@ public final class PlayerLeaveJobEvent extends Event {
         this.oldJob = oldJob;
     }
 
+    /**
+     * Gets the job player in this event
+     * 
+     * @return the job player
+     */
     public JobPlayer getJobPlayer() {
         return jobPlayer;
     }
     
+    /**
+     * Gets the player in this event
+     * 
+     * @return the player
+     */
     public Player getPlayer() {
         return player;
     }
    
+    /**
+     * Gets the old job of the player
+     * 
+     * @return the old job
+     */
     public Job getOldJob() {
     	return oldJob;
     }

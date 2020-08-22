@@ -18,14 +18,29 @@ public final class PlayerWithdrawEvent extends Event {
         this.salary = salary;
     }
 
+    /**
+     * Gets the job player in this event
+     * 
+     * @return the job player
+     */
     public JobPlayer getJobPlayer() {
         return jobPlayer;
     }
     
+    /**
+     * Gets the player in this event
+     * 
+     * @return the player
+     */
     public Player getPlayer() {
         return player;
     }
    
+    /**
+     * Gets the salary took in this event
+     * 
+     * @return the salary took
+     */
     public double getSalary() {
     	return salary;
     }

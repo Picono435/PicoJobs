@@ -19,14 +19,29 @@ public final class PlayerStartWorkEvent extends Event {
         this.job = job;
     }
 
+    /**
+     * Gets the job player in this event
+     * 
+     * @return the job player
+     */
     public JobPlayer getJobPlayer() {
         return jobPlayer;
     }
     
+    /**
+     * Gets the player in this event
+     * 
+     * @return the player
+     */
     public Player getPlayer() {
         return player;
     }
    
+    /**
+     * Gets the job of the player in this event
+     * 
+     * @return the job
+     */
     public Job getJob() {
     	return job;
     }
