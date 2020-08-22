@@ -132,7 +132,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         		configString = "kill-specific-work";
         	}
         	double level = jp.getMethodLevel();
-        	int reqmethod = (int) (job.getMethod() * level * PicoJobsAPI.getSettingsManager().getMethodFrequency());
+        	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
         	double value = reqmethod - jp.getMethod();
         	String work = LanguageManager.getFormat("general-work", p);
         	work = work.replace("%a%", LanguageManager.getFormat(configString, p));
