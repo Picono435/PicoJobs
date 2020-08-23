@@ -12,7 +12,9 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import net.md_5.bungee.api.ChatColor;
 
 /**
  * This class will be registered through the register-method in the 
@@ -135,7 +137,11 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
         	double value = reqmethod - jp.getMethod();
         	String work = LanguageManager.getFormat("general-work", p);
-        	work = work.replace("%a%", LanguageManager.getFormat(configString, p));
+        	if(!job.getWorkMessage().equals("")) {
+        		work = work.replace("%a%", PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', job.getWorkMessage())));
+        	} else {
+        		work = work.replace("%a%", LanguageManager.getFormat(configString, p));
+        	}
         	work = work.replace("%a%", df.format(value));
         	return work;
         }

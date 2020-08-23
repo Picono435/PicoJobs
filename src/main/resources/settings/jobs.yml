@@ -19,7 +19,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 100
+    salary: 1053
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
@@ -56,7 +56,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 120
+    salary: 1200
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
@@ -93,7 +93,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 80
+    salary: 800
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
@@ -130,7 +130,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 150
+    salary: 1500
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
@@ -167,7 +167,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 30
+    salary: 70
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
@@ -204,7 +204,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 50
+    salary: 120
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
@@ -241,7 +241,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 70
+    salary: 69
     # The salary frequency of the job
     salary-frequency: 0.5
     # The method frequency of the job
@@ -253,7 +253,7 @@ jobs:
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     # item-whitelist: ["diamond_sword"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    work-message: "dig %a% dirts"
+    # work-message: "craft %a% items"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -278,7 +278,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 300
+    salary: 240
     # The salary frequency of the job
     salary-frequency: 0.2
     # The method frequency of the job
@@ -311,11 +311,11 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 300
+    salary: 280
     # The salary frequency of the job
-    salary-frequency: 0.1
+    salary-frequency: 0.6
     # The method frequency of the job
-    method-frequency: 0.1
+    method-frequency: 0.6
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
     # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
@@ -323,7 +323,7 @@ jobs:
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     # item-whitelist: ["diamond_sword"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    # work-message: "fish %a% fishes"
+    # work-message: "repair %a% items"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -350,7 +350,7 @@ jobs:
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 100
+    salary: 360
     # The salary frequency of the job
     salary-frequency: 0.5
     # The method frequency of the job

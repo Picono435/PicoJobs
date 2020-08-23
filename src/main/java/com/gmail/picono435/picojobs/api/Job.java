@@ -32,6 +32,7 @@ public class Job {
 	private double salaryFrequency;
 	private double methodFrequency;
 	private String economy;
+	private String workMessage;
 	
 	// GUI SETTINGS
 	private int slot;
@@ -45,7 +46,7 @@ public class Job {
 	private List<Material> blockWhitelist;
 	private List<EntityType> entityWhitelist;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist, List<String> entityWhitelist) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist, List<String> entityWhitelist) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -56,6 +57,7 @@ public class Job {
 		this.salaryFrequency = salaryFrequency;
 		this.methodFrequency = methodFrequency;
 		this.economy = economy;
+		this.workMessage = workMessage;
 		
 		this.slot = slot;
 		Material m = Material.matchMaterial(item);
@@ -189,6 +191,19 @@ public class Job {
 			return "VAULT";
 		}
 		return economy;
+	}
+	
+	/**
+	 * Gets the work message of the job
+	 * 
+	 * @return the work message, empty if not found
+	 * @author Picono435
+	 */
+	public String getWorkMessage() {
+		if(workMessage == null) {
+			return "";
+		}
+		return workMessage;
 	}
 	
 	/**

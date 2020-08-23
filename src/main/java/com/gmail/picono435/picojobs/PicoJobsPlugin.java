@@ -190,6 +190,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			double salaryFrequency = jobc.getDouble("salary-frequency");
 			double methodFrequency = jobc.getDouble("method-frequency");
 			String economy = jobc.getString("economy").toUpperCase();
+			String workMessage = jobc.getString("work-message");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
@@ -216,7 +217,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 				entityWhitelist = jobc.getStringList("entity-whitelist");
 			}
 			
-			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist, entityWhitelist);
+			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist, entityWhitelist);
 			jobs.put(jobname, job);
 		}
 		return true;
