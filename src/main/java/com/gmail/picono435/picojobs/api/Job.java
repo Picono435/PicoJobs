@@ -106,6 +106,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public Type getType() {
+		if(type == null) type = Type.BREAK;
 		return type;
 	}
 	
@@ -182,6 +183,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public Material getMaterial() {
+		if(item == null) item = Material.STONE;
 		return item;
 	}
 	
