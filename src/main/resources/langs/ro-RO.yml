@@ -36,7 +36,7 @@ info-command: |-
   &eFunctioneaza: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfiguratiile, Jobs & Settings au fost reincarcate cu succes."
+reload-command: "&aConfiguratiile, Jobs & Language au fost reincarcate cu succes."
 player-not-found: "&cAcest jucator nu este online, te rog pune un jucator valid."
 unknow-error: "&cA aparut o eroare necunoscuta, verificati consola pentru mai multe informatii."
 left-job: "&cNu sunteti şomeri! Va recomandam sa alegeti un nou job sau veti pierde o gramada de bani."
