@@ -36,7 +36,7 @@ info-command: |-
   &eが動作中: %jobplayer_working%
   &e作業: %jobplayer_work%
   &eジョブ: %jobplayer_job%
-reload-command: "&a設定、ジョブと設定が正常に再読み込みされました。"
+reload-command: "&a設定、ジョブと言語が正常に再読み込みされました。"
 player-not-found: "&cそのプレイヤーはオンラインではありません。有効なプレイヤーを入れてください。"
 unknow-error: "&c不明なエラーが発生しました。詳細についてはコンソールを確認してください。"
 left-job: "&cあなたは失業中です！新しい仕事を選択するか、多額のお金を失うことになります。"
