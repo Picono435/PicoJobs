@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
+import com.gmail.picono435.picojobs.utils.OtherUtils;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -41,8 +43,9 @@ public class Job {
 	private String killJob;
 	private boolean useWhitelist;
 	private List<Material> blockWhitelist;
+	private List<EntityType> entityWhitelist;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist, List<String> entityWhitelist) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -62,12 +65,19 @@ public class Job {
 		
 		this.killJob = killJob;
 		this.useWhitelist = useWhitelist;
-		if(blockWhitelist != null && blockWhitelist.size() > 0) {
-			List<Material> blockWhitelistt = new ArrayList<Material>();
-			for(String mm : blockWhitelist) {
-				blockWhitelistt.add(Material.matchMaterial(mm));
+		if(blockWhitelist != null) {
+			List<Material> materialList = new ArrayList<Material>();
+			for(String s : blockWhitelist) {
+				materialList.add(Material.matchMaterial(s));
 			}
-			this.blockWhitelist = blockWhitelistt;
+			this.blockWhitelist = materialList;
+		}
+		if(entityWhitelist != null) {
+			List<EntityType> entityList = new ArrayList<EntityType>();
+			for(String s : entityWhitelist) {
+				entityList.add(OtherUtils.getEntityByName(s));
+			}
+			this.entityWhitelist = entityList;
 		}
 	}
 	
@@ -261,7 +271,7 @@ public class Job {
 	}
 	
 	/**
-	 * Checks if a material is in the whitelist, this does not verify if there is a whitelist.
+	 * Checks if a material is in the whitelist
 	 * 
 	 * @param material the material that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
@@ -274,6 +284,23 @@ public class Job {
 			return blockWhitelist.contains(material);
 		} else {
 			return !blockWhitelist.contains(material);
+		}
+	}
+	
+	/**
+	 * Checks if a entity is in the whitelist
+	 * 
+	 * @param entity the entity that you want to check
+	 * @return true if it's in the whitelist or there is no whitelist, false if not
+	 * @author Picono435
+	 */
+	public boolean inWhitelist(EntityType entity) {
+		if(entityWhitelist == null) return true;
+		if(entityWhitelist.size() <= 0) return true;
+		if(useWhitelist) {
+			return entityWhitelist.contains(entity);
+		} else {
+			return !entityWhitelist.contains(entity);
 		}
 	}
 }

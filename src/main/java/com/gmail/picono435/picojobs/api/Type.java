@@ -20,7 +20,8 @@ public enum Type {
 	EAT(),
 	ENCHANTING(),
 	REPAIR(),
-	MILK();
+	MILK(),
+	KILL_ENTITY();
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	

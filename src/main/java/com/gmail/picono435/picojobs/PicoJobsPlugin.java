@@ -38,6 +38,7 @@ import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.listeners.ExecuteCommandListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FisherListener;
+import com.gmail.picono435.picojobs.listeners.jobs.KillEntityListener;
 import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
 import com.gmail.picono435.picojobs.listeners.jobs.MilkListener;
 import com.gmail.picono435.picojobs.listeners.jobs.PlaceListener;
@@ -70,7 +71,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 		instance = this;
 		Bukkit.getServer();
 		sendConsoleMessage("[PicoJobs] Plugin created by: Picono435#2011. Thank you for use it.");
-		if(!verificarLicenca()) return;
 		
 		if(checkLegacy() ) {
 			sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
@@ -121,6 +121,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new MilkListener(), this);
 		Bukkit.getPluginManager().registerEvents(new RepairListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SmeltListener(), this);
+		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
 		
 		//STARTING BSTATS
         Metrics metrics = new Metrics(this, 8553);
@@ -210,8 +211,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT) {
 				blockWhitelist = jobc.getStringList("item-whitelist");
 			}
+			List<String> entityWhitelist = null;
+			if(type == Type.KILL_ENTITY) {
+				entityWhitelist = jobc.getStringList("entity-whitelist");
+			}
 			
-			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
+			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist, entityWhitelist);
 			jobs.put(jobname, job);
 		}
 		return true;
@@ -222,7 +227,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(type == Type.BREAK || type == Type.PLACE) {
 			return cat.getDouble("blocks");
 		}
-		if(type == Type.KILL) {
+		if(type == Type.KILL || type == Type.KILL_ENTITY) {
 			return cat.getDouble("kills");
 		}
 		if(type == Type.FISHING) {
@@ -238,13 +243,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 			return cat.getDouble("buckets");
 		}
 		return 0.0;
-	}
-	
-	private boolean verificarLicenca() {
-		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] You are using the FREE version of the plugin!");
-		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Want to buy the premium version? Buy it in our site.");
-		sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Our site is: https://piconodev.tk/plugins/premium");
-		return true;
 	}
 	
 	private boolean checkLegacy() {

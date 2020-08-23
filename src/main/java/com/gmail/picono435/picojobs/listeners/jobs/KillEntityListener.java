@@ -1,0 +1,32 @@
+package com.gmail.picono435.picojobs.listeners.jobs;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
+
+import com.gmail.picono435.picojobs.api.Job;
+import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.Type;
+import com.gmail.picono435.picojobs.managers.LanguageManager;
+
+public class KillEntityListener implements Listener {
+	
+	@EventHandler()
+	public void onEntityDeath(EntityDeathEvent e) {
+		if(e.getEntity().getKiller() == null) return;
+		Player p = e.getEntity().getKiller();
+		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+		if(!jp.hasJob()) return;
+		if(!jp.isWorking()) return;
+		Job job = jp.getJob();
+		if(job.getType() != Type.KILL_ENTITY) return;
+		
+		if(!job.inWhitelist(e.getEntity().getType())) return;
+		
+		if(jp.simulateEvent(job.getType())) {
+			p.sendMessage(LanguageManager.getMessage("finished-work", p));
+		}
+	}
+}
