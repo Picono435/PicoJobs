@@ -14,7 +14,7 @@ import com.gmail.picono435.picojobs.managers.LanguageManager;
 public class EnchantListener implements Listener {
 	
 	@EventHandler()
-	public void onEat(EnchantItemEvent e) {
+	public void onEnchant(EnchantItemEvent e) {
 		if(e.getEnchanter() == null) return;
 		Player p = e.getEnchanter();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
