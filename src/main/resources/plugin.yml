@@ -1,7 +1,7 @@
 name: PicoJobs
 author: [Picono435]
 version: ${project.version}
-softdepend: [Citizens, Vault, PlaceholderAPI]
+softdepend: [Citizens, Vault, PlaceholderAPI, PlayerPoints]
 api-version: 1.14
 main: com.gmail.picono435.picojobs.PicoJobsPlugin
 description: "The best jobs plugin ever! You can customize every single thing on it ;)."

@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.hooks;
+package com.gmail.picono435.picojobs.hooks.expansions;
 
 import java.text.NumberFormat;
 import java.util.Locale;

@@ -135,5 +135,11 @@
         <version>18dc039f5b</version>
         <scope>compile</scope>
       </dependency>
+      <dependency>
+            <groupId>com.github.Mitsugaru</groupId>
+            <artifactId>PlayerPoints</artifactId>
+            <version>master-SNAPSHOT</version>
+            <scope>provided</scope>
+      </dependency>
    </dependencies>
 </project>

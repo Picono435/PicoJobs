@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 
 public class LanguageManager {
 	
@@ -32,7 +32,7 @@ public class LanguageManager {
     	if(chat == null) {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', chat));
+    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
 	/**
@@ -49,7 +49,7 @@ public class LanguageManager {
     	if(chat == null) {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return getPrefix() + PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
+    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
 	/**
@@ -75,7 +75,7 @@ public class LanguageManager {
     	if(message == null) {
     		message = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return getPrefix() + PlaceholdersHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', message));
+    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', message));
     }
     
     /**
@@ -92,7 +92,7 @@ public class LanguageManager {
     	if(chat == null) {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return PlaceholdersHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
+    	return PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
     }
     
     /**

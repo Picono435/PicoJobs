@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
@@ -47,7 +47,7 @@ public class CreatePlayerListener implements Listener {
 		if(!PicoJobsAPI.getSettingsManager().getDependencieWarn()) return;
 		
 		// PLACEHOLDERAPI
-		if(p.hasPermission("picojobs.admin") && !PlaceholdersHook.isEnabled()) {
+		if(p.hasPermission("picojobs.admin") && !PlaceholderAPIHook.isEnabled()) {
 			String message = LanguageManager.formatMessage("&eThe plugin PlaceholderAPI was not found, please install it in order to use placeholders.\n &ePS: You can disable this message anytime in the config");
 			new FancyMessage(message)
 					.link("https://www.spigotmc.org/resources/placeholderapi.6245/")

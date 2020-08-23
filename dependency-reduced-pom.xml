@@ -98,6 +98,12 @@
       <version>2.10.6</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.Mitsugaru</groupId>
+      <artifactId>PlayerPoints</artifactId>
+      <version>master-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>

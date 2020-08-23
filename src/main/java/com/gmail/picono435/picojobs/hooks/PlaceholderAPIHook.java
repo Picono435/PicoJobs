@@ -4,11 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.hooks.expansions.JobPlayerExpansion;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatColor;
 
-public class PlaceholdersHook {
+public class PlaceholderAPIHook {
 	
 	private static boolean isEnabled = false;
 	
