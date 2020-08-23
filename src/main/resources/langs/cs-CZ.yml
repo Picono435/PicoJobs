@@ -51,7 +51,7 @@ sucefully: "&aAkce byla určitě provedena."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "přerušit %a% bloků"
 kill-work: "zabít %a% lidí"
 kill-specific-work: "zabít %a% lidí z pracovního místa %b%"
@@ -63,6 +63,7 @@ eat-work: "jíst %a% položek"
 enchanting-work: "okouzlující %a% položek"
 repair-work: "opravit %a% položek"
 milk-work: "odebrat %a% mléka od krav"
+kill_entity-work: "zabij %a% entit"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Nic"
