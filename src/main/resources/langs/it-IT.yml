@@ -51,7 +51,7 @@ sucefully: "&aL'azione è stata fatta in modo succoso."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "rompere %a% blocchi"
 kill-work: "uccidi %a% persone"
 kill-specific-work: "uccidi %a% persone del lavoro %b%"
@@ -63,6 +63,7 @@ eat-work: "mangia %a% oggetti"
 enchanting-work: "incanta %a% elementi"
 repair-work: "riparazione %a% oggetti"
 milk-work: "prendere il %a% di latte dalle vacche"
+kill_entity-work: "uccidi %a% entità"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Nessuno"
