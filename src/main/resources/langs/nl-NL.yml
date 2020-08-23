@@ -36,7 +36,7 @@ info-command: |-
   &eIs Bewerking: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfiguraties, Jobs & Instellingen zijn succesvol herladen."
+reload-command: "&aConfiguraties, Jobs & Taal zijn succesvol herladen."
 player-not-found: "&cDie speler is niet online, plaats een geldige speler."
 unknow-error: "&cEen onbekende fout is opgetreden, controleer de console voor meer informatie."
 left-job: "&cJe bent niet werkloos! We raden je aan een nieuwe baan te kiezen, anders verlies je veel geld."
