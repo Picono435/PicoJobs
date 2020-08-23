@@ -51,7 +51,7 @@ sucefully: "&aЦя дія була успішно зроблена."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "зупинити %a% блоків"
 kill-work: "вбити %a% людей"
 kill-specific-work: "вбити %a% людей у роботі %b%"
@@ -63,6 +63,7 @@ eat-work: "їжте %a% елементів"
 enchanting-work: "зачаровані %a% елементи"
 repair-work: "ремонтувати %a% товарів"
 milk-work: "взяти %a% молока з корів"
+kill_entity-work: "вбити %a% об'єктів"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Без ефекту"
