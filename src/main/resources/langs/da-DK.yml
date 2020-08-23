@@ -36,7 +36,7 @@ info-command: |-
   &eArbejder: %jobplayer_working%
   &eArbejde: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Indstillinger blev genindlæst med succes."
+reload-command: "&aConfigurations, Jobs & Sprog blev genindlæst med succes."
 player-not-found: "&cDen spiller er ikke online, angiv venligst en gyldig spiller."
 unknow-error: "&cDer opstod en unknow fejl, tjek venligst konsollen for mere information."
 left-job: "&cDu er ikke arbejdsløst! Vi anbefaler, at du vælger et nyt job, eller at du vil miste en masse penge."
