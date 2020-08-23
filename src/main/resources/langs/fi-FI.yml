@@ -51,7 +51,7 @@ sucefully: "&aToiminto tehtiin erinomaisesti."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "tauko %a% lohkoa"
 kill-work: "tappaa %a% ihmistä"
 kill-specific-work: "tappaa %a% työpaikasta %b%"
@@ -63,6 +63,7 @@ eat-work: "syödä %a% esineitä"
 enchanting-work: "enchant %a% kohteita"
 repair-work: "korjaa %a% kohteita"
 milk-work: "ottaa %a% maitoa lehmistä"
+kill_entity-work: "tappaa %a% entiteetit"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "None"
