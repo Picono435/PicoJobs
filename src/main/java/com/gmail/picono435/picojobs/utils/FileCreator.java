@@ -35,6 +35,7 @@ public class FileCreator {
 			PicoJobsPlugin.getInstance().reloadConfig();
 			PicoJobsAPI.getSettingsManager().reloadConfigurations();
 			LanguageManager.createLanguageFile();
+			PicoJobsPlugin.getInstance().generateJobsFromConfig();
 			return true;
 		} catch(Exception ex) {
 			ex.printStackTrace();

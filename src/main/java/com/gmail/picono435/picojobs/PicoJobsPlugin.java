@@ -28,7 +28,8 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
-import com.gmail.picono435.picojobs.hooks.PlaceholdersHook;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
+import com.gmail.picono435.picojobs.hooks.PlayerPointsHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.listeners.AliasesListeners;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
@@ -94,7 +95,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Setting up optional and required dependencies...");
 		VaultHook.setupVault();
-		PlaceholdersHook.setupPlaceholderAPI();
+		PlaceholderAPIHook.setupPlaceholderAPI();
+		PlayerPointsHook.setupPlayerPoints();
 	
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Finishing enabling the plugin...");
 		//REGISTERING COMMANDS
@@ -168,7 +170,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 		return lastestPluginVersion;
 	}
 	
-	private boolean generateJobsFromConfig() {
+	public boolean generateJobsFromConfig() {
+		jobs.clear();
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
 		for(String jobname : jobsc.getKeys(false)) {
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobname);
