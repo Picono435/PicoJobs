@@ -51,7 +51,7 @@ sucefully: "&a该行动已经正式作出。"
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "课间休息 %a% 块"
 kill-work: "杀死 %a%"
 kill-specific-work: "击杀作业中的 %a%的人 %b%"
@@ -63,6 +63,7 @@ eat-work: "吃了 %a% 物品"
 enchanting-work: "%a%物品"
 repair-work: "维修 %a%物品"
 milk-work: "从奶牛中拿取 %a%的牛奶。"
+kill_entity-work: "杀死 %a%实体"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "无"
