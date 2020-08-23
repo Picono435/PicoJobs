@@ -5,11 +5,8 @@ import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.hooks.economy.PointsImplementation;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class PlayerPointsHook {
 	
@@ -18,7 +15,7 @@ public class PlayerPointsHook {
 	
 	public static void setupPlayerPoints() {
 		if(Bukkit.getPluginManager().getPlugin("PlayerPoints") == null) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The economy plugin PlayerPoints was not found. The POINTS economy will not be enabled.");
+			//PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The economy plugin PlayerPoints was not found. The POINTS economy will not be enabled.");
 			return;
 		}
 		isEnabled = true;

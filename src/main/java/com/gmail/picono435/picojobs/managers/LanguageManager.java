@@ -167,4 +167,8 @@ public class LanguageManager {
 			e.printStackTrace();
 		}
     }
+    
+    public static void reloadConfigurations() {
+    	language = YamlConfiguration.loadConfiguration(language_file);
+    }
 }

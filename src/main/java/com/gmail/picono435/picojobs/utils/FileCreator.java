@@ -34,7 +34,7 @@ public class FileCreator {
 			jobs = YamlConfiguration.loadConfiguration(jobs_file);
 			PicoJobsPlugin.getInstance().reloadConfig();
 			PicoJobsAPI.getSettingsManager().reloadConfigurations();
-			LanguageManager.createLanguageFile();
+			LanguageManager.reloadConfigurations();
 			PicoJobsPlugin.getInstance().generateJobsFromConfig();
 			return true;
 		} catch(Exception ex) {

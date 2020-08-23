@@ -8,7 +8,7 @@ public abstract class EconomyImplementation {
 	protected Plugin requiredPlugin;
 	
 	  /**
-	   * Returns user-friendly name of economy
+	   * Returns a upper case name of economy
 	   *
 	   * @return economy name
 	   */

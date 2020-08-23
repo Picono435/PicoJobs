@@ -80,8 +80,8 @@ public class PicoJobsAPI {
 	 */
 	public static boolean registerEconomy(EconomyImplementation economy) {
 		if(economy.getRequiredPlugin() == null) return false;
-		PicoJobsPlugin.getInstance().economies.put(economy.getName(), economy);
-		PicoJobsPlugin.getInstance().sendConsoleMessage("[PicoJobs] Registered " + economy.getName() + " economy implementation.");
+		PicoJobsPlugin.getInstance().economies.put(economy.getName().toUpperCase(), economy);
+		PicoJobsPlugin.getInstance().sendConsoleMessage("[PicoJobs] Registered " + economy.getName().toUpperCase() + " economy implementation.");
 		return true;
 	}
 }

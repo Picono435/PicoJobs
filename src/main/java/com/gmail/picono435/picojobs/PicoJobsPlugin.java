@@ -32,6 +32,7 @@ import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.hooks.PlayerPointsHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.hooks.economy.ExpImplementation;
+import com.gmail.picono435.picojobs.hooks.economy.TokenManagerImplementation;
 import com.gmail.picono435.picojobs.listeners.AliasesListeners;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
@@ -98,6 +99,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		PicoJobsAPI.registerEconomy(new ExpImplementation());
 		VaultHook.setupVault();
 		PlayerPointsHook.setupPlayerPoints();
+		PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
 		PlaceholderAPIHook.setupPlaceholderAPI();
 	
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Finishing enabling the plugin...");
@@ -186,7 +188,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			boolean requiresPermission = jobc.getBoolean("require-permission");
 			double salaryFrequency = jobc.getDouble("salary-frequency");
 			double methodFrequency = jobc.getDouble("method-frequency");
-			String economy = jobc.getString("economy");
+			String economy = jobc.getString("economy").toUpperCase();
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
