@@ -51,7 +51,7 @@ sucefully: "&aL'action a été faite avec succès."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "casser %a% blocs"
 kill-work: "tuer %a% de personnes"
 kill-specific-work: "tuer %a% des personnes du travail %b%"
@@ -63,6 +63,7 @@ eat-work: "manger %a% des objets"
 enchanting-work: "enchanter %a% objets"
 repair-work: "réparer %a% des objets"
 milk-work: "consommer %a% de lait de vaches"
+kill_entity-work: "tuer %a% d'entités"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Aucun"
