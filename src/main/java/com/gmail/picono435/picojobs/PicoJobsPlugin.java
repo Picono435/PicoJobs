@@ -189,7 +189,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 			boolean requiresPermission = jobc.getBoolean("require-permission");
 			double salaryFrequency = jobc.getDouble("salary-frequency");
 			double methodFrequency = jobc.getDouble("method-frequency");
-			String economy = jobc.getString("economy").toUpperCase();
+			String economy = jobc.getString("economy");
+			if(economy != null) {
+				economy = economy.toUpperCase();
+			}
 			String workMessage = jobc.getString("work-message");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");

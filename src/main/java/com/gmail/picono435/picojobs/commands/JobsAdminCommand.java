@@ -99,11 +99,10 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			p.sendMessage(LanguageManager.getMessage("update-started", pl));
-			if(!updatePlugin()) {
+			if(!updatePlugin(p)) {
 				p.sendMessage(LanguageManager.getMessage("unknow-error", pl));
 				return true;
 			}
-			p.sendMessage(LanguageManager.getMessage("updated-sucefully", pl));
 			return true;
 		}
 		
@@ -232,7 +231,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		return null;
 	}
 	
-	private boolean updatePlugin() {
+	private boolean updatePlugin(CommandSender p) {
 		try {
 			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
 			
@@ -248,9 +247,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				fileOutput.mkdirs();
 			}
 			
-			downloadFile(url, fileOutput);
-			
-            PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updated PicoJobs plugin to version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + " succefully.");
+			downloadFile(url, fileOutput, p);
 			return true;
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -258,7 +255,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 	
-	public void downloadFile(URL url, File localFile) {
+	public void downloadFile(URL url, File localFile, CommandSender p) {
 		new BukkitRunnable() {
 			public void run() {
 				try {
@@ -283,6 +280,8 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				    if (out != null) {
 				        out.close();
 				    }
+				    p.sendMessage(LanguageManager.getMessage("updated-sucefully"));
+				    PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updated PicoJobs plugin to version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + " succefully.");
 				} catch(Exception ex) {
 					ex.printStackTrace();
 				}
