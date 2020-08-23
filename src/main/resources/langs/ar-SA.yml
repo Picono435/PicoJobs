@@ -36,7 +36,7 @@ info-command: |-
   &eيجري العمل: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "تم إعادة تحميل &aConfigurations, Jobs & إعدادات بنجاح"
+reload-command: "تم بنجاح إعادة تحميل &aConfigurations, Jobs & Language."
 player-not-found: "&cهذا اللاعب غير متصل، الرجاء وضع لاعب صالح."
 unknow-error: "&cحدث خطأ غير معروف، الرجاء التحقق من وحدة التحكم للحصول على مزيد من المعلومات."
 left-job: "&cأنت لست عاطلاً عن العمل! ننصحك باختيار وظيفة جديدة أو سوف تفقد الكثير من المال."
