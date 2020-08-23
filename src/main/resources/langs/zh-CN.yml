@@ -36,7 +36,7 @@ info-command: |-
   &ee是否正常工作: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & 设置重新加载成功。"
+reload-command: "&aConfigurations, Jobs & Language已成功重新加载。"
 player-not-found: "&c该玩家未上线，请放置一个有效的玩家。"
 unknow-error: "&c发生未知错误，请检查控制台获取更多信息。"
 left-job: "&c你没有失业！我们建议你选择一个新的工作或者你会失去很多钱。"
