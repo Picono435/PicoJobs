@@ -51,7 +51,7 @@ sucefully: "&aActiunea a fost facuta in mod corespunzator."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "distruge blocuri %a%"
 kill-work: "omoară %a% persoane"
 kill-specific-work: "omoară %a% persoane de la locul de muncă %b%"
@@ -63,6 +63,7 @@ eat-work: "mănâncă %a% obiecte"
 enchanting-work: "enchant %a% articole"
 repair-work: "repară %a% elemente"
 milk-work: "ia %a% lapte de la vaci"
+kill_entity-work: "omoară %a% entități"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Niciunul"
