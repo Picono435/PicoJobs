@@ -1,0 +1,96 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&c¡Oye! No tienes permiso para ejecutar ese comando."
+ignore-action: "&cHey! No te quedes perezoso e ir a hablar con el NPC."
+choosed-job: "&a¡Enhorabuena! Has elegido el trabajo %jobplayer_job%&a."
+accepted-work: "&aHas aceptado el trabajo de %jobplayer_work%."
+no-salary: "&cNo tienes el salario suficiente para obtener! Por favor ve a trabajar ;("
+got-salary: "&a¡Buen trabajo! ¡Acabas de obtener tu salario de %jobplayer_salary%!"
+finished-work: "&a¡Enhorabuena! Acabas de terminar tu trabajo. Usa /jobs para obtener más información al respecto."
+need-level: "&cHey! Necesitas hacer %a% trabajos para ejecutar esa acción."
+no-args: "&cHey! Por favor usa una sintaxis válida."
+my-salary: "&aTienes %jobplayer_salary%$ de salario."
+unknow-job: "&cEse trabajo no se ha encontrado, por favor usa la TAB COMPLETE para obtener una lista de trabajos."
+work-status: "&aEsto es lo que necesitas hacer: %jobplayer_work%"
+admin-commands: |-
+  &6Lista completa de comandos:
+  &e/jobsadmin help &6- &eVer estos mensajes
+  &e/jobsadmin info <player> &6- &eObtiene la información sobre un jugador
+  &e/jobsadmin recargar &6- &eRecargar todas las configuraciones posibles.
+  &e/jobsadmin update &6- &eInstala una actualización del plugin
+  &e/jobsadmin acerca de &6- &eObtén información sobre el servidor y el plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eEstablece el salario/método de un jugador
+info-command: |-
+  &6Estado del jugador %player_name%
+  &eSalario: %jobplayer_salary%
+  &eFuncionando: %jobplayer_working%
+  &eTrabajo: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfiguraciones, Trabajos e Idioma fueron recargados con éxito."
+player-not-found: "&cEse jugador no esta conectado, por favor pon un jugador válido."
+unknow-error: "&cSe ha producido un error desconocido, por favor revisa la consola para mas información."
+left-job: "&cNo estás desempleado! Te recomendamos que elijas un nuevo trabajo o perderás mucho dinero."
+already-updated: "&cEl plugin ya está en la ultima versiÃ³n, para mÃ¡s informaciÃ³n, consulta nuestra WIKI."
+update-started: "&aLa actualización del plugin PicoJobs ha comenzado, por favor espere..."
+updated-sucefully: "&aEl plugin ha sido actualizado con éxito, por favor reinicie el servidor para finalizar la actualización."
+sucefully: "&aLa acción se realizó con éxito."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "romper %a% bloques"
+kill-work: "mata a %a% personas"
+kill-specific-work: "mata a %a% personas del trabajo %b%"
+fishing-work: "peces %a% peces"
+place-work: "Coloca %a% bloques"
+craft-work: "fabricar %a% objetos"
+smelt-work: "fundir %a% artículos"
+eat-work: "comer %a% artículos"
+enchanting-work: "encantar %a% artículos"
+repair-work: "reparar %a% artículos"
+milk-work: "toma %a% de leche de vacas"
+kill_entity-work: "matar %a% entidades"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "Ninguna"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/jobs"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "elegir"
+  work: "trabajo"
+  salary: "salario"
+  withdraw: "retirar"
+  leave: "salir"
+  help: "ayuda"
+  info: "info"
+  reload: "reload"
+  update: "actualizar"
+  about: "sobre"
+  set: "poner"
+  method: "método"
