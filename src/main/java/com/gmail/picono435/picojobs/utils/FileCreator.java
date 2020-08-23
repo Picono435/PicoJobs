@@ -54,10 +54,10 @@ public class FileCreator {
 	}
 	
 	public static boolean createDataFile() {
-    	data_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "data.yml");
+    	data_file = new File(PicoJobsPlugin.getInstance().getDataFolder(), "data.yml");
         if (!data_file.exists()) {
         	data_file.getParentFile().mkdirs();
-        	PicoJobsPlugin.getPlugin().saveResource("data.yml", false);
+        	PicoJobsPlugin.getInstance().saveResource("data.yml", false);
          }
 
         data = new YamlConfiguration();
@@ -82,10 +82,10 @@ public class FileCreator {
 	}
 	
 	public static boolean createGUIFile() {
-		gui_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "settings" + File.separatorChar + "guis.yml");
+		gui_file = new File(PicoJobsPlugin.getInstance().getDataFolder(), "settings" + File.separatorChar + "guis.yml");
         if (!gui_file.exists()) {
         	gui_file.getParentFile().mkdirs();
-        	PicoJobsPlugin.getPlugin().saveResource("settings" + File.separatorChar + "guis.yml", false);
+        	PicoJobsPlugin.getInstance().saveResource("settings" + File.separatorChar + "guis.yml", false);
          }
 
         gui = new YamlConfiguration();
@@ -110,10 +110,10 @@ public class FileCreator {
 	}
 	
 	public static boolean createJobsFile() {
-		jobs_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "settings" + File.separatorChar + "jobs.yml");
+		jobs_file = new File(PicoJobsPlugin.getInstance().getDataFolder(), "settings" + File.separatorChar + "jobs.yml");
         if (!jobs_file.exists()) {
         	jobs_file.getParentFile().mkdirs();
-        	PicoJobsPlugin.getPlugin().saveResource("settings" + File.separatorChar + "jobs.yml", false);
+        	PicoJobsPlugin.getInstance().saveResource("settings" + File.separatorChar + "jobs.yml", false);
          }
 
         jobs = new YamlConfiguration();

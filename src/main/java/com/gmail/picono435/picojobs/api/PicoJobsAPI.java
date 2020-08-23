@@ -70,4 +70,18 @@ public class PicoJobsAPI {
 	public static StorageManager getStorageManager() {
 		return storageManager;
 	}
+	
+	/**
+	 * Registers a Economy Implementation
+	 * 
+	 * @param economy the economy implementation
+	 * @return whether is successful or not
+	 * @author Picono435
+	 */
+	public static boolean registerEconomy(EconomyImplementation economy) {
+		if(economy.getRequiredPlugin() == null) return false;
+		PicoJobsPlugin.getInstance().economies.put(economy.getName(), economy);
+		PicoJobsPlugin.getInstance().sendConsoleMessage("[PicoJobs] Registered " + economy.getName() + " economy implementation.");
+		return true;
+	}
 }

@@ -29,6 +29,7 @@ public class Job {
 	private boolean requiresPermission;
 	private double salaryFrequency;
 	private double methodFrequency;
+	private String economy;
 	
 	// GUI SETTINGS
 	private int slot;
@@ -41,7 +42,7 @@ public class Job {
 	private boolean useWhitelist;
 	private List<Material> blockWhitelist;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist) {
+	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist) {
 		this.name = name;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -51,6 +52,7 @@ public class Job {
 		this.requiresPermission = requiresPermission;
 		this.salaryFrequency = salaryFrequency;
 		this.methodFrequency = methodFrequency;
+		this.economy = economy;
 		
 		this.slot = slot;
 		Material m = Material.matchMaterial(item);
@@ -167,6 +169,16 @@ public class Job {
 	}
 	
 	/**
+	 * Gets the economy name of the job
+	 * 
+	 * @return the economy implementation name
+	 * @author Picono435
+	 */
+	public String getEconomy() {
+		return economy;
+	}
+	
+	/**
 	 * Gets the item slot
 	 * 
 	 * @return the slot of the job item
@@ -219,7 +231,7 @@ public class Job {
 	@SuppressWarnings("deprecation")
 	public ItemStack getFormattedItem() {
 		ItemBuilder builder;
-		if(PicoJobsPlugin.isLegacy()) {
+		if(PicoJobsPlugin.getInstance().isLegacy()) {
 			int itemData = getItemData() - 1;
 			if(itemData == -1) {
 				builder = new ItemBuilder(getMaterial());

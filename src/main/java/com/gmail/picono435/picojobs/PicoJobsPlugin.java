@@ -15,13 +15,13 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
@@ -50,21 +50,20 @@ import com.gmail.picono435.picojobs.utils.FileCreator;
 public class PicoJobsPlugin extends JavaPlugin {
 
 	//PLUGIN
-	private static Plugin plugin;
 	private static PicoJobsPlugin instance;
-	private static boolean legacy;
-	private static boolean oldVersion;
-	private static String lastestPluginVersion;
+	private boolean legacy;
+	private boolean oldVersion;
+	private String lastestPluginVersion;
 	//DATA
+	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
-	public static Map<String, Job> jobs = new HashMap<String, Job>(); 
+	public Map<String, Job> jobs = new HashMap<String, Job>(); 
 	//PLAYERS DATA
-	public static Map<UUID, JobPlayer> playersdata = new HashMap<UUID, JobPlayer>();
-	public static Map<String, Integer> salary = new HashMap<String, Integer>();
-	public static Map<String, Boolean> inJob = new HashMap<String, Boolean>();
+	public Map<UUID, JobPlayer> playersdata = new HashMap<UUID, JobPlayer>();
+	public Map<String, Integer> salary = new HashMap<String, Integer>();
+	public Map<String, Boolean> inJob = new HashMap<String, Boolean>();
 	
 	public void onEnable() {
-		plugin = this;
 		instance = this;
 		Bukkit.getServer();
 		sendConsoleMessage("[PicoJobs] Plugin created by: Picono435#2011. Thank you for use it.");
@@ -149,31 +148,27 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully disabled.");
 	}
 	
-	public static Plugin getPlugin() {
-		return plugin;
-	}
-	
 	public static PicoJobsPlugin getInstance() {
 		return instance;
 	}
 	
-	public static void sendConsoleMessage(String message) {
-		getPlugin().getServer().getConsoleSender().sendMessage(message);
+	public void sendConsoleMessage(String message) {
+		getServer().getConsoleSender().sendMessage(message);
 	}
 	
-	public static boolean isLegacy() {
+	public boolean isLegacy() {
 		return legacy;
 	}
 	
-	public static boolean isOldVersion() {
+	public boolean isOldVersion() {
 		return oldVersion;
 	}
 	
-	public static String getLastestPluginVersion() {
+	public String getLastestPluginVersion() {
 		return lastestPluginVersion;
 	}
 	
-	private static boolean generateJobsFromConfig() {
+	private boolean generateJobsFromConfig() {
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
 		for(String jobname : jobsc.getKeys(false)) {
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobname);
@@ -186,6 +181,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			boolean requiresPermission = jobc.getBoolean("require-permission");
 			double salaryFrequency = jobc.getDouble("salary-frequency");
 			double methodFrequency = jobc.getDouble("method-frequency");
+			String economy = jobc.getString("economy");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
 			String item = guic.getString("item");
@@ -208,13 +204,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 				blockWhitelist = jobc.getStringList("item-whitelist");
 			}
 			
-			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
+			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist);
 			jobs.put(jobname, job);
 		}
 		return true;
 	}
 	
-	private static double getJobMethodFromConfig(String jobname, Type type) {
+	private double getJobMethodFromConfig(String jobname, Type type) {
 		ConfigurationSection cat =  FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
 		if(type == Type.BREAK || type == Type.PLACE) {
 			return cat.getDouble("blocks");
@@ -244,7 +240,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		return true;
 	}
 	
-	private static boolean checkLegacy() {
+	private boolean checkLegacy() {
 		try {
 			String serverVersionString = Bukkit.getBukkitVersion();
 			int spaceIndex = serverVersionString.indexOf("-");
@@ -288,7 +284,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			return;
 		}
 		try {
-			DefaultArtifactVersion pluginVesion = new DefaultArtifactVersion(getPlugin().getDescription().getVersion());
+			DefaultArtifactVersion pluginVesion = new DefaultArtifactVersion(getDescription().getVersion());
 			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
 			lastestPluginVersion = version;
 			if(lastestVersion.compareTo(pluginVesion) > 0) {

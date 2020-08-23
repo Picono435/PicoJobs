@@ -22,8 +22,8 @@ public class CreatePlayerListener implements Listener {
 	@EventHandler()
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
-		if(!PicoJobsPlugin.playersdata.containsKey(p.getUniqueId())) {
-			PicoJobsPlugin.playersdata.put(p.getUniqueId(), new JobPlayer(null, 0, 1, 0, false, p.getUniqueId()));
+		if(!PicoJobsPlugin.getInstance().playersdata.containsKey(p.getUniqueId())) {
+			PicoJobsPlugin.getInstance().playersdata.put(p.getUniqueId(), new JobPlayer(null, 0, 1, 0, false, p.getUniqueId()));
 		}
 	}
 	
@@ -34,15 +34,15 @@ public class CreatePlayerListener implements Listener {
 		// VERSION CHECKER
 		new BukkitRunnable() {
 			public void run() {
-				if(p.hasPermission("picojobs.admin") && PicoJobsPlugin.isOldVersion()) {
+				if(p.hasPermission("picojobs.admin") && PicoJobsPlugin.getInstance().isOldVersion()) {
 					String message = "\n" + LanguageManager.formatMessage("&cYou are using an old version of PicoJobs. This new version can include fixes to current errors.\n&7 You can update automatically by clicking in this message.\n&c");
 					new FancyMessage(message)
 							.command("/jobsadmin update")
-							.tooltip(ChatColor.RED + "Click here to update PicoJobs plugin to v" + PicoJobsPlugin.getLastestPluginVersion())
+							.tooltip(ChatColor.RED + "Click here to update PicoJobs plugin to v" + PicoJobsPlugin.getInstance().getLastestPluginVersion())
 							.send(p);
 				}
 			}
-		}.runTaskLater(PicoJobsPlugin.getPlugin(), 20L);
+		}.runTaskLater(PicoJobsPlugin.getInstance(), 20L);
 		
 		if(!PicoJobsAPI.getSettingsManager().getDependencieWarn()) return;
 		

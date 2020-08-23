@@ -28,24 +28,24 @@ public class StorageManager {
 		storageMethod = StorageMethod.getStorageMethod(PicoJobsAPI.getSettingsManager().getStorageMethod());
 		
 		if(storageMethod == StorageMethod.YAML) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
 			getDataInConfig();
 			return;
 		}
 		
 		if(storageMethod == StorageMethod.MYSQL) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MySQL storage method.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MySQL storage method.");
 			getDataInMySQL();
 			return;
 		}
 		
 		if(storageMethod == StorageMethod.MONGODB) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
 			getDataInMongoDB();
 			return;
 		}
 		
-		PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any storage method with that name. Using YAML storage method as default.");
+		PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any storage method with that name. Using YAML storage method as default.");
 		getDataInConfig();
 	}
 	
@@ -63,7 +63,7 @@ public class StorageManager {
 			double salary = playerCategory.getDouble("salary");
 			boolean isWorking = playerCategory.getBoolean("is-working");
 			JobPlayer jp = new JobPlayer(job, method, level, salary, isWorking, UUID.fromString(uuid));
-			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), jp);
+			PicoJobsPlugin.getInstance().playersdata.put(UUID.fromString(uuid), jp);
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class StorageManager {
 		MySQLAPI api = new MySQLAPI();
 		api.startConnection();
 		for(String uuid : api.getAllUsers()) {
-			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
+			PicoJobsPlugin.getInstance().playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
 		}
 		api.close();
 	}
@@ -82,7 +82,7 @@ public class StorageManager {
 		MongoDBAPI api = new MongoDBAPI();
 		api.startConnection();
 		for(String uuid : api.getAllUsers()) {
-			PicoJobsPlugin.playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
+			PicoJobsPlugin.getInstance().playersdata.put(UUID.fromString(uuid), api.getFromDB(uuid));
 		}
 		api.close();
 	}
@@ -96,7 +96,7 @@ public class StorageManager {
 		
 		if(storageMethod == StorageMethod.YAML) {
 			if(log) {
-				PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
+				PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the YAML storage method.");
 			}
 			saveInConfig();
 			return;
@@ -104,7 +104,7 @@ public class StorageManager {
 		
 		if(storageMethod == StorageMethod.MYSQL) {
 			if(log) {
-				PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MySQL storage method.");
+				PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MySQL storage method.");
 			}
 			saveInMySQL();
 			return;
@@ -112,21 +112,21 @@ public class StorageManager {
 		
 		if(storageMethod == StorageMethod.MONGODB) {
 			if(log) {
-				PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
+				PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Using the MongoDB storage method.");
 			}
 			saveInMongoDB();
 			return;
 		}
 		
-		PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any storage method with that name. Using YAML storage method as default.");
+		PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any storage method with that name. Using YAML storage method as default.");
 		saveInConfig();
 	}
 	
 	// YAML
 	private void saveInConfig() {
 		ConfigurationSection playerDataCategory = FileCreator.getData().getConfigurationSection("playerdata");
-		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
-			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
+		for(UUID uuid : PicoJobsPlugin.getInstance().playersdata.keySet()) {
+			JobPlayer jp = PicoJobsPlugin.getInstance().playersdata.get(uuid);
 			ConfigurationSection player = playerDataCategory.getConfigurationSection(uuid.toString());
 			if(player == null) {
 				player = playerDataCategory.createSection(uuid.toString());
@@ -154,8 +154,8 @@ public class StorageManager {
 		MySQLAPI api = new MySQLAPI();
 		api.startConnection();
 		api.deleteMysqlRecords();
-		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
-			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
+		for(UUID uuid : PicoJobsPlugin.getInstance().playersdata.keySet()) {
+			JobPlayer jp = PicoJobsPlugin.getInstance().playersdata.get(uuid);
 			api.addINDB(uuid.toString(), jp.getJob().getName(), jp.getMethod(), jp.getMethodLevel(), jp.getSalary(), jp.isWorking());
 		}
 		api.close();
@@ -166,8 +166,8 @@ public class StorageManager {
 		MongoDBAPI api = new MongoDBAPI();
 		api.startConnection();
 		api.deleteAllDocuments();
-		for(UUID uuid : PicoJobsPlugin.playersdata.keySet()) {
-			JobPlayer jp = PicoJobsPlugin.playersdata.get(uuid);
+		for(UUID uuid : PicoJobsPlugin.getInstance().playersdata.keySet()) {
+			JobPlayer jp = PicoJobsPlugin.getInstance().playersdata.get(uuid);
 			api.addINDB(uuid.toString(), jp.getJob().getName(), jp.getMethod(), jp.getMethodLevel(), jp.getSalary(), jp.isWorking());
 		}
 		api.close();

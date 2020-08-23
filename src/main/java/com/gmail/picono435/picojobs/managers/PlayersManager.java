@@ -25,7 +25,7 @@ public class PlayersManager {
 	 * @author Picono435
 	 */
 	public JobPlayer getJobPlayer(Player p) {
-		return PicoJobsPlugin.playersdata.get(p.getUniqueId());
+		return PicoJobsPlugin.getInstance().playersdata.get(p.getUniqueId());
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class PlayersManager {
 	 * @author Picono435
 	 */
 	public JobPlayer getJobPlayer(UUID uuid) {
-		return PicoJobsPlugin.playersdata.get(uuid);
+		return PicoJobsPlugin.getInstance().playersdata.get(uuid);
 	}
 	
 	/**
@@ -48,6 +48,6 @@ public class PlayersManager {
 	 */
 	@Deprecated
 	public JobPlayer getJobPlayer(String name) {
-		return PicoJobsPlugin.playersdata.get(Bukkit.getOfflinePlayer(name).getUniqueId());
+		return PicoJobsPlugin.getInstance().playersdata.get(Bukkit.getOfflinePlayer(name).getUniqueId());
 	}
 }

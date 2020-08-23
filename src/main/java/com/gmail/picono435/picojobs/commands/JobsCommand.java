@@ -9,10 +9,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.JobsMenu;
 
@@ -105,16 +106,16 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 				double salary = jp.getSalary();
 				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
-					p.closeInventory();
 					return true;
 				}
-				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
-					p.closeInventory();
+				String economyString = jp.getJob().getEconomy();
+				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said. Please contact an administrator for get more information."));
 					return true;
 				}
+				EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(economyString);
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
-				VaultHook.getEconomy().depositPlayer(p, salary);
+				economy.deposit(p, salary);
 				jp.removeSalary(salary);
 				return true;
 			}

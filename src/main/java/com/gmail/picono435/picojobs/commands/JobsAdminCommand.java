@@ -94,7 +94,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		
 		// UPDATE COMMAND
 		if(subcmd.equalsIgnoreCase("update") || subcmd.equalsIgnoreCase(updateString)) {
-			if(!PicoJobsPlugin.isOldVersion()) {
+			if(!PicoJobsPlugin.getInstance().isOldVersion()) {
 				p.sendMessage(LanguageManager.getMessage("already-updated", pl));
 				return true;
 			}
@@ -234,14 +234,14 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 	
 	private boolean updatePlugin() {
 		try {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
 			
-			String downloadUrl = "https://github.com/Picono435/PicoJobs/releases/download/" + PicoJobsPlugin.getLastestPluginVersion() + "/PicoJobs-" + PicoJobsPlugin.getLastestPluginVersion() + ".jar";
+			String downloadUrl = "https://github.com/Picono435/PicoJobs/releases/download/" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + "/PicoJobs-" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ".jar";
 			URL url = new URL(downloadUrl);
 			
 			Method getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
 			getFileMethod.setAccessible(true);
-			File oldFile = (File) getFileMethod.invoke(PicoJobsPlugin.getPlugin());
+			File oldFile = (File) getFileMethod.invoke(PicoJobsPlugin.getInstance());
 			
 			File fileOutput = new File(PicoJobsPlugin.getInstance().getDataFolder().getParentFile().getPath() + File.separatorChar + "update" + File.separatorChar + oldFile.getName());
 			if(!fileOutput.exists()) {
@@ -250,7 +250,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			
 			downloadFile(url, fileOutput);
 			
-            PicoJobsPlugin.sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updated PicoJobs plugin to version v" + PicoJobsPlugin.getLastestPluginVersion() + " succefully.");
+            PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updated PicoJobs plugin to version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + " succefully.");
 			return true;
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -287,6 +287,6 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 					ex.printStackTrace();
 				}
 			}
-		}.runTaskAsynchronously(PicoJobsPlugin.getPlugin());
+		}.runTaskAsynchronously(PicoJobsPlugin.getInstance());
 	}
 }

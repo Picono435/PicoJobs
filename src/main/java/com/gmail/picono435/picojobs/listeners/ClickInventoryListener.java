@@ -9,10 +9,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
@@ -58,13 +59,15 @@ public class ClickInventoryListener implements Listener {
 					p.closeInventory();
 					return;
 				}
-				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
+				String economyString = jp.getJob().getEconomy();
+				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said. Please contact an administrator for get more information."));
 					p.closeInventory();
 					return;
 				}
+				EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(economyString);
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
-				VaultHook.getEconomy().depositPlayer(p, salary);
+				economy.deposit(p, salary);
 				jp.removeSalary(salary);
 				p.closeInventory();
 				return;
@@ -100,13 +103,15 @@ public class ClickInventoryListener implements Listener {
 					p.closeInventory();
 					return;
 				}
-				if(!VaultHook.isEnabled() || !VaultHook.hasEconomyPlugin()) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find any compatible economy plugin in the server. Please contact an adminstrator, as this option does not work without it."));
+				String economyString = jp.getJob().getEconomy();
+				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said. Please contact an administrator for get more information."));
 					p.closeInventory();
 					return;
 				}
+				EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(economyString);
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
-				VaultHook.getEconomy().depositPlayer(p, salary);
+				economy.deposit(p, salary);
 				jp.removeSalary(salary);
 				p.closeInventory();
 				return;

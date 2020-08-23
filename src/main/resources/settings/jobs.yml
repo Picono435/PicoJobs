@@ -26,6 +26,8 @@ jobs:
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
+    # The payment method that should be used
+    economy: VAULT
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -61,6 +63,8 @@ jobs:
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
+    # The payment method that should be used
+    economy: VAULT
     # GUI Choose Job settings
     gui:
       # The slot where the item will go
@@ -94,6 +98,8 @@ jobs:
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
+    # The payment method that should be used
+    economy: VAULT
     # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -133,6 +139,8 @@ jobs:
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
+    # The payment method that should be used
+    economy: VAULT
     # GUI Choose Job settings
     gui:
       # The slot where the item will go
@@ -166,6 +174,8 @@ jobs:
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
+    # The payment method that should be used
+    economy: VAULT
     # GUI Choose Job settings
     gui:
       # The slot where the item will go

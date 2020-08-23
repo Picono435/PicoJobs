@@ -28,10 +28,10 @@ public class JobsManager {
 	 * @author Picono435
 	 */
 	public Job getJob(String jobname) {
-		if(!PicoJobsPlugin.jobs.containsKey(jobname)) {
+		if(!PicoJobsPlugin.getInstance().jobs.containsKey(jobname)) {
 			return null;
 		}
-		return PicoJobsPlugin.jobs.get(jobname);
+		return PicoJobsPlugin.getInstance().jobs.get(jobname);
 	}
 	
 	/**
@@ -57,6 +57,6 @@ public class JobsManager {
 	 * @author Picono435
 	 */
 	public Collection<Job> getJobs() {
-		return PicoJobsPlugin.jobs.values();
+		return PicoJobsPlugin.getInstance().jobs.values();
 	}
 }

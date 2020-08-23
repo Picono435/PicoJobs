@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.hooks.economy.VaultImplementation;
 
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
@@ -20,18 +22,22 @@ public class VaultHook {
 	
 	public static void setupVault() {
 		if(Bukkit.getPluginManager().getPlugin("Vault") == null) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The optional dependency Vault was not found. Some features may not work well!");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The optional dependency Vault was not found. Some features may not work well!");
 			return;
 		}
 		isEnabled = true;
-		PicoJobsPlugin.sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] Vault was found! We are configuring the connection between us and Vault.");
+		PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] Vault was found! We are configuring the connection between us and Vault.");
 		if(!setupPermission()) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any permissions plugin that works with Vault on the server. Some features may not work well.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any permissions plugin that works with Vault on the server. Some features may not work well.");
 			hasPermission = false;
 		}
 		if(!setupEconomy()) {
-			PicoJobsPlugin.sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any economy plugin that works with Vault on the server. Some features may not work well.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] We did not find any economy plugin that works with Vault on the server. Some features may not work well.");
 			hasEconomy = false;
+		}
+		
+		if(hasEconomy) {
+			PicoJobsAPI.registerEconomy(new VaultImplementation());
 		}
 	}
 	

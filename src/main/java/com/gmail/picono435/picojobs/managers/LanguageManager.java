@@ -133,10 +133,10 @@ public class LanguageManager {
 	 */
     public static void createLanguageFile() {
     	String lang = PicoJobsAPI.getSettingsManager().getLanguage();
-    	language_file = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");
+    	language_file = new File(PicoJobsPlugin.getInstance().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");
         if (!language_file.exists()) {
         	language_file.getParentFile().mkdirs();
-        	PicoJobsPlugin.getPlugin().saveResource("langs" + File.separatorChar + lang + ".yml", false);
+        	PicoJobsPlugin.getInstance().saveResource("langs" + File.separatorChar + lang + ".yml", false);
          }
 
         language = new YamlConfiguration();
@@ -149,10 +149,10 @@ public class LanguageManager {
     
     public static void updateFile() {
     	String lang = PicoJobsAPI.getSettingsManager().getLanguage();
-    	File old = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + "_old.yml");
+    	File old = new File(PicoJobsPlugin.getInstance().getDataFolder(), "langs" + File.separatorChar + lang + "_old.yml");
         language_file.renameTo(old);
-        File f = new File(PicoJobsPlugin.getPlugin().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");
-        PicoJobsPlugin.getPlugin().saveResource("langs" + File.separatorChar + lang + ".yml", false);
+        File f = new File(PicoJobsPlugin.getInstance().getDataFolder(), "langs" + File.separatorChar + lang + ".yml");
+        PicoJobsPlugin.getInstance().saveResource("langs" + File.separatorChar + lang + ".yml", false);
         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(f);
         f.delete();
         old.delete();
