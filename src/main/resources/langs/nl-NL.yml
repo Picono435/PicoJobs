@@ -51,7 +51,7 @@ sucefully: "&aDe actie is overvloedig."
 #################################################################################
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "pak %a% blokken"
 kill-work: "versla %a% mensen"
 kill-specific-work: "dood %a% mensen van de baan %b%"
@@ -63,6 +63,7 @@ eat-work: "%a% voorwerpen eten"
 enchanting-work: "betover %a% items"
 repair-work: "repareer %a% items"
 milk-work: "neem %a% melk van koeien"
+kill_entity-work: "dood %a% entiteiten"
 general-work: "%a%"
 #When something is not find what should it appear
 none-format: "geen"
