@@ -36,7 +36,7 @@ info-command: |-
   &eIs Working: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aKonfigurasjoner, Jober og Innstillinger ble lastet på nytt."
+reload-command: "&aKonfigurasjoner, Jober og Språk ble lastet på nytt."
 player-not-found: "&cDen spilleren er ikke online, vennligst legg til en gyldig spiller."
 unknow-error: "&cAn unknow feil oppsto, vennligst sjekk konsollen for mer informasjon."
 left-job: "&cDu er ikke arbeidsledig! Vi anbefaler deg å velge en ny jobb eller du vil miste masse penger."
