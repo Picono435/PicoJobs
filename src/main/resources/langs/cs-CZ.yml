@@ -36,7 +36,7 @@ info-command: |-
   &eIs Working: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aKonfigurace, Úlohy & nastavení byly znovu načteny."
+reload-command: "&aKonfigurace, Úlohy a jazyk byly znovu načteny."
 player-not-found: "&cTento hráč není online, prosím vložte platného hráče."
 unknow-error: "&cVyskytla se neznámá chyba, zkontrolujte prosím konzoli pro více informací."
 left-job: "&cNejste nezaměstnaný! Doporučujeme si vybrat novou práci, nebo přijdete o spoustu peněz."
