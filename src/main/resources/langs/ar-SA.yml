@@ -1,0 +1,96 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&cHey! ليس لديك الإذن لتنفيذ هذا الأمر."
+ignore-action: "&cمرحبًا! لا تكسروا وتذهبوا للتحدث مع NPC."
+choosed-job: "تهانينا! لقد اخترت الوظيفة %jobplayer_job%&a."
+accepted-work: "&aلقد قبلت عمل %jobplayer_work%."
+no-salary: "&cليس لديك ما يكفي من الراتب! الرجاء الذهاب إلى العمل ;("
+got-salary: "&aعمل رائع! لقد حصلت للتو على مرتباتك %jobplayer_salary%!"
+finished-work: "تهانينا! لقد انتهيت لتوك من عملك. استخدم /وظائف للحصول على مزيد من المعلومات عنها."
+need-level: "&cHey! تحتاج إلى القيام بـ %a% يعمل لتنفيذ هذا الإجراء."
+no-args: "&cHey! الرجاء استخدام بناء بناء صحيح."
+my-salary: "&aلديك %jobplayer_salary%دولار من الراتب."
+unknow-job: "&cلم يتم العثور على الوظيفة ، يرجى استخدام TB COMPLETE للحصول على قائمة بالوظائف."
+work-status: "&aهنا ما عليك القيام به: %jobplayer_work%"
+admin-commands: |-
+  &6قائمة الأوامر الكاملة:
+  &e/jobsadmin help &6-&eعرض هذه الرسائل
+  &e/jobsadmin info <player> &6- &eالحصول على معلومات حول اللاعب
+  &e/jobsadmin reload &6- &eReload جميع التكوينات الممكنة.
+  &e/jobsadmin upd&6- &eInstalls تحديث من البرنامج المساعد
+  &e/jobsadmin حول &6- معلومات &eGets حول الخادم والملحق
+  &e/jobsadmin مجموعة <salary | method> <player> <amount> &6- &eيحدد الراتب/الأسلوب الخاص باللاعب
+info-command: |-
+  &6 حالة اللاعب %player_name%
+  &eSalary: %jobplayer_salary%
+  &eيجري العمل: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "تم بنجاح إعادة تحميل &aConfigurations, Jobs & Language."
+player-not-found: "&cهذا اللاعب غير متصل، الرجاء وضع لاعب صالح."
+unknow-error: "&cحدث خطأ غير معروف، الرجاء التحقق من وحدة التحكم للحصول على مزيد من المعلومات."
+left-job: "&cأنت لست عاطلاً عن العمل! ننصحك باختيار وظيفة جديدة أو سوف تفقد الكثير من المال."
+already-updated: "&cالبرنامج المساعد موجود بالفعل في الإصدار الأخير، للمزيد من المعلومات تحقق من WIKI لدينا."
+update-started: "&aبدأ تحديث البرنامج المساعد PicoJobs، الرجاء الانتظار..."
+updated-sucefully: "&aتم تحديث الملحق بشكل دقيق، الرجاء إعادة تشغيل الخادم لإنهاء التحديث."
+sucefully: "&aتم اتخاذ الإجراء بشكل مناسب."
+##################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "قطع %a% كتل"
+kill-work: "قتل %a% من الناس"
+kill-specific-work: "اقتل %a% من الناس في الوظيفة %b%"
+fishing-work: "السمك %a% من الأسماك"
+place-work: "وضع %a% كتل"
+craft-work: "صنع %a% عنصر"
+smelt-work: "صهر %a% عنصر"
+eat-work: "أكل %a٪ من العناصر"
+enchanting-work: "عنصر مشعل %a%"
+repair-work: "إصلاح %a% عنصر"
+milk-work: "أخذ %a% من الحليب من الأبقار"
+kill_entity-work: "اقتل %aمن الكيانات"
+general-work: "%a%"
+#When something is not find what should it appear
+none-format: "لا"
+##################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed.
+aliases:
+  jobs:
+    - "/وظائف"
+    - "/مهمة"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "اختر"
+  work: "العمل"
+  salary: "الراتب"
+  withdraw: "سحب"
+  leave: "المغادرة"
+  help: "المساعدة"
+  info: "معلومات"
+  reload: "reload"
+  update: "تحديث"
+  about: "حول"
+  set: "تعيين"
+  method: "طريقة"
