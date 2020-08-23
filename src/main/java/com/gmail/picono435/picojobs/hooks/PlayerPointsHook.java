@@ -22,7 +22,7 @@ public class PlayerPointsHook {
 			return;
 		}
 		isEnabled = true;
-		PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] PlayerPoints was found! We are configuring the POINTS economy implementation.");
+		//PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] PlayerPoints was found! We are configuring the POINTS economy implementation.");
 		hookPlayerPoints();
 		PicoJobsAPI.registerEconomy(new PointsImplementation());
 	}

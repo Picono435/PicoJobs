@@ -31,6 +31,7 @@ import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.hooks.PlayerPointsHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
+import com.gmail.picono435.picojobs.hooks.economy.ExpImplementation;
 import com.gmail.picono435.picojobs.listeners.AliasesListeners;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
@@ -94,9 +95,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 		PicoJobsAPI.getStorageManager().getData();
 		
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Setting up optional and required dependencies...");
+		PicoJobsAPI.registerEconomy(new ExpImplementation());
 		VaultHook.setupVault();
-		PlaceholderAPIHook.setupPlaceholderAPI();
 		PlayerPointsHook.setupPlayerPoints();
+		PlaceholderAPIHook.setupPlaceholderAPI();
 	
 		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Finishing enabling the plugin...");
 		//REGISTERING COMMANDS

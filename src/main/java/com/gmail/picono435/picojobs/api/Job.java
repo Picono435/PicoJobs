@@ -175,6 +175,9 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getEconomy() {
+		if(economy == null) {
+			return "VAULT";
+		}
 		return economy;
 	}
 	

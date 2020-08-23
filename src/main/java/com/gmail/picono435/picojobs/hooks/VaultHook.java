@@ -23,7 +23,7 @@ public class VaultHook {
 			return;
 		}
 		isEnabled = true;
-		PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] Vault was found! We are configuring the VAULT economy implementation.");
+		//PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] Vault was found! We are configuring the VAULT economy implementation.");
 		if(!setupEconomy()) {
 			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The economy plugin Vault was not found. The VAULT economy will not be enabled.");
 			hasEconomy = false;
