@@ -36,7 +36,7 @@ info-command: |-
   &eFuncionando: %jobplayer_working%
   &eTrabajo: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfiguraciones, Trabajos y Ajustes fueron recargados con éxito."
+reload-command: "&aConfiguraciones, Trabajos e Idioma fueron recargados con éxito."
 player-not-found: "&cEse jugador no esta conectado, por favor pon un jugador válido."
 unknow-error: "&cSe ha producido un error desconocido, por favor revisa la consola para mas información."
 left-job: "&cNo estás desempleado! Te recomendamos que elijas un nuevo trabajo o perderás mucho dinero."
