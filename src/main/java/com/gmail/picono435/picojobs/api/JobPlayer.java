@@ -243,7 +243,7 @@ public class JobPlayer {
 		setWorking(false);
 		setSalary(getSalary() / 2);
 		setMethod(0);
-		setMethodLevel(0);
+		setMethodLevel(1);
 		setJob(null);
 	}
 }

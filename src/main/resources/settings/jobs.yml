@@ -6,16 +6,14 @@
 # In this category you can create, edit and change jobs for the plugin
 # If you want to know a full list of job types please go https://github.com/Picono435/PicoJobs/wiki/Types-of-jobs
 jobs:
-  # This is a example of a thief job
-  thief:
+  # This is a example of a hunter job
+  hunter:
     # The display name of the job
-    displayname: "&cThief"
+    displayname: "&eHunter"
     # The tag of the job
-    tag: "&c[T]"
+    tag: "&e[H]"
     # The type of the job
-    type: "kill"
-    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
-    kill-job: "police"
+    type: "kill_entity"
     # Put here the default kills, (this change depends on the frequency)
     kills: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -26,59 +24,98 @@ jobs:
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
-    # The payment method that should be used
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
+    # Use whitelist or blacklist - OPTIONAL [requires="entity-whitelist"]
+    use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    entity-whitelist: ["COW", "PIG", "CHICKEN", "SHEEP"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    work-message: "kill %a% animals"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
-      slot: 12
+      slot: 11
       # The item that you want to represent the job
-      item: "IRON_SWORD"
+      item: "GOLDEN_SWORD"
       # The item data LEGACY ONLY
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
-    # Set the permissions that this job should have
-    # REQUIRES VAULT
-    permissions:  # [SOON]
-      - kit.use.thief
       
-  # This is a example of a police job
-  police:
+  # This is a example of a enchanter job
+  enchanter:
     # The display name of the job
-    displayname: "&bPolice"
+    displayname: "&cEnchanter"
     # The tag of the job
-    tag: "&b[P]"
+    tag: "&c[E]"
     # The type of the job
-    type: "kill"
-    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
-    kill-job: "thief"
+    type: "enchanting"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 10
+    items: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 100
+    salary: 120
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
-    # The payment method that should be used
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # GUI Choose Job settings
+    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    # items-whitelist: ["diamond_sword"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    # work-message: "enchant %a% items"
+    # Choose Job Menu settings
     gui:
       # The slot where the item will go
-      slot: 14
+      slot: 13
       # The item that you want to represent the job
-      item: "DIAMOND_SWORD"
+      item: "ENCHANTING_TABLE"
       # The item data LEGACY ONLY
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
-    # Set the permissions that this job should have
-    # REQUIRES VAULT
-    permissions: # [SOON]
-      - kit.use.police
+      
+  # This is a example of a woodcutter job
+  woodcutter:
+    # The display name of the job
+    displayname: "&6Woodcutter"
+    # The tag of the job
+    tag: "&6[W]"
+    # The type of the job
+    type: "break"
+    # Put here the default kills, (this change depends on the frequency)
+    blocks: 15
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 80
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
+    economy: VAULT
+    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    block-whitelist: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    work-message: "cut %a% woods"
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 15
+      # The item that you want to represent the job
+      item: "DIAMOND_AXE"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
       
   # This is a example of a miner job
   miner:
@@ -88,105 +125,247 @@ jobs:
     tag: "&7[M]"
     # The type of the job
     type: "break"
-    # Put here the default blocks, (this change depends on the frequency)
+    # Put here the default kills, (this change depends on the frequency)
     blocks: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 100
+    salary: 150
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
-    # The payment method that should be used
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
     # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     block-whitelist: ["gold_ore", "iron_ore", "coal_ore", "lapis_ore", "diamond_ore", "redstone_ore", "emerald_ore", "nether_quartz_ore"]
-    # GUI Choose Job settings
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    work-message: "mine %a% ores"
+    # Choose Job Menu settings
     gui:
       # The slot where the item will go
-      slot: 16
+      slot: 17
       # The item that you want to represent the job
       item: "DIAMOND_PICKAXE"
       # The item data LEGACY ONLY
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
-    # Set the permissions that this job should have
-    # REQUIRES VAULT
-    permissions: # [SOON]
-      - kit.use.miner
       
-  # This is a example of a assassin job
-  assassin:
+  # This is a example of a builder job
+  builder:
     # The display name of the job
-    displayname: "&eAssassin"
+    displayname: "&dBuilder"
     # The tag of the job
-    tag: "&e[A]"
+    tag: "&d[B]"
     # The type of the job
-    type: "kill"
-    # What is the job that this job needs to kill [ALL = Well... all jobs xD]
-    kill-job: "all"
+    type: "place"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 50
+    blocks: 35
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 250
+    salary: 30
     # The salary frequency of the job
     salary-frequency: 0.3
     # The method frequency of the job
     method-frequency: 0.3
-    # The payment method that should be used
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # GUI Choose Job settings
+    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    block-whitelist: ["bricks"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    work-message: "place %a% bricks"
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 29
+      # The item that you want to represent the job
+      item: "BRICKS"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+      
+  # This is a example of a digger job
+  digger:
+    # The display name of the job
+    displayname: "&3Digger"
+    # The tag of the job
+    tag: "&3[D]"
+    # The type of the job
+    type: "break"
+    # Put here the default kills, (this change depends on the frequency)
+    blocks: 25
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 50
+    # The salary frequency of the job
+    salary-frequency: 0.3
+    # The method frequency of the job
+    method-frequency: 0.3
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
+    economy: VAULT
+    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    block-whitelist: ["dirt", "grass", "grass-block"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    work-message: "dig %a% dirts"
+    # Choose Job Menu settings
     gui:
       # The slot where the item will go
       slot: 31
       # The item that you want to represent the job
-      item: "GOLDEN_SWORD"
+      item: "IRON_SHOVEL"
       # The item data LEGACY ONLY
       item-data: 0
       # If you want to the item be enchanted or not
-      enchanted: true
-    # Set the permissions that this job should have
-    # REQUIRES VAULT
-    permissions: # [SOON]
-      - kit.use.assassin
+      enchanted: false
       
-  # This is a example of a assassin job
-  fisher:
+  # This is a example of a craftsman job
+  craftsman:
     # The display name of the job
-    displayname: "&9Fisher"
+    displayname: "&aCraftsman"
     # The tag of the job
-    tag: "&9[F]"
+    tag: "&a[C]"
     # The type of the job
-    type: "fishing"
+    type: "craft"
     # Put here the default kills, (this change depends on the frequency)
-    fish: 1
+    items: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
-    salary: 500
+    salary: 70
     # The salary frequency of the job
-    salary-frequency: 0.3
+    salary-frequency: 0.5
     # The method frequency of the job
-    method-frequency: 0.3
-    # The payment method that should be used
+    method-frequency: 0.5
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # GUI Choose Job settings
+    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    # item-whitelist: ["diamond_sword"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    work-message: "dig %a% dirts"
+    # Choose Job Menu settings
     gui:
       # The slot where the item will go
       slot: 33
+      # The item that you want to represent the job
+      item: "CRAFTING_TABLE"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+      
+  # This is a example of a fisherman job
+  fisherman:
+    # The display name of the job
+    displayname: "&bFisherman"
+    # The tag of the job
+    tag: "&b[F]"
+    # The type of the job
+    type: "fishing"
+    # Put here the default kills, (this change depends on the frequency)
+    fish: 25
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 300
+    # The salary frequency of the job
+    salary-frequency: 0.2
+    # The method frequency of the job
+    method-frequency: 0.2
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
+    economy: VAULT
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    # work-message: "fish %a% fishes"
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 35
       # The item that you want to represent the job
       item: "FISHING_ROD"
       # The item data LEGACY ONLY
       item-data: 0
       # If you want to the item be enchanted or not
-      enchanted: true
-    # Set the permissions that this job should have
-    # REQUIRES VAULT
-    permissions: # [SOON]
-      - kit.use.fisher
+      enchanted: false
+      
+  # This is a example of a fisherman job
+  weaponsmith:
+    # The display name of the job
+    displayname: "&8Weaponsmith"
+    # The tag of the job
+    tag: "&8[W]"
+    # The type of the job
+    type: "repair"
+    # Put here the default kills, (this change depends on the frequency)
+    items: 8
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 300
+    # The salary frequency of the job
+    salary-frequency: 0.1
+    # The method frequency of the job
+    method-frequency: 0.1
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
+    economy: VAULT
+    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # use-whitelist: true
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    # item-whitelist: ["diamond_sword"]
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    # work-message: "fish %a% fishes"
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 49
+      # The item that you want to represent the job
+      item: "DIAMOND_SWORD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
+      
+  # This is a example of a hunter job
+  killer:
+    # The display name of the job
+    displayname: "&9Killer"
+    # The tag of the job
+    tag: "&9[K]"
+    # The type of the job
+    type: "kill"
+    # Put here the default kills, (this change depends on the frequency)
+    kills: 20
+    # The job that you want to be killed that [all = well... ALL jobs xD]
+    kill-job: "all"
+    # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
+    require-permission: false
+    # The salary of the job (it will be multiplied by the level and frequency)
+    salary: 100
+    # The salary frequency of the job
+    salary-frequency: 0.5
+    # The method frequency of the job
+    method-frequency: 0.8
+    # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
+    economy: VAULT
+    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+    # work-message: "kill %a% people"
+    # Choose Job Menu settings
+    gui:
+      # The slot where the item will go
+      slot: 51
+      # The item that you want to represent the job
+      item: "IRON_SWORD"
+      # The item data LEGACY ONLY
+      item-data: 0
+      # If you want to the item be enchanted or not
+      enchanted: false
