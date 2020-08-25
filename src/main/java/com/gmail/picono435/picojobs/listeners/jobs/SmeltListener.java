@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
@@ -19,7 +20,11 @@ public class SmeltListener implements Listener {
 	@EventHandler()
 	public void onCraftItem(InventoryClickEvent e) {
 		if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) return;
-		if(e.getInventory().getType() != InventoryType.FURNACE && e.getInventory().getType() != InventoryType.BLAST_FURNACE && e.getInventory().getType() != InventoryType.SMOKER) return;
+		if(!PicoJobsPlugin.getInstance().isLegacy()) {
+			if(e.getInventory().getType() != InventoryType.FURNACE && e.getInventory().getType() != InventoryType.BLAST_FURNACE && e.getInventory().getType() != InventoryType.SMOKER) return;
+		} else {
+			if(e.getInventory().getType() != InventoryType.FURNACE) return;
+		}
 		if(e.getSlotType() != SlotType.RESULT) return;
 		if(e.getWhoClicked() == null) return;
 		Player p = (Player) e.getWhoClicked();

@@ -1,5 +1,8 @@
 package com.gmail.picono435.picojobs.listeners.jobs;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,7 +19,13 @@ public class MilkListener implements Listener {
 	@EventHandler()
 	public void onTakeMilk(PlayerBucketFillEvent  e) {
 		if(e.getPlayer() == null) return;
-		if(e.getBlock().isLiquid()) return;
+		try {
+			Block b = (Block)Class.forName("org.bukkit.event.player.PlayerBucketFillEvent").getMethod("getBlockClicked").invoke(this);
+			if(b.isLiquid()) return;
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+				| SecurityException | ClassNotFoundException e1) {
+			if(e.getBlock().isLiquid()) return;
+		};
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;
