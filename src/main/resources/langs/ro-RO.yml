@@ -29,7 +29,17 @@ admin-commands: |-
   &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
   Actualizare &/jobsadmin &6- &eInstaleaza o actualizare a plugin-ului
   &e/jobsadmin despre &6- &ePrimeste informatii despre server si plugin-ul
-  &/jobsadmin set <salary | method> <player> <amount> <amount> &6- &eSeteaza salariul/metoda unui jucator
+  &/jobsadmin setata <salary | method> <player> <amount> <amount> 
+   - &e&6- &eSeteaza setarile salare/metoda unui jucator
+  &e/jobsadmin &6- &eDeschide meniul SETTINGs al plugin-ului
+member-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin choose <job> &6- &eChooses your job
+  &e/jobsadmin work &6- &eSee the status/Accept of your work
+  &e/jobsadmin salary &6- &eCheck your salary
+  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6Starea jucatorului %player_name%
   &eSalary: %jobplayer_salary%
@@ -94,3 +104,4 @@ aliases:
   about: "despre"
   set: "setează"
   method: "metoda"
+  settings: "settings"
