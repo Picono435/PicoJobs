@@ -30,6 +30,15 @@ admin-commands: |-
   &e/jobsadmin update &6- &eInstalls a update of the plugin
   &e/jobsadmin about &6- &eGets information about the server and the plugin
   &e/jobsadmin set <salary | method> <player> <amount> &6- &eImposta lo stipendio/metodo di un giocatore
+  &e/jobsadmin settings &6- &eApre il menu SETTINGs del plugin
+member-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin choose <job> &6- &eChooses your job
+  &e/jobsadmin work &6- &eSee the status/Accept of your work
+  &e/jobsadmin salary &6- &eCheck your salary
+  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6Stato del giocatore %player_name%
   &eSalary: %jobplayer_salary%
@@ -94,3 +103,4 @@ aliases:
   about: "about"
   set: "imposta"
   method: "metodo"
+  settings: "settings"
