@@ -32,12 +32,12 @@ admin-commands: |-
   &e/jobsadmin sæt <salary | method> <player> <amount> &6- &eIndstiller en spillers løn/metode
   &e/jobsadmin indstillinger &6- &eÅbner tilpasningsmenuen i plugin'et
 member-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
+  &6Fuld liste over kommandoer:
+  &e/jobsadmin help &6- &eSe disse meddelelser
   &e/jobsadmin choose <job> &6- &eChooses your job
-  &e/jobsadmin work &6- &eSee the status/Accept of your work
+  &e/jobsadmin work &6- &eSe status/Accept of your work
   &e/jobsadmin salary &6- &eCheck your salary
-  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin withdraw &6- &eUdtræk din løn
   &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6Spillerens status %player_name%
@@ -103,4 +103,4 @@ aliases:
   about: "om"
   set: "sæt"
   method: "metode"
-  settings: "settings"
+  settings: "indstillinger"
