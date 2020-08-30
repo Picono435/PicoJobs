@@ -23,22 +23,22 @@ my-salary: "&aVocê tem %jobplayer_salary%$ de salário."
 unknow-job: "&cEssa tarefa não foi encontrada, por favor, use a TAB COMPLETE para obter uma lista de trabalhos."
 work-status: "&aAqui é o que você precisa fazer: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+  &6Lista completa de comandos:
+  &e/jobsadmin help &6- &eVeja esta mensagem
+  &e/jobsadmin info <player> &6- &eObtém as informações sobre um jogador
+  &e/jobsadmin recarrega &6- &eRecarregar todas as configurações possíveis.
+  &e/jobsadmin atualizar &6- &eInstala uma atualização do plugin
+  &e/jobsadmin sobre &6- &eObtém informações sobre o servidor e o plugin
+  &e/jobsadmin conjunto <salary | method> <player> <amount> &6- &eDefine o salário/método de um jogador
+  &e/jobsadmin configurações &6- &eAbre o menu de SETTINGs do plugin
 member-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin choose <job> &6- &eChooses your job
-  &e/jobsadmin work &6- &eSee the status/Accept of your work
-  &e/jobsadmin salary &6- &eCheck your salary
-  &e/jobsadmin withdraw &6- &eWithdraw your salary
-  &e/jobsadmin leave &6- &eLeaves the job
+  &6Lista completa de comandos:
+  &e/jobsadmin help &6- &eVeja esta mensagem
+  &e/jobsadmin escolha <job> &6- &eEscolha o seu trabalho
+  &e/jobsadmin trabalho &6- &eVeja o status/Aceitar sua obra
+  &e/jobsadmin &6- &eVerifique o seu salário
+  &eVerificar o seu salário & / e/jobsadmin retirar &6- &eWithdraw seu salário
+  &e/jobsadmin sai &6- &eLeve o trabalho
 info-command: |-
   &6Status do jogador %player_name%
   &eSalário: %jobplayer_salary%
@@ -103,4 +103,4 @@ aliases:
   about: "Sobre"
   set: "definir"
   method: "Método"
-  settings: "settings"
+  settings: "configurações"
