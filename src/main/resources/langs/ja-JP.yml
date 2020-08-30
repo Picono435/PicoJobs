@@ -32,13 +32,13 @@ admin-commands: |-
   &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
   &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
 member-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin choose <job> &6- &eChooses your job
-  &e/jobsadmin work &6- &eSee the status/Accept of your work
-  &e/jobsadmin salary &6- &eCheck your salary
-  &e/jobsadmin withdraw &6- &eWithdraw your salary
-  &e/jobsadmin leave &6- &eLeaves the job
+  &6コマンドの全リスト:
+  &e/jobsadmin help &6- &eこのメッセージを参照してください
+  &e/jobsadmin choose <job> &6- &eあなたの仕事を選択します
+  &e/jobsadmin work &6- &eあなたの仕事のステータス/承認を確認します
+  &e/jobsadminの給与&6- &eあなたの給与を確認します
+  &e/jobsadminの引き出し&6- &eあなたの給与を撤回します
+  &e/jobsadminのままにします。 &6- &e仕事を退します。
 info-command: |-
   &6プレイヤー %player_name%のステータス
   &e給与: %jobplayer_salary%
@@ -103,4 +103,4 @@ aliases:
   about: "about"
   set: "セット"
   method: "method"
-  settings: "settings"
+  settings: "設定"
