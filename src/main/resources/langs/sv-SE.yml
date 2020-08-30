@@ -23,22 +23,22 @@ my-salary: "&aDu har %jobplayer_salary%$ i lön."
 unknow-job: "&cDet jobbet hittades inte, använd TAB COMPLETE för att få en lista över jobb."
 work-status: "&aHär är vad du behöver göra: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+  &6Fullständig lista över kommandon:
+  &e/jobsadmin help &6- &eSe detta meddelande
+  &e/jobsadmin info <player> &6- &eHämtar information om en spelare
+  &e/jobsadmin ladda om &6- &eLadda om alla möjliga konfigurationer.
+  &e/jobsadmin update &6- &eInstallerar en uppdatering av pluginen
+  &e/jobsadmin om &6- &eHämtar information om servern och pluginen
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eStäller in en spelares lön/metod
+  &e/jobsadmin inställningar &6- &eÖppnas i menyn INSTÄLLNINGar i pluginen
 member-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin choose <job> &6- &eChooses your job
-  &e/jobsadmin work &6- &eSee the status/Accept of your work
-  &e/jobsadmin salary &6- &eCheck your salary
-  &e/jobsadmin withdraw &6- &eWithdraw your salary
-  &e/jobsadmin leave &6- &eLeaves the job
+  &6Fullständig lista över kommandon:
+  &e/jobsadmin help &6- &eSe detta meddelande
+  &e/jobsadmin choose <job> &6- &eVäljer ditt jobb
+  &e/jobsadmin work &6- &eSe status/Acceptera ditt arbete
+  &e/jobsadmin lön &6- &eKontrollera din lön
+  &e/jobsadmin dra ut &6- &eUtdrag din lön
+  &e/jobsadmin ledighet &6- &eLämnar jobbet
 info-command: |-
   &6Status för spelaren %player_name%
   &eSalary: %jobplayer_salary%
@@ -103,4 +103,4 @@ aliases:
   about: "om"
   set: "ange"
   method: "metod"
-  settings: "settings"
+  settings: "inställningar"
