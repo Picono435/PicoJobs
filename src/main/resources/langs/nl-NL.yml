@@ -23,13 +23,22 @@ my-salary: "&aJe hebt %jobplayer_salary%$ salaris."
 unknow-job: "&cDie taak is niet gevonden. Gebruik de TAB COMPLETE om een lijst met taken te krijgen."
 work-status: "&aHier is wat je moet doen: %jobplayer_work%"
 admin-commands: |-
-  &6Volledige lijst van commando's:
-  &e/jobsadmin hulp &6- &eSee this message
-  &e/jobsadmin info <player> &6- &eHaalt de informatie over een speler
-  &e/jobsadmin herladen &6- &eHerlaad alle mogelijke configuraties.
-  &e/jobsadmin update &6- &eInstalleert een update van de plugin
-  &e/jobsadmin over &6- &eGets informatie over de server en de plugin
-  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSstelt de salaris/methode van een speler in
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
+  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+member-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin choose <job> &6- &eChooses your job
+  &e/jobsadmin work &6- &eSee the status/Accept of your work
+  &e/jobsadmin salary &6- &eCheck your salary
+  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6Status van de speler %player_name%
   &eSalary: %jobplayer_salary%
@@ -94,3 +103,4 @@ aliases:
   about: "Over"
   set: "instellen"
   method: "methode"
+  settings: "settings"
