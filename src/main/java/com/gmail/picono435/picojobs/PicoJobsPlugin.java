@@ -100,31 +100,31 @@ public class PicoJobsPlugin extends JavaPlugin {
 			LanguageManager.updateFile();
 		}
 		
-		//STARTING BSTATS
+		// STARTING BSTATS
         metrics = new Metrics(this, 8553);
-        metrics.addCustomChart(new Metrics.SingleLineChart("created_jobs", new Callable<Integer>() {
+        
+        // SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
+        PicoJobsAPI.registerEconomy(new ExpImplementation());
+        VaultHook.setupVault();
+        PlayerPointsHook.setupPlayerPoints();
+        PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
+        PlaceholderAPIHook.setupPlaceholderAPI();
+        
+        // GETTING DATA FROM STORAGE
+		sendConsoleMessage(Level.INFO, "Getting data from storage...");
+		if(!generateJobsFromConfig()) return;
+		PicoJobsAPI.getStorageManager().getData();
+		metrics.addCustomChart(new Metrics.SingleLineChart("created_jobs", new Callable<Integer>() {
         	@Override
         	public Integer call() throws Exception {
         		return jobs.size();
         	}
         }));
-        metrics.addCustomChart(new Metrics.SimplePie("job_types", () -> "Free"));
-		
-		sendConsoleMessage(Level.INFO, "Getting data from storage...");
-		if(!generateJobsFromConfig()) return;
-		PicoJobsAPI.getStorageManager().getData();
-		
-		// SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
-		PicoJobsAPI.registerEconomy(new ExpImplementation());
-		VaultHook.setupVault();
-		PlayerPointsHook.setupPlayerPoints();
-		PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
-		PlaceholderAPIHook.setupPlaceholderAPI();
 	
-		//REGISTERING COMMANDS
+		// REGISTERING COMMANDS
 		this.getCommand("jobs").setExecutor(new JobsCommand());
 		this.getCommand("jobsadmin").setExecutor(new JobsAdminCommand());
-		//REGISTERING LISTENERS
+		// REGISTERING LISTENERS
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ExecuteCommandListener(), this);
@@ -230,6 +230,19 @@ public class PicoJobsPlugin extends JavaPlugin {
 		        Map<String, Integer> entry = new HashMap<>();
 		        entry.put(jobid, 1);
 		        map.put(type.name(), entry);
+		        return map;
+		    }));
+
+			metrics.addCustomChart(new Metrics.DrilldownPie("active_economy", () -> {
+		        Map<String, Map<String, Integer>> map = new HashMap<>();
+		        Map<String, Integer> entry = new HashMap<>();
+		        String eco = job.getEconomy();
+		        entry.put(eco, 1);
+		        if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
+		        	map.put(VaultHook.getEconomy().getName(), entry);
+		        } else {
+		        	map.put("Other", entry);
+		        }
 		        return map;
 		    }));
 		}
