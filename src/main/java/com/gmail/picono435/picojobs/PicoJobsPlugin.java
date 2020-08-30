@@ -69,6 +69,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private boolean oldVersion;
 	private String lastestPluginVersion;
 	private String downloadUrl;
+	private Metrics metrics;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -99,6 +100,15 @@ public class PicoJobsPlugin extends JavaPlugin {
 			LanguageManager.updateFile();
 		}
 		
+		//STARTING BSTATS
+        metrics = new Metrics(this, 8553);
+        metrics.addCustomChart(new Metrics.SingleLineChart("created_jobs", new Callable<Integer>() {
+        	@Override
+        	public Integer call() throws Exception {
+        		return jobs.size();
+        	}
+        }));
+        metrics.addCustomChart(new Metrics.SimplePie("job_types", () -> "Free"));
 		
 		sendConsoleMessage(Level.INFO, "Getting data from storage...");
 		if(!generateJobsFromConfig()) return;
@@ -130,16 +140,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new RepairListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SmeltListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
-		
-		//STARTING BSTATS
-        Metrics metrics = new Metrics(this, 8553);
-        metrics.addCustomChart(new Metrics.SingleLineChart("created_jobs", new Callable<Integer>() {
-        	@Override
-        	public Integer call() throws Exception {
-        		return jobs.size();
-        	}
-        }));
-        metrics.addCustomChart(new Metrics.SimplePie("premium_version", () -> "Free"));
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
 		
@@ -190,8 +190,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public boolean generateJobsFromConfig() {
 		jobs.clear();
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
-		for(String jobname : jobsc.getKeys(false)) {
-			ConfigurationSection jobc = jobsc.getConfigurationSection(jobname);
+		for(String jobid : jobsc.getKeys(false)) {
+			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
 			String typeString = jobc.getString("type");
@@ -222,8 +222,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
 			List<String> whitelist = jobc.getStringList(PicoJobsAPI.getJobsManager().getConfigWhitelistString(type));
 			
-			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, killJob, useWhitelist, whitelist);
-			jobs.put(jobname, job);
+			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, killJob, useWhitelist, whitelist);
+			jobs.put(jobid, job);
+						
+			metrics.addCustomChart(new Metrics.DrilldownPie("jobs", () -> {
+		        Map<String, Map<String, Integer>> map = new HashMap<>();
+		        Map<String, Integer> entry = new HashMap<>();
+		        entry.put(jobid, 1);
+		        map.put(type.name(), entry);
+		        return map;
+		    }));
 		}
 		return true;
 	}
