@@ -1,18 +1,7 @@
 package com.gmail.picono435.picojobs.commands;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -20,8 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
@@ -101,7 +88,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			p.sendMessage(LanguageManager.getMessage("update-started", pl));
-			if(!updatePlugin(p)) {
+			if(!PicoJobsPlugin.getInstance().updatePlugin(p, LanguageManager.getMessage("updated-sucefully"))) {
 				p.sendMessage(LanguageManager.getMessage("unknow-error", pl));
 				return true;
 			}
@@ -247,67 +234,5 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			}
 		}
 		return null;
-	}
-	
-	/*
-	 * 
-	 * Update Methods
-	 * 
-	 */
-	private boolean updatePlugin(CommandSender p) {
-		try {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
-			
-			URL url = new URL(PicoJobsPlugin.getInstance().getLastestDownloadUrl());
-			
-			Method getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
-			getFileMethod.setAccessible(true);
-			File oldFile = (File) getFileMethod.invoke(PicoJobsPlugin.getInstance());
-
-			File fileOutput = new File(Bukkit.getUpdateFolderFile().getPath() + File.separatorChar + oldFile.getName());
-			if(!fileOutput.exists()) {
-				fileOutput.mkdirs();
-			}
-			
-			downloadFile(url, fileOutput, p);
-			return true;
-		} catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
-	}
-	
-	public void downloadFile(URL url, File fileOutput, CommandSender p) {
-		new BukkitRunnable() {
-			public void run() {
-				try {
-					if (fileOutput.exists()) {
-						fileOutput.delete();
-				    }
-					fileOutput.createNewFile();
-				    OutputStream out = new BufferedOutputStream(new FileOutputStream(fileOutput.getPath()));
-				    URLConnection conn = url.openConnection();
-				    String encoded = Base64.getEncoder().encodeToString(("username"+":"+"password").getBytes(StandardCharsets.UTF_8));  //Java 8
-				    conn.setRequestProperty("Authorization", "Basic "+ encoded);
-				    InputStream in = conn.getInputStream();
-				    byte[] buffer = new byte[1024];
-
-				    int numRead;
-				    while ((numRead = in.read(buffer)) != -1) {
-				        out.write(buffer, 0, numRead);
-				    }
-				    if (in != null) {
-				        in.close();
-				    }
-				    if (out != null) {
-				        out.close();
-				    }
-				    p.sendMessage(LanguageManager.getMessage("updated-sucefully"));
-				    PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Updated PicoJobs plugin to version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + " succefully.");
-				} catch(Exception ex) {
-					ex.printStackTrace();
-				}
-			}
-		}.runTaskAsynchronously(PicoJobsPlugin.getInstance());
 	}
 }

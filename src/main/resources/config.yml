@@ -24,6 +24,8 @@ lang: "en-GB"
 prefix: "&6[PicoJobs] "
 # Here you can disable the messages that are sent when a ADMIN join saying that a dependencie was not found
 dependencie-warn: true
+# Here you can enable/disable the auto update
+auto-update: true
 
 #################################################################################
 #                                                                               #

@@ -1,9 +1,18 @@
 package com.gmail.picono435.picojobs;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +23,7 @@ import java.util.logging.Level;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -266,9 +276,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 				new BukkitRunnable() {
 					public void run() {
 						sendConsoleMessage(Level.WARNING, "Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
+						if(getConfig().getBoolean("auto-update")) {
+							if(updatePlugin(Bukkit.getConsoleSender(), "[PicoJobs] Plugin was updated to version "+ lastestVersion.toString() + " sucefully. Please restart the server to finish the update.")) {
+								sendConsoleMessage(Level.INFO, "Updating the plugin to the lastest version...");
+							} else {
+								sendConsoleMessage(Level.WARNING, "An error occuried while updating the plugin.");
+							}
+						}
 						return;
 					}
-				}.runTaskLater(this, 5L);
+				}.runTaskLater(this, 40L);
 				oldVersion = true;
 			} else {
 				new BukkitRunnable() {
@@ -276,11 +293,66 @@ public class PicoJobsPlugin extends JavaPlugin {
 						sendConsoleMessage(Level.INFO, "You are using the lastest version of the plugin.");
 						return;
 					}
-				}.runTaskLater(this, 5L);
+				}.runTaskLater(this, 40L);
 			}
 		} catch (Exception e) {
 			sendConsoleMessage(Level.WARNING, "Could not get the lastest version.");
 			return;
 		}
+	}
+	
+	public boolean updatePlugin(CommandSender p, String message) {
+		try {
+			URL url = new URL(PicoJobsPlugin.getInstance().getLastestDownloadUrl());
+			
+			Method getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
+			getFileMethod.setAccessible(true);
+			File oldFile = (File) getFileMethod.invoke(PicoJobsPlugin.getInstance());
+
+			File fileOutput = new File(Bukkit.getUpdateFolderFile().getPath() + File.separatorChar + oldFile.getName());
+			if(!fileOutput.exists()) {
+				fileOutput.mkdirs();
+			}
+			
+			downloadFile(url, fileOutput, p, message);
+			return true;
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
+	private void downloadFile(URL url, File fileOutput, CommandSender p, String message) {
+		new BukkitRunnable() {
+			public void run() {
+				try {
+					if (fileOutput.exists()) {
+						fileOutput.delete();
+				    }
+					fileOutput.createNewFile();
+				    OutputStream out = new BufferedOutputStream(new FileOutputStream(fileOutput.getPath()));
+				    URLConnection conn = url.openConnection();
+				    String encoded = Base64.getEncoder().encodeToString(("username"+":"+"password").getBytes(StandardCharsets.UTF_8));  //Java 8
+				    conn.setRequestProperty("Authorization", "Basic "+ encoded);
+				    InputStream in = conn.getInputStream();
+				    byte[] buffer = new byte[1024];
+
+				    int numRead;
+				    while ((numRead = in.read(buffer)) != -1) {
+				        out.write(buffer, 0, numRead);
+				    }
+				    if (in != null) {
+				        in.close();
+				    }
+				    if (out != null) {
+				        out.close();
+				    }
+				    p.sendMessage(message);
+				    oldVersion = false;
+				} catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		}.runTaskAsynchronously(PicoJobsPlugin.getInstance());
 	}
 }
