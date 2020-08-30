@@ -32,12 +32,12 @@ admin-commands: |-
   &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
   &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
 member-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
+  &6Liste der Befehle:
+  &e/jobsadmin help &6- &eSiehe diese Nachrichten
   &e/jobsadmin choose <job> &6- &eChooses your job
-  &e/jobsadmin work &6- &eSee the status/Accept of your work
-  &e/jobsadmin salary &6- &eCheck your salary
-  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin work &6- &eSehen Sie den Status/Akzeptieren Ihrer Arbeit
+  &e/jobsadmin Gehalt &6- &ePrüfen Sie Ihr Gehalt
+  &e/jobsadmin withdraw &6- &eWithdraw your Gehalt
   &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6Status des Spielers %player_name%
@@ -103,4 +103,4 @@ aliases:
   about: "über"
   set: "setzen"
   method: "Methode"
-  settings: "settings"
+  settings: "einstellen"
