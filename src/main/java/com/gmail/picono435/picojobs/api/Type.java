@@ -26,7 +26,7 @@ public enum Type {
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	
 	public static Type getType(String name) {
-		return BY_NAME.get(name);
+		return BY_NAME.get(name.toUpperCase());
 	}
 	
 	static {

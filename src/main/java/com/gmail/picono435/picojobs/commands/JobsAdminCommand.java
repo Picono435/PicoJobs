@@ -12,9 +12,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,6 +27,7 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.menu.SettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 public class JobsAdminCommand implements CommandExecutor, TabCompleter {
@@ -51,6 +52,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		String updateString = LanguageManager.getSubCommandAlias("update");
 		String aboutString = LanguageManager.getSubCommandAlias("about");
 		String setString = LanguageManager.getSubCommandAlias("set");
+		String settingsString = LanguageManager.getSubCommandAlias("settings");
 		
 		String salaryString = LanguageManager.getSubCommandAlias("salary");
 		String methodString = LanguageManager.getSubCommandAlias("method");
@@ -169,11 +171,26 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			
-			p.sendMessage(LanguageManager.getFormat("admin-commands", null));
+			p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		}
+		
+		if(args[0].equalsIgnoreCase("settings") || args[1].equalsIgnoreCase(settingsString)) {
+			if(!(p instanceof Player)) {
+				sender.sendMessage(LanguageManager.formatMessage("&cOnly players can use that command, please use /jobsadmin to see the help of JobsAdmin commands."));
+				return true;
+			}
+			SettingsMenu.openGeneral((Player)p);
+			return true;
+		}
+		p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		return true;
 	}
 	
+	/*
+	 * 
+	 * Tab Complete
+	 * 
+	 */
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		Player p = (Player)sender;
@@ -184,6 +201,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			String updateString = LanguageManager.getSubCommandAlias("update");
 			String aboutString = LanguageManager.getSubCommandAlias("about");
 			String setString = LanguageManager.getSubCommandAlias("set");
+			String settingsString = LanguageManager.getSubCommandAlias("settings");
 			
 			String salaryString = LanguageManager.getSubCommandAlias("salary");
 			String methodString = LanguageManager.getSubCommandAlias("method");
@@ -199,6 +217,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				list.add(updateString);
 				list.add(aboutString);
 				list.add(setString);
+				list.add(settingsString);
 				return list;
 			}
 			
@@ -212,8 +231,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			
 			if(args.length == 3) {
 				if(args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase(setString)) {
-					list.add("[<player>]");
-					return list;
+					return null;
 				}
 			}
 			
@@ -231,18 +249,22 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		return null;
 	}
 	
+	/*
+	 * 
+	 * Update Methods
+	 * 
+	 */
 	private boolean updatePlugin(CommandSender p) {
 		try {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Updating the PicoJobs plugin to the version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ". Please wait, the server may lag a little bit...");
 			
-			String downloadUrl = "https://github.com/Picono435/PicoJobs/releases/download/" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + "/PicoJobs-" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + ".jar";
-			URL url = new URL(downloadUrl);
+			URL url = new URL(PicoJobsPlugin.getInstance().getLastestDownloadUrl());
 			
 			Method getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
 			getFileMethod.setAccessible(true);
 			File oldFile = (File) getFileMethod.invoke(PicoJobsPlugin.getInstance());
-			
-			File fileOutput = new File(PicoJobsPlugin.getInstance().getDataFolder().getParentFile().getPath() + File.separatorChar + "update" + File.separatorChar + oldFile.getName());
+
+			File fileOutput = new File(Bukkit.getUpdateFolderFile().getPath() + File.separatorChar + oldFile.getName());
 			if(!fileOutput.exists()) {
 				fileOutput.mkdirs();
 			}
@@ -255,15 +277,15 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 	
-	public void downloadFile(URL url, File localFile, CommandSender p) {
+	public void downloadFile(URL url, File fileOutput, CommandSender p) {
 		new BukkitRunnable() {
 			public void run() {
 				try {
-					if (localFile.exists()) {
-				        localFile.delete();
+					if (fileOutput.exists()) {
+						fileOutput.delete();
 				    }
-				    localFile.createNewFile();
-				    OutputStream out = new BufferedOutputStream(new FileOutputStream(localFile.getPath()));
+					fileOutput.createNewFile();
+				    OutputStream out = new BufferedOutputStream(new FileOutputStream(fileOutput.getPath()));
 				    URLConnection conn = url.openConnection();
 				    String encoded = Base64.getEncoder().encodeToString(("username"+":"+"password").getBytes(StandardCharsets.UTF_8));  //Java 8
 				    conn.setRequestProperty("Authorization", "Basic "+ encoded);
@@ -281,7 +303,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				        out.close();
 				    }
 				    p.sendMessage(LanguageManager.getMessage("updated-sucefully"));
-				    PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Updated PicoJobs plugin to version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + " succefully.");
+				    PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Updated PicoJobs plugin to version v" + PicoJobsPlugin.getInstance().getLastestPluginVersion() + " succefully.");
 				} catch(Exception ex) {
 					ex.printStackTrace();
 				}

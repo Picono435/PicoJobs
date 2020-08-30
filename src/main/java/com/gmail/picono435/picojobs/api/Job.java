@@ -1,18 +1,20 @@
 package com.gmail.picono435.picojobs.api;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
-
-import net.md_5.bungee.api.ChatColor;
 
 /**
  * Represents a job.
@@ -22,7 +24,7 @@ import net.md_5.bungee.api.ChatColor;
  */
 public class Job {
 	
-	private String name;
+	private String id;
 	private String displayname;
 	private String tag;
 	private Type type;
@@ -43,11 +45,11 @@ public class Job {
 	// OPTIONAL
 	private String killJob;
 	private boolean useWhitelist;
-	private List<Material> blockWhitelist;
-	private List<EntityType> entityWhitelist;
+	private List<Object> whitelist;
+	private List<String> stringWhitelist;
 	
-	public Job(String name, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> blockWhitelist, List<String> entityWhitelist) {
-		this.name = name;
+	public Job(String id, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> whitelist) {
+		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
 		this.type = type;
@@ -67,30 +69,33 @@ public class Job {
 		
 		this.killJob = killJob;
 		this.useWhitelist = useWhitelist;
-		if(blockWhitelist != null) {
-			List<Material> materialList = new ArrayList<Material>();
-			for(String s : blockWhitelist) {
-				materialList.add(Material.matchMaterial(s));
+		if(whitelist != null) {
+			WhitelistConf whitelistConf = PicoJobsAPI.getJobsManager().getConfigWhitelist(type);
+			if(whitelistConf == WhitelistConf.MATERIAL) {
+				List<Material> list = new ArrayList<Material>();
+				for(String s : whitelist) {
+					list.add(Material.matchMaterial(s));
+				}
+				this.whitelist = new ArrayList<Object>(list);
+			} else if(whitelistConf == WhitelistConf.ENTITY) {
+				List<EntityType> list = new ArrayList<EntityType>();
+				for(String s : whitelist) {
+					list.add(OtherUtils.getEntityByName(s));
+				}
+				this.whitelist = new ArrayList<Object>(list);
 			}
-			this.blockWhitelist = materialList;
-		}
-		if(entityWhitelist != null) {
-			List<EntityType> entityList = new ArrayList<EntityType>();
-			for(String s : entityWhitelist) {
-				entityList.add(OtherUtils.getEntityByName(s));
-			}
-			this.entityWhitelist = entityList;
+			this.stringWhitelist = whitelist;
 		}
 	}
 	
 	/**
-	 * Gets the name of the job
+	 * Gets the id of the job
 	 * 
 	 * @return the name of the job
 	 * @author Picono435
 	 */
-	public String getName() {
-		return name;
+	public String getID() {
+		return id;
 	}
 	
 	/**
@@ -249,6 +254,16 @@ public class Job {
 		return enchanted;
 	}
 	
+	/**
+	 * Checks if it's whitelist or not
+	 * 
+	 * @return true if it's whitelist, false if it is blacklist
+	 * @author Picono435
+	 */
+	public boolean isWhitelist() {
+		return useWhitelist;
+	}
+	
 	
 	/**
 	 * Gets the formatted item of the job
@@ -293,12 +308,12 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(Material material) {
-		if(blockWhitelist == null) return true;
-		if(blockWhitelist.size() <= 0) return true;
+		if(whitelist == null) return true;
+		if(whitelist.size() <= 0) return true;
 		if(useWhitelist) {
-			return blockWhitelist.contains(material);
+			return whitelist.contains(material);
 		} else {
-			return !blockWhitelist.contains(material);
+			return !whitelist.contains(material);
 		}
 	}
 	
@@ -310,12 +325,226 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(EntityType entity) {
-		if(entityWhitelist == null) return true;
-		if(entityWhitelist.size() <= 0) return true;
+		if(whitelist == null) return true;
+		if(whitelist.size() <= 0) return true;
 		if(useWhitelist) {
-			return entityWhitelist.contains(entity);
+			return whitelist.contains(entity);
 		} else {
-			return !entityWhitelist.contains(entity);
+			return !whitelist.contains(entity);
+		}
+	}
+	
+	/**
+	 * Gets the whitelist
+	 * 
+	 * @return the whitelist
+	 * @author Picono435
+	 */
+	public List<Object> getWhitelist() {
+		return whitelist;
+	}
+	
+	/**
+	 * Gets the string whitelist
+	 * 
+	 * @return the string whitelist
+	 * @author Picono435
+	 */
+	public List<String> getStringWhitelist() {
+		return stringWhitelist;
+	}
+	
+	/**
+	 * Gets a formatted whitelist string
+	 * 
+	 * @return a formatted string with the array
+	 * @author Picono435
+	 */
+	public String getWhitelistArray() {
+		return Arrays.toString(stringWhitelist.toArray());
+	}
+	
+	/**
+	 * Sets the displayname of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param displayname the new displayname of the job
+	 */
+	public void setDisplayName(String displayname) {
+		this.displayname = displayname;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("displayname", displayname);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the salary of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param salary the new salary of the job
+	 */
+	public void setSalary(double salary) {
+		this.salary = salary;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("salary", salary);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the type of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param type the new type of the job
+	 */
+	public void setType(Type type) {
+		this.type = type;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("type", type.name());
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the economy of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param economy the new economy of the job
+	 */
+	public void setEconomy(String economy) {
+		this.economy = economy;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("economy", economy);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the method of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param method the new method of the job
+	 */
+	public void setMethod(double method) {
+		this.method = method;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set(PicoJobsAPI.getJobsManager().getConfigMethod(getType()), method);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the salary frequency of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param salaryFrequency the new salary frequency of the job
+	 */
+	public void setSalaryFrequency(double salaryFrequency) {
+		this.salaryFrequency = salaryFrequency;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("salary-frequency", salaryFrequency);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the use whitelist of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param useWhitelist the new use whitelist value of the job
+	 */
+	public void setWhitelistType(boolean useWhitelist) {
+		this.useWhitelist = useWhitelist;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("use-whitelist", useWhitelist);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the whitelist of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param whitelist the new whitelist of the job
+	 */
+	public void setWhitelist(List<String> whitelist) {
+		WhitelistConf whitelistConf = PicoJobsAPI.getJobsManager().getConfigWhitelist(type);
+		if(whitelistConf == WhitelistConf.MATERIAL) {
+			List<Material> list = new ArrayList<Material>();
+			for(String s : whitelist) {
+				list.add(Material.matchMaterial(s));
+			}
+			this.whitelist = new ArrayList<Object>(list);
+		} else if(whitelistConf == WhitelistConf.ENTITY) {
+			List<EntityType> list = new ArrayList<EntityType>();
+			for(String s : whitelist) {
+				list.add(OtherUtils.getEntityByName(s));
+			}
+			this.whitelist = new ArrayList<Object>(list);
+		}
+		this.stringWhitelist = whitelist;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set(PicoJobsAPI.getJobsManager().getConfigWhitelistString(getType()), stringWhitelist);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the requiresPermission of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param requiresPermission the new requiresPermission of the job
+	 */
+	public void setRequiresPermission(boolean requiresPermission) {
+		this.requiresPermission = requiresPermission;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("requires-permission", requiresPermission);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets the method frequency of the job
+	 * 
+	 * This will save jobs.yml config in order to change in the configuration.
+	 * 
+	 * @param methodFrequency the new method frequency of the job
+	 */
+	public void setMethodFrequency(double methodFrequency) {
+		this.methodFrequency = methodFrequency;
+		try {
+			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("method-frequency", methodFrequency);
+			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+		} catch(IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 }

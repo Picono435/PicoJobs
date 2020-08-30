@@ -42,15 +42,21 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			return true;
 		} else if(action == 2) {
 			if(args.length < 1) {
-				p.sendMessage(LanguageManager.getMessage("no-args", p));
+				p.sendMessage(LanguageManager.getMessage("member-commands", p));
 				return true;
 			}
+			String helpString = LanguageManager.getSubCommandAlias("help");
 			String chooseString = LanguageManager.getSubCommandAlias("choose");
 			String workString = LanguageManager.getSubCommandAlias("work");
 			String salaryString = LanguageManager.getSubCommandAlias("salary");
 			String withdrawString = LanguageManager.getSubCommandAlias("withdraw");
 			String leaveString = LanguageManager.getSubCommandAlias("leave");
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+			
+			if(args[0].equalsIgnoreCase("help") || args[0].equalsIgnoreCase(helpString)) {
+				p.sendMessage(LanguageManager.getMessage("member-commands", p));
+				return true;
+			}
 			
 			if(args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase(chooseString)) {
 				if(jp.hasJob()) {
@@ -66,7 +72,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 					p.sendMessage(LanguageManager.getMessage("unknow-job", p));
 					return true;
 				}
-				if(jobTry.requiresPermission() && !p.hasPermission("picojobs.job." + jobTry.getName())) {
+				if(jobTry.requiresPermission() && !p.hasPermission("picojobs.job." + jobTry.getID())) {
 					p.sendMessage(LanguageManager.getMessage("no-permission", p));
 					return true;
 				}
@@ -130,7 +136,10 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			
-			p.sendMessage(LanguageManager.getMessage("no-args", p));
+			if(args.length < 1) {
+				p.sendMessage(LanguageManager.getMessage("member-commands", p));
+				return true;
+			}
 			return true;
 		} else {
 			JobsMenu.openMenu(p);
@@ -142,6 +151,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		Player p = (Player)sender;
 		if(cmd.getName().equalsIgnoreCase("jobs")) {
+			String help = LanguageManager.getSubCommandAlias("help");
 			String choose = LanguageManager.getSubCommandAlias("choose");
 			String work = LanguageManager.getSubCommandAlias("work");
 			String salary = LanguageManager.getSubCommandAlias("salary");
@@ -153,6 +163,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			if(args.length == 1) {
 				JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 				List<String> list = new ArrayList<String>();
+				list.add(help);
 				if(!jp.hasJob()) {
 					list.add(choose);
 				} else {
@@ -167,8 +178,8 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 				if(args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase(choose)) {
 					List<String> list = new ArrayList<String>();
 					for(Job j : PicoJobsAPI.getJobsManager().getJobs()) {
-						if(j.requiresPermission() && !p.hasPermission("picojobs.job." + j.getName())) continue;
-						list.add(j.getName());
+						if(j.requiresPermission() && !p.hasPermission("picojobs.job." + j.getID())) continue;
+						list.add(j.getID());
 					}
 					return list;
 				}
