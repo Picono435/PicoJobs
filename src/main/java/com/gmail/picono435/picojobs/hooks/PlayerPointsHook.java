@@ -15,11 +15,9 @@ public class PlayerPointsHook {
 	
 	public static void setupPlayerPoints() {
 		if(Bukkit.getPluginManager().getPlugin("PlayerPoints") == null) {
-			//PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The economy plugin PlayerPoints was not found. The POINTS economy will not be enabled.");
 			return;
 		}
 		isEnabled = true;
-		//PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] PlayerPoints was found! We are configuring the POINTS economy implementation.");
 		hookPlayerPoints();
 		PicoJobsAPI.registerEconomy(new PointsImplementation());
 	}

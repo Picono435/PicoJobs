@@ -11,7 +11,6 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
-import com.gmail.picono435.picojobs.hooks.VaultHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 import mkremins.fanciful.FancyMessage;
@@ -52,15 +51,6 @@ public class CreatePlayerListener implements Listener {
 			new FancyMessage(message)
 					.link("https://www.spigotmc.org/resources/placeholderapi.6245/")
 					.tooltip(ChatColor.RED + "Click here to install PlaceholderAPI")
-					.send(p);
-		}
-		
-		// PLACEHOLDERAPI
-		if(p.hasPermission("picojobs.admin") && !VaultHook.isEnabled()) {
-			String message = LanguageManager.formatMessage("&eThe plugin Vault was not found, please install it in order to use economy system.\n &ePS: You can disable this message anytime in the config");
-			new FancyMessage(message)
-					.link("https://dev.bukkit.org/projects/vault")
-					.tooltip(ChatColor.RED + "Click here to install Vault")
 					.send(p);
 		}
 	}

@@ -1,5 +1,7 @@
 package com.gmail.picono435.picojobs.hooks;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
@@ -7,7 +9,6 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.hooks.economy.VaultImplementation;
 
-import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
 
 public class VaultHook {
@@ -19,13 +20,11 @@ public class VaultHook {
 	
 	public static void setupVault() {
 		if(Bukkit.getPluginManager().getPlugin("Vault") == null) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The economy plugin Vault was not found. The VAULT economy will not be enabled.");
 			return;
 		}
 		isEnabled = true;
-		//PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] Vault was found! We are configuring the VAULT economy implementation.");
 		if(!setupEconomy()) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The economy plugin Vault was not found. The VAULT economy will not be enabled.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "A economy plugin from VAULT was not found. The VAULT economy type will not work.");
 			hasEconomy = false;
 		}
 		

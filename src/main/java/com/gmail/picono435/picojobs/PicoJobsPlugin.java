@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+import java.util.logging.Level;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -58,6 +58,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private boolean legacy;
 	private boolean oldVersion;
 	private String lastestPluginVersion;
+	private String downloadUrl;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -70,20 +71,18 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		Bukkit.getServer();
-		sendConsoleMessage("[PicoJobs] Plugin created by: Picono435#2011. Thank you for use it.");
+		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for use it.");
 		
 		if(checkLegacy() ) {
-			sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
-		} else {
-			sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] You are using a UPDATED spigot/bukkit. We will use the new Material Support.");
+			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
 		}
 		
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Creating and configuring internal files...");
+		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
-			sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] You were using a old configuration file... Updating it and removing comments, for more information check our WIKI.");
+			sendConsoleMessage(Level.WARNING, "You were using a old configuration file... Updating it and removing comments, for more information check our WIKI.");
 			getConfig().options().copyDefaults(true);
 			getConfig().set("config-version", getDescription().getVersion());
 			saveConfig();
@@ -91,18 +90,17 @@ public class PicoJobsPlugin extends JavaPlugin {
 		}
 		
 		
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Getting data from storage...");
+		sendConsoleMessage(Level.INFO, "Getting data from storage...");
 		if(!generateJobsFromConfig()) return;
 		PicoJobsAPI.getStorageManager().getData();
 		
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Setting up optional and required dependencies...");
+		// SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
 		PicoJobsAPI.registerEconomy(new ExpImplementation());
 		VaultHook.setupVault();
 		PlayerPointsHook.setupPlayerPoints();
 		PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
 		PlaceholderAPIHook.setupPlaceholderAPI();
 	
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Finishing enabling the plugin...");
 		//REGISTERING COMMANDS
 		this.getCommand("jobs").setExecutor(new JobsCommand());
 		this.getCommand("jobsadmin").setExecutor(new JobsAdminCommand());
@@ -133,7 +131,7 @@ public class PicoJobsPlugin extends JavaPlugin {
         }));
         metrics.addCustomChart(new Metrics.SimplePie("premium_version", () -> "Free"));
 		
-		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully enabled.");
+		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
 		
 		checkVersion();
 				
@@ -141,26 +139,26 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(saveInterval != 0) {
 			new BukkitRunnable() {
 				public void run() {
-					PicoJobsAPI.getStorageManager().saveData(false);
+					PicoJobsAPI.getStorageManager().saveData();
 				}
 			}.runTaskTimerAsynchronously(this, saveInterval, saveInterval);
 		}
 	}
 	
 	public void onDisable() {
-		sendConsoleMessage(ChatColor.AQUA + "[PicoJobs] Saving data and configurations...");
+		sendConsoleMessage(Level.INFO, "Saving data and configurations...");
 		jobs.clear();
-		PicoJobsAPI.getStorageManager().saveData(true);
+		PicoJobsAPI.getStorageManager().saveData();
 		
-		sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] The plugin was succefully disabled.");
+		sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
 	}
 	
 	public static PicoJobsPlugin getInstance() {
 		return instance;
 	}
 	
-	public void sendConsoleMessage(String message) {
-		getServer().getConsoleSender().sendMessage(message);
+	public void sendConsoleMessage(Level level, String message) {
+		this.getLogger().log(level, message);
 	}
 	
 	public boolean isLegacy() {
@@ -175,6 +173,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 		return lastestPluginVersion;
 	}
 	
+	public String getLastestDownloadUrl() {
+		return downloadUrl;
+	}
+	
 	public boolean generateJobsFromConfig() {
 		jobs.clear();
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
@@ -184,7 +186,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String tag = jobc.getString("tag");
 			String typeString = jobc.getString("type");
 			Type type = Type.getType(typeString.toUpperCase());
-			double method = getJobMethodFromConfig(jobname, type);
+			double method = jobc.getDouble(PicoJobsAPI.getJobsManager().getConfigMethod(type));
 			double salary = jobc.getDouble("salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
 			double salaryFrequency = jobc.getDouble("salary-frequency");
@@ -208,45 +210,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 			}
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
-			List<String> blockWhitelist = null;
-			if(type == Type.BREAK || type == Type.PLACE) {
-				blockWhitelist = jobc.getStringList("block-whitelist");
-			}
-			if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT) {
-				blockWhitelist = jobc.getStringList("item-whitelist");
-			}
-			List<String> entityWhitelist = null;
-			if(type == Type.KILL_ENTITY) {
-				entityWhitelist = jobc.getStringList("entity-whitelist");
-			}
+			List<String> whitelist = jobc.getStringList(PicoJobsAPI.getJobsManager().getConfigWhitelistString(type));
 			
-			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, killJob, useWhitelist, blockWhitelist, entityWhitelist);
+			Job job = new Job(jobname, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, killJob, useWhitelist, whitelist);
 			jobs.put(jobname, job);
 		}
 		return true;
-	}
-	
-	private double getJobMethodFromConfig(String jobname, Type type) {
-		ConfigurationSection cat =  FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(jobname);
-		if(type == Type.BREAK || type == Type.PLACE) {
-			return cat.getDouble("blocks");
-		}
-		if(type == Type.KILL || type == Type.KILL_ENTITY) {
-			return cat.getDouble("kills");
-		}
-		if(type == Type.FISHING) {
-			return cat.getDouble("fish");
-		}
-		if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR) {
-			return cat.getDouble("items");
-		}
-		if(type == Type.EAT) {
-			return cat.getDouble("food");
-		}
-		if(type == Type.MILK) {
-			return cat.getDouble("buckets");
-		}
-		return 0.0;
 	}
 	
 	private boolean checkLegacy() {
@@ -268,7 +237,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private void checkVersion() {
 		String version = "1.0";
 		try {
-            URL url = new URL("https://api.github.com/repos/Picono435/PicoJobs/releases");
+            URL url = new URL("https://servermods.forgesvc.net/servermods/files?projectIds=385252");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setConnectTimeout(5000);
@@ -285,35 +254,32 @@ public class PicoJobsPlugin extends JavaPlugin {
 
             JSONParser parser = new JSONParser();
             JSONArray jsonArray = (JSONArray) parser.parse(content.toString());
-            JSONObject json = (JSONObject) jsonArray.get(0);
-            version = (String)json.get("tag_name");
-			
-		} catch(Exception ex) {
-			sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] Could not get the lastest version.");
-			return;
-		}
-		try {
-			DefaultArtifactVersion pluginVesion = new DefaultArtifactVersion(getDescription().getVersion());
+            JSONObject json = (JSONObject) jsonArray.get(jsonArray.size() - 1);
+            version = (String)json.get("name");
+            version = version.replaceFirst("PicoJobs ", "");
+
+			DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(getDescription().getVersion());
 			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
 			lastestPluginVersion = version;
-			if(lastestVersion.compareTo(pluginVesion) > 0) {
+			downloadUrl = (String)json.get("downloadUrl");
+			if(lastestVersion.compareTo(pluginVersion) > 0) {
 				new BukkitRunnable() {
 					public void run() {
-						sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] You are using a old version of the plugin. Please download the new version in our pages.");
-						oldVersion = true;
+						sendConsoleMessage(Level.WARNING, "Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
 						return;
 					}
 				}.runTaskLater(this, 5L);
+				oldVersion = true;
 			} else {
 				new BukkitRunnable() {
 					public void run() {
-						sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] You are using the lastest version of the plugin.");
+						sendConsoleMessage(Level.INFO, "You are using the lastest version of the plugin.");
 						return;
 					}
 				}.runTaskLater(this, 5L);
 			}
 		} catch (Exception e) {
-			sendConsoleMessage(ChatColor.DARK_RED + "[PicoJobs] Could not get the lastest version.");
+			sendConsoleMessage(Level.WARNING, "Could not get the lastest version.");
 			return;
 		}
 	}

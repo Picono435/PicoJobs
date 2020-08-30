@@ -1,5 +1,7 @@
 package com.gmail.picono435.picojobs.hooks;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -7,7 +9,6 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.hooks.expansions.JobPlayerExpansion;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import net.md_5.bungee.api.ChatColor;
 
 public class PlaceholderAPIHook {
 	
@@ -15,11 +16,10 @@ public class PlaceholderAPIHook {
 	
 	public static void setupPlaceholderAPI() {
 		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.YELLOW + "[PicoJobs] The optional dependency PlaceholderAPI was not found. Some features may not work well!");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The optional dependency PlaceholderAPI was not found. Some features may not work well!");
 			return;
 		}
 		isEnabled = true;
-		PicoJobsPlugin.getInstance().sendConsoleMessage(ChatColor.GREEN + "[PicoJobs] PlaceholderAPI was found! We are configuring the connection between us and PlaceholderAPI.");
 		new JobPlayerExpansion(PicoJobsPlugin.getInstance()).register();
 	}
 	
