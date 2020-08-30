@@ -23,13 +23,22 @@ my-salary: "&aУ вас %jobplayer_salary%$ зарплаты."
 unknow-job: "&cЭта работа не найдена, пожалуйста, используйте TAB COMPLETE для получения списка вакансий."
 work-status: "&aВот что вам нужно сделать: %jobplayer_work%"
 admin-commands: |-
-  &6Полный список команд:
-  &e/jobsadmin help &6- &eПосмотреть это сообщение
-  &e/jobsadmin info <player> &6- &eGets информация о игроке
-  &e/jobsadmin reload &6- &eПерезагрузить все возможные конфигурации.
-  &e/jobsadmin update &6- &eУстанавливает обновление плагина
-  &e/jobsadmin о &6- &eGets информация о сервере и плагине
-  &e/jobsadmin set <salary | method> <player> <amount> &6- &eУстанавливает зарплату/метод игрока
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
+  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+member-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin choose <job> &6- &eChooses your job
+  &e/jobsadmin work &6- &eSee the status/Accept of your work
+  &e/jobsadmin salary &6- &eCheck your salary
+  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6Статус игрока %player_name%
   &eSalary: %jobplayer_salary%
@@ -94,3 +103,4 @@ aliases:
   about: "о нас"
   set: "набор"
   method: "метод"
+  settings: "settings"
