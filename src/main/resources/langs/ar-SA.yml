@@ -28,8 +28,17 @@ admin-commands: |-
   &e/jobsadmin info <player> &6- &eالحصول على معلومات حول اللاعب
   &e/jobsadmin reload &6- &eReload جميع التكوينات الممكنة.
   &e/jobsadmin upd&6- &eInstalls تحديث من البرنامج المساعد
-  &e/jobsadmin حول &6- معلومات &eGets حول الخادم والملحق
-  &e/jobsadmin مجموعة <salary | method> <player> <amount> &6- &eيحدد الراتب/الأسلوب الخاص باللاعب
+  &e/jobsadmin حول &6- &eGets معلومات حول الخادم و البرنامج المساعد
+  &e/jobsadmin set <salary | method> <player> <amount> &6- &e&eيحدد الراتب/طريقة اللاعب
+  &e/jobsadmin setting&6- eفتح قائمة الـ SETTINGs من البرنامج المساعد
+member-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin choose <job> &6- &eChooses your job
+  &e/jobsadmin work &6- &eSee the status/Accept of your work
+  &e/jobsadmin salary &6- &eCheck your salary
+  &e/jobsadmin withdraw &6- &eWithdraw your salary
+  &e/jobsadmin leave &6- &eLeaves the job
 info-command: |-
   &6 حالة اللاعب %player_name%
   &eSalary: %jobplayer_salary%
@@ -94,3 +103,4 @@ aliases:
   about: "حول"
   set: "تعيين"
   method: "طريقة"
+  settings: "settings"
