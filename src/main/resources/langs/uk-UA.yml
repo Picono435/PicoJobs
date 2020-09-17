@@ -63,7 +63,6 @@ sucefully: "&aЦя дія була успішно зроблена."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "зупинити %a% блоків"
 kill-work: "вбити %a% людей"
-kill-specific-work: "вбити %a% людей у роботі %b%"
 fishing-work: "риби %a% риб"
 place-work: "розмістити %a% блоків"
 craft-work: "виробити %a% товарів"
@@ -73,7 +72,6 @@ enchanting-work: "зачаровані %a% елементи"
 repair-work: "ремонтувати %a% товарів"
 milk-work: "взяти %a% молока з корів"
 kill_entity-work: "вбити %a% об'єктів"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Без ефекту"
 ##################################################################################
