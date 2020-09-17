@@ -53,6 +53,7 @@ already-updated: "&cPlugin je již v poslední verzi, pro více informací se po
 update-started: "&aAktualizace pluginu PicoJobs začala, prosím čekejte..."
 updated-sucefully: "&aDoplněk byl bezpečně aktualizován, prosím restartujte server pro dokončení aktualizace."
 sucefully: "&aAkce byla určitě provedena."
+invalid-arg: "&aOdeslaný argument je neplatný. Zkontrolujte prosím chybné hlášení."
 ##################################################################################
 ##
 #Format messages                                                               #
