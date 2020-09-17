@@ -53,6 +53,7 @@ already-updated: "&cDette plugin er allerede i den seneste version, for mere inf
 update-started: "&aOpdateringen af plugin PicoJobs startede, vent venligst..."
 updated-sucefully: "&aPlugin blev opdateret sucefuld, genstart venligst serveren for at afslutte opdateringen."
 sucefully: "&aHandlingen blev foretaget sucefuldt."
+invalid-arg: "&aThe argument sent is invalid. Please check the mispell. (Automatic Copy)"
 ##################################################################################
 ##
 #Format messages                                                               #
