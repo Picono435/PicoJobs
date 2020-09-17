@@ -63,7 +63,6 @@ sucefully: "&aDie Aktion wurde erfolgreich durchgeführt."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "%a% Blöcke brechen"
 kill-work: "töte %a% Menschen"
-kill-specific-work: "töte %a% Personen des Jobs %b%"
 fishing-work: "fische %a% Fische"
 place-work: "stelle %a% Blöcke"
 craft-work: "Stelle %a% Items her"
@@ -73,7 +72,6 @@ enchanting-work: "verzaubern %a% Elemente"
 repair-work: "repariere %a% Items"
 milk-work: "nehme %a% Milch von Kühen"
 kill_entity-work: "töte %a% Entitäten"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Keine"
 ##################################################################################
