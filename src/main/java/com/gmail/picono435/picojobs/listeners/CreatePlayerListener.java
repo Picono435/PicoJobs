@@ -47,7 +47,7 @@ public class CreatePlayerListener implements Listener {
 		
 		// PLACEHOLDERAPI
 		if(p.hasPermission("picojobs.admin") && !PlaceholderAPIHook.isEnabled()) {
-			String message = LanguageManager.formatMessage("&eThe plugin PlaceholderAPI was not found, please install it in order to use placeholders.\n &ePS: You can disable this message anytime in the config");
+			String message = LanguageManager.formatMessage("&eThe &eplugin &ePlaceholderAPI &ewas &enot &efound, &eplease &einstall &eit &ein &eorder &eto &euse &eplaceholders.\n &ePS: You can disable this message anytime in the config");
 			new FancyMessage(message)
 					.link("https://www.spigotmc.org/resources/placeholderapi.6245/")
 					.tooltip(ChatColor.RED + "Click here to install PlaceholderAPI")

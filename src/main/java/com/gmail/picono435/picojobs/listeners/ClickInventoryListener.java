@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -384,7 +385,7 @@ public class ClickInventoryListener implements Listener {
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
-				p.sendMessage(LanguageManager.getMessage("unknow-error", p));
+				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
 				menuJobs.remove(p);
 				return;
@@ -402,7 +403,7 @@ public class ClickInventoryListener implements Listener {
 		if(action == MenuAction.SETJOBTYPE) {
 			Type type = Type.getType(e.getMessage());
 			if(type == null) {
-				p.sendMessage(LanguageManager.getMessage("unknow-error", p));
+				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
 				menuJobs.remove(p);
 				return;
@@ -420,7 +421,7 @@ public class ClickInventoryListener implements Listener {
 		if(action == MenuAction.SETECONOMY) {
 			EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(e.getMessage());
 			if(economy == null) {
-				p.sendMessage(LanguageManager.getMessage("unknow-error", p));
+				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
 				menuJobs.remove(p);
 				return;
@@ -440,7 +441,7 @@ public class ClickInventoryListener implements Listener {
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
-				p.sendMessage(LanguageManager.getMessage("unknow-error", p));
+				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
 				menuJobs.remove(p);
 				return;
@@ -460,7 +461,7 @@ public class ClickInventoryListener implements Listener {
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
-				p.sendMessage(LanguageManager.getMessage("unknow-error", p));
+				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
 				menuJobs.remove(p);
 				return;
@@ -532,7 +533,7 @@ public class ClickInventoryListener implements Listener {
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
-				p.sendMessage(LanguageManager.getMessage("unknow-error", p));
+				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
 				menuJobs.remove(p);
 				return;

@@ -109,9 +109,9 @@ public class SettingsMenu {
 		inv.setItem(39, new ItemBuilder(Material.CHEST).setName(ChatColor.AQUA + "GUI Settings").setLore("", ChatColor.GRAY + "Click here to access the GUI settings.", "").removeAttributes().toItemStack());
 		Material oakFence = null;
 		if(PicoJobsPlugin.getInstance().isLegacy()) {
-			inv.setItem(19, new ItemBuilder(Enum.valueOf(Material.class, "FENCE")).setName(ChatColor.AQUA + "Job Type").setLore("", ChatColor.GRAY + "Click here to change the job type.", "", ChatColor.DARK_GRAY + "Current type: " + job.getType().name(), "").removeAttributes().toItemStack());
+			oakFence = Enum.valueOf(Material.class, "FENCE");
 		} else {
-			inv.setItem(19, new ItemBuilder(Material.OAK_FENCE).setName(ChatColor.AQUA + "Job Type").setLore("", ChatColor.GRAY + "Click here to change the job type.", "", ChatColor.DARK_GRAY + "Current type: " + job.getType().name(), "").removeAttributes().toItemStack());
+			oakFence = Material.OAK_FENCE;
 		}
 		inv.setItem(40, new ItemBuilder(oakFence).setName(ChatColor.AQUA + "Requires Permission").setLore("", ChatColor.GRAY + "Click here to change the Requires Permission.", "", ChatColor.DARK_GRAY + "Current requires permission: " + job.getMethodFrequency(), ChatColor.DARK_GRAY + "picojobs.job." + job.getID(), "").removeAttributes().toItemStack());
 		if(job.requiresPermission()) {
