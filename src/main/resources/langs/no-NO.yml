@@ -63,7 +63,6 @@ sucefully: "&aThe action was made sucefully."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "knus %a% blokker"
 kill-work: "drep %a% personer"
-kill-specific-work: "drep %a% folk av jobben %b%"
 fishing-work: "fisk %a% fisk"
 place-work: "plasser %a% blokker"
 craft-work: "Lag %a% gjenstander"
@@ -73,7 +72,6 @@ enchanting-work: "fortrylle %a% gjenstander"
 repair-work: "reparasjon %a% elementer"
 milk-work: "ta %a% melker fra kuer"
 kill_entity-work: "drep %a% enheter"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Ingen"
 ##################################################################################
