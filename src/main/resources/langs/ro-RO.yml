@@ -64,7 +64,6 @@ sucefully: "&aActiunea a fost facuta in mod corespunzator."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "distruge blocuri %a%"
 kill-work: "omoară %a% persoane"
-kill-specific-work: "omoară %a% persoane de la locul de muncă %b%"
 fishing-work: "pescuiește %a% pește"
 place-work: "plasează %a% blocuri"
 craft-work: "meșteșugește %a% obiecte"
@@ -74,7 +73,6 @@ enchanting-work: "enchant %a% articole"
 repair-work: "repară %a% elemente"
 milk-work: "ia %a% lapte de la vaci"
 kill_entity-work: "omoară %a% entități"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Niciunul"
 ##################################################################################
