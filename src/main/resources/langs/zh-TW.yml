@@ -53,6 +53,7 @@ already-updated: "&cThe plugin is already in the lastest version, for more infor
 update-started: "&aThe update of the plugin PicoJobs started, please wait..."
 updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
 sucefully: "&aThe action was made sucefully."
+invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 ##################################################################################
 ##
 #Format messages                                                               #
