@@ -53,6 +53,7 @@ already-updated: "&cLiitännäinen on jo viimeisimmässä versiossa, ja lisää 
 update-started: "&aLiitännäisen PicoJobs päivitys alkoi, odota hetki..."
 updated-sucefully: "&aLiitännäinen päivitettiin onnistuneesti, ole hyvä ja käynnistä palvelin uudelleen lopettaaksesi päivityksen."
 sucefully: "&aToiminto tehtiin erinomaisesti."
+invalid-arg: "&aLähetetty argumentti on virheellinen. Tarkista virhe."
 ##################################################################################
 ##
 #Format messages                                                               #
