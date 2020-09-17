@@ -214,15 +214,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 			
 			// CALCULATING OPTIONALS
 			
-			String killJob = "";
-			if(type == Type.KILL && jobc.getString("kill-job") != null && !jobc.getString("kill-job").equalsIgnoreCase("all")) {
-				killJob = jobc.getString("kill-job");
-			}
-			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
 			List<String> whitelist = jobc.getStringList(PicoJobsAPI.getJobsManager().getConfigWhitelistString(type));
 			
-			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, killJob, useWhitelist, whitelist);
+			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);
 						
 			metrics.addCustomChart(new Metrics.DrilldownPie("jobs", () -> {
@@ -237,11 +232,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 		        Map<String, Map<String, Integer>> map = new HashMap<>();
 		        Map<String, Integer> entry = new HashMap<>();
 		        String eco = job.getEconomy();
-		        entry.put(eco, 1);
-		        if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
-		        	map.put(VaultHook.getEconomy().getName(), entry);
+		        if(eco.equalsIgnoreCase("VAULT")) {
+		        	if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
+		        		entry.put(VaultHook.getEconomy().getName(), 1);
+			        } else {
+			        	entry.put("Vault", 1);
+			        }
+		        	map.put("VAULT", entry);
 		        } else {
-		        	map.put("Other", entry);
+		        	entry.put(eco, 1);
+		        	map.put(eco, entry);
 		        }
 		        return map;
 		    }));

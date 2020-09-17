@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -372,7 +373,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETSALARY) {
 			double value = 0;
@@ -388,7 +389,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETJOBTYPE) {
 			Type type = Type.getType(e.getMessage());
@@ -402,7 +403,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETECONOMY) {
 			EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(e.getMessage());
@@ -416,7 +417,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETREQMETHOD) {
 			double value = 0;
@@ -432,7 +433,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETSALARYFREQ) {
 			double value = 0;
@@ -448,7 +449,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETWHITELIST) {
 			String[] values = e.getMessage().split(", ");
@@ -464,6 +465,11 @@ public class ClickInventoryListener implements Listener {
 				} else if(whitelistConf == WhitelistConf.ENTITY) {
 					if(OtherUtils.getEntityByName(noFormat) == null) {
 						p.sendMessage(LanguageManager.formatMessage("&cERROR: We could not found any entity with the name " + noFormat + ". Continuing to the next value..."));
+						continue;
+					}
+				} else if(whitelistConf == WhitelistConf.JOB) {
+					if(PicoJobsAPI.getJobsManager().getJob(noFormat) == null) {
+						p.sendMessage(LanguageManager.formatMessage("&cERROR: We could not found any job with the ID " + noFormat + ". Continuing to the next value..."));
 						continue;
 					}
 				}
@@ -491,7 +497,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 		if(action == MenuAction.SETMETHODFREQ) {
 			double value = 0;
@@ -507,7 +513,7 @@ public class ClickInventoryListener implements Listener {
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
 			menuJobs.remove(p);
-			SettingsMenu.openJobEdit(p, job);
+			Bukkit.getScheduler().runTask(PicoJobsPlugin.getInstance(), task -> SettingsMenu.openJobEdit(p, job));
 		}
 	}
 	

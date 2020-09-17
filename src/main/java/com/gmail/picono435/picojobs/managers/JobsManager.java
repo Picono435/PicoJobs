@@ -89,21 +89,27 @@ public class JobsManager {
 		if(type == Type.BREAK || type == Type.PLACE) {
 			return "block-whitelist";
 		}
-		if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT) {
+		if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT || type == Type.FISHING) {
 			return "item-whitelist";
 		}
 		if(type == Type.KILL_ENTITY) {
 			return "entity-whitelist";
 		}
+		if(type == Type.KILL) {
+			return "job-whitelist";
+		}
 		return "block-whitelist";
 	}
 	
 	public WhitelistConf getConfigWhitelist(Type type) {
-		if(type == Type.BREAK || type == Type.PLACE || type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT) {
+		if(type == Type.BREAK || type == Type.PLACE || type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT || type == Type.FISHING) {
 			return WhitelistConf.MATERIAL;
 		}
 		if(type == Type.KILL_ENTITY) {
 			return WhitelistConf.ENTITY;
+		}
+		if(type == Type.KILL) {
+			return WhitelistConf.JOB;
 		}
 		return WhitelistConf.MATERIAL;
 	}

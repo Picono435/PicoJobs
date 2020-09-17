@@ -9,12 +9,9 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import net.md_5.bungee.api.ChatColor;
 
 /**
  * This class will be registered through the register-method in the 
@@ -128,22 +125,12 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	if(job == null) {
         		return LanguageManager.getFormat("none-format", p);
         	}
-        	Type type = job.getType();
-        	String configString = type.name().toLowerCase() + "-work";
-        	if(type == Type.KILL && !job.getKillJob().equals("")) {
-        		configString = "kill-specific-work";
-        	}
         	double level = jp.getMethodLevel();
         	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
         	double value = reqmethod - jp.getMethod();
-        	String work = LanguageManager.getFormat("general-work", p);
-        	if(!job.getWorkMessage().equals("")) {
-        		work = work.replace("%a%", PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', job.getWorkMessage())));
-        	} else {
-        		work = work.replace("%a%", LanguageManager.getFormat(configString, p));
-        	}
-        	work = work.replace("%a%", df.format(value));
-        	return work;
+        	String workMessage = job.getWorkMessage();
+        	workMessage = workMessage.replace("%a%", df.format(value));
+        	return workMessage;
         }
         
         if(identifier.equals("salary")) {
@@ -154,6 +141,6 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
         	return jp.isWorking() + "";
         }
 
-        return "Incorrect Placeholder.";
+        return "[NULL_PLACEHOLDER]";
     }
 }

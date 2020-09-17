@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs.listeners.jobs;
 
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +24,8 @@ public class FisherListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(job.getType() != Type.FISHING) return;
+		if(!(e.getCaught() instanceof Item)) return;
+		if(!job.inWhitelist(((Item)e.getCaught()).getItemStack().getType())) return;
 		
 		if(jp.simulateEvent(job.getType())) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));

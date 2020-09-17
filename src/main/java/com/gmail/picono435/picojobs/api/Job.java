@@ -10,8 +10,11 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
+import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
@@ -43,12 +46,11 @@ public class Job {
 	private boolean enchanted;
 	
 	// OPTIONAL
-	private String killJob;
 	private boolean useWhitelist;
 	private List<Object> whitelist;
 	private List<String> stringWhitelist;
 	
-	public Job(String id, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, String killJob, boolean useWhitelist, List<String> whitelist) {
+	public Job(String id, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -67,7 +69,6 @@ public class Job {
 		this.itemData = itemData;
 		this.enchanted = enchanted;
 		
-		this.killJob = killJob;
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
 			WhitelistConf whitelistConf = PicoJobsAPI.getJobsManager().getConfigWhitelist(type);
@@ -83,8 +84,22 @@ public class Job {
 					list.add(OtherUtils.getEntityByName(s));
 				}
 				this.whitelist = new ArrayList<Object>(list);
+			} else if(whitelistConf == WhitelistConf.JOB) {
+				Job j = this;
+				new BukkitRunnable() {
+					public void run() {
+						List<Job> list = new ArrayList<Job>();
+						for(String s : whitelist) {
+							System.out.println(s + " " + PicoJobsAPI.getJobsManager().getJob(s).getID());
+							list.add(PicoJobsAPI.getJobsManager().getJob(s));
+						}
+						j.whitelist = new ArrayList<Object>(list);
+					}
+				}.runTask(PicoJobsPlugin.getInstance());
 			}
 			this.stringWhitelist = whitelist;
+		} else {
+			this.whitelist = new ArrayList<Object>();
 		}
 	}
 	
@@ -205,10 +220,16 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWorkMessage() {
+		String configString = type.name().toLowerCase() + "-work";
+		String work = "";
+		
 		if(workMessage == null) {
-			return "";
+			work = LanguageManager.getFormat(configString, null);
+		} else {
+			work = PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', workMessage));
 		}
-		return workMessage;
+		
+		return work;
 	}
 	
 	/**
@@ -291,16 +312,6 @@ public class Job {
 	}
 	
 	/**
-	 * Gets the job that needs to be killed. This does not verify if its a KILL job type, it will return an empty string if there is no kill job.
-	 * 
-	 * @return the kill job, an empty string if there is none
-	 * @author Picono435
-	 */
-	public String getKillJob() {
-		return killJob;
-	}
-	
-	/**
 	 * Checks if a material is in the whitelist
 	 * 
 	 * @param material the material that you want to check
@@ -308,8 +319,8 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(Material material) {
-		if(whitelist == null) return true;
-		if(whitelist.size() <= 0) return true;
+		if(whitelist == null) return (useWhitelist) ? false : true;
+		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
 		if(useWhitelist) {
 			return whitelist.contains(material);
 		} else {
@@ -325,12 +336,30 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(EntityType entity) {
-		if(whitelist == null) return true;
-		if(whitelist.size() <= 0) return true;
+		if(whitelist == null) return (useWhitelist) ? false : true;
+		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
 		if(useWhitelist) {
 			return whitelist.contains(entity);
 		} else {
 			return !whitelist.contains(entity);
+		}
+	}
+	
+	/**
+	 * Checks if a job is in the whitelist
+	 * 
+	 * @param job the job that you want to check
+	 * @return true if it's in the whitelist or there is no whitelist, false if not
+	 * @author Picono435
+	 */
+	public boolean inWhitelist(Job job) {
+		if(whitelist == null) return (useWhitelist) ? false : true;
+		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
+		if(job == null) return (useWhitelist) ? false : true;
+		if(useWhitelist) {
+			return whitelist.contains(job);
+		} else {
+			return !whitelist.contains(job);
 		}
 	}
 	
@@ -502,6 +531,12 @@ public class Job {
 			List<EntityType> list = new ArrayList<EntityType>();
 			for(String s : whitelist) {
 				list.add(OtherUtils.getEntityByName(s));
+			}
+			this.whitelist = new ArrayList<Object>(list);
+		} else if(whitelistConf == WhitelistConf.JOB) {
+			List<Job> list = new ArrayList<Job>();
+			for(String s : whitelist) {
+				list.add(PicoJobsAPI.getJobsManager().getJob(s));
 			}
 			this.whitelist = new ArrayList<Object>(list);
 		}

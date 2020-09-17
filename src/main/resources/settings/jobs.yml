@@ -285,6 +285,10 @@ jobs:
     method-frequency: 0.2
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
+    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    use-whitelist: false
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    item-whitelist: ["NAME_TAG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "fish %a% fishes"
     # Choose Job Menu settings
@@ -298,7 +302,7 @@ jobs:
       # If you want to the item be enchanted or not
       enchanted: false
       
-  # This is a example of a fisherman job
+  # This is a example of a weaponsmith job
   weaponsmith:
     # The display name of the job
     displayname: "&8Weaponsmith"
@@ -335,7 +339,7 @@ jobs:
       # If you want to the item be enchanted or not
       enchanted: false
       
-  # This is a example of a hunter job
+  # This is a example of a killer job
   killer:
     # The display name of the job
     displayname: "&9Killer"
@@ -345,8 +349,6 @@ jobs:
     type: "kill"
     # Put here the default kills, (this change depends on the frequency)
     kills: 20
-    # The job that you want to be killed that [all = well... ALL jobs xD]
-    kill-job: "all"
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -357,6 +359,10 @@ jobs:
     method-frequency: 0.8
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
+    # Use whitelist or blacklist - OPTIONAL [requires="job-whitelist"]
+    use-whitelist: false
+    # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
+    job-whitelist: ["weaponsmith"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "kill %a% people"
     # Choose Job Menu settings

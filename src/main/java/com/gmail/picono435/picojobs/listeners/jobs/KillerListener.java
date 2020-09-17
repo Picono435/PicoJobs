@@ -22,11 +22,9 @@ public class KillerListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(job.getType() != Type.KILL) return;
-		if(!job.getKillJob().equals("")) {
-			JobPlayer jdead = PicoJobsAPI.getPlayersManager().getJobPlayer(e.getEntity());
-			if(jdead.getJob() == null) return;
-			if(!jdead.getJob().getID().equals(job.getKillJob())) return;
-		}
+		
+		JobPlayer jdead = PicoJobsAPI.getPlayersManager().getJobPlayer(e.getEntity());
+		if(!job.inWhitelist(jdead.getJob())) return;
 		
 		if(jp.simulateEvent(job.getType())) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));

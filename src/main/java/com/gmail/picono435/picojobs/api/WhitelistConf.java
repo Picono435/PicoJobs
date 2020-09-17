@@ -8,5 +8,6 @@ package com.gmail.picono435.picojobs.api;
  */
 public enum WhitelistConf {
 	MATERIAL(),
-	ENTITY();
+	ENTITY(),
+	JOB();
 }

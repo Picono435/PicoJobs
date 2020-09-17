@@ -65,7 +65,6 @@ sucefully: "&aThe action was made sucefully."
 # Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "break %a% blocks"
 kill-work: "kill %a% people"
-kill-specific-work: "kill %a% people of the job %b%"
 fishing-work: "fish %a% fishes"
 place-work: "place %a% blocks"
 craft-work: "craft %a% items"
@@ -75,7 +74,6 @@ enchanting-work: "enchant %a% items"
 repair-work: "repair %a% items"
 milk-work: "take %a% milks from cows"
 kill_entity-work: "kill %a% entities"
-general-work: "%a%"
 # When something is not find what should it appear
 none-format: "None"
 
