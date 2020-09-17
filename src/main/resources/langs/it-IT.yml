@@ -53,6 +53,7 @@ already-updated: "&cIl plugin è già nell'ultima versione, per maggiori informa
 update-started: "&aL'aggiornamento del plugin PicoJobs avviato, attendere prego..."
 updated-sucefully: "&aIl plugin è stato aggiornato abbondantemente, si prega di riavviare il server per completare l'aggiornamento."
 sucefully: "&aL'azione è stata fatta in modo succoso."
+invalid-arg: "&aL'argomento inviato non è valido. Si prega di controllare l'errore."
 ##################################################################################
 ##
 #Format messages                                                               #
