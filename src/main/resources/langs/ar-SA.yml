@@ -63,7 +63,6 @@ sucefully: "&aتم اتخاذ الإجراء بشكل مناسب."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "قطع %a% كتل"
 kill-work: "قتل %a% من الناس"
-kill-specific-work: "اقتل %a% من الناس في الوظيفة %b%"
 fishing-work: "السمك %a% من الأسماك"
 place-work: "وضع %a% كتل"
 craft-work: "صنع %a% عنصر"
@@ -73,7 +72,6 @@ enchanting-work: "عنصر مشعل %a%"
 repair-work: "إصلاح %a% عنصر"
 milk-work: "أخذ %a% من الحليب من الأبقار"
 kill_entity-work: "اقتل %aمن الكيانات"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "لا"
 ##################################################################################
