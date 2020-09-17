@@ -53,6 +53,7 @@ already-updated: "&c此插件已经在最后测试版本中，以获取更多信
 update-started: "&a插件PicoJobs的更新已开始，请稍候..."
 updated-sucefully: "&a此插件已成功更新，请重新启动服务器以完成更新。"
 sucefully: "&a该行动已经正式作出。"
+invalid-arg: "&a发送的参数无效。请检查丢失。"
 ##################################################################################
 ##
 #Format messages                                                               #
