@@ -53,6 +53,7 @@ already-updated: "&cDe plugin is al in de laatste versie, voor meer informatie b
 update-started: "&aDe update van de plugin PicoJobs is gestart, even geduld..."
 updated-sucefully: "&aDe plugin is succesvol bijgewerkt, herstart de server om de update af te ronden."
 sucefully: "&aDe actie is overvloedig."
+invalid-arg: "&aHet verzonden argument is ongeldig. Controleer het mispell."
 ##################################################################################
 ##
 #Format messages                                                               #
