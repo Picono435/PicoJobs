@@ -63,7 +63,6 @@ sucefully: "&aToiminto tehtiin erinomaisesti."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "tauko %a% lohkoa"
 kill-work: "tappaa %a% ihmistä"
-kill-specific-work: "tappaa %a% työpaikasta %b%"
 fishing-work: "kala %a% kaloja"
 place-work: "aseta %a% lohkoja"
 craft-work: "laukaise %a% kohteita"
@@ -73,7 +72,6 @@ enchanting-work: "enchant %a% kohteita"
 repair-work: "korjaa %a% kohteita"
 milk-work: "ottaa %a% maitoa lehmistä"
 kill_entity-work: "tappaa %a% entiteetit"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "None"
 ##################################################################################
