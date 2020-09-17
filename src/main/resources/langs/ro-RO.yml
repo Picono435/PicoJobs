@@ -54,6 +54,7 @@ already-updated: "&cPlugin-ul este deja in ultima versiune, pentru mai multe inf
 update-started: "&aActualizarea plugin-ului PicoJobs a pornit, te rugam sa astepti..."
 updated-sucefully: "&aPlugin-ul a fost actualizat complet, te rugam restarteaza serverul pentru a termina actualizarea."
 sucefully: "&aActiunea a fost facuta in mod corespunzator."
+invalid-arg: "&aArgumentul trimis nu este valid. Te rugam sa verifici gresita."
 ##################################################################################
 ##
 #Format messages                                                               #
