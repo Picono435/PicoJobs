@@ -63,7 +63,6 @@ sucefully: "&aアクションは正常に行われました。"
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "%a%ブロックを破壊する"
 kill-work: "%a%の人を殺す"
-kill-specific-work: "kill %a% people of the job %b%"
 fishing-work: "魚 %a% 魚"
 place-work: "%a%ブロックを置く"
 craft-work: "%a%のアイテムをクラフトする"
@@ -73,7 +72,6 @@ enchanting-work: "%a%のアイテムをエンチャントする"
 repair-work: "%a%のアイテムを修理する"
 milk-work: "牛乳から %a% ミルクを採取する"
 kill_entity-work: "%a%のエンティティをキルする"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "なし"
 ##################################################################################
