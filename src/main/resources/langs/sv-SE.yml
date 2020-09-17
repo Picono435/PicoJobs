@@ -63,7 +63,6 @@ sucefully: "&aÅtgärden gjordes noggrant."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "bryta %a% block"
 kill-work: "döda %a% personer"
-kill-specific-work: "döda %a% personer av jobbet %b%"
 fishing-work: "fisk %a% fiskar"
 place-work: "placera %a% block"
 craft-work: "tillverka %a% objekt"
@@ -73,7 +72,6 @@ enchanting-work: "förtrolla %a% objekt"
 repair-work: "reparera %a% objekt"
 milk-work: "ta %a% mjölk från kor"
 kill_entity-work: "döda %a% enheter"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Ingen"
 ##################################################################################
