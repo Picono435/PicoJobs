@@ -63,7 +63,6 @@ sucefully: "&aDe actie is overvloedig."
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "pak %a% blokken"
 kill-work: "versla %a% mensen"
-kill-specific-work: "dood %a% mensen van de baan %b%"
 fishing-work: "Vis %a% vissen"
 place-work: "plaats %a% blokken"
 craft-work: "maak %a% voorwerpen"
@@ -73,7 +72,6 @@ enchanting-work: "betover %a% items"
 repair-work: "repareer %a% items"
 milk-work: "neem %a% melk van koeien"
 kill_entity-work: "dood %a% entiteiten"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "geen"
 ##################################################################################
