@@ -53,6 +53,7 @@ already-updated: "&cEl plugin ya está en la ultima versiÃ³n, para mÃ¡s info
 update-started: "&aLa actualización del plugin PicoJobs ha comenzado, por favor espere..."
 updated-sucefully: "&aEl plugin ha sido actualizado con éxito, por favor reinicie el servidor para finalizar la actualización."
 sucefully: "&aLa acción se realizó con éxito."
+invalid-arg: "&aEl argumento enviado no es válido. Por favor, comprueba el error."
 ##################################################################################
 ##
 #Format messages                                                               #
