@@ -53,6 +53,7 @@ already-updated: "&cWtyczka jest już w ostatniej wersji, aby uzyskać więcej i
 update-started: "&aAktualizacja wtyczki PicoJobs rozpoczęta, proszę czekać..."
 updated-sucefully: "&aWtyczka została zaktualizowana, uruchom ponownie serwer, aby zakończyć aktualizację."
 sucefully: "&aAkcja została wykonana z pewnością."
+invalid-arg: "&aWysłany argument jest nieprawidłowy. Proszę sprawdzić nieprawidłowość."
 ##################################################################################
 ##
 #Format messages                                                               #
