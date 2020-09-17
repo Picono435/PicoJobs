@@ -63,7 +63,6 @@ sucefully: "&aДействие было выполнено должным обр
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "сломать %a% блоков"
 kill-work: "убить %a% людей"
-kill-specific-work: "убить %a% людей из работы %b%"
 fishing-work: "рыбья %a% рыбы"
 place-work: "разместить %a% блоков"
 craft-work: "создать %a% предметов"
@@ -73,7 +72,6 @@ enchanting-work: "зачаровать %a% элементов"
 repair-work: "ремонт %a% предметов"
 milk-work: "возьмите %a% молока у коров"
 kill_entity-work: "убить %a% сущностей"
-general-work: "%a%"
 #When something is not find what should it appear
 none-format: "Нет"
 ##################################################################################
