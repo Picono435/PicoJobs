@@ -25,7 +25,7 @@ public class PlaceholderAPIHook {
 	
 	public static void setupPlaceholderAPI() {
 		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The optional dependency PlaceholderAPI was not found. Some features may not work well!");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The recommended dependency PlaceholderAPI was not found. Some features may not work well!");
 			return;
 		}
 		isEnabled = true;
