@@ -48,7 +48,7 @@ info-command: |-
 reload-command: "&aConfigurations, Jobs & Language已成功重新加载。"
 player-not-found: "&c该玩家未上线，请放置一个有效的玩家。"
 unknow-error: "&c发生未知错误，请检查控制台获取更多信息。"
-left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
+left-job: "&c你没有失业！我们建议你选择一个新的工作或者你会丢失很多钱。"
 already-updated: "&c此插件已经在最后测试版本中，以获取更多信息检查我们的 WIKI。"
 update-started: "&a插件PicoJobs的更新已开始，请稍候..."
 updated-sucefully: "&a此插件已成功更新，请重新启动服务器以完成更新。"
