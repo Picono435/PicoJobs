@@ -27,6 +27,7 @@ public class SettingsMenu {
 	public static List<Inventory> jobListInventories = new ArrayList<Inventory>();
 	public static Map<Inventory, Job> jobSettingsInventories = new HashMap<Inventory, Job>();
 	public static Map<Inventory, Job> jobEditInventories = new HashMap<Inventory, Job>();
+	public static Map<Inventory, Job> jobEditGUIInventories = new HashMap<Inventory, Job>();
 	
 	public static void openGeneral(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Settings");
@@ -122,5 +123,13 @@ public class SettingsMenu {
 		p.closeInventory();
 		p.openInventory(inv);
 		jobEditInventories.put(inv, job);
+	}
+	
+	public static void openJobEditGUI(Player p, Job job) {
+		Inventory inv = Bukkit.createInventory(null, 54, "PicoJobs - Settings");
+		
+		// WORK
+		
+		jobEditGUIInventories.put(inv, job);
 	}
 }

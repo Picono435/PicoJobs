@@ -39,7 +39,7 @@ public class JobsMenu {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static Inventory getChooseJobMenu(ConfigurationSection guiSettings) {
+	public static Inventory getChooseJobMenu(ConfigurationSection guiSettings) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("choose-job");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		
