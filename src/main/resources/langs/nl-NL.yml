@@ -48,7 +48,7 @@ info-command: |-
 reload-command: "&aConfiguraties, Jobs & Taal zijn succesvol herladen."
 player-not-found: "&cDie speler is niet online, plaats een geldige speler."
 unknow-error: "&cEen onbekende fout is opgetreden, controleer de console voor meer informatie."
-left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
+left-job: "&cJe bent niet werkloos! We raden je aan een nieuwe baan te kiezen, anders verlies je veel geld."
 already-updated: "&cDe plugin is al in de laatste versie, voor meer informatie bekijk onze WIKI."
 update-started: "&aDe update van de plugin PicoJobs is gestart, even geduld..."
 updated-sucefully: "&aDe plugin is succesvol bijgewerkt, herstart de server om de update af te ronden."
