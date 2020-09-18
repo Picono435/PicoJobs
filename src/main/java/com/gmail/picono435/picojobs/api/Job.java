@@ -75,13 +75,17 @@ public class Job {
 			if(whitelistConf == WhitelistConf.MATERIAL) {
 				List<Material> list = new ArrayList<Material>();
 				for(String s : whitelist) {
-					list.add(Material.matchMaterial(s));
+					Material matNew = Material.matchMaterial(s);
+					if(matNew == null) continue;
+					list.add(matNew);
 				}
 				this.whitelist = new ArrayList<Object>(list);
 			} else if(whitelistConf == WhitelistConf.ENTITY) {
 				List<EntityType> list = new ArrayList<EntityType>();
 				for(String s : whitelist) {
-					list.add(OtherUtils.getEntityByName(s));
+					EntityType entityNew = OtherUtils.getEntityByName(s);
+					if(entityNew == null) continue;
+					list.add(entityNew);
 				}
 				this.whitelist = new ArrayList<Object>(list);
 			} else if(whitelistConf == WhitelistConf.JOB) {
@@ -90,8 +94,9 @@ public class Job {
 					public void run() {
 						List<Job> list = new ArrayList<Job>();
 						for(String s : whitelist) {
-							System.out.println(s + " " + PicoJobsAPI.getJobsManager().getJob(s).getID());
-							list.add(PicoJobsAPI.getJobsManager().getJob(s));
+							Job jobNew = PicoJobsAPI.getJobsManager().getJob(s);
+							if(jobNew == null) continue;
+							list.add(jobNew);
 						}
 						j.whitelist = new ArrayList<Object>(list);
 					}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -15,12 +16,10 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
-
-import me.clip.placeholderapi.PlaceholderAPI;
-import net.md_5.bungee.api.ChatColor;
 
 public class JobsMenu {
 	
@@ -99,9 +98,7 @@ public class JobsMenu {
 			
 			List<String> lore = itemConfig.getStringList("lore");
 			lore = lore.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
-			if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-				lore = PlaceholderAPI.setPlaceholders(p, lore);
-			}
+			lore = PlaceholderAPIHook.setPlaceholders(p, lore);
 			builder.setLore(lore);
 			
 			ItemStack item = builder.toItemStack();
@@ -163,9 +160,7 @@ public class JobsMenu {
 			
 			List<String> lore = itemConfig.getStringList("lore");
 			lore = lore.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
-			if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-				lore = PlaceholderAPI.setPlaceholders(p, lore);
-			}
+			lore = PlaceholderAPIHook.setPlaceholders(p, lore);
 			builder.setLore(lore);
 			
 			ItemStack item = builder.toItemStack();

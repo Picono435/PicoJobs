@@ -1,15 +1,9 @@
 package com.gmail.picono435.picojobs.hooks.expansions;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.JobPlayer;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
@@ -19,7 +13,6 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
  */
 public class JobPlayerExpansion extends PlaceholderExpansion {
 
-	NumberFormat df = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
     private PicoJobsPlugin plugin;
 
     /**
@@ -109,38 +102,7 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
      * @return possibly-null String of the requested identifier.
      */
     @Override
-    public String onPlaceholderRequest(Player p, String identifier){
-
-    	JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
-    	
-        if(identifier.equals("job")) {
-            if(!jp.hasJob()) {
-            	return LanguageManager.getFormat("none-format", p);
-            }
-            return jp.getJob().getDisplayName();
-        }
-        
-        if(identifier.equals("work")) {
-        	Job job = jp.getJob();
-        	if(job == null) {
-        		return LanguageManager.getFormat("none-format", p);
-        	}
-        	double level = jp.getMethodLevel();
-        	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
-        	double value = reqmethod - jp.getMethod();
-        	String workMessage = job.getWorkMessage();
-        	workMessage = workMessage.replace("%a%", df.format(value));
-        	return workMessage;
-        }
-        
-        if(identifier.equals("salary")) {
-            return df.format(jp.getSalary());
-        }
-        
-        if(identifier.equals("working")) {
-        	return jp.isWorking() + "";
-        }
-
-        return "[NULL_PLACEHOLDER]";
+    public String onPlaceholderRequest(Player p, String identifier) {
+    	return PlaceholderAPIHook.translatePlaceholders(p, identifier);
     }
 }
