@@ -174,6 +174,20 @@ public class ClickInventoryListener implements Listener {
 			e.setCancelled(true);
 			
 			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
+			if(job == null) {
+				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to go to the next page.")) {
+					int page = Integer.parseInt(e.getView().getTitle().split("\\[")[1].replace("]", "")) - 1;
+					SettingsMenu.openJobsList(p, page + 1);
+					return;
+				}
+				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to go to the previous page.")) {
+					int page = Integer.parseInt(e.getView().getTitle().split("\\[")[1].replace("]", "")) - 1;
+					if(page == 0) return;
+					SettingsMenu.openJobsList(p, page - 1);
+					return;
+				}
+				return;
+			}
 			
 			p.closeInventory();
 			SettingsMenu.openJobSettings(p, job);

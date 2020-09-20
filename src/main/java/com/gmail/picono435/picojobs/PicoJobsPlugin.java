@@ -61,6 +61,8 @@ import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
+import net.md_5.bungee.api.ChatColor;
+
 public class PicoJobsPlugin extends JavaPlugin {
 
 	//PLUGIN
@@ -109,6 +111,11 @@ public class PicoJobsPlugin extends JavaPlugin {
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
         PlaceholderAPIHook.setupPlaceholderAPI();
+        new BukkitRunnable() {
+        	public void run() {
+        		Bukkit.getConsoleSender().sendMessage("[PicoJobs] " + economies.size() + " " + ChatColor.GREEN + "economy implementations successfully registered!");
+        	}
+        }.runTaskLater(this, 1L);
         
         // GETTING DATA FROM STORAGE
 		sendConsoleMessage(Level.INFO, "Getting data from storage...");

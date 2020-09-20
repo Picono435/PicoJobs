@@ -39,13 +39,27 @@ public class SettingsMenu {
 	}
 	
 	public static void openJobsList(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 54, "PicoJobs - Settings");
+		openJobsList(p, 0);
+	}
+	
+	public static void openJobsList(Player p, int page) {
+		int page1 = page + 1;
+		
+		Inventory inv = Bukkit.createInventory(null, 54, "PicoJobs - Settings [" + page1 + "]");
 		
 		List<Job> jobs = new ArrayList<Job>(PicoJobsAPI.getJobsManager().getJobs());
-		for(int i = 0; i < jobs.size(); i++) {
-			inv.setItem(i, jobs.get(i).getFormattedItem());
+		int slot = 0;
+		for(int i = 44 * page; i < 44; i++) {
+			if((i + 1) > jobs.size()) break;
+			if(i == 44 * page1) break;
+			inv.setItem(slot, jobs.get(i).getFormattedItem());
+			slot++;
 		}
-	
+		
+		inv.setItem(48, new ItemBuilder(Material.MAP).setName(ChatColor.YELLOW + "Previous Page [" + (page1 - 1) + "]").setLore(ChatColor.GRAY + "Click to go to the previous page.").toItemStack());
+		inv.setItem(49, new ItemBuilder(Material.PAPER).setName(ChatColor.GREEN + "Create Job").toItemStack());
+		inv.setItem(50, new ItemBuilder(Material.MAP).setName(ChatColor.YELLOW + "Next Page [" + (page1 + 1) + "]").setLore(ChatColor.GRAY + "Click to go to the next page.").toItemStack());
+		
 		p.openInventory(inv);
 		jobListInventories.add(inv);
 	}
