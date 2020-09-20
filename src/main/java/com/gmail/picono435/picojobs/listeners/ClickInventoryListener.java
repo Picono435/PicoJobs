@@ -30,6 +30,7 @@ import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
 
 import mkremins.fanciful.FancyMessage;
+import net.md_5.bungee.api.ChatColor;
 
 public class ClickInventoryListener implements Listener {
 	
@@ -333,6 +334,9 @@ public class ClickInventoryListener implements Listener {
 					job.setWhitelistType(true);
 				}
 				SettingsMenu.openJobEdit(p, job);
+			}
+			case(39): {
+				p.sendMessage(ChatColor.RED + "This feature is not added yet. For more information check our discord. PicoJobs v" + PicoJobsPlugin.getInstance().getDescription().getVersion());
 			}
 			case(40): {
 				if(job.requiresPermission()) {
