@@ -19,16 +19,16 @@ public class TimeFormatter {
 		StringBuilder sb = new StringBuilder();
 		
 		if (days > 0)
-			sb.append(days + (days == 1 ? " minecraft " + LanguageManager.getTimeFormat("day") : " minecraft " + LanguageManager.getTimeFormat("day")));
+			sb.append(days + (days == 1 ? " " + LanguageManager.getTimeFormat("day") : " " + LanguageManager.getTimeFormat("day")));
 		
 		if (hours > 0)
-			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " minecraft " + LanguageManager.getTimeFormat("hour") : " minecraft "  + LanguageManager.getTimeFormat("hours")));
+			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " " + LanguageManager.getTimeFormat("hour") : " "  + LanguageManager.getTimeFormat("hours")));
 		
 		if (minutes > 0)
-			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " minecraft "  + LanguageManager.getTimeFormat("minute") : " minecraft "  + LanguageManager.getTimeFormat("minutes")));
+			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " "  + LanguageManager.getTimeFormat("minute") : " "  + LanguageManager.getTimeFormat("minutes")));
 		
 		if (seconds > 0)
-			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
+			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " "  + LanguageManager.getTimeFormat("second") : " "  + LanguageManager.getTimeFormat("seconds")));
 		
 		String s = sb.toString();
 		return s.isEmpty() ? "0 " + LanguageManager.getTimeFormat("seconds") : s;
@@ -48,16 +48,16 @@ public class TimeFormatter {
 		StringBuilder sb = new StringBuilder();
 		
 		if (days > 0)
-			sb.append(days + (days == 1 ? " " + LanguageManager.getTimeFormat("day") : " " + LanguageManager.getTimeFormat("day"))).toString();
+			sb.append(days + (days == 1 ? " minecraft " + LanguageManager.getTimeFormat("day") : " minecraft " + LanguageManager.getTimeFormat("day")));
 		
 		if (hours > 0)
-			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " " + LanguageManager.getTimeFormat("hour") : " "  + LanguageManager.getTimeFormat("hours"))).toString();
+			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " minecraft " + LanguageManager.getTimeFormat("hour") : " minecraft "  + LanguageManager.getTimeFormat("hours")));
 		
 		if (minutes > 0)
-			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " "  + LanguageManager.getTimeFormat("minute") : " "  + LanguageManager.getTimeFormat("minutes"))).toString();
+			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " minecraft "  + LanguageManager.getTimeFormat("minute") : " minecraft "  + LanguageManager.getTimeFormat("minutes")));
 		
 		if (seconds > 0)
-			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " "  + LanguageManager.getTimeFormat("second") : " "  + LanguageManager.getTimeFormat("seconds"))).toString();
+			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
 		
 		String s = sb.toString();
 		return s.isEmpty() ? "0 " + LanguageManager.getTimeFormat("seconds") : s;
