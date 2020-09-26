@@ -21,6 +21,8 @@ need-level: "&cHey! Sinun täytyy tehdä %a% toimii suorittaaksesi tämän toimi
 no-args: "&cHei! Käytä kelvollista syntaksia."
 my-salary: "&aSinulla on %jobplayer_salary%$ palkasta."
 unknow-job: "&cTätä tehtävää ei löytynyt, ole hyvä ja käytä TAB COMPLETE -ohjelmaa saadaksesi luettelon työpaikoista."
+#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
+salary-cooldown: "&cSinun täytyy odottaa enemmän %cooldown_mdays% ennen kuin saat palkkasi uudelleen."
 work-status: "&aTässä on mitä sinun tarvitsee tehdä: %jobplayer_work%"
 admin-commands: |-
   &6Täysi lista komennoista:
@@ -81,8 +83,6 @@ none-format: "None"
 ##
 #################################################################################
 #In this category you can add aliases for all the commands of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
 aliases:
   jobs:
     - "/työpaikkaa"
@@ -103,3 +103,21 @@ aliases:
   set: "aseta"
   method: "menetelmä"
   settings: "asetukset"
+##################################################################################
+##
+#Time translations                                                          #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "sekuntia"
+second: "sekunti"
+minutes: "minuuttia"
+minute: "minuutti"
+hours: "tuntia"
+hour: "tunti"
+days: "päivää"
+day: "päivä"
+months: "kuukautta"
+month: "kuukausi"
+years: "vuotta"
+year: "vuosi"
