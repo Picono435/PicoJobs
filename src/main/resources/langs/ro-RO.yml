@@ -35,13 +35,13 @@ admin-commands: |-
    - &e&6- &eSeteaza setarile salare/metoda unui jucator
   &e/jobsadmin &6- &eDeschide meniul SETTINGs al plugin-ului
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &6Lista completă a comenzilor:
+  &e/joburi ajuta &6- &eVezi aceste mesaje
+  &e/joburi alege <job> &6- &eAlege-ți job-ul
+  &e/joburile &6- &eVezi starea/Acceptarea muncii tale
+  &/salariul job-urilor &6- &eVerifică-ți salariul
+  &/locurile de muncă retrag &6- &eRetrage salariul
+  &/locurile de muncă părăsesc &6- &eLeaves treaba
 info-command: |-
   &6Starea jucatorului %player_name%
   &eSalary: %jobplayer_salary%
@@ -103,7 +103,7 @@ aliases:
   about: "despre"
   set: "setează"
   method: "metoda"
-  job: "job"
+  job: "sarcină"
   settings: "setări"
 ##################################################################################
 ##
