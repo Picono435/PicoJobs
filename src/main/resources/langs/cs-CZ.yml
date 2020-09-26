@@ -31,16 +31,16 @@ admin-commands: |-
   &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
   &e/jobsadmin aktualizuje &6- &eInstalls aktualizaci pluginu
   &e/jobsadmin o &6- &eGety informace o serveru a pluginu
-  &e/jobsadmin nastaveno <salary | method> <player> <amount> <amount> &6- &eNastaví salary/metodu hráče
+  &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &6- &eNastaví salary/metodu hráče
   &e/jobsadmin nastavení &6- &eOtevře menu SETTINGs pluginu
 member-commands: |-
-  &6Plný seznam příkazů:
-  &e/jobsadmin nápověda &6- &ePodívejte se na tyto zprávy
-  &e/jobsadmin zvolte <job> &6- &eChoosí vaši pracovní pozici
-  &e/jobsadmin práce &6- &ePodívejte se na stav/Přijetí vaší práce
-  &e/jobsadmin platu &6- &eZkontrolujte mzdu
-  &e/jobsadmin výběr &6- &eWithdraw plat
-  &e/jobsadmin zanechat &6- &eLeaví práci
+  &6Full list of commands:
+  &e/jobs help &6- &eSee this messages
+  &e/jobs choose <job> &6- &eChooses your job
+  &e/jobs work &6- &eSee the status/Accept of your work
+  &e/jobs salary &6- &eCheck your salary
+  &e/jobs withdraw &6- &eWithdraw your salary
+  &e/jobs leave &6- &eLeaves the job
 info-command: |-
   &6Stav hráče %player_name%
   &eSalary: %jobplayer_salary%
@@ -102,6 +102,7 @@ aliases:
   about: "asi"
   set: "nastavit"
   method: "metoda"
+  job: "job"
   settings: "nastavení"
 ##################################################################################
 ##
