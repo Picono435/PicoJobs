@@ -21,8 +21,8 @@ need-level: "&cEi! Você precisa fazer %a% de trabalho para executar essa ação
 no-args: "&cHey! Use uma sintaxe válida."
 my-salary: "&aVocê tem %jobplayer_salary%$ de salário."
 unknow-job: "&cEssa tarefa não foi encontrada, por favor, use a TAB COMPLETE para obter uma lista de trabalhos."
-#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
-salary-cooldown: "&cVocê precisa esperar mais %cooldown_mdays% antes de obter seu salário novamente."
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&cVocê precisa esperar mais %cooldown_mtime% antes de obter seu salário novamente."
 work-status: "&aAqui é o que você precisa fazer: %jobplayer_work%"
 admin-commands: |-
   &6Lista completa de comandos:
