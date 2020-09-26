@@ -70,6 +70,8 @@ use-citizens: false
 # 2 = Execute basic commands, enter a job, get salary etc... etc...
 # 3 = Open Jobs Menu
 jobs-action: 3
+# What should be the salary cooldown in real life minutes 20 minutes = 1 minecraft day [DEFAULT: 600m=10h=30md]
+salary-cooldown: 600
 
 #################################################################################
 #                                                                               #

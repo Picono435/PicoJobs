@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,11 +24,13 @@ import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.api.WhitelistConf;
+import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.MenuAction;
 import com.gmail.picono435.picojobs.menu.SettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
+import com.gmail.picono435.picojobs.utils.TimeFormatter;
 
 import mkremins.fanciful.FancyMessage;
 import net.md_5.bungee.api.ChatColor;
@@ -71,15 +74,28 @@ public class ClickInventoryListener implements Listener {
 			//Job job = jp.getJob();
 			String action = actionItems.get(e.getCurrentItem());
 			if(action.equalsIgnoreCase("salary")) {
+				if(!jp.hasJob()) {
+					p.sendMessage(LanguageManager.getMessage("no-args", p));
+					return;
+				}
+				if(JobsCommand.salaryCooldown.containsKey(p.getUniqueId())) {
+					long a1 = JobsCommand.salaryCooldown.get(p.getUniqueId()) + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
+					if(System.currentTimeMillis() >= a1) {
+						JobsCommand.salaryCooldown.remove(p.getUniqueId());
+					} else {
+						p.sendMessage(LanguageManager.getMessage("salary-cooldown", p).replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()).replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis()))));
+						p.closeInventory();
+						return;
+					}
+				}
 				double salary = jp.getSalary();
 				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
-					p.closeInventory();
 					return;
 				}
 				String economyString = jp.getJob().getEconomy();
 				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said. Please contact an administrator for get more information."));
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said" + " (" + economyString + ")" + ". Please contact an administrator in order to get more information."));
 					p.closeInventory();
 					return;
 				}
@@ -87,6 +103,7 @@ public class ClickInventoryListener implements Listener {
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
 				economy.deposit(p, salary);
 				jp.removeSalary(salary);
+				JobsCommand.salaryCooldown.put(p.getUniqueId(), System.currentTimeMillis());
 				p.closeInventory();
 				return;
 			}

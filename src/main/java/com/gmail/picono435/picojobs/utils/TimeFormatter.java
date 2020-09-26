@@ -45,19 +45,29 @@ public class TimeFormatter {
 		long minutes = toMinecraftMinutes(secondsReal) - (toMinecraftHours(secondsReal) * 60);
 		long seconds = toMinecraftSeconds(secondsReal) - (toMinecraftMinutes(secondsReal) * 60);
 		
+		int max = 0;
+		
 		StringBuilder sb = new StringBuilder();
 		
-		if (days > 0)
-			sb.append(days + (days == 1 ? " minecraft " + LanguageManager.getTimeFormat("day") : " minecraft " + LanguageManager.getTimeFormat("day")));
+		if (days > 0 && max <= 1) {
+			sb.append(days + (days == 1 && max > 1 ? " minecraft " + LanguageManager.getTimeFormat("day") : " minecraft " + LanguageManager.getTimeFormat("day")));
+			max++;
+		}
 		
-		if (hours > 0)
-			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " minecraft " + LanguageManager.getTimeFormat("hour") : " minecraft "  + LanguageManager.getTimeFormat("hours")));
+		if (hours > 0 && max <= 1) {
+			sb.append(days > 0 ? (minutes > 0 && max > 1 ? ", " : " and ") : "").append(hours + (hours == 1 ? " minecraft " + LanguageManager.getTimeFormat("hour") : " minecraft "  + LanguageManager.getTimeFormat("hours")));
+			max++;
+		}
 		
-		if (minutes > 0)
-			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " minecraft "  + LanguageManager.getTimeFormat("minute") : " minecraft "  + LanguageManager.getTimeFormat("minutes")));
+		if (minutes > 0 && max <= 1) {
+			sb.append(days > 0 || hours > 0 && max > 1 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " minecraft "  + LanguageManager.getTimeFormat("minute") : " minecraft "  + LanguageManager.getTimeFormat("minutes")));
+			max++;
+		}
 		
-		if (seconds > 0)
-			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
+		if (seconds > 0 && max <= 1) {
+			sb.append(days > 0 || hours > 0 && max > 1 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
+			max++;
+		}
 		
 		String s = sb.toString();
 		return s.isEmpty() ? "0 minecraft " + LanguageManager.getTimeFormat("seconds") : s;

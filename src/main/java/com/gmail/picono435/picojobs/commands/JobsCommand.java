@@ -1,7 +1,11 @@
 package com.gmail.picono435.picojobs.commands;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,9 +20,12 @@ import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.JobsMenu;
+import com.gmail.picono435.picojobs.utils.TimeFormatter;
 
 public class JobsCommand implements CommandExecutor, TabCompleter {
 
+	public static Map<UUID, Long> salaryCooldown = new HashMap<UUID, Long>();
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(!cmd.getName().equals("jobs")) return false;
@@ -109,6 +116,15 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 					p.sendMessage(LanguageManager.getMessage("no-args", p));
 					return true;
 				}
+				if(salaryCooldown.containsKey(p.getUniqueId())) {
+					long a1 = salaryCooldown.get(p.getUniqueId()) + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
+					if(System.currentTimeMillis() >= a1) {
+						salaryCooldown.remove(p.getUniqueId());
+					} else {
+						p.sendMessage(LanguageManager.getMessage("salary-cooldown", p).replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()).replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis()))));
+						return true;
+					}
+				}
 				double salary = jp.getSalary();
 				if(salary <= 0) {
 					p.sendMessage(LanguageManager.getMessage("no-salary", p));
@@ -116,13 +132,14 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 				}
 				String economyString = jp.getJob().getEconomy();
 				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said. Please contact an administrator for get more information."));
+					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said" + " (" + economyString + ")" + ". Please contact an administrator in order to get more information."));
 					return true;
 				}
 				EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(economyString);
 				p.sendMessage(LanguageManager.getMessage("got-salary", p));
 				economy.deposit(p, salary);
 				jp.removeSalary(salary);
+				salaryCooldown.put(p.getUniqueId(), System.currentTimeMillis());
 				return true;
 			}
 			

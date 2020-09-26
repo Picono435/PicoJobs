@@ -21,6 +21,7 @@ public class SettingsManager {
 	private ConfigurationSection mysqlConfiguration;
 	private ConfigurationSection mongodbConfiguration;
 	private boolean dependencieWarn;
+	private int salaryCooldown;
 	
 	public SettingsManager(PicoJobsPlugin plugin) {
 		this.plugin = plugin;
@@ -46,6 +47,7 @@ public class SettingsManager {
 		this.mysqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mysql");
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
 		this.dependencieWarn = config.getBoolean("dependencie-warn");
+		this.salaryCooldown = config.getInt("salary-cooldown");
 		return true;
 	}
 	
@@ -83,5 +85,9 @@ public class SettingsManager {
 	
 	public boolean getDependencieWarn() {
 		return dependencieWarn;
+	}
+	
+	public int getSalaryCooldown() {
+		return salaryCooldown;
 	}
 }
