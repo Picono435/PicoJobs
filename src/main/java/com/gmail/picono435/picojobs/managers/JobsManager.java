@@ -7,6 +7,8 @@ import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.api.WhitelistConf;
 
+import net.md_5.bungee.api.ChatColor;
+
 public class JobsManager {
 	
 	@SuppressWarnings("unused")
@@ -46,6 +48,22 @@ public class JobsManager {
 	public Job getJobByDisplayname(String displayname) {
 		for(Job job : getJobs()) {
 			if(job.getDisplayName().equals(displayname)) {
+				return job;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets a job with stripped color job displayname
+	 * 
+	 * @param displayname - the job display name
+	 * @return the job
+	 * @author Picono435
+	 */
+	public Job getJobByStrippedColorDisplayname(String displayname) {
+		for(Job job : getJobs()) {
+			if(ChatColor.stripColor(job.getDisplayName()).equals(displayname)) {
 				return job;
 			}
 		}

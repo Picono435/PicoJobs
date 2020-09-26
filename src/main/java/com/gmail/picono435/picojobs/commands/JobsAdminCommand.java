@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,6 +12,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
@@ -43,6 +45,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		
 		String salaryString = LanguageManager.getSubCommandAlias("salary");
 		String methodString = LanguageManager.getSubCommandAlias("method");
+		String jobString = LanguageManager.getSubCommandAlias("job");
 		
 		Player pl = null;
 		if(sender instanceof Player) {
@@ -158,6 +161,29 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			
+			if(args[1].equalsIgnoreCase("job") || args[1].equalsIgnoreCase(jobString)) {
+				if(args.length < 4) {
+					p.sendMessage(LanguageManager.getMessage("no-args", pl));
+					return true;
+				}
+				JobPlayer jpNew = PicoJobsAPI.getPlayersManager().getJobPlayer(args[2]);
+				if(jpNew == null)  {
+					p.sendMessage(LanguageManager.getMessage("player-not-found", pl));
+					return true;
+				}
+				Job job = PicoJobsAPI.getJobsManager().getJob(args[3]);
+				if(job == null) {
+					job = PicoJobsAPI.getJobsManager().getJobByStrippedColorDisplayname(args[3]);
+					if(job == null) {
+						p.sendMessage(LanguageManager.getMessage("no-args", pl));
+						return true;
+					}
+				}
+				jpNew.setJob(job);
+				p.sendMessage(LanguageManager.getMessage("sucefully", pl));
+				return true;
+			}
+			
 			p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		}
 		
@@ -192,6 +218,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			
 			String salaryString = LanguageManager.getSubCommandAlias("salary");
 			String methodString = LanguageManager.getSubCommandAlias("method");
+			String jobString = LanguageManager.getSubCommandAlias("job");
 			
 			if(!p.hasPermission("picojobs.admin")) return null;
 			
@@ -212,6 +239,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				if(args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase(setString)) {
 					list.add(salaryString);
 					list.add(methodString);
+					list.add(jobString);
 					return list;
 				}
 			}
@@ -228,6 +256,10 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 						list.add("[<" + salaryString + ">]");
 					} else if(args[1].equalsIgnoreCase("method") || args[1].equalsIgnoreCase(methodString)) {
 						list.add("[<" + methodString + ">]");
+					} else if(args[1].equalsIgnoreCase("job") || args[1].equalsIgnoreCase(methodString)) {
+						for(Job j : PicoJobsAPI.getJobsManager().getJobs()) {
+							list.add(ChatColor.stripColor(j.getDisplayName()));
+						}
 					}
 					return list;
 				}
