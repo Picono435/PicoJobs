@@ -66,7 +66,7 @@ storage:
 # Do you  want to use the NPC system Tutorial here: https://github.com/Picono435/wiki/npcs ** PREMIUM ONLY**
 use-citizens: false
 # What should happen when execute /jobs command?
-# 1 = Ignore and send a message, recommended for use a NPC
+# 1 = Ignore and send a message (This feature its not really useful yet, but it will be soon ;))
 # 2 = Execute basic commands, enter a job, get salary etc... etc...
 # 3 = Open Jobs Menu
 jobs-action: 3
