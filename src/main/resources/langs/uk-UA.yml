@@ -21,6 +21,8 @@ need-level: "&cХей! Ви повинні зробити %a% роботи дл�
 no-args: "&cХей! Будь ласка, використайте правильний синтаксис."
 my-salary: "&aУ вас є %jobplayer_salary%$ зарплатні."
 unknow-job: "&cЦе завдання не знайдено, будь ласка, використовуйте TAB COMPLETE для отримання списку завдань."
+#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
+salary-cooldown: "&cВи повинні почекати більше %cooldown_mdays% перед тим, як отримати вашу зарплату знову."
 work-status: "&aОсь що вам необхідно зробити: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
@@ -81,8 +83,6 @@ none-format: "Без ефекту"
 ##
 #################################################################################
 #In this category you can add aliases for all the commands of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
 aliases:
   jobs:
     - "/jobs"
@@ -103,3 +103,21 @@ aliases:
   set: "набір"
   method: "метод"
   settings: "налаштування"
+##################################################################################
+##
+#Time translations                                                          #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "секунди"
+second: "секунда"
+minutes: "хвилин"
+minute: "хвилина"
+hours: "годин"
+hour: "година"
+days: "днів"
+day: "день"
+months: "місяців"
+month: "місяць"
+years: "років"
+year: "рік"
