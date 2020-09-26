@@ -21,8 +21,8 @@ need-level: "&cHey! このアクションを実行するには %a%の動作が�
 no-args: "&cHey! 有効な構文を使用してください。"
 my-salary: "&aあなたには %jobplayer_salary%$ の給料があります。"
 unknow-job: "&cジョブが見つかりませんでした。ジョブのリストを取得するには、TABCOMPLETEを使用してください。"
-#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
-salary-cooldown: "&c給料をもう一度もらうには、さらに %cooldown_mdays% 待つ必要があります。"
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&c給料をもう一度もらうには、さらに %cooldown_mtime% 待つ必要があります。"
 work-status: "&a必要な作業は次の通りです: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
