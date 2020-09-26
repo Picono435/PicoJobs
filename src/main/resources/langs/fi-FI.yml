@@ -34,11 +34,11 @@ admin-commands: |-
   &e/jobsadmin asetukset <salary | method | job> <player> <amount | job> &6- &eAsettaa pelaajan
   &e/jobsadmin asetukset &6- &eAvaa lisäosan ASETTING-valikon
 member-commands: |-
-  &6Full list of commands:
+  &6Täysi lista komennoista:
   &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
+  &e/jobs choose <job> &6- &eValitsee työpaikkasi
   &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
+  &e/jobs palkka &6- &eTarkista palkkasi
   &e/jobs withdraw &6- &eWithdraw your salary
   &e/jobs leave &6- &eLeaves the job
 info-command: |-
@@ -102,7 +102,7 @@ aliases:
   about: "noin"
   set: "aseta"
   method: "menetelmä"
-  job: "job"
+  job: "työ"
   settings: "asetukset"
 ##################################################################################
 ##
