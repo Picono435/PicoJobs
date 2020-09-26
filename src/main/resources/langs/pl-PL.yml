@@ -25,22 +25,22 @@ unknow-job: "&cTo zadanie nie zostało znalezione, użyj TAB COMPLETE, aby uzysk
 salary-cooldown: "&cMusisz poczekać więcej %cooldown_mtime% przed ponownym pobraniem wynagrodzenia."
 work-status: "&aOto co musisz zrobić: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+  &6Pełna lista poleceń:
+  &e/jobsadmin help &6- &eZobacz te wiadomości
+  &e/jobsadmin info <player> &6- &ePobiera informacje o graczu
+  &e/jobsadmin przeładuj &6- &eOdśwież wszystkie możliwe konfiguracje.
+  &e/jobsadmin aktualizacja &6- &eInstaluje aktualizację wtyczki
+  &e/jobsadmin o &6- &eGets information about the server and the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eUstawia salary/method of the player
+  &e/jobsadmin settings &6- &eOtwiera menu SETTINGs wtyczki
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &6Pełna lista poleceń:
+  &e/jobs help &6- &eZobacz te wiadomości
+  &e/jobs choose <job> &6- &eWybiera pracę
+  &e/pracę &6- &eZobacz status/Akceptuj swoją pracę
+  &e/pracę &e/pracę &6- &eSprawdź swoje wynagrodzenie
+  &e/roboty wycofaj &6- &ePobrać swoje wynagrodzenie
+  &e/roboty pozostaw &6- &eOpuść pracę
 info-command: |-
   &6Status gracza %player_name%
   &eSalary: %jobplayer_salary%
@@ -102,7 +102,7 @@ aliases:
   about: "o"
   set: "ustaw"
   method: "Metoda"
-  job: "job"
+  job: "praca"
   settings: "ustawienia"
 ##################################################################################
 ##
