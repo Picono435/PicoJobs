@@ -31,16 +31,16 @@ admin-commands: |-
   &e/jobsadmin reload &6- &eReload all the possible configurations.
   &e/jobsadmin update &6- &eInstalls a update of the plugin
   &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method> <player> <amount> &6- &eSets the salary/method of a player
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
 member-commands: |-
   &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin choose <job> &6- &eChooses your job
-  &e/jobsadmin work &6- &eSee the status/Accept of your work
-  &e/jobsadmin salary &6- &eCheck your salary
-  &e/jobsadmin withdraw &6- &eWithdraw your salary
-  &e/jobsadmin leave &6- &eLeaves the job
+  &e/jobs help &6- &eSee this messages
+  &e/jobs choose <job> &6- &eChooses your job
+  &e/jobs work &6- &eSee the status/Accept of your work
+  &e/jobs salary &6- &eCheck your salary
+  &e/jobs withdraw &6- &eWithdraw your salary
+  &e/jobs leave &6- &eLeaves the job
 info-command: |-
   &6Статус гравця %player_name%
   &eSalary: %jobplayer_salary%
@@ -102,6 +102,7 @@ aliases:
   about: "про себе"
   set: "набір"
   method: "метод"
+  job: "job"
   settings: "налаштування"
 ##################################################################################
 ##
