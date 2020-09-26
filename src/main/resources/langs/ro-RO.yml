@@ -21,6 +21,8 @@ need-level: "&cHei! Trebuie sa faci %a% functioneaza pentru a executa aceasta ac
 no-args: "&fHei! Te rog foloseste o sintaxa valida."
 my-salary: "&aAi %jobplayer_salary%$ din salariu."
 unknow-job: "&cAcea treaba nu a fost gasita, te rugam sa folosesti TAB COMPLETE pentru a obtine o lista de joburi."
+#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
+salary-cooldown: "&cTrebuie sa astepti mai mult %cooldown_mdays% inainte sa primesti din nou salariul."
 work-status: "&aIata ce trebuie sa faci: %jobplayer_work%"
 admin-commands: |-
   &6Lista completă de comenzi:
@@ -82,8 +84,6 @@ none-format: "Niciunul"
 ##
 #################################################################################
 #In this category you can add aliases for all the commands of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
 aliases:
   jobs:
     - "/joburi"
@@ -104,3 +104,21 @@ aliases:
   set: "setează"
   method: "metoda"
   settings: "setări"
+##################################################################################
+##
+#Time translations                                                          #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "seconds"
+second: "second"
+minutes: "minutes"
+minute: "minute"
+hours: "hours"
+hour: "hour"
+days: "days"
+day: "day"
+months: "months"
+month: "month"
+years: "years"
+year: "year"
