@@ -34,12 +34,12 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
+  &6Volledige lijst met commando's:
+  &e/jobs helpen &6- &eSee deze berichten
+  &e/jobs kiezen <job> &6- &eChooses your job
   &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
+  &e/jobs &6- &eCheck your salaris
+  &ejobs &6- &eWithdraw your salaris
   &e/jobs leave &6- &eLeaves the job
 info-command: |-
   &6Status van de speler %player_name%
@@ -102,7 +102,7 @@ aliases:
   about: "Over"
   set: "instellen"
   method: "methode"
-  job: "job"
+  job: "baan"
   settings: "Instellingen"
 ##################################################################################
 ##
