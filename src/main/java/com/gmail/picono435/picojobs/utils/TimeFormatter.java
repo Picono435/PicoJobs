@@ -60,7 +60,7 @@ public class TimeFormatter {
 			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
 		
 		String s = sb.toString();
-		return s.isEmpty() ? "0 " + LanguageManager.getTimeFormat("seconds") : s;
+		return s.isEmpty() ? "0 minecraft " + LanguageManager.getTimeFormat("seconds") : s;
 	}
 	
 	private static long toMinecraftDays(long seconds) {

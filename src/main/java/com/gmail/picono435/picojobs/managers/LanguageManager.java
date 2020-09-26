@@ -96,6 +96,22 @@ public class LanguageManager {
     }
     
     /**
+   	 * Gets a time translation from the language config file
+   	 * 
+   	 * @param time the time key
+   	 * @return the translated time value
+   	 * @author Picono435
+   	 *
+   	 */
+       public static String getTimeFormat(String time) {
+       	String chat = language.getString(time);
+       	if(chat == null) {
+       		chat = "undefined";
+       	}
+       	return chat;
+       }
+    
+    /**
 	 * Gets a list of all command aliases of a command
 	 * 
 	 * @param cmd the command

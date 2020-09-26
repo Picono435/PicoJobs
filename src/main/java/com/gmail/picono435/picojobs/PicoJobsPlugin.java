@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,8 +61,6 @@ import com.gmail.picono435.picojobs.listeners.jobs.EatListener;
 import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -149,7 +148,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
-		
+				
 		checkVersion();
 				
 		long saveInterval = PicoJobsAPI.getSettingsManager().getSaveInterval();
