@@ -21,8 +21,8 @@ need-level: "&cHey! Sinun täytyy tehdä %a% toimii suorittaaksesi tämän toimi
 no-args: "&cHei! Käytä kelvollista syntaksia."
 my-salary: "&aSinulla on %jobplayer_salary%$ palkasta."
 unknow-job: "&cTätä tehtävää ei löytynyt, ole hyvä ja käytä TAB COMPLETE -ohjelmaa saadaksesi luettelon työpaikoista."
-#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
-salary-cooldown: "&cSinun täytyy odottaa enemmän %cooldown_mdays% ennen kuin saat palkkasi uudelleen."
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&cSinun täytyy odottaa enemmän %cooldown_mtime% ennen kuin saat palkkasi uudelleen."
 work-status: "&aTässä on mitä sinun tarvitsee tehdä: %jobplayer_work%"
 admin-commands: |-
   &6Täysi lista komennoista:
