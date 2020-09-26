@@ -34,13 +34,13 @@ admin-commands: |-
   &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &6- &eNastaví salary/metodu hráče
   &e/jobsadmin nastavení &6- &eOtevře menu SETTINGs pluginu
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &6Plný seznam příkazů:
+  &e/job help &6- &eSee this
+  &e/job choose <job> &6- &eChooses your job
+  &6- &e/job work &eSee the status/Accept of your work
+  &e/job platy &6- &eCheck your paid
+  &e/job withdraw&6- &eWithdraw your pay
+  &eWithdraw your pay from &6- &eLeaves the job
 info-command: |-
   &6Stav hráče %player_name%
   &eSalary: %jobplayer_salary%
@@ -102,7 +102,7 @@ aliases:
   about: "asi"
   set: "nastavit"
   method: "metoda"
-  job: "job"
+  job: "práce"
   settings: "nastavení"
 ##################################################################################
 ##
