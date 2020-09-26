@@ -34,13 +34,13 @@ admin-commands: |-
   &e/jobsadmin sæt <salary | method | job> <player> <amount | job> &6- &eIndstiller en spillers løn/metode
   &e/jobsadmin indstillinger &6- &eÅbner tilpasningsmenuen i plugin'et
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
+  &6Fuld liste over kommandoer:
+  &e/jobs help &6- &eSe disse meddelelser
   &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
+  &e/jobs work &6- &eSe status/Accepter dit arbejde
   &e/jobs salary &6- &eCheck your salary
   &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &e/jobs leave &6- &eBlade jobbet tilbage
 info-command: |-
   &6Spillerens status %player_name%
   &eLøn: %jobplayer_salary%
