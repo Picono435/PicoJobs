@@ -34,13 +34,13 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &6Повний список команд:
+  &&e/jobs допоможуть &6- &eSee ці повідомлення
+  &/завдань, обирайте <job> &6- &eChoes Ваша робота
+  &e/jobs &6- Перегляньте статус/ордер на свою роботу
+  &6- &eПеревір зарплатню
+  &eCheck та зняття коштів з завдання
+  &6- Зняття зарплатні завдання і завдання з &6- переводить завдання
 info-command: |-
   &6Статус гравця %player_name%
   &eSalary: %jobplayer_salary%
@@ -102,7 +102,7 @@ aliases:
   about: "про себе"
   set: "набір"
   method: "метод"
-  job: "job"
+  job: "завдання"
   settings: "налаштування"
 ##################################################################################
 ##
