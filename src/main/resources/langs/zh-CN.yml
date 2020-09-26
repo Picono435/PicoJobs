@@ -21,6 +21,8 @@ need-level: "&chhe! 您需要处理 %a% 来执行此操作。"
 no-args: "&chhe! 请使用一个有效的语法。"
 my-salary: "&a你有 %jobplayer_salary%美元的工资。"
 unknow-job: "&c找不到此作业，请使用 TAB 补全以获取作业列表。"
+#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
+salary-cooldown: "&c您需要等待更多 %cooldown_mdays% 才能再次获得您的工资。"
 work-status: "&a这里是您需要做的： %jobplayer_work%"
 admin-commands: |-
   &6完整的命令列表：
@@ -81,8 +83,6 @@ none-format: "无"
 ##
 #################################################################################
 #In this category you can add aliases for all the commands of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
 aliases:
   jobs:
     - "/jobs"
@@ -103,3 +103,21 @@ aliases:
   set: "设置"
   method: "方法"
   settings: "设置"
+##################################################################################
+##
+#Time translations                                                          #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "seconds"
+second: "second"
+minutes: "minutes"
+minute: "minute"
+hours: "hours"
+hour: "hour"
+days: "days"
+day: "day"
+months: "months"
+month: "month"
+years: "years"
+year: "year"
