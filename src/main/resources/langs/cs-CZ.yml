@@ -21,6 +21,8 @@ need-level: "&cHej! Pro provedení této akce musíš udělat %a% práce."
 no-args: "&cHej! Použijte platnou syntaxi."
 my-salary: "&aMáte mzdu ve výši %jobplayer_salary%$."
 unknow-job: "&cTato práce nebyla nalezena, prosím použijte TAB COMPLETE pro získání seznamu pracovních míst."
+#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
+salary-cooldown: "&cMusíš počkat více %cooldown_mdays% než budeš dostávat plat."
 work-status: "&aZde je to, co potřebujete udělat: %jobplayer_work%"
 admin-commands: |-
   &6Plný seznam příkazů:
@@ -81,8 +83,6 @@ none-format: "Nic"
 ##
 #################################################################################
 #In this category you can add aliases for all the commands of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
 aliases:
   jobs:
     - "/jobů"
@@ -103,3 +103,21 @@ aliases:
   set: "nastavit"
   method: "metoda"
   settings: "nastavení"
+##################################################################################
+##
+#Time translations                                                          #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "sekundy"
+second: "sekunda"
+minutes: "minuty"
+minute: "minuta"
+hours: "hodiny"
+hour: "hodina"
+days: "dny"
+day: "den"
+months: "měsíce"
+month: "měsíc"
+years: "roků"
+year: "Rok"
