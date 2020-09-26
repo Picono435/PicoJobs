@@ -21,6 +21,8 @@ need-level: "&cHey! Devi fare %a% lavora per eseguire quell'azione."
 no-args: "&cHey! Utilizza una sintassi valida."
 my-salary: "&aHai %jobplayer_salary%$ di salario."
 unknow-job: "&cQuel lavoro non è stato trovato, si prega di utilizzare il TAB COMPLETE per ottenere un elenco di lavori."
+#In this message you can use the placeholders: %cooldown_mdays% -> Minecraft Days (20 minutes) // %cooldown_minutes% -> Real Life Minutes (60 seconds)
+salary-cooldown: "&cDevi aspettare altri %cooldown_mdays% prima di ottenere di nuovo il tuo stipendio."
 work-status: "&aEcco cosa devi fare: %jobplayer_work%"
 admin-commands: |-
   &6Elenco completo dei comandi:
@@ -81,8 +83,6 @@ none-format: "Nessuno"
 ##
 #################################################################################
 #In this category you can add aliases for all the commands of the plugin
-#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-#Change how the works should be displayed.
 aliases:
   jobs:
     - "/jobs"
@@ -103,3 +103,21 @@ aliases:
   set: "imposta"
   method: "metodo"
   settings: "impostazioni"
+##################################################################################
+##
+#Time translations                                                          #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "secondi"
+second: "secondo"
+minutes: "minuti"
+minute: "minuto"
+hours: "ore"
+hour: "ora"
+days: "giorni"
+day: "giorno"
+months: "mesi"
+month: "mese"
+years: "anni"
+year: "anno"
