@@ -25,22 +25,22 @@ unknow-job: "&cЭта работа не найдена, пожалуйста, и
 salary-cooldown: "&cВам нужно подождать больше %cooldown_mtime% для того, чтобы снова получить зарплату."
 work-status: "&aВот что вам нужно сделать: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &6Полный список команд:
+  &e/jobsadmin help &6- &eПосмотреть это сообщение
+  &e/jobsadmin info <player> &6- &eGets информация о игроке
+  &e/jobsadmin reload &6- &eПерезагрузить все возможные конфигурации.
+  &e/jobsadmin update &6- Установки обновления плагина
   &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eУстанавливает зарплату/метод игрока
+  &e/jobsadmin settings &6- &eОткрывает меню настроек плагина &6-
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
+  &6Полный список команд:
+  &e/jobs help &6- &eПосмотреть эти сообщения
+  &e/jobs choose <job> &6- &eВыбрать вашу работу
+  &e/jobs &6- &eПосмотреть статус или принять работу
   &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &e/jobs withdrawal &6- &eВывод зарплаты
+  &e/jobs leave &6- &eLeaves
 info-command: |-
   &6Статус игрока %player_name%
   &eSalary: %jobplayer_salary%
@@ -102,7 +102,7 @@ aliases:
   about: "о нас"
   set: "набор"
   method: "метод"
-  job: "job"
+  job: "работа"
   settings: "настройки"
 ##################################################################################
 ##
