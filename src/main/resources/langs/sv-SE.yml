@@ -25,21 +25,21 @@ unknow-job: "&cDet jobbet hittades inte, använd TAB COMPLETE för att få en li
 salary-cooldown: "&cDu måste vänta mer %cooldown_mtime% innan du får din lön igen."
 work-status: "&aHär är vad du behöver göra: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eOpens the SETTINGs menu of the plugin
+  &6Fullständig lista över kommandon:
+  &e/jobsadmin help &6- &eSe detta meddelande
+  &e/jobsadmin info <player> &6- &eHämtar information om en spelare
+  &e/jobsadmin ladda om &6- &eLadda om alla möjliga konfigurationer.
+  &e/jobsadmin update &6- &eInstallerar en uppdatering av pluginen
+  &e/jobsadmin om &6- &eHämtar information om servern och pluginen
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eStäller in en spelares lön/metod
+  &e/jobsadmin inställningar &6- &eÖppnas i menyn INSTÄLLNINGar i pluginen
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
+  &6Fullständig lista över kommandon:
+  &e/jobs help &6- &eSe detta meddelande
   &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
+  &e/jobs work &6- &eSe status/Acceptera ditt arbete
+  &e/jobs lön &6- &eCheck your pay
+  &e/jobs withdraw &6- &eTa ut din lön
   &e/jobs leave &6- &eLeaves the job
 info-command: |-
   &6Status för spelaren %player_name%
@@ -102,7 +102,7 @@ aliases:
   about: "om"
   set: "ange"
   method: "metod"
-  job: "job"
+  job: "jobb"
   settings: "inställningar"
 ##################################################################################
 ##
