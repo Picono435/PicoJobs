@@ -31,16 +31,16 @@ admin-commands: |-
   &e/jobsadmin recarrega &6- &eRecarregar todas as configurações possíveis.
   &e/jobsadmin atualizar &6- &eInstala uma atualização do plugin
   &e/jobsadmin sobre &6- &eObtém informações sobre o servidor e o plugin
-  &e/jobsadmin conjunto <salary | method> <player> <amount> &6- &eDefine o salário/método de um jogador
+  &e/jobsadmin conjunto <salary | method | job> <player> <amount | job> &6- &eDefine o salário/método de um jogador
   &e/jobsadmin configurações &6- &eAbre o menu de SETTINGs do plugin
 member-commands: |-
-  &6Lista completa de comandos:
-  &e/jobsadmin help &6- &eVeja esta mensagem
-  &e/jobsadmin escolha <job> &6- &eEscolha o seu trabalho
-  &e/jobsadmin trabalho &6- &eVeja o status/Aceitar sua obra
-  &e/jobsadmin &6- &eVerifique o seu salário
-  &eVerificar o seu salário & / e/jobsadmin retirar &6- &eWithdraw seu salário
-  &e/jobsadmin sai &6- &eLeve o trabalho
+  &6Full list of commands:
+  &e/jobs help &6- &eSee this messages
+  &e/jobs choose <job> &6- &eChooses your job
+  &e/jobs work &6- &eSee the status/Accept of your work
+  &e/jobs salary &6- &eCheck your salary
+  &e/jobs withdraw &6- &eWithdraw your salary
+  &e/jobs leave &6- &eLeaves the job
 info-command: |-
   &6Status do jogador %player_name%
   &eSalário: %jobplayer_salary%
@@ -102,6 +102,7 @@ aliases:
   about: "Sobre"
   set: "definir"
   method: "Método"
+  job: "job"
   settings: "configurações"
 ##################################################################################
 ##
