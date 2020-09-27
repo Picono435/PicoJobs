@@ -18,7 +18,7 @@ import com.gmail.picono435.picojobs.utils.ItemBuilder;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class SettingsMenu {
+public class JobSettingsMenu {
 	
 	// 27 - PEQUENO
 	// 54 - GRANDE
@@ -121,29 +121,20 @@ public class SettingsMenu {
 				inv.setItem(38, new ItemBuilder(Material.BOOK).setName(ChatColor.AQUA + "Whitelist Type").setLore("", ChatColor.GRAY + "Click here to change from Whitelist type", ChatColor.GRAY + " to Blacklist type or vs.", "", ChatColor.DARK_GRAY + "Current whitelist type: " + white, "").addEnchant(Enchantment.ARROW_DAMAGE, 1).removeAttributes().toItemStack());
 			}
 		}
-		inv.setItem(39, new ItemBuilder(Material.CHEST).setName(ChatColor.AQUA + "GUI Settings").setLore("", ChatColor.GRAY + "Click here to access the GUI settings.", "").removeAttributes().toItemStack());
 		Material oakFence = null;
 		if(PicoJobsPlugin.getInstance().isLegacy()) {
 			oakFence = Enum.valueOf(Material.class, "FENCE");
 		} else {
 			oakFence = Material.OAK_FENCE;
 		}
-		inv.setItem(40, new ItemBuilder(oakFence).setName(ChatColor.AQUA + "Requires Permission").setLore("", ChatColor.GRAY + "Click here to change the Requires Permission.", "", ChatColor.DARK_GRAY + "Current requires permission: " + job.getMethodFrequency(), ChatColor.DARK_GRAY + "picojobs.job." + job.getID(), "").removeAttributes().toItemStack());
+		inv.setItem(39, new ItemBuilder(oakFence).setName(ChatColor.AQUA + "Requires Permission").setLore("", ChatColor.GRAY + "Click here to change the Requires Permission.", "", ChatColor.DARK_GRAY + "Current requires permission: " + job.getMethodFrequency(), ChatColor.DARK_GRAY + "picojobs.job." + job.getID(), "").removeAttributes().toItemStack());
 		if(job.requiresPermission()) {
-			inv.setItem(40, new ItemBuilder(oakFence).setName(ChatColor.AQUA + "Requires Permission").setLore("", ChatColor.GRAY + "Click here to change the Requires Permission.", "", ChatColor.DARK_GRAY + "Current requires permission: " + job.getMethodFrequency(), ChatColor.DARK_GRAY + "picojobs.job." + job.getID(), "").addEnchant(Enchantment.ARROW_DAMAGE, 1).removeAttributes().toItemStack());
+			inv.setItem(39, new ItemBuilder(oakFence).setName(ChatColor.AQUA + "Requires Permission").setLore("", ChatColor.GRAY + "Click here to change the Requires Permission.", "", ChatColor.DARK_GRAY + "Current requires permission: " + job.getMethodFrequency(), ChatColor.DARK_GRAY + "picojobs.job." + job.getID(), "").addEnchant(Enchantment.ARROW_DAMAGE, 1).removeAttributes().toItemStack());
 		}
 		inv.setItem(42, new ItemBuilder(Material.TORCH).setName(ChatColor.AQUA + "Method Frequency").setLore("", ChatColor.GRAY + "Click here to change the Method Frequency.", "", ChatColor.DARK_GRAY + "Current method frequency: " + job.getMethodFrequency(), "").removeAttributes().toItemStack());
 		
 		p.closeInventory();
 		p.openInventory(inv);
 		jobEditInventories.put(inv, job);
-	}
-	
-	public static void openJobEditGUI(Player p, Job job) {
-		Inventory inv = Bukkit.createInventory(null, 54, "PicoJobs - Settings");
-		
-		// WORK
-		
-		jobEditGUIInventories.put(inv, job);
 	}
 }

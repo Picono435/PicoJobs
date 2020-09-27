@@ -16,7 +16,7 @@ import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
-import com.gmail.picono435.picojobs.menu.SettingsMenu;
+import com.gmail.picono435.picojobs.menu.JobSettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 public class JobsAdminCommand implements CommandExecutor, TabCompleter {
@@ -192,7 +192,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				sender.sendMessage(LanguageManager.formatMessage("&cOnly players can use that command, please use /jobsadmin to see the help of JobsAdmin commands."));
 				return true;
 			}
-			SettingsMenu.openGeneral((Player)p);
+			JobSettingsMenu.openGeneral((Player)p);
 			return true;
 		}
 		p.sendMessage(LanguageManager.getFormat("admin-commands", pl));

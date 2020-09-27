@@ -27,7 +27,7 @@ import com.gmail.picono435.picojobs.api.WhitelistConf;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.MenuAction;
-import com.gmail.picono435.picojobs.menu.SettingsMenu;
+import com.gmail.picono435.picojobs.menu.JobSettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
 import com.gmail.picono435.picojobs.utils.TimeFormatter;
@@ -172,13 +172,13 @@ public class ClickInventoryListener implements Listener {
 		/*
 		 * General Settings Click
 		 */
-		if(SettingsMenu.generalInventories.contains(e.getInventory())) {
+		if(JobSettingsMenu.generalInventories.contains(e.getInventory())) {
 			e.setCancelled(true);
 			
 			switch(e.getSlot()) {
 			case(13): {
 				p.closeInventory();
-				SettingsMenu.openJobsList(p);
+				JobSettingsMenu.openJobsList(p);
 			}
 			}
 			return;
@@ -187,42 +187,42 @@ public class ClickInventoryListener implements Listener {
 		/*
 		 * Job List Settings Click
 		 */
-		if(SettingsMenu.jobListInventories.contains(e.getInventory())) {
+		if(JobSettingsMenu.jobListInventories.contains(e.getInventory())) {
 			e.setCancelled(true);
 			
 			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
 			if(job == null) {
 				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to go to the next page.")) {
 					int page = Integer.parseInt(e.getView().getTitle().split("\\[")[1].replace("]", "")) - 1;
-					SettingsMenu.openJobsList(p, page + 1);
+					JobSettingsMenu.openJobsList(p, page + 1);
 					return;
 				}
 				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to go to the previous page.")) {
 					int page = Integer.parseInt(e.getView().getTitle().split("\\[")[1].replace("]", "")) - 1;
 					if(page == 0) return;
-					SettingsMenu.openJobsList(p, page - 1);
+					JobSettingsMenu.openJobsList(p, page - 1);
 					return;
 				}
 				return;
 			}
 			
 			p.closeInventory();
-			SettingsMenu.openJobSettings(p, job);
+			JobSettingsMenu.openJobSettings(p, job);
 			return;
 		}
 		
 		/*
 		 * Job Settings Click
 		 */
-		if(SettingsMenu.jobSettingsInventories.containsKey(e.getInventory())) {
+		if(JobSettingsMenu.jobSettingsInventories.containsKey(e.getInventory())) {
 			e.setCancelled(true);
 			
-			Job job = SettingsMenu.jobSettingsInventories.get(e.getInventory());
+			Job job = JobSettingsMenu.jobSettingsInventories.get(e.getInventory());
 			
 			switch(e.getSlot()) {
 			case(13): {
 				p.closeInventory();
-				SettingsMenu.openJobEdit(p, job);
+				JobSettingsMenu.openJobEdit(p, job);
 				return;
 			}
 			case(15): {
@@ -246,10 +246,10 @@ public class ClickInventoryListener implements Listener {
 		/*
 		 * Job Edit Click
 		 */
-		if(SettingsMenu.jobEditInventories.containsKey(e.getInventory())) {
+		if(JobSettingsMenu.jobEditInventories.containsKey(e.getInventory())) {
 			e.setCancelled(true);
 			
-			Job job = SettingsMenu.jobEditInventories.get(e.getInventory());
+			Job job = JobSettingsMenu.jobEditInventories.get(e.getInventory());
 			
 			/*
 			 * 10 - ID
@@ -364,18 +364,15 @@ public class ClickInventoryListener implements Listener {
 				} else {
 					job.setWhitelistType(true);
 				}
-				SettingsMenu.openJobEdit(p, job);
+				JobSettingsMenu.openJobEdit(p, job);
 			}
 			case(39): {
-				p.sendMessage(ChatColor.RED + "This feature is not added yet. For more information check our discord. PicoJobs v" + PicoJobsPlugin.getInstance().getDescription().getVersion());
-			}
-			case(40): {
 				if(job.requiresPermission()) {
 					job.setRequiresPermission(false);
 				} else {
 					job.setRequiresPermission(true);
 				}
-				SettingsMenu.openJobEdit(p, job);
+				JobSettingsMenu.openJobEdit(p, job);
 				return;
 			}
 			case(42): {
@@ -410,7 +407,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -430,7 +427,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -448,7 +445,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -466,7 +463,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -486,7 +483,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -506,7 +503,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -558,7 +555,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -578,7 +575,7 @@ public class ClickInventoryListener implements Listener {
 			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
-					SettingsMenu.openJobEdit(p, job);
+					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
@@ -586,9 +583,9 @@ public class ClickInventoryListener implements Listener {
 	
 	@EventHandler()
 	public void onClose(InventoryCloseEvent e) {
-		if(SettingsMenu.generalInventories.contains(e.getInventory())) SettingsMenu.generalInventories.remove(e.getInventory());
-		if(SettingsMenu.jobListInventories.contains(e.getInventory())) SettingsMenu.jobListInventories.remove(e.getInventory());
-		if(SettingsMenu.jobEditInventories.containsKey(e.getInventory())) SettingsMenu.jobEditInventories.remove(e.getInventory());
-		if(SettingsMenu.jobSettingsInventories.containsKey(e.getInventory())) SettingsMenu.jobSettingsInventories.remove(e.getInventory());
+		if(JobSettingsMenu.generalInventories.contains(e.getInventory())) JobSettingsMenu.generalInventories.remove(e.getInventory());
+		if(JobSettingsMenu.jobListInventories.contains(e.getInventory())) JobSettingsMenu.jobListInventories.remove(e.getInventory());
+		if(JobSettingsMenu.jobEditInventories.containsKey(e.getInventory())) JobSettingsMenu.jobEditInventories.remove(e.getInventory());
+		if(JobSettingsMenu.jobSettingsInventories.containsKey(e.getInventory())) JobSettingsMenu.jobSettingsInventories.remove(e.getInventory());
 	}
 }
