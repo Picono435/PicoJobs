@@ -27,6 +27,7 @@ import com.gmail.picono435.picojobs.api.WhitelistConf;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.MenuAction;
+import com.gmail.picono435.picojobs.menu.GUISettingsMenu;
 import com.gmail.picono435.picojobs.menu.JobSettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
@@ -176,9 +177,13 @@ public class ClickInventoryListener implements Listener {
 			e.setCancelled(true);
 			
 			switch(e.getSlot()) {
-			case(13): {
+			case(12): {
 				p.closeInventory();
 				JobSettingsMenu.openJobsList(p);
+			}
+			case(14): {
+				p.closeInventory();
+				GUISettingsMenu.openGeneral(p);
 			}
 			}
 			return;
@@ -250,21 +255,6 @@ public class ClickInventoryListener implements Listener {
 			e.setCancelled(true);
 			
 			Job job = JobSettingsMenu.jobEditInventories.get(e.getInventory());
-			
-			/*
-			 * 10 - ID
-			 * 11 - DISPLAYNAME
-			 * 15 - SALARY
-			 * 19 - JOB TYPE
-			 * 20 - ECONOMY IMPLEMENTATION
-			 * 24 - REQUIRED METHOD
-			 * 33 - SALARY FREQUENCY
-			 * 37 - WHITELIST/BLACKLIST
-			 * 38 - WHITELIST TYPE
-			 * 39 - GUI SETTINGS
-			 * 40 - REQUIRES PERMISSION
-			 * 42 - METHOD FREQUENCY
-			 */
 			
 			switch(e.getSlot()) {
 			case(11): {
@@ -578,6 +568,38 @@ public class ClickInventoryListener implements Listener {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
+		}
+	}
+	
+	@EventHandler()
+	public void onGUISettingsClick(InventoryClickEvent e) {
+		if(e.getCurrentItem() == null || e.getCurrentItem().getItemMeta() == null || e.getCurrentItem().getItemMeta().getDisplayName() == null) return;
+		
+		Player p = (Player) e.getWhoClicked();
+		
+		if(!p.hasPermission("picojobs.admin")) return;
+		
+		/*
+		 * General GUI Settings Click
+		 */
+		if(GUISettingsMenu.generalInventories.contains(e.getInventory())) {
+			e.setCancelled(true);
+			
+			switch(e.getSlot()) {
+			case(11): {
+				p.closeInventory();
+				JobSettingsMenu.openJobsList(p);
+			}
+			case(13): {
+				p.closeInventory();
+				GUISettingsMenu.openGeneral(p);
+			}
+			case(15): {
+				p.closeInventory();
+				GUISettingsMenu.openGeneral(p);
+			}
+			}
+			return;
 		}
 	}
 	

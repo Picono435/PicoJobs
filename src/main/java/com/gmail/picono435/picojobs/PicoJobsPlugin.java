@@ -242,7 +242,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		        	if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
 		        		entry.put(VaultHook.getEconomy().getName(), 1);
 			        } else {
-			        	entry.put("Vault", 1);
+			        	entry.put("Others", 1);
 			        }
 		        	map.put("VAULT", entry);
 		        } else {

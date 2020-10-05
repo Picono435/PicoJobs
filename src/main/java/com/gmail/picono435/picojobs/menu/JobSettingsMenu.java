@@ -20,9 +20,6 @@ import net.md_5.bungee.api.ChatColor;
 
 public class JobSettingsMenu {
 	
-	// 27 - PEQUENO
-	// 54 - GRANDE
-	
 	public static List<Inventory> generalInventories = new ArrayList<Inventory>();
 	public static List<Inventory> jobListInventories = new ArrayList<Inventory>();
 	public static Map<Inventory, Job> jobSettingsInventories = new HashMap<Inventory, Job>();
@@ -32,8 +29,13 @@ public class JobSettingsMenu {
 	public static void openGeneral(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Settings");
 		
-		inv.setItem(13, new ItemBuilder(Material.CHEST).setName(ChatColor.AQUA + "Job Settings").removeAttributes().toItemStack());
-	
+		inv.setItem(12, new ItemBuilder(Material.CHEST).setName(ChatColor.AQUA + "Job Settings").removeAttributes().toItemStack());
+		if(PicoJobsPlugin.getInstance().isLegacy()) {
+			inv.setItem(14, new ItemBuilder(Material.getMaterial("ENDER_PORTAL_FRAME")).setName(ChatColor.AQUA + "GUI Settings").removeAttributes().toItemStack());
+		} else {
+			inv.setItem(14, new ItemBuilder(Material.END_PORTAL_FRAME).setName(ChatColor.AQUA + "GUI Settings").removeAttributes().toItemStack());
+		}
+		
 		p.openInventory(inv);
 		generalInventories.add(inv);
 	}
