@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.listeners.jobs;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -13,7 +14,7 @@ import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 public class PlaceListener implements Listener {
 	
-	@EventHandler()
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlaceBlock(BlockPlaceEvent e) {
 		if(e.getPlayer() == null) return;
 		Player p = e.getPlayer();

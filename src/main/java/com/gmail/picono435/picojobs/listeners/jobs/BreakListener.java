@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.listeners.jobs;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
@@ -13,9 +14,10 @@ import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 public class BreakListener implements Listener {
 	
-	@EventHandler()
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onBreakBlock(BlockBreakEvent e) {
 		if(e.getPlayer() == null) return;
+		
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

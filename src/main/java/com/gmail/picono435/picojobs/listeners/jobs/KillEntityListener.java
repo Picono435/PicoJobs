@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.listeners.jobs;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
@@ -13,7 +14,7 @@ import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 public class KillEntityListener implements Listener {
 	
-	@EventHandler()
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onEntityDeath(EntityDeathEvent e) {
 		if(e.getEntity().getKiller() == null) return;
 		Player p = e.getEntity().getKiller();

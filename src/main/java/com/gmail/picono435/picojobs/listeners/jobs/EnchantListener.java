@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.listeners.jobs;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 
@@ -13,7 +14,7 @@ import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 public class EnchantListener implements Listener {
 	
-	@EventHandler()
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onEnchant(EnchantItemEvent e) {
 		if(e.getEnchanter() == null) return;
 		Player p = e.getEnchanter();
