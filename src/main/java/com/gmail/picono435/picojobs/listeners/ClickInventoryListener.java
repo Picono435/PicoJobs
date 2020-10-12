@@ -591,17 +591,30 @@ public class ClickInventoryListener implements Listener {
 			switch(e.getSlot()) {
 			case(11): {
 				p.closeInventory();
-				JobSettingsMenu.openJobsList(p);
+				GUISettingsMenu.openChooseJobSettings(p);
+				return;
 			}
 			case(13): {
 				p.closeInventory();
-				GUISettingsMenu.openGeneral(p);
+				GUISettingsMenu.openNeedWorkSettings(p);
+				return;
 			}
 			case(15): {
 				p.closeInventory();
-				GUISettingsMenu.openGeneral(p);
+				GUISettingsMenu.openHasWorkSettings(p);
+				return;
 			}
 			}
+			return;
+		}
+		
+		/*
+		 * Choose Job GUI Settings Click
+		 */
+		if(GUISettingsMenu.guiSettings.containsKey(e.getInventory()) && GUISettingsMenu.guiSettings.get(e.getInventory()).equals("choose-job")) {
+			e.setCancelled(true);
+			
+			
 			return;
 		}
 	}
@@ -612,5 +625,7 @@ public class ClickInventoryListener implements Listener {
 		if(JobSettingsMenu.jobListInventories.contains(e.getInventory())) JobSettingsMenu.jobListInventories.remove(e.getInventory());
 		if(JobSettingsMenu.jobEditInventories.containsKey(e.getInventory())) JobSettingsMenu.jobEditInventories.remove(e.getInventory());
 		if(JobSettingsMenu.jobSettingsInventories.containsKey(e.getInventory())) JobSettingsMenu.jobSettingsInventories.remove(e.getInventory());
+		if(GUISettingsMenu.generalInventories.contains(e.getInventory())) GUISettingsMenu.generalInventories.remove(e.getInventory());
+		if(GUISettingsMenu.guiSettings.containsKey(e.getInventory())) GUISettingsMenu.generalInventories.remove(e.getInventory());
 	}
 }

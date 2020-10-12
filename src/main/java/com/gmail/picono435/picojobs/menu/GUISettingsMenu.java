@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
@@ -19,6 +20,7 @@ public class GUISettingsMenu {
 	
 	public static List<Inventory> generalInventories = new ArrayList<Inventory>();
 	public static Map<Inventory, String> guiSettings = new HashMap<Inventory, String>();
+	public static Map<Inventory, ItemStack> itemEdit = new HashMap<Inventory, ItemStack>();
 	
 	/*
 	 * choose-job
@@ -38,27 +40,46 @@ public class GUISettingsMenu {
 	}
 	
 	public static void openChooseJobSettings(Player p) {
-		Inventory inv = JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings"));
-		
+		Inventory inv = Bukkit.createInventory(null, 54, "PicoJobs - [Right-Click Edit Item] [Left-Click Move/Change Item]");
+
+		inv.setContents(JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings")).getContents());
+
 		p.openInventory(inv);
 		guiSettings.put(inv, "choose-job");
 	}
 	
 	public static void openNeedWorkSettings(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Settings");
+		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - [Right-Click Edit Item] [Left-Click Move/Change Item]");
 		
-		JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings"));
+		inv.setContents(JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings")).getContents());
 		
 		p.openInventory(inv);
 		guiSettings.put(inv, "need-work");
 	}
 	
 	public static void openHasWorkSettings(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Settings");
+		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - [Right-Click Edit Item] [Left-Click Move/Change Item]");
 		
 		JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings"));
 		
 		p.openInventory(inv);
 		guiSettings.put(inv, "has-work");
+	}
+	
+	public static void openItemEdit(Player p, ItemStack item, String gui) {
+		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Item Edit [" + gui + "]");
+		
+		// NAME
+		// LORE
+		// ENCHANTED
+		// ACTION
+		
+		inv.setItem(4, item);
+		/*inv.setItem(9, new ItemBuilder(Material.MAP));
+		inv.setItem(9, item);
+		inv.setItem(9, item);
+		inv.setItem(9, item);*/
+		
+		p.openInventory(inv);
 	}
 }
