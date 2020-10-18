@@ -51,7 +51,7 @@ public class GUISettingsMenu {
 	public static void openNeedWorkSettings(Player p) {
 		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - [Right-Click Edit Item] [Left-Click Move/Change Item]");
 		
-		inv.setContents(JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings")).getContents());
+		inv.setContents(JobsMenu.getNeedAcceptJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings"), p, true).getContents());
 		
 		p.openInventory(inv);
 		guiSettings.put(inv, "need-work");
@@ -66,8 +66,8 @@ public class GUISettingsMenu {
 		guiSettings.put(inv, "has-work");
 	}
 	
-	public static void openItemEdit(Player p, ItemStack item, String gui) {
-		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Item Edit [" + gui + "]");
+	public static void openItemEdit(Player p, ItemStack item, String gui, String itemSetting) {
+		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Item Edit [" + gui + "] (" + itemSetting + ")");
 		
 		// NAME
 		// LORE
@@ -75,11 +75,15 @@ public class GUISettingsMenu {
 		// ACTION
 		
 		inv.setItem(4, item);
-		/*inv.setItem(9, new ItemBuilder(Material.MAP));
-		inv.setItem(9, item);
-		inv.setItem(9, item);
-		inv.setItem(9, item);*/
+		inv.setItem(10, new ItemBuilder(Material.MAP).setName(ChatColor.GREEN + "Rename").toItemStack());
+		inv.setItem(12, new ItemBuilder(Material.PAPER).setName(ChatColor.YELLOW + "Lore Editor").toItemStack());
+		inv.setItem(14, new ItemBuilder(Material.BOOK).setName(ChatColor.GREEN + "Enchanted").toItemStack());
+		if(item.getItemMeta().getEnchants().size() != 0) {
+			inv.setItem(14, new ItemBuilder(Material.ENCHANTED_BOOK).setName(ChatColor.GREEN + "Enchanted").toItemStack());
+		}
+		inv.setItem(16, new ItemBuilder(Material.LEVER).setName(ChatColor.YELLOW + "Action").toItemStack());
 		
 		p.openInventory(inv);
+		itemEdit.put(inv, item);
 	}
 }

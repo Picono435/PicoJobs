@@ -30,7 +30,7 @@ public class JobsMenu {
 			if(jp.isWorking()) {
 				p.openInventory(getWorkStatusJobMenu(guiSettings, p));
 			} else {
-				p.openInventory(getNeedAcceptJobMenu(guiSettings, p));
+				p.openInventory(getNeedAcceptJobMenu(guiSettings, p, false));
 			}
 		} else {
 			p.openInventory(getChooseJobMenu(guiSettings));
@@ -71,7 +71,7 @@ public class JobsMenu {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static Inventory getNeedAcceptJobMenu(ConfigurationSection guiSettings, Player p) {
+	public static Inventory getNeedAcceptJobMenu(ConfigurationSection guiSettings, Player p, boolean toEdit) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("need-work");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		
@@ -91,6 +91,9 @@ public class JobsMenu {
 				builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
 			}
 			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
+			if(toEdit) {
+				builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]");
+			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			
@@ -133,7 +136,7 @@ public class JobsMenu {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static Inventory getWorkStatusJobMenu(ConfigurationSection guiSettings, Player p) {
+	public static Inventory getWorkStatusJobMenu(ConfigurationSection guiSettings, Player p) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("has-work");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		
