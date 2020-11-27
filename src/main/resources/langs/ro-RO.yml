@@ -57,7 +57,7 @@ update-started: "&aActualizarea plugin-ului PicoJobs a pornit, te rugam sa astep
 updated-sucefully: "&aPlugin-ul a fost actualizat complet, te rugam restarteaza serverul pentru a termina actualizarea."
 sucefully: "&aActiunea a fost facuta in mod corespunzator."
 invalid-arg: "&aArgumentul trimis nu este valid. Te rugam sa verifici gresita."
-##################################################################################
+#################################################################################
 ##
 #Format messages                                                               #
 ##
@@ -78,7 +78,7 @@ milk-work: "ia %a% lapte de la vaci"
 kill_entity-work: "omoară %a% entități"
 #When something is not find what should it appear
 none-format: "Niciunul"
-##################################################################################
+#################################################################################
 ##
 #Command translations                                                          #
 ##
@@ -105,9 +105,9 @@ aliases:
   method: "metoda"
   job: "sarcină"
   settings: "setări"
-##################################################################################
+#################################################################################
 ##
-#Time translations                                                          #
+#Time translations                                                             #
 ##
 #################################################################################
 #In this category you can change all the time translations
