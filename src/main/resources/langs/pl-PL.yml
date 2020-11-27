@@ -56,7 +56,7 @@ update-started: "&aAktualizacja wtyczki PicoJobs rozpoczęta, proszę czekać...
 updated-sucefully: "&aWtyczka została zaktualizowana, uruchom ponownie serwer, aby zakończyć aktualizację."
 sucefully: "&aAkcja została wykonana z pewnością."
 invalid-arg: "&aWysłany argument jest nieprawidłowy. Proszę sprawdzić nieprawidłowość."
-##################################################################################
+#################################################################################
 ##
 #Format messages                                                               #
 ##
@@ -77,7 +77,7 @@ milk-work: "zabij %a% mleka od krów"
 kill_entity-work: "zabij %a% obiektów"
 #When something is not find what should it appear
 none-format: "Brak"
-##################################################################################
+#################################################################################
 ##
 #Command translations                                                          #
 ##
@@ -104,9 +104,9 @@ aliases:
   method: "Metoda"
   job: "praca"
   settings: "ustawienia"
-##################################################################################
+#################################################################################
 ##
-#Time translations                                                          #
+#Time translations                                                             #
 ##
 #################################################################################
 #In this category you can change all the time translations
