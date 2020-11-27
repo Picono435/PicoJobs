@@ -56,7 +56,7 @@ update-started: "&aDie Aktualisierung des Plugins PicoJobs wurde gestartet, bitt
 updated-sucefully: "&aDas Plugin wurde erfolgreich aktualisiert, bitte starten Sie den Server neu, um die Aktualisierung abzuschließen."
 sucefully: "&aDie Aktion wurde erfolgreich durchgeführt."
 invalid-arg: "&aDas gesendete Argument ist ungültig. Bitte überprüfen Sie die Mispell."
-##################################################################################
+#################################################################################
 ##
 #Format messages                                                               #
 ##
@@ -77,7 +77,7 @@ milk-work: "nehme %a% Milch von Kühen"
 kill_entity-work: "töte %a% Entitäten"
 #When something is not find what should it appear
 none-format: "Keine"
-##################################################################################
+#################################################################################
 ##
 #Command translations                                                          #
 ##
@@ -104,9 +104,9 @@ aliases:
   method: "Methode"
   job: "job"
   settings: "einstellen"
-##################################################################################
+#################################################################################
 ##
-#Time translations                                                          #
+#Time translations                                                             #
 ##
 #################################################################################
 #In this category you can change all the time translations
