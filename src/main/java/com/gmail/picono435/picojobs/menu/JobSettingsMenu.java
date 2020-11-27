@@ -59,7 +59,7 @@ public class JobSettingsMenu {
 		}
 		
 		inv.setItem(48, new ItemBuilder(Material.MAP).setName(ChatColor.YELLOW + "Previous Page [" + (page1 - 1) + "]").setLore(ChatColor.GRAY + "Click to go to the previous page.").toItemStack());
-		inv.setItem(49, new ItemBuilder(Material.PAPER).setName(ChatColor.GREEN + "Create Job").toItemStack());
+		inv.setItem(49, new ItemBuilder(Material.PAPER).setName(ChatColor.GREEN + "Create Job").setLore(ChatColor.GRAY + "Click to create a new job.").toItemStack());
 		inv.setItem(50, new ItemBuilder(Material.MAP).setName(ChatColor.YELLOW + "Next Page [" + (page1 + 1) + "]").setLore(ChatColor.GRAY + "Click to go to the next page.").toItemStack());
 		
 		p.openInventory(inv);

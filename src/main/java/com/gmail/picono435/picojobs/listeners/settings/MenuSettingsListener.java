@@ -27,6 +27,7 @@ import com.gmail.picono435.picojobs.menu.GUISettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 import mkremins.fanciful.FancyMessage;
+import net.md_5.bungee.api.ChatColor;
 
 public class MenuSettingsListener implements Listener {
 	
@@ -49,7 +50,8 @@ public class MenuSettingsListener implements Listener {
 			switch(e.getSlot()) {
 			case(11): {
 				p.closeInventory();
-				GUISettingsMenu.openChooseJobSettings(p);
+				p.sendMessage(ChatColor.RED + "Editing the Choose Job GUI in-game is not yet implemented. Please go into plugins/PicoJobs/settings/jobs.yml in order to edit it.");
+				//GUISettingsMenu.openChooseJobSettings(p);
 				return;
 			}
 			case(13): {
@@ -124,13 +126,6 @@ public class MenuSettingsListener implements Listener {
 				return;
 			}
 			}
-			return;
-		}
-		
-		/*
-		 * Choose Job GUI Settings Click
-		 */
-		if(GUISettingsMenu.guiSettings.containsKey(e.getInventory()) && GUISettingsMenu.guiSettings.get(e.getInventory()).equals("choose-job")) {
 			return;
 		}
 		

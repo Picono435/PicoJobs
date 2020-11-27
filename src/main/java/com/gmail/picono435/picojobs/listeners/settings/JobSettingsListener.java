@@ -72,9 +72,15 @@ public class JobSettingsListener implements Listener {
 			
 			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
 			if(job == null) {
+				if(!e.getCurrentItem().getItemMeta().hasLore()) return;
 				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to go to the next page.")) {
 					int page = Integer.parseInt(e.getView().getTitle().split("\\[")[1].replace("]", "")) - 1;
 					JobSettingsMenu.openJobsList(p, page + 1);
+					return;
+				}
+				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to create a new job.")) {
+					p.sendMessage(ChatColor.RED + "This function is not yet implemented. Please create a job manually in plugins/PicoJobs/settings/jobs.yml");
+					p.closeInventory();
 					return;
 				}
 				if(e.getCurrentItem().getItemMeta().getLore().get(0).equalsIgnoreCase(ChatColor.GRAY + "Click to go to the previous page.")) {
