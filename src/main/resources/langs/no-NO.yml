@@ -56,7 +56,7 @@ update-started: "&aOppdateringen av plugin PicoJobs startet, vennligst vent..."
 updated-sucefully: "&aProgramtillegget ble oppdatert sucefull, vennligst start serveren på nytt for å fullføre oppdateringen."
 sucefully: "&aThe action was made sucefully."
 invalid-arg: "&aArgumentet er sendt er ugyldig. Vennligst sjekk missilet."
-##################################################################################
+#################################################################################
 ##
 #Format messages                                                               #
 ##
@@ -77,7 +77,7 @@ milk-work: "ta %a% melker fra kuer"
 kill_entity-work: "drep %a% enheter"
 #When something is not find what should it appear
 none-format: "Ingen"
-##################################################################################
+#################################################################################
 ##
 #Command translations                                                          #
 ##
@@ -104,9 +104,9 @@ aliases:
   method: "metode"
   job: "jobb"
   settings: "innstillinger"
-##################################################################################
+#################################################################################
 ##
-#Time translations                                                          #
+#Time translations                                                             #
 ##
 #################################################################################
 #In this category you can change all the time translations
