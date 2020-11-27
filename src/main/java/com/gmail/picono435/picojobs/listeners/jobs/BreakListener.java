@@ -5,7 +5,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.metadata.FixedMetadataValue;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
@@ -17,6 +20,8 @@ public class BreakListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onBreakBlock(BlockBreakEvent e) {
 		if(e.getPlayer() == null) return;
+		
+		if(e.getBlock().getMetadata("PLACED") == null) return;
 		
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
@@ -30,5 +35,11 @@ public class BreakListener implements Listener {
 		if(jp.simulateEvent(job.getType())) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void onPlaceBlock(BlockPlaceEvent e) {
+		if(e.getPlayer() == null) return;
+		e.getBlock().setMetadata("PLACED", new FixedMetadataValue(PicoJobsPlugin.getInstance(), System.currentTimeMillis()));
 	}
 }
