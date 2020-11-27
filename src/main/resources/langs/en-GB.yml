@@ -58,7 +58,7 @@ updated-sucefully: "&aThe plugin was updated sucefully, please restart the serve
 sucefully: "&aThe action was made sucefully."
 invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 
-##################################################################################
+#################################################################################
 #                                                                               #
 # Format messages                                                               #
 #                                                                               #
@@ -80,7 +80,7 @@ kill_entity-work: "kill %a% entities"
 # When something is not find what should it appear
 none-format: "None"
 
-##################################################################################
+#################################################################################
 #                                                                               #
 # Command translations                                                          #
 #                                                                               #
@@ -105,9 +105,9 @@ aliases:
   job: "job"
   settings: "settings"
   
-##################################################################################
+#################################################################################
 #                                                                               #
-# Time translations                                                          #
+# Time translations                                                             #
 #                                                                               #
 #################################################################################
 # In this category you can change all the time translations

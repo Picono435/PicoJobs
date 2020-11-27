@@ -28,7 +28,7 @@ public class JobsMenu {
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(jp.hasJob()) {
 			if(jp.isWorking()) {
-				p.openInventory(getWorkStatusJobMenu(guiSettings, p));
+				p.openInventory(getWorkStatusJobMenu(guiSettings, p, false));
 			} else {
 				p.openInventory(getNeedAcceptJobMenu(guiSettings, p, false));
 			}
@@ -136,7 +136,7 @@ public class JobsMenu {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static Inventory getWorkStatusJobMenu(ConfigurationSection guiSettings, Player p) {
+	public static Inventory getWorkStatusJobMenu(ConfigurationSection guiSettings, Player p, boolean toEdit) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("has-work");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		
@@ -156,6 +156,9 @@ public class JobsMenu {
 				builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
 			}
 			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
+			if(toEdit) {
+				builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]");
+			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			

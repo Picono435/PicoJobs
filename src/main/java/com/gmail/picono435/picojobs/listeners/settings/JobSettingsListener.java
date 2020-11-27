@@ -23,7 +23,8 @@ import com.gmail.picono435.picojobs.api.WhitelistConf;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.GUISettingsMenu;
 import com.gmail.picono435.picojobs.menu.JobSettingsMenu;
-import com.gmail.picono435.picojobs.menu.MenuAction;
+import com.gmail.picono435.picojobs.menu.ActionEnum;
+import com.gmail.picono435.picojobs.menu.ActionMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
 
@@ -32,8 +33,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class JobSettingsListener implements Listener {
 	
-	private static Map<Player, MenuAction> menuActions  = new HashMap<Player, MenuAction>();
-	private static Map<Player, Job> menuJobs  = new HashMap<Player, Job>();
+	private static Map<Player, ActionMenu> menuActions  = new HashMap<Player, ActionMenu>();
 
 	@EventHandler()
 	public void onSettingsClick(InventoryClickEvent e) {
@@ -137,10 +137,8 @@ public class JobSettingsListener implements Listener {
 				new FancyMessage(message)
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETDISPLAYNAME);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETDISPLAYNAME, job));
 				p.closeInventory();
 				return;
 			}
@@ -149,10 +147,8 @@ public class JobSettingsListener implements Listener {
 				new FancyMessage(message)
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETSALARY);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETSALARY, job));
 				p.closeInventory();
 				return;
 			}
@@ -164,10 +160,8 @@ public class JobSettingsListener implements Listener {
 				.tooltip("§8Click here to acess the WIKI PAGE about this action.")
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETJOBTYPE);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETJOBTYPE, job));
 				p.closeInventory();
 				return;
 			}
@@ -179,10 +173,8 @@ public class JobSettingsListener implements Listener {
 				.tooltip("§8Click here to acess the WIKI PAGE about this action.")
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETECONOMY);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETECONOMY, job));
 				p.closeInventory();
 				return;
 			}
@@ -191,10 +183,8 @@ public class JobSettingsListener implements Listener {
 				new FancyMessage(message)
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETREQMETHOD);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETREQMETHOD, job));
 				p.closeInventory();
 				return;
 			}
@@ -203,10 +193,8 @@ public class JobSettingsListener implements Listener {
 				new FancyMessage(message)
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETSALARYFREQ);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETSALARYFREQ, job));
 				p.closeInventory();
 				return;
 			}
@@ -216,10 +204,8 @@ public class JobSettingsListener implements Listener {
 				.tooltip("§8EXAMPLE: +:BRICKS, +:LEAVES, -:OAK_WOOD")
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETWHITELIST);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETWHITELIST, job));
 				p.closeInventory();
 				return;
 			}
@@ -245,10 +231,8 @@ public class JobSettingsListener implements Listener {
 				new FancyMessage(message)
 				.then("\n§a")
 				.send(p);
-				if(menuJobs.containsKey(p)) menuJobs.remove(p);
 				if(menuActions.containsKey(p)) menuActions.remove(p);
-				menuJobs.put(p, job);
-				menuActions.put(p, MenuAction.SETMETHODFREQ);
+				menuActions.put(p, new ActionMenu(p, ActionEnum.SETMETHODFREQ, job));
 				p.closeInventory();
 				return;
 			}
@@ -261,118 +245,107 @@ public class JobSettingsListener implements Listener {
 	public void onChat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
 		if(!menuActions.containsKey(p)) return;
-		if(!menuJobs.containsKey(p)) return;
 		e.setCancelled(true);
-		Job job = menuJobs.get(p);
-		MenuAction action = menuActions.get(p);
-		if(action == MenuAction.SETDISPLAYNAME) {
+		ActionMenu actionMenu = menuActions.get(p);
+		Job job = (Job)actionMenu.getValues().get(0);
+		ActionEnum action = actionMenu.getAction();
+		if(action == ActionEnum.SETDISPLAYNAME) {
 			job.setDisplayName(e.getMessage());
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETSALARY) {
+		if(action == ActionEnum.SETSALARY) {
 			double value = 0;
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
 				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
-				menuJobs.remove(p);
 				return;
 			}
 			job.setSalary(value);
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETJOBTYPE) {
+		if(action == ActionEnum.SETJOBTYPE) {
 			Type type = Type.getType(e.getMessage());
 			if(type == null) {
 				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
-				menuJobs.remove(p);
 				return;
 			}
 			job.setType(type);
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETECONOMY) {
+		if(action == ActionEnum.SETECONOMY) {
 			EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(e.getMessage());
 			if(economy == null) {
 				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
-				menuJobs.remove(p);
 				return;
 			}
 			job.setEconomy(economy.getName());
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETREQMETHOD) {
+		if(action == ActionEnum.SETREQMETHOD) {
 			double value = 0;
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
 				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
-				menuJobs.remove(p);
 				return;
 			}
 			job.setMethod(value);
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETSALARYFREQ) {
+		if(action == ActionEnum.SETSALARYFREQ) {
 			double value = 0;
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
 				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
-				menuJobs.remove(p);
 				return;
 			}
 			job.setSalaryFrequency(value);
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETWHITELIST) {
+		if(action == ActionEnum.SETWHITELIST) {
 			String[] values = e.getMessage().split(", ");
 			List<String> newWhitelist = new ArrayList<String>(job.getStringWhitelist());
 			for(String value : values) {
@@ -417,27 +390,24 @@ public class JobSettingsListener implements Listener {
 			job.setWhitelist(newWhitelist);
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);
 				}
 			}.runTask(PicoJobsPlugin.getInstance());
 		}
-		if(action == MenuAction.SETMETHODFREQ) {
+		if(action == ActionEnum.SETMETHODFREQ) {
 			double value = 0;
 			try {
 				value = Double.parseDouble(e.getMessage());
 			} catch(Exception ex) {
 				p.sendMessage(LanguageManager.getMessage("invalid-arg", p));
 				menuActions.remove(p);
-				menuJobs.remove(p);
 				return;
 			}
 			job.setMethodFrequency(value);
 			p.sendMessage(LanguageManager.getMessage("sucefully", p));
 			menuActions.remove(p);
-			menuJobs.remove(p);
 			new BukkitRunnable() {
 				public void run() {
 					JobSettingsMenu.openJobEdit(p, job);

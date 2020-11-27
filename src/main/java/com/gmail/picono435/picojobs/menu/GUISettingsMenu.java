@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.gmail.picono435.picojobs.listeners.settings.ItemVariable;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
 
@@ -20,7 +21,7 @@ public class GUISettingsMenu {
 	
 	public static List<Inventory> generalInventories = new ArrayList<Inventory>();
 	public static Map<Inventory, String> guiSettings = new HashMap<Inventory, String>();
-	public static Map<Inventory, ItemStack> itemEdit = new HashMap<Inventory, ItemStack>();
+	public static Map<Inventory, ItemVariable> itemEdit = new HashMap<Inventory, ItemVariable>();
 	
 	/*
 	 * choose-job
@@ -62,12 +63,14 @@ public class GUISettingsMenu {
 		
 		JobsMenu.getChooseJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings"));
 		
+		inv.setContents(JobsMenu.getWorkStatusJobMenu(FileCreator.getGUI().getConfigurationSection("gui-settings"), p, true).getContents());
+		
 		p.openInventory(inv);
 		guiSettings.put(inv, "has-work");
 	}
 	
 	public static void openItemEdit(Player p, ItemStack item, String gui, String itemSetting) {
-		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Item Edit [" + gui + "] (" + itemSetting + ")");
+		Inventory inv = Bukkit.createInventory(null, 27, "PicoJobs - Item Edit");
 		
 		// NAME
 		// LORE
@@ -84,6 +87,6 @@ public class GUISettingsMenu {
 		inv.setItem(16, new ItemBuilder(Material.LEVER).setName(ChatColor.YELLOW + "Action").toItemStack());
 		
 		p.openInventory(inv);
-		itemEdit.put(inv, item);
+		itemEdit.put(inv, new ItemVariable(item, gui, itemSetting));
 	}
 }

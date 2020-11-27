@@ -46,11 +46,6 @@ public class FileCreator {
 	public static boolean reloadGUIFile() {
 		try {
 			gui = YamlConfiguration.loadConfiguration(gui_file);
-			jobs = YamlConfiguration.loadConfiguration(jobs_file);
-			PicoJobsPlugin.getInstance().reloadConfig();
-			PicoJobsAPI.getSettingsManager().reloadConfigurations();
-			LanguageManager.reloadConfigurations();
-			PicoJobsPlugin.getInstance().generateJobsFromConfig();
 			return true;
 		} catch(Exception ex) {
 			ex.printStackTrace();

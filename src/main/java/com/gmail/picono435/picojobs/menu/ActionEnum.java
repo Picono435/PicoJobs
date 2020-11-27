@@ -1,6 +1,6 @@
 package com.gmail.picono435.picojobs.menu;
 
-public enum MenuAction {
+public enum ActionEnum {
 	
 	SETDISPLAYNAME(),
 	SETSALARY(),
@@ -9,5 +9,9 @@ public enum MenuAction {
 	SETREQMETHOD(),
 	SETSALARYFREQ(),
 	SETWHITELIST(),
-	SETMETHODFREQ();
+	SETMETHODFREQ(),
+	
+	RENAMEITEM(),
+	SETLOREITEM(),
+	SETACTIONITEM;
 }
