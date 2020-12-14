@@ -25,10 +25,6 @@ It's time to download the plugin! Well no it's not... our plugin is still in dev
 
 If you want to see how the plugin is made you can check our source code on our [github](https://github.com/Picono435/PicoJobs) page.
 
-**Premium Version**
-
-The free version is not bad at all but you will love the Premium Version! The Premium Version of the plugin add a lot of features that you can't find in the Free Version. But how to buy it? Well it's very easy just go to our [website](https://www.piconodev.tk/plugins/premium) and you will make everything automatic, remember that our site is still in devolpment so maybe you will not be able to buy the plugin.
-
 <p align="center">
     <a href="https://bstats.org/plugin/bukkit/PicoJobs" title="PicoJobs on bStats">
         <img src="https://bstats.org/signatures/bukkit/PicoJobs.svg" />
