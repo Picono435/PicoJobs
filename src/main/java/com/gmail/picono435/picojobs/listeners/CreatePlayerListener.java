@@ -9,8 +9,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 import mkremins.fanciful.FancyMessage;
@@ -42,16 +40,5 @@ public class CreatePlayerListener implements Listener {
 				}
 			}
 		}.runTaskLater(PicoJobsPlugin.getInstance(), 20L);
-		
-		if(!PicoJobsAPI.getSettingsManager().getDependencieWarn()) return;
-		
-		// PLACEHOLDERAPI
-		if(p.hasPermission("picojobs.admin") && !PlaceholderAPIHook.isEnabled()) {
-			String message = LanguageManager.formatMessage("&eThe &eplugin &ePlaceholderAPI &ewas &enot &efound, &eplease &einstall &eit &ein &eorder &eto &euse &eplaceholders.\n &ePS: You can disable this message anytime in the config");
-			new FancyMessage(message)
-					.link("https://www.spigotmc.org/resources/placeholderapi.6245/")
-					.tooltip(ChatColor.RED + "Click here to install PlaceholderAPI")
-					.send(p);
-		}
 	}
 }

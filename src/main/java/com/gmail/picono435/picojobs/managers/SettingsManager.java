@@ -20,7 +20,6 @@ public class SettingsManager {
 	private Map<String, Integer> allowedCommands = new HashMap<String, Integer>();
 	private ConfigurationSection mysqlConfiguration;
 	private ConfigurationSection mongodbConfiguration;
-	private boolean dependencieWarn;
 	private int salaryCooldown;
 	
 	public SettingsManager(PicoJobsPlugin plugin) {
@@ -46,7 +45,6 @@ public class SettingsManager {
 		}
 		this.mysqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mysql");
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
-		this.dependencieWarn = config.getBoolean("dependencie-warn");
 		this.salaryCooldown = config.getInt("salary-cooldown");
 		return true;
 	}
@@ -81,10 +79,6 @@ public class SettingsManager {
 	
 	public ConfigurationSection getMongoDBConfiguration() {
 		return mongodbConfiguration;
-	}
-	
-	public boolean getDependencieWarn() {
-		return dependencieWarn;
 	}
 	
 	public int getSalaryCooldown() {
