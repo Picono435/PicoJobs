@@ -30,9 +30,9 @@ admin-commands: |-
   &e/jobsadmin info <player> &6- &eObtém as informações sobre um jogador
   &e/jobsadmin recarrega &6- &eRecarregar todas as configurações possíveis.
   &e/jobsadmin atualizar &6- &eInstala uma atualização do plugin
-  &e/jobsadmin sobre &6- &eObtém informações sobre o servidor e o plugin
-  &e/jobsadmin conjunto <salary | method | job> <player> <amount | job> &6- &eDefine o salário/método de um jogador
-  &e/jobsadmin configurações &6- &eAbre o menu de SETTINGs do plugin
+  &e/jobsadmin sobre &6- Informações sobre o servidor e o plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eDefine o salário/método de um jogador
+  &e/jobsadmin &6- &eCria uma sessão de editor da web
 member-commands: |-
   &6Full list of commands:
   &e/jobs help &6- &eSee this messages
