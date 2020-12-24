@@ -29,10 +29,10 @@ admin-commands: |-
   &e/jobsadmin help &6- &eSe denne meldingene
   &/jobsadmin info <player> &6- &eGetter informasjonen om en spiller
   &/ jobsadmin reload &6- &eOppdater alle mulige konfigurasjoner.
-  &/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
+  &e/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
   &/jobsadmin om &6- &eGets informasjon om serveren og programtillegget
-  &/jobsadmin settet <salary | method | job> <player> <amount | job> &6- & eSets the salary/method of a player
-  &jobe/jobsadmin innstillinger &6- &eOpens SETTINGs-menyen i plugin plugin menyen
+  &/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
+  &jobe/sadmin settings &6- &6- &eCreates a web session
 member-commands: |-
   &6Full liste over kommandoer:
   &e/Jobber hjelper &6- &eSe denne meldingene
