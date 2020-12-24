@@ -31,8 +31,8 @@ admin-commands: |-
   &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
   &e/jobsadmin aktualizuje &6- &eInstalls aktualizaci pluginu
   &e/jobsadmin o &6- &eGety informace o serveru a pluginu
-  &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &6- &eNastaví salary/metodu hráče
-  &e/jobsadmin nastavení &6- &eOtevře menu SETTINGs pluginu
+  &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &eNastaví salary/metodu hráče
+  &e/jobsadmin nastavení &6- &eVytvoří relaci webového editoru
 member-commands: |-
   &6Plný seznam příkazů:
   &e/job help &6- &eSee this
