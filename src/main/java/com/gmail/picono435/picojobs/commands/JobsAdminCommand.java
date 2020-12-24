@@ -16,7 +16,6 @@ import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
-import com.gmail.picono435.picojobs.menu.JobSettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 public class JobsAdminCommand implements CommandExecutor, TabCompleter {
@@ -187,12 +186,9 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		}
 		
-		if(args[0].equalsIgnoreCase("settings") || args[1].equalsIgnoreCase(settingsString)) {
-			if(!(p instanceof Player)) {
-				sender.sendMessage(LanguageManager.formatMessage("&cOnly players can use that command, please use /jobsadmin to see the help of JobsAdmin commands."));
-				return true;
-			}
-			JobSettingsMenu.openGeneral((Player)p);
+		if(subcmd.equalsIgnoreCase("settings") || subcmd.equalsIgnoreCase(settingsString) || subcmd.equalsIgnoreCase("editor")) {
+			// CREATE EDITOR
+			p.sendMessage(LanguageManager.formatMessage("&cThis feature is still in maintance, for more information join our discord."));
 			return true;
 		}
 		p.sendMessage(LanguageManager.getFormat("admin-commands", pl));

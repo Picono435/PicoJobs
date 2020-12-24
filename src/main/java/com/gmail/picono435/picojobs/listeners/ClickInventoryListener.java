@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
@@ -18,8 +17,6 @@ import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
-import com.gmail.picono435.picojobs.menu.GUISettingsMenu;
-import com.gmail.picono435.picojobs.menu.JobSettingsMenu;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.TimeFormatter;
 
@@ -145,15 +142,5 @@ public class ClickInventoryListener implements Listener {
 			}
 			return;
 		}
-	}
-	
-	@EventHandler()
-	public void onClose(InventoryCloseEvent e) {
-		if(JobSettingsMenu.generalInventories.contains(e.getInventory())) JobSettingsMenu.generalInventories.remove(e.getInventory());
-		if(JobSettingsMenu.jobListInventories.contains(e.getInventory())) JobSettingsMenu.jobListInventories.remove(e.getInventory());
-		if(JobSettingsMenu.jobEditInventories.containsKey(e.getInventory())) JobSettingsMenu.jobEditInventories.remove(e.getInventory());
-		if(JobSettingsMenu.jobSettingsInventories.containsKey(e.getInventory())) JobSettingsMenu.jobSettingsInventories.remove(e.getInventory());
-		if(GUISettingsMenu.generalInventories.contains(e.getInventory())) GUISettingsMenu.generalInventories.remove(e.getInventory());
-		if(GUISettingsMenu.guiSettings.containsKey(e.getInventory())) GUISettingsMenu.generalInventories.remove(e.getInventory());
 	}
 }

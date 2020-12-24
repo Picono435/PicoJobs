@@ -55,8 +55,6 @@ import com.gmail.picono435.picojobs.listeners.jobs.MilkListener;
 import com.gmail.picono435.picojobs.listeners.jobs.PlaceListener;
 import com.gmail.picono435.picojobs.listeners.jobs.RepairListener;
 import com.gmail.picono435.picojobs.listeners.jobs.SmeltListener;
-import com.gmail.picono435.picojobs.listeners.settings.JobSettingsListener;
-import com.gmail.picono435.picojobs.listeners.settings.MenuSettingsListener;
 import com.gmail.picono435.picojobs.listeners.jobs.BreakListener;
 import com.gmail.picono435.picojobs.listeners.jobs.CraftListener;
 import com.gmail.picono435.picojobs.listeners.jobs.EatListener;
@@ -135,8 +133,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 		// REGISTERING LISTENERS
 		Bukkit.getPluginManager().registerEvents(new CreatePlayerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ClickInventoryListener(), this);
-		Bukkit.getPluginManager().registerEvents(new JobSettingsListener(), this);
-		Bukkit.getPluginManager().registerEvents(new MenuSettingsListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ExecuteCommandListener(), this);
 		Bukkit.getPluginManager().registerEvents(new AliasesListeners(), this);
 		Bukkit.getPluginManager().registerEvents(new BreakListener(), this);
