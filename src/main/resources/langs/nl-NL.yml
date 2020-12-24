@@ -1,0 +1,124 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&cHey! Je hebt geen toestemming om dat commando uit te voeren."
+ignore-action: "&cHey! Wees niet lui en praat met de NPC."
+choosed-job: "&aGefeliciteerd! Je hebt de job %jobplayer_job%&a gekozen."
+accepted-work: "&aJe hebt het werk van %jobplayer_work% geaccepteerd."
+no-salary: "&cJe hebt niet genoeg salaris om te krijgen! Ga naar werk ;("
+got-salary: "&aGoed werk! Je hebt zojuist je %jobplayer_salary% salaris!"
+finished-work: "&aGefeliciteerd! Je hebt zojuist je werk voltooid. Gebruik /jobs om meer informatie erover te krijgen."
+need-level: "&cHey! Je moet %a% doen om die actie uit te voeren."
+no-args: "&cHey! Gebruik alstublieft een geldige syntaxis."
+my-salary: "&aJe hebt %jobplayer_salary%$ salaris."
+unknow-job: "&cDie taak is niet gevonden. Gebruik de TAB COMPLETE om een lijst met taken te krijgen."
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&cJe moet meer %cooldown_mtime% wachten om je salaris weer te krijgen."
+work-status: "&aHier is wat je moet doen: %jobplayer_work%"
+admin-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
+  &e/jobsadmin settings &6- &eCreates a web editor session
+member-commands: |-
+  &6Volledige lijst met commando's:
+  &e/jobs helpen &6- &eSee deze berichten
+  &e/jobs kiezen <job> &6- &eChooses your job
+  &e/jobs work &6- &eSee the status/Accept of your work
+  &e/jobs &6- &eCheck your salaris
+  &ejobs &6- &eWithdraw your salaris
+  &e/jobs leave &6- &eLeaves the job
+info-command: |-
+  &6Status van de speler %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Bewerking: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfiguraties, Jobs & Taal zijn succesvol herladen."
+player-not-found: "&cDie speler is niet online, plaats een geldige speler."
+unknow-error: "&cEen onbekende fout is opgetreden, controleer de console voor meer informatie."
+left-job: "&cJe bent niet werkloos! We raden je aan een nieuwe baan te kiezen, anders verlies je veel geld."
+already-updated: "&cDe plugin is al in de laatste versie, voor meer informatie bekijk onze WIKI."
+update-started: "&aDe update van de plugin PicoJobs is gestart, even geduld..."
+updated-sucefully: "&aDe plugin is succesvol bijgewerkt, herstart de server om de update af te ronden."
+sucefully: "&aDe actie is overvloedig."
+invalid-arg: "&aHet verzonden argument is ongeldig. Controleer het mispell."
+#################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "pak %a% blokken"
+kill-work: "versla %a% mensen"
+fishing-work: "Vis %a% vissen"
+place-work: "plaats %a% blokken"
+craft-work: "maak %a% voorwerpen"
+smelt-work: "smelt %a% voorwerpen"
+eat-work: "%a% voorwerpen eten"
+enchanting-work: "betover %a% items"
+repair-work: "repareer %a% items"
+milk-work: "neem %a% melk van koeien"
+kill_entity-work: "dood %a% entiteiten"
+#When something is not find what should it appear
+none-format: "geen"
+#################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+aliases:
+  jobs:
+    - "/taken"
+    - "/job"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "kies"
+  work: "werk"
+  salary: "salaris"
+  withdraw: "opnemen"
+  leave: "verlaten"
+  help: "Help"
+  info: "info"
+  reload: "reload"
+  update: "Bijwerken"
+  about: "Over"
+  set: "instellen"
+  method: "methode"
+  job: "baan"
+  settings: "Instellingen"
+#################################################################################
+##
+#Time translations                                                             #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "seconden"
+second: "seconde"
+minutes: "minuten"
+minute: "minuut"
+hours: "Uren"
+hour: "uur"
+days: "Dagen"
+day: "Dag"
+months: "Monate"
+month: "maand"
+years: "Jaren"
+year: "Jaar"

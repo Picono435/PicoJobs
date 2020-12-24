@@ -1,0 +1,124 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&cHej! Du har inte behörighet att köra det kommandot."
+ignore-action: "&cHej! Var inte lata och gå och prata med NPC."
+choosed-job: "&aGrattis! Du valde jobbet %jobplayer_job%&a."
+accepted-work: "&aDu accepterade arbetet på %jobplayer_work%."
+no-salary: "&cDu har inte tillräckligt med lön för att få! Gå till jobbet ;("
+got-salary: "&aGreat Work! Du har precis fått din %jobplayer_salary% lön!"
+finished-work: "&aGrattis! Du har precis avslutat ditt arbete. Använd /jobs för att få mer information om det."
+need-level: "&cHej! Du måste göra %a% verk för att utföra den åtgärden."
+no-args: "&cHej! Använd en giltig syntax."
+my-salary: "&aDu har %jobplayer_salary%$ i lön."
+unknow-job: "&cDet jobbet hittades inte, använd TAB COMPLETE för att få en lista över jobb."
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&cDu måste vänta mer %cooldown_mtime% innan du får din lön igen."
+work-status: "&aHär är vad du behöver göra: %jobplayer_work%"
+admin-commands: |-
+  &6Fullständig lista över kommandon:
+  &e/jobsadmin help &6- &eSe detta meddelande
+  &e/jobsadmin info <player> &6- &eHämtar information om en spelare
+  &e/jobsadmin ladda om &6- &eLadda om alla möjliga konfigurationer.
+  &e/jobsadmin update &6- &eInstallerar en uppdatering av pluginen
+  &e/jobsadmin om &6- &eHämtar information om servern och pluginen
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eStäller in en spelares lön/metod
+  &e/jobsadmin inställningar &6- &eSkapar en webbeditor session
+member-commands: |-
+  &6Fullständig lista över kommandon:
+  &e/jobs help &6- &eSe detta meddelande
+  &e/jobs choose <job> &6- &eChooses your job
+  &e/jobs work &6- &eSe status/Acceptera ditt arbete
+  &e/jobs lön &6- &eCheck your pay
+  &e/jobs withdraw &6- &eTa ut din lön
+  &e/jobs leave &6- &eLeaves the job
+info-command: |-
+  &6Status för spelaren %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs fungerar: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aKonfigurationer, jobb och språk laddades om."
+player-not-found: "&cDen spelaren är inte online, ange en giltig spelare."
+unknow-error: "&cEtt okänt fel uppstod, kontrollera konsolen för mer information."
+left-job: "&cYou är inte arbetslös! Vi rekommenderar att du väljer ett nytt jobb eller att du förlorar en massa pengar."
+already-updated: "&cPluginen är redan i den senaste versionen, för mer information kolla vår WIKI."
+update-started: "&aUppdateringen av pluginen PicoJobs startade, vänligen vänta..."
+updated-sucefully: "&aPluginen har uppdaterats noggrant, vänligen starta om servern för att slutföra uppdateringen."
+sucefully: "&aÅtgärden gjordes noggrant."
+invalid-arg: "&aArgumentet som skickats är ogiltigt. Kontrollera felet."
+#################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "bryta %a% block"
+kill-work: "döda %a% personer"
+fishing-work: "fisk %a% fiskar"
+place-work: "placera %a% block"
+craft-work: "tillverka %a% objekt"
+smelt-work: "smält %a% objekt"
+eat-work: "äta %a% objekt"
+enchanting-work: "förtrolla %a% objekt"
+repair-work: "reparera %a% objekt"
+milk-work: "ta %a% mjölk från kor"
+kill_entity-work: "döda %a% enheter"
+#When something is not find what should it appear
+none-format: "Ingen"
+#################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+aliases:
+  jobs:
+    - "/jobb"
+    - "/jobb"
+  jobsadmin:
+    - "/jobsadmin"
+    - "/jobadmin"
+  choose: "välj"
+  work: "arbete"
+  salary: "lön"
+  withdraw: "dra tillbaka"
+  leave: "lämna"
+  help: "hjälp"
+  info: "information"
+  reload: "reload"
+  update: "uppdatera"
+  about: "om"
+  set: "ange"
+  method: "metod"
+  job: "jobb"
+  settings: "inställningar"
+#################################################################################
+##
+#Time translations                                                             #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "sekunder"
+second: "sekund"
+minutes: "minuter"
+minute: "minut"
+hours: "timmar"
+hour: "timme"
+days: "dagar"
+day: "dag"
+months: "månader"
+month: "månad"
+years: "år"
+year: "år"
