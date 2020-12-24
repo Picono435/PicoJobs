@@ -32,7 +32,7 @@ admin-commands: |-
   &e/jobsadmin update &6- &eInstala una actualización del plugin
   &e/jobsadmin acerca de &6- &eObtiene información sobre el servidor y el plugin
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eEstablece el salario/método de un jugador
-  &e/jobsadmin settings &6- &eAbre el menú SETINGs del plugin
+  &e/jobsadmin settings &6- &eCrea una sesión de editor web
 member-commands: |-
   &6Lista completa de comandos:
   &e/jobs help &6- &eVer estos mensajes
