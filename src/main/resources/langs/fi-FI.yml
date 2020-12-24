@@ -29,10 +29,10 @@ admin-commands: |-
   &e/jobsadmin help &6- &eKatso nämä viestit
   &e/jobsadmin info <player> &6- &eGets the information about a player
   &e/jobsadmin reload &6- &eLataa kaikki mahdolliset asetukset.
-  &e/jobsadmin päivitys &6- &eAsenna lisäosan päivityksen
-  &e/jobsadminista &6- &eGets palvelimen tiedoista ja lisäosan
+  &e/jobsadmin päivitys &6- &eAsentaa lisäosan päivityksen
+  &e/jobsadminista &6- &eGet- palvelimen tiedoista ja lisäosan
   &e/jobsadmin asetukset <salary | method | job> <player> <amount | job> &6- &eAsettaa pelaajan
-  &e/jobsadmin asetukset &6- &eAvaa lisäosan ASETTING-valikon
+  &e/jobsadmin asetukset &6- &eLuo web-editor-istunnon
 member-commands: |-
   &6Täysi lista komennoista:
   &e/jobs help &6- &eSee this messages
