@@ -31,8 +31,8 @@ admin-commands: |-
   &e/jobsadmin reload &6- &eReload جميع التكوينات الممكنة.
   &e/jobsadmin upd&6- &eInstalls تحديث من البرنامج المساعد
   &e/jobsadmin حول &6- &eGets معلومات حول الخادم و البرنامج المساعد
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &e&eيحدد الراتب/طريقة اللاعب
-  &e/jobsadmin setting&6- eفتح قائمة الـ SETTINGs من البرنامج المساعد
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &e&eرسم الراتب/أسلوب اللاعب
+  &e/jobsadmin setting&6- &eCreates جلسة محرر ويب
 member-commands: |-
   &6 قائمة الأوامر الكاملة:
   &e/jobhelp &6- &eعرض هذه الرسائل
