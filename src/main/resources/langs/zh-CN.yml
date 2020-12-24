@@ -32,7 +32,7 @@ admin-commands: |-
   &e/jobsadmin更新 &6- &eInstalls 更新插件
   &e/jobsadmin关于&6- &eGets 关于服务器和插件的信息
   &e/jobsadmin设置 <salary | method | job> <player> <amount | job> &6- &eSets 一个玩家的预付/方法
-  &e/jobsadmin设置&6- &e打开插件设置菜单。
+  &e/jobsadmin设置&6- &eCreates 一个 web 编辑器会话
 member-commands: |-
   &6完整的命令列表：
   &e/jobs help &6- &e查看这条消息
