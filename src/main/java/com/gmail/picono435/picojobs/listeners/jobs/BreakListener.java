@@ -21,7 +21,7 @@ public class BreakListener implements Listener {
 	public void onBreakBlock(BlockBreakEvent e) {
 		if(e.getPlayer() == null) return;
 		
-		if(e.getBlock().getMetadata("PLACED") == null) return;
+		if(e.getBlock().getMetadata("PLACED").size() > 0) return;
 		
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
@@ -40,6 +40,6 @@ public class BreakListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlaceBlock(BlockPlaceEvent e) {
 		if(e.getPlayer() == null) return;
-		e.getBlock().setMetadata("PLACED", new FixedMetadataValue(PicoJobsPlugin.getInstance(), System.currentTimeMillis()));
+		e.getBlock().setMetadata("PLACED", new FixedMetadataValue(PicoJobsPlugin.getInstance(), "YES"));
 	}
 }
