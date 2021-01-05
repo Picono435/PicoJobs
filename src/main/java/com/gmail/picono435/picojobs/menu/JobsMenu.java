@@ -51,12 +51,12 @@ public class JobsMenu {
 			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(Material.matchMaterial(category.getString("material")));
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 				} else {
-					builder = new ItemBuilder(Material.matchMaterial(category.getString("material")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(Material.matchMaterial(category.getString("material")));
+				builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
@@ -116,12 +116,12 @@ public class JobsMenu {
 			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(Material.matchMaterial(category.getString("material")));
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 				} else {
-					builder = new ItemBuilder(Material.matchMaterial(category.getString("material")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(Material.matchMaterial(category.getString("material")));
+				builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
@@ -181,12 +181,12 @@ public class JobsMenu {
 			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(Material.matchMaterial(category.getString("material")));
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 				} else {
-					builder = new ItemBuilder(Material.matchMaterial(category.getString("material")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(Material.matchMaterial(category.getString("material")));
+				builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
