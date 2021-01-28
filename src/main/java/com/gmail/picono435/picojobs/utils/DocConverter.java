@@ -23,8 +23,6 @@ public final class DocConverter {
 
 	private static String yaml;
 	private static String json;
-
-	public static int PRETTY_PRINT_INDENT_FACTOR = 4;
 	
 	/**
 	* @param path as string (uses UTF-8 for encoding)
