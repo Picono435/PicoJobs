@@ -28,9 +28,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
@@ -289,9 +288,8 @@ public class PicoJobsPlugin extends JavaPlugin {
             }
             in.close();
 
-            JSONParser parser = new JSONParser();
-            JSONArray jsonArray = (JSONArray) parser.parse(content.toString());
-            JSONObject json = (JSONObject) jsonArray.get(jsonArray.size() - 1);
+            JSONArray jsonArray =  new JSONArray(content.toString());
+            JSONObject json = (JSONObject) jsonArray.get(jsonArray.length() - 1);
             version = (String)json.get("name");
             version = version.replaceFirst("PicoJobs ", "");
 

@@ -1,10 +1,8 @@
 package com.gmail.picono435.picojobs.commands;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
@@ -12,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.assimbly.docconverter.DocConverter;
-import org.bson.json.JsonWriter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,14 +18,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.utils.DocConverter;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 public class JobsAdminCommand implements CommandExecutor, TabCompleter {
@@ -292,7 +287,6 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			serverVersionString = serverVersionString.substring(0, spaceIndex);
 			serverVersionString = StringUtils.substringBeforeLast(serverVersionString, ".");
 			
-			JSONParser parser = new JSONParser();
 			String jobsConfigYAML = DocConverter.convertFileToString(FileCreator.getJobsFile().getPath());
 			String jobsConfigJSON = DocConverter.convertYamlToJson(jobsConfigYAML);
 			
@@ -302,7 +296,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			jsonJobs.put("author", sender.getName());
 			jsonJobs.put("minecraftVersion", serverVersionString);
 			jsonJobs.put("economies", new JSONObject());
-			jsonJobs.put("config", parser.parse(jobsConfigJSON));
+			jsonJobs.put("config", new JSONObject(jobsConfigJSON));
 			
 			String charset = "UTF-8";
 			
@@ -326,7 +320,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
             		    while ((responseLine = br.readLine()) != null) {
             		        responseString.append(responseLine.trim());
             		    }
-            		    org.json.simple.JSONObject response = (org.json.simple.JSONObject) parser.parse(responseString.toString());
+            		    JSONObject response = new JSONObject(responseString.toString());
             		    return (String)response.get("editor");
             		}
 		} catch (Exception e) {
