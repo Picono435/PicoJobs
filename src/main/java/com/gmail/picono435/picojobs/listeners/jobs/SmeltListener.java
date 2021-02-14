@@ -22,7 +22,7 @@ public class SmeltListener implements Listener {
 	public void onCraftItem(InventoryClickEvent e) {
 		if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) return;
 		if(!PicoJobsPlugin.getInstance().isLegacy()) {
-			if(e.getInventory().getType() != InventoryType.FURNACE && e.getInventory().getType() != InventoryType.BLAST_FURNACE && e.getInventory().getType() != InventoryType.SMOKER) return;
+			if(e.getInventory().getType() != InventoryType.FURNACE && e.getInventory().getType() != InventoryType.valueOf("BLAST_FURNACE") && e.getInventory().getType() != InventoryType.valueOf("SMOKER")) return;
 		} else {
 			if(e.getInventory().getType() != InventoryType.FURNACE) return;
 		}

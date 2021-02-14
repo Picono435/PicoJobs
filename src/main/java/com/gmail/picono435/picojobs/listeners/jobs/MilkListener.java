@@ -21,11 +21,18 @@ public class MilkListener implements Listener {
 	public void onTakeMilk(PlayerBucketFillEvent  e) {
 		if(e.getPlayer() == null) return;
 		try {
-			Block b = (Block)Class.forName("org.bukkit.event.player.PlayerBucketFillEvent").getMethod("getBlockClicked").invoke(this);
+			Block b = (Block)e.getClass().getMethod("getBlockClicked").invoke(this);
 			if(b.isLiquid()) return;
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
-				| SecurityException | ClassNotFoundException e1) {
-			if(e.getBlock().isLiquid()) return;
+				| SecurityException e1) {
+			Block b;
+			try {
+				b = (Block)e.getClass().getMethod("getBlock").invoke(this);
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e2) {
+				return;
+			}
+			if(b.isLiquid()) return;
 		};
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
