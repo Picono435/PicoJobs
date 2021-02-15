@@ -17,45 +17,45 @@ accepted-work: "&e%jobplayer_work% &aadlı oyuncunun işini kabul ettin."
 no-salary: "&cAlmak için yeterli maaşın yok! Lütfen işe git ;("
 got-salary: "&aHarika İş! Az önce &e%jobplayer_salary% &amaaşını aldın!"
 finished-work: "&aTebrikler! Az önce işini bitirdin. /jobs yazarak bunun hakkında detaylı bilgi al."
-need-level: "&cHey! You need to do %a% works to execute that action."
-no-args: "&cHey! Please use a valid syntax."
-my-salary: "&aYou have %jobplayer_salary%$ of salary."
-unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+need-level: "&cHey! Bunu yapabilmek için %a% iş yapman gerek."
+no-args: "&cHey! Lütfen geçerli bir sözdizimi kullan."
+my-salary: "&a%jobplayer_salary% TL maaşın var."
+unknow-job: "&cBu mesleklerin bulunamadı, lütfen mesleklerin bir listesini almak için TAB TAMLAMASI kullan."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
-work-status: "&aHere is what you need to do: %jobplayer_work%"
+salary-cooldown: "&cMaaşını alabilmek için %cooldown_mtime% kadar beklemelisin"
+work-status: "&aİşte yapman gerekenler: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eCreates a web editor session
+    &6Komutların listesi
+    &e/jobsadmin help &6- &eBu mesajı gör
+    &e/jobsadmin info <oyuncu> &6- &eBir oyuncu hakkında bilgi alır
+    &e/jobsadmin reload &6- &eTüm olası konfigürasyonları yeniden yükleyin.
+    &e/jobsadmin update &6- &eEklentinin bir güncellemesini yükler
+    &e/jobsadmin about &6- &eSunucu ve eklenti hakkında bilgi alır
+    &e/jobsadmin set <maaş | metod | iş> <oyuncu> <miktar | iş> &6- &eBir oyuncunun maaşını / yöntemini belirler
+    &e/jobsadmin settings &6- &eBir web editörü oturumu oluşturur
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+    &6Komutların listesi:
+    &e/jobs help &6- &eBu mesajı gör
+    &e/jobs choose <iş> &6- &eişini seçer
+    &e/jobs work &6- &eDurumunu gör / Çalışmanın kabul edilmesi
+    &e/jobs salary &6- &eMaaşını kontrol et
+    &e/jobs withdraw &6- &eMaaşını çek
+    &e/jobs leave &6- &eİşten ayrıl
 info-command: |-
-  &6Status of the player %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Language were reloaded succefully."
-player-not-found: "&cThat player is not online, please put a valid player."
-unknow-error: "&cAn unknow error occuried, please check the console for more information."
-left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
-already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
-update-started: "&aThe update of the plugin PicoJobs started, please wait..."
-updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
-sucefully: "&aThe action was made sucefully."
-invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
+    &6%player_name% Adlı oyuncunun durumu
+    &eMaaşı: %jobplayer_salary%
+    &eÇalışıyor Mu: %jobplayer_working%
+    &eİş: %jobplayer_work%
+    &eMeslek: %jobplayer_job%
+reload-command: "&aYapılandırmalar, Meslek ve Dil başarıyla yeniden yüklendi."
+player-not-found: "&cBu oyuncu çevrimiçi değil, lütfen geçerli bir oyuncu girin."
+unknow-error: "&cBilinmeyen bir hata oluştu, daha fazla bilgi için lütfen konsolu kontrol edin."
+left-job: "&cSen işsiz değilsin! Yeni bir iş seçmeni tavsiye ederim yoksa çok para kaybedersin."
+already-updated: "&cEklenti zaten en son sürümde, daha fazla bilgi için WIKI'mızı kontrol edin."
+update-started: "&aPicoJobs eklentisinin güncellemesi başladı, lütfen bekleyin..."
+updated-sucefully: "&aEklenti yeterince güncellendi, lütfen güncellemeyi bitirmek için sunucuyu yeniden başlatın"
+sucefully: "&aEylem başarılı bir şekilde yapıldı."
+invalid-arg: "&aGönderilen argüman geçersiz. Lütfen yanlış yazımı kontrol edin."
 #################################################################################
 ##
 #Format messages                                                               #
@@ -64,19 +64,19 @@ invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "break %a% blocks"
-kill-work: "kill %a% people"
-fishing-work: "fish %a% fishes"
-place-work: "place %a% blocks"
-craft-work: "craft %a% items"
-smelt-work: "smelt %a% items"
-eat-work: "eat %a% items"
-enchanting-work: "enchant %a% items"
-repair-work: "repair %a% items"
-milk-work: "take %a% milks from cows"
-kill_entity-work: "kill %a% entities"
+break-work: "%a% blok kır"
+kill-work: "%a% oyuncu öldür"
+fishing-work: "%a% balık tut"
+place-work: "%a% blok koy"
+craft-work: "%a% eşya üret"
+smelt-work: "%a% eşya erit"
+eat-work: "%a% besin ye"
+enchanting-work: "%a% eşyaya büyü uygula"
+repair-work: "%a% eşya tamir et"
+milk-work: "ineklerden %a% kova süt sağ"
+kill_entity-work: "%a% varlık öldür"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "Yok"
 #################################################################################
 ##
 #Command translations                                                          #
@@ -85,15 +85,15 @@ none-format: "None"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/jobs"
-    - "/job"
+    - "/meslekler"
+    - "/meslek"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
-  choose: "choose"
-  work: "work"
-  salary: "salary"
-  withdraw: "withdraw"
+    - "/meslekadmin"
+    - "/meslekadmin"
+  choose: "seç"
+  work: "iş"
+  salary: "maaş"
+  withdraw: "çek"
   leave: "leave"
   help: "help"
   info: "info"
