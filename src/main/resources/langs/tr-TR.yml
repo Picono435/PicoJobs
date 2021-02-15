@@ -10,13 +10,13 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+no-permission: "&cHey! Bu komutu yürütme izniniz yok."
+ignore-action: "&cHey! Tembel olmayın ve NPC ile konuşun."
+choosed-job: "&aTebrikler! &e%jobplayer_job% &amesleğini seçtin."
+accepted-work: "&e%jobplayer_work% &aadlı oyuncunun işini kabul ettin."
+no-salary: "&cAlmak için yeterli maaşın yok! Lütfen işe git ;("
+got-salary: "&aHarika İş! Az önce &e%jobplayer_salary% &amaaşını aldın!"
+finished-work: "&aTebrikler! Az önce işini bitirdin. /jobs yazarak bunun hakkında detaylı bilgi al."
 need-level: "&cHey! You need to do %a% works to execute that action."
 no-args: "&cHey! Please use a valid syntax."
 my-salary: "&aYou have %jobplayer_salary%$ of salary."
