@@ -10,7 +10,7 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&c嘿! 您没有执行该命令的权限?。"
+no-permission: "&c嘿! 您没有执行该命令的权限。"
 ignore-action: "&c嘿! 别偷懒，去与 NPC 交互。"
 choosed-job: "恭喜您成功选择了职业 %jobplayer_job%&a。"
 accepted-work: "&a你接取了 %jobplayer_work% 的工作。"
@@ -73,7 +73,7 @@ smelt-work: "烧制 %a% 个物品"
 eat-work: "吃掉 %a% 个物品"
 enchanting-work: "附魔 %a% 个物品"
 repair-work: "修理 %a% 个物品"
-milk-work: "从奶牛身上挤出 %a% 桶牛奶。"
+milk-work: "从奶牛身上挤出 %a% 桶牛奶"
 kill_entity-work: "杀死 %a% 只实体"
 #When something is not find what should it appear
 none-format: "无"
