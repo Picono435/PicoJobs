@@ -10,52 +10,52 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&chhe! 您没有执行该命令的权限。"
-ignore-action: "&chhe! 不要迟缓，要与 NPC 交谈。"
-choosed-job: "恭喜！您选择了作业 %jobplayer_job%&a。"
-accepted-work: "&a你接受了 %jobplayer_work% 的工作。"
-no-salary: "&c你没有足够的工资！请去工作;("
-got-salary: "&a棒的工作！你刚刚得到你的 %jobplayer_salary% 薪水！"
-finished-work: "恭喜！您刚刚完成了您的工作。使用 /job来获得更多有关它的信息。"
-need-level: "&chhe! 您需要处理 %a% 来执行此操作。"
-no-args: "&chhe! 请使用一个有效的语法。"
-my-salary: "&a你有 %jobplayer_salary%美元的工资。"
-unknow-job: "&c找不到此作业，请使用 TAB 补全以获取作业列表。"
+no-permission: "&c嘿! 您没有执行该命令的权限。"
+ignore-action: "&c嘿! 别偷懒，去与 NPC 交互。"
+choosed-job: "恭喜您成功选择了职业 %jobplayer_job%&a。"
+accepted-work: "&a你接取了 %jobplayer_work% 的工作。"
+no-salary: "&c你的薪水完全不够！请去工作;("
+got-salary: "&a干的不错！你刚刚得到你的薪水 %jobplayer_salary%！"
+finished-work: "恭喜您刚刚完成了您的工作。使用 /jobs 指令可以查看详细信息。"
+need-level: "&c嘿! 您需要先做完 %a% 工作才能进行这个行为。"
+no-args: "&c嘿! 请使用一个有效的语法。"
+my-salary: "&a你的薪水有：%jobplayer_salary%。"
+unknow-job: "&c未知职业，请使用 TAB 补全指令以获得职业列表。"
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&c您需要等待更多 %cooldown_mtime% 才能再次获得您的工资。"
-work-status: "&a这里是您需要做的： %jobplayer_work%"
+salary-cooldown: "&c你还需要等待 %cooldown_mtime% 才能再次拿到你的薪水。"
+work-status: "&a这里是你需要去做的事情： %jobplayer_work%"
 admin-commands: |-
-  &6完整的命令列表：
-  &e/jobsadmin帮助 &6- &e查看此消息
-  &e/jobsadmin信息 <player> &6- &eGets 关于玩家的信息
-  &e/jobsadmin重新加载&6- &eReload 所有可能的配置。
-  &e/jobsadmin更新 &6- &eInstalls 更新插件
-  &e/jobsadmin关于&6- &eGets 关于服务器和插件的信息
-  &e/jobsadmin设置 <salary | method | job> <player> <amount | job> &6- &eSets 一个玩家的预付/方法
-  &e/jobsadmin设置&6- &eCreates 一个 web 编辑器会话
+  &6完整的指令列表：
+  &e/jobsadmin help &6- &e查看此列表
+  &e/jobsadmin info <player> &6- &e获得有关这名玩家的信息
+  &e/jobsadmin reload &6- &e重载所有有效的配置文件
+  &e/jobsadmin update &6- &e为插件进行一次更新
+  &e/jobsadmin about &6- &e获得有关服务器和本插件的一些信息
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &e设置一个玩家的薪水和机制
+  &e/jobsadmin setting &6- &e创建一个web编辑器会话
 member-commands: |-
-  &6完整的命令列表：
-  &e/jobs help &6- &e查看这条消息
-  &e/jobs choos <job> &6- &eChooses 你的任务
-  &e/jobs work &6- &e查看你的工作状态/接受
-  &e/jobs palay &6- &e检查你的工资
-  &e/jobs acresption &6- &eWelling 你的工资
-  &e/jobs leave &6- &eeve 离开作业。
+  &6完整的指令列表：
+  &e/jobs help &6- &e查看此列表
+  &e/jobs choos <job> &6- &e选择你的任务
+  &e/jobs work &6- &e查看你的工作状态，以及是否接受
+  &e/jobs palay &6- &e查看你的薪水
+  &e/jobs acresption &6- &e撤回你的薪水
+  &e/jobs leave &6- &e从当前职业辞职
 info-command: |-
-  &6玩家的状态 %player_name%
-  &eSalary: %jobplayer_salary%
-  &ee是否正常工作: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Language已成功重新加载。"
-player-not-found: "&c该玩家未上线，请放置一个有效的玩家。"
-unknow-error: "&c发生未知错误，请检查控制台获取更多信息。"
-left-job: "&c你没有失业！我们建议你选择一个新的工作或者你会丢失很多钱。"
-already-updated: "&c此插件已经在最后测试版本中，以获取更多信息检查我们的 WIKI。"
-update-started: "&a插件PicoJobs的更新已开始，请稍候..."
-updated-sucefully: "&a此插件已成功更新，请重新启动服务器以完成更新。"
-sucefully: "&a该行动已经正式作出。"
-invalid-arg: "&a发送的参数无效。请检查丢失。"
+  &6玩家状态 %player_name%
+  &e薪水: %jobplayer_salary%
+  &e是否处于工作状态: %jobplayer_working%
+  &e工作: %jobplayer_work%
+  &e职业: %jobplayer_job%
+reload-command: "&a配置文件, 职业文件和语言文件重载成功。"
+player-not-found: "&c该玩家不在线，请输入一个在线的玩家。"
+unknow-error: "&c发生未知错误，请查看控制台以获得更多信息。"
+left-job: "&c你还没有失业！我们建议你选择一个新的工作，否则你将入不敷出。"
+already-updated: "&c此插件已是最新版本了，如果你想了解更多信息，请查看我们的WIKI。"
+update-started: "&a插件PicoJobs的更新已开始，请稍后..."
+updated-sucefully: "&a此插件已成功更新，请重启服务端以完成更新。"
+sucefully: "&a该行为已成功进行。"
+invalid-arg: "&a输入的参数无效，请仔细检查。"
 #################################################################################
 ##
 #Format messages                                                               #
@@ -64,17 +64,17 @@ invalid-arg: "&a发送的参数无效。请检查丢失。"
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "课间休息 %a% 块"
-kill-work: "杀死 %a%"
-fishing-work: "鱼鱼 %a%"
-place-work: "位置 %a% 块"
-craft-work: "制作 %a%物品"
-smelt-work: "熔化 %a% 项"
-eat-work: "吃了 %a% 物品"
-enchanting-work: "%a%物品"
-repair-work: "维修 %a%物品"
-milk-work: "从奶牛中拿取 %a%的牛奶。"
-kill_entity-work: "杀死 %a%实体"
+break-work: "破坏 %a% 个方块"
+kill-work: "杀死 %a% 名玩家"
+fishing-work: "钓上 %a% 条鱼"
+place-work: "放置 %a% 个方块"
+craft-work: "合成 %a% 个物品"
+smelt-work: "烧制 %a% 个物品"
+eat-work: "吃掉 %a% 个物品"
+enchanting-work: "附魔 %a% 个物品"
+repair-work: "修理 %a% 个物品"
+milk-work: "从奶牛身上挤出 %a% 桶牛奶"
+kill_entity-work: "杀死 %a% 只实体"
 #When something is not find what should it appear
 none-format: "无"
 #################################################################################
@@ -86,23 +86,23 @@ none-format: "无"
 aliases:
   jobs:
     - "/jobs"
-    - "/作业"
+    - "/job"
   jobsadmin:
     - "/jobsadmin"
     - "/jobadmin"
   choose: "选择"
   work: "工作"
-  salary: "工作人员薪金税"
-  withdraw: "取款"
+  salary: "薪水"
+  withdraw: "撤回"
   leave: "离开"
   help: "帮助"
   info: "信息"
-  reload: "reload"
+  reload: "重载"
   update: "更新"
   about: "关于"
   set: "设置"
-  method: "方法"
-  job: "作业"
+  method: "机制"
+  job: "职业"
   settings: "设置"
 #################################################################################
 ##
