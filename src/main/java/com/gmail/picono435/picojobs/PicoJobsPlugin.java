@@ -22,6 +22,9 @@ import java.util.logging.Level;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.DrilldownPie;
+import org.bstats.charts.SimplePie;
+import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -119,7 +122,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(Level.INFO, "Getting data from storage...");
 		if(!generateJobsFromConfig()) return;
 		PicoJobsAPI.getStorageManager().getData();
-		metrics.addCustomChart(new Metrics.SingleLineChart("created_jobs", new Callable<Integer>() {
+		metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
         	@Override
         	public Integer call() throws Exception {
         		return jobs.size();
@@ -225,7 +228,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);
 						
-			metrics.addCustomChart(new Metrics.DrilldownPie("jobs", () -> {
+			metrics.addCustomChart(new SimplePie("chart_id", () -> "My value"));
+			
+			metrics.addCustomChart(new DrilldownPie("jobs", () -> {
 		        Map<String, Map<String, Integer>> map = new HashMap<>();
 		        Map<String, Integer> entry = new HashMap<>();
 		        entry.put(jobid, 1);
@@ -233,7 +238,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		        return map;
 		    }));
 
-			metrics.addCustomChart(new Metrics.DrilldownPie("active_economy", () -> {
+			metrics.addCustomChart(new DrilldownPie("active_economy", () -> {
 		        Map<String, Map<String, Integer>> map = new HashMap<>();
 		        Map<String, Integer> entry = new HashMap<>();
 		        String eco = job.getEconomy();
