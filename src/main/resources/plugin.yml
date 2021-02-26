@@ -2,7 +2,7 @@ name: PicoJobs
 author: [Picono435]
 version: ${project.version}
 softdepend: [Citizens, Vault, PlaceholderAPI, PlayerPoints, TokenManager]
-api-version: 1.14
+api-version: 1.16
 main: com.gmail.picono435.picojobs.PicoJobsPlugin
 description: "The best jobs plugin ever! You can customize every single thing on it ;)."
 commands:
@@ -10,3 +10,10 @@ commands:
     aliases: [picojobs, piconojobs, job, empregos, emprego, picoempregos, piconoempregos]
   jobsadmin:
     aliases: [picojobsadmin, piconojobsadmin, jobadmin, empregosadmin, empregoadmin, picoempregosadmin, piconoempregosadmin]
+permissions:
+  picojobs.use.basic:
+    description: "Allow you to use the basics of the /jobs command"
+    default: true
+  picojobs.admin:
+    description: "Allow you to use the basics of the /jobs command"
+    default: op
