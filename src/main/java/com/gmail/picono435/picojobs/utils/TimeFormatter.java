@@ -19,7 +19,7 @@ public class TimeFormatter {
 		StringBuilder sb = new StringBuilder();
 		
 		if (days > 0)
-			sb.append(days + (days == 1 ? " " + LanguageManager.getTimeFormat("day") : " " + LanguageManager.getTimeFormat("day")));
+			sb.append(days + (days == 1 ? " " + LanguageManager.getTimeFormat("day") : " " + LanguageManager.getTimeFormat("days")));
 		
 		if (hours > 0)
 			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " " + LanguageManager.getTimeFormat("hour") : " "  + LanguageManager.getTimeFormat("hours")));
@@ -50,7 +50,7 @@ public class TimeFormatter {
 		StringBuilder sb = new StringBuilder();
 		
 		if (days > 0 && max <= 1) {
-			sb.append(days + (days == 1 && max > 1 ? " minecraft " + LanguageManager.getTimeFormat("day") : " minecraft " + LanguageManager.getTimeFormat("day")));
+			sb.append(days + (days == 1 && max > 1 ? " minecraft " + LanguageManager.getTimeFormat("day") : " minecraft " + LanguageManager.getTimeFormat("days")));
 			max++;
 		}
 		

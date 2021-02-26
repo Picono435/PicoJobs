@@ -43,6 +43,7 @@ public class PlaceholderAPIHook {
 			if(identifiers == null) return message;
 			for(String identifier : identifiers) {
 				String defaultIdentifier =  "%" + identifier + "%";
+				if(!identifier.startsWith("jobplayer_")) continue;
 				identifier = identifier.replaceFirst("jobplayer_", "");
 				message = message.replace(defaultIdentifier, translatePlaceholders(p, identifier)); 
 			}
