@@ -35,12 +35,12 @@ admin-commands: |-
   &e/jobsadmin &6- &eCria uma sessão de editor da web
 member-commands: |-
   &6Lista completa de comandos:
-  &e/ajuda trabalhos &6- &eOlhe estas mensagens
-  &e/escolha trabalho <job> &6- &eescolha seu trabalho
-  &e/função trabalho &6- &eolhe os status/Aceite seu trabalho
-  &e/salários dos trabalhos &6- &eConfira seu salário
-  &e/pagamento trabalho &6- &eReceba seu trabalho
-  &e/deixar trabalho &6- &eDeixe seu trabalho
+  &e/jobs ajuda &6- &eOlhe estas mensagens
+  &e/jobs escolher <job> &6- &eescolha seu trabalho
+  &e/jobs trabalho &6- &eolhe os status/Aceite seu trabalho
+  &e/jobs salario &6- &eConfira seu salário
+  &e/jobs getsalary &6- &eReceba seu trabalho
+  &e/jobs deixar &6- &eDeixe seu trabalho
 info-command: |-
   &6Status do jogador %player_name%
   &eSalário: %jobplayer_salary%
