@@ -5,7 +5,7 @@
 
 [statistics]: https://bstats.org/plugin/bukkit/PicoJobs
 
-# PicoJobs - In Devolpment
+# PicoJobs | A Jobs Plugin
 
 [![licenseImg]][license] [![Crowdin](https://badges.crowdin.net/e/70dc05a5077d0b2311673de39156f7fa/localized.svg)](https://picodev.crowdin.com/picojobs)
 
