@@ -121,7 +121,9 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 					if(System.currentTimeMillis() >= a1) {
 						salaryCooldown.remove(p.getUniqueId());
 					} else {
-						p.sendMessage(LanguageManager.getMessage("salary-cooldown", p).replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()).replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis()))));
+						p.sendMessage(LanguageManager.getMessage("salary-cooldown", p)
+								.replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()))
+								.replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis())));
 						return true;
 					}
 				}
