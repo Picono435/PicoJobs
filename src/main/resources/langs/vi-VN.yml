@@ -10,9 +10,9 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
+no-permission: "&cHey bro! Bạn không có quyền để thực hiện lệnh đó."
+ignore-action: "&cHey bro! Đừng lười biếng và hãy nói chuyện với NPC."
+choosed-job: "&aXin chúc mừng! Bạn đã chọn công việc %jobplayer_job% thành công&a."
 accepted-work: "&aYou accepted the work of %jobplayer_work%."
 no-salary: "&cYou do not have enough salary to get! Please go work ;("
 got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
