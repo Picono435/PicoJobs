@@ -198,7 +198,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		if(subcmd.equalsIgnoreCase("settings") || subcmd.equalsIgnoreCase(settingsString) || subcmd.equalsIgnoreCase("editor")) {
 			// CREATE EDITOR
 			p.sendMessage(LanguageManager.formatMessage("&7Preparing a new editor session. Please wait..."));
-			p.sendMessage(LanguageManager.formatMessage("&cThis feature is still in development, for more information check our discord."));
+			p.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
 			/*String editor = createEditor(sender);
 			if(editor != null) {
 				p.sendMessage(LanguageManager.formatMessage("&aClick the link below to open the editor:\n&b&ehttp://www.piconodev.tk/editor/picojobs/" + editor));
