@@ -228,8 +228,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);
 						
-			metrics.addCustomChart(new SimplePie("chart_id", () -> "My value"));
-			
 			metrics.addCustomChart(new DrilldownPie("jobs", () -> {
 		        Map<String, Map<String, Integer>> map = new HashMap<>();
 		        Map<String, Integer> entry = new HashMap<>();
