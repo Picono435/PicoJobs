@@ -107,6 +107,7 @@ public class Job {
 					if(colorNew == null) continue;
 					list.add(colorNew);
 				}
+				this.whitelist = new ArrayList<Object>(list);
 			}
 			this.stringWhitelist = whitelist;
 		} else {
