@@ -62,6 +62,7 @@ import com.gmail.picono435.picojobs.listeners.jobs.BreakListener;
 import com.gmail.picono435.picojobs.listeners.jobs.CraftListener;
 import com.gmail.picono435.picojobs.listeners.jobs.EatListener;
 import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
+import com.gmail.picono435.picojobs.listeners.jobs.FillListener;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
@@ -141,6 +142,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new BreakListener(), this);
 		Bukkit.getPluginManager().registerEvents(new TameListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ShearListener(), this);
+		Bukkit.getPluginManager().registerEvents(new FillListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillerListener(), this);
 		Bukkit.getPluginManager().registerEvents(new FisherListener(), this);
 		Bukkit.getPluginManager().registerEvents(new PlaceListener(), this);
