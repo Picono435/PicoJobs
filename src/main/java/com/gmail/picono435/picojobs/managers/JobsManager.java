@@ -4,8 +4,6 @@ import java.util.Collection;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.Type;
-import com.gmail.picono435.picojobs.api.WhitelistConf;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -78,57 +76,5 @@ public class JobsManager {
 	 */
 	public Collection<Job> getJobs() {
 		return PicoJobsPlugin.getInstance().jobs.values();
-	}
-	
-	public String getConfigMethod(Type type) {
-		String conf = "blocks";
-		if(type == Type.BREAK || type == Type.PLACE) {
-			conf = "blocks";
-		}
-		if(type == Type.KILL || type == Type.KILL_ENTITY) {
-			conf = "kills";
-		}
-		if(type == Type.FISHING) {
-			conf = "fish";
-		}
-		if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR) {
-			conf = "items";
-		}
-		if(type == Type.EAT) {
-			conf = "food";
-		}
-		if(type == Type.MILK) {
-			conf = "buckets";
-		}
-		return conf;
-	}
-	
-	public String getConfigWhitelistString(Type type) {
-		if(type == Type.BREAK || type == Type.PLACE) {
-			return "block-whitelist";
-		}
-		if(type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT || type == Type.FISHING) {
-			return "item-whitelist";
-		}
-		if(type == Type.KILL_ENTITY) {
-			return "entity-whitelist";
-		}
-		if(type == Type.KILL) {
-			return "job-whitelist";
-		}
-		return "block-whitelist";
-	}
-	
-	public WhitelistConf getConfigWhitelist(Type type) {
-		if(type == Type.BREAK || type == Type.PLACE || type == Type.CRAFT || type == Type.SMELT || type == Type.ENCHANTING || type == Type.REPAIR || type == Type.EAT || type == Type.FISHING) {
-			return WhitelistConf.MATERIAL;
-		}
-		if(type == Type.KILL_ENTITY) {
-			return WhitelistConf.ENTITY;
-		}
-		if(type == Type.KILL) {
-			return WhitelistConf.JOB;
-		}
-		return WhitelistConf.MATERIAL;
 	}
 }

@@ -1,6 +1,5 @@
 package com.gmail.picono435.picojobs.api;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +14,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
-import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
 
@@ -71,8 +69,8 @@ public class Job {
 		
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
-			WhitelistConf whitelistConf = PicoJobsAPI.getJobsManager().getConfigWhitelist(type);
-			if(whitelistConf == WhitelistConf.MATERIAL) {
+			String whitelistType = type.getWhitelistType();
+			if(whitelistType.equals("material")) {
 				List<Material> list = new ArrayList<Material>();
 				for(String s : whitelist) {
 					Material matNew = Material.matchMaterial(s);
@@ -80,7 +78,7 @@ public class Job {
 					list.add(matNew);
 				}
 				this.whitelist = new ArrayList<Object>(list);
-			} else if(whitelistConf == WhitelistConf.ENTITY) {
+			} else if(whitelistType.equals("entity")) {
 				List<EntityType> list = new ArrayList<EntityType>();
 				for(String s : whitelist) {
 					EntityType entityNew = OtherUtils.getEntityByName(s);
@@ -88,7 +86,7 @@ public class Job {
 					list.add(entityNew);
 				}
 				this.whitelist = new ArrayList<Object>(list);
-			} else if(whitelistConf == WhitelistConf.JOB) {
+			} else if(whitelistType.equals("job")) {
 				Job j = this;
 				new BukkitRunnable() {
 					public void run() {
@@ -396,195 +394,5 @@ public class Job {
 	 */
 	public String getWhitelistArray() {
 		return Arrays.toString(stringWhitelist.toArray());
-	}
-	
-	/**
-	 * Sets the displayname of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param displayname the new displayname of the job
-	 */
-	public void setDisplayName(String displayname) {
-		this.displayname = displayname;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("displayname", displayname);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the salary of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param salary the new salary of the job
-	 */
-	public void setSalary(double salary) {
-		this.salary = salary;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("salary", salary);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the type of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param type the new type of the job
-	 */
-	public void setType(Type type) {
-		this.type = type;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("type", type.name());
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the economy of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param economy the new economy of the job
-	 */
-	public void setEconomy(String economy) {
-		this.economy = economy;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("economy", economy);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the method of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param method the new method of the job
-	 */
-	public void setMethod(double method) {
-		this.method = method;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set(PicoJobsAPI.getJobsManager().getConfigMethod(getType()), method);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the salary frequency of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param salaryFrequency the new salary frequency of the job
-	 */
-	public void setSalaryFrequency(double salaryFrequency) {
-		this.salaryFrequency = salaryFrequency;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("salary-frequency", salaryFrequency);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the use whitelist of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param useWhitelist the new use whitelist value of the job
-	 */
-	public void setWhitelistType(boolean useWhitelist) {
-		this.useWhitelist = useWhitelist;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("use-whitelist", useWhitelist);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the whitelist of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param whitelist the new whitelist of the job
-	 */
-	public void setWhitelist(List<String> whitelist) {
-		WhitelistConf whitelistConf = PicoJobsAPI.getJobsManager().getConfigWhitelist(type);
-		if(whitelistConf == WhitelistConf.MATERIAL) {
-			List<Material> list = new ArrayList<Material>();
-			for(String s : whitelist) {
-				list.add(Material.matchMaterial(s));
-			}
-			this.whitelist = new ArrayList<Object>(list);
-		} else if(whitelistConf == WhitelistConf.ENTITY) {
-			List<EntityType> list = new ArrayList<EntityType>();
-			for(String s : whitelist) {
-				list.add(OtherUtils.getEntityByName(s));
-			}
-			this.whitelist = new ArrayList<Object>(list);
-		} else if(whitelistConf == WhitelistConf.JOB) {
-			List<Job> list = new ArrayList<Job>();
-			for(String s : whitelist) {
-				list.add(PicoJobsAPI.getJobsManager().getJob(s));
-			}
-			this.whitelist = new ArrayList<Object>(list);
-		}
-		this.stringWhitelist = whitelist;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set(PicoJobsAPI.getJobsManager().getConfigWhitelistString(getType()), stringWhitelist);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the requiresPermission of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param requiresPermission the new requiresPermission of the job
-	 */
-	public void setRequiresPermission(boolean requiresPermission) {
-		this.requiresPermission = requiresPermission;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("requires-permission", requiresPermission);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Sets the method frequency of the job
-	 * 
-	 * This will save jobs.yml config in order to change in the configuration.
-	 * 
-	 * @param methodFrequency the new method frequency of the job
-	 */
-	public void setMethodFrequency(double methodFrequency) {
-		this.methodFrequency = methodFrequency;
-		try {
-			FileCreator.getJobsConfig().getConfigurationSection("jobs").getConfigurationSection(getID()).set("method-frequency", methodFrequency);
-			FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-		} catch(IOException ex) {
-			ex.printStackTrace();
-		}
 	}
 }

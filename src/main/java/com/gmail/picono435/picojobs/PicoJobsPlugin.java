@@ -23,7 +23,6 @@ import java.util.logging.Level;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
-import org.bstats.charts.SimplePie;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -204,7 +203,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String tag = jobc.getString("tag");
 			String typeString = jobc.getString("type");
 			Type type = Type.getType(typeString.toUpperCase());
-			double method = jobc.getDouble(PicoJobsAPI.getJobsManager().getConfigMethod(type));
+			double method = jobc.getDouble(type.getConfigMethod());
 			double salary = jobc.getDouble("salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
 			double salaryFrequency = jobc.getDouble("salary-frequency");
@@ -223,7 +222,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			// CALCULATING OPTIONALS
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
-			List<String> whitelist = jobc.getStringList(PicoJobsAPI.getJobsManager().getConfigWhitelistString(type));
+			List<String> whitelist = jobc.getStringList(type.getWhitelistType() + "-whitelist");
 			
 			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);

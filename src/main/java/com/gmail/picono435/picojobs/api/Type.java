@@ -11,17 +11,18 @@ import com.google.common.collect.Maps;
  *
  */
 public enum Type {
-	BREAK(),
-	KILL(),
-	FISHING(),
-	PLACE(),
-	CRAFT(),
-	SMELT(),
-	EAT(),
-	ENCHANTING(),
-	REPAIR(),
-	MILK(),
-	KILL_ENTITY();
+	BREAK("material", "block", "blocks"),
+	KILL("job", "job", "kills"),
+	FISHING("material", "item", "fish"),
+	PLACE("material", "block", "blocks"),
+	CRAFT("material", "item", "items"),
+	TAME("entity", "entity", "entities"),
+	SMELT("material", "item", "items"),
+	EAT("material", "item", "items"),
+	ENCHANTING("material", "item", "items"),
+	REPAIR("material", "item", "items"),
+	MILK("", "", "buckets"),
+	KILL_ENTITY("entity", "entity", "kills");
 	
 	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
 	
@@ -33,5 +34,27 @@ public enum Type {
 		for(Type type : values()) {
 			BY_NAME.put(type.name(), type);
 		}
+	}
+	
+	private String whitelistType;
+	private String whitelistConfig;
+	private String configMethod;
+	
+	private Type(String whitelistType, String whitelistConfig, String configMethod) {
+		this.whitelistType = whitelistType;
+		this.whitelistConfig = whitelistConfig;
+		this.configMethod = configMethod;
+	}
+	
+	public String getWhitelistType() {
+		return whitelistType;
+	}
+	
+	public String getWhitelistConfig() {
+		return whitelistConfig;
+	}
+	
+	public String getConfigMethod() {
+		return configMethod;
 	}
 }
