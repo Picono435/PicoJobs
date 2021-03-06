@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -99,6 +100,13 @@ public class Job {
 						j.whitelist = new ArrayList<Object>(list);
 					}
 				}.runTask(PicoJobsPlugin.getInstance());
+			} else if(whitelistType.equals("color")) {
+				List<DyeColor> list = new ArrayList<DyeColor>();
+				for(String s : whitelist) {
+					DyeColor colorNew = DyeColor.valueOf(s.toUpperCase());
+					if(colorNew == null) continue;
+					list.add(colorNew);
+				}
 			}
 			this.stringWhitelist = whitelist;
 		} else {
@@ -345,6 +353,23 @@ public class Job {
 			return whitelist.contains(entity);
 		} else {
 			return !whitelist.contains(entity);
+		}
+	}
+	
+	/**
+	 * Checks if a dye color is in the whitelist
+	 * 
+	 * @param dyecolor the dye color that you want to check
+	 * @return true if it's in the whitelist or there is no whitelist, false if not
+	 * @author Picono435
+	 */
+	public boolean inWhitelist(DyeColor dyecolor) {
+		if(whitelist == null) return (useWhitelist) ? false : true;
+		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
+		if(useWhitelist) {
+			return whitelist.contains(dyecolor);
+		} else {
+			return !whitelist.contains(dyecolor);
 		}
 	}
 	

@@ -17,6 +17,7 @@ public enum Type {
 	PLACE("material", "block", "blocks"),
 	CRAFT("material", "item", "items"),
 	TAME("entity", "entity", "entities"),
+	SHEAR("color", "color", "entities"),
 	SMELT("material", "item", "items"),
 	EAT("material", "item", "items"),
 	ENCHANTING("material", "item", "items"),
