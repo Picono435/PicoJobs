@@ -89,7 +89,7 @@ none-format: "geen"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "taken"
     - "baan"
   jobsadmin:
     - "jobsadmin"
@@ -107,8 +107,8 @@ aliases:
   set: "instellen"
   method: "methode"
   job: "baan"
-  editor: "editor"
-  applyedits: "applyedits"
+  editor: "bewerker"
+  applyedits: "toe te passen"
 #################################################################################
 ##
 #Time translations                                                             #
