@@ -89,7 +89,7 @@ none-format: "لا"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "الوظائف"
     - "العمل"
   jobsadmin:
     - "jobsadmin"
