@@ -25,15 +25,15 @@ unknow-job: "&cDette job blev ikke fundet, benyt TAB KOMPLET for at få en liste
 salary-cooldown: "&cDu skal vente mere %cooldown_mtime% for at få din løn igen."
 work-status: "&aHer er hvad du skal gøre: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &6Fuld liste over kommandoer:
+  &e/jobsadmin help &6- &eSe disse beskeder
+  &e/jobsadmin info <player> &6- &eHenter oplysningerne om en spiller
+  &e/jobsadmin genindlæs &6- &eReload alle mulige konfigurationer.
+  &e/jobsadmin opdatering &6- &eInstallerer en opdatering af plugin
+  &e/jobsadmin om &6- &eGets information om serveren og plugin'et
+  &e/jobsadmin sæt <salary | method | job> <player> <amount | job> &6- &eIndstiller en spillers løn/metode
+  &e/jobsadmin editor &6- &eLaver en web editor session
+  &e/jobsadmin applyedits &6- &eAnvend redigeringer af en web editor session
 member-commands: |-
   &6Fuld liste over kommandoer:
   &e/jobs help &6- &eSe disse meddelelser
@@ -89,7 +89,7 @@ none-format: "None"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "job"
     - "job"
   jobsadmin:
     - "jobsadmin"
