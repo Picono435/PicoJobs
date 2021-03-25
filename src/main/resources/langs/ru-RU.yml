@@ -89,7 +89,7 @@ none-format: "Нет"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "вакансии"
     - "работа"
   jobsadmin:
     - "jobsadmin"
@@ -107,8 +107,8 @@ aliases:
   set: "набор"
   method: "метод"
   job: "работа"
-  editor: "editor"
-  applyedits: "applyedits"
+  editor: "редактор"
+  applyedits: "применил правки"
 #################################################################################
 ##
 #Time translations                                                             #
