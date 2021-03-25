@@ -25,12 +25,12 @@ unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a lis
 salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
 work-status: "&aHere is what you need to do: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &6Πλήρης λίστα εντολών:
+  &e/jobsadmin βοήθεια &6- Δείτε αυτά τα μηνύματα
+  &/jobsadmin πληροφορίες <player> &6- &eΛαμβάνει τις πληροφορίες σχετικά με έναν παίκτη
+  &e/jobsadmin reload &6- &eReload όλες τις πιθανές ρυθμίσεις.
+  &&jobsadmin ενημέρωση &6- &eInstalls a update of the plugin
+  &/jobsadmin about &6- &eGets informations about the server and the plugin
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
@@ -89,7 +89,7 @@ none-format: "None"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "θέσεις εργασίας"
     - "job"
   jobsadmin:
     - "jobsadmin"
@@ -107,8 +107,8 @@ aliases:
   set: "set"
   method: "method"
   job: "job"
-  editor: "editor"
-  applyedits: "applyedits"
+  editor: "επεξεργαστής"
+  applyedits: "εφαρμοζόμενα"
 #################################################################################
 ##
 #Time translations                                                             #
