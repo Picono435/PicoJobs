@@ -89,7 +89,7 @@ none-format: "なし"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "ジョブ"
     - "ジョブ"
   jobsadmin:
     - "jobsadmin"
@@ -107,7 +107,7 @@ aliases:
   set: "セット"
   method: "method"
   job: "ジョブ"
-  editor: "editor"
+  editor: "エディタ"
   applyedits: "applyedits"
 #################################################################################
 ##
