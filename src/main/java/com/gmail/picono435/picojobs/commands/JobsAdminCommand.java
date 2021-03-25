@@ -49,7 +49,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		String updateString = LanguageManager.getSubCommandAlias("update");
 		String aboutString = LanguageManager.getSubCommandAlias("about");
 		String setString = LanguageManager.getSubCommandAlias("set");
-		String settingsString = LanguageManager.getSubCommandAlias("settings");
+		String editorString = LanguageManager.getSubCommandAlias("editor");
 		
 		String salaryString = LanguageManager.getSubCommandAlias("salary");
 		String methodString = LanguageManager.getSubCommandAlias("method");
@@ -195,16 +195,16 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		}
 		
-		if(subcmd.equalsIgnoreCase("settings") || subcmd.equalsIgnoreCase(settingsString) || subcmd.equalsIgnoreCase("editor")) {
+		if(subcmd.equalsIgnoreCase("editor") || subcmd.equalsIgnoreCase(editorString) || subcmd.equalsIgnoreCase("editor")) {
 			// CREATE EDITOR
 			p.sendMessage(LanguageManager.formatMessage("&7Preparing a new editor session. Please wait..."));
 			p.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
-			/*String editor = createEditor(sender);
+			String editor = createEditor(sender);
 			if(editor != null) {
 				p.sendMessage(LanguageManager.formatMessage("&aClick the link below to open the editor:\n&b&ehttp://www.piconodev.tk/editor/picojobs/" + editor));
 			} else {
 				p.sendMessage(LanguageManager.getMessage("unknow-error"));
-			}*/
+			}
 			return true;
 		}
 		p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
@@ -226,7 +226,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			String updateString = LanguageManager.getSubCommandAlias("update");
 			String aboutString = LanguageManager.getSubCommandAlias("about");
 			String setString = LanguageManager.getSubCommandAlias("set");
-			String settingsString = LanguageManager.getSubCommandAlias("settings");
+			String editorString = LanguageManager.getSubCommandAlias("editor");
 			
 			String salaryString = LanguageManager.getSubCommandAlias("salary");
 			String methodString = LanguageManager.getSubCommandAlias("method");
@@ -243,7 +243,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				list.add(updateString);
 				list.add(aboutString);
 				list.add(setString);
-				list.add(settingsString);
+				list.add(editorString);
 				return list;
 			}
 			

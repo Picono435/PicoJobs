@@ -15,6 +15,7 @@ public class AliasesListeners implements Listener {
 	public void onCommand(PlayerCommandPreprocessEvent e) {
 		Player p = e.getPlayer();
 		String cmd = e.getMessage().split(" ")[0];
+		if(!cmd.startsWith("/")) cmd = "/" + cmd;
 		if(cmd.equals("/jobs")) return;
 		if(cmd.equals("/jobsadmin")) return;
 		if(LanguageManager.getCommandAliases("jobs").contains(cmd)) {

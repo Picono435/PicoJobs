@@ -173,6 +173,9 @@ public class LanguageManager {
         f.delete();
         old.delete();
         
+        language.set("admin-commands", null);
+        language.set("member-commands", null);
+        
         language.setDefaults(fileConfiguration);
         
         language.options().copyDefaults(true);
