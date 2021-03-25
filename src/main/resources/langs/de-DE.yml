@@ -107,8 +107,8 @@ aliases:
   set: "setzen"
   method: "Methode"
   job: "job"
-  editor: "editor"
-  applyedits: "applyedits"
+  editor: "editieren"
+  applyedits: "beworben"
 #################################################################################
 ##
 #Time translations                                                             #
