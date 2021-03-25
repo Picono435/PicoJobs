@@ -25,14 +25,15 @@ unknow-job: "&cCette tâche n'a pas été trouvée, veuillez utiliser la TAB COM
 salary-cooldown: "&cVous devez attendre plus de %cooldown_mtime% avant d'obtenir à nouveau votre salaire."
 work-status: "&aVoici ce que vous devez faire : %jobplayer_work%"
 admin-commands: |-
-  &6Liste complète des commandes :
-  &e/jobsadmin help &6- &eVoir ces messages
-  &e/jobsadmin info <player> &6- &eRenvoie les informations sur un joueur
-  &e/jobsadmin reload &6- &eRecharger toutes les configurations possibles.
-  &e/jobsadmin update &6- &eInstalle une mise à jour du plugin
-  &e/jobsadmin à propos de &6- &eRenvoie des informations sur le serveur et le plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eDéfinit le salaire/méthode d'un joueur
-  &e/jobsadmin paramètres &6- &eCrée une session de l'éditeur web
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
+  &e/jobsadmin editor &6- &eCreates a web editor session
+  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
 member-commands: |-
   &6Liste complète des commandes:
   &e/jobs help &6- &eVoir ces messages
@@ -88,11 +89,11 @@ none-format: "Aucun"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/jobs"
-    - "/job"
+    - "jobs"
+    - "emploi"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
+    - "jobsadmin"
+    - "jobadmin"
   choose: "choisir"
   work: "travail"
   salary: "salaire"
@@ -106,7 +107,8 @@ aliases:
   set: "définir"
   method: "Méthode"
   job: "emploi"
-  settings: "Réglages"
+  editor: "editor"
+  applyedits: "applyedits"
 #################################################################################
 ##
 #Time translations                                                             #
