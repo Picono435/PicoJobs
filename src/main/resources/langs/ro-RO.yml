@@ -31,8 +31,9 @@ admin-commands: |-
   &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
   Actualizare &/jobsadmin &6- &eInstaleaza o actualizare a plugin-ului
   &e/jobsadmin despre &6- &ePrimește informații despre server și plugin-ul
-  &/jobsadmin set <salary | method | job> <player> <amount | job> <amount | job> &6- &eSetează salariul/metoda unui jucător
-  &e/jobsadmin setări &6- &eCreează o sesiune de editor web
+  &/jobsadmin set <salary | method | job> <player> <amount | job> <amount | job> &6- &e&6- &eSetează salaritatea/metoda unui jucător
+  &e/jobsadmin editor &6- &eCreează o sesiune de editor web
+  &e/jobsadmin applyedits &6- &eAplica editarile unui editor web
 member-commands: |-
   &6Lista completă a comenzilor:
   &e/joburi ajuta &6- &eVezi aceste mesaje
@@ -88,11 +89,11 @@ none-format: "Niciunul"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/joburi"
-    - "/job"
+    - "joburi"
+    - "sarcină"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
+    - "jobsadmin"
+    - "jobadmin"
   choose: "alege"
   work: "muncă"
   salary: "salariu"
@@ -106,7 +107,8 @@ aliases:
   set: "setează"
   method: "metoda"
   job: "sarcină"
-  settings: "setări"
+  editor: "editor"
+  applyedits: "aplituri"
 #################################################################################
 ##
 #Time translations                                                             #

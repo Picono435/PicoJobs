@@ -32,7 +32,8 @@ admin-commands: |-
   &e/jobsadmin update &6- &eInstalls a update of the plugin
   &e/jobsadmin about &6- &eGets informations about the server and the plugin
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin settings &6- &eCreates a web editor session
+  &e/jobsadmin editor &6- &eCreates a web editor session
+  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
 member-commands: |-
   &6Повний список команд:
   &&e/jobs допоможуть &6- &eSee ці повідомлення
@@ -88,11 +89,11 @@ none-format: "Без ефекту"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/jobs"
-    - "/завдання"
+    - "робочі місця"
+    - "завдання"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
+    - "jobsadmin"
+    - "jobadmin"
   choose: "вибрати"
   work: "робота"
   salary: "зарплата"
@@ -106,7 +107,8 @@ aliases:
   set: "набір"
   method: "метод"
   job: "завдання"
-  settings: "налаштування"
+  editor: "редактор"
+  applyedits: "аплодування"
 #################################################################################
 ##
 #Time translations                                                             #

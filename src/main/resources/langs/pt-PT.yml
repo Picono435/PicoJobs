@@ -29,10 +29,11 @@ admin-commands: |-
   &e/jobsadmin help &6- &eVeja esta mensagem
   &e/jobsadmin info <player> &6- &eObtém as informações sobre um jogador
   &e/jobsadmin recarrega &6- &eRecarregar todas as configurações possíveis.
-  &e/jobsadmin atualizar &6- &eInstala uma atualização do plugin
-  &e/jobsadmin sobre &6- Informações sobre o servidor e o plugin
+  &e/jobsadmin atualiza &6- &eInstala uma atualização do plugin
+  &e/jobsadmin sobre &6- &eObtém informações sobre o servidor e o plugin
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eDefine o salário/método de um jogador
   &e/jobsadmin &6- &eCria uma sessão de editor da web
+  &e/jobsadmin aplica edições &6- &eAplicar as edições de uma sessão de editor da web
 member-commands: |-
   &6Lista completa de comandos:
   &e/jobs ajuda &6- &eOlhe estas mensagens
@@ -88,11 +89,11 @@ none-format: "Nenhuma"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/Trabalhos"
-    - "/tarefa"
+    - "Trabalhos"
+    - "tarefa"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
+    - "jobsadmin"
+    - "jobadmin"
   choose: "Selecionar"
   work: "Trabalho"
   salary: "Salário"
@@ -106,7 +107,8 @@ aliases:
   set: "definir"
   method: "Método"
   job: "tarefa"
-  settings: "configurações"
+  editor: "Editor"
+  applyedits: "aplicações"
 #################################################################################
 ##
 #Time translations                                                             #

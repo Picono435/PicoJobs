@@ -31,8 +31,9 @@ admin-commands: |-
   &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
   &e/jobsadmin aktualizuje &6- &eInstalls aktualizaci pluginu
   &e/jobsadmin o &6- &eGety informace o serveru a pluginu
-  &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &eNastaví salary/metodu hráče
-  &e/jobsadmin nastavení &6- &eVytvoří relaci webového editoru
+  &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &6- &eNastaví salary/metodu hráče
+  &e/jobsadmin editor &6- &eVytvoří relaci webového editoru
+  &e/jobsadmin applyedits &6- &eApply the edits web editor session
 member-commands: |-
   &6Plný seznam příkazů:
   &e/job help &6- &eSee this
@@ -88,11 +89,11 @@ none-format: "Nic"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/jobů"
-    - "/pracovní pozice"
+    - "pracovní pozice"
+    - "práce"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
+    - "jobsadmin"
+    - "jobadmin"
   choose: "vybrat"
   work: "práce"
   salary: "Mzdy"
@@ -106,7 +107,8 @@ aliases:
   set: "nastavit"
   method: "metoda"
   job: "práce"
-  settings: "nastavení"
+  editor: "editor"
+  applyedits: "použitelné úpravy"
 #################################################################################
 ##
 #Time translations                                                             #

@@ -29,10 +29,11 @@ admin-commands: |-
   &e/jobsadmin help &6- &eSe denne meldingene
   &/jobsadmin info <player> &6- &eGetter informasjonen om en spiller
   &/ jobsadmin reload &6- &eOppdater alle mulige konfigurasjoner.
-  &e/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
+  &/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
   &/jobsadmin om &6- &eGets informasjon om serveren og programtillegget
-  &/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &jobe/sadmin settings &6- &6- &eCreates a web session
+  &/jobsadmin sett <salary | method | job> <player> <amount | job> &6- & eSets the salary/method of a player
+  &jobsadmin editor &6- &eCreates a webeditor
+  &jobe/sadmin appliserits &6- &eApply the dits of a webeditor session
 member-commands: |-
   &6Full liste over kommandoer:
   &e/Jobber hjelper &6- &eSe denne meldingene
@@ -88,11 +89,11 @@ none-format: "Ingen"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "/jobber"
-    - "/jobb"
+    - "jobber"
+    - "jobb"
   jobsadmin:
-    - "/jobsadmin"
-    - "/jobadmin"
+    - "jobsadmin"
+    - "jobadmin"
   choose: "velg"
   work: "arbeid"
   salary: "lønn"
@@ -106,7 +107,8 @@ aliases:
   set: "sett"
   method: "metode"
   job: "jobb"
-  settings: "innstillinger"
+  editor: "redaktør"
+  applyedits: "applikasjoner"
 #################################################################################
 ##
 #Time translations                                                             #
