@@ -74,7 +74,7 @@ public class PlaceholderAPIHook {
 	}
 	
 	public static String translatePlaceholders(Player p, String identifier) {
-		NumberFormat df = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+		NumberFormat df = NumberFormat.getNumberInstance(Locale.getDefault());
 		
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
     	
