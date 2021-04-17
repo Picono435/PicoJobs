@@ -99,7 +99,7 @@ public class PlaceholderAPIHook {
         }
         
         if(identifier.equals("salary")) {
-            return df.format(jp.getSalary());
+            return df.format(Math.round(jp.getSalary()));
         }
         
         if(identifier.equals("working")) {
