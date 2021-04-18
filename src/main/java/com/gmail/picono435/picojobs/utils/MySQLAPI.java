@@ -73,7 +73,7 @@ public class MySQLAPI {
             PreparedStatement stm = null;
             try {
             	tablename = config.getString("tablename");
-                stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `" + tablename + "` (`uuid` TEXT NOT NULL, `job` TEXT NOT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN);");
+                stm = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `" + tablename + "` (`uuid` TEXT NOT NULL, `job` TEXT, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN);");
                 stm.executeUpdate();
             }
             catch (SQLException e) {
