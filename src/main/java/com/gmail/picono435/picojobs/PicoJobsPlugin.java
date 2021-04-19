@@ -228,7 +228,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			// CALCULATING OPTIONALS
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
-			List<String> whitelist = jobc.getStringList(type.getWhitelistType() + "-whitelist");
+			List<String> whitelist = jobc.getStringList(type.getWhitelistConfig() + "-whitelist");
 			
 			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);
