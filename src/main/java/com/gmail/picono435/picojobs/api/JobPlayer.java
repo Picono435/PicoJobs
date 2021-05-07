@@ -1,9 +1,11 @@
 package com.gmail.picono435.picojobs.api;
 
 import java.util.UUID;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.events.PlayerEnterJobEvent;
 import com.gmail.picono435.picojobs.events.PlayerFinishWorkEvent;
 import com.gmail.picono435.picojobs.events.PlayerLeaveJobEvent;
@@ -18,19 +20,12 @@ import com.gmail.picono435.picojobs.events.PlayerWithdrawEvent;
  */
 public class JobPlayer {
 	
-	private Job job;
-	private double method;
-	private double level;
-	private boolean isWorking;
-	private double salary;
 	private UUID uuid;
+	private String errorMessage;
 	
-	public JobPlayer(Job job, double method, double level, double salary, boolean isWorking, UUID uuid) {
-		this.job = job;
-		this.method = method;
-		this.level = level;
-		this.salary = salary;
-		this.isWorking = isWorking;
+	public JobPlayer(UUID uuid) {
+		this.uuid = uuid;
+		this.errorMessage = "Error connecting to the storage. The plugin will not work correctly.";
 	}
 	
 	/**
@@ -52,7 +47,13 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean hasJob() {
-		return job != null;
+		try {
+			return PicoJobsAPI.getStorageManager().getStorageFactory().getJob(uuid) != null;
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
@@ -63,51 +64,13 @@ public class JobPlayer {
 	 *
 	 */
 	public Job getJob() {
-		return job;
-	}
-	
-	/**
-	 * Get the current method (broken blocks, fish caugh etc..) from a player
-	 * 
-	 * @return the method
-	 * @author Picono435
-	 *
-	 */
-	public double getMethod() {
-		return method;
-	}
-	
-	/**
-	 * Sets the current method (broken blocks, fish caugh etc..) of a player
-	 * 
-	 * @param method The method
-	 * @author Picono435
-	 *
-	 */
-	public void setMethod(double method) {
-		this.method = method;
-	}
-	
-	/**
-	 * Get the current method level (amount of works done) from a player
-	 * 
-	 * @return the method
-	 * @author Picono435
-	 *
-	 */
-	public double getMethodLevel() {
-		return level;
-	}
-	
-	/**
-	 * Sets the current method level (amount of works done) of a player
-	 * 
-	 * @param level the level
-	 * @author Picono435
-	 *
-	 */
-	public void setMethodLevel(double level) {
-		this.level = level;
+		try {
+			return PicoJobsAPI.getJobsManager().getJob(PicoJobsAPI.getStorageManager().getStorageFactory().getJob(uuid));
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	/**
@@ -127,7 +90,78 @@ public class JobPlayer {
 		if(event.isCancelled()) {
 			return;
 		}
-		this.job = job;
+		try {
+			PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Get the current method (broken blocks, fish caugh etc..) from a player
+	 * 
+	 * @return the method
+	 * @author Picono435
+	 *
+	 */
+	public double getMethod() {
+		try {
+			return PicoJobsAPI.getStorageManager().getStorageFactory().getMethod(uuid);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	/**
+	 * Sets the current method (broken blocks, fish caugh etc..) of a player
+	 * 
+	 * @param method The method
+	 * @author Picono435
+	 *
+	 */
+	public void setMethod(double method) {
+		try {
+			PicoJobsAPI.getStorageManager().getStorageFactory().setMethod(uuid, method);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Get the current method level (amount of works done) from a player
+	 * 
+	 * @return the method
+	 * @author Picono435
+	 *
+	 */
+	public double getMethodLevel() {
+		try {
+			return PicoJobsAPI.getStorageManager().getStorageFactory().getMethodLevel(uuid);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	/**
+	 * Sets the current method level (amount of works done) of a player
+	 * 
+	 * @param level the level
+	 * @author Picono435
+	 *
+	 */
+	public void setMethodLevel(double level) {
+		try {
+			PicoJobsAPI.getStorageManager().getStorageFactory().setMethodLevel(uuid, level);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -138,7 +172,13 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean isWorking() {
-		return isWorking;
+		try {
+			return PicoJobsAPI.getStorageManager().getStorageFactory().isWorking(uuid);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
@@ -153,7 +193,12 @@ public class JobPlayer {
 			PlayerStartWorkEvent event = new PlayerStartWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
 			Bukkit.getPluginManager().callEvent(event);
 		}
-		this.isWorking = isWorking;
+		try {
+			PicoJobsAPI.getStorageManager().getStorageFactory().setWorking(uuid, isWorking);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -164,7 +209,13 @@ public class JobPlayer {
 	 *
 	 */
 	public double getSalary() {
-		return salary;
+		try {
+			return PicoJobsAPI.getStorageManager().getStorageFactory().getSalary(uuid);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	
 	/**
@@ -175,7 +226,12 @@ public class JobPlayer {
 	 *
 	 */
 	public void setSalary(double salary) {
-		this.salary = salary;
+		try {
+			PicoJobsAPI.getStorageManager().getStorageFactory().setSalary(uuid, salary);
+		} catch (Exception e) {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -215,7 +271,7 @@ public class JobPlayer {
 		double method = getMethod();
 		setMethod(method + 1);
 				
-		int reqmethod = (int) (job.getMethod() * level * getJob().getMethodFrequency());
+		int reqmethod = (int) (getJob().getMethod() * level * getJob().getMethodFrequency());
 		
 		if(getMethod() >= reqmethod) {
 			PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
@@ -223,7 +279,7 @@ public class JobPlayer {
 			if(event.isCancelled()) {
 				return false;
 			}
-			double salary = job.getSalary() * level * getJob().getSalaryFrequency();
+			double salary = getJob().getSalary() * level * getJob().getSalaryFrequency();
 			setMethodLevel(level + 1);
 			setMethod(0);
 			setWorking(false);

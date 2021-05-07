@@ -7,7 +7,7 @@ import com.gmail.picono435.picojobs.managers.JobsManager;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.managers.PlayersManager;
 import com.gmail.picono435.picojobs.managers.SettingsManager;
-import com.gmail.picono435.picojobs.managers.StorageManager;
+import com.gmail.picono435.picojobs.storage.StorageManager;
 
 /**
  * Represents the API from PicoJobs plugin

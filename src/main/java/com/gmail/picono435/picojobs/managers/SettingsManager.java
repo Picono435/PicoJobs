@@ -15,7 +15,6 @@ public class SettingsManager {
 	private String prefix;
 	private String lang;
 	private String storageMethod;
-	private int saveInterval;
 	private int commandAction;
 	private Map<String, Integer> allowedCommands = new HashMap<String, Integer>();
 	private ConfigurationSection mysqlConfiguration;
@@ -38,7 +37,6 @@ public class SettingsManager {
 		this.prefix = config.getString("prefix");
 		this.lang = config.getString("lang");
 		this.storageMethod = config.getConfigurationSection("storage").getString("storage-method");
-		this.saveInterval = config.getInt("save-interval");
 		this.commandAction = config.getInt("jobs-action");
 		for(String cmd : config.getConfigurationSection("commands").getKeys(false)) {
 			allowedCommands.put(cmd, config.getConfigurationSection("commands").getInt(cmd));
@@ -59,10 +57,6 @@ public class SettingsManager {
 	
 	public String getStorageMethod() {
 		return storageMethod;
-	}
-	
-	public int getSaveInterval() {
-		return saveInterval;
 	}
 	
 	public int getCommandAction() {

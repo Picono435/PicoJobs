@@ -84,9 +84,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public Map<String, Integer> salary = new HashMap<String, Integer>();
 	public Map<String, Boolean> inJob = new HashMap<String, Boolean>();
 	
-	public void onEnable() {
+	public void onLoad() {
 		instance = this;
-		Bukkit.getServer();
+	}
+	
+	public void onEnable() {
 		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for use it.");
 		
 		if(checkLegacy() ) {
@@ -120,10 +122,10 @@ public class PicoJobsPlugin extends JavaPlugin {
         	}
         }.runTaskLater(this, 1L);
         
-        // GETTING DATA FROM STORAGE
-		sendConsoleMessage(Level.INFO, "Getting data from storage...");
+        // GENERATE JOBS FROM CONFIGURATION
+		sendConsoleMessage(Level.INFO, "Generating jobs from configuration...");
 		if(!generateJobsFromConfig()) return;
-		PicoJobsAPI.getStorageManager().getData();
+		PicoJobsAPI.getStorageManager().initializeStorageFactory();
 		metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
         	@Override
         	public Integer call() throws Exception {
@@ -157,21 +159,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
 				
 		checkVersion();
-				
-		long saveInterval = PicoJobsAPI.getSettingsManager().getSaveInterval();
-		if(saveInterval != 0) {
-			new BukkitRunnable() {
-				public void run() {
-					PicoJobsAPI.getStorageManager().saveData();
-				}
-			}.runTaskTimerAsynchronously(this, saveInterval, saveInterval);
-		}
 	}
 	
 	public void onDisable() {
-		sendConsoleMessage(Level.INFO, "Saving data and configurations...");
+		sendConsoleMessage(Level.INFO, "Disconnecting connection to storage...");
 		jobs.clear();
-		PicoJobsAPI.getStorageManager().saveData();
+		PicoJobsAPI.getStorageManager().destroyStorageFactory();
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
 	}
