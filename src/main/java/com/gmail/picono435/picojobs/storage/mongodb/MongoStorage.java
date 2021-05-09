@@ -1,8 +1,5 @@
 package com.gmail.picono435.picojobs.storage.mongodb;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 import org.bson.Document;
@@ -13,12 +10,9 @@ import com.gmail.picono435.picojobs.storage.StorageFactory;
 import com.mongodb.BasicDBObject;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 public class MongoStorage extends StorageFactory {
 	
@@ -43,62 +37,71 @@ public class MongoStorage extends StorageFactory {
 	@Override
 	public String getJob(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
-		List<Document> result = mongo.find(new BasicDBObject("uuid", uuid.toString())).into(new ArrayList<BasicDBObject>());
-		return null;
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getString("job");
 	}
 
 	@Override
 	public double getMethod(UUID uuid) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getDouble("method");
 	}
 
 	@Override
 	public double getMethodLevel(UUID uuid) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getDouble("level");
 	}
 
 	@Override
 	public boolean isWorking(UUID uuid) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getBoolean("is-working");
 	}
 
 	@Override
 	public double getSalary(UUID uuid) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getDouble("salary");
 	}
 
 	@Override
 	public boolean setJob(UUID uuid, String job) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("job", job)).getMatchedCount();
+		return rs >= 1;
 	}
 
 	@Override
 	public boolean setMethod(UUID uuid, double method) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("method", method)).getMatchedCount();
+		return rs >= 1;
 	}
 
 	@Override
 	public boolean setMethodLevel(UUID uuid, double level) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("level", level)).getMatchedCount();
+		return rs >= 1;
 	}
 
 	@Override
 	public boolean setWorking(UUID uuid, boolean isWorking) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("is-working", isWorking)).getMatchedCount();
+		return rs >= 1;
 	}
 
 	@Override
 	public boolean setSalary(UUID uuid, double salary) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("salary", salary)).getMatchedCount();
+		return rs >= 1;
 	}
 
 	@Override
