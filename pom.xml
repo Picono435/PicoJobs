@@ -20,45 +20,45 @@
          </resource>
       </resources>
       <plugins>
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-shade-plugin</artifactId>
-	        <version>3.2.4</version>
-	        <configuration>
-	        	<minimizeJar>true</minimizeJar>
-		        <relocations>
-		          <relocation>
-		            <pattern>org.bstats</pattern>
-		            <shadedPattern>com.gmail.picono435.picojobs</shadedPattern>
-		          </relocation>
-		        </relocations>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.4</version>
+            <configuration>
+               <minimizeJar>true</minimizeJar>
+               <relocations>
+                  <relocation>
+                     <pattern>org.bstats</pattern>
+                     <shadedPattern>com.gmail.picono435.picojobs</shadedPattern>
+                  </relocation>
+               </relocations>
             </configuration>
-	        <executions>
-	          <execution>
-	            <phase>package</phase>
-	            <goals>
-	              <goal>shade</goal>
-	            </goals>
-	          </execution>
-	        </executions>
-	      </plugin>
-	      <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.2.0</version>
-				<configuration>
-					<show>public</show>
-					<windowtitle>PicoJobs</windowtitle>
-					<verbose>false</verbose>
-					<author>true</author>
-					<version>true</version>
-					<linksource>true</linksource>
-					<notimestamp>true</notimestamp>
-					<bottom><![CDATA[<b>PiconoDev, 2020</b>]]></bottom>
-					<reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
-					<destDir>javadoc-latest</destDir>
-				</configuration>
-			</plugin>
+            <executions>
+               <execution>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>shade</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+               <show>public</show>
+               <windowtitle>PicoJobs</windowtitle>
+               <verbose>false</verbose>
+               <author>true</author>
+               <version>true</version>
+               <linksource>true</linksource>
+               <notimestamp>true</notimestamp>
+               <bottom><![CDATA[<b>PiconoDev, 2020</b>]]></bottom>
+               <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+               <destDir>javadoc-latest</destDir>
+            </configuration>
+         </plugin>
       </plugins>
    </build>
    <repositories>
@@ -89,23 +89,12 @@
       </repository>
    </repositories>
    <dependencies>
+      <!-- Main Libraries -->
       <dependency>
          <groupId>org.spigotmc</groupId>
          <artifactId>spigot-api</artifactId>
          <version>1.16.5-R0.1-SNAPSHOT</version>
          <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>com.github.MilkBowl</groupId>
-         <artifactId>VaultAPI</artifactId>
-         <version>1.7</version>
-         <scope>provided</scope>
-         <exclusions>
-         	<exclusion>
-         		<groupId>org.bukkit</groupId>
-         		<artifactId>bukkit</artifactId>
-         	</exclusion>
-         </exclusions>
       </dependency>
       <dependency>
          <groupId>me.clip</groupId>
@@ -125,68 +114,92 @@
          <version>2.2.1</version>
          <scope>compile</scope>
       </dependency>
+      <!-- Storage Drivers -->
       <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongodb-driver-sync</artifactId>
-        <version>4.2.3</version>
-        <scope>compile</scope>
-      </dependency>
-		<dependency>
-		    <groupId>com.zaxxer</groupId>
-		    <artifactId>HikariCP</artifactId>
-		    <version>4.0.3</version>
-		    <scope>compile</scope>
-		</dependency>
-	  <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>1.4.199</version>
-        <scope>runtime</scope>
+         <groupId>org.mongodb</groupId>
+         <artifactId>mongodb-driver-sync</artifactId>
+         <version>4.2.3</version>
+         <scope>compile</scope>
       </dependency>
       <dependency>
-        <groupId>org.xerial</groupId>
-        <artifactId>sqlite-jdbc</artifactId>
-        <version>3.28.0</version>
-        <scope>runtime</scope>
+         <groupId>com.zaxxer</groupId>
+         <artifactId>HikariCP</artifactId>
+         <version>4.0.3</version>
+         <scope>compile</scope>
       </dependency>
       <dependency>
-        <groupId>com.github.mkremins</groupId>
-        <artifactId>fanciful</artifactId>
-        <version>18dc039f5b</version>
-        <scope>compile</scope>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <version>1.4.199</version>
+         <scope>compile</scope>
       </dependency>
       <dependency>
-            <groupId>com.github.Mitsugaru</groupId>
-            <artifactId>PlayerPoints</artifactId>
-            <version>master-SNAPSHOT</version>
-            <scope>provided</scope>
+         <groupId>org.xerial</groupId>
+         <artifactId>sqlite-jdbc</artifactId>
+         <version>3.28.0</version>
+         <scope>compile</scope>
       </dependency>
       <dependency>
-            <groupId>com.github.Realizedd</groupId>
-            <artifactId>TokenManager</artifactId>
-            <version>3.2.4</version>
-            <scope>provided</scope>
-            <exclusions>
-                  <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                  </exclusion>
-            </exclusions>
+         <groupId>org.mariadb.jdbc</groupId>
+         <artifactId>mariadb-java-client</artifactId>
+         <version>2.7.2</version>
+         <scope>compile</scope>
       </dependency>
-      	<dependency>
-    		<groupId>com.fasterxml.jackson.core</groupId>
-   			 <artifactId>jackson-databind</artifactId>
-    		<version>2.12.3</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.fasterxml.jackson.dataformat</groupId>
-		    <artifactId>jackson-dataformat-yaml</artifactId>
-    		<version>2.12.3</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20210307</version>
-		</dependency>
+      <!-- Economy plugins -->
+      <dependency>
+         <groupId>com.github.MilkBowl</groupId>
+         <artifactId>VaultAPI</artifactId>
+         <version>1.7</version>
+         <scope>provided</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.bukkit</groupId>
+               <artifactId>bukkit</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>com.github.Mitsugaru</groupId>
+         <artifactId>PlayerPoints</artifactId>
+         <version>master-SNAPSHOT</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.github.Realizedd</groupId>
+         <artifactId>TokenManager</artifactId>
+         <version>3.2.4</version>
+         <scope>provided</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>*</groupId>
+               <artifactId>*</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <!-- Other libraries -->
+      <dependency>
+         <groupId>com.github.mkremins</groupId>
+         <artifactId>fanciful</artifactId>
+         <version>18dc039f5b</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>2.12.3</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.dataformat</groupId>
+         <artifactId>jackson-dataformat-yaml</artifactId>
+         <version>2.12.3</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.json</groupId>
+         <artifactId>json</artifactId>
+         <version>20210307</version>
+         <scope>compile</scope>
+      </dependency>
    </dependencies>
 </project>
