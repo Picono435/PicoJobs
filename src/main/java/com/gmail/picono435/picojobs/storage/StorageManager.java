@@ -4,7 +4,7 @@ import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.storage.sql.MySQLStorage;
+import com.gmail.picono435.picojobs.storage.sql.MySqlStorage;
 
 public class StorageManager {
 	
@@ -14,7 +14,7 @@ public class StorageManager {
 		String method = PicoJobsAPI.getSettingsManager().getStorageMethod();
 		switch(method.toLowerCase()) {
 		case("mysql"): {
-			this.storageFactory = new MySQLStorage();
+			this.storageFactory = new MySqlStorage();
 		}
 		}
 		try {

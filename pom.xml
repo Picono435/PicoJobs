@@ -135,7 +135,20 @@
 		    <groupId>com.zaxxer</groupId>
 		    <artifactId>HikariCP</artifactId>
 		    <version>4.0.3</version>
+		    <scope>compile</scope>
 		</dependency>
+	  <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.199</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.28.0</version>
+        <scope>runtime</scope>
+      </dependency>
       <dependency>
         <groupId>com.github.mkremins</groupId>
         <artifactId>fanciful</artifactId>
