@@ -20,21 +20,32 @@ public class StorageManager {
 		switch(method.toLowerCase()) {
 		case("mysql"): {
 			this.storageFactory = new MySqlStorage();
+			break;
 		}
 		case("mariadb"): {
 			this.storageFactory = new MariaDbStorage();
+			break;
 		}
 		case("postgre"): {
 			this.storageFactory = new PostgreStorage();
+			break;
 		}
 		case("h2"): {
 			this.storageFactory = new H2Storage();
+			break;
 		}
 		case("sqlite"): {
 			this.storageFactory = new SqliteStorage();
+			break;
 		}
 		case("mongodb"): {
 			this.storageFactory = new MongoStorage();
+			break;
+		}
+		default: {
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "A valid storage method was not selected, please be sure to select only avaiable storage methods. Using H2 as the default storage method.");
+			this.storageFactory = new H2Storage();
+			break;
 		}
 		}
 		try {
