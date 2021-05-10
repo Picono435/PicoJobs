@@ -27,6 +27,26 @@
         </executions>
         <configuration>
           <minimizeJar>true</minimizeJar>
+          <filters>
+            <filter>
+              <artifact>com.h2database:h2</artifact>
+              <includes>
+                <include>**</include>
+              </includes>
+            </filter>
+            <filter>
+              <artifact>org.xerial:sqlite-jdbc</artifact>
+              <includes>
+                <include>**</include>
+              </includes>
+            </filter>
+            <filter>
+              <artifact>org.mariadb.jbdc:mariadb-java-client</artifact>
+              <includes>
+                <include>**</include>
+              </includes>
+            </filter>
+          </filters>
           <relocations>
             <relocation>
               <pattern>org.bstats</pattern>
@@ -88,6 +108,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>me.clip</groupId>
+      <artifactId>placeholderapi</artifactId>
+      <version>2.10.9</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>com.github.MilkBowl</groupId>
       <artifactId>VaultAPI</artifactId>
       <version>1.7</version>
@@ -98,12 +124,6 @@
           <groupId>org.bukkit</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>me.clip</groupId>
-      <artifactId>placeholderapi</artifactId>
-      <version>2.10.9</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.github.Mitsugaru</groupId>
@@ -125,6 +145,7 @@
     </dependency>
   </dependencies>
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>

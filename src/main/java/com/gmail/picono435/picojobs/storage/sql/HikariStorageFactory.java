@@ -20,11 +20,11 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean createPlayer(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("INSERT INTO ? (`uuid`) VALUES (?)");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("INSERT INTO " + configurationSection.getString("tablename") +  " (`uuid`) VALUES (?)");
+        	stm.setString(1, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
+        	conn.close();
         	return result >= 1;
 		}
 	}
@@ -32,11 +32,11 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean playerExists(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM " + configurationSection.getString("tablename") +  " WHERE `uuid`=?");
+        	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
+        	conn.close();
         	if(rs.next()) {
         		return true;
         	} else {
@@ -48,9 +48,8 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public String getJob(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
+        	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
         	conn.close();
@@ -65,9 +64,8 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public double getMethod(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("SELECT `method` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("SELECT `method` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
+        	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
         	conn.close();
@@ -82,9 +80,8 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public double getMethodLevel(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("SELECT `level` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("SELECT `level` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
+        	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
         	conn.close();
@@ -99,9 +96,8 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean isWorking(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("SELECT `is-working` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("SELECT `is-working` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
+        	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
         	conn.close();
@@ -116,9 +112,8 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public double getSalary(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("SELECT `salary` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("SELECT `salary` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
+        	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
         	conn.close();
@@ -133,10 +128,9 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean setJob(UUID uuid, String job) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `job`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setString(2, job);
-        	stm.setString(3, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `job`=? WHERE `uuid`=?");
+        	stm.setString(1, job);
+        	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
         	conn.close();
@@ -147,10 +141,9 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean setMethod(UUID uuid, double method) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `method`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setDouble(2, method);
-        	stm.setString(3, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `method`=? WHERE `uuid`=?");
+        	stm.setDouble(1, method);
+        	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
         	conn.close();
@@ -161,10 +154,9 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean setMethodLevel(UUID uuid, double level) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `level`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setDouble(2, level);
-        	stm.setString(3, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `level`=? WHERE `uuid`=?");
+        	stm.setDouble(1, level);
+        	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
         	conn.close();
@@ -175,10 +167,9 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean setWorking(UUID uuid, boolean isWorking) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `is-working`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setBoolean(2, isWorking);
-        	stm.setString(3, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `is-working`=? WHERE `uuid`=?");
+        	stm.setBoolean(1, isWorking);
+        	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
         	conn.close();
@@ -189,10 +180,9 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	@Override
 	public boolean setSalary(UUID uuid, double salary) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
-			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `salary`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
-        	stm.setDouble(2, salary);
-        	stm.setString(3, uuid.toString());
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `salary`=? WHERE `uuid`=?");
+        	stm.setDouble(1, salary);
+        	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
         	conn.close();

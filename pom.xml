@@ -26,6 +26,26 @@
             <version>3.2.4</version>
             <configuration>
                <minimizeJar>true</minimizeJar>
+               <filters>
+                  <filter>
+                     <artifact>com.h2database:h2</artifact>
+                     <includes>
+                        <include>**</include>
+                     </includes>
+                  </filter>
+                  <filter>
+                     <artifact>org.xerial:sqlite-jdbc</artifact>
+                     <includes>
+                        <include>**</include>
+                     </includes>
+                  </filter>
+                  <filter>
+                     <artifact>org.mariadb.jbdc:mariadb-java-client</artifact>
+                     <includes>
+                        <include>**</include>
+                     </includes>
+                  </filter>
+               </filters>
                <relocations>
                   <relocation>
                      <pattern>org.bstats</pattern>

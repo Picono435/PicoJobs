@@ -26,7 +26,7 @@ public class CreatePlayerListener implements Listener {
 				PicoJobsAPI.getStorageManager().getStorageFactory().createPlayer(p.getUniqueId());
 			}
 		} catch (Exception ex) {
-			p.kickPlayer("§6§lPicoJobs §c§l| Error Message\n\n§cThere was an issue contacting to the database. Please contact a administrator too check the console for errors.");
+			p.kickPlayer("Â§6Â§lPicoJobs Â§cÂ§l| Error Message\\n\\nÂ§cThere was an issue contacting to the database. Please contact a administrator too check the console for errors.");
 			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "Error connecting to the storage. The plugin will not work correctly.");
 			ex.printStackTrace();
 		}
