@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.storage.mongodb;
 
 import java.util.UUID;
 
+import org.bson.BsonValue;
 import org.bson.Document;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -34,6 +35,20 @@ public class MongoStorage extends StorageFactory {
 		return true;
 	}
 
+	@Override
+	public boolean createPlayer(UUID uuid) throws Exception {
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		BsonValue rs = mongo.insertOne(new Document("uuid", uuid.toString())).getInsertedId();
+		return rs != null;
+	}
+	
+	@Override
+	public boolean playerExists(UUID uuid) throws Exception {
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result != null;
+	}
+	
 	@Override
 	public String getJob(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);

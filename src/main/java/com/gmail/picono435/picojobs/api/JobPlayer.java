@@ -6,11 +6,11 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.events.PlayerEnterJobEvent;
-import com.gmail.picono435.picojobs.events.PlayerFinishWorkEvent;
-import com.gmail.picono435.picojobs.events.PlayerLeaveJobEvent;
-import com.gmail.picono435.picojobs.events.PlayerStartWorkEvent;
-import com.gmail.picono435.picojobs.events.PlayerWithdrawEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerEnterJobEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerFinishWorkEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerLeaveJobEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerStartWorkEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
 
 /**
  * Represents a player from PicoJobs

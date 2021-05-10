@@ -37,6 +37,8 @@ storage:
   # MySQL - Save the data in a MySQL database
   # MongoDB - Save the data in a MongoDB database
   storage-method: YAML
+  # Enables or disables people getting kicked when the database connection was not valid
+  kick-error: true
   # MySQL configuration, required only if the storage method is MySQL
   mysql:
     host: localhost

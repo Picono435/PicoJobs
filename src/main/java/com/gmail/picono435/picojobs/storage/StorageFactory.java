@@ -6,6 +6,9 @@ public abstract class StorageFactory {
 	
 	protected abstract boolean initializeStorage() throws Exception;
 	
+	public abstract boolean createPlayer(UUID uuid) throws Exception;
+	public abstract boolean playerExists(UUID uuid) throws Exception;
+	
 	public abstract String getJob(UUID uuid) throws Exception;
 	public abstract double getMethod(UUID uuid) throws Exception;
 	public abstract double getMethodLevel(UUID uuid) throws Exception;

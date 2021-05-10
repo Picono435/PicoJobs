@@ -16,7 +16,6 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
@@ -35,7 +34,6 @@ import org.json.JSONObject;
 
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
@@ -79,10 +77,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
 	public Map<String, Job> jobs = new HashMap<String, Job>(); 
-	//PLAYERS DATA
-	public Map<UUID, JobPlayer> playersdata = new HashMap<UUID, JobPlayer>();
-	public Map<String, Integer> salary = new HashMap<String, Integer>();
-	public Map<String, Boolean> inJob = new HashMap<String, Boolean>();
 	
 	public void onLoad() {
 		instance = this;

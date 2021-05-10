@@ -1,5 +1,7 @@
 package com.gmail.picono435.picojobs.listeners;
 
+import java.util.logging.Level;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -8,7 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.managers.LanguageManager;
 
 import mkremins.fanciful.FancyMessage;
@@ -19,8 +21,14 @@ public class CreatePlayerListener implements Listener {
 	@EventHandler()
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
-		if(!PicoJobsPlugin.getInstance().playersdata.containsKey(p.getUniqueId())) {
-			PicoJobsPlugin.getInstance().playersdata.put(p.getUniqueId(), new JobPlayer(null, 0, 1, 0, false, p.getUniqueId()));
+		try {
+			if(!PicoJobsAPI.getStorageManager().getStorageFactory().playerExists(p.getUniqueId())) {
+				PicoJobsAPI.getStorageManager().getStorageFactory().createPlayer(p.getUniqueId());
+			}
+		} catch (Exception ex) {
+			p.kickPlayer("§6§lPicoJobs §c§l| Error Message\n\n§cThere was an issue contacting to the database. Please contact a administrator too check the console for errors.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "Error connecting to the storage. The plugin will not work correctly.");
+			ex.printStackTrace();
 		}
 	}
 	

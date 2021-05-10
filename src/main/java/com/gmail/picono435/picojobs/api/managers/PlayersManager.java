@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.managers;
+package com.gmail.picono435.picojobs.api.managers;
 
 import java.util.UUID;
 
@@ -42,7 +42,6 @@ public class PlayersManager {
 	/**
 	 * Get the JobPlayer object of a Player
 	 * 
-	 * @deprecated see {@link PlayersManager#getJobPlayer(UUID)}
 	 * @param name - the name of the player
 	 * @return the JobPlayer object, returns null if there is no JobPlayer
 	 * @author Picono435

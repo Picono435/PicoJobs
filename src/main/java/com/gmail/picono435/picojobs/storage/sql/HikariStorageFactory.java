@@ -18,6 +18,34 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	protected HikariConfig config;
 	
 	@Override
+	public boolean createPlayer(UUID uuid) throws Exception {
+		try(Connection conn = hikari.getConnection()) {
+			PreparedStatement stm = conn.prepareStatement("INSERT INTO ? (`uuid`) VALUES (?)");
+        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(2, uuid.toString());
+        	int result = stm.executeUpdate();
+        	stm.close();
+        	return result >= 1;
+		}
+	}
+	
+	@Override
+	public boolean playerExists(UUID uuid) throws Exception {
+		try(Connection conn = hikari.getConnection()) {
+			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM ? WHERE `uuid`=?");
+        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(2, uuid.toString());
+        	ResultSet rs = stm.executeQuery();
+        	stm.close();
+        	if(rs.next()) {
+        		return true;
+        	} else {
+        		return false;
+        	}
+		}
+	}
+	
+	@Override
 	public String getJob(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection()) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM ? WHERE `uuid`=?");

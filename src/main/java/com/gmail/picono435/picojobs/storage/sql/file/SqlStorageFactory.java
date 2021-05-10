@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.UUID;
+import java.util.logging.Level;
 
 import org.bukkit.configuration.ConfigurationSection;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.storage.StorageFactory;
 
 public abstract class SqlStorageFactory extends StorageFactory {
@@ -19,8 +21,36 @@ public abstract class SqlStorageFactory extends StorageFactory {
 		try {
 			this.conn.close();
 		} catch(Exception ex) {
-			System.out.println("Error connecting to the storage. The plugin will not work correctly.");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "Error connecting to the storage. The plugin will not work correctly.");
 			return;
+		}
+	}
+	
+	@Override
+	public boolean createPlayer(UUID uuid) throws Exception {
+		try(Connection conn = this.conn) {
+			PreparedStatement stm = conn.prepareStatement("INSERT INTO ? (`uuid`) VALUES (?)");
+        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(2, uuid.toString());
+        	int result = stm.executeUpdate();
+        	stm.close();
+        	return result >= 1;
+		}
+	}
+	
+	@Override
+	public boolean playerExists(UUID uuid) throws Exception {
+		try(Connection conn = this.conn) {
+			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM ? WHERE `uuid`=?");
+        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(2, uuid.toString());
+        	ResultSet rs = stm.executeQuery();
+        	stm.close();
+        	if(rs.next()) {
+        		return true;
+        	} else {
+        		return false;
+        	}
 		}
 	}
 	
@@ -32,7 +62,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
-        	conn.close();
         	if(rs.next()) {
         		return rs.getString("job");
         	} else {
@@ -49,7 +78,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
-        	conn.close();
         	if(rs.next()) {
         		return rs.getDouble("method");
         	} else {
@@ -66,7 +94,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
-        	conn.close();
         	if(rs.next()) {
         		return rs.getDouble("level");
         	} else {
@@ -83,7 +110,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
-        	conn.close();
         	if(rs.next()) {
         		return rs.getBoolean("is-working");
         	} else {
@@ -100,7 +126,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
-        	conn.close();
         	if(rs.next()) {
         		return rs.getDouble("salary");
         	} else {
@@ -118,7 +143,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
-        	conn.close();
         	return result >= 1;
 		}
 	}
@@ -132,7 +156,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
-        	conn.close();
         	return result >= 1;
 		}
 	}
@@ -146,7 +169,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
-        	conn.close();
         	return result >= 1;
 		}
 	}
@@ -160,7 +182,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
-        	conn.close();
         	return result >= 1;
 		}
 	}
@@ -174,7 +195,6 @@ public abstract class SqlStorageFactory extends StorageFactory {
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
-        	conn.close();
         	return result >= 1;
 		}
 	}

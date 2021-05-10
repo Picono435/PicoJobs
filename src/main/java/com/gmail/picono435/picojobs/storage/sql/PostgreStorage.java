@@ -28,7 +28,7 @@ public class PostgreStorage extends HikariStorageFactory {
         this.hikari = new HikariDataSource(config);
         
         try(Connection conn = hikari.getConnection()) {
-        	PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS ? (`uuid` VARCHAR(255) NOT NULL, `job` TEXT, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN, PRIMARY KEY (`uuid`));");
+        	PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS ? (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));");
         	stm.setString(1, configurationSection.getString("tablename"));
         	stm.execute();
         	stm.close();
