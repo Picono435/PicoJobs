@@ -15,7 +15,7 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	
 	protected ConfigurationSection configurationSection;
 	protected HikariDataSource hikari;
-	protected HikariConfig config;
+	protected HikariConfig config = new HikariConfig();
 	
 	@Override
 	public boolean createPlayer(UUID uuid) throws Exception {

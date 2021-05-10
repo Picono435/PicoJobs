@@ -45,6 +45,12 @@
                         <include>**</include>
                      </includes>
                   </filter>
+                  <filter>
+                     <artifact>mysql:mysql-connector-java</artifact>
+                     <includes>
+                        <include>**</include>
+                     </includes>
+                  </filter>
                </filters>
                <relocations>
                   <relocation>
@@ -165,6 +171,12 @@
          <version>2.7.2</version>
          <scope>compile</scope>
       </dependency>
+      <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>8.0.24</version>
+      </dependency>
+      
       <!-- Economy plugins -->
       <dependency>
          <groupId>com.github.MilkBowl</groupId>
