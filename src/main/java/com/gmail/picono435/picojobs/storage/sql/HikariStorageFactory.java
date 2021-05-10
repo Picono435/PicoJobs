@@ -35,11 +35,13 @@ public abstract class HikariStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM " + configurationSection.getString("tablename") +  " WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
-        	conn.close();
         	if(rs.next()) {
+        		stm.close();
+        		conn.close();
         		return true;
         	} else {
+        		stm.close();
+        		conn.close();
         		return false;
         	}
 		}
@@ -51,11 +53,14 @@ public abstract class HikariStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
-        	conn.close();
         	if(rs.next()) {
-        		return rs.getString("job");
+        		String result = rs.getString("job");
+        		stm.close();
+        		conn.close();
+        		return result;
         	} else {
+        		stm.close();
+        		conn.close();
         		return null;
         	}
 		}
@@ -67,11 +72,14 @@ public abstract class HikariStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `method` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
-        	conn.close();
         	if(rs.next()) {
-        		return rs.getDouble("method");
+        		double result = rs.getDouble("method");
+        		stm.close();
+        		conn.close();
+        		return result;
         	} else {
+        		stm.close();
+        		conn.close();
         		return 0;
         	}
 		}
@@ -83,11 +91,14 @@ public abstract class HikariStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `level` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
-        	conn.close();
         	if(rs.next()) {
-        		return rs.getDouble("level");
+        		double result = rs.getDouble("level");
+        		stm.close();
+        		conn.close();
+        		return result;
         	} else {
+        		stm.close();
+        		conn.close();
         		return 0;
         	}
 		}
@@ -99,11 +110,14 @@ public abstract class HikariStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `is-working` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
-        	conn.close();
         	if(rs.next()) {
-        		return rs.getBoolean("is-working");
+        		boolean result = rs.getBoolean("is-working");
+        		stm.close();
+        		conn.close();
+        		return result;
         	} else {
+        		stm.close();
+        		conn.close();
         		return false;
         	}
 		}
@@ -115,11 +129,14 @@ public abstract class HikariStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `salary` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
-        	conn.close();
         	if(rs.next()) {
-        		return rs.getDouble("salary");
+        		double result = rs.getDouble("salary");
+        		stm.close();
+        		conn.close();
+        		return result;
         	} else {
+        		stm.close();
+        		conn.close();
         		return 0;
         	}
 		}

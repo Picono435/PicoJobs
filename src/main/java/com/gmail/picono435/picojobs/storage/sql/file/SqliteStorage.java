@@ -20,6 +20,9 @@ public class SqliteStorage extends FlatfileStorageFactory {
 
 	@Override
 	protected Connection getConnection() throws Exception {
-		return (Connection) this.connectionConstructor.newInstance("jdbc:sqlite:" + PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("picojobs-sqlite"), PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("picojobs-sqlite").toString(), new Properties());
+		if(this.conn == null || this.conn.isClosed()) {
+			this.conn = (Connection) this.connectionConstructor.newInstance("jdbc:sqlite:" + PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("picojobs-sqlite"), PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("picojobs-sqlite").toString(), new Properties());
+		}
+		return this.conn;
 	}
 }

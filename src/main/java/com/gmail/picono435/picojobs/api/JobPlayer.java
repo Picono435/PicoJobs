@@ -91,7 +91,11 @@ public class JobPlayer {
 			return;
 		}
 		try {
-			PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
+			if(job == null) {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, null);
+			} else {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
+			}
 		} catch (Exception e) {
 			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
 			e.printStackTrace();

@@ -12,6 +12,7 @@ import com.gmail.picono435.picojobs.storage.StorageFactory;
 
 public abstract class FlatfileStorageFactory extends StorageFactory {
 	
+	protected Connection conn;
 	protected Constructor<?> connectionConstructor;
 	
 	protected abstract Connection getConnection() throws Exception;
@@ -43,10 +44,11 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM `jobplayers` WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
         	if(rs.next()) {
+        		stm.close();
         		return true;
         	} else {
+        		stm.close();
         		return false;
         	}
 		}
@@ -58,10 +60,12 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM `jobplayers` WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
         	if(rs.next()) {
-        		return rs.getString("job");
+        		String result = rs.getString("job");
+        		stm.close();
+        		return result;
         	} else {
+        		stm.close();
         		return null;
         	}
 		}
@@ -73,10 +77,12 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `method` FROM `jobplayers` WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
         	if(rs.next()) {
-        		return rs.getDouble("method");
+        		double result = rs.getDouble("method");
+        		stm.close();
+        		return result;
         	} else {
+        		stm.close();
         		return 0;
         	}
 		}
@@ -88,10 +94,12 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `level` FROM `jobplayers` WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
         	if(rs.next()) {
-        		return rs.getDouble("level");
+        		double result = rs.getDouble("level");
+        		stm.close();
+        		return result;
         	} else {
+        		stm.close();
         		return 0;
         	}
 		}
@@ -103,10 +111,12 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `is-working` FROM `jobplayers` WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
         	if(rs.next()) {
-        		return rs.getBoolean("is-working");
+        		boolean result = rs.getBoolean("is-working");
+        		stm.close();
+        		return result;
         	} else {
+        		stm.close();
         		return false;
         	}
 		}
@@ -118,10 +128,12 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 			PreparedStatement stm = conn.prepareStatement("SELECT `salary` FROM `jobplayers` WHERE `uuid`=?");
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
-        	stm.close();
         	if(rs.next()) {
-        		return rs.getDouble("salary");
+        		double result = rs.getDouble("salary");
+        		stm.close();
+        		return result;
         	} else {
+        		stm.close();
         		return 0;
         	}
 		}
