@@ -11,7 +11,7 @@ public class MariaDbStorage extends HikariStorageFactory {
 	
 	@Override
 	public boolean initializeStorage() throws SQLException {
-		configurationSection = PicoJobsAPI.getSettingsManager().getMySQLConfiguration();
+		configurationSection = PicoJobsAPI.getSettingsManager().getRemoteSqlConfiguration();
 		String address = configurationSection.getString("host");
 		String port = configurationSection.getString("port");
 		String databaseName = configurationSection.getString("database");

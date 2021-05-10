@@ -6,14 +6,11 @@ import java.sql.ResultSet;
 import java.util.UUID;
 import java.util.logging.Level;
 
-import org.bukkit.configuration.ConfigurationSection;
-
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.storage.StorageFactory;
 
 public abstract class SqlStorageFactory extends StorageFactory {
 	
-	protected ConfigurationSection configurationSection;
 	protected Connection conn;
 	
 	@Override
@@ -30,7 +27,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean createPlayer(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("INSERT INTO ? (`uuid`) VALUES (?)");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	stm.close();
@@ -42,7 +39,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean playerExists(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `uuid` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
@@ -58,7 +55,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public String getJob(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
@@ -74,7 +71,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public double getMethod(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `method` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
@@ -90,7 +87,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public double getMethodLevel(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `level` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
@@ -106,7 +103,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean isWorking(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `is-working` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
@@ -122,7 +119,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public double getSalary(UUID uuid) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("SELECT `salary` FROM ? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	stm.close();
@@ -138,7 +135,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean setJob(UUID uuid, String job) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `job`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setString(2, job);
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
@@ -151,7 +148,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean setMethod(UUID uuid, double method) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `method`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setDouble(2, method);
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
@@ -164,7 +161,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean setMethodLevel(UUID uuid, double level) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `level`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setDouble(2, level);
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
@@ -177,7 +174,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean setWorking(UUID uuid, boolean isWorking) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `is-working`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setBoolean(2, isWorking);
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();
@@ -190,7 +187,7 @@ public abstract class SqlStorageFactory extends StorageFactory {
 	public boolean setSalary(UUID uuid, double salary) throws Exception {
 		try(Connection conn = this.conn) {
 			PreparedStatement stm = conn.prepareStatement("UPDATE ? SET `salary`=? WHERE `uuid`=?");
-        	stm.setString(1, configurationSection.getString("tablename"));
+        	stm.setString(1, "jobplayers");
         	stm.setDouble(2, salary);
         	stm.setString(3, uuid.toString());
         	int result = stm.executeUpdate();

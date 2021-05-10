@@ -33,21 +33,32 @@ auto-update: true
 # In this configuration you can select the storage method that you want to use and config it.
 storage:
   # Here is a list of storage methods that you can choose:
-  # YAML - Save the data in a YAML file inside the plugin directory
-  # MySQL - Save the data in a MySQL database
-  # MongoDB - Save the data in a MongoDB database
-  storage-method: YAML
+  #
+  # | Remote databases - require connection information to be configured below
+  # |=> MySQL
+  # |=> MariaDB (recommended)
+  # |=> PostgreSQL
+  # |=> MongoDB
+  #
+  # |  Flatfile/local database - don't require any extra configuration
+  # |=> H2 (recommended)
+  # |=> SQL
+  #
+  # |  Readable & editable text files - don't require any extra configuration
+  # |=> YAML (recommended)
+  # |=> JSON
+  storage-method: h2
   # Enables or disables people getting kicked when the database connection was not valid
   kick-error: true
-  # MySQL configuration, required only if the storage method is MySQL
-  mysql:
+  # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
+  remote-sql:
     host: localhost
     port: 3306
     database: mydb
     username: root
     password: ""
     tablename: "jobplayers"
-  # MongoDB configuration, required only if the storage method is MongoDB
+  # Remote MongoDB database configuration
   mongodb:
     # Here you need to put the MongoDB Connection URI
     # For more information check https://docs.mongodb.com/manual/reference/connection-string/

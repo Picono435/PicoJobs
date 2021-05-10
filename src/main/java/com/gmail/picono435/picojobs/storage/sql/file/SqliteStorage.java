@@ -15,7 +15,7 @@ public class SqliteStorage extends SqlStorageFactory {
 		this.conn = (Connection) constructor.newInstance("jdbc:sqlite:" + PicoJobsPlugin.getInstance().getDataFolder().getPath().toString(), PicoJobsPlugin.getInstance().getDataFolder().getPath().toString(), new Properties());
 		
 		PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS ? (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));");
-    	stm.setString(1, configurationSection.getString("tablename"));
+    	stm.setString(1, "jobplayers");
     	stm.execute();
     	stm.close();
 		return true;

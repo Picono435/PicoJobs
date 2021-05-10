@@ -30,7 +30,7 @@ public class StorageManager {
 		case("h2"): {
 			this.storageFactory = new H2Storage();
 		}
-		case("sql"): {
+		case("sqlite"): {
 			this.storageFactory = new SqliteStorage();
 		}
 		case("mongodb"): {
