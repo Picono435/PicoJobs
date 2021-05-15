@@ -13,9 +13,6 @@ import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 
 public class FileCreator {
 	
-	private static FileConfiguration data;
-	private static File data_file;
-	
 	private static FileConfiguration gui;
 	private static File gui_file;
 	
@@ -66,34 +63,6 @@ public class FileCreator {
 			return false;
 		}
 	}
-	
-	/*
-	 * Data file
-	 */
-	public static FileConfiguration getData() {
-		return data;
-	}
-	
-	public static File getDataFile() {
-		return data_file;
-	}
-	
-	public static boolean createDataFile() {
-    	data_file = new File(PicoJobsPlugin.getInstance().getDataFolder(), "data.yml");
-        if (!data_file.exists()) {
-        	data_file.getParentFile().mkdirs();
-        	PicoJobsPlugin.getInstance().saveResource("data.yml", false);
-         }
-
-        data = new YamlConfiguration();
-        try {
-            data.load(data_file);
-        } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
 	
 	/*
 	 * GUIs file
