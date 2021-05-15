@@ -22,7 +22,7 @@ public class YamlStorage extends StorageFactory {
 		dataFile = new File(PicoJobsPlugin.getInstance().getDataFolder(), "picojobs-yaml.yml");
         if (!dataFile.exists()) {
         	dataFile.getParentFile().mkdirs();
-        	PicoJobsPlugin.getInstance().saveResource("storage" + File.separator + "data.yml", false);
+        	PicoJobsPlugin.getInstance().saveResource("storage" + File.separator + "picojobs-yaml.yml", false);
          }
 
         data = new YamlConfiguration();
