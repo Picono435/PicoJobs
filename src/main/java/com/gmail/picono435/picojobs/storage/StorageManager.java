@@ -4,6 +4,7 @@ import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.storage.cache.CacheManager;
 import com.gmail.picono435.picojobs.storage.mongodb.MongoStorage;
 import com.gmail.picono435.picojobs.storage.sql.MariaDbStorage;
 import com.gmail.picono435.picojobs.storage.sql.MySqlStorage;
@@ -13,9 +14,11 @@ import com.gmail.picono435.picojobs.storage.sql.file.SqliteStorage;
 
 public class StorageManager {
 	
+	private CacheManager cacheManager;
 	private StorageFactory storageFactory;
 	
 	public StorageFactory initializeStorageFactory() {
+		this.cacheManager = new CacheManager();
 		String method = PicoJobsAPI.getSettingsManager().getStorageMethod();
 		switch(method.toLowerCase()) {
 		case("mysql"): {
@@ -59,6 +62,10 @@ public class StorageManager {
 	
 	public StorageFactory getStorageFactory() {
 		return this.storageFactory;	
+	}
+	
+	public CacheManager getCacheManager() {
+		return this.cacheManager;
 	}
 	
 	public void destroyStorageFactory() {

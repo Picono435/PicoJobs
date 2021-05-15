@@ -13,8 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
 

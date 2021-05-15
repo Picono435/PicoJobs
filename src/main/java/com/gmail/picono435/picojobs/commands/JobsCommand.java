@@ -18,7 +18,7 @@ import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.menu.JobsMenu;
 import com.gmail.picono435.picojobs.utils.TimeFormatter;
 

@@ -10,7 +10,7 @@ import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 
 public class KillerListener implements Listener {
 	

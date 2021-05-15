@@ -3,10 +3,10 @@ package com.gmail.picono435.picojobs.api;
 import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.managers.JobsManager;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
-import com.gmail.picono435.picojobs.managers.PlayersManager;
-import com.gmail.picono435.picojobs.managers.SettingsManager;
+import com.gmail.picono435.picojobs.api.managers.JobsManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.PlayersManager;
+import com.gmail.picono435.picojobs.api.managers.SettingsManager;
 import com.gmail.picono435.picojobs.storage.StorageManager;
 
 /**

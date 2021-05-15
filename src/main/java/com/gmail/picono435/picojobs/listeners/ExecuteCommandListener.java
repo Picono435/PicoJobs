@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 
 public class ExecuteCommandListener implements Listener {
 	

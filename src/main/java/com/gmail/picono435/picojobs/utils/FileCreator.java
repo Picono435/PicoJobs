@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 
 public class FileCreator {
 	

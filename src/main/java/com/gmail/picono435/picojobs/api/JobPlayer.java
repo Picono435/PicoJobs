@@ -21,9 +21,19 @@ import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
 public class JobPlayer {
 	
 	private UUID uuid;
+	private Job job;
+	private double method;
+	private double level;
+	private boolean isWorking;
+	private double salary;
 	private String errorMessage;
 	
-	public JobPlayer(UUID uuid) {
+	public JobPlayer(Job job, double method, double level, double salary, boolean isWorking, UUID uuid) {
+		this.job = job;
+		this.method = method;
+		this.level = level;
+		this.salary = salary;
+		this.isWorking = isWorking;
 		this.uuid = uuid;
 		this.errorMessage = "Error connecting to the storage. The plugin will not work correctly.";
 	}
@@ -47,13 +57,7 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean hasJob() {
-		try {
-			return PicoJobsAPI.getStorageManager().getStorageFactory().getJob(uuid) != null;
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-			return false;
-		}
+		return this.job != null;
 	}
 	
 	/**
@@ -64,13 +68,7 @@ public class JobPlayer {
 	 *
 	 */
 	public Job getJob() {
-		try {
-			return PicoJobsAPI.getJobsManager().getJob(PicoJobsAPI.getStorageManager().getStorageFactory().getJob(uuid));
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-			return null;
-		}
+		return this.job;
 	}
 	
 	/**
@@ -90,16 +88,21 @@ public class JobPlayer {
 		if(event.isCancelled()) {
 			return;
 		}
-		try {
-			if(job == null) {
-				PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, null);
-			} else {
-				PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
+		
+		this.job = job;
+		
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				if(job == null) {
+					PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, null);
+				} else {
+					PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
+				}
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-		}
+		});
 	}
 	
 	/**
@@ -110,13 +113,7 @@ public class JobPlayer {
 	 *
 	 */
 	public double getMethod() {
-		try {
-			return PicoJobsAPI.getStorageManager().getStorageFactory().getMethod(uuid);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-			return 0;
-		}
+		return this.method;
 	}
 	
 	/**
@@ -127,12 +124,15 @@ public class JobPlayer {
 	 *
 	 */
 	public void setMethod(double method) {
-		try {
-			PicoJobsAPI.getStorageManager().getStorageFactory().setMethod(uuid, method);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-		}
+		this.method = method;
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setMethod(uuid, method);
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	/**
@@ -143,13 +143,7 @@ public class JobPlayer {
 	 *
 	 */
 	public double getMethodLevel() {
-		try {
-			return PicoJobsAPI.getStorageManager().getStorageFactory().getMethodLevel(uuid);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-			return 0;
-		}
+		return this.level;
 	}
 	
 	/**
@@ -160,12 +154,15 @@ public class JobPlayer {
 	 *
 	 */
 	public void setMethodLevel(double level) {
-		try {
-			PicoJobsAPI.getStorageManager().getStorageFactory().setMethodLevel(uuid, level);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-		}
+		this.level = level;
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setMethodLevel(uuid, level);
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	/**
@@ -176,13 +173,7 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean isWorking() {
-		try {
-			return PicoJobsAPI.getStorageManager().getStorageFactory().isWorking(uuid);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-			return false;
-		}
+		return this.isWorking;
 	}
 	
 	/**
@@ -197,12 +188,16 @@ public class JobPlayer {
 			PlayerStartWorkEvent event = new PlayerStartWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
 			Bukkit.getPluginManager().callEvent(event);
 		}
-		try {
-			PicoJobsAPI.getStorageManager().getStorageFactory().setWorking(uuid, isWorking);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-		}
+		
+		this.isWorking = isWorking;
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setWorking(uuid, isWorking);
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	/**
@@ -213,13 +208,7 @@ public class JobPlayer {
 	 *
 	 */
 	public double getSalary() {
-		try {
-			return PicoJobsAPI.getStorageManager().getStorageFactory().getSalary(uuid);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-			return 0;
-		}
+		return this.salary;
 	}
 	
 	/**
@@ -230,12 +219,15 @@ public class JobPlayer {
 	 *
 	 */
 	public void setSalary(double salary) {
-		try {
-			PicoJobsAPI.getStorageManager().getStorageFactory().setSalary(uuid, salary);
-		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
-			e.printStackTrace();
-		}
+		this.salary = salary;
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setSalary(uuid, salary);
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	/**

@@ -61,7 +61,7 @@ import com.gmail.picono435.picojobs.listeners.jobs.CraftListener;
 import com.gmail.picono435.picojobs.listeners.jobs.EatListener;
 import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FillListener;
-import com.gmail.picono435.picojobs.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 
 public class PicoJobsPlugin extends JavaPlugin {

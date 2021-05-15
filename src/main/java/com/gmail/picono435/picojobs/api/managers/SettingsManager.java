@@ -17,7 +17,7 @@ public class SettingsManager {
 	private String storageMethod;
 	private int commandAction;
 	private Map<String, Integer> allowedCommands = new HashMap<String, Integer>();
-	private ConfigurationSection mysqlConfiguration;
+	private ConfigurationSection remoteSqlConfiguration;
 	private ConfigurationSection mongodbConfiguration;
 	private int salaryCooldown;
 	
@@ -41,7 +41,7 @@ public class SettingsManager {
 		for(String cmd : config.getConfigurationSection("commands").getKeys(false)) {
 			allowedCommands.put(cmd, config.getConfigurationSection("commands").getInt(cmd));
 		}
-		this.mysqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mysql");
+		this.remoteSqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("remote-sql");
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
 		this.salaryCooldown = config.getInt("salary-cooldown");
 		return true;
@@ -67,8 +67,8 @@ public class SettingsManager {
 		return allowedCommands;
 	}
 	
-	public ConfigurationSection getMySQLConfiguration() {
-		return mysqlConfiguration;
+	public ConfigurationSection getRemoteSqlConfiguration() {
+		return remoteSqlConfiguration;
 	}
 	
 	public ConfigurationSection getMongoDBConfiguration() {
