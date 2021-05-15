@@ -48,8 +48,6 @@ storage:
   # |=> YAML (recommended)
   # |=> JSON
   storage-method: h2
-  # Enables or disables people getting kicked when the database connection was not valid
-  kick-error: true
   # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
   remote-sql:
     host: localhost
