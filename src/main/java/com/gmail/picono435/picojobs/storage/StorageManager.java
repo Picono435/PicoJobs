@@ -17,8 +17,11 @@ public class StorageManager {
 	private CacheManager cacheManager;
 	private StorageFactory storageFactory;
 	
-	public StorageFactory initializeStorageFactory() {
+	public StorageManager() {
 		this.cacheManager = new CacheManager();
+	}
+	
+	public StorageFactory initializeStorageFactory() {
 		String method = PicoJobsAPI.getSettingsManager().getStorageMethod();
 		switch(method.toLowerCase()) {
 		case("mysql"): {

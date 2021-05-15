@@ -88,6 +88,8 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				p.sendMessage(LanguageManager.getMessage("unknow-error", pl));
 				return true;
 			}
+			PicoJobsAPI.getStorageManager().destroyStorageFactory();
+			PicoJobsAPI.getStorageManager().initializeStorageFactory();
 			p.sendMessage(LanguageManager.getMessage("reload-command", pl));
 			return true;
 		}
