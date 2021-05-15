@@ -43,6 +43,20 @@ public class FileCreator {
 		}
 	}
 	
+	public static void migrateFiles() {
+		try {
+			for(String job : jobs.getConfigurationSection("jobs").getKeys(false)) {
+				if(!jobs.contains("jobs." + job + ".max-salary")) {
+					jobs.set("jobs." + job + ".max-salary", 50000);
+					jobs.save(jobs_file);
+				}
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return;
+		}
+	}
+	
 	public static boolean reloadGUIFile() {
 		try {
 			gui = YamlConfiguration.loadConfiguration(gui_file);

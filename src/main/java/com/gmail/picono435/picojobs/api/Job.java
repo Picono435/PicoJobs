@@ -32,6 +32,7 @@ public class Job {
 	private Type type;
 	private double method;
 	private double salary;
+	private double maxSalary;
 	private boolean requiresPermission;
 	private double salaryFrequency;
 	private double methodFrequency;
@@ -49,13 +50,14 @@ public class Job {
 	private List<Object> whitelist;
 	private List<String> stringWhitelist;
 	
-	public Job(String id, String displayname, String tag, Type type, double method, double salary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
+	public Job(String id, String displayname, String tag, Type type, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
 		this.type = type;
 		this.method = method;
 		this.salary = salary;
+		this.maxSalary = maxSalary;
 		this.requiresPermission = requiresPermission;
 		this.salaryFrequency = salaryFrequency;
 		this.methodFrequency = methodFrequency;
@@ -122,7 +124,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getID() {
-		return id;
+		return this.id;
 	}
 	
 	/**
@@ -132,7 +134,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getDisplayName() {
-		return ChatColor.translateAlternateColorCodes('&', displayname);
+		return ChatColor.translateAlternateColorCodes('&', this.displayname);
 	}
 	
 	/**
@@ -142,7 +144,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getTag() {
-		return ChatColor.translateAlternateColorCodes('&', tag);
+		return ChatColor.translateAlternateColorCodes('&', this.tag);
 	}
 	
 	/**
@@ -152,8 +154,8 @@ public class Job {
 	 * @author Picono435
 	 */
 	public Type getType() {
-		if(type == null) type = Type.BREAK;
-		return type;
+		if(this.type == null) this.type = Type.BREAK;
+		return this.type;
 	}
 	
 	/**
@@ -163,7 +165,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public double getMethod() {
-		return method;
+		return this.method;
 	}
 	
 	/**
@@ -173,7 +175,18 @@ public class Job {
 	 * @author Picono435
 	 */
 	public double getSalary() {
-		return salary;
+		return this.salary;
+	}
+	
+
+	/**
+	 * Gets the max salary of the job
+	 * 
+	 * @return the max salary of the job
+	 * @author Picono435
+	 */
+	public double getMaxSalary() {
+		return this.maxSalary;
 	}
 	
 	/**
@@ -183,7 +196,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean requiresPermission() {
-		return requiresPermission;
+		return this.requiresPermission;
 	}
 	
 	/**
@@ -193,10 +206,10 @@ public class Job {
 	 * @author Picono435
 	 */
 	public double getSalaryFrequency() {
-		if(salaryFrequency == 0) {
-			salaryFrequency = 0.3D;
+		if(this.salaryFrequency == 0) {
+			this.salaryFrequency = 0.3D;
 		}
-		return salaryFrequency;
+		return this.salaryFrequency;
 	}
 	
 	/**
@@ -206,10 +219,10 @@ public class Job {
 	 * @author Picono435
 	 */
 	public double getMethodFrequency() {
-		if(methodFrequency == 0) {
-			methodFrequency = 0.3D;
+		if(this.methodFrequency == 0) {
+			this.methodFrequency = 0.3D;
 		}
-		return methodFrequency;
+		return this.methodFrequency;
 	}
 	
 	/**
@@ -219,10 +232,10 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getEconomy() {
-		if(economy == null) {
+		if(this.economy == null) {
 			return "VAULT";
 		}
-		return economy;
+		return this.economy;
 	}
 	
 	/**
@@ -235,7 +248,7 @@ public class Job {
 		String configString = type.name().toLowerCase() + "-work";
 		String work = "";
 		
-		if(workMessage == null) {
+		if(this.workMessage == null) {
 			work = LanguageManager.getFormat(configString, null);
 		} else {
 			work = PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', workMessage));
@@ -251,7 +264,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public int getSlot() {
-		return slot - 1;
+		return this.slot - 1;
 	}
 	
 	/**
@@ -261,8 +274,8 @@ public class Job {
 	 * @author Picono435
 	 */
 	public Material getMaterial() {
-		if(item == null) item = Material.STONE;
-		return item;
+		if(this.item == null) this.item = Material.STONE;
+		return this.item;
 	}
 	
 	/**
@@ -274,7 +287,7 @@ public class Job {
 	 */
 	@Deprecated
 	public int getItemData() {
-		return itemData;
+		return this.itemData;
 	}
 	
 	/**
@@ -284,7 +297,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean isEnchanted() {
-		return enchanted;
+		return this.enchanted;
 	}
 	
 	/**
@@ -294,7 +307,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean isWhitelist() {
-		return useWhitelist;
+		return this.useWhitelist;
 	}
 	
 	
@@ -331,12 +344,12 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(Material material) {
-		if(whitelist == null) return (useWhitelist) ? false : true;
-		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
-		if(useWhitelist) {
-			return whitelist.contains(material);
+		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
+		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
+		if(this.useWhitelist) {
+			return this.whitelist.contains(material);
 		} else {
-			return !whitelist.contains(material);
+			return !this.whitelist.contains(material);
 		}
 	}
 	
@@ -348,12 +361,12 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(EntityType entity) {
-		if(whitelist == null) return (useWhitelist) ? false : true;
-		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
-		if(useWhitelist) {
-			return whitelist.contains(entity);
+		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
+		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
+		if(this.useWhitelist) {
+			return this.whitelist.contains(entity);
 		} else {
-			return !whitelist.contains(entity);
+			return !this.whitelist.contains(entity);
 		}
 	}
 	
@@ -365,12 +378,12 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(DyeColor dyecolor) {
-		if(whitelist == null) return (useWhitelist) ? false : true;
-		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
-		if(useWhitelist) {
-			return whitelist.contains(dyecolor);
+		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
+		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
+		if(this.useWhitelist) {
+			return this.whitelist.contains(dyecolor);
 		} else {
-			return !whitelist.contains(dyecolor);
+			return !this.whitelist.contains(dyecolor);
 		}
 	}
 	
@@ -382,13 +395,13 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(Job job) {
-		if(whitelist == null) return (useWhitelist) ? false : true;
-		if(whitelist.size() <= 0) return (useWhitelist) ? false : true;
-		if(job == null) return (useWhitelist) ? false : true;
-		if(useWhitelist) {
-			return whitelist.contains(job);
+		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
+		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
+		if(job == null) return (this.useWhitelist) ? false : true;
+		if(this.useWhitelist) {
+			return this.whitelist.contains(job);
 		} else {
-			return !whitelist.contains(job);
+			return !this.whitelist.contains(job);
 		}
 	}
 	
@@ -399,7 +412,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public List<Object> getWhitelist() {
-		return whitelist;
+		return this.whitelist;
 	}
 	
 	/**
@@ -409,7 +422,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public List<String> getStringWhitelist() {
-		return stringWhitelist;
+		return this.stringWhitelist;
 	}
 	
 	/**
@@ -419,6 +432,6 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWhitelistArray() {
-		return Arrays.toString(stringWhitelist.toArray());
+		return Arrays.toString(this.stringWhitelist.toArray());
 	}
 }

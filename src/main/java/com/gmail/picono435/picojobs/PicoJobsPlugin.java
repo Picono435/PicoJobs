@@ -98,6 +98,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			getConfig().options().copyDefaults(true);
 			getConfig().set("config-version", getDescription().getVersion());
 			saveConfig();
+			FileCreator.migrateFiles();
 			LanguageManager.updateFile();
 		}
 		
@@ -198,6 +199,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			Type type = Type.getType(typeString.toUpperCase());
 			double method = jobc.getDouble(type.getConfigMethod());
 			double salary = jobc.getDouble("salary");
+			double maxSalary = jobc.getDouble("max-salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
 			double salaryFrequency = jobc.getDouble("salary-frequency");
 			double methodFrequency = jobc.getDouble("method-frequency");
@@ -217,7 +219,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
 			List<String> whitelist = jobc.getStringList(type.getWhitelistConfig() + "-whitelist");
 			
-			Job job = new Job(jobid, displayname, tag, type, method, salary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
+			Job job = new Job(jobid, displayname, tag, type, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);
 						
 			metrics.addCustomChart(new DrilldownPie("jobs", () -> {

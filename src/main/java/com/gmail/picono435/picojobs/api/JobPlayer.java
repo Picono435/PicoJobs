@@ -276,6 +276,9 @@ public class JobPlayer {
 				return false;
 			}
 			double salary = getJob().getSalary() * level * getJob().getSalaryFrequency();
+			if(salary > getJob().getMaxSalary()) {
+				salary = getJob().getMaxSalary();
+			}
 			setMethodLevel(level + 1);
 			setMethod(0);
 			setWorking(false);
