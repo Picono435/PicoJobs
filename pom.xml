@@ -227,11 +227,5 @@
          <version>2.12.3</version>
          <scope>compile</scope>
       </dependency>
-      <dependency>
-         <groupId>org.json</groupId>
-         <artifactId>json</artifactId>
-         <version>20210307</version>
-         <scope>compile</scope>
-      </dependency>
    </dependencies>
 </project>

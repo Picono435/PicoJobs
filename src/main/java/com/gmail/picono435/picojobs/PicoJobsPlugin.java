@@ -29,8 +29,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
@@ -63,6 +61,9 @@ import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FillListener;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -285,15 +286,16 @@ public class PicoJobsPlugin extends JavaPlugin {
             }
             in.close();
 
-            JSONArray jsonArray =  new JSONArray(content.toString());
-            JSONObject json = (JSONObject) jsonArray.get(jsonArray.length() - 1);
-            version = (String)json.get("name");
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray =  (JsonArray) parser.parse(content.toString());
+            JsonObject json = (JsonObject) jsonArray.get(jsonArray.size() - 1);
+            version = json.get("name").getAsString();
             version = version.replaceFirst("PicoJobs ", "");
 
 			DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(getDescription().getVersion());
 			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
 			lastestPluginVersion = version;
-			downloadUrl = (String)json.get("downloadUrl");
+			downloadUrl = json.get("downloadUrl").getAsString();
 			if(lastestVersion.compareTo(pluginVersion) > 0) {
 				new BukkitRunnable() {
 					public void run() {
@@ -319,6 +321,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			}
 		} catch (Exception e) {
 			sendConsoleMessage(Level.WARNING, "Could not get the lastest version.");
+			e.printStackTrace();
 			return;
 		}
 	}

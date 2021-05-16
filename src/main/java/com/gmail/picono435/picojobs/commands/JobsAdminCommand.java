@@ -17,7 +17,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.json.JSONObject;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
@@ -26,6 +25,8 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.DocConverter;
 import com.gmail.picono435.picojobs.utils.FileCreator;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 
@@ -292,13 +293,14 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			String jobsConfigYAML = DocConverter.convertFileToString(FileCreator.getJobsFile().getPath());
 			String jobsConfigJSON = DocConverter.convertYamlToJson(jobsConfigYAML);
 			
-			JSONObject jsonJobs = new JSONObject();
-			jsonJobs.put("plugin", PicoJobsPlugin.getInstance().getName());
-			jsonJobs.put("server", InetAddress.getLocalHost() + ":" + Bukkit.getServer().getPort());
-			jsonJobs.put("author", sender.getName());
-			jsonJobs.put("minecraftVersion", serverVersionString);
-			jsonJobs.put("economies", new JSONObject());
-			jsonJobs.put("config", new JSONObject(jobsConfigJSON));
+			JsonParser parser = new JsonParser();
+			JsonObject jsonJobs = new JsonObject();
+			jsonJobs.addProperty("plugin", PicoJobsPlugin.getInstance().getName());
+			jsonJobs.addProperty("server", InetAddress.getLocalHost() + ":" + Bukkit.getServer().getPort());
+			jsonJobs.addProperty("author", sender.getName());
+			jsonJobs.addProperty("minecraftVersion", serverVersionString);
+			jsonJobs.add("economies", new JsonObject());
+			jsonJobs.add("config", parser.parse(jobsConfigJSON));
 			
 			String charset = "UTF-8";
 			
@@ -322,8 +324,8 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
             		    while ((responseLine = br.readLine()) != null) {
             		        responseString.append(responseLine.trim());
             		    }
-            		    JSONObject response = new JSONObject(responseString.toString());
-            		    return (String)response.get("editor");
+            		    JsonObject response = (JsonObject) parser.parse(responseString.toString());
+            		    return response.get("editor").getAsString();
             		}
 		} catch (Exception e) {
 			e.printStackTrace();

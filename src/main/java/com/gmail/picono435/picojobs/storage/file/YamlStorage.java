@@ -14,8 +14,8 @@ import com.gmail.picono435.picojobs.storage.StorageFactory;
 
 public class YamlStorage extends StorageFactory {
 
-	private static FileConfiguration data;
-	private static File dataFile;
+	private FileConfiguration data;
+	private File dataFile;
 	
 	@Override
 	protected boolean initializeStorage() throws Exception {
