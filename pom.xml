@@ -176,7 +176,48 @@
          <artifactId>mysql-connector-java</artifactId>
          <version>8.0.25</version>
       </dependency>
-      
+      <dependency>
+         <groupId>org.spongepowered</groupId>
+         <artifactId>configurate-core</artifactId>
+         <version>3.7.2</version>
+         <scope>compile</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.spongepowered</groupId>
+         <artifactId>configurate-json</artifactId>
+         <version>3.7.2</version>
+         <scope>compile</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.spongepowered</groupId>
+               <artifactId>configurate-core</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.spongepowered</groupId>
+         <artifactId>configurate-yaml</artifactId>
+         <version>3.7.2</version>
+         <scope>compile</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.spongepowered</groupId>
+               <artifactId>configurate-core</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.spongepowered</groupId>
+         <artifactId>configurate-hocon</artifactId>
+         <version>3.7.2</version>
+         <scope>compile</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.spongepowered</groupId>
+               <artifactId>configurate-core</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
       <!-- Economy plugins -->
       <dependency>
          <groupId>com.github.MilkBowl</groupId>

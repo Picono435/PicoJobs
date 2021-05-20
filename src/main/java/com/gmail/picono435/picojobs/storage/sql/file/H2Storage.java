@@ -21,7 +21,7 @@ public class H2Storage extends FlatfileStorageFactory {
 	@Override
 	protected Connection getConnection() throws Exception {
 		if(this.conn == null || this.conn.isClosed()) {
-			this.conn = (Connection) this.connectionConstructor.newInstance("jdbc:h2:" + PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("picojobs-h2"), new Properties());
+			this.conn = (Connection) this.connectionConstructor.newInstance("jdbc:h2:" + PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2"), new Properties());
 		}
 		return this.conn;
 	}
