@@ -7,7 +7,6 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.storage.cache.CacheManager;
 import com.gmail.picono435.picojobs.storage.file.HoconStorage;
 import com.gmail.picono435.picojobs.storage.file.JsonStorage;
-import com.gmail.picono435.picojobs.storage.file.TomlStorage;
 import com.gmail.picono435.picojobs.storage.file.YamlStorage;
 import com.gmail.picono435.picojobs.storage.mongodb.MongoStorage;
 import com.gmail.picono435.picojobs.storage.sql.MariaDbStorage;
