@@ -47,6 +47,7 @@ storage:
   # |  Readable & editable text files - don't require any extra configuration
   # |=> YAML (recommended)
   # |=> JSON
+  # |=> HOCON
   storage-method: h2
   # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
   remote-sql:

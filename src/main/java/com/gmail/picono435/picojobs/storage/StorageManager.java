@@ -5,7 +5,9 @@ import java.util.logging.Level;
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.storage.cache.CacheManager;
+import com.gmail.picono435.picojobs.storage.file.HoconStorage;
 import com.gmail.picono435.picojobs.storage.file.JsonStorage;
+import com.gmail.picono435.picojobs.storage.file.TomlStorage;
 import com.gmail.picono435.picojobs.storage.file.YamlStorage;
 import com.gmail.picono435.picojobs.storage.mongodb.MongoStorage;
 import com.gmail.picono435.picojobs.storage.sql.MariaDbStorage;
@@ -56,6 +58,10 @@ public class StorageManager {
 		}
 		case("json"): {
 			this.storageFactory = new JsonStorage();
+			break;
+		}
+		case("hocon"): {
+			this.storageFactory = new HoconStorage();
 			break;
 		}
 		default: {
