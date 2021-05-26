@@ -93,7 +93,8 @@ public enum Dependency {
         this.groupId = Objects.requireNonNull(groupId, "groupId");
         this.artifactId = Objects.requireNonNull(artifactId, "artifactId");
         this.version = Objects.requireNonNull(version, "version");
-        this.repoUrl = "https://repo1.maven.org/maven2";
+        // Please ask @lucko before using this mirror in your own project.
+        this.repoUrl = "https://nexus.lucko.me/repository/maven-central/";
     }
     
     Dependency(String groupId, String artifactId, String version, String repoUrl) {
