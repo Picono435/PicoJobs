@@ -1,18 +1,18 @@
 package com.gmail.picono435.picojobs.storage.file;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.configurate.loader.ConfigurationLoader;
+import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
-import ninja.leaping.configurate.ConfigurationNode;
-import ninja.leaping.configurate.loader.ConfigurationLoader;
-import ninja.leaping.configurate.yaml.YAMLConfigurationLoader;
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 
 public class YamlStorage extends ConfigurationStorageFactory {
 
 	@Override
 	protected ConfigurationLoader<? extends ConfigurationNode> loadFile() {
-		return YAMLConfigurationLoader.builder()
-        .setIndent(2)
-        .setPath(PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath()
+		return YamlConfigurationLoader.builder()
+        .indent(2)
+        .path(PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath()
         		.resolve("storage").resolve("picojobs.yml"))
         .build();
 	}

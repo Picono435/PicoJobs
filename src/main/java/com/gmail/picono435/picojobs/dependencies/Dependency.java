@@ -66,22 +66,22 @@ public enum Dependency {
 	CONFIGURATE_CORE(
     		"org.spongepowered",
     		"configurate-core",
-    		"3.7.2"
+    		"4.1.1"
     ),
-	CONFIGURATE_JSON(
+	CONFIGURATE_GSON(
     		"org.spongepowered",
-    		"configurate-json",
-    		"3.7.2"
+    		"configurate-gson",
+    		"4.1.1"
     ),
 	CONFIGURATE_YAML(
     		"org.spongepowered",
     		"configurate-yaml",
-    		"3.7.2"
+    		"4.1.1"
     ),
 	CONFIGURATE_HOCON(
     		"org.spongepowered",
     		"configurate-hocon",
-    		"3.7.2"
+    		"4.1.1"
     );
 	
 	private final String groupId;

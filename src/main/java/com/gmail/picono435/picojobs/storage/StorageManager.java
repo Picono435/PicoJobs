@@ -68,7 +68,7 @@ public class StorageManager {
 		}
 		case("json"): {
 			LibraryLoader.load(Dependency.CONFIGURATE_CORE);
-			LibraryLoader.load(Dependency.CONFIGURATE_JSON);
+			LibraryLoader.load(Dependency.CONFIGURATE_GSON);
 			this.storageFactory = new JsonStorage();
 			break;
 		}

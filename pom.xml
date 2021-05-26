@@ -156,13 +156,13 @@
       <dependency>
          <groupId>org.spongepowered</groupId>
          <artifactId>configurate-core</artifactId>
-         <version>3.7.2</version>
+         <version>4.1.1</version>
          <scope>provided</scope>
       </dependency>
       <dependency>
          <groupId>org.spongepowered</groupId>
-         <artifactId>configurate-json</artifactId>
-         <version>3.7.2</version>
+         <artifactId>configurate-gson</artifactId>
+         <version>4.1.1</version>
          <scope>provided</scope>
          <exclusions>
             <exclusion>
@@ -174,7 +174,7 @@
       <dependency>
          <groupId>org.spongepowered</groupId>
          <artifactId>configurate-yaml</artifactId>
-         <version>3.7.2</version>
+         <version>4.1.1</version>
          <scope>provided</scope>
          <exclusions>
             <exclusion>
@@ -186,7 +186,7 @@
       <dependency>
          <groupId>org.spongepowered</groupId>
          <artifactId>configurate-hocon</artifactId>
-         <version>3.7.2</version>
+         <version>4.1.1</version>
          <scope>provided</scope>
          <exclusions>
             <exclusion>
