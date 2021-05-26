@@ -174,7 +174,7 @@
       <dependency>
          <groupId>org.spongepowered</groupId>
          <artifactId>configurate-yaml</artifactId>
-         <version>3.7.2</version>
+         <version>4.1.1</version>
          <scope>provided</scope>
          <exclusions>
             <exclusion>
