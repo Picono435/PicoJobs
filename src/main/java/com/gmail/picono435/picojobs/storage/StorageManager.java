@@ -4,6 +4,8 @@ import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.dependencies.Dependency;
+import com.gmail.picono435.picojobs.dependencies.LibraryLoader;
 import com.gmail.picono435.picojobs.storage.cache.CacheManager;
 import com.gmail.picono435.picojobs.storage.file.HoconStorage;
 import com.gmail.picono435.picojobs.storage.file.JsonStorage;
@@ -28,10 +30,14 @@ public class StorageManager {
 		String method = PicoJobsAPI.getSettingsManager().getStorageMethod();
 		switch(method.toLowerCase()) {
 		case("mysql"): {
+			LibraryLoader.load(Dependency.HIKARICP);
+			LibraryLoader.load(Dependency.MYSQL_JBDC);
 			this.storageFactory = new MySqlStorage();
 			break;
 		}
 		case("mariadb"): {
+			LibraryLoader.load(Dependency.HIKARICP);
+			LibraryLoader.load(Dependency.MARIADB_JBDC);
 			this.storageFactory = new MariaDbStorage();
 			break;
 		}
@@ -40,30 +46,40 @@ public class StorageManager {
 			break;
 		}
 		case("mongodb"): {
+			LibraryLoader.load(Dependency.MONGODB_DRIVER);
 			this.storageFactory = new MongoStorage();
 			break;
 		}
 		case("h2"): {
+			LibraryLoader.load(Dependency.H2_DATABASE);
 			this.storageFactory = new H2Storage();
 			break;
 		}
 		case("sqlite"): {
+			LibraryLoader.load(Dependency.SQLITE_JBDC);
 			this.storageFactory = new SqliteStorage();
 			break;
 		}
 		case("yaml"): {
+			LibraryLoader.load(Dependency.CONFIGURATE_CORE);
+			LibraryLoader.load(Dependency.CONFIGURATE_YAML);
 			this.storageFactory = new YamlStorage();
 			break;
 		}
 		case("json"): {
+			LibraryLoader.load(Dependency.CONFIGURATE_CORE);
+			LibraryLoader.load(Dependency.CONFIGURATE_JSON);
 			this.storageFactory = new JsonStorage();
 			break;
 		}
 		case("hocon"): {
+			LibraryLoader.load(Dependency.CONFIGURATE_CORE);
+			LibraryLoader.load(Dependency.CONFIGURATE_HOCON);
 			this.storageFactory = new HoconStorage();
 			break;
 		}
 		default: {
+			LibraryLoader.load(Dependency.H2_DATABASE);
 			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "A valid storage method was not selected, please be sure to select only avaiable storage methods. Using H2 as the default storage method.");
 			this.storageFactory = new H2Storage();
 			break;

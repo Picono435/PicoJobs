@@ -36,6 +36,7 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
+import com.gmail.picono435.picojobs.dependencies.LibraryLoader;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.hooks.PlayerPointsHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
@@ -81,6 +82,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	public void onLoad() {
 		instance = this;
+		LibraryLoader.loadAllRequired();
 	}
 	
 	public void onEnable() {
