@@ -94,7 +94,7 @@ public enum Dependency {
         this.artifactId = Objects.requireNonNull(artifactId, "artifactId");
         this.version = Objects.requireNonNull(version, "version");
         // Please ask @lucko before using this mirror in your own project.
-        this.repoUrl = "https://nexus.lucko.me/repository/maven-central/";
+        this.repoUrl = "https://repo1.maven.org/maven2/";
     }
     
     Dependency(String groupId, String artifactId, String version, String repoUrl) {
@@ -139,7 +139,7 @@ public enum Dependency {
 
     @Override
     public String toString() {
-        return "LibraryLoader.Dependency(" +
+        return "Dependency(" +
                 "groupId=" + this.getGroupId() + ", " +
                 "artifactId=" + this.getArtifactId() + ", " +
                 "version=" + this.getVersion() + ", " +

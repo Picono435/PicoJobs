@@ -27,32 +27,6 @@
         </executions>
         <configuration>
           <minimizeJar>true</minimizeJar>
-          <filters>
-            <filter>
-              <artifact>com.h2database:h2</artifact>
-              <includes>
-                <include>**</include>
-              </includes>
-            </filter>
-            <filter>
-              <artifact>org.xerial:sqlite-jdbc</artifact>
-              <includes>
-                <include>**</include>
-              </includes>
-            </filter>
-            <filter>
-              <artifact>org.mariadb.jbdc:mariadb-java-client</artifact>
-              <includes>
-                <include>**</include>
-              </includes>
-            </filter>
-            <filter>
-              <artifact>mysql:mysql-connector-java</artifact>
-              <includes>
-                <include>**</include>
-              </includes>
-            </filter>
-          </filters>
           <relocations>
             <relocation>
               <pattern>org.bstats</pattern>
@@ -63,7 +37,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.0</version>
         <configuration>
           <show>public</show>
           <windowtitle>PicoJobs</windowtitle>
@@ -134,13 +108,13 @@
     <dependency>
       <groupId>org.spongepowered</groupId>
       <artifactId>configurate-core</artifactId>
-      <version>3.7.2</version>
+      <version>4.1.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.spongepowered</groupId>
-      <artifactId>configurate-json</artifactId>
-      <version>3.7.2</version>
+      <artifactId>configurate-gson</artifactId>
+      <version>4.1.1</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -152,7 +126,7 @@
     <dependency>
       <groupId>org.spongepowered</groupId>
       <artifactId>configurate-yaml</artifactId>
-      <version>3.7.2</version>
+      <version>4.1.1</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -164,7 +138,7 @@
     <dependency>
       <groupId>org.spongepowered</groupId>
       <artifactId>configurate-hocon</artifactId>
-      <version>3.7.2</version>
+      <version>4.1.1</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
