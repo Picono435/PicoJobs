@@ -63,10 +63,20 @@ public enum Dependency {
     		"mysql-connector-java",
     		"8.0.25"
     ),
+	GEANTYREF("io.leangen.geantyref",
+			"geantyref",
+			"1.3.4"
+	),
+	CHECKERFRAMEWORK("org.checkerframework",
+			"checker-qual",
+			"3.12.0"
+	),
 	CONFIGURATE_CORE(
     		"org.spongepowered",
     		"configurate-core",
-    		"4.1.1"
+    		"4.1.1",
+    		Dependency.GEANTYREF,
+    		Dependency.CHECKERFRAMEWORK
     ),
 	CONFIGURATE_GSON(
     		"org.spongepowered",
@@ -88,20 +98,23 @@ public enum Dependency {
     private final String artifactId;
     private final String version;
     private final String repoUrl;
+    private final Dependency[] dependencies;
 
-    Dependency(String groupId, String artifactId, String version) {
+    Dependency(String groupId, String artifactId, String version, Dependency... dependencies) {
         this.groupId = Objects.requireNonNull(groupId, "groupId");
         this.artifactId = Objects.requireNonNull(artifactId, "artifactId");
         this.version = Objects.requireNonNull(version, "version");
         // Please ask @lucko before using this mirror in your own project.
         this.repoUrl = "https://repo1.maven.org/maven2/";
+        this.dependencies = dependencies;
     }
     
-    Dependency(String groupId, String artifactId, String version, String repoUrl) {
+    Dependency(String groupId, String artifactId, String version, String repoUrl, Dependency... dependencies) {
         this.groupId = Objects.requireNonNull(groupId, "groupId");
         this.artifactId = Objects.requireNonNull(artifactId, "artifactId");
         this.version = Objects.requireNonNull(version, "version");
         this.repoUrl = Objects.requireNonNull(repoUrl, "repoUrl");
+        this.dependencies = dependencies;
     }
 
     public String getGroupId() {
@@ -118,6 +131,10 @@ public enum Dependency {
 
     public String getRepoUrl() {
         return this.repoUrl;
+    }
+    
+    public Dependency[] getDependencies() {
+    	return this.dependencies;
     }
 
     public URL getUrl() throws MalformedURLException {

@@ -58,11 +58,17 @@ public final class LibraryLoader {
      */
     public static void loadAllRequired() {
         for (Dependency lib : Dependency.getRequiredDependencies()) {
+        	for(Dependency dep : lib.getDependencies()) {
+        		load(dep);
+        	}
             load(lib);
         }
     }
 
     public static void load(Dependency d) {
+    	for(Dependency dep : d.getDependencies()) {
+    		load(dep);
+    	}
         PicoJobsPlugin.getInstance().getLogger().info(String.format("Loading dependency %s:%s:%s from %s", d.getGroupId(), d.getArtifactId(), d.getVersion(), d.getRepoUrl()));
         String name = d.getArtifactId() + "-" + d.getVersion();
 
@@ -94,7 +100,7 @@ public final class LibraryLoader {
         } catch (Exception e) {
             throw new RuntimeException("Unable to load dependency: " + saveLocation.toString(), e);
         }
-
+        
         PicoJobsPlugin.getInstance().getLogger().info("Loaded dependency '" + name + "' successfully.");
     }
 
