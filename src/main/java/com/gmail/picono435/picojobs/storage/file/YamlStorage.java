@@ -40,5 +40,4 @@ public class YamlStorage extends ConfigurationStorageFactory {
         		.resolve("storage").resolve("picojobs.yml"))
         .build();
 	}
-
 }
