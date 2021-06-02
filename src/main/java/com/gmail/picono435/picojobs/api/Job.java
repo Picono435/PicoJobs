@@ -3,6 +3,7 @@ package com.gmail.picono435.picojobs.api;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -105,7 +106,7 @@ public class Job {
 			} else if(whitelistType.equals("color")) {
 				List<DyeColor> list = new ArrayList<DyeColor>();
 				for(String s : whitelist) {
-					DyeColor colorNew = DyeColor.valueOf(s.toUpperCase());
+					DyeColor colorNew = DyeColor.valueOf(s.toUpperCase(Locale.ROOT));
 					if(colorNew == null) continue;
 					list.add(colorNew);
 				}

@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
@@ -194,13 +195,19 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public boolean generateJobsFromConfig() {
 		jobs.clear();
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
+		sendConsoleMessage(Level.INFO, "Retrieving jobs from the config...");
 		for(String jobid : jobsc.getKeys(false)) {
+			sendConsoleMessage(Level.INFO, "Retrieving the jobb '" + jobid + "' from the config...");
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
+			sendConsoleMessage(Level.INFO, "Tag: " + tag);
 			String typeString = jobc.getString("type");
-			Type type = Type.getType(typeString.toUpperCase());
+			sendConsoleMessage(Level.INFO, "Type String: " + typeString);
+			Type type = Type.getType(typeString.toUpperCase(Locale.ROOT));
+			sendConsoleMessage(Level.INFO, "Type: " + type);
 			double method = jobc.getDouble(type.getConfigMethod());
+			sendConsoleMessage(Level.INFO, "Method: " + method);
 			double salary = jobc.getDouble("salary");
 			double maxSalary = jobc.getDouble("max-salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
@@ -208,7 +215,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			double methodFrequency = jobc.getDouble("method-frequency");
 			String economy = jobc.getString("economy");
 			if(economy != null) {
-				economy = economy.toUpperCase();
+				economy = economy.toUpperCase(Locale.ROOT);
 			}
 			String workMessage = jobc.getString("work-message");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");

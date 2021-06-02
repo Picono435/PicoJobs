@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs.api;
 
+import java.util.Locale;
 import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
@@ -82,8 +83,8 @@ public class PicoJobsAPI {
 	 */
 	public static boolean registerEconomy(EconomyImplementation economy) {
 		if(economy.getRequiredPlugin() == null) return false;
-		PicoJobsPlugin.getInstance().economies.put(economy.getName().toUpperCase(), economy);
-		PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Registered " + economy.getName().toUpperCase() + " economy implementation.");
+		PicoJobsPlugin.getInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
+		PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
 		return true;
 	}
 }

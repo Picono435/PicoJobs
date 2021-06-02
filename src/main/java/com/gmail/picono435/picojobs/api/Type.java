@@ -1,8 +1,11 @@
 package com.gmail.picono435.picojobs.api;
 
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
 
-import com.google.common.collect.Maps;
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 
 /**
  * Represents a job type
@@ -26,16 +29,18 @@ public enum Type {
 	MILK("", "", "buckets"),
 	KILL_ENTITY("entity", "entity", "kills");
 	
-	private final static Map<String,  Type> BY_NAME = Maps.newHashMap();
-	
-	public static Type getType(String name) {
-		return BY_NAME.get(name.toUpperCase());
-	}
+	private final static Map<String, Type> BY_NAME = new HashMap<String, Type>();
 	
 	static {
 		for(Type type : values()) {
 			BY_NAME.put(type.name(), type);
 		}
+	}
+	
+	public static Type getType(String name) {
+		PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Trying to retrieve type: " + name);
+		PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Current list of types: " + BY_NAME.toString());
+		return BY_NAME.get(name.toUpperCase(Locale.ROOT));
 	}
 	
 	private String whitelistType;
