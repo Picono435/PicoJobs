@@ -3,9 +3,6 @@ package com.gmail.picono435.picojobs.api;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.logging.Level;
-
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 
 /**
  * Represents a job type
@@ -38,8 +35,6 @@ public enum Type {
 	}
 	
 	public static Type getType(String name) {
-		PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Trying to retrieve type: " + name);
-		PicoJobsPlugin.getInstance().sendConsoleMessage(Level.INFO, "Current list of types: " + BY_NAME.toString());
 		return BY_NAME.get(name.toUpperCase(Locale.ROOT));
 	}
 	

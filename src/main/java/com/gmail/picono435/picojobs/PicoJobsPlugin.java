@@ -197,17 +197,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
 		sendConsoleMessage(Level.INFO, "Retrieving jobs from the config...");
 		for(String jobid : jobsc.getKeys(false)) {
-			sendConsoleMessage(Level.INFO, "Retrieving the jobb '" + jobid + "' from the config...");
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
-			sendConsoleMessage(Level.INFO, "Tag: " + tag);
 			String typeString = jobc.getString("type");
-			sendConsoleMessage(Level.INFO, "Type String: " + typeString);
 			Type type = Type.getType(typeString.toUpperCase(Locale.ROOT));
-			sendConsoleMessage(Level.INFO, "Type: " + type);
 			double method = jobc.getDouble(type.getConfigMethod());
-			sendConsoleMessage(Level.INFO, "Method: " + method);
 			double salary = jobc.getDouble("salary");
 			double maxSalary = jobc.getDouble("max-salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
