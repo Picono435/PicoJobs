@@ -69,14 +69,12 @@ public final class LibraryLoader {
     	for(Dependency dep : d.getDependencies()) {
     		load(dep);
     	}
-        PicoJobsPlugin.getInstance().getLogger().info(String.format("Loading dependency %s:%s:%s from %s", d.getGroupId(), d.getArtifactId(), d.getVersion(), d.getRepoUrl()));
         String name = d.getArtifactId() + "-" + d.getVersion();
 
         File saveLocation = new File(getLibFolder(), name + ".jar");
         if (!saveLocation.exists()) {
 
             try {
-                PicoJobsPlugin.getInstance().getLogger().info("Dependency '" + name + "' is not already in the libraries folder. Attempting to download...");
                 URL url = d.getUrl();
                 
                 try (InputStream is = url.openStream()) {
@@ -86,8 +84,6 @@ public final class LibraryLoader {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            PicoJobsPlugin.getInstance().getLogger().info("Dependency '" + name + "' successfully downloaded.");
         }
 
         if (!saveLocation.exists()) {
@@ -100,8 +96,6 @@ public final class LibraryLoader {
         } catch (Exception e) {
             throw new RuntimeException("Unable to load dependency: " + saveLocation.toString(), e);
         }
-        
-        PicoJobsPlugin.getInstance().getLogger().info("Loaded dependency '" + name + "' successfully.");
     }
 
     private static File getLibFolder() {

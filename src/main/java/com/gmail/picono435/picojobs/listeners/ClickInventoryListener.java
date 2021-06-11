@@ -36,6 +36,7 @@ public class ClickInventoryListener implements Listener {
 			Player p = (Player) e.getWhoClicked();
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(e.getCurrentItem().getItemMeta().getDisplayName());
+			if(job == null) return;
 			if(job.requiresPermission() && !p.hasPermission("picojobs.job." + job.getID())) {
 				p.sendMessage(LanguageManager.getMessage("no-permission", p));
 				return;
