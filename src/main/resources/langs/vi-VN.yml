@@ -48,15 +48,15 @@ info-command: |-
   &eĐang Làm Công Việc: %jobplayer_working%
   &eCông Việc: %jobplayer_work%
   &eNghề Nghiệp: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Language were reloaded succefully."
-player-not-found: "&cThat player is not online, please put a valid player."
-unknow-error: "&cAn unknow error occuried, please check the console for more information."
-left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
-already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
-update-started: "&aThe update of the plugin PicoJobs started, please wait..."
-updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
-sucefully: "&aThe action was made sucefully."
-invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
+reload-command: "&aConfigurations, Jobs & Ngôn Ngữ Đã Tải Lại Thành Công."
+player-not-found: "&Người Chơi Này Không Trực Tuyến, Vui Lòng Nhập Một Người Chơi Hợp Lệ."
+unknow-error: "&cĐã xảy ra lỗi không xác định, vui lòng kiểm tra bảng điều khiển để biết thêm thông tin."
+left-job: "&cBạn Đang Có Một Công Việc! Chúng tôi khuyên bạn nên chọn một công việc mới nếu không bạn sẽ mất rất nhiều tiền."
+already-updated: "&cPlugin đã có trong phiên bản mới nhất, để biết thêm thông tin, hãy kiểm tra WIKI của chúng tôi."
+update-started: "&aCập nhật của plugin PicoJobs đã bắt đầu, vui lòng đợi..."
+updated-sucefully: "&aPlugin đã được cập nhật thành công, vui lòng khởi động lại máy chủ để hoàn tất quá trình cập nhật."
+sucefully: "& aHành động đã được thực hiện thành công."
+invalid-arg: "&aĐối số được gửi không hợp lệ. Vui lòng kiểm tra lỗi chính tả."
 #################################################################################
 ##
 #Format messages                                                               #
