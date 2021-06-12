@@ -26,28 +26,28 @@ salary-cooldown: "&cBạn Cần Đợi %cooldown_mtime% Để Có Thể Nhận L
 work-status: "&aĐây chính là Những Gì Bạn Cần Phải Làm: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin help &6- &eXem Tin Nhắn
+  &e/jobsadmin info <player> &6- &eLấy Thông Tin Về Người Chơi
+  &e/jobsadmin reload &6- &eTải Lại Tất Cả Về Configurations.
+  &e/jobsadmin update &6- &eTải Và Cập Nhất Plugins
+  &e/jobsadmin about &6- &eNhận Thông Tin Về Server Và Plugins
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eĐặt Mức Lương/Phương Thức Của Người Chơi
+  &e/jobsadmin editor &6- &eTạo Một Trang Web Chỉnh sửa
+  &e/jobsadmin applyedits &6- &eChấp Nhận Chỉnh Sửa
 member-commands: |-
   &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &e/jobs help &6- &eXem Tin Nhắn
+  &e/jobs choose <job> &6- &eChọn Công Việc Của Bạn
+  &e/jobs work &6- &eXem Trạng Thái/Chấp Nhận Công Việc Của Bạn
+  &e/jobs salary &6- &eKiểm Tra Tiền Lương Của Bạn
+  &e/jobs withdraw &6- &eRút Tiền Lương Của Bạn
+  &e/jobs leave &6- &eBỏ Nghề
 info-command: |-
-  &6Status of the player %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
+  &6Trạng Thái Của Người Chơi%player_name%
+  &eTiền Lương: %jobplayer_salary%
+  &eĐang Làm Công Việc: %jobplayer_working%
+  &eCông Việc: %jobplayer_work%
+  &eNghề Nghiệp: %jobplayer_job%
 reload-command: "&aConfigurations, Jobs & Language were reloaded succefully."
 player-not-found: "&cThat player is not online, please put a valid player."
 unknow-error: "&cAn unknow error occuried, please check the console for more information."
