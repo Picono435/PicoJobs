@@ -10,17 +10,17 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey bro! Bạn không có quyền để thực hiện lệnh đó."
+no-permission: "&cNày Bạn! Bạn không có quyền để thực hiện lệnh đó."
 ignore-action: "&cHey bro! Đừng lười biếng và hãy nói chuyện với NPC."
 choosed-job: "&aXin chúc mừng! Bạn đã chọn công việc %jobplayer_job% thành công&a."
 accepted-work: "&aBạn Đã Nhận Công Việc Của %jobplayer_work%."
 no-salary: "&cBạn Không Đủ Tiền Lương Để Nhận! Xin Hãy Đi Làm Việc ;("
 got-salary: "&aLàm Tốt Lắm! Bạn Đã Nhận Được %jobplayer_salary% Tiền Lương Của Bạn!"
 finished-work: "&aXin Chúc Mừng! Bạn Đã Hoàn Thành Công Việc Của Mình. Hãy Sử Dụng /job Để Biết Thêm Thông Tin Về Nó."
-need-level: "&cHey! You need to do %a% works to execute that action."
-no-args: "&cHey! Please use a valid syntax."
-my-salary: "&aYou have %jobplayer_salary%$ of salary."
-unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+need-level: "&cNày! Bạn Cần Thực Hiện %a% Để Làm Hành Động Đó\n"
+no-args: "&cNày! Bạn Vui Lòng Sử Dụng Một Cú Pháp Hợp Lệ."
+my-salary: "&aBạn Có %jobplayer_salary%$ Tiền Lương."
+unknow-job: "&cCông Việc Không Hợp Lệ, Vui Lòng Hãy Sử Dụng Tab COMPLETE để lấy một danh sách công việc."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
 work-status: "&aHere is what you need to do: %jobplayer_work%"
