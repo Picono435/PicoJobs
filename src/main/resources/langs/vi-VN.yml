@@ -11,7 +11,7 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cNày Bạn! Bạn không có quyền để thực hiện lệnh đó."
-ignore-action: "&cHey bro! Đừng lười biếng và hãy nói chuyện với NPC."
+ignore-action: "&cNày Bạn! Đừng lười biếng và hãy nói chuyện với NPC."
 choosed-job: "&aXin chúc mừng! Bạn đã chọn công việc %jobplayer_job% thành công&a."
 accepted-work: "&aBạn Đã Nhận Công Việc Của %jobplayer_work%."
 no-salary: "&cBạn Không Đủ Tiền Lương Để Nhận! Xin Hãy Đi Làm Việc ;("
@@ -22,8 +22,8 @@ no-args: "&cNày! Bạn Vui Lòng Sử Dụng Một Cú Pháp Hợp Lệ."
 my-salary: "&aBạn Có %jobplayer_salary%$ Tiền Lương."
 unknow-job: "&cCông Việc Không Hợp Lệ, Vui Lòng Hãy Sử Dụng Tab COMPLETE để lấy một danh sách công việc."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
-work-status: "&aHere is what you need to do: %jobplayer_work%"
+salary-cooldown: "&cBạn Cần Đợi %cooldown_mtime% Để Có Thể Nhận Lương Của Bạn Một Lần Nữa."
+work-status: "&aĐây chính là Những Gì Bạn Cần Phải Làm: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
   &e/jobsadmin help &6- &eSee this messages
