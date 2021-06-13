@@ -1,11 +1,14 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.0.0'
-    id 'io.github.slimjar' version '1.2.0'
+    id 'io.github.slimjar' version '1.2.1'
     id 'java'
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+group = 'com.gmail.picono435'
+version = '1.0-beta-2a'
+description = 'The best jobs plugin ever! You can customize every single thing on it.'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
@@ -69,6 +72,8 @@ shadowJar {
    archiveClassifier = ''
 }
 
-group = 'com.gmail.picono435'
-version = '1.0-beta-2a'
-sourceCompatibility = '1.8'
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+    }
+}
