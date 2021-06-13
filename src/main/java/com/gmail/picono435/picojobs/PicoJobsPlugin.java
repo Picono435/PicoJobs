@@ -279,7 +279,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String serverVersionString = Bukkit.getBukkitVersion();
 			int spaceIndex = serverVersionString.indexOf("-");
 			serverVersionString = serverVersionString.substring(0, spaceIndex);
-			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
+			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.12.2");
 			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(serverVersionString);
 			if(serverVersion.compareTo(legacyVersion) <= 0) {
 				legacy = true;

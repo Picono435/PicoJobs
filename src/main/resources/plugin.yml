@@ -1,10 +1,10 @@
-name: PicoJobs
+name: '@name@'
 author: [Picono435]
 version: "@version@"
 softdepend: [Citizens, Vault, PlaceholderAPI, PlayerPoints, TokenManager]
-api-version: 1.17
+api-version: 1.13
 main: com.gmail.picono435.picojobs.PicoJobsPlugin
-description: "The best jobs plugin ever! You can customize every single thing on it ;)."
+description: "@description@"
 commands:
   jobs:
     aliases: [picojobs, piconojobs, job, empregos, emprego, picoempregos, piconoempregos]
