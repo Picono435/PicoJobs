@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs.listeners.jobs;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +20,7 @@ public class FillListener implements Listener {
 	public void onFillBucket(PlayerBucketFillEvent  e) {
 		if(e.getPlayer() == null) return;
 		Block b = e.getBlockClicked();
-		if(b == null || !b.isLiquid()) return;
+		if(b == null || (!b.isLiquid() && b.getType() != Material.POWDER_SNOW)) return;
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;
