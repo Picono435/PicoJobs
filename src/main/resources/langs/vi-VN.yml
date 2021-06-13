@@ -10,53 +10,53 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey bro! Bạn không có quyền để thực hiện lệnh đó."
-ignore-action: "&cHey bro! Đừng lười biếng và hãy nói chuyện với NPC."
+no-permission: "&cNày Bạn! Bạn không có quyền để thực hiện lệnh đó."
+ignore-action: "&cNày Bạn! Đừng lười biếng và hãy nói chuyện với NPC."
 choosed-job: "&aXin chúc mừng! Bạn đã chọn công việc %jobplayer_job% thành công&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
-need-level: "&cHey! You need to do %a% works to execute that action."
-no-args: "&cHey! Please use a valid syntax."
-my-salary: "&aYou have %jobplayer_salary%$ of salary."
-unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+accepted-work: "&aBạn Đã Nhận Công Việc Của %jobplayer_work%."
+no-salary: "&cBạn Không Đủ Tiền Lương Để Nhận! Xin Hãy Đi Làm Việc ;("
+got-salary: "&aLàm Tốt Lắm! Bạn Đã Nhận Được %jobplayer_salary% Tiền Lương Của Bạn!"
+finished-work: "&aXin Chúc Mừng! Bạn Đã Hoàn Thành Công Việc Của Mình. Hãy Sử Dụng /job Để Biết Thêm Thông Tin Về Nó."
+need-level: "&cNày! Bạn Cần Thực Hiện %a% Để Làm Hành Động Đó\n"
+no-args: "&cNày! Bạn Vui Lòng Sử Dụng Một Cú Pháp Hợp Lệ."
+my-salary: "&aBạn Có %jobplayer_salary%$ Tiền Lương."
+unknow-job: "&cCông Việc Không Hợp Lệ, Vui Lòng Hãy Sử Dụng Tab COMPLETE để lấy một danh sách công việc."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
-work-status: "&aHere is what you need to do: %jobplayer_work%"
+salary-cooldown: "&cBạn Cần Đợi %cooldown_mtime% Để Có Thể Nhận Lương Của Bạn Một Lần Nữa."
+work-status: "&aĐây chính là Những Gì Bạn Cần Phải Làm: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin help &6- &eXem Tin Nhắn
+  &e/jobsadmin info <player> &6- &eLấy Thông Tin Về Người Chơi
+  &e/jobsadmin reload &6- &eTải Lại Tất Cả Về Configurations.
+  &e/jobsadmin update &6- &eTải Và Cập Nhất Plugins
+  &e/jobsadmin about &6- &eNhận Thông Tin Về Server Và Plugins
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eĐặt Mức Lương/Phương Thức Của Người Chơi
+  &e/jobsadmin editor &6- &eTạo Một Trang Web Chỉnh sửa
+  &e/jobsadmin applyedits &6- &eChấp Nhận Chỉnh Sửa
 member-commands: |-
   &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &e/jobs help &6- &eXem Tin Nhắn
+  &e/jobs choose <job> &6- &eChọn Công Việc Của Bạn
+  &e/jobs work &6- &eXem Trạng Thái/Chấp Nhận Công Việc Của Bạn
+  &e/jobs salary &6- &eKiểm Tra Tiền Lương Của Bạn
+  &e/jobs withdraw &6- &eRút Tiền Lương Của Bạn
+  &e/jobs leave &6- &eBỏ Nghề
 info-command: |-
-  &6Status of the player %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Language were reloaded succefully."
-player-not-found: "&cThat player is not online, please put a valid player."
-unknow-error: "&cAn unknow error occuried, please check the console for more information."
-left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
-already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
-update-started: "&aThe update of the plugin PicoJobs started, please wait..."
-updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
-sucefully: "&aThe action was made sucefully."
-invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
+  &6Trạng Thái Của Người Chơi%player_name%
+  &eTiền Lương: %jobplayer_salary%
+  &eĐang Làm Công Việc: %jobplayer_working%
+  &eCông Việc: %jobplayer_work%
+  &eNghề Nghiệp: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Ngôn Ngữ Đã Tải Lại Thành Công."
+player-not-found: "&Người Chơi Này Không Trực Tuyến, Vui Lòng Nhập Một Người Chơi Hợp Lệ."
+unknow-error: "&cĐã xảy ra lỗi không xác định, vui lòng kiểm tra bảng điều khiển để biết thêm thông tin."
+left-job: "&cBạn Đang Có Một Công Việc! Chúng tôi khuyên bạn nên chọn một công việc mới nếu không bạn sẽ mất rất nhiều tiền."
+already-updated: "&cPlugin đã có trong phiên bản mới nhất, để biết thêm thông tin, hãy kiểm tra WIKI của chúng tôi."
+update-started: "&aCập nhật của plugin PicoJobs đã bắt đầu, vui lòng đợi..."
+updated-sucefully: "&aPlugin đã được cập nhật thành công, vui lòng khởi động lại máy chủ để hoàn tất quá trình cập nhật."
+sucefully: "& aHành động đã được thực hiện thành công."
+invalid-arg: "&aĐối số được gửi không hợp lệ. Vui lòng kiểm tra lỗi chính tả."
 #################################################################################
 ##
 #Format messages                                                               #
@@ -65,22 +65,22 @@ invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "break %a% blocks"
-kill-work: "kill %a% people"
-fishing-work: "fish %a% fishes"
-place-work: "place %a% blocks"
-craft-work: "craft %a% items"
-tame-work: "tame %a% animals"
-shear-work: "shear %a% sheeps"
-fill-work: "fill %a% buckets"
-smelt-work: "smelt %a% items"
-eat-work: "eat %a% items"
-enchanting-work: "enchant %a% items"
-repair-work: "repair %a% items"
-milk-work: "take %a% milks from cows"
-kill_entity-work: "kill %a% entities"
+break-work: "phá Vỡ Khối %a%"
+kill-work: "giết Người %a%"
+fishing-work: "hãy Câu Cá %a"
+place-work: "đặt Khối %a%"
+craft-work: "chế Tạo Vật Phẩm %a%"
+tame-work: "thu Phục %a%"
+shear-work: "cắt Lông sheeps %a%"
+fill-work: "lắp Đầy Xô %a%"
+smelt-work: "nung Vật Phẩm %a%"
+eat-work: "ăn %a%"
+enchanting-work: "cường Hóa Vật Phẩm %a%"
+repair-work: "sửa Chửa Vật Phẩm %a%"
+milk-work: "lấy %a% Sữa Từ Bò"
+kill_entity-work: "giết Thực Thể %a%"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "Không"
 #################################################################################
 ##
 #Command translations                                                          #
@@ -89,41 +89,41 @@ none-format: "None"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
-    - "job"
+    - "công Việc"
+    - "công Việc"
   jobsadmin:
-    - "jobsadmin"
-    - "jobadmin"
-  choose: "choose"
-  work: "work"
-  salary: "salary"
-  withdraw: "withdraw"
-  leave: "leave"
-  help: "help"
-  info: "info"
-  reload: "reload"
-  update: "update"
-  about: "about"
-  set: "set"
-  method: "method"
-  job: "job"
-  editor: "editor"
-  applyedits: "applyedits"
+    - "quản lý các công việc"
+    - "quản Lý Công Việc"
+  choose: "chọn"
+  work: "làm Việc"
+  salary: "tiền Lương"
+  withdraw: "rút Tiền"
+  leave: "thoát"
+  help: "trợ Gíup"
+  info: "thông Tin"
+  reload: "tải Lại"
+  update: "nâng Cấp"
+  about: "khoản"
+  set: "đặt"
+  method: "phương Pháp"
+  job: "công Việc"
+  editor: "chỉnh sửa"
+  applyedits: "áp dụng chỉnh sửa"
 #################################################################################
 ##
 #Time translations                                                             #
 ##
 #################################################################################
 #In this category you can change all the time translations
-seconds: "seconds"
-second: "second"
-minutes: "minutes"
-minute: "minute"
-hours: "hours"
-hour: "hour"
-days: "days"
-day: "day"
-months: "months"
-month: "month"
-years: "years"
-year: "year"
+seconds: "giây"
+second: "thứ hai"
+minutes: "phút"
+minute: "phút"
+hours: "giờ"
+hour: "giờ"
+days: "ngày"
+day: "ngày"
+months: "tháng"
+month: "tháng"
+years: "năm"
+year: "năm"
