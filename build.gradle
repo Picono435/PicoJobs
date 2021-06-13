@@ -1,0 +1,74 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'io.github.slimjar' version '1.2.0'
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url = 'https://jcenter.bintray.com'
+    }
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+
+    maven {
+        url = 'https://repo.citizensnpcs.co/'
+    }
+
+    maven {
+        url = 'https://jitpack.io'
+    }
+
+    maven {
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
+
+    maven {
+        url = 'https://repo.codemc.org/repository/maven-public'
+    }
+}
+
+dependencies {
+    // Spigot
+    compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    // Storage Methods
+    slim 'org.mongodb:mongodb-driver-sync:4.2.3'
+    slim 'com.zaxxer:HikariCP:4.0.3'
+    slim 'com.h2database:h2:1.4.199'
+    slim 'org.xerial:sqlite-jdbc:3.34.0'
+    slim 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
+    slim 'mysql:mysql-connector-java:8.0.25'
+    slim 'org.spongepowered:configurate-core:4.1.1'
+    slim 'org.spongepowered:configurate-gson:4.1.1'
+    slim 'org.spongepowered:configurate-yaml:4.1.1'
+    slim 'org.spongepowered:configurate-hocon:4.1.1'
+    // Plugins API
+    compileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
+    compileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
+    compileOnly('com.github.Mitsugaru:PlayerPoints:master-SNAPSHOT') { transitive = false }
+    compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
+    // Other libraries
+    slim 'com.github.mkremins:fanciful:18dc039f5b'
+    slim 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3'
+    implementation 'org.apache.maven:maven-artifact:3.8.1'
+    implementation 'org.bstats:bstats-bukkit:2.2.1'
+    slim 'org.slf4j:slf4j-simple:1.7.30'
+    slim 'org.slf4j:slf4j-api:1.7.30'
+}
+
+shadowJar {
+   relocate 'org.bstats', 'com.gmail.picono435.picojobs'
+   archiveClassifier = ''
+}
+
+group = 'com.gmail.picono435'
+version = '1.0-beta-2a'
+sourceCompatibility = '1.8'
