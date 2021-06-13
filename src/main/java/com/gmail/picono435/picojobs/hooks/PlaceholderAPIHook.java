@@ -85,6 +85,13 @@ public class PlaceholderAPIHook {
             return jp.getJob().getDisplayName();
         }
         
+        if(identifier.equals("tag")) {
+        	if(!jp.hasJob()) {
+        		return "";
+        	}
+        	return jp.getJob().getTag();
+        }
+        
         if(identifier.equals("work")) {
         	Job job = jp.getJob();
         	if(job == null) {
