@@ -15,7 +15,7 @@ jobs:
     # The type of the job
     type: "kill_entity"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 10
+    method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -54,7 +54,7 @@ jobs:
     # The type of the job
     type: "enchanting"
     # Put here the default kills, (this change depends on the frequency)
-    items: 10
+    method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -93,7 +93,7 @@ jobs:
     # The type of the job
     type: "break"
     # Put here the default kills, (this change depends on the frequency)
-    blocks: 15
+    method: 15
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -132,7 +132,7 @@ jobs:
     # The type of the job
     type: "break"
     # Put here the default kills, (this change depends on the frequency)
-    blocks: 10
+    method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -171,7 +171,7 @@ jobs:
     # The type of the job
     type: "place"
     # Put here the default kills, (this change depends on the frequency)
-    blocks: 35
+    method: 35
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -210,7 +210,7 @@ jobs:
     # The type of the job
     type: "break"
     # Put here the default kills, (this change depends on the frequency)
-    blocks: 25
+    method: 25
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -249,7 +249,7 @@ jobs:
     # The type of the job
     type: "craft"
     # Put here the default kills, (this change depends on the frequency)
-    items: 10
+    method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -288,7 +288,7 @@ jobs:
     # The type of the job
     type: "fishing"
     # Put here the default kills, (this change depends on the frequency)
-    fish: 25
+    method: 25
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -327,7 +327,7 @@ jobs:
     # The type of the job
     type: "repair"
     # Put here the default kills, (this change depends on the frequency)
-    items: 8
+    method: 8
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)
@@ -366,7 +366,7 @@ jobs:
     # The type of the job
     type: "kill"
     # Put here the default kills, (this change depends on the frequency)
-    kills: 20
+    method: 20
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
     require-permission: false
     # The salary of the job (it will be multiplied by the level and frequency)

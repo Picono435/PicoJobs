@@ -33,7 +33,7 @@ public class RepairListener implements Listener {
 		if(!job.inWhitelist(e.getCurrentItem().getType())) return;
 		
 		for(int i = 0; i < e.getCurrentItem().getAmount(); i++) {
-			if(jp.simulateEvent(job.getType())) {
+			if(jp.simulateEvent()) {
 				p.sendMessage(LanguageManager.getMessage("finished-work", p));
 			}
 		}

@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -42,12 +43,31 @@ public class FileCreator {
 	
 	public static void migrateFiles() {
 		try {
+			String[] oldMetsName = {"blocks", "kills", "fish", "items", "entities", "buckets"};
+			String[] oldWhitName = {"block", "job", "item", "entity", "color", "liquid"};
+			
 			for(String job : jobs.getConfigurationSection("jobs").getKeys(false)) {
 				if(!jobs.contains("jobs." + job + ".max-salary")) {
 					jobs.set("jobs." + job + ".max-salary", 50000);
-					jobs.save(jobs_file);
+				}
+				for(String met : oldMetsName) {
+					if(jobs.contains(met)) {
+						int value = jobs.getInt(met);
+						jobs.set(met, null);
+						jobs.set("method", value);
+						break;
+					}
+				}
+				for(String whit : oldWhitName) {
+					if(jobs.contains(whit + "-whitelist")) {
+						List<String> value = jobs.getStringList(whit + "-whitelist");
+						jobs.set(whit + "-whitelist", null);
+						jobs.set("whitelist", value);
+						break;
+					}
 				}
 			}
+			jobs.save(jobs_file);
 		} catch(Exception ex) {
 			ex.printStackTrace();
 			return;

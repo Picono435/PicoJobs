@@ -26,7 +26,7 @@ public class TameListener implements Listener {
 		
 		if(!job.inWhitelist(e.getEntityType())) return;
 		
-		if(jp.simulateEvent(job.getType())) {
+		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}

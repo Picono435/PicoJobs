@@ -261,13 +261,14 @@ public class JobPlayer {
 	 * @author Picono435
 	 *
 	 */
-	public boolean simulateEvent(Type type) {
+	public boolean simulateEvent() {
 		if(!isWorking()) return false;
 		double level = getMethodLevel();
 		double method = getMethod();
 		setMethod(method + 1);
 				
 		int reqmethod = (int) (getJob().getMethod() * level * getJob().getMethodFrequency());
+		if(reqmethod == 1) reqmethod = 1;
 		
 		if(getMethod() >= reqmethod) {
 			PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());

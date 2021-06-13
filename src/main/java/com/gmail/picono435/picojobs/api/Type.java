@@ -11,20 +11,20 @@ import java.util.Map;
  *
  */
 public enum Type {
-	BREAK("material", "block", "blocks"),
-	KILL("job", "job", "kills"),
-	FISHING("material", "item", "fish"),
-	PLACE("material", "block", "blocks"),
-	CRAFT("material", "item", "items"),
-	TAME("entity", "entity", "entities"),
-	SHEAR("color", "color", "entities"),
-	FILL("material", "liquid", "buckets"),
-	SMELT("material", "item", "items"),
-	EAT("material", "item", "items"),
-	ENCHANTING("material", "item", "items"),
-	REPAIR("material", "item", "items"),
-	MILK("", "", "buckets"),
-	KILL_ENTITY("entity", "entity", "kills");
+	BREAK("material"),
+	KILL("job"),
+	FISHING("material"),
+	PLACE("material"),
+	CRAFT("material"),
+	TAME("entity"),
+	SHEAR("color"),
+	FILL("material"),
+	SMELT("material"),
+	EAT("material"),
+	ENCHANTING("material"),
+	REPAIR("material"),
+	MILK(""),
+	KILL_ENTITY("entity");
 	
 	private final static Map<String, Type> BY_NAME = new HashMap<String, Type>();
 	
@@ -39,24 +39,12 @@ public enum Type {
 	}
 	
 	private String whitelistType;
-	private String whitelistConfig;
-	private String configMethod;
 	
-	private Type(String whitelistType, String whitelistConfig, String configMethod) {
+	private Type(String whitelistType) {
 		this.whitelistType = whitelistType;
-		this.whitelistConfig = whitelistConfig;
-		this.configMethod = configMethod;
 	}
 	
 	public String getWhitelistType() {
 		return whitelistType;
-	}
-	
-	public String getWhitelistConfig() {
-		return whitelistConfig;
-	}
-	
-	public String getConfigMethod() {
-		return configMethod;
 	}
 }

@@ -27,7 +27,7 @@ public class ShearListener implements Listener {
 		
 		if(!job.inWhitelist(((Sheep)e.getEntity()).getColor())) return;
 		
-		if(jp.simulateEvent(job.getType())) {
+		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}

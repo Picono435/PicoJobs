@@ -220,7 +220,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String tag = jobc.getString("tag");
 			String typeString = jobc.getString("type");
 			Type type = Type.getType(typeString.toUpperCase(Locale.ROOT));
-			double method = jobc.getDouble(type.getConfigMethod());
+			double method = jobc.getDouble("method");
 			double salary = jobc.getDouble("salary");
 			double maxSalary = jobc.getDouble("max-salary");
 			boolean requiresPermission = jobc.getBoolean("require-permission");
@@ -240,7 +240,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			// CALCULATING OPTIONALS
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
-			List<String> whitelist = jobc.getStringList(type.getWhitelistConfig() + "-whitelist");
+			List<String> whitelist = jobc.getStringList("whitelist");
 			
 			Job job = new Job(jobid, displayname, tag, type, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);

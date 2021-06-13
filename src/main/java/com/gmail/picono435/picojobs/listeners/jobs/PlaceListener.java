@@ -26,7 +26,7 @@ public class PlaceListener implements Listener {
 		
 		if(!job.inWhitelist(e.getBlock().getType())) return;
 		
-		if(jp.simulateEvent(job.getType())) {
+		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}
 	}
