@@ -4,14 +4,17 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,6 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
-import com.gmail.picono435.picojobs.dependencies.LibraryLoader;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.hooks.PlayerPointsHook;
 import com.gmail.picono435.picojobs.hooks.VaultHook;
@@ -67,6 +69,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import io.github.slimjar.app.builder.ApplicationBuilder;
+
 public class PicoJobsPlugin extends JavaPlugin {
 
 	//PLUGIN
@@ -81,11 +85,25 @@ public class PicoJobsPlugin extends JavaPlugin {
 	//JOBS DATA
 	public Map<String, Job> jobs = new HashMap<String, Job>(); 
 	
+	@Override
 	public void onLoad() {
 		instance = this;
-		LibraryLoader.loadAllRequired();
+		try {
+			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes...");
+			ApplicationBuilder
+				.appending("PicoJobs")
+				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
+				.build();
+			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
+		} catch (NoSuchAlgorithmException | IOException | ReflectiveOperationException | URISyntaxException e) {
+			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
+			e.printStackTrace();
+			Bukkit.getPluginManager().disablePlugin(this);
+			return;
+		}
 	}
 	
+	@Override
 	public void onEnable() {
 		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for use it.");
 		

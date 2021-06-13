@@ -1,0 +1,129 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&cHey bro! Bạn không có quyền để thực hiện lệnh đó."
+ignore-action: "&cHey bro! Đừng lười biếng và hãy nói chuyện với NPC."
+choosed-job: "&aXin chúc mừng! Bạn đã chọn công việc %jobplayer_job% thành công&a."
+accepted-work: "&aYou accepted the work of %jobplayer_work%."
+no-salary: "&cYou do not have enough salary to get! Please go work ;("
+got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
+finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+need-level: "&cHey! You need to do %a% works to execute that action."
+no-args: "&cHey! Please use a valid syntax."
+my-salary: "&aYou have %jobplayer_salary%$ of salary."
+unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
+work-status: "&aHere is what you need to do: %jobplayer_work%"
+admin-commands: |-
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
+  &e/jobsadmin editor &6- &eCreates a web editor session
+  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+member-commands: |-
+  &6Full list of commands:
+  &e/jobs help &6- &eSee this messages
+  &e/jobs choose <job> &6- &eChooses your job
+  &e/jobs work &6- &eSee the status/Accept of your work
+  &e/jobs salary &6- &eCheck your salary
+  &e/jobs withdraw &6- &eWithdraw your salary
+  &e/jobs leave &6- &eLeaves the job
+info-command: |-
+  &6Status of the player %player_name%
+  &eSalary: %jobplayer_salary%
+  &eIs Working: %jobplayer_working%
+  &eWork: %jobplayer_work%
+  &eJob: %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Language were reloaded succefully."
+player-not-found: "&cThat player is not online, please put a valid player."
+unknow-error: "&cAn unknow error occuried, please check the console for more information."
+left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
+already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
+update-started: "&aThe update of the plugin PicoJobs started, please wait..."
+updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
+sucefully: "&aThe action was made sucefully."
+invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
+#################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "break %a% blocks"
+kill-work: "kill %a% people"
+fishing-work: "fish %a% fishes"
+place-work: "place %a% blocks"
+craft-work: "craft %a% items"
+tame-work: "tame %a% animals"
+shear-work: "shear %a% sheeps"
+fill-work: "fill %a% buckets"
+smelt-work: "smelt %a% items"
+eat-work: "eat %a% items"
+enchanting-work: "enchant %a% items"
+repair-work: "repair %a% items"
+milk-work: "take %a% milks from cows"
+kill_entity-work: "kill %a% entities"
+#When something is not find what should it appear
+none-format: "None"
+#################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+aliases:
+  jobs:
+    - "jobs"
+    - "job"
+  jobsadmin:
+    - "jobsadmin"
+    - "jobadmin"
+  choose: "choose"
+  work: "work"
+  salary: "salary"
+  withdraw: "withdraw"
+  leave: "leave"
+  help: "help"
+  info: "info"
+  reload: "reload"
+  update: "update"
+  about: "about"
+  set: "set"
+  method: "method"
+  job: "job"
+  editor: "editor"
+  applyedits: "applyedits"
+#################################################################################
+##
+#Time translations                                                             #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "seconds"
+second: "second"
+minutes: "minutes"
+minute: "minute"
+hours: "hours"
+hour: "hour"
+days: "days"
+day: "day"
+months: "months"
+month: "month"
+years: "years"
+year: "year"

@@ -1,0 +1,129 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&cHé ! Vous n'avez pas la permission d'exécuter cette commande."
+ignore-action: "&cHé ! Ne soyez pas paresseux et allez parler avec le PNJ."
+choosed-job: "&aFélicitations ! Vous avez choisi le job %jobplayer_job%&a."
+accepted-work: "&aVous avez accepté le travail de %jobplayer_work%."
+no-salary: "&cVous n'avez pas assez de salaire pour obtenir ! Veuillez aller au travail ;("
+got-salary: "&aBeau travail! Vous venez de recevoir votre salaire de %jobplayer_salary%!"
+finished-work: "&aFélicitations ! Vous venez de terminer votre travail. Utilisez /jobs pour obtenir plus d'informations à ce sujet."
+need-level: "&cHé ! Vous devez faire %a% de travaux pour exécuter cette action."
+no-args: "&cHé ! Veuillez utiliser une syntaxe valide."
+my-salary: "&aVous avez %jobplayer_salary%$ de salaire."
+unknow-job: "&cCette tâche n'a pas été trouvée, veuillez utiliser la TAB COMPLETE pour obtenir une liste de tâches."
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&cVous devez attendre plus de %cooldown_mtime% avant d'obtenir à nouveau votre salaire."
+work-status: "&aVoici ce que vous devez faire : %jobplayer_work%"
+admin-commands: |-
+  &6Liste complète des commandes :
+  &e/jobsadmin help &6- &eVoir ces messages
+  &e/jobsadmin info <player> &6- &eRenvoie les informations sur un joueur
+  &e/jobsadmin reload &6- &eRecharger toutes les configurations possibles.
+  &e/jobsadmin update &6- &eInstalle une mise à jour du plugin
+  &e/jobsadmin à propos de &6- &eRenvoie des informations sur le serveur et le plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eDéfinit le salaire/méthode d'un joueur
+  &e/jobsadmin éditeur &6- &eCrée une session d'édition web
+  &e/jobsadmin applyedits &6- &eAppliquer les modifications d'une session d'éditeur web
+member-commands: |-
+  &6Liste complète des commandes:
+  &e/jobs help &6- &eVoir ces messages
+  &e/jobs choose <job> &6- &eChoix de votre emploi
+  &e/jobs work &6- &eVoir le statut/Accept de votre travail
+  &e/jobs salary &6- &eVérifiez votre salaire
+  &e/jobs withdraw &6- &eRetirer votre salaire
+  &e/jobs leave &6- &eQuitter &eQuitter l'emploi
+info-command: |-
+  &6Statut du joueur %player_name%
+  &eSalaire : %jobplayer_salary%
+  &eTravaille : %jobplayer_working%
+  &eTravail : %jobplayer_work%
+  &eTâche : %jobplayer_job%
+reload-command: "&aConfigurations, Jobs & Langues ont été rechargés avec succès."
+player-not-found: "&cCe joueur n'est pas en ligne, veuillez mettre un joueur valide."
+unknow-error: "&cUne erreur inconnue s'est produite, veuillez consulter la console pour plus d'informations."
+left-job: "&cVous n'êtes pas au chômage ! Nous vous recommandons de choisir un nouvel emploi ou vous perdrez beaucoup d'argent."
+already-updated: "&cLe plugin est déjà dans la dernière version, pour plus d'informations, consultez notre WIKI."
+update-started: "&aLa mise à jour du plugin PicoJobs a commencé, veuillez patienter..."
+updated-sucefully: "&aLe plugin a été mis à jour avec succès, veuillez redémarrer le serveur pour terminer la mise à jour."
+sucefully: "&aL'action a été faite avec succès."
+invalid-arg: "&aL'argument envoyé n'est pas valide. Veuillez vérifier la erreur."
+#################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "casser %a% blocs"
+kill-work: "tuer %a% de personnes"
+fishing-work: "Poissons %a% de poissons"
+place-work: "placer %a% de blocs"
+craft-work: "fabriquer %a% objets"
+tame-work: "apprivoisé %a% animaux"
+shear-work: "cisailler %a% moutons"
+fill-work: "remplir %a% seaux"
+smelt-work: "fondre %a% éléments"
+eat-work: "manger %a% des objets"
+enchanting-work: "enchanter %a% objets"
+repair-work: "réparer %a% des objets"
+milk-work: "consommer %a% de lait de vaches"
+kill_entity-work: "tuer %a% d'entités"
+#When something is not find what should it appear
+none-format: "Aucun"
+#################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+aliases:
+  jobs:
+    - "emplois"
+    - "emploi"
+  jobsadmin:
+    - "jobsadmin"
+    - "jobadmin"
+  choose: "choisir"
+  work: "travail"
+  salary: "salaire"
+  withdraw: "Retirer"
+  leave: "quitter"
+  help: "Aide"
+  info: "Infos"
+  reload: "reload"
+  update: "Mettre à jour"
+  about: "à propos de"
+  set: "définir"
+  method: "Méthode"
+  job: "emploi"
+  editor: "éditeur"
+  applyedits: "appliquer les modifications"
+#################################################################################
+##
+#Time translations                                                             #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "secondes"
+second: "seconde"
+minutes: "minutes"
+minute: "minute"
+hours: "heures"
+hour: "heure"
+days: "Jours"
+day: "jour"
+months: "mois"
+month: "mois"
+years: "Années"
+year: "Année"

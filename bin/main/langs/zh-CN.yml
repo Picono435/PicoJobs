@@ -1,0 +1,129 @@
+---
+#This file is a language file, here you can change all the messages for this language
+#Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+#NOTE:
+#In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
+#plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+#################################################################################
+##
+#General messages                                                              #
+##
+#################################################################################
+#In this category you can change the general messages of the plugin
+no-permission: "&c嘿! 您没有执行该命令的权限。"
+ignore-action: "&c嘿! 别偷懒，去与 NPC 交互。"
+choosed-job: "恭喜您成功选择了职业 %jobplayer_job%&a。"
+accepted-work: "&a你接取了 %jobplayer_work% 的工作。"
+no-salary: "&c你的薪水完全不够！请去工作;("
+got-salary: "&a干的不错！你刚刚得到你的薪水 %jobplayer_salary%！"
+finished-work: "恭喜您刚刚完成了您的工作。使用 /jobs 指令可以查看详细信息。"
+need-level: "&c嘿! 您需要先做完 %a% 工作才能进行这个行为。"
+no-args: "&c嘿! 请使用一个有效的语法。"
+my-salary: "&a你的薪水有：%jobplayer_salary%。"
+unknow-job: "&c未知职业，请使用 TAB 补全指令以获得职业列表。"
+#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+salary-cooldown: "&c你还需要等待 %cooldown_mtime% 才能再次拿到你的薪水。"
+work-status: "&a这里是你需要去做的事情： %jobplayer_work%"
+admin-commands: |-
+  &6完整的命令列表：
+  &e/jobsadmin帮助 &6- &e查看此消息
+  &e/jobsadmin信息 <player> &6- &eGets 关于玩家的信息
+  &e/jobsadmin重新加载&6- &eReload 所有可能的配置。
+  &e/jobsadmin更新 &6- &eInstalls 更新插件
+  &e/jobsadmin关于&6- &eGets 关于服务器和插件的信息
+  &e/jobsadmin设置 <salary | method | job> <player> <amount | job> &6- &eSets 一个玩家的预付/方法
+  &e/jobsadmin editor&6- &eCreate 一个网络编辑器会话
+  &e/jobsadmin appyedits &6- &eApply the edits of a web 编辑器会话的编辑
+member-commands: |-
+  &6完整的指令列表：
+  &e/jobs help &6- &e查看此列表
+  &e/jobs choos <job> &6- &e选择你的任务
+  &e/jobs work &6- &e查看你的工作状态，以及是否接受
+  &e/jobs palay &6- &e查看你的薪水
+  &e/jobs acresption &6- &e撤回你的薪水
+  &e/jobs leave &6- &e从当前职业辞职
+info-command: |-
+  &6玩家状态 %player_name%
+  &e薪水: %jobplayer_salary%
+  &e是否处于工作状态: %jobplayer_working%
+  &e工作: %jobplayer_work%
+  &e职业: %jobplayer_job%
+reload-command: "&a配置文件, 职业文件和语言文件重载成功。"
+player-not-found: "&c该玩家不在线，请输入一个在线的玩家。"
+unknow-error: "&c发生未知错误，请查看控制台以获得更多信息。"
+left-job: "&c你还没有失业！我们建议你选择一个新的工作，否则你将入不敷出。"
+already-updated: "&c此插件已是最新版本了，如果你想了解更多信息，请查看我们的WIKI。"
+update-started: "&a插件PicoJobs的更新已开始，请稍后..."
+updated-sucefully: "&a此插件已成功更新，请重启服务端以完成更新。"
+sucefully: "&a该行为已成功进行。"
+invalid-arg: "&a输入的参数无效，请仔细检查。"
+#################################################################################
+##
+#Format messages                                                               #
+##
+#################################################################################
+#In this category you can change the formats of placeholders and other things
+#All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
+#Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
+break-work: "破坏 %a% 个方块"
+kill-work: "杀死 %a% 名玩家"
+fishing-work: "钓上 %a% 条鱼"
+place-work: "放置 %a% 个方块"
+craft-work: "合成 %a% 个物品"
+tame-work: "驯服 %a% 的动物数"
+shear-work: "Shear %a% 绵羊"
+fill-work: "填充 %a%的桶数"
+smelt-work: "烧制 %a% 个物品"
+eat-work: "吃掉 %a% 个物品"
+enchanting-work: "附魔 %a% 个物品"
+repair-work: "修理 %a% 个物品"
+milk-work: "从奶牛身上挤出 %a% 桶牛奶"
+kill_entity-work: "杀死 %a% 只实体"
+#When something is not find what should it appear
+none-format: "无"
+#################################################################################
+##
+#Command translations                                                          #
+##
+#################################################################################
+#In this category you can add aliases for all the commands of the plugin
+aliases:
+  jobs:
+    - "任务"
+    - "职业"
+  jobsadmin:
+    - "jobsadmin"
+    - "jobadmin"
+  choose: "选择"
+  work: "工作"
+  salary: "薪水"
+  withdraw: "撤回"
+  leave: "离开"
+  help: "帮助"
+  info: "信息"
+  reload: "重载"
+  update: "更新"
+  about: "关于"
+  set: "设置"
+  method: "机制"
+  job: "职业"
+  editor: "编辑器"
+  applyedits: "应用版"
+#################################################################################
+##
+#Time translations                                                             #
+##
+#################################################################################
+#In this category you can change all the time translations
+seconds: "秒"
+second: "秒"
+minutes: "分钟"
+minute: "分钟"
+hours: "小时"
+hour: "小时"
+days: "天"
+day: "天"
+months: "月"
+month: "月"
+years: "年"
+year: "年"

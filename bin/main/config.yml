@@ -1,0 +1,91 @@
+# IMPORTANT #
+# Our plugin uses PlaceholderAPI to make placeholders, it's not required but if you want to use it you need to add it
+# A detailed wiki of our plugin can be found here: https://github.com/Picono435/wiki
+# All the configurations are commented, but if you still need help check the wiki or send a message in our discord
+#
+# Remember that some configurations may be found in another files inside the settings folder.
+# Here you will only find basic configurations
+# IMPORTANT #
+
+# DO NOT CHANGE THIS
+config-version: ${project.version}
+
+#################################################################################
+#                                                                               #
+# Important configurations                                                      #
+#                                                                               #
+#################################################################################
+# In this category there is a lot of important configurations that should be read and changed with your necessities
+# Put here the language that you want to use!
+# A list of all the possible languages can be found here: https://github.com/Picono435/PicoJobs/tree/master/src/main/resources/langs
+# The translations can be INCORRECT or INCOMPLETE because they are made by the community, but you can always change them.
+lang: "en-GB"
+# Here you can put the name of your server, this message will appier in the start of all messages. To disable just put nothing.
+prefix: "&6[PicoJobs] "
+# Here you can enable/disable the auto update
+auto-update: true
+
+#################################################################################
+#                                                                               #
+# Storage configurations                                                      #
+#                                                                               #
+#################################################################################
+# In this configuration you can select the storage method that you want to use and config it.
+storage:
+  # Here is a list of storage methods that you can choose:
+  #
+  # | Remote databases - require connection information to be configured below
+  # |=> MySQL
+  # |=> MariaDB (recommended)
+  # |=> PostgreSQL
+  # |=> MongoDB
+  #
+  # |  Flatfile/local database - don't require any extra configuration
+  # |=> H2 (recommended)
+  # |=> SQL
+  #
+  # |  Readable & editable text files - don't require any extra configuration
+  # |=> YAML (recommended)
+  # |=> JSON
+  # |=> HOCON
+  storage-method: h2
+  # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
+  remote-sql:
+    host: localhost
+    port: 3306
+    database: mydb
+    username: root
+    password: ""
+    tablename: "jobplayers"
+  # Remote MongoDB database configuration
+  mongodb:
+    # Here you need to put the MongoDB Connection URI
+    # For more information check https://docs.mongodb.com/manual/reference/connection-string/
+    URI: "mongodb+srv://<user>:<password>@mydatabases-host.mongodb.net/"
+    database: "mcserver"
+    collection: "jobplayers"
+
+#################################################################################
+#                                                                               #
+# Basic configurations                                                          #
+#                                                                               #
+#################################################################################
+# In this category you can change the basic configurations of the plugin
+# Do you  want to use the NPC system Tutorial here: https://github.com/Picono435/wiki/npcs ** PREMIUM ONLY**
+use-citizens: false
+# What should happen when execute /jobs command?
+# 1 = Ignore and send a message (This feature its not really useful yet, but it will be soon ;))
+# 2 = Execute basic commands, enter a job, get salary etc... etc...
+# 3 = Open Jobs Menu
+jobs-action: 3
+# What should be the salary cooldown in real life minutes 20 minutes = 1 minecraft day [DEFAULT: 600m=10h=30md]
+salary-cooldown: 600
+
+#################################################################################
+#                                                                               #
+# Commands allow                                                                #
+#                                                                               #
+#################################################################################
+# In this category you can select all the commands that can only be used after a specific level (amount of works done)
+commands:
+  /examplecommand: 5
