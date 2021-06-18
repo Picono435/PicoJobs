@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'io.github.slimjar' version '1.2.1'
     id 'java'
 }
@@ -76,4 +76,8 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
     }
+}
+
+rootProject.tasks.named("processResources") {
+    duplicatesStrategy = 'include'
 }

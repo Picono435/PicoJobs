@@ -4,17 +4,14 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -65,11 +62,13 @@ import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FillListener;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
+import com.gmail.picono435.picojobs.utils.JarRelocatorFactory;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import io.github.slimjar.app.builder.ApplicationBuilder;
+import io.github.slimjar.relocation.facade.ReflectiveJarRelocatorFacadeFactory;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -89,13 +88,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onLoad() {
 		instance = this;
 		try {
-			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes...");
+			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
 			ApplicationBuilder
 				.appending("PicoJobs")
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
+				.relocatorFactory(new JarRelocatorFactory(ReflectiveJarRelocatorFacadeFactory.create()))
 				.build();
 			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
-		} catch (NoSuchAlgorithmException | IOException | ReflectiveOperationException | URISyntaxException e) {
+		} catch (Exception e) {
 			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
 			e.printStackTrace();
 			Bukkit.getPluginManager().disablePlugin(this);
