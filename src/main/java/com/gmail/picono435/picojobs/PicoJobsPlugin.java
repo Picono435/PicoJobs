@@ -28,7 +28,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
@@ -72,6 +74,16 @@ import io.github.slimjar.relocation.facade.ReflectiveJarRelocatorFacadeFactory;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
+	public PicoJobsPlugin()
+    {
+        super();
+    }
+
+    protected PicoJobsPlugin(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file)
+    {
+        super(loader, description, dataFolder, file);
+    }
+	
 	//PLUGIN
 	private static PicoJobsPlugin instance;
 	private boolean legacy;
@@ -88,18 +100,22 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onLoad() {
 		instance = this;
 		try {
-			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
-			ApplicationBuilder
-				.appending("PicoJobs")
-				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
-				.relocatorFactory(new JarRelocatorFactory(ReflectiveJarRelocatorFacadeFactory.create()))
-				.build();
-			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
-		} catch (Exception e) {
-			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
-			e.printStackTrace();
-			Bukkit.getPluginManager().disablePlugin(this);
-			return;
+			Class.forName("com.fasterxml.jackson.databind.JsonNode");
+		} catch (ClassNotFoundException ex) {
+			try {
+				sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
+				ApplicationBuilder
+					.appending("PicoJobs")
+					.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
+					.relocatorFactory(new JarRelocatorFactory(ReflectiveJarRelocatorFacadeFactory.create()))
+					.build();
+				sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
+			} catch (Exception e) {
+				sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
+				e.printStackTrace();
+				Bukkit.getPluginManager().disablePlugin(this);
+				return;
+			}
 		}
 	}
 	
