@@ -1,5 +1,5 @@
 //
-// MIT License
+	// MIT License
 //
 // Copyright (c) 2021 Vaishnav Anil
 //
@@ -46,12 +46,18 @@ public final class JarRelocator implements Relocator {
 
     @Override
     public void relocate(File input, File output) throws IOException, ReflectiveOperationException {
-        output.getParentFile().mkdirs();
-        output.createNewFile();
-        if(input.getName().equals("configurate-core-4.1.1.jar")) {
+        if(input.getName().equals("configurate-core-4.1.1.jar") || input.getName().equals("configurate-gson-4.1.1.jar") 
+        		|| input.getName().equals("configurate-yaml-4.1.1.jar") || input.getName().equals("configurate-hocon-4.1.1.jar")) {
+        	System.out.println("Using exception for " + input.getName());
+        	if(output.exists()) {
+        		System.out.println("File was already relocated.");
+        		return;
+        	}
         	FileUtils.copyFile(input, output);
         	return;
         }
+        output.getParentFile().mkdirs();
+        output.createNewFile();
         final JarRelocatorFacade jarRelocator = relocatorFacadeFactory.createFacade(input,output, relocations);
         jarRelocator.run();
     }
