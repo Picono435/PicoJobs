@@ -35,19 +35,19 @@ admin-commands: |-
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
 member-commands: |-
-    &6Komutların listesi:
-    &e/jobs help &6- &eBu mesajı gör
-    &e/jobs choose <iş> &6- &eişini seçer
-    &e/jobs work &6- &eDurumunu gör / Çalışmanın kabul edilmesi
-    &e/jobs salary &6- &eMaaşını kontrol et
-    &e/jobs withdraw &6- &eMaaşını çek
-    &e/jobs leave &6- &eİşten ayrıl
+  &6Komutların listesi:
+  &e/jobs help &6- &eBu mesajı gör
+  &e/jobs choose <iş> &6- &eişini seçer
+  &e/jobs work &6- &eDurumunu gör / Çalışmanın kabul edilmesi
+  &e/jobs salary &6- &eMaaşını kontrol et
+  &e/jobs withdraw &6- &eMaaşını çek
+  &e/jobs leave &6- &eİşten ayrıl
 info-command: |-
-    &6%player_name% Adlı oyuncunun durumu
-    &eMaaşı: %jobplayer_salary%
-    &eÇalışıyor Mu: %jobplayer_working%
-    &eİş: %jobplayer_work%
-    &eMeslek: %jobplayer_job%
+  &6%player_name% Adlı oyuncunun durumu
+  &eMaaşı: %jobplayer_salary%
+  &eÇalışıyor Mu: %jobplayer_working%
+  &eİş: %jobplayer_work%
+  &eMeslek: %jobplayer_job%
 reload-command: "&aYapılandırmalar, Meslek ve Dil başarıyla yeniden yüklendi."
 player-not-found: "&cBu oyuncu çevrimiçi değil, lütfen geçerli bir oyuncu girin."
 unknow-error: "&cBilinmeyen bir hata oluştu, daha fazla bilgi için lütfen konsolu kontrol edin."
