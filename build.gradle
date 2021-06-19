@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.gmail.picono435'
-version = '1.0-beta-2a'
+version = '1.0-beta-3'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
