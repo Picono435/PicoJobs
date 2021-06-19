@@ -64,13 +64,11 @@ import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
 import com.gmail.picono435.picojobs.listeners.jobs.FillListener;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
-import com.gmail.picono435.picojobs.utils.JarRelocatorFactory;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import io.github.slimjar.app.builder.ApplicationBuilder;
-import io.github.slimjar.relocation.facade.ReflectiveJarRelocatorFacadeFactory;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -107,7 +105,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 				ApplicationBuilder
 					.appending("PicoJobs")
 					.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
-					.relocatorFactory(new JarRelocatorFactory(ReflectiveJarRelocatorFacadeFactory.create()))
 					.build();
 				sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
 			} catch (Exception e) {

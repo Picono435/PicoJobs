@@ -48,10 +48,10 @@ dependencies {
     slim 'org.xerial:sqlite-jdbc:3.34.0'
     slim 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
     slim 'mysql:mysql-connector-java:8.0.25'
-    slim 'org.spongepowered:configurate-core:4.1.1'
-    slim 'org.spongepowered:configurate-gson:4.1.1'
-    slim 'org.spongepowered:configurate-yaml:4.1.1'
-    slim 'org.spongepowered:configurate-hocon:4.1.1'
+    implementation 'org.spongepowered:configurate-core:4.1.1'
+    implementation 'org.spongepowered:configurate-gson:4.1.1'
+    implementation 'org.spongepowered:configurate-yaml:4.1.1'
+    implementation 'org.spongepowered:configurate-hocon:4.1.1'
     // Plugins API
     compileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
     compileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
