@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.gmail.picono435'
-version = '1.0-beta-3'
+version = '1.0-beta-3a'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -81,7 +81,13 @@ shadowJar {
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
-        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: getVersion(), description: description]
+    }
+}
+
+task getVersion {
+    doLast {
+        return project.version
     }
 }
 
