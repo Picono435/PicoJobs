@@ -65,7 +65,7 @@ dependencies {
     implementation 'org.bstats:bstats-bukkit:2.2.1'
     slim 'org.slf4j:slf4j-simple:1.7.30'
     slim 'org.slf4j:slf4j-api:1.7.30'
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.3.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 }
