@@ -84,7 +84,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	//PLUGIN
 	private static PicoJobsPlugin instance;
-	private boolean legacy;
+	private String serverVersion;
 	private boolean oldVersion;
 	private String lastestPluginVersion;
 	private String downloadUrl;
@@ -207,8 +207,24 @@ public class PicoJobsPlugin extends JavaPlugin {
 		this.getLogger().log(level, message);
 	}
 	
-	public boolean isLegacy() {
-		return legacy;
+	public boolean isNewerThan(String version) {
+		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
+		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
+		if(serverVersionArt.compareTo(legacyVersion) >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isOlderThan(String version) {
+		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
+		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
+		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean isOldVersion() {
@@ -295,11 +311,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.12.2");
 			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(serverVersionString);
 			if(serverVersion.compareTo(legacyVersion) <= 0) {
-				legacy = true;
+				return true;
 			}
-			return legacy;
+			return false;
 		} catch (Exception e) {
-			return legacy;
+			return false;
 		}
 	}
 	

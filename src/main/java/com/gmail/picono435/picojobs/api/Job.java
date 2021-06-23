@@ -321,7 +321,7 @@ public class Job {
 	@SuppressWarnings("deprecation")
 	public ItemStack getFormattedItem() {
 		ItemBuilder builder;
-		if(PicoJobsPlugin.getInstance().isLegacy()) {
+		if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
 			int itemData = getItemData() - 1;
 			if(itemData == -1) {
 				builder = new ItemBuilder(getMaterial());

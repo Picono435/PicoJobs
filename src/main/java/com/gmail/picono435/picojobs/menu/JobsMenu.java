@@ -48,7 +48,7 @@ public class JobsMenu {
 		
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isLegacy()) {
+			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
 					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
@@ -80,7 +80,7 @@ public class JobsMenu {
 		for(String itemName : items.getKeys(false)) {
 			ConfigurationSection itemConfig = items.getConfigurationSection(itemName);
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isLegacy()) {
+			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
 				int itemData = itemConfig.getInt("item-data");
 				if(itemData == -1) {
 					builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
@@ -113,7 +113,7 @@ public class JobsMenu {
 		
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isLegacy()) {
+			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
 					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
@@ -145,7 +145,7 @@ public class JobsMenu {
 		for(String itemName : items.getKeys(false)) {
 			ConfigurationSection itemConfig = items.getConfigurationSection(itemName);
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isLegacy()) {
+			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
 				int itemData = itemConfig.getInt("item-data");
 				if(itemData == -1) {
 					builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
@@ -178,7 +178,7 @@ public class JobsMenu {
 		
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isLegacy()) {
+			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
 					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
