@@ -8,7 +8,7 @@
 # IMPORTANT #
 
 # DO NOT CHANGE THIS
-config-version: ${project.version}
+config-version: "@version@"
 
 #################################################################################
 #                                                                               #
