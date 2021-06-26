@@ -311,8 +311,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.12.2");
 			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(serverVersionString);
 			if(serverVersion.compareTo(legacyVersion) <= 0) {
+				this.serverVersion = serverVersionString;
 				return true;
 			}
+			this.serverVersion = serverVersionString;
 			return false;
 		} catch (Exception e) {
 			return false;
