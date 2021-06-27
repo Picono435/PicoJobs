@@ -14,7 +14,7 @@ if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '1') {
         version versioning.info.build + "-DEV"
     } else {
-        version versioning.info.versionNumber
+        version versioning.info.display
     }
 } else {
     version versioning.info.build + "-DEV"
