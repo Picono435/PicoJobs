@@ -78,7 +78,8 @@ jobs:
       if: always()
       with:
         files: build/test-results/**/*.xml
-    - uses: actions/upload-artifact@v2.2.2
-        with:
-          name: Builds
-          path: build/libs/*.jar
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        name: Builds
+        path: build/libs/*.jar
