@@ -26,8 +26,12 @@ jobs:
       run: chmod +x gradlew
     - name: Tests with Gradle
       run: ./gradlew test
+      env:
+          STABLE_BUILD: 0
     - name: Build with Gradle
       run: ./gradlew shadowJar
+      env:
+          STABLE_BUILD: 0
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
