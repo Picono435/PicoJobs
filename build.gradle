@@ -2,13 +2,23 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'io.github.slimjar' version '1.2.1'
     id 'java'
+    id 'net.nemerosa.versioning' version '2.8.2'
 }
 
 group = 'com.gmail.picono435'
-version = '1.0-beta-3b'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
+
+if (System.getenv("STABLE_BUILD") != null) {
+    if (System.getenv("STABLE_BUILD") == '1') {
+        version versioning.info.build + "-DEV"
+    } else {
+        version versioning.info.versionNumber
+    }
+} else {
+    version versioning.info.build + "-DEV"
+}
 
 repositories {
     mavenCentral()

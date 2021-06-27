@@ -3,11 +3,7 @@
 
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
   build-java16:
@@ -70,8 +66,12 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Tests with Gradle
+      env:
+          STABLE_BUILD: 0
       run: ./gradlew test
     - name: Build with Gradle
+      env:
+          STABLE_BUILD: 0
       run: ./gradlew shadowJar
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
