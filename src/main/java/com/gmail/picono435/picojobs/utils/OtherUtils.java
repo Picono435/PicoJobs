@@ -43,6 +43,11 @@ public class OtherUtils {
         filtered = filtered.toUpperCase(java.util.Locale.ENGLISH);
 
         filtered = filtered.replaceAll("\\s+", "_").replaceAll("\\W", "");
-        return Material.valueOf(filtered);
+        
+        try {
+        	return Material.valueOf(filtered);
+        } catch (IllegalArgumentException ex) {
+        	return null;
+        }
     }
 }
