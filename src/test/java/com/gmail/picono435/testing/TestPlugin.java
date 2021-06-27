@@ -3,8 +3,8 @@ package com.gmail.picono435.testing;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,6 @@ public class TestPlugin {
 	
     static PicoJobsPlugin plugin;
     private static ServerMock server;
-    @SuppressWarnings("unused")
 	private static PlayerMock player;
     
     @BeforeAll
@@ -30,8 +29,8 @@ public class TestPlugin {
     }
     
     @Test
-    void justAnExample() {
-        System.out.println("This test method should be run");
+    void chooseJob() {
+    	Assertions.assertEquals(true, player.performCommand("jobs"));
     }
     
 }
