@@ -10,13 +10,13 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+no-permission: "&cHey! Du har ikke tilladelse til at udføre denne kommando."
+ignore-action: "&cHey! Vær ikke doven og gå til at tale med NPC."
+choosed-job: "&aTillykke! Du valgte jobbet %jobplayer_job%&a."
+accepted-work: "&aDu har accepteret arbejdet af %jobplayer_work%."
+no-salary: "&cDu har ikke nok løn til at få! Gå venligst til arbejde ;("
+got-salary: "&aGreat Work! Du har lige fået din %jobplayer_salary% løn!"
+finished-work: "&aTillykke! Du har lige afsluttet dit arbejde. Brug /jobs for at få mere information om det."
 need-level: "&cHey! Du skal gøre %a% værker for at udføre denne handling."
 no-args: "&cHey! Brug venligst en gyldig syntaks."
 my-salary: "&aDu har %jobplayer_salary%$ løn."
@@ -80,7 +80,7 @@ repair-work: "reparere %a% varer"
 milk-work: "tager %a% mælk fra køer"
 kill_entity-work: "dræbe %a% enheder"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "Ingen"
 #################################################################################
 ##
 #Command translations                                                          #
@@ -127,3 +127,4 @@ months: "måneder"
 month: "måned"
 years: "år"
 year: "år"
+and: "og"

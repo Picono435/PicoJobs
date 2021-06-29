@@ -10,20 +10,20 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
-need-level: "&cHey! You need to do %a% works to execute that action."
-no-args: "&cHey! Please use a valid syntax."
-my-salary: "&aYou have %jobplayer_salary%$ of salary."
-unknow-job: "&cThat job was not found, please use the TAB COMPLETE for get a list of jobs."
+no-permission: "&Γεια! Δεν έχετε άδεια για να εκτελέσετε αυτήν την εντολή."
+ignore-action: "&cHey! Μην είστε τεμπέλης και πηγαίνετε να μιλήσετε με το NPC."
+choosed-job: "&Συγχαρητήρια! Επιλέξατε τη δουλειά %jobplayer_job%&α."
+accepted-work: "&aΑποδεχθήκατε το έργο του %jobplayer_work%."
+no-salary: "&cYou δεν έχετε αρκετό μισθό για να λάβετε! Παρακαλώ πηγαίνετε στην εργασία ;("
+got-salary: "&Εξαιρετική δουλειά! Μόλις πήρατε το %jobplayer_salary% μισθό!"
+finished-work: "&Συγχαρητήρια! Μόλις τελειώσατε την εργασία σας. Χρησιμοποιήστε το /jobs για να πάρετε περισσότερες πληροφορίες σχετικά με αυτό."
+need-level: "&Γεια! Πρέπει να κάνετε %a% λειτουργεί για να εκτελέσετε αυτήν την ενέργεια."
+no-args: "&Γεια! Παρακαλώ χρησιμοποιήστε μια έγκυρη σύνταξη."
+my-salary: "&aΈχετε %jobplayer_salary%$ μισθού."
+unknow-job: "&cΑυτή η εργασία δεν βρέθηκε, παρακαλώ χρησιμοποιήστε το TAB COMPLETE για να πάρετε μια λίστα εργασιών."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cYou need to wait more %cooldown_mtime% before get your salary again."
-work-status: "&aHere is what you need to do: %jobplayer_work%"
+salary-cooldown: "&cΘα πρέπει να περιμένετε περισσότερα από %cooldown_mtime% για να λάβετε ξανά το μισθό σας."
+work-status: "&Εδώ είναι αυτό που πρέπει να κάνετε: %jobplayer_work%"
 admin-commands: |-
   &6Πλήρης λίστα εντολών:
   &e/jobsadmin βοήθεια &6- Δείτε αυτά τα μηνύματα
@@ -35,28 +35,28 @@ admin-commands: |-
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
+  &6Πλήρης λίστα εντολών:
+  &e/εργασίες βοηθούν &6- Δείτε αυτά τα μηνύματα
+  &/εργασίες να επιλέξουν <job> &6- &eChooses your job
   &e/jobs work &6- &eSee the status/Accept of your work
   &e/jobs salary &6- &eCheck your salary
   &e/jobs withdraw &6- &eWithdraw your salary
   &e/jobs leave &6- &eLeaves the job
 info-command: |-
-  &6Status of the player %player_name%
+  &6Κατάσταση του παίκτη %player_name%
   &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
+  &eIs λειτουργεί: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Language were reloaded succefully."
-player-not-found: "&cThat player is not online, please put a valid player."
-unknow-error: "&cAn unknow error occuried, please check the console for more information."
-left-job: "&cYou are not unemployed! We recommend you choose a new job or you will lose a lot of money."
-already-updated: "&cThe plugin is already in the lastest version, for more information check our WIKI."
-update-started: "&aThe update of the plugin PicoJobs started, please wait..."
-updated-sucefully: "&aThe plugin was updated sucefully, please restart the server to finish the update."
-sucefully: "&aThe action was made sucefully."
-invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
+reload-command: "&aConfigurations, Εργασίες & Γλώσσα επαναφορτώθηκαν επιτυχώς."
+player-not-found: "&cThat player is not online, παρακαλώ βάλτε έναν έγκυρο παίκτη."
+unknow-error: "&Ένα σφάλμα μη γνωριμίας εμφανίστηκε, παρακαλώ ελέγξτε την κονσόλα για περισσότερες πληροφορίες."
+left-job: "&cYou are not unemployed! Σας προτείνουμε να επιλέξετε μια νέα θέση εργασίας ή θα χάσετε πολλά χρήματα."
+already-updated: "&cThe plugin είναι ήδη στην τελευταία έκδοση, για περισσότερες πληροφορίες ελέγξτε WIKI μας."
+update-started: "&aΗ ενημέρωση του πρόσθετου PicoJobs ξεκίνησε, παρακαλώ περιμένετε..."
+updated-sucefully: "&aΤο πρόσθετο ενημερώθηκε με ασφάλεια, παρακαλώ επανεκκινήστε το διακομιστή για να ολοκληρώσετε την ενημέρωση."
+sucefully: "&aΗ ενέργεια έγινε με συνέπεια."
+invalid-arg: "&aΗ παράμετρος που στάλθηκε δεν είναι έγκυρη. Παρακαλώ ελέγξτε την ατέλεια."
 #################################################################################
 ##
 #Format messages                                                               #
@@ -65,22 +65,22 @@ invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "break %a% blocks"
-kill-work: "kill %a% people"
-fishing-work: "fish %a% fishes"
-place-work: "place %a% blocks"
-craft-work: "craft %a% items"
+break-work: "διάλειμμα %a% μπλοκ"
+kill-work: "σκοτώνει %a% άτομα"
+fishing-work: "ψάρια %a% ψάρια"
+place-work: "τοποθετήστε %a% μπλοκ"
+craft-work: "βιοτεχνία %a% αντικειμένων"
 tame-work: "tame %a% ζώα"
 shear-work: "διάτμηση %a% πρόβατα"
 fill-work: "γεμίστε κάδους %a%"
-smelt-work: "smelt %a% items"
-eat-work: "eat %a% items"
-enchanting-work: "enchant %a% items"
-repair-work: "repair %a% items"
-milk-work: "take %a% milks from cows"
-kill_entity-work: "kill %a% entities"
+smelt-work: "λιώσιμο %a% αντικειμένων"
+eat-work: "φάτε %a% στοιχεία"
+enchanting-work: "μαγεία %a% αντικειμένων"
+repair-work: "επισκευή %a% αντικειμένων"
+milk-work: "λήψη %a% γάλακτος από αγελάδες"
+kill_entity-work: "σκοτώνει %a% οντότητες"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "Κανένα"
 #################################################################################
 ##
 #Command translations                                                          #
@@ -90,23 +90,23 @@ none-format: "None"
 aliases:
   jobs:
     - "θέσεις εργασίας"
-    - "job"
+    - "εργασία"
   jobsadmin:
     - "jobsadmin"
     - "jobadmin"
-  choose: "choose"
-  work: "work"
-  salary: "salary"
-  withdraw: "withdraw"
-  leave: "leave"
-  help: "help"
-  info: "info"
+  choose: "επιλέξτε"
+  work: "εργασία"
+  salary: "μισθός"
+  withdraw: "ανάληψη"
+  leave: "αποχώρηση"
+  help: "βοήθεια"
+  info: "πληροφορίες"
   reload: "reload"
-  update: "update"
-  about: "about"
-  set: "set"
-  method: "method"
-  job: "job"
+  update: "ενημέρωση"
+  about: "περίπου"
+  set: "όρισε"
+  method: "μέθοδος"
+  job: "εργασία"
   editor: "επεξεργαστής"
   applyedits: "εφαρμοζόμενα"
 #################################################################################
@@ -115,15 +115,16 @@ aliases:
 ##
 #################################################################################
 #In this category you can change all the time translations
-seconds: "seconds"
-second: "second"
-minutes: "minutes"
-minute: "minute"
-hours: "hours"
-hour: "hour"
-days: "days"
-day: "day"
-months: "months"
-month: "month"
-years: "years"
-year: "year"
+seconds: "δευτερόλεπτα"
+second: "δευτερόλεπτο"
+minutes: "λεπτά"
+minute: "λεπτό"
+hours: "ώρες"
+hour: "ώρα"
+days: "ημέρες"
+day: "ημέρα"
+months: "μήνες"
+month: "μήνας"
+years: "έτη"
+year: "έτος"
+and: "και"
