@@ -244,7 +244,7 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["dirt", "grass", "grass-block"]
+    whitelist: ["dirt", "grass", "grass_block"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "dig %a% dirts"
     # Choose Job Menu settings

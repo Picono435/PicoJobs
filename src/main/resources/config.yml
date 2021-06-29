@@ -1,5 +1,5 @@
 # IMPORTANT #
-# Our plugin uses PlaceholderAPI to make placeholders, it's not required but if you want to use it you need to add it
+# Our plugin uses PlaceholderAPI to make placeholders, it's not required but if you want to use it you will need to add it
 # A detailed wiki of our plugin can be found here: https://github.com/Picono435/wiki
 # All the configurations are commented, but if you still need help check the wiki or send a message in our discord
 #
@@ -8,7 +8,7 @@
 # IMPORTANT #
 
 # DO NOT CHANGE THIS
-config-version: ${project.version}
+config-version: "@version@"
 
 #################################################################################
 #                                                                               #
@@ -71,8 +71,6 @@ storage:
 #                                                                               #
 #################################################################################
 # In this category you can change the basic configurations of the plugin
-# Do you  want to use the NPC system Tutorial here: https://github.com/Picono435/wiki/npcs ** PREMIUM ONLY**
-use-citizens: false
 # What should happen when execute /jobs command?
 # 1 = Ignore and send a message (This feature its not really useful yet, but it will be soon ;))
 # 2 = Execute basic commands, enter a job, get salary etc... etc...

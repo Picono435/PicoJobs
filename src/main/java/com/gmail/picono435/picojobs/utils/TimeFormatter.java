@@ -22,13 +22,13 @@ public class TimeFormatter {
 			sb.append(days + (days == 1 ? " " + LanguageManager.getTimeFormat("day") : " " + LanguageManager.getTimeFormat("days")));
 		
 		if (hours > 0)
-			sb.append(days > 0 ? (minutes > 0 ? ", " : " and ") : "").append(hours + (hours == 1 ? " " + LanguageManager.getTimeFormat("hour") : " "  + LanguageManager.getTimeFormat("hours")));
+			sb.append(days > 0 ? (minutes > 0 ? ", " : " " + LanguageManager.getTimeFormat("and") + " ") : "").append(hours + (hours == 1 ? " " + LanguageManager.getTimeFormat("hour") : " "  + LanguageManager.getTimeFormat("hours")));
 		
 		if (minutes > 0)
-			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " "  + LanguageManager.getTimeFormat("minute") : " "  + LanguageManager.getTimeFormat("minutes")));
+			sb.append(days > 0 || hours > 0 ? (seconds > 0 ? ", " : " " + LanguageManager.getTimeFormat("and") + " ") : "").append(minutes + (minutes == 1 ? " "  + LanguageManager.getTimeFormat("minute") : " "  + LanguageManager.getTimeFormat("minutes")));
 		
 		if (seconds > 0)
-			sb.append(days > 0 || hours > 0 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " "  + LanguageManager.getTimeFormat("second") : " "  + LanguageManager.getTimeFormat("seconds")));
+			sb.append(days > 0 || hours > 0 || minutes > 0 ? " " + LanguageManager.getTimeFormat("and") + " " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " "  + LanguageManager.getTimeFormat("second") : " "  + LanguageManager.getTimeFormat("seconds")));
 		
 		String s = sb.toString();
 		return s.isEmpty() ? "0 " + LanguageManager.getTimeFormat("seconds") : s;
@@ -55,17 +55,17 @@ public class TimeFormatter {
 		}
 		
 		if (hours > 0 && max <= 1) {
-			sb.append(days > 0 ? (minutes > 0 && max > 1 ? ", " : " and ") : "").append(hours + (hours == 1 ? " minecraft " + LanguageManager.getTimeFormat("hour") : " minecraft "  + LanguageManager.getTimeFormat("hours")));
+			sb.append(days > 0 ? (minutes > 0 && max > 1 ? ", " : " " + LanguageManager.getTimeFormat("and") + " ") : "").append(hours + (hours == 1 ? " minecraft " + LanguageManager.getTimeFormat("hour") : " minecraft "  + LanguageManager.getTimeFormat("hours")));
 			max++;
 		}
 		
 		if (minutes > 0 && max <= 1) {
-			sb.append(days > 0 || hours > 0 && max > 1 ? (seconds > 0 ? ", " : " and ") : "").append(minutes + (minutes == 1 ? " minecraft "  + LanguageManager.getTimeFormat("minute") : " minecraft "  + LanguageManager.getTimeFormat("minutes")));
+			sb.append(days > 0 || hours > 0 && max > 1 ? (seconds > 0 ? ", " : " " + LanguageManager.getTimeFormat("and") + " ") : "").append(minutes + (minutes == 1 ? " minecraft "  + LanguageManager.getTimeFormat("minute") : " minecraft "  + LanguageManager.getTimeFormat("minutes")));
 			max++;
 		}
 		
 		if (seconds > 0 && max <= 1) {
-			sb.append(days > 0 || hours > 0 && max > 1 || minutes > 0 ? " and " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
+			sb.append(days > 0 || hours > 0 && max > 1 || minutes > 0 ? " " + LanguageManager.getTimeFormat("and") + " " : (sb.length() > 0 ? ", " : "")).append(seconds + (seconds == 1 ? " minecraft "  + LanguageManager.getTimeFormat("second") : " minecraft "  + LanguageManager.getTimeFormat("seconds")));
 			max++;
 		}
 		
