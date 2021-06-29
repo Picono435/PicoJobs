@@ -28,10 +28,10 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="entity-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    entity-whitelist: ["COW", "PIG", "CHICKEN", "SHEEP"]
+    whitelist: ["COW", "PIG", "CHICKEN", "SHEEP"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "kill %a% animals"
     # Choose Job Menu settings
@@ -67,10 +67,10 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    # items-whitelist: ["diamond_sword"]
+    # whitelist: ["diamond_sword"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "enchant %a% items"
     # Choose Job Menu settings
@@ -106,10 +106,10 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    block-whitelist: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG"]
+    whitelist: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "cut %a% woods"
     # Choose Job Menu settings
@@ -145,10 +145,28 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    block-whitelist: ["gold_ore", "iron_ore", "coal_ore", "lapis_ore", "diamond_ore", "redstone_ore", "emerald_ore", "nether_quartz_ore"]
+    whitelist:
+      - gold_ore
+      - iron_ore
+      - coal_ore
+      - lapis_ore
+      - diamond_ore
+      - redstone_ore
+      - emerald_ore
+      - nether_quartz_ore
+      - nether_gold_ore
+      - copper_ore
+      - deepslate_gold_ore
+      - deepslate_iron_ore
+      - deepslate_coal_ore
+      - deepslate_lapis_ore
+      - deepslate_diamond_ore
+      - deepslate_redstone_ore
+      - deepslate_emerald_ore
+      - deepslate_copper_ore
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "mine %a% ores"
     # Choose Job Menu settings
@@ -184,10 +202,10 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    block-whitelist: ["bricks"]
+    whitelist: ["bricks"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "place %a% bricks"
     # Choose Job Menu settings
@@ -223,10 +241,10 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="block-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    block-whitelist: ["dirt", "grass", "grass-block"]
+    whitelist: ["dirt", "grass", "grass_block"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "dig %a% dirts"
     # Choose Job Menu settings
@@ -262,10 +280,10 @@ jobs:
     method-frequency: 0.8
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    # item-whitelist: ["diamond_sword"]
+    # whitelist: ["diamond_sword"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "craft %a% items"
     # Choose Job Menu settings
@@ -301,10 +319,10 @@ jobs:
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    item-whitelist: ["NAME_TAG"]
+    whitelist: ["NAME_TAG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "fish %a% fishes"
     # Choose Job Menu settings
@@ -340,10 +358,10 @@ jobs:
     method-frequency: 0.6
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="item-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    # item-whitelist: ["diamond_sword"]
+    # whitelist: ["diamond_sword"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "repair %a% items"
     # Choose Job Menu settings
@@ -379,10 +397,10 @@ jobs:
     method-frequency: 0.8
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
     economy: VAULT
-    # Use whitelist or blacklist - OPTIONAL [requires="job-whitelist"]
+    # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    job-whitelist: ["weaponsmith"]
+    whitelist: ["weaponsmith"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "kill %a% people"
     # Choose Job Menu settings

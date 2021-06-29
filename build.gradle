@@ -1,14 +1,37 @@
+buildscript {
+    dependencies {
+        classpath fileTree(dir: './gradle/',
+            includes: ['versioning.jar'])
+    }
+}
+
 plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'io.github.slimjar' version '1.2.1'
     id 'java'
+    id 'net.nemerosa.versioning' version '2.14.0'
 }
 
 group = 'com.gmail.picono435'
-version = '1.0-beta-3'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
+
+versioning {
+   releaseMode = { nextTag, lastTag, currentTag, extension ->
+       "1.0-beta-3a"
+   }
+}
+
+if (System.getenv("STABLE_BUILD") != null) {
+    if (System.getenv("STABLE_BUILD") == '1') {
+        version versioning.info.build + "-DEV"
+    } else {
+        version versioning.info.display
+    }
+} else {
+    version versioning.info.build
+}
 
 repositories {
     mavenCentral()
@@ -45,7 +68,7 @@ dependencies {
     slim 'org.mongodb:mongodb-driver-sync:4.2.3'
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:1.4.200'
-    slim 'org.xerial:sqlite-jdbc:3.34.0'
+    slim 'org.xerial:sqlite-jdbc:3.36.0'
     slim 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
     slim 'mysql:mysql-connector-java:8.0.25'
     implementation 'org.spongepowered:configurate-core:4.1.1'
@@ -63,11 +86,15 @@ dependencies {
     slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3'
     implementation 'org.apache.maven:maven-artifact:3.8.1'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
-    slim 'org.slf4j:slf4j-simple:1.7.30'
-    slim 'org.slf4j:slf4j-api:1.7.30'
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    slim 'org.slf4j:slf4j-simple:1.7.31'
+    slim 'org.slf4j:slf4j-api:1.7.31'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.3.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testCompileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    testCompileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
+    testCompileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
+    testCompileOnly('com.github.Mitsugaru:PlayerPoints:master-SNAPSHOT') { transitive = false }
+    testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
 }
 
 test {
@@ -81,7 +108,13 @@ shadowJar {
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
-        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: getVersion(), description: project.description]
+    }
+}
+
+task getVersion {
+    doLast {
+        return project.version
     }
 }
 

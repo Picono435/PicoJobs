@@ -99,6 +99,7 @@ public class PlaceholderAPIHook {
         	}
         	double level = jp.getMethodLevel();
         	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
+    		if(reqmethod == 0) reqmethod = 1;
         	double value = reqmethod - jp.getMethod();
         	String workMessage = job.getWorkMessage();
         	workMessage = workMessage.replace("%a%", df.format(value));
