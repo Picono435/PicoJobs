@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.utils;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -44,10 +45,14 @@ public class OtherUtils {
 
         filtered = filtered.replaceAll("\\s+", "_").replaceAll("\\W", "");
         
-        try {
-        	return Material.valueOf(filtered);
-        } catch (IllegalArgumentException ex) {
-        	return null;
+        if(Bukkit.getServer().getName().equalsIgnoreCase("Mohist"))  {
+        	try {
+        		return Material.valueOf(filtered);
+        	} catch(Exception ex) {
+        		return null;
+        	}
         }
+        
+        return Material.getMaterial(filtered);
     }
 }

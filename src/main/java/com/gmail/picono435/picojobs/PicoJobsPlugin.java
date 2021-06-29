@@ -169,7 +169,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	        	}
 	        }));
 		}
-	
+			
 		// REGISTERING COMMANDS
 		this.getCommand("jobs").setExecutor(new JobsCommand());
 		this.getCommand("jobsadmin").setExecutor(new JobsAdminCommand());
@@ -217,7 +217,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public boolean isNewerThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(serverVersionArt.compareTo(legacyVersion) >= 0) {
+		if(legacyVersion.compareTo(serverVersionArt) >= 0) {
 			return true;
 		} else {
 			return false;
@@ -227,7 +227,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public boolean isOlderThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
+		if(legacyVersion.compareTo(serverVersionArt) <= 0) {
 			return true;
 		} else {
 			return false;
