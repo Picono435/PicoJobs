@@ -66,7 +66,7 @@ public class Job {
 		this.workMessage = workMessage;
 		
 		this.slot = slot;
-		Material m = OtherUtils.matchMaterial(item);
+		Material m = Material.matchMaterial(item);
 		this.item = m;
 		this.itemData = itemData;
 		this.enchanted = enchanted;
@@ -77,7 +77,7 @@ public class Job {
 			if(whitelistType.equals("material")) {
 				List<Material> list = new ArrayList<Material>();
 				for(String s : whitelist) {
-					Material matNew = OtherUtils.matchMaterial(s);
+					Material matNew = Material.matchMaterial(s);
 					if(matNew == null) continue;
 					list.add(matNew);
 				}
@@ -321,7 +321,7 @@ public class Job {
 	@SuppressWarnings("deprecation")
 	public ItemStack getFormattedItem() {
 		ItemBuilder builder;
-		if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+		if(PicoJobsPlugin.getInstance().isLegacy()) {
 			int itemData = getItemData() - 1;
 			if(itemData == -1) {
 				builder = new ItemBuilder(getMaterial());

@@ -75,23 +75,20 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public PicoJobsPlugin()
     {
         super();
-        this.isTestEnvironment = true;
     }
 
     protected PicoJobsPlugin(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file)
     {
         super(loader, description, dataFolder, file);
-        this.isTestEnvironment = true;
     }
 	
 	//PLUGIN
 	private static PicoJobsPlugin instance;
-	private String serverVersion;
+	private boolean legacy;
 	private boolean oldVersion;
 	private String lastestPluginVersion;
 	private String downloadUrl;
 	private Metrics metrics;
-	private boolean isTestEnvironment;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -140,10 +137,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 			LanguageManager.updateFile();
 		}
 		
-		if(!isTestEnvironment) {
-			// STARTING BSTATS
-	        metrics = new Metrics(this, 8553);
-		}
+		// STARTING BSTATS
+        metrics = new Metrics(this, 8553);
         
         // SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
         PicoJobsAPI.registerEconomy(new ExpImplementation());
@@ -161,15 +156,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(Level.INFO, "Generating jobs from configuration...");
 		if(!generateJobsFromConfig()) return;
 		PicoJobsAPI.getStorageManager().initializeStorageFactory();
-		if(!isTestEnvironment) {
-			metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
-	        	@Override
-	        	public Integer call() throws Exception {
-	        		return jobs.size();
-	        	}
-	        }));
-		}
-			
+		metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
+        	@Override
+        	public Integer call() throws Exception {
+        		return jobs.size();
+        	}
+        }));
+	
 		// REGISTERING COMMANDS
 		this.getCommand("jobs").setExecutor(new JobsCommand());
 		this.getCommand("jobsadmin").setExecutor(new JobsAdminCommand());
@@ -214,24 +207,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 		this.getLogger().log(level, message);
 	}
 	
-	public boolean isNewerThan(String version) {
-		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
-		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) >= 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean isOlderThan(String version) {
-		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
-		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) <= 0) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean isLegacy() {
+		return legacy;
 	}
 	
 	public boolean isOldVersion() {
@@ -280,34 +257,32 @@ public class PicoJobsPlugin extends JavaPlugin {
 			
 			Job job = new Job(jobid, displayname, tag, type, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
 			jobs.put(jobid, job);
-			
-			if(!isTestEnvironment) {
-				metrics.addCustomChart(new DrilldownPie("jobs", () -> {
-			        Map<String, Map<String, Integer>> map = new HashMap<>();
-			        Map<String, Integer> entry = new HashMap<>();
-			        entry.put(jobid, 1);
-			        map.put(type.name(), entry);
-			        return map;
-			    }));
+						
+			metrics.addCustomChart(new DrilldownPie("jobs", () -> {
+		        Map<String, Map<String, Integer>> map = new HashMap<>();
+		        Map<String, Integer> entry = new HashMap<>();
+		        entry.put(jobid, 1);
+		        map.put(type.name(), entry);
+		        return map;
+		    }));
 
-				metrics.addCustomChart(new DrilldownPie("active_economy", () -> {
-			        Map<String, Map<String, Integer>> map = new HashMap<>();
-			        Map<String, Integer> entry = new HashMap<>();
-			        String eco = job.getEconomy();
-			        if(eco.equalsIgnoreCase("VAULT")) {
-			        	if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
-			        		entry.put(VaultHook.getEconomy().getName(), 1);
-				        } else {
-				        	entry.put("Others", 1);
-				        }
-			        	map.put("VAULT", entry);
+			metrics.addCustomChart(new DrilldownPie("active_economy", () -> {
+		        Map<String, Map<String, Integer>> map = new HashMap<>();
+		        Map<String, Integer> entry = new HashMap<>();
+		        String eco = job.getEconomy();
+		        if(eco.equalsIgnoreCase("VAULT")) {
+		        	if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
+		        		entry.put(VaultHook.getEconomy().getName(), 1);
 			        } else {
-			        	entry.put(eco, 1);
-			        	map.put(eco, entry);
+			        	entry.put("Others", 1);
 			        }
-			        return map;
-			    }));
-			}
+		        	map.put("VAULT", entry);
+		        } else {
+		        	entry.put(eco, 1);
+		        	map.put(eco, entry);
+		        }
+		        return map;
+		    }));
 		}
 		return true;
 	}
@@ -320,13 +295,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.12.2");
 			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(serverVersionString);
 			if(serverVersion.compareTo(legacyVersion) <= 0) {
-				this.serverVersion = serverVersionString;
-				return true;
+				legacy = true;
 			}
-			this.serverVersion = serverVersionString;
-			return false;
+			return legacy;
 		} catch (Exception e) {
-			return false;
+			return legacy;
 		}
 	}
 	

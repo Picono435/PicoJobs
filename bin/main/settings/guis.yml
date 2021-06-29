@@ -1,0 +1,170 @@
+#################################################################################
+#                                                                               #
+# GUI configurations                                                            #
+#                                                                               #
+#################################################################################
+# In this category you can change ALL the GUIs of the plugin
+# Remember that some configurations may be in the specific job configuration
+# For more information check our wiki (https://github.com/Picono435/PicoJobs/wiki)
+# PS: Only the first two GUIs have comments
+gui-settings:
+  #######################
+  # Choose Job Menu GUI #
+  #######################
+  choose-job:
+    # The title of the GUI
+    title: "Choose a Job"
+    # The size of the GUI
+    size: 54
+    # If it has a item in the place where there is no jobs ;)
+    put-background-item: false
+    # Background item name
+    item-name: "&cChoose Your Job, PicoJobs"
+    # The background item namespace...
+    item: "WHITE_STAINED_GLASS"
+    # The item data of the background item, ONLY LEGACY VERSIONS
+    item-data: 1
+    # If the background item should be enchanted or not
+    enchanted: false
+    
+  #######################################################
+  # With Jobs Menu GUI that did not accept the work yet #
+  #######################################################
+  need-work:
+    # The title of the GUI
+    title: "Job Menu - Accept Work"
+    # The size of the GUI
+    size: 27
+    # If it has a item in the place where there is no jobs ;)
+    put-background-item: false
+    # Background item name
+    item-name: "&cAccept your work, PicoJobs"
+    # The item namespace...
+    item: "WHITE_STAINED_GLASS"
+    # The item data of the background item, ONLY LEGACY VERSIONS
+    item-data: 1
+    # If the item should be enchanted or not
+    enchanted: false
+    items:
+      salary:
+        # The name of the item
+        name: "&eSalary"
+        # The slot of the item
+        slot: 11
+        # The lore of the item
+        lore:
+          - ""
+          - "&7Click to get your salary!"
+          - "&7Your salary is: %jobplayer_salary%"
+        # The action that will execute when someone clicks on the item
+        action: salary
+        # The material name
+        material: "PAPER"
+        # The item data of the item, ONLY LEGACY VERSIONS
+        item-data: 0
+        # If the item is enchanted or not
+        enchanted: false
+        
+      plugin-info:
+        name: "&6PicoJobs"
+        slot: 14
+        lore:
+          - ""
+          - "&7Thanks for using my plugin!"
+          - "&7Check our &8&ndiscord&r&7 to"
+          - "&7get more information"
+          - ""
+          - "&7If you want to buy the premium"
+          - "&7version go to our &8&nwebsite"
+        action: none
+        material: "BOOKSHELF"
+        item-data: 0
+        enchanted: true
+        
+      accept-work:
+        name: "&aAccept the work"
+        slot: 17
+        lore:
+          - ""
+          - "&7Click here to accept your work"
+          - "&7What you need to do: %jobplayer_work%"
+        action: acceptwork
+        material: "REDSTONE_TORCH"
+        item-data: 0
+        enchanted: false
+        
+      leave-job:
+        name: "&aLeave your job"
+        slot: 27
+        lore:
+          - ""
+          - "&7Click here to leave your job"
+          - "&7You will lose half of your salary"
+        action: leavejob
+        material: "BARRIER"
+        item-data: 0
+        enchanted: true
+        
+  ##############################################
+  # With Jobs Menu GUI that already has a work #
+  ##############################################
+  has-work:
+    title: "Job Menu - Work Status"
+    size: 27
+    put-background-item: false
+    item-name: "&cChoose Your Job, PicoJobs"
+    item: "WHITE_STAINED_GLASS"
+    item-data: 1
+    enchanted: false
+    items:
+      salary:
+        name: "&eSalary"
+        slot: 11
+        lore:
+          - ""
+          - "&7Click to get your salary!"
+          - "&7Your salary is: %jobplayer_salary%"
+        action: salary
+        material: "PAPER"
+        item-data: 0
+        enchanted: false
+        
+      plugin-info:
+        name: "&6PicoJobs"
+        slot: 14
+        lore:
+          - ""
+          - "&7Thanks for using my plugin!"
+          - "&7Check our &8&ndiscord&r&7 to"
+          - "&7get more information"
+          - ""
+          - "&7If you want to buy the premium"
+          - "&7version go to our &8&nwebsite"
+        action: none
+        material: "BOOKSHELF"
+        item-data: 0
+        enchanted: true
+        
+      status-work:
+        name: "&aStatus of the work"
+        slot: 17
+        lore:
+          - ""
+          - "&7Check down here the status of your work!"
+          - "&7What you need to do: %jobplayer_work%"
+        action: none
+        material: "REDSTONE_TORCH"
+        item-data: 0
+        enchanted: true
+        
+      leave-job:
+        name: "&aLeave your job"
+        slot: 27
+        lore:
+          - ""
+          - "&7Click here to leave your job"
+          - "&7You will lose half of your salary"
+        action: leavejob
+        material: "BARRIER"
+        item-data: 0
+        enchanted: true

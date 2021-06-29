@@ -268,7 +268,7 @@ public class JobPlayer {
 		setMethod(method + 1);
 				
 		int reqmethod = (int) (getJob().getMethod() * level * getJob().getMethodFrequency());
-		if(reqmethod == 0) reqmethod = 1;
+		if(reqmethod == 1) reqmethod = 1;
 		
 		if(getMethod() >= reqmethod) {
 			PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());

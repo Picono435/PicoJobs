@@ -8,7 +8,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
@@ -21,11 +20,7 @@ public class FillListener implements Listener {
 	public void onFillBucket(PlayerBucketFillEvent  e) {
 		if(e.getPlayer() == null) return;
 		Block b = e.getBlockClicked();
-		if(!PicoJobsPlugin.getInstance().isNewerThan("1.17")) {
-			if(b == null || (!b.isLiquid())) return;
-		} else {
-			if(b == null || (!b.isLiquid() && b.getType() == Material.POWDER_SNOW)) return;
-		}
+		if(b == null || (!b.isLiquid() && b.getType() != Material.POWDER_SNOW)) return;
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

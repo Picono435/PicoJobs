@@ -51,18 +51,18 @@ public class FileCreator {
 					jobs.set("jobs." + job + ".max-salary", 50000);
 				}
 				for(String met : oldMetsName) {
-					if(jobs.contains("jobs." + job + "." + met)) {
-						int value = jobs.getInt("jobs." + job + "." + met);
-						jobs.set("jobs." + job + "." + met, null);
-						jobs.set("jobs." + job + ".method", value);
+					if(jobs.contains(met)) {
+						int value = jobs.getInt(met);
+						jobs.set(met, null);
+						jobs.set("method", value);
 						break;
 					}
 				}
 				for(String whit : oldWhitName) {
-					if(jobs.contains("jobs." + job + "." + whit + "-whitelist")) {
-						List<String> value = jobs.getStringList("jobs." + job + "." + whit + "-whitelist");
-						jobs.set("jobs." + job + "." + whit + "-whitelist", null);
-						jobs.set("jobs." + job + ".whitelist", value);
+					if(jobs.contains(whit + "-whitelist")) {
+						List<String> value = jobs.getStringList(whit + "-whitelist");
+						jobs.set(whit + "-whitelist", null);
+						jobs.set("whitelist", value);
 						break;
 					}
 				}

@@ -20,7 +20,6 @@ import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
-import com.gmail.picono435.picojobs.utils.OtherUtils;
 
 public class JobsMenu {
 	
@@ -49,15 +48,15 @@ public class JobsMenu {
 		
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 				} else {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
+				builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
@@ -81,15 +80,15 @@ public class JobsMenu {
 		for(String itemName : items.getKeys(false)) {
 			ConfigurationSection itemConfig = items.getConfigurationSection(itemName);
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = itemConfig.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
+					builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
 				} else {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
+				builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
 			}
 			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
 			if(toEdit) {
@@ -114,15 +113,15 @@ public class JobsMenu {
 		
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 				} else {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
+				builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
@@ -146,15 +145,15 @@ public class JobsMenu {
 		for(String itemName : items.getKeys(false)) {
 			ConfigurationSection itemConfig = items.getConfigurationSection(itemName);
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = itemConfig.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
+					builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
 				} else {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
+				builder = new ItemBuilder(Material.matchMaterial(itemConfig.getString("material")));
 			}
 			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
 			if(toEdit) {
@@ -179,15 +178,15 @@ public class JobsMenu {
 		
 		if(category.getBoolean("put-background-item")) {
 			ItemBuilder builder;
-			if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+			if(PicoJobsPlugin.getInstance().isLegacy()) {
 				int itemData = category.getInt("item-data");
 				if(itemData == -1) {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 				} else {
-					builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")), 1, (byte)itemData);
+					builder = new ItemBuilder(Material.matchMaterial(category.getString("item")), 1, (byte)itemData);
 				}
 			} else {
-				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
+				builder = new ItemBuilder(Material.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
