@@ -11,14 +11,14 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cNo tienes permiso para ejecutar ese comando."
-ignore-action: "&cHey! No te quedes perezoso e ir a hablar con el NPC."
-choosed-job: "&a¡Enhorabuena! Has elegido el trabajo %jobplayer_job%&a."
+ignore-action: "&cNo seas vago y ve a hablar con el NPC."
+choosed-job: "&a¡Enhorabuena! Has elegido el trabajo de %jobplayer_job%&a."
 accepted-work: "&aHas aceptado el trabajo de %jobplayer_work%."
-no-salary: "&cNo tienes el salario suficiente para obtener! Por favor ve a trabajar ;("
-got-salary: "&a¡Buen trabajo! ¡Acabas de obtener tu salario de %jobplayer_salary%!"
+no-salary: "&cNo has trabajado lo suficiente como para obtener tu salario. Por favor ve a trabajar ;("
+got-salary: "&a¡Buen trabajo! ¡Acabas de cobrar tu salario de %jobplayer_salary%!"
 finished-work: "&a¡Enhorabuena! Acabas de terminar tu trabajo. Usa /jobs para obtener más información al respecto."
-need-level: "&cHey! Necesitas hacer %a% trabajos para ejecutar esa acción."
-no-args: "&cHey! Por favor usa una sintaxis válida."
+need-level: "&cNecesitas hacer %a% trabajos para ejecutar esa acción."
+no-args: "&cPor favor, usa una sintaxis válida."
 my-salary: "&aTienes %jobplayer_salary%$ de salario."
 unknow-job: "&cEse trabajo no se ha encontrado, por favor usa la TAB COMPLETE para obtener una lista de trabajos."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
