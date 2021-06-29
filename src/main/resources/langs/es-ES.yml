@@ -40,14 +40,14 @@ member-commands: |-
   &e/jobs choose <job> &6- &eElegir tu trabajo
   &e/jobs work &6- &eEstado de tu trabajo
   &e/jobs salary &6- &eComprobar tu sueldo
-  &e/jobs withdraw &6- &eDepositar tu salario
+  &e/jobs withdraw &6- &eRetirar tu salario
   &e/jobs leave &6- &eDejar tu trabajo
 info-command: |-
   &6Estado del jugador %player_name%
   &eSalario: %jobplayer_salary%
   &eTrabajando: %jobplayer_working%
-  &eTrabajo: %jobplayer_work%
-  &eEmpleo: %jobplayer_job%
+  &eTareas: %jobplayer_work%
+  &eTrabajo: %jobplayer_job%
 reload-command: "&aConfiguraciones, Trabajos e Idioma fueron recargados con éxito."
 player-not-found: "&cEse jugador no esta conectado, por favor pon un jugador válido."
 unknow-error: "&cSe ha producido un error desconocido, por favor revisa la consola para mas información."
@@ -66,7 +66,7 @@ invalid-arg: "&aEl argumento enviado no es válido. Por favor, comprueba el erro
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "romper %a% bloques"
-kill-work: "mata a %a% personas"
+kill-work: "Asesinar a %a% jugadores"
 fishing-work: "peces %a% peces"
 place-work: "Coloca %a% bloques"
 craft-work: "fabricar %a% objetos"
@@ -77,8 +77,8 @@ smelt-work: "Fundir %a% objetos"
 eat-work: "Comer %a% objetos"
 enchanting-work: "Encantar %a% objetos"
 repair-work: "Reparar %a% objetos"
-milk-work: "toma %a% de leche de vacas"
-kill_entity-work: "matar %a% entidades"
+milk-work: "Ordeñar a %a% vacas para obtener leche"
+kill_entity-work: "Matar a %a% entidades"
 #When something is not find what should it appear
 none-format: "Ninguna"
 #################################################################################
