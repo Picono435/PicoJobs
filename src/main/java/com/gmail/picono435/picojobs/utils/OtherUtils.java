@@ -1,5 +1,8 @@
 package com.gmail.picono435.picojobs.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,17 +11,35 @@ import org.bukkit.entity.EntityType;
 
 public class OtherUtils {
 	
+	public static Map<String, EntityType> entities = new HashMap<>();
+	
+	static {
+		for(EntityType entity : EntityType.values()) {
+			entities.put(entity.name(), entity);
+		}
+	}
+	
 	public static EntityType getEntityByName(String name) {
-		name = name.toLowerCase();
-        for (EntityType type : EntityType.values()) {
-        	if(name.toLowerCase().startsWith("minecraft:")) {
-            	name = name.toLowerCase().replace("minecraft:", "");
-            }
-            if(type.name().equalsIgnoreCase(name)) {
-                return type;
-            }
+		Validate.notNull(name, "Name cannot be null");
+
+        String filtered = name;
+        if (filtered.startsWith(NamespacedKey.MINECRAFT + ":")) {
+            filtered = filtered.substring((NamespacedKey.MINECRAFT + ":").length());
         }
-        return null;
+
+        filtered = filtered.toUpperCase(java.util.Locale.ENGLISH);
+
+        filtered = filtered.replaceAll("\\s+", "_").replaceAll("\\W", "");
+        
+        if(Bukkit.getServer().getName().equalsIgnoreCase("Mohist"))  {
+        	try {
+        		return EntityType.valueOf(filtered);
+        	} catch(Exception ex) {
+        		return null;
+        	}
+        }
+        
+        return entities.get(name);
     }
 	
 	/**
@@ -29,8 +50,6 @@ public class OtherUtils {
      * an attempt to format it like the enum.
      *
      * @param name Name of the material to get
-     * @param legacyName whether this is a legacy name (see
-     * {@link #getMaterial(java.lang.String, boolean)}
      * @return Material if found, or null
      */
     public static Material matchMaterial(final String name) {
