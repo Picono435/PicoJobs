@@ -10,13 +10,13 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey! You do not have permission to execute that command."
-ignore-action: "&cHey! Don't be lazy and go speak with the NPC."
-choosed-job: "&aCongratulations! You choosed the job %jobplayer_job%&a."
-accepted-work: "&aYou accepted the work of %jobplayer_work%."
-no-salary: "&cYou do not have enough salary to get! Please go work ;("
-got-salary: "&aGreat Work! You just got your %jobplayer_salary% salary!"
-finished-work: "&aCongratulations! You just finished your work. Use /jobs to get more information about it."
+no-permission: "&cHey! Sinulla ei ole oikeuksia suorittaa tuota komentoa."
+ignore-action: "&cHei! Älä ole laiska ja mene keskustelemaan NPC:n kanssa."
+choosed-job: "&aOnneksi olkoon! Valitsit työpaikan %jobplayer_job%&a."
+accepted-work: "&aOlet hyväksynyt %jobplayer_work% työn."
+no-salary: "&cSinulla ei ole tarpeeksi palkkaa saadaksesi! Mene töihin ;("
+got-salary: "&aGreat Work! Sait juuri %jobplayer_salary% palkkasi!"
+finished-work: "&aOnneksi olkoon! Olet juuri suorittanut työsi. Saat lisätietoja siitä käyttämällä /työpaikkaa."
 need-level: "&cHey! Sinun täytyy tehdä %a% toimii suorittaaksesi tämän toiminnon."
 no-args: "&cHei! Käytä kelvollista syntaksia."
 my-salary: "&aSinulla on %jobplayer_salary%$ palkasta."
@@ -25,15 +25,15 @@ unknow-job: "&cTätä tehtävää ei löytynyt, ole hyvä ja käytä TAB COMPLET
 salary-cooldown: "&cSinun täytyy odottaa enemmän %cooldown_mtime% ennen kuin saat palkkasi uudelleen."
 work-status: "&aTässä on mitä sinun tarvitsee tehdä: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
+  &6Täysi lista komennoista:
+  &e/jobsadmin help &6- &eKatso nämä viestit
   &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin reload &6- &eLataa kaikki mahdolliset asetukset.
+  &e/jobsadmin- päivitys &6- &eAsentaa lisäosan
+  &e/jobsadmin- päivityksen &6- &eGet- palvelimesta ja lisäosan
+  &e/jobsadmin- asetukset <salary | method | job> <player> <amount | job> &6- &eAsettaa pelaajan
+  &e/jobsadmin- editori &6- &eLuo web-editor-istunnon
+  &e/jobsadmin-editori &6- &eHae web-editori-istunnon editoinnit &6- &eHae web-editori-istunnon editoinnit
 member-commands: |-
   &6Täysi lista komennoista:
   &e/jobs help &6- &eSee this messages
@@ -80,7 +80,7 @@ repair-work: "korjaa %a% kohteita"
 milk-work: "ottaa %a% maitoa lehmistä"
 kill_entity-work: "tappaa %a% entiteetit"
 #When something is not find what should it appear
-none-format: "None"
+none-format: "Ei Mitään"
 #################################################################################
 ##
 #Command translations                                                          #
@@ -89,7 +89,7 @@ none-format: "None"
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "jobs"
+    - "työpaikat"
     - "työ"
   jobsadmin:
     - "jobsadmin"
@@ -107,8 +107,8 @@ aliases:
   set: "aseta"
   method: "menetelmä"
   job: "työ"
-  editor: "editor"
-  applyedits: "applyedits"
+  editor: "editori"
+  applyedits: "sovelletaan"
 #################################################################################
 ##
 #Time translations                                                             #
@@ -127,3 +127,4 @@ months: "kuukautta"
 month: "kuukausi"
 years: "vuotta"
 year: "vuosi"
+and: "ja"
