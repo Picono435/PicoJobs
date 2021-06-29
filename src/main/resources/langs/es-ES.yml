@@ -10,7 +10,7 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&c¡Oye! No tienes permiso para ejecutar ese comando."
+no-permission: "&cNo tienes permiso para ejecutar ese comando."
 ignore-action: "&cHey! No te quedes perezoso e ir a hablar con el NPC."
 choosed-job: "&a¡Enhorabuena! Has elegido el trabajo %jobplayer_job%&a."
 accepted-work: "&aHas aceptado el trabajo de %jobplayer_work%."
