@@ -1,3 +1,10 @@
+buildscript {
+    dependencies {
+        classpath fileTree(dir: './gradle/',
+            includes: ['versioning.jar'])
+    }
+}
+
 plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'io.github.slimjar' version '1.2.1'
@@ -10,6 +17,12 @@ description = 'The best jobs plugin ever! You can customize every single thing o
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
+versioning {
+   releaseMode = { nextTag, lastTag, currentTag, extension ->
+       "1.0-beta-3a"
+   }
+}
+
 if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '1') {
         version versioning.info.build + "-DEV"
@@ -17,7 +30,7 @@ if (System.getenv("STABLE_BUILD") != null) {
         version versioning.info.display
     }
 } else {
-    version versioning.info.build + "-DEV"
+    version versioning.info.display
 }
 
 repositories {
