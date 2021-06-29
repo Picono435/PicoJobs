@@ -107,8 +107,8 @@ aliases:
   set: "تعيين"
   method: "طريقة"
   job: "العمل"
-  editor: "editor"
-  applyedits: "applyedits"
+  editor: "محرر"
+  applyedits: "تطبيق"
 #################################################################################
 ##
 #Time translations                                                             #
@@ -127,3 +127,4 @@ months: "أشهر"
 month: "شهر"
 years: "سنوات"
 year: "سنة"
+and: "و"
