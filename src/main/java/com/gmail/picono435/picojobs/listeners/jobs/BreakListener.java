@@ -28,7 +28,7 @@ public class BreakListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.BREAK) return;
+		if(!job.getTypes().contains(Type.BREAK)) return;
 		
 		if(!job.inWhitelist(e.getBlock().getType())) return;
 		

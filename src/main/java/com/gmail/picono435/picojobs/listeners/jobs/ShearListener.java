@@ -23,7 +23,7 @@ public class ShearListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.SHEAR) return;
+		if(!job.getTypes().contains(Type.SHEAR)) return;
 		
 		if(!job.inWhitelist(((Sheep)e.getEntity()).getColor())) return;
 		

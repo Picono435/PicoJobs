@@ -22,7 +22,7 @@ public class TameListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.TAME) return;
+		if(!job.getTypes().contains(Type.TAME)) return;
 		
 		if(!job.inWhitelist(e.getEntityType())) return;
 		

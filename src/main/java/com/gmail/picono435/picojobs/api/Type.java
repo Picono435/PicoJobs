@@ -1,8 +1,6 @@
 package com.gmail.picono435.picojobs.api;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents a job type
@@ -36,6 +34,14 @@ public enum Type {
 	
 	public static Type getType(String name) {
 		return BY_NAME.get(name.toUpperCase(Locale.ROOT));
+	}
+
+	public static List<Type> getTypes(List<String> names) {
+		List<Type> types = new ArrayList<>();
+		for(String name : names) {
+			types.add(getType(name));
+		}
+		return types;
 	}
 	
 	private String whitelistType;

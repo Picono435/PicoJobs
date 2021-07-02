@@ -12,8 +12,8 @@ jobs:
     displayname: "&eHunter"
     # The tag of the job
     tag: "&e[H]"
-    # The type of the job
-    type: "kill_entity"
+    # The types of the job
+    types: [kill_entity, milk]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
