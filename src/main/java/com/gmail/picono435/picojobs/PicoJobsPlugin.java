@@ -12,11 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
@@ -251,12 +247,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
-			List<Type> types = Type.getTypes(jobc.getStringList("types"));
+			List<Type> types;
+			if(jobc.contains("types")) {
+				types = Type.getTypes(jobc.getStringList("types"));
+			} else {
+				types = new ArrayList<>();
+			}
 			if(jobc.contains("type")) {
 				String typeString = jobc.getString("type");
 				types.add(Type.getType(typeString.toUpperCase(Locale.ROOT)));
 			}
-			System.out.println(types);
 			double method = jobc.getDouble("method");
 			double salary = jobc.getDouble("salary");
 			double maxSalary = jobc.getDouble("max-salary");
