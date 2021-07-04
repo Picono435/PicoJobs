@@ -30,7 +30,7 @@ public class Job {
 	private String id;
 	private String displayname;
 	private String tag;
-	private Type type;
+	private List<Type> types;
 	private double method;
 	private double salary;
 	private double maxSalary;
@@ -50,12 +50,12 @@ public class Job {
 	private boolean useWhitelist;
 	private List<Object> whitelist;
 	private List<String> stringWhitelist;
-	
-	public Job(String id, String displayname, String tag, Type type, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
+
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
-		this.type = type;
+		this.types = types;
 		this.method = method;
 		this.salary = salary;
 		this.maxSalary = maxSalary;
@@ -64,53 +64,48 @@ public class Job {
 		this.methodFrequency = methodFrequency;
 		this.economy = economy;
 		this.workMessage = workMessage;
-		
+
 		this.slot = slot;
 		Material m = OtherUtils.matchMaterial(item);
 		this.item = m;
 		this.itemData = itemData;
 		this.enchanted = enchanted;
-		
+
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
-			String whitelistType = type.getWhitelistType();
-			if(whitelistType.equals("material")) {
-				List<Material> list = new ArrayList<Material>();
-				for(String s : whitelist) {
-					Material matNew = OtherUtils.matchMaterial(s);
-					if(matNew == null) continue;
-					list.add(matNew);
-				}
-				this.whitelist = new ArrayList<Object>(list);
-			} else if(whitelistType.equals("entity")) {
-				List<EntityType> list = new ArrayList<EntityType>();
-				for(String s : whitelist) {
-					EntityType entityNew = OtherUtils.getEntityByName(s);
-					if(entityNew == null) continue;
-					list.add(entityNew);
-				}
-				this.whitelist = new ArrayList<Object>(list);
-			} else if(whitelistType.equals("job")) {
-				Job j = this;
-				new BukkitRunnable() {
-					public void run() {
-						List<Job> list = new ArrayList<Job>();
-						for(String s : whitelist) {
-							Job jobNew = PicoJobsAPI.getJobsManager().getJob(s);
-							if(jobNew == null) continue;
-							list.add(jobNew);
-						}
-						j.whitelist = new ArrayList<Object>(list);
+			this.whitelist = new ArrayList<Object>();
+			for(Type type: this.types) {
+				String whitelistType = type.getWhitelistType();
+				if(whitelistType.equals("material")) {
+					for(String s : whitelist) {
+						Material matNew = OtherUtils.matchMaterial(s);
+						if(matNew == null) continue;
+						this.whitelist.add(matNew);
 					}
-				}.runTask(PicoJobsPlugin.getInstance());
-			} else if(whitelistType.equals("color")) {
-				List<DyeColor> list = new ArrayList<DyeColor>();
-				for(String s : whitelist) {
-					DyeColor colorNew = DyeColor.valueOf(s.toUpperCase(Locale.ROOT));
-					if(colorNew == null) continue;
-					list.add(colorNew);
+				} else if(whitelistType.equals("entity")) {
+					for(String s : whitelist) {
+						EntityType entityNew = OtherUtils.getEntityByName(s);
+						if(entityNew == null) continue;
+						this.whitelist.add(entityNew);
+					}
+				} else if(whitelistType.equals("job")) {
+					Job j = this;
+					new BukkitRunnable() {
+						public void run() {
+							for(String s : whitelist) {
+								Job jobNew = PicoJobsAPI.getJobsManager().getJob(s);
+								if(jobNew == null) continue;
+								j.whitelist.add(jobNew);
+							}
+						}
+					}.runTask(PicoJobsPlugin.getInstance());
+				} else if(whitelistType.equals("color")) {
+					for(String s : whitelist) {
+						DyeColor colorNew = DyeColor.valueOf(s.toUpperCase(Locale.ROOT));
+						if(colorNew == null) continue;
+						this.whitelist.add(colorNew);
+					}
 				}
-				this.whitelist = new ArrayList<Object>(list);
 			}
 			this.stringWhitelist = whitelist;
 		} else {
@@ -154,9 +149,9 @@ public class Job {
 	 * @return the type of the job
 	 * @author Picono435
 	 */
-	public Type getType() {
-		if(this.type == null) this.type = Type.BREAK;
-		return this.type;
+	public List<Type> getTypes() {
+		if(this.types == null) this.types = new ArrayList<>();
+		return this.types;
 	}
 	
 	/**
@@ -246,7 +241,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWorkMessage() {
-		String configString = type.name().toLowerCase() + "-work";
+		String configString = types.get(0).name().toLowerCase() + "-work";
 		String work = "";
 		
 		if(this.workMessage == null) {

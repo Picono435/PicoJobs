@@ -12,11 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
@@ -72,26 +68,22 @@ import io.github.slimjar.app.builder.ApplicationBuilder;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
-	public PicoJobsPlugin()
-    {
+	public PicoJobsPlugin() {
         super();
-        this.isTestEnvironment = true;
     }
 
-    protected PicoJobsPlugin(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file)
-    {
+    protected PicoJobsPlugin(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
         super(loader, description, dataFolder, file);
-        this.isTestEnvironment = true;
     }
 	
 	//PLUGIN
 	private static PicoJobsPlugin instance;
+	public static boolean isTestEnvironment = false;
 	private String serverVersion;
 	private boolean oldVersion;
 	private String lastestPluginVersion;
 	private String downloadUrl;
 	private Metrics metrics;
-	private boolean isTestEnvironment;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -114,7 +106,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 				sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
 				e.printStackTrace();
 				Bukkit.getPluginManager().disablePlugin(this);
-				return;
 			}
 		}
 	}
@@ -254,8 +245,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
 			String tag = jobc.getString("tag");
-			String typeString = jobc.getString("type");
-			Type type = Type.getType(typeString.toUpperCase(Locale.ROOT));
+			List<Type> types;
+			if(jobc.contains("types")) {
+				types = Type.getTypes(jobc.getStringList("types"));
+			} else {
+				types = new ArrayList<Type>();
+			}
+			if(jobc.contains("type")) {
+				String typeString = jobc.getString("type");
+				types.add(Type.getType(typeString.toUpperCase(Locale.ROOT)));
+			}
 			double method = jobc.getDouble("method");
 			double salary = jobc.getDouble("salary");
 			double maxSalary = jobc.getDouble("max-salary");
@@ -277,8 +276,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
 			List<String> whitelist = jobc.getStringList("whitelist");
-			
-			Job job = new Job(jobid, displayname, tag, type, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
+
+			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
+
 			jobs.put(jobid, job);
 			
 			if(!isTestEnvironment) {
@@ -286,7 +286,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 			        Map<String, Map<String, Integer>> map = new HashMap<>();
 			        Map<String, Integer> entry = new HashMap<>();
 			        entry.put(jobid, 1);
-			        map.put(type.name(), entry);
+			        for(Type type : types) {
+						map.put(type.name(), entry);
+					}
 			        return map;
 			    }));
 

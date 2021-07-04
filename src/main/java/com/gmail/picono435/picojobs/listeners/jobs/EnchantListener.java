@@ -22,7 +22,7 @@ public class EnchantListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.ENCHANTING) return;
+		if(!job.getTypes().contains(Type.ENCHANTING)) return;
 		
 		if(!job.inWhitelist(e.getItem().getType())) return;
 		

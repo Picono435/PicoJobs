@@ -19,6 +19,7 @@ public class TestPlugin {
     @BeforeAll
     public static void setUp() {
         server = MockBukkit.mock();
+        PicoJobsPlugin.isTestEnvironment = true;
         plugin = MockBukkit.load(PicoJobsPlugin.class);
         player = server.addPlayer();
     }
@@ -30,7 +31,7 @@ public class TestPlugin {
     
     @Test
     void chooseJob() {
-    	Assertions.assertEquals(true, player.performCommand("jobs"));
+    	Assertions.assertTrue(player.performCommand("jobs"));
     }
     
 }

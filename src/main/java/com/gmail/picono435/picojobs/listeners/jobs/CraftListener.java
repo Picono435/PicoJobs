@@ -28,7 +28,7 @@ public class CraftListener implements Listener {
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(job.getType() != Type.CRAFT) return;
+		if(!job.getTypes().contains(Type.CRAFT)) return;
 		
 		if(!job.inWhitelist(e.getCurrentItem().getType())) return;
 		

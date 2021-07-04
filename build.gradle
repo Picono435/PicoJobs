@@ -19,7 +19,7 @@ targetCompatibility = '1.8'
 
 versioning {
    releaseMode = { nextTag, lastTag, currentTag, extension ->
-       "1.0-beta-3b"
+       "1.0-beta-3c"
    }
 }
 
