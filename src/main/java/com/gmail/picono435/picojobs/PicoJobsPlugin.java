@@ -70,22 +70,20 @@ public class PicoJobsPlugin extends JavaPlugin {
 
 	public PicoJobsPlugin() {
         super();
-        this.isTestEnvironment = true;
     }
 
     protected PicoJobsPlugin(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
         super(loader, description, dataFolder, file);
-        this.isTestEnvironment = true;
     }
 	
 	//PLUGIN
 	private static PicoJobsPlugin instance;
+	public static boolean isTestEnvironment = false;
 	private String serverVersion;
 	private boolean oldVersion;
 	private String lastestPluginVersion;
 	private String downloadUrl;
 	private Metrics metrics;
-	private boolean isTestEnvironment;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -251,7 +249,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(jobc.contains("types")) {
 				types = Type.getTypes(jobc.getStringList("types"));
 			} else {
-				types = new ArrayList<>();
+				types = new ArrayList<Type>();
 			}
 			if(jobc.contains("type")) {
 				String typeString = jobc.getString("type");

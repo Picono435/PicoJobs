@@ -37,7 +37,8 @@ public enum Type {
 	}
 
 	public static List<Type> getTypes(List<String> names) {
-		List<Type> types = new ArrayList<>();
+		System.out.println(names);
+		List<Type> types = new ArrayList<Type>();
 		for(String name : names) {
 			types.add(getType(name));
 		}
