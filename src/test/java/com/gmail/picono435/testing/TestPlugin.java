@@ -19,8 +19,8 @@ public class TestPlugin {
     @BeforeAll
     public static void setUp() {
         server = MockBukkit.mock();
-        plugin = MockBukkit.load(PicoJobsPlugin.class);
         PicoJobsPlugin.isTestEnvironment = true;
+        plugin = MockBukkit.load(PicoJobsPlugin.class);
         player = server.addPlayer();
     }
     
