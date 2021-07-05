@@ -26,7 +26,7 @@ public class ClickInventoryListener implements Listener {
 	
 	@EventHandler()
 	public void onBasicClick(InventoryClickEvent e) {
-		if(e.getCurrentItem() == null || e.getCurrentItem().getItemMeta() == null || e.getCurrentItem().getItemMeta().getDisplayName() == null) return;
+		if(e.getCurrentItem() == null || !e.getCurrentItem().hasItemMeta()) return;
 		
 		/*
 		 * Choose Jobs Menu Clicking Event

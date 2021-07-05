@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.*
+
 buildscript {
     dependencies {
         classpath fileTree(dir: './gradle/',
@@ -68,7 +70,7 @@ dependencies {
     slim 'org.mongodb:mongodb-driver-sync:4.2.3'
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:1.4.200'
-    slim 'org.xerial:sqlite-jdbc:3.36.0'
+    slim 'org.xerial:sqlite-jdbc:3.36.0.1'
     slim 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
     slim 'mysql:mysql-connector-java:8.0.25'
     implementation 'org.spongepowered:configurate-core:4.1.1'
@@ -107,15 +109,11 @@ shadowJar {
 }
 
 processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: getVersion(), description: project.description]
-    }
-}
-
-task getVersion {
-    doLast {
-        return project.version
-    }
+    filter ReplaceTokens, tokens: [
+            "name": project.property("name"),
+            "version": project.property("version"),
+            "description": project.property("description")
+    ]
 }
 
 rootProject.tasks.named("processResources") {
