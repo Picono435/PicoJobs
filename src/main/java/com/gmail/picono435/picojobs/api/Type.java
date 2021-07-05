@@ -37,7 +37,6 @@ public enum Type {
 	}
 
 	public static List<Type> getTypes(List<String> names) {
-		System.out.println(names);
 		List<Type> types = new ArrayList<Type>();
 		for(String name : names) {
 			types.add(getType(name));
@@ -45,7 +44,7 @@ public enum Type {
 		return types;
 	}
 	
-	private String whitelistType;
+	private final String whitelistType;
 	
 	private Type(String whitelistType) {
 		this.whitelistType = whitelistType;
