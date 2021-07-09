@@ -141,9 +141,7 @@ artifacts {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.gmail.picono435'
-            artifactId = 'picojobs'
-            version = project.property("version") as Publication
+            from components.java
         }
     }
     repositories {
