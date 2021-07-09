@@ -137,3 +137,8 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+wrapper {
+    gradleVersion = "7.1.1"
+    distributionType = Wrapper.DistributionType.ALL
+}
