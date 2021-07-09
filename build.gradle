@@ -138,7 +138,15 @@ artifacts {
     archives javadocJar
 }
 
-wrapper {
-    gradleVersion = "7.1.1"
-    distributionType = Wrapper.DistributionType.ALL
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.gmail.picono435'
+            artifactId = 'picojobs'
+            version = project.property("version") as Publication
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
 }
