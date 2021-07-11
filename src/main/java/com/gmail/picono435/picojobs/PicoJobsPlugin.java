@@ -208,21 +208,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public boolean isNewerThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) >= 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return serverVersionArt.compareTo(legacyVersion) >= 0;
 	}
 	
 	public boolean isOlderThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) <= 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return serverVersionArt.compareTo(legacyVersion) <= 0;
 	}
 	
 	public boolean isOldVersion() {

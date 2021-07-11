@@ -17,7 +17,6 @@ public class MilkListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onTakeMilk(PlayerBucketFillEvent  e) {
-		if(e.getPlayer() == null) return;
 		Block b = e.getBlockClicked();
 		if(b.isLiquid()) return;
 		Player p = e.getPlayer();
