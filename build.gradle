@@ -92,7 +92,7 @@ dependencies {
     implementation 'org.apache.maven:maven-artifact:3.8.1'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
     slim 'org.slf4j:slf4j-simple:1.7.31'
-    slim 'org.slf4j:slf4j-api:1.7.31'
+    slim 'org.slf4j:slf4j-api:1.7.32'
     testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.3.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testCompileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
