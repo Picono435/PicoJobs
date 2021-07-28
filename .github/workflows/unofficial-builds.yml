@@ -3,7 +3,7 @@
 
 name: Unofficial Builds
 
-on: pull_request
+on: []
 
 jobs:
   build-java16:
