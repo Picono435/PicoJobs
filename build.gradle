@@ -68,10 +68,10 @@ repositories {
 
 dependencies {
     // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     // Storage Methods
-    slim 'org.mongodb:mongodb-driver-sync:4.2.3'
-    slim 'com.zaxxer:HikariCP:4.0.3'
+    slim 'org.mongodb:mongodb-driver-sync:4.3.0'
+    slim 'com.zaxxer:HikariCP:5.0.0'
     slim 'com.h2database:h2:1.4.200'
     slim 'org.xerial:sqlite-jdbc:3.36.0.1'
     slim 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
@@ -81,22 +81,22 @@ dependencies {
     implementation 'org.spongepowered:configurate-yaml:4.1.1'
     implementation 'org.spongepowered:configurate-hocon:4.1.1'
     // Plugins API
-    compileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
+    compileOnly('me.clip:placeholderapi:2.10.10') { transitive = false }
     compileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
     compileOnly('org.black_ixx:playerpoints:3.0.3') { transitive = false }
     compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
     // Other libraries
     implementation 'com.github.mkremins:fanciful:18dc039f5b'
-    slim 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3'
+    slim 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4'
     implementation 'org.apache.maven:maven-artifact:3.8.1'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
     slim 'org.slf4j:slf4j-simple:1.7.32'
     slim 'org.slf4j:slf4j-api:1.7.32'
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.3.2'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.5.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-    testCompileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
-    testCompileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
+    testCompileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
+    testCompileOnly('me.clip:placeholderapi:2.10.10') { transitive = false }
     testCompileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
     testCompileOnly('org.black_ixx:playerpoints:3.0.3') { transitive = false }
     testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
