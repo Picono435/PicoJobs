@@ -138,12 +138,12 @@ public class PicoJobsPlugin extends JavaPlugin {
         
         // SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
         PicoJobsAPI.registerEconomy(new ExpImplementation());
-        VaultHook.setupVault();
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
         PlaceholderAPIHook.setupPlaceholderAPI();
         new BukkitRunnable() {
         	public void run() {
+				VaultHook.setupVault();
         		Bukkit.getConsoleSender().sendMessage("[PicoJobs] " + economies.size() + " " + ChatColor.GREEN + "economy implementations successfully registered!");
         	}
         }.runTaskLater(this, 1L);
