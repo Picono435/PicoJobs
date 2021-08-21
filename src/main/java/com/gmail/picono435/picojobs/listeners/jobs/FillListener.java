@@ -19,11 +19,12 @@ public class FillListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onFillBucket(PlayerBucketFillEvent  e) {
+		if(e.getPlayer() == null) return;
 		Block b = e.getBlockClicked();
-		if(PicoJobsPlugin.getInstance().isNewerThan("1.17")) {
-			if(!b.isLiquid() && b.getType() == Material.POWDER_SNOW) return;
+		if(!PicoJobsPlugin.getInstance().isNewerThan("1.17")) {
+			if(b == null || (!b.isLiquid())) return;
 		} else {
-			if(!b.isLiquid()) return;
+			if(b == null || (!b.isLiquid() && b.getType() == Material.POWDER_SNOW)) return;
 		}
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
