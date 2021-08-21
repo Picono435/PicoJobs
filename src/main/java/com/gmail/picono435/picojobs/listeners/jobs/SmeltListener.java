@@ -21,13 +21,12 @@ public class SmeltListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onCraftItem(InventoryClickEvent e) {
 		if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) return;
-		if(!PicoJobsPlugin.getInstance().isNewerThan("1.14")) {
+		if(PicoJobsPlugin.getInstance().isNewerThan("1.14")) {
 			if(e.getInventory().getType() != InventoryType.FURNACE && e.getInventory().getType() != InventoryType.valueOf("BLAST_FURNACE") && e.getInventory().getType() != InventoryType.valueOf("SMOKER")) return;
 		} else {
 			if(e.getInventory().getType() != InventoryType.FURNACE) return;
 		}
 		if(e.getSlotType() != SlotType.RESULT) return;
-		if(e.getWhoClicked() == null) return;
 		Player p = (Player) e.getWhoClicked();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

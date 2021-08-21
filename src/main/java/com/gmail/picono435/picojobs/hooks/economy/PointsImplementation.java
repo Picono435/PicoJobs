@@ -24,12 +24,12 @@ public class PointsImplementation extends EconomyImplementation {
 
 	@Override
 	public void deposit(Player player, double amount) {
-		PlayerPointsHook.getPlayerPointsAPI().give(player.getUniqueId(), (int)amount);
+		PlayerPointsHook.getPlayerPointsAPI().giveAsync(player.getUniqueId(), (int)amount);
 	}
 
 	@Override
 	public void withdraw(Player player, double amount) {
-		PlayerPointsHook.getPlayerPointsAPI().take(player.getUniqueId(), (int)amount);
+		PlayerPointsHook.getPlayerPointsAPI().takeAsync(player.getUniqueId(), (int)amount);
 	}
 
 }

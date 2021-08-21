@@ -3,7 +3,6 @@ package com.gmail.picono435.picojobs.hooks;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.hooks.economy.PointsImplementation;
@@ -26,10 +25,8 @@ public class PlayerPointsHook {
 		return isEnabled;
 	}
 	
-	private static boolean hookPlayerPoints() {
-	    final Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints");
-	    playerPoints = PlayerPoints.class.cast(plugin);
-	    return playerPoints != null; 
+	private static void hookPlayerPoints() {
+	    playerPoints = PlayerPoints.getInstance();
 	}
 	
 	public static PlayerPointsAPI getPlayerPointsAPI() {
