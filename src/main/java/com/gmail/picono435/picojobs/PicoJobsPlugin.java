@@ -370,13 +370,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 			} else {
 				new BukkitRunnable() {
 					public void run() {
-						sendConsoleMessage(Level.INFO, "You are using the lastest version of the plugin.");
+						sendConsoleMessage(Level.INFO, "You are using the latest version of the plugin.");
 						return;
 					}
 				}.runTaskLater(this, 40L);
 			}
 		} catch (Exception e) {
-			sendConsoleMessage(Level.WARNING, "Could not get the lastest version.");
+			sendConsoleMessage(Level.WARNING, "Could not get the latest version.");
 			e.printStackTrace();
 			return;
 		}
