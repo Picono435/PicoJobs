@@ -79,6 +79,8 @@ repositories {
 }
 
 dependencies {
+    // Slimjar
+    implementation slimjar("1.2.5")
     // Spigot
     compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     // Storage Methods
@@ -112,16 +114,26 @@ dependencies {
     testCompileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
     testCompileOnly('org.black_ixx:playerpoints:3.0.3') { transitive = false }
     testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
-    implementation slimjar("1.2.5")
 }
 
-test {
-    useJUnitPlatform()
+slimJar {
+    relocate 'org.mongodb', 'com.gmail.picono435.picojobs.libs.mongodb'
+    relocate 'com.zaxxer', 'com.gmail.picono435.picojobs.libs.zaxxer'
+    relocate 'com.h2database', 'com.gmail.picono435.picojobs.libs.h2database'
+    relocate 'org.xerial', 'com.gmail.picono435.picojobs.libs.xerial'
+    relocate 'org.mariadb.jbdc', 'com.gmail.picono435.picojobs.libs.mariadb'
+    relocate 'mysql', 'com.gmail.picono435.picojobs.libs.mysql'
+    relocate 'com.fasterxml.jackson', 'com.gmail.picono435.picojobs.libs.jackson'
+    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.slf4j'
 }
 
 shadowJar {
-   relocate 'org.bstats', 'com.gmail.picono435.picojobs'
-   archiveClassifier = ''
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.metrics'
+    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.apache'
+    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.spongepowered'
+    relocate 'com.github.mkremins', 'com.gmail.picono435.picojobs.libs.mkremins'
+    relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.slimjar'
+    archiveClassifier = ''
 }
 
 processResources {
@@ -130,6 +142,10 @@ processResources {
             "version": project.property("version"),
             "description": project.property("description")
     ]
+}
+
+test {
+    useJUnitPlatform()
 }
 
 rootProject.tasks.named("processResources") {
