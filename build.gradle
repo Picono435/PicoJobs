@@ -9,8 +9,9 @@ buildscript {
 
 plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
-    id 'io.github.slimjar' version '1.2.1'
+    id 'io.github.slimjar' version '1.3.0'
     id 'java'
+    id 'maven-publish'
     id 'net.nemerosa.versioning' version '2.14.0'
 }
 
@@ -21,8 +22,8 @@ targetCompatibility = '1.8'
 
 versioning {
    releaseMode = { nextTag, lastTag, currentTag, extension ->
-       "1.0-beta-3c"
-   }
+       "1.0-beta-3d"
+   } as Object
 }
 
 if (System.getenv("STABLE_BUILD") != null) {
@@ -39,11 +40,15 @@ repositories {
     mavenCentral()
 
     maven {
-        url = 'https://jcenter.bintray.com'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
 
     maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/central'
     }
 
     maven {
@@ -61,51 +66,74 @@ repositories {
     maven {
         url = 'https://repo.codemc.org/repository/maven-public'
     }
+
+    maven {
+        url = 'https://repo.rosewooddev.io/repository/public/'
+    }
+
+    maven {
+        url = 'https://repo.vshnv.tech/'
+    }
+
+    mavenLocal()
 }
 
 dependencies {
+    // Slimjar
+    implementation slimjar("1.2.5")
     // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     // Storage Methods
-    slim 'org.mongodb:mongodb-driver-sync:4.2.3'
+    slim 'org.mongodb:mongodb-driver-sync:4.3.2'
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:1.4.200'
-    slim 'org.xerial:sqlite-jdbc:3.36.0.1'
-    slim 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
-    slim 'mysql:mysql-connector-java:8.0.25'
-    implementation 'org.spongepowered:configurate-core:4.1.1'
-    implementation 'org.spongepowered:configurate-gson:4.1.1'
-    implementation 'org.spongepowered:configurate-yaml:4.1.1'
-    implementation 'org.spongepowered:configurate-hocon:4.1.1'
+    slim 'org.xerial:sqlite-jdbc:3.36.0.3'
+    slim 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
+    slim 'mysql:mysql-connector-java:8.0.26'
+    implementation 'org.spongepowered:configurate-core:4.1.2'
+    implementation 'org.spongepowered:configurate-gson:4.1.2'
+    implementation 'org.spongepowered:configurate-yaml:4.1.2'
+    implementation 'org.spongepowered:configurate-hocon:4.1.2'
     // Plugins API
-    compileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
-    compileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
-    compileOnly('com.github.Mitsugaru:PlayerPoints:master-SNAPSHOT') { transitive = false }
+    compileOnly('me.clip:placeholderapi:2.10.10') { transitive = false }
+    compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
+    compileOnly('org.black_ixx:playerpoints:3.0.3') { transitive = false }
     compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
     // Other libraries
     implementation 'com.github.mkremins:fanciful:18dc039f5b'
-    slim 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3'
-    implementation 'org.apache.maven:maven-artifact:3.8.1'
+    slim 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5'
+    implementation 'org.apache.maven:maven-artifact:3.8.2'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
-    slim 'org.slf4j:slf4j-simple:1.7.31'
-    slim 'org.slf4j:slf4j-api:1.7.31'
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.3.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-    testCompileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
-    testCompileOnly('me.clip:placeholderapi:2.10.9') { transitive = false }
+    slim 'org.slf4j:slf4j-simple:1.7.32'
+    slim 'org.slf4j:slf4j-api:1.7.32'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.5.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
+    testCompileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
+    testCompileOnly('me.clip:placeholderapi:2.10.10') { transitive = false }
     testCompileOnly('com.github.MilkBowl:VaultAPI:1.7') { transitive = false }
-    testCompileOnly('com.github.Mitsugaru:PlayerPoints:master-SNAPSHOT') { transitive = false }
+    testCompileOnly('org.black_ixx:playerpoints:3.0.3') { transitive = false }
     testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
 }
 
-test {
-    useJUnitPlatform()
+slimJar {
+    relocate 'org.mongodb', 'com.gmail.picono435.picojobs.libs.mongodb'
+    relocate 'com.zaxxer', 'com.gmail.picono435.picojobs.libs.zaxxer'
+    relocate 'com.h2database', 'com.gmail.picono435.picojobs.libs.h2database'
+    relocate 'org.xerial', 'com.gmail.picono435.picojobs.libs.xerial'
+    relocate 'org.mariadb.jbdc', 'com.gmail.picono435.picojobs.libs.mariadb'
+    relocate 'mysql', 'com.gmail.picono435.picojobs.libs.mysql'
+    relocate 'com.fasterxml.jackson', 'com.gmail.picono435.picojobs.libs.jackson'
+    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.slf4j'
 }
 
 shadowJar {
-   relocate 'org.bstats', 'com.gmail.picono435.picojobs'
-   archiveClassifier = ''
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.metrics'
+    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.apache'
+    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.spongepowered'
+    relocate 'com.github.mkremins', 'com.gmail.picono435.picojobs.libs.mkremins'
+    relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.slimjar'
+    archiveClassifier = ''
 }
 
 processResources {
@@ -116,6 +144,36 @@ processResources {
     ]
 }
 
+test {
+    useJUnitPlatform()
+}
+
 rootProject.tasks.named("processResources") {
     duplicatesStrategy = 'include'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
 }
