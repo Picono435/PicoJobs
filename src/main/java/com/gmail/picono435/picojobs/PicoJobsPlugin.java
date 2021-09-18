@@ -93,20 +93,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onLoad() {
 		instance = this;
 		try {
-			Class.forName("com.fasterxml.jackson.databind.JsonNode");
-		} catch (ClassNotFoundException ex) {
-			try {
-				sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
-				ApplicationBuilder
-					.appending("PicoJobs")
-					.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
-					.build();
-				sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
-			} catch (Exception e) {
-				sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
-				e.printStackTrace();
-				Bukkit.getPluginManager().disablePlugin(this);
-			}
+			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
+			ApplicationBuilder
+				.appending("PicoJobs")
+				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
+				.build();
+			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
+		} catch (Exception e) {
+			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
+			e.printStackTrace();
+			Bukkit.getPluginManager().disablePlugin(this);
 		}
 	}
 	

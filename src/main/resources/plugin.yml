@@ -4,17 +4,17 @@ version: "@version@"
 softdepend: [Citizens, Vault, PlaceholderAPI, PlayerPoints, TokenManager]
 api-version: 1.13
 main: com.gmail.picono435.picojobs.PicoJobsPlugin
-libraries:
-  - org.mongodb:mongodb-driver-sync:4.2.3
-  - com.zaxxer:HikariCP:4.0.3
-  - com.h2database:h2:1.4.200
-  - org.xerial:sqlite-jdbc:3.34.0
-  - org.mariadb.jdbc:mariadb-java-client:2.7.3
-  - mysql:mysql-connector-java:8.0.25
-  - com.fasterxml.jackson.core:jackson-databind:2.12.3
-  - com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3
-  - org.slf4j:slf4j-simple:1.7.30
-  - org.slf4j:slf4j-api:1.7.30
+#libraries:
+#  - org.mongodb:mongodb-driver-sync:4.2.3
+#  - com.zaxxer:HikariCP:4.0.3
+#  - com.h2database:h2:1.4.200
+#  - org.xerial:sqlite-jdbc:3.34.0
+#  - org.mariadb.jdbc:mariadb-java-client:2.7.3
+#  - mysql:mysql-connector-java:8.0.25
+#  - com.fasterxml.jackson.core:jackson-databind:2.12.3
+#  - com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3
+#  - org.slf4j:slf4j-simple:1.7.30
+#  - org.slf4j:slf4j-api:1.7.30
 description: "@description@"
 commands:
   jobs:
