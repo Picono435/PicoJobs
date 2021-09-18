@@ -362,7 +362,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 						sendConsoleMessage(Level.WARNING, "Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
 						if(getConfig().getBoolean("auto-update")) {
 							if(updatePlugin(Bukkit.getConsoleSender(), "[PicoJobs] Plugin was updated to version "+ lastestVersion.toString() + " sucefully. Please restart the server to finish the update.")) {
-								sendConsoleMessage(Level.INFO, "Updating the plugin to the lastest version...");
+								sendConsoleMessage(Level.INFO, "Updating the plugin to the latest version...");
 							} else {
 								sendConsoleMessage(Level.WARNING, "An error occuried while updating the plugin.");
 							}
