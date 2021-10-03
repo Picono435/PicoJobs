@@ -80,7 +80,7 @@ repositories {
 
 dependencies {
     // Slimjar
-    implementation slimjar("1.2.5")
+    implementation slimjar("1.2.6")
     // Spigot
     compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     // Storage Methods
