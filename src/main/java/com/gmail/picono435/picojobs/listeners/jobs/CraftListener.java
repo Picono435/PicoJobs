@@ -34,6 +34,7 @@ public class CraftListener implements Listener {
 		if (!e.isLeftClick() && !e.isRightClick()) return;
 		if (!(e.getWhoClicked() instanceof Player)) return;
 		Player p = (Player) e.getWhoClicked();
+		if (p.getInventory().firstEmpty() == -1 && e.isShiftClick()) return;
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
