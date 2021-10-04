@@ -103,7 +103,7 @@ dependencies {
     implementation 'com.github.mkremins:fanciful:18dc039f5b'
     slim 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
     slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5'
-    implementation 'org.apache.maven:maven-artifact:3.8.2'
+    implementation 'org.apache.maven:maven-artifact:3.8.3'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
     slim 'org.slf4j:slf4j-simple:1.7.32'
     slim 'org.slf4j:slf4j-api:1.7.32'
