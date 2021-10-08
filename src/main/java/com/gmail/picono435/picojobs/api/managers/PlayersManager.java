@@ -31,6 +31,15 @@ public class PlayersManager {
 	 */
 	public JobPlayer getJobPlayer(Player p) {
 		JobPlayer jp = PicoJobsAPI.getStorageManager().getCacheManager().getFromCache(p.getUniqueId());
+		if(jp == null) {
+			getJobPlayerFromStorage(p.getUniqueId()).thenAcceptAsync(result -> {
+				if(result == null) {
+					PicoJobsPlugin.getInstance().getLogger().log(Level.WARNING, "An error occuried while trying to retrieve jobplayer " + p.getUniqueId() + ", the following stack traces will be consequence of this error.");
+				} else {
+					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
+				}
+			});
+		}
 		return jp;
 	}
 	
@@ -44,6 +53,15 @@ public class PlayersManager {
 	 */
 	public JobPlayer getJobPlayer(UUID uuid) {
 		JobPlayer jp = PicoJobsAPI.getStorageManager().getCacheManager().getFromCache(uuid);
+		if(jp == null) {
+			getJobPlayerFromStorage(uuid).thenAcceptAsync(result -> {
+				if(result == null) {
+					PicoJobsPlugin.getInstance().getLogger().log(Level.WARNING, "An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be consequence of this error.");
+				} else {
+					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
+				}
+			});
+		}
 		return jp;
 	}
 	
