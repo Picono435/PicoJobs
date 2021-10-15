@@ -81,6 +81,7 @@ milk-work: "lấy %a% Sữa Từ Bò"
 kill_entity-work: "giết Thực Thể %a%"
 #When something is not find what should it appear
 none-format: "Không"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
