@@ -83,6 +83,7 @@ milk-work: "take %a% milks from cows"
 kill_entity-work: "kill %a% entities"
 # When something is not find what should it appear
 none-format: "None"
+default-tag: ""
 
 #################################################################################
 #                                                                               #

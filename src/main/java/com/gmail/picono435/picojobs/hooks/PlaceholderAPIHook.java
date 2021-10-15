@@ -25,7 +25,7 @@ public class PlaceholderAPIHook {
 	
 	public static void setupPlaceholderAPI() {
 		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The recommended dependency PlaceholderAPI was not found. Some features may not work well!");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The recommended dependency PlaceholderAPI was not found. PicoJobs placeholders will not work in other plugins.");
 			return;
 		}
 		isEnabled = true;
@@ -77,6 +77,7 @@ public class PlaceholderAPIHook {
 		NumberFormat df = NumberFormat.getNumberInstance(Locale.getDefault());
 		
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+
     	
         if(identifier.equals("job")) {
             if(!jp.hasJob()) {
@@ -87,7 +88,7 @@ public class PlaceholderAPIHook {
         
         if(identifier.equals("tag")) {
         	if(!jp.hasJob()) {
-        		return "";
+        		return LanguageManager.getFormat("default-tag", p);
         	}
         	return jp.getJob().getTag();
         }
