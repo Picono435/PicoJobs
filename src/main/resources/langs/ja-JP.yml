@@ -81,6 +81,7 @@ milk-work: "牛乳から %a% ミルクを採取する"
 kill_entity-work: "%a%のエンティティをキルする"
 #When something is not find what should it appear
 none-format: "なし"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
