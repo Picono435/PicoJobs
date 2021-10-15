@@ -81,6 +81,7 @@ milk-work: "neem %a% melk van koeien"
 kill_entity-work: "dood %a% entiteiten"
 #When something is not find what should it appear
 none-format: "geen"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
