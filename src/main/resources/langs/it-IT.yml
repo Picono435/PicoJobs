@@ -81,6 +81,7 @@ milk-work: "prendere il %a% di latte dalle vacche"
 kill_entity-work: "uccidi %a% entità"
 #When something is not find what should it appear
 none-format: "Nessuno"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
