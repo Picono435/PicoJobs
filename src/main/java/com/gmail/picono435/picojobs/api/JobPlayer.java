@@ -266,8 +266,10 @@ public class JobPlayer {
 		double level = getMethodLevel();
 		double method = getMethod();
 		setMethod(method + 1);
-				
-		int reqmethod = (int) (getJob().getMethod() * level * getJob().getMethodFrequency());
+
+		double req1 = level * getJob().getMethodFrequency();
+		if(req1 <= 0) req1 = 1;
+		int reqmethod = (int) (getJob().getMethod() * req1);
 		if(reqmethod == 0) reqmethod = 1;
 		
 		if(getMethod() >= reqmethod) {
@@ -276,7 +278,9 @@ public class JobPlayer {
 			if(event.isCancelled()) {
 				return false;
 			}
-			double salary = getJob().getSalary() * level * getJob().getSalaryFrequency();
+			double sal1 = level * getJob().getSalaryFrequency();
+			if(sal1 <= 0) sal1 = 1;
+			double salary = getJob().getSalary() * sal1;
 			if(salary > getJob().getMaxSalary()) {
 				salary = getJob().getMaxSalary();
 			}
