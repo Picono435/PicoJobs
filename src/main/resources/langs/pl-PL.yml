@@ -81,6 +81,7 @@ milk-work: "zabij %a% mleka od krów"
 kill_entity-work: "zabij %a% obiektów"
 #When something is not find what should it appear
 none-format: "Brak"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
