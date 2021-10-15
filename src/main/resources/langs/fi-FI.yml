@@ -81,6 +81,7 @@ milk-work: "ottaa %a% maitoa lehmistä"
 kill_entity-work: "tappaa %a% entiteetit"
 #When something is not find what should it appear
 none-format: "Ei Mitään"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

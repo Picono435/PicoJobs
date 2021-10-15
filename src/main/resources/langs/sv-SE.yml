@@ -81,6 +81,7 @@ milk-work: "ta %a% mjölk från kor"
 kill_entity-work: "döda %a% enheter"
 #When something is not find what should it appear
 none-format: "Ingen"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

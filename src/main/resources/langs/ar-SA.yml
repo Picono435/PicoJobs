@@ -81,6 +81,7 @@ milk-work: "أخذ %a% من الحليب من الأبقار"
 kill_entity-work: "اقتل %aمن الكيانات"
 #When something is not find what should it appear
 none-format: "لا"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

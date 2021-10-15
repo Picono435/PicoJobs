@@ -81,6 +81,7 @@ milk-work: "возьмите %a% молока у коров"
 kill_entity-work: "убить %a% сущностей"
 #When something is not find what should it appear
 none-format: "Нет"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

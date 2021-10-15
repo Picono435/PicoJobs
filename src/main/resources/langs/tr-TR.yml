@@ -81,6 +81,7 @@ milk-work: "ineklerden %a% kova süt sağ"
 kill_entity-work: "%a% varlık öldür"
 #When something is not find what should it appear
 none-format: "Yok"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

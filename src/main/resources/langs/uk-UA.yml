@@ -81,6 +81,7 @@ milk-work: "взяти %a% молока з корів"
 kill_entity-work: "вбити %a% об'єктів"
 #When something is not find what should it appear
 none-format: "Без ефекту"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

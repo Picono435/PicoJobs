@@ -81,6 +81,7 @@ milk-work: "ia %a% lapte de la vaci"
 kill_entity-work: "omoară %a% entități"
 #When something is not find what should it appear
 none-format: "Niciunul"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

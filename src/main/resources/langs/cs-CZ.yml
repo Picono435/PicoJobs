@@ -81,6 +81,7 @@ milk-work: "odebrat %a% mléka od krav"
 kill_entity-work: "zabij %a% entit"
 #When something is not find what should it appear
 none-format: "Nic"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #

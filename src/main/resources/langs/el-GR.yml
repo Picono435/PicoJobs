@@ -81,6 +81,7 @@ milk-work: "λήψη %a% γάλακτος από αγελάδες"
 kill_entity-work: "σκοτώνει %a% οντότητες"
 #When something is not find what should it appear
 none-format: "Κανένα"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
