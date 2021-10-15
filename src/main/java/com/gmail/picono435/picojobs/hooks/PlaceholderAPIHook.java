@@ -77,7 +77,7 @@ public class PlaceholderAPIHook {
 		NumberFormat df = NumberFormat.getNumberInstance(Locale.getDefault());
 		
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
-
+		if(jp == null) return null;
     	
         if(identifier.equals("job")) {
             if(!jp.hasJob()) {
