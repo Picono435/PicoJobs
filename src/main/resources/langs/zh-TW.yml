@@ -81,6 +81,7 @@ milk-work: "從奶牛身上擠出 %a% 桶牛奶"
 kill_entity-work: "殺死 %a% 只實體"
 #When something is not find what should it appear
 none-format: "無"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
