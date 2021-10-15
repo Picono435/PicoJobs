@@ -107,7 +107,7 @@ dependencies {
     implementation 'org.bstats:bstats-bukkit:2.2.1'
     slim 'org.slf4j:slf4j-simple:1.7.32'
     slim 'org.slf4j:slf4j-api:1.7.32'
-    testImplementation 'com.github.seeseemelk:MockBukkit:v1.17-SNAPSHOT'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testCompileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     testCompileOnly('me.clip:placeholderapi:2.10.10') { transitive = false }
