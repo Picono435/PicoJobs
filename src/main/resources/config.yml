@@ -42,7 +42,7 @@ storage:
   #
   # |  Flatfile/local database - don't require any extra configuration
   # |=> H2 (recommended)
-  # |=> SQL
+  # |=> SQLITE
   #
   # |  Readable & editable text files - don't require any extra configuration
   # |=> YAML (recommended)

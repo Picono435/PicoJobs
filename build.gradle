@@ -122,7 +122,7 @@ slimJar {
     relocate 'com.h2database', 'com.gmail.picono435.picojobs.libs.h2database'
     relocate 'org.xerial', 'com.gmail.picono435.picojobs.libs.xerial'
     relocate 'org.mariadb.jbdc', 'com.gmail.picono435.picojobs.libs.mariadb'
-    relocate 'mysql', 'com.gmail.picono435.picojobs.libs.mysql'
+    relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.mysql'
     relocate 'com.fasterxml.jackson', 'com.gmail.picono435.picojobs.libs.jackson'
     relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.slf4j'
 }

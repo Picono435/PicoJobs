@@ -1,5 +1,7 @@
 package com.gmail.picono435.picojobs.storage;
 
+import java.util.Arrays;
+import java.util.Locale;
 import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
@@ -26,7 +28,7 @@ public class StorageManager {
 	
 	public StorageFactory initializeStorageFactory() {
 		String method = PicoJobsAPI.getSettingsManager().getStorageMethod();
-		switch(method.toLowerCase()) {
+		switch(method.toLowerCase(Locale.ROOT)) {
 		case("mysql"): {
 			this.storageFactory = new MySqlStorage();
 			break;
