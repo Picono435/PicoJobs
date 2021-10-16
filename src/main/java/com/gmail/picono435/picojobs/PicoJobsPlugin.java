@@ -16,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
+import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
@@ -356,7 +357,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
 			lastestPluginVersion = version;
 			downloadUrl = json.get("downloadUrl").getAsString();
-			if(lastestVersion.compareTo(pluginVersion) > 0) {
+			boolean isRunningInOld = lastestVersion.compareTo(pluginVersion) > 0;
+			if(getDescription().getVersion().endsWith("-DEV")) {
+				isRunningInOld = !GitHubAPI.isTagLatest(version);
+			}
+			if(isRunningInOld) {
 				new BukkitRunnable() {
 					public void run() {
 						sendConsoleMessage(Level.WARNING, "Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
