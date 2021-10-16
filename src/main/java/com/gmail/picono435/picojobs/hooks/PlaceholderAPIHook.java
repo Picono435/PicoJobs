@@ -99,8 +99,10 @@ public class PlaceholderAPIHook {
         		return LanguageManager.getFormat("none-format", p);
         	}
         	double level = jp.getMethodLevel();
-        	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
-    		if(reqmethod == 0) reqmethod = 1;
+			double req1 = level * job.getMethodFrequency();
+			if(req1 <= 0) req1 = 1;
+			int reqmethod = (int) (job.getMethod() * req1);
+			if(reqmethod == 0) reqmethod = 1;
         	double value = reqmethod - jp.getMethod();
         	String workMessage = job.getWorkMessage();
         	workMessage = workMessage.replace("%a%", df.format(value));
