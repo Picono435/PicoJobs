@@ -115,6 +115,7 @@ public class ClickInventoryListener implements Listener {
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 			//Job job = jp.getJob();
 			String action = actionItems.get(e.getCurrentItem());
+			if(action == null) return;
 			if(action.equalsIgnoreCase("salary")) {
 				double salary = jp.getSalary();
 				if(salary <= 0) {

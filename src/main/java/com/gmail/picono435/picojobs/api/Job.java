@@ -224,7 +224,7 @@ public class Job {
 	/**
 	 * Gets the economy name of the job
 	 * 
-	 * @return the economy implementation nameeeeeeeeeeeeeeeeeeeeeeeee
+	 * @return the economy implementation name
 	 * @author Picono435
 	 */
 	public String getEconomy() {
