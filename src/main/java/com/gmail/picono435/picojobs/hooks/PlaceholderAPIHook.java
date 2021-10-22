@@ -112,6 +112,10 @@ public class PlaceholderAPIHook {
         if(identifier.equals("salary")) {
             return df.format(Math.round(jp.getSalary()));
         }
+
+		if(identifier.equals("level")) {
+			return df.format(Math.round(jp.getMethodLevel()));
+		}
         
         if(identifier.equals("working")) {
         	return jp.isWorking() + "";
