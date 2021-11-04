@@ -173,7 +173,11 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean isWorking() {
-		return this.isWorking;
+		if(PicoJobsAPI.getSettingsManager().isAutoWorking()) {
+			return true;
+		} else {
+			return this.isWorking;
+		}
 	}
 	
 	/**

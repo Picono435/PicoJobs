@@ -78,6 +78,8 @@ storage:
 jobs-action: 3
 # What should be the salary cooldown in real life minutes 20 minutes = 1 minecraft day [DEFAULT: 600m=10h=30md]
 salary-cooldown: 600
+# Do you want it so you accept the job each time you complete a work or it automatically selects the work
+auto-working: false
 
 #################################################################################
 #                                                                               #
