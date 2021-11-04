@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +18,9 @@ import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
+import io.github.slimjar.resolver.data.Mirror;
+import io.github.slimjar.resolver.data.Repository;
+import io.github.slimjar.resolver.mirrors.MirrorSelector;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
@@ -97,11 +101,17 @@ public class PicoJobsPlugin extends JavaPlugin {
 			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
 			ApplicationBuilder
 				.appending("PicoJobs")
+					.mirrorSelector(new MirrorSelector() {
+						@Override
+						public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
+							return collection;
+						}
+					})
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
 				.build();
 			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
 		} catch (Exception e) {
-			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
+			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
 			e.printStackTrace();
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
