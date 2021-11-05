@@ -303,7 +303,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			
 			String charset = "UTF-8";
 			
-			URL url = new URL("http://localhost:3011/editor/picojobs/create");
+			URL url = new URL("https://piconodev.pt/editor/picojobs/create");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Accept-Charset", charset);
