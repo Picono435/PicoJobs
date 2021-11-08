@@ -21,6 +21,7 @@ import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import io.github.slimjar.resolver.data.Mirror;
 import io.github.slimjar.resolver.data.Repository;
 import io.github.slimjar.resolver.mirrors.MirrorSelector;
+import io.github.slimjar.resolver.mirrors.SimpleMirrorSelector;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
@@ -101,13 +102,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
 			ApplicationBuilder
 				.appending("PicoJobs")
-					.mirrorSelector(new MirrorSelector() {
-						@Override
-						public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-							return collection;
-						}
-					})
+				.mirrorSelector(new MirrorSelector() {
+					@Override
+					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
+						return collection;
+					}
+				})
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
+				.internalRepositories(Collections.singleton(new Repository(new URL(SimpleMirrorSelector.ALT_CENTRAL_URL))))
 				.build();
 			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
 		} catch (Exception e) {
