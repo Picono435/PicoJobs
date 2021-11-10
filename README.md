@@ -6,8 +6,8 @@
 
 The best RandomTP mod ever!
 
-[![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][releases]
-[![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.17.x-1.18.x)][curseforge:files]
+[![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][https://github.com/Picono435/PicoJobs/releases]
+[![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.17.x-1.18.x)][https://dev.bukkit.org/projects/picojobs/files]
 
 [![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=CurseForge&query=downloadCount&url=https://addons-ecs.forgesvc.net/api/v2/addon/385252&logo=CurseForge)][https://dev.bukkit.org/projects/picojobs]
 [![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=BukkitDev&query=downloads&url=https://api.spigotmc.org/simple/0.2/index.php?action=getResource&amp;id=82784&logo=SpigotMC)][https://dev.bukkit.org/projects/picojobs]
