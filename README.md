@@ -1,4 +1,5 @@
 [statistics]: https://bstats.org/plugin/bukkit/PicoJobs
+[releases]: https://github.com/Picono435/PicoJobs/releases
 
 <div align="center">
  
@@ -6,7 +7,7 @@
 
 The best RandomTP mod ever!
 
-[![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][https://github.com/Picono435/PicoJobs/releases]
+[![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][releases]
 [![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.17.x-1.18.x)][https://dev.bukkit.org/projects/picojobs/files]
 
 [![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=CurseForge&query=downloadCount&url=https://addons-ecs.forgesvc.net/api/v2/addon/385252&logo=CurseForge)][https://dev.bukkit.org/projects/picojobs]
