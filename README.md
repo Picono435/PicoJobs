@@ -12,8 +12,8 @@ The best RandomTP mod ever!
 [![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][releases]
 [![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.17.x-1.18.x)][bukkitdev]
 
-[![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=CurseForge&query=downloadCount&url=https://addons-ecs.forgesvc.net/api/v2/addon/385252&logo=CurseForge)][bukkitdev]
-[![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=BukkitDev&query=downloads&url=https://api.spigotmc.org/simple/0.2/index.php?action=getResource&amp;id=82784&logo=SpigotMC)][spigotmc]
+[![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=BukkitDev&query=downloadCount&url=https://addons-ecs.forgesvc.net/api/v2/addon/385252&logo=CurseForge)][bukkitdev]
+[![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=SpigotMC&query=downloads&url=https://api.spigotmc.org/simple/0.2/index.php?action=getResource&amp;id=82784&logo=SpigotMC)][spigotmc]
 [![GitHub Downloads (all releases)](https://img.shields.io/github/downloads/Picono435/PicoJobs/total?style=for-the-badge&amp;label=GitHub&amp;prefix=downloads%20&amp;color=4078c0&amp;logo=github)][releases]
 </div>
 
