@@ -25,16 +25,17 @@ unknow-job: "&cAcea treaba nu a fost gasita, te rugam sa folosesti TAB COMPLETE 
 salary-cooldown: "&cTrebuie sa astepti mai mult %cooldown_mtime% inainte sa primesti din nou salariul."
 work-status: "&aIata ce trebuie sa faci: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
-  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
+  &6Lista completă de comenzi:
+  &e/jobsadmin ajutor &6- &eVezi aceste mesaje
+  &e/jobsadmin info <player> &6- &ePrimește informațiile despre un jucător
+  &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
+  Actualizare &/jobsadmin &6- &eInstaleaza o actualizare a plugin-ului
+  &e/jobsadmin despre &6- &fFace informatii despre server si plugin-ul
+  &/ jobsadmin set <salary | method | job> <player> <amount | job> <amount | job> 
+   - &e&6- &eSeteaza editorul unui player
+  &e/jobsadmin &6- &eCreaza o sesiune de editor web
+  &/jobsadmin applyediti &6- &eAplica editarile unei sesiuni de editor web
+  /sjobmin &6- &6- &e/sjobmin de &6- Activează modul DEG
 member-commands: |-
   &6Lista completă a comenzilor:
   &e/joburi ajuta &6- &eVezi aceste mesaje
