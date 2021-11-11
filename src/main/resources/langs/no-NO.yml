@@ -25,16 +25,16 @@ unknow-job: "&cDen jobben ble ikke funnet, bruk TAB COMPLETE for å få en liste
 salary-cooldown: "&cDu må vente mer %cooldown_mtime% før du får lønnen din igjen."
 work-status: "&aHer er det du trenger å gjøre: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
-  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
+  &6Full liste over kommandoer:
+  &e/jobsadmin help &6- &eSe denne meldingene
+  &/jobsadmin info <player> &6- &eGetter informasjonen om en spiller
+  &/ jobsadmin reload &6- &eOppdater alle mulige konfigurasjoner.
+  &e/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
+  &/jobsadmin om &6- &eGets informasjon om serveren og programtillegget
+  &/jobsadmin sett <salary | method | job> <player> <amount | job> &6- & eSets the salary/method of a player
+  &jobsadmin editor &6- &eCreates a web editor session
+  &jobe/sadmin appledits &6- &eApply the redditits of a webeditor session
+  &e/jobsadmin debug 6&e&eAktivere
 member-commands: |-
   &6Full liste over kommandoer:
   &e/Jobber hjelper &6- &eSe denne meldingene
