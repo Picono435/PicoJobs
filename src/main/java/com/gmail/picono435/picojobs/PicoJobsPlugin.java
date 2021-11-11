@@ -18,6 +18,7 @@ import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
+import io.github.slimjar.logging.ProcessLogger;
 import io.github.slimjar.resolver.data.Mirror;
 import io.github.slimjar.resolver.data.Repository;
 import io.github.slimjar.resolver.mirrors.MirrorSelector;
@@ -105,11 +106,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 				.mirrorSelector(new MirrorSelector() {
 					@Override
 					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
+						PicoJobsPlugin.getInstance().getLogger().log(Level.SEVERE, collection.toArray().toString());
 						return collection;
 					}
 				})
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
-				.internalRepositories(Collections.singleton(new Repository(new URL(SimpleMirrorSelector.ALT_CENTRAL_URL))))
+				.internalRepositories(Collections.singleton(new Repository(new URL("https://repo.maven.apache.org/maven2/"))))
 				.build();
 			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
 		} catch (Exception e) {
@@ -122,6 +124,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for use it.");
+		sendConsoleMessage(Level.SEVERE, this.getLogger().getLevel() + "");
 		
 		if(checkLegacy() ) {
 			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
@@ -129,6 +132,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
+		if(getConfig().getBoolean("debug")) {
+			this.getLogger().setLevel(Level.FINEST);
+		}
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
@@ -212,6 +218,9 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	public void sendConsoleMessage(Level level, String message) {
 		this.getLogger().log(level, message);
+	}
+	public void debugMessage(String message) {
+		this.getLogger().log(Level.FINEST, message);
 	}
 	
 	public boolean isNewerThan(String version) {
