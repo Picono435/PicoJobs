@@ -9,6 +9,8 @@
 
 # DO NOT CHANGE THIS
 config-version: "@version@"
+# Set to true if you want to enable DEBUG mode (It will log more messages on the console)
+debug: false
 
 #################################################################################
 #                                                                               #
