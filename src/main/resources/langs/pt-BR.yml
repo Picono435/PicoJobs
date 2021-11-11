@@ -25,16 +25,16 @@ unknow-job: "&cEssa tarefa não foi encontrada, por favor, use a TAB COMPLETE pa
 salary-cooldown: "&cVocê precisa esperar mais %cooldown_mtime% antes de obter seu salário novamente."
 work-status: "&aAqui é o que você precisa fazer: %jobplayer_work%"
 admin-commands: |-
-  &6Full list of commands:
-  &e/jobsadmin help &6- &eSee this messages
-  &e/jobsadmin info <player> &6- &eGets the information about a player
-  &e/jobsadmin reload &6- &eReload all the possible configurations.
-  &e/jobsadmin update &6- &eInstalls a update of the plugin
-  &e/jobsadmin about &6- &eGets informations about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
-  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
+  &6Lista completa de comandos:
+  &e/jobsadmin help &6- &eVeja esta mensagem
+  &e/jobsadmin info <player> &6- &eObtém as informações sobre um jogador
+  &e/jobsadmin recarrega &6- &eRecarregar todas as configurações possíveis.
+  &e/jobsadmin atualiza &6- &eInstala uma atualização do plugin
+  &e/jobsadmin sobre &6- &eObtém informações sobre o servidor e o plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eDefine o salário/método de um jogador
+  &e/jobsadmin editor &6- &eCria uma sessão de editor da web
+  &e/jobsadmin aplica edições &6- &eAplicar as edições de uma sessão de editor de web
+  &e/jobsadmin debug &6- &eEnables o modo de BUG do plugin
 member-commands: |-
   &6Full list of commands:
   &e/jobs help &6- &eSee this messages
