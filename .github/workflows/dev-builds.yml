@@ -25,11 +25,8 @@ jobs:
         run: chmod +x gradlew
       - name: Clone slimjar
         run: |
-         mkdir slimjarclone
-         cd slimjarclone
-         git clone https://github.com/slimjar/slimjar.git .
-         chmod +x gradlew
-         ./gradlew publishToMavenLocal
+         cd slimjar
+         ../gradlew publishToMavenLocal
       - name: Tests with Gradle
         run: ./gradlew test
       - name: Build with Gradle
