@@ -32,6 +32,9 @@ import io.github.slimjar.resolver.data.Dependency;
 import io.github.slimjar.resolver.data.DependencyData;
 import io.github.slimjar.resolver.data.Repository;
 import io.github.slimjar.util.Packages;
+import io.github.slimjar.resolver.data.Mirror;
+import io.github.slimjar.resolver.data.Repository;
+import io.github.slimjar.resolver.mirrors.MirrorSelector;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -82,7 +85,6 @@ public final class ReflectiveGsonFacadeFactory implements GsonFacadeFactory {
                 .mirrorSelector(new MirrorSelector() {
 					@Override
 					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-						PicoJobsPlugin.getInstance().getLogger().log(Level.SEVERE, collection.toArray().toString());
 						return collection;
 					}
 				})

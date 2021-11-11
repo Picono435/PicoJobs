@@ -33,6 +33,9 @@ import io.github.slimjar.resolver.data.Dependency;
 import io.github.slimjar.resolver.data.DependencyData;
 import io.github.slimjar.resolver.data.Repository;
 import io.github.slimjar.resolver.mirrors.SimpleMirrorSelector;
+import io.github.slimjar.resolver.data.Mirror;
+import io.github.slimjar.resolver.data.Repository;
+import io.github.slimjar.resolver.mirrors.MirrorSelector;
 import io.github.slimjar.util.Packages;
 
 import java.io.File;
@@ -128,7 +131,6 @@ public final class ReflectiveJarRelocatorFacadeFactory implements JarRelocatorFa
                 .mirrorSelector(new MirrorSelector() {
 					@Override
 					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-						PicoJobsPlugin.getInstance().getLogger().log(Level.SEVERE, collection.toArray().toString());
 						return collection;
 					}
 				})
