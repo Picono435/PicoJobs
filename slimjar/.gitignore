@@ -1,0 +1,13 @@
+# Project exclude paths
+/.gradle/
+.idea/
+
+build/
+
+gradle-plugin/build/
+
+slimjar/build/
+
+loader-agent/build/
+
+gradle.properties
