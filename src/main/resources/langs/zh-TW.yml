@@ -34,6 +34,7 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
 member-commands: |-
   &6完整的指令列表：
   &e/jobs help &6- &e查看此列表
@@ -110,6 +111,7 @@ aliases:
   job: "職業"
   editor: "editor"
   applyedits: "applyedits"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

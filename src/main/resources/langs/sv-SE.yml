@@ -29,11 +29,12 @@ admin-commands: |-
   &e/jobsadmin help &6- &eSe detta meddelande
   &e/jobsadmin info <player> &6- &eHämtar information om en spelare
   &e/jobsadmin ladda om &6- &eLadda om alla möjliga konfigurationer.
-  &e/jobsadmin update &6- &eInstallerar en uppdatering av pluginen
-  &e/jobsadmin om &6- &eHämtar information om servern och pluginen
+  &e/jobsadmin update &6- &eInstallerar en uppdatering av insticksprogrammet
+  &e/jobsadmin om &6- &eHämtar information om servern och insticksprogrammet
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eStäller in en spelares lön/metod
-  &e/jobsadmin editor &6- &eSkapar en webbredaktörssession
-  &e/jobsadmin tillämpar &6- &eTillämpa redigeringen av en webbredaktörs session
+  &e/jobsadmin editor &6- &eSkapar en webbeditor session
+  &e/jobsadmin tillämpar &6- &eTillämpa redigeringen av en webbredaktörssession
+  &e/jobsadmin debug &6- &eAktiverar DEBUG-läget för insticksprogrammet
 member-commands: |-
   &6Fullständig lista över kommandon:
   &e/jobs help &6- &eSe detta meddelande
@@ -110,6 +111,7 @@ aliases:
   job: "jobb"
   editor: "redaktör"
   applyedits: "ansökningar"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

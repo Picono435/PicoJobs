@@ -30,10 +30,12 @@ admin-commands: |-
   &e/jobsadmin info <player> &6- &ePrimește informațiile despre un jucător
   &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
   Actualizare &/jobsadmin &6- &eInstaleaza o actualizare a plugin-ului
-  &e/jobsadmin despre &6- &ePrimește informații despre server și plugin-ul
-  &/jobsadmin set <salary | method | job> <player> <amount | job> <amount | job> &6- &e&6- &eSetează salaritatea/metoda unui jucător
-  &e/jobsadmin editor &6- &eCreează o sesiune de editor web
-  &e/jobsadmin applyedits &6- &eAplica editarile unui editor web
+  &e/jobsadmin despre &6- &fFace informatii despre server si plugin-ul
+  &/ jobsadmin set <salary | method | job> <player> <amount | job> <amount | job> 
+   - &e&6- &eSeteaza editorul unui player
+  &e/jobsadmin &6- &eCreaza o sesiune de editor web
+  &/jobsadmin applyediti &6- &eAplica editarile unei sesiuni de editor web
+  /sjobmin &6- &6- &e/sjobmin de &6- Activează modul DEG
 member-commands: |-
   &6Lista completă a comenzilor:
   &e/joburi ajuta &6- &eVezi aceste mesaje
@@ -110,6 +112,7 @@ aliases:
   job: "sarcină"
   editor: "editor"
   applyedits: "aplituri"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

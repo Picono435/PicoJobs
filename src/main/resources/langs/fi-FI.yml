@@ -29,11 +29,12 @@ admin-commands: |-
   &e/jobsadmin help &6- &eKatso nämä viestit
   &e/jobsadmin info <player> &6- &eGets the information about a player
   &e/jobsadmin reload &6- &eLataa kaikki mahdolliset asetukset.
-  &e/jobsadmin- päivitys &6- &eAsentaa lisäosan
-  &e/jobsadmin- päivityksen &6- &eGet- palvelimesta ja lisäosan
-  &e/jobsadmin- asetukset <salary | method | job> <player> <amount | job> &6- &eAsettaa pelaajan
-  &e/jobsadmin- editori &6- &eLuo web-editor-istunnon
-  &e/jobsadmin-editori &6- &eHae web-editori-istunnon editoinnit &6- &eHae web-editori-istunnon editoinnit
+  &e/jobsadmin päivitys &6- &eAsenna lisäosan
+  &e/jobsadmin-päivityksen &6- &eGets palvelimen tiedot ja lisäosan
+  &e/jobsadmin asetukset <salary | method | job> <player> <amount | job> &6- &eAsettaa pelaajan
+  &e/jobsadmin editori &6- &eLuo web-editori-istunnon
+  &e/jobsadmin applyedits &6- &eHae web-editori-istunnon muokkaukset
+  &e/jobsadmin debug &6- &eSallii lisäosan DEBUG-tilan
 member-commands: |-
   &6Täysi lista komennoista:
   &e/jobs help &6- &eSee this messages
@@ -110,6 +111,7 @@ aliases:
   job: "työ"
   editor: "editori"
   applyedits: "sovelletaan"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

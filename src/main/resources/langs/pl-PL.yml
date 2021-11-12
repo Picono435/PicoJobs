@@ -33,7 +33,8 @@ admin-commands: |-
   &e/jobsadmin o &6- &eGets informacje o serwerze i wtyczce
   &e/jobsadmin ustawione <salary | method | job> <player> <amount | job> &6- &eUstawia salary/metodę gracza
   &e/jobsadmin edytor &6- &eTworzy sesję edytora sieciowego
-  &e/jobsadmin apyedits &6- &eZastosuj edycje sesji edytora sieci web
+  &e/jobsadmin apyedits &6- &eZastosuj edycje sesji edytora sieciowego
+  &e/jobsadmin debugg &6- &eWłącza tryb DEBUG wtyczki
 member-commands: |-
   &6Pełna lista poleceń:
   &e/jobs help &6- &eZobacz te wiadomości
@@ -110,6 +111,7 @@ aliases:
   job: "praca"
   editor: "edytor"
   applyedits: "zastosowana edycja"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

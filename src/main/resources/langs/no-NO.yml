@@ -29,11 +29,12 @@ admin-commands: |-
   &e/jobsadmin help &6- &eSe denne meldingene
   &/jobsadmin info <player> &6- &eGetter informasjonen om en spiller
   &/ jobsadmin reload &6- &eOppdater alle mulige konfigurasjoner.
-  &/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
+  &e/jobsadmin oppdaterer &6- &eInstallerer en oppdatering av programtillegget
   &/jobsadmin om &6- &eGets informasjon om serveren og programtillegget
   &/jobsadmin sett <salary | method | job> <player> <amount | job> &6- & eSets the salary/method of a player
-  &jobsadmin editor &6- &eCreates a webeditor
-  &jobe/sadmin appliserits &6- &eApply the dits of a webeditor session
+  &jobsadmin editor &6- &eCreates a web editor session
+  &jobe/sadmin appledits &6- &eApply the redditits of a webeditor session
+  &e/jobsadmin debug 6&e&eAktivere
 member-commands: |-
   &6Full liste over kommandoer:
   &e/Jobber hjelper &6- &eSe denne meldingene
@@ -110,6 +111,7 @@ aliases:
   job: "jobb"
   editor: "redaktør"
   applyedits: "applikasjoner"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #
