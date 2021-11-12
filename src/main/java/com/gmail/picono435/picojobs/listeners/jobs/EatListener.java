@@ -16,7 +16,6 @@ public class EatListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onEat(PlayerItemConsumeEvent e) {
-		if(e.getPlayer() == null) return;
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

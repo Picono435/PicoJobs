@@ -30,8 +30,10 @@ public class PlayersManager {
 	 * @author Picono435
 	 */
 	public JobPlayer getJobPlayer(Player p) {
+		PicoJobsPlugin.getInstance().debugMessage("Retrieving player: N: " + p.getName() + " U: " + p.getUniqueId());
 		JobPlayer jp = PicoJobsAPI.getStorageManager().getCacheManager().getFromCache(p.getUniqueId());
 		if(jp == null) {
+			PicoJobsPlugin.getInstance().debugMessage("An error occuried while retrieving the jobplayer: N: " + p.getName() + " U: " + p.getUniqueId());
 			getJobPlayerFromStorage(p.getUniqueId()).thenAcceptAsync(result -> {
 				if(result == null) {
 					PicoJobsPlugin.getInstance().getLogger().log(Level.WARNING, "An error occuried while trying to retrieve jobplayer " + p.getUniqueId() + ", the following stack traces will be consequence of this error.");

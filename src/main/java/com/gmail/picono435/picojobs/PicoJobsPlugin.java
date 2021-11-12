@@ -276,9 +276,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
 		sendConsoleMessage(Level.INFO, "Retrieving jobs from the config...");
 		for(String jobid : jobsc.getKeys(false)) {
+			debugMessage("Retrieving job " + jobid + " from the config.");
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
+			debugMessage("Display name: " + displayname);
 			String tag = jobc.getString("tag");
+			debugMessage("Tag: " + tag);
 			List<Type> types;
 			if(jobc.contains("types")) {
 				types = Type.getTypes(jobc.getStringList("types"));
@@ -289,12 +292,19 @@ public class PicoJobsPlugin extends JavaPlugin {
 				String typeString = jobc.getString("type");
 				types.add(Type.getType(typeString.toUpperCase(Locale.ROOT)));
 			}
+			debugMessage("Types: " + types);
 			double method = jobc.getDouble("method");
+			debugMessage("Method: " + method);
 			double salary = jobc.getDouble("salary");
+			debugMessage("Salary: " + salary);
 			double maxSalary = jobc.getDouble("max-salary");
+			debugMessage("MaxSalary: " + maxSalary);
 			boolean requiresPermission = jobc.getBoolean("require-permission");
+			debugMessage("RequiresPermission: " + requiresPermission);
 			double salaryFrequency = jobc.getDouble("salary-frequency");
+			debugMessage("SalaryFrequency: " + salaryFrequency);
 			double methodFrequency = jobc.getDouble("method-frequency");
+			debugMessage("MethodFrequency: " + methodFrequency);
 			String economy = jobc.getString("economy");
 			if(economy != null) {
 				economy = economy.toUpperCase(Locale.ROOT);

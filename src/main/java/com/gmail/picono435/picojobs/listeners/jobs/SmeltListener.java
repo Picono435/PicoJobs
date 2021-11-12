@@ -27,7 +27,6 @@ public class SmeltListener implements Listener {
 			if(e.getInventory().getType() != InventoryType.FURNACE) return;
 		}
 		if(e.getSlotType() != SlotType.RESULT) return;
-		if(e.getWhoClicked() == null) return;
 		Player p = (Player) e.getWhoClicked();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

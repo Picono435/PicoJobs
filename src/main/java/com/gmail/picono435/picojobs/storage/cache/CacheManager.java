@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 
 public class CacheManager {
@@ -28,6 +29,7 @@ public class CacheManager {
 	 * @return the job player that was added to cache
 	 */
 	public JobPlayer addToCache(JobPlayer jp) {
+		PicoJobsPlugin.getInstance().debugMessage("Added JobPlayer to cache: U: " + jp.getUUID());
 		return cache.put(jp.getUUID(), jp);
 	}
 	

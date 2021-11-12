@@ -19,8 +19,6 @@ public class BreakListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onBreakBlock(BlockBreakEvent e) {
-		if(e.getPlayer() == null) return;
-		
 		if(e.getBlock().getMetadata("PLACED").size() > 0) return;
 		
 		Player p = e.getPlayer();
