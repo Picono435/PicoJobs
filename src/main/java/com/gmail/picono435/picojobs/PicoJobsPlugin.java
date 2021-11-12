@@ -15,7 +15,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
+import java.util.logging.*;
 
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import io.github.slimjar.logging.ProcessLogger;
@@ -91,6 +91,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private String lastestPluginVersion;
 	private String downloadUrl;
 	private Metrics metrics;
+	private Handler loggingHandler;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -130,10 +131,22 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
+		loggingHandler = new ConsoleHandler();
+		loggingHandler.setFormatter(new SimpleFormatter() {
+			@Override
+			public synchronized String format(LogRecord record) {
+				if(record.getLevel() == Level.FINEST) {
+					return super.format(record);
+				}
+				return record.getMessage() + "\r\n";
+			}
+		});
+		this.getLogger().setUseParentHandlers(false);
+		this.getLogger().addHandler(loggingHandler);
 		if(getConfig().getBoolean("debug")) {
-			this.getLogger().setLevel(Level.FINEST);
+			loggingHandler.setLevel(Level.FINEST);
 		}
-                debugMessage("Logger level set to: " + this.getLogger().getLevel());
+		debugMessage("Logger level set to: " + this.getLogger().getLevel());
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
@@ -220,6 +233,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 	public void debugMessage(String message) {
 		this.getLogger().log(Level.FINEST, message);
+	}
+
+	public Handler getLoggingHandler() {
+		return loggingHandler;
 	}
 	
 	public boolean isNewerThan(String version) {
