@@ -106,7 +106,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 				.mirrorSelector(new MirrorSelector() {
 					@Override
 					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-						PicoJobsPlugin.getInstance().getLogger().log(Level.SEVERE, collection.toArray().toString());
 						return collection;
 					}
 				})
@@ -123,8 +122,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for use it.");
-		sendConsoleMessage(Level.SEVERE, this.getLogger().getLevel() + "");
+		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for using it");
 		
 		if(checkLegacy() ) {
 			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
@@ -135,6 +133,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(getConfig().getBoolean("debug")) {
 			this.getLogger().setLevel(Level.FINEST);
 		}
+                debugMessage("Logger level set to: " + this.getLogger().getLevel());
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
