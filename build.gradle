@@ -33,7 +33,7 @@ if (System.getenv("STABLE_BUILD") != null) {
         version versioning.info.display
     }
 } else {
-    version versioning.info.build + "-DEV"
+    version versioning.info.display
 }
 
 repositories {
