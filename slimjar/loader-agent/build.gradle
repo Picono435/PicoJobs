@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.slimjar'
+version '1.2.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}

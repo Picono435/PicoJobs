@@ -29,11 +29,12 @@ admin-commands: |-
   &e/jobsadmin help &6- &eSe disse beskeder
   &e/jobsadmin info <player> &6- &eHenter oplysningerne om en spiller
   &e/jobsadmin genindlæs &6- &eReload alle mulige konfigurationer.
-  &e/jobsadmin opdatering &6- &eInstallerer en opdatering af plugin
+  &e/jobsadmin opdatering &6- &eInstallerer en opdatering af plugin'et
   &e/jobsadmin om &6- &eGets information om serveren og plugin'et
-  &e/jobsadmin sæt <salary | method | job> <player> <amount | job> &6- &eIndstiller en spillers løn/metode
-  &e/jobsadmin editor &6- &eLaver en web editor session
+  &e/jobsadmin sæt <salary | method | job> <player> <amount | job> &6- &eIndstiller løn/metode for en spiller
+  &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eAnvend redigeringer af en web editor session
+  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
 member-commands: |-
   &6Fuld liste over kommandoer:
   &e/jobs help &6- &eSe disse meddelelser
@@ -81,6 +82,7 @@ milk-work: "tager %a% mælk fra køer"
 kill_entity-work: "dræbe %a% enheder"
 #When something is not find what should it appear
 none-format: "Ingen"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "job"
   editor: "editor"
   applyedits: "applyedits"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

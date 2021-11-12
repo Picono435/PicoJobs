@@ -34,6 +34,7 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
 member-commands: |-
   &6Volledige lijst met commando's:
   &e/jobs helpen &6- &eSee deze berichten
@@ -81,6 +82,7 @@ milk-work: "neem %a% melk van koeien"
 kill_entity-work: "dood %a% entiteiten"
 #When something is not find what should it appear
 none-format: "geen"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "baan"
   editor: "bewerker"
   applyedits: "toe te passen"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

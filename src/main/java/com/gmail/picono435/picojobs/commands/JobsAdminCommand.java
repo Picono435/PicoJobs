@@ -8,8 +8,9 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -51,6 +52,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		String aboutString = LanguageManager.getSubCommandAlias("about");
 		String setString = LanguageManager.getSubCommandAlias("set");
 		String editorString = LanguageManager.getSubCommandAlias("editor");
+		String debugString = LanguageManager.getSubCommandAlias("debug");
 		
 		String salaryString = LanguageManager.getSubCommandAlias("salary");
 		String methodString = LanguageManager.getSubCommandAlias("method");
@@ -198,7 +200,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		}
 		
-		if(subcmd.equalsIgnoreCase("editor") || subcmd.equalsIgnoreCase(editorString) || subcmd.equalsIgnoreCase("editor")) {
+		if(subcmd.equalsIgnoreCase("editor") || subcmd.equalsIgnoreCase(editorString) || subcmd.equalsIgnoreCase("settings")) {
 			// CREATE EDITOR
 			p.sendMessage(LanguageManager.formatMessage("&7Preparing a new editor session. Please wait..."));
 			String editor = createEditor(sender);
@@ -206,6 +208,26 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 				p.sendMessage(LanguageManager.formatMessage("&aClick the link below to open the editor:\n&b&ehttp://www.piconodev.tk/editor/picojobs/" + editor));
 			} else {
 				p.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
+			}
+			return true;
+		}
+
+		if(subcmd.equalsIgnoreCase("debug") || subcmd.equalsIgnoreCase(debugString)) {
+			// CREATE EDITOR
+			if(PicoJobsPlugin.getInstance().getConfig().getBoolean("debug")) {
+				p.sendMessage(LanguageManager.formatMessage("&7Disabling DEBUG mode..."));
+				PicoJobsPlugin.getInstance().getConfig().set("debug", false);
+				PicoJobsPlugin.getInstance().saveConfig();
+				PicoJobsPlugin.getInstance().getLoggingHandler().setLevel(Level.INFO);
+				PicoJobsPlugin.getInstance().debugMessage("Debug mode disabled.");
+				p.sendMessage(LanguageManager.formatMessage("&cThe &bDEBUG&c mode was disabled successfully. This will stop spamming your console with random messages."));
+			} else {
+				p.sendMessage(LanguageManager.formatMessage("&7Enabling DEBUG mode..."));
+				PicoJobsPlugin.getInstance().getConfig().set("debug", true);
+				PicoJobsPlugin.getInstance().saveConfig();
+				PicoJobsPlugin.getInstance().getLoggingHandler().setLevel(Level.FINEST);
+				PicoJobsPlugin.getInstance().debugMessage("Debug mode enabled.");
+				p.sendMessage(LanguageManager.formatMessage("&aThe &bDEBUG&a mode was enabled successfully. This may spam your console with random messages."));
 			}
 			return true;
 		}
@@ -303,7 +325,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			
 			String charset = "UTF-8";
 			
-			URL url = new URL("http://localhost:3011/editor/picojobs/create");
+			URL url = new URL("https://piconodev.pt/editor/picojobs/create");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Accept-Charset", charset);

@@ -10,6 +10,7 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.hooks.economy.VaultImplementation;
 
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class VaultHook {
 	
@@ -18,19 +19,26 @@ public class VaultHook {
 	private static boolean isEnabled = false;
 	private static boolean hasEconomy = true;
 	
-	public static void setupVault() {
+	public static boolean setupVault() {
 		if(Bukkit.getPluginManager().getPlugin("Vault") == null) {
-			return;
+			return false;
 		}
 		isEnabled = true;
 		if(!setupEconomy()) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "A economy plugin from VAULT was not found. The VAULT economy type will not work.");
+			new BukkitRunnable() {
+				public void run() {
+					if(!setupVault()) {
+						PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "A economy plugin from VAULT was not found. The VAULT economy type will not work.");
+					}
+				}
+			} .runTask(PicoJobsPlugin.getInstance());
 			hasEconomy = false;
-		}
-		
-		if(hasEconomy) {
+		} else {
 			PicoJobsAPI.registerEconomy(new VaultImplementation());
+			hasEconomy = true;
 		}
+
+		return hasEconomy;
 	}
 	
 	private static boolean setupEconomy() {

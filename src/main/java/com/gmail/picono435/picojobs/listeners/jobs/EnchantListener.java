@@ -16,7 +16,6 @@ public class EnchantListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onEnchant(EnchantItemEvent e) {
-		if(e.getEnchanter() == null) return;
 		Player p = e.getEnchanter();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

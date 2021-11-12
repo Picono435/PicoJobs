@@ -16,7 +16,6 @@ public class PlaceListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlaceBlock(BlockPlaceEvent e) {
-		if(e.getPlayer() == null) return;
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

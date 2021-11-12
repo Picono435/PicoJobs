@@ -34,6 +34,7 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
 member-commands: |-
   &6 قائمة الأوامر الكاملة:
   &e/jobhelp &6- &eعرض هذه الرسائل
@@ -81,6 +82,7 @@ milk-work: "أخذ %a% من الحليب من الأبقار"
 kill_entity-work: "اقتل %aمن الكيانات"
 #When something is not find what should it appear
 none-format: "لا"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "العمل"
   editor: "محرر"
   applyedits: "تطبيق"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

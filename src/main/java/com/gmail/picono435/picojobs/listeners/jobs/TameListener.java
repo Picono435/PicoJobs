@@ -16,7 +16,6 @@ public class TameListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onTameAnimal(EntityTameEvent e) {
-		if(e.getEntity() == null || e.getOwner() == null) return;
 		Player p = (Player) e.getOwner();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

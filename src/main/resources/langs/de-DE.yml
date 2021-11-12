@@ -25,15 +25,16 @@ unknow-job: "&cDieser Job wurde nicht gefunden, bitte benutzen Sie das TAB COMPL
 salary-cooldown: "&cDu musst mehr %cooldown_mtime% warten, um dein Gehalt wieder zu erhalten."
 work-status: "&aHier ist das, was Sie tun müssen: %jobplayer_work%"
 admin-commands: |-
-  &6Vollständige Liste der Befehle:
-  &e/jobsadmin help &6- &eSiehe diese Meldungen
-  &e/jobsadmin info <player> &6- &eLiest die Informationen über einen Spieler
-  &e/jobsadmin reload &6- &eLaden Sie alle möglichen Konfigurationen neu.
+  &6Liste der Befehle:
+  &e/jobsadmin help &6- &eSehen Sie diese Nachrichten
+  &e/jobsadmin info <player> &6- &eGets die Informationen über einen Spieler
+  &e/jobsadmin reload &6- &eNeuladen Sie alle möglichen Konfigurationen.
   &e/jobsadmin update &6- &eInstalliert ein Update des Plugins
-  &e/jobsadmin about &6- &eGibt Informationen über den Server und das Plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSetzt das Gehalt/die Methode eines Spielers
-  &e/jobsadmin editor &6- &eErzeugt eine Web-Editor-Sitzung
-  &e/jobsadmin applyedits &6- &eWendet die Bearbeitungen einer Webeditor-Sitzung an
+  &e/jobsadmin about &6- &eGets information about the server and the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
+  &e/jobsadmin editor &6- &eCreates a web editor session
+  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin debug &6- &eAktiviert den DEBUG Modus des Plugins
 member-commands: |-
   &6Liste der Befehle:
   &e/jobs help &6- &eSehen Sie diese Nachrichten
@@ -81,6 +82,7 @@ milk-work: "nehme %a% Milch von Kühen"
 kill_entity-work: "töte %a% Entitäten"
 #When something is not find what should it appear
 none-format: "Keine"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "job"
   editor: "editieren"
   applyedits: "beworben"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

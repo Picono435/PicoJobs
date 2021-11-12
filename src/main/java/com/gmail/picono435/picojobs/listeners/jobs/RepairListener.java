@@ -22,7 +22,6 @@ public class RepairListener implements Listener {
 		if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) return;
 		if(e.getInventory().getType() != InventoryType.ANVIL) return;
 		if(e.getSlotType() != SlotType.RESULT) return;
-		if(e.getWhoClicked() == null) return;
 		Player p = (Player) e.getWhoClicked();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

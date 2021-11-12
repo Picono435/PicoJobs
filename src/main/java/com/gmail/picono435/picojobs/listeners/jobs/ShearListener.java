@@ -17,7 +17,7 @@ public class ShearListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onShearEntity(PlayerShearEntityEvent e) {
-		if(e.getEntity() == null || e.getPlayer() == null || !(e.getEntity() instanceof Sheep)) return;
+		if(!(e.getEntity() instanceof Sheep)) return;
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;

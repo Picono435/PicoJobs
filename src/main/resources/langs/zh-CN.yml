@@ -25,15 +25,16 @@ unknow-job: "&c未知职业，请使用 TAB 补全指令以获得职业列表。
 salary-cooldown: "&c你还需要等待 %cooldown_mtime% 才能再次拿到你的薪水。"
 work-status: "&a这里是你需要去做的事情： %jobplayer_work%"
 admin-commands: |-
-  &6完整的命令列表：
-  &e/jobsadmin帮助 &6- &e查看此消息
-  &e/jobsadmin信息 <player> &6- &eGets 关于玩家的信息
-  &e/jobsadmin重新加载&6- &eReload 所有可能的配置。
-  &e/jobsadmin更新 &6- &eInstalls 更新插件
-  &e/jobsadmin关于&6- &eGets 关于服务器和插件的信息
-  &e/jobsadmin设置 <salary | method | job> <player> <amount | job> &6- &eSets 一个玩家的预付/方法
-  &e/jobsadmin editor&6- &eCreate 一个网络编辑器会话
-  &e/jobsadmin appyedits &6- &eApply the edits of a web 编辑器会话的编辑
+  &6Full list of commands:
+  &e/jobsadmin help &6- &eSee this messages
+  &e/jobsadmin info <player> &6- &eGets the information about a player
+  &e/jobsadmin reload &6- &eReload all the possible configurations.
+  &e/jobsadmin update &6- &eInstalls a update of the plugin
+  &e/jobsadmin about &6- &eGets informations about the server and the plugin
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
+  &e/jobsadmin editor &6- &eCreates a web editor session
+  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
 member-commands: |-
   &6完整的指令列表：
   &e/jobs help &6- &e查看此列表
@@ -81,6 +82,7 @@ milk-work: "从奶牛身上挤出 %a% 桶牛奶"
 kill_entity-work: "杀死 %a% 只实体"
 #When something is not find what should it appear
 none-format: "无"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "职业"
   editor: "编辑器"
   applyedits: "应用版"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

@@ -202,9 +202,9 @@ public class Job {
 	 * @author Picono435
 	 */
 	public double getSalaryFrequency() {
-		if(this.salaryFrequency == 0) {
+		/*if(this.salaryFrequency == 0) {
 			this.salaryFrequency = 0.3D;
-		}
+		}*/
 		return this.salaryFrequency;
 	}
 	
@@ -215,9 +215,9 @@ public class Job {
 	 * @author Picono435
 	 */
 	public double getMethodFrequency() {
-		if(this.methodFrequency == 0) {
+		/*if(this.methodFrequency == 0) {
 			this.methodFrequency = 0.3D;
-		}
+		}*/
 		return this.methodFrequency;
 	}
 	

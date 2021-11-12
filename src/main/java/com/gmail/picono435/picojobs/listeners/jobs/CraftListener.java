@@ -2,9 +2,11 @@ package com.gmail.picono435.picojobs.listeners.jobs;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
@@ -18,12 +20,21 @@ import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 public class CraftListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onCraftItem(InventoryClickEvent e) {
-		if(e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) return;
-		if(e.getInventory().getType() != InventoryType.CRAFTING && e.getInventory().getType() != InventoryType.WORKBENCH) return;
+	public void onCraftItem(CraftItemEvent e) {
+		switch (e.getAction()) {
+			case NOTHING:
+			case PLACE_ONE:
+			case PLACE_ALL:
+			case PLACE_SOME:
+				return;
+			default:
+				break;
+		}
 		if(e.getSlotType() != SlotType.RESULT) return;
-		if(e.getWhoClicked() == null) return;
+		if (!e.isLeftClick() && !e.isRightClick()) return;
+		if (!(e.getWhoClicked() instanceof Player)) return;
 		Player p = (Player) e.getWhoClicked();
+		if (p.getInventory().firstEmpty() == -1 && e.isShiftClick()) return;
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;

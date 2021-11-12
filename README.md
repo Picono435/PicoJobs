@@ -1,13 +1,21 @@
-[licenseImg]: https://img.shields.io/github/license/Picono435/PicoJobs.svg
-[license]: https://github.com/Picono435/PicoJobs/blob/master/LICENSE
-[releaseImg]: https://img.shields.io/github/release/Picono435/PicoJobs.svg?label=github%20release
-[release]: https://github.com/Picono435/PicoJobs/releases/latest
-
 [statistics]: https://bstats.org/plugin/bukkit/PicoJobs
+[releases]: https://github.com/Picono435/PicoJobs/releases
+[bukkitdev]: https://dev.bukkit.org/projects/picojobs
+[spigotmc]: https://spigotmc.org/resources/picojobs.82784/
 
-# PicoJobs | A Jobs Plugin
+<div align="center">
+ 
+# PicoJobs
 
-[![licenseImg]][license] [![Crowdin](https://badges.crowdin.net/e/70dc05a5077d0b2311673de39156f7fa/localized.svg)](https://picodev.crowdin.com/picojobs)
+The best RandomTP mod ever!
+
+[![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][releases]
+[![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.17.x-1.18.x)][bukkitdev]
+
+[![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=BukkitDev&query=downloadCount&url=https://addons-ecs.forgesvc.net/api/v2/addon/385252&logo=CurseForge)][bukkitdev]
+[![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=SpigotMC&query=stats.downloads&url=https%3A%2F%2Fapi.spigotmc.org%2Fsimple%2F0.2%2Findex.php%3Faction%3DgetResource%26id%3D82784&logo=SpigotMC)][spigotmc]
+[![GitHub Downloads (all releases)](https://img.shields.io/github/downloads/Picono435/PicoJobs/total?style=for-the-badge&amp;label=GitHub&amp;prefix=downloads%20&amp;color=4078c0&amp;logo=github)][releases]
+</div>
 
 PicoJobs is a jobs plugin 100% configurable that allow you to join in a job and earn more money! You can setup this plugin in almost all the server minigames, like Factions, RankUP, FullPvP, and SkyWars too!. Unfornatly the plugin is still in devolpment but there are already some BETA and ALPHA versions that you can download [here](https://dev.bukkit.org/projects/picojobs).
 

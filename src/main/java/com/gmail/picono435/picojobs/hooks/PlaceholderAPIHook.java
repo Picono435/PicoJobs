@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -25,7 +25,7 @@ public class PlaceholderAPIHook {
 	
 	public static void setupPlaceholderAPI() {
 		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
-			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The recommended dependency PlaceholderAPI was not found. Some features may not work well!");
+			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.WARNING, "The recommended dependency PlaceholderAPI was not found. PicoJobs placeholders will not work in other plugins.");
 			return;
 		}
 		isEnabled = true;
@@ -77,6 +77,7 @@ public class PlaceholderAPIHook {
 		NumberFormat df = NumberFormat.getNumberInstance(Locale.getDefault());
 		
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
+		if(jp == null) return null;
     	
         if(identifier.equals("job")) {
             if(!jp.hasJob()) {
@@ -87,7 +88,7 @@ public class PlaceholderAPIHook {
         
         if(identifier.equals("tag")) {
         	if(!jp.hasJob()) {
-        		return "";
+        		return LanguageManager.getFormat("default-tag", p);
         	}
         	return jp.getJob().getTag();
         }
@@ -98,8 +99,10 @@ public class PlaceholderAPIHook {
         		return LanguageManager.getFormat("none-format", p);
         	}
         	double level = jp.getMethodLevel();
-        	int reqmethod = (int) (job.getMethod() * level * job.getMethodFrequency());
-    		if(reqmethod == 0) reqmethod = 1;
+			double req1 = level * job.getMethodFrequency();
+			if(req1 <= 0) req1 = 1;
+			int reqmethod = (int) (job.getMethod() * req1);
+			if(reqmethod == 0) reqmethod = 1;
         	double value = reqmethod - jp.getMethod();
         	String workMessage = job.getWorkMessage();
         	workMessage = workMessage.replace("%a%", df.format(value));
@@ -109,6 +112,10 @@ public class PlaceholderAPIHook {
         if(identifier.equals("salary")) {
             return df.format(Math.round(jp.getSalary()));
         }
+
+		if(identifier.equals("level")) {
+			return df.format(Math.round(jp.getMethodLevel()));
+		}
         
         if(identifier.equals("working")) {
         	return jp.isWorking() + "";

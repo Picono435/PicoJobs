@@ -9,13 +9,20 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
+import java.util.logging.*;
 
+import com.gmail.picono435.picojobs.utils.GitHubAPI;
+import io.github.slimjar.logging.ProcessLogger;
+import io.github.slimjar.resolver.data.Mirror;
+import io.github.slimjar.resolver.data.Repository;
+import io.github.slimjar.resolver.mirrors.MirrorSelector;
+import io.github.slimjar.resolver.mirrors.SimpleMirrorSelector;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
@@ -84,6 +91,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private String lastestPluginVersion;
 	private String downloadUrl;
 	private Metrics metrics;
+	private Handler loggingHandler;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -93,26 +101,29 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onLoad() {
 		instance = this;
 		try {
-			Class.forName("com.fasterxml.jackson.databind.JsonNode");
-		} catch (ClassNotFoundException ex) {
-			try {
-				sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
-				ApplicationBuilder
-					.appending("PicoJobs")
-					.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
-					.build();
-				sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
-			} catch (Exception e) {
-				sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, please contact a plugin developer with the following error:");
-				e.printStackTrace();
-				Bukkit.getPluginManager().disablePlugin(this);
-			}
+			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
+			ApplicationBuilder
+				.appending("PicoJobs")
+				.mirrorSelector(new MirrorSelector() {
+					@Override
+					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
+						return collection;
+					}
+				})
+				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
+				.internalRepositories(Collections.singleton(new Repository(new URL("https://repo.maven.apache.org/maven2/"))))
+				.build();
+			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
+		} catch (Exception e) {
+			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
+			e.printStackTrace();
+			Bukkit.getPluginManager().disablePlugin(this);
 		}
 	}
 	
 	@Override
 	public void onEnable() {
-		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for use it.");
+		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for using it");
 		
 		if(checkLegacy() ) {
 			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
@@ -120,6 +131,22 @@ public class PicoJobsPlugin extends JavaPlugin {
 		
 		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
+		loggingHandler = new ConsoleHandler();
+		loggingHandler.setFormatter(new SimpleFormatter() {
+			@Override
+			public synchronized String format(LogRecord record) {
+				if(record.getLevel() == Level.FINEST) {
+					return super.format(record);
+				}
+				return record.getMessage() + "\r\n";
+			}
+		});
+		this.getLogger().setUseParentHandlers(false);
+		this.getLogger().addHandler(loggingHandler);
+		if(getConfig().getBoolean("debug")) {
+			loggingHandler.setLevel(Level.FINEST);
+		}
+		debugMessage("Logger level set to: " + this.getLogger().getLevel());
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
@@ -204,6 +231,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void sendConsoleMessage(Level level, String message) {
 		this.getLogger().log(level, message);
 	}
+	public void debugMessage(String message) {
+		this.getLogger().log(Level.FINEST, message);
+	}
+
+	public Handler getLoggingHandler() {
+		return loggingHandler;
+	}
 	
 	public boolean isNewerThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
@@ -242,9 +276,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
 		sendConsoleMessage(Level.INFO, "Retrieving jobs from the config...");
 		for(String jobid : jobsc.getKeys(false)) {
+			debugMessage("Retrieving job " + jobid + " from the config.");
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
+			debugMessage("Display name: " + displayname);
 			String tag = jobc.getString("tag");
+			debugMessage("Tag: " + tag);
 			List<Type> types;
 			if(jobc.contains("types")) {
 				types = Type.getTypes(jobc.getStringList("types"));
@@ -255,12 +292,19 @@ public class PicoJobsPlugin extends JavaPlugin {
 				String typeString = jobc.getString("type");
 				types.add(Type.getType(typeString.toUpperCase(Locale.ROOT)));
 			}
+			debugMessage("Types: " + types);
 			double method = jobc.getDouble("method");
+			debugMessage("Method: " + method);
 			double salary = jobc.getDouble("salary");
+			debugMessage("Salary: " + salary);
 			double maxSalary = jobc.getDouble("max-salary");
+			debugMessage("MaxSalary: " + maxSalary);
 			boolean requiresPermission = jobc.getBoolean("require-permission");
+			debugMessage("RequiresPermission: " + requiresPermission);
 			double salaryFrequency = jobc.getDouble("salary-frequency");
+			debugMessage("SalaryFrequency: " + salaryFrequency);
 			double methodFrequency = jobc.getDouble("method-frequency");
+			debugMessage("MethodFrequency: " + methodFrequency);
 			String economy = jobc.getString("economy");
 			if(economy != null) {
 				economy = economy.toUpperCase(Locale.ROOT);
@@ -360,13 +404,17 @@ public class PicoJobsPlugin extends JavaPlugin {
 			DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
 			lastestPluginVersion = version;
 			downloadUrl = json.get("downloadUrl").getAsString();
-			if(lastestVersion.compareTo(pluginVersion) > 0) {
+			boolean isRunningInOld = lastestVersion.compareTo(pluginVersion) > 0;
+			if(getDescription().getVersion().endsWith("-DEV")) {
+				isRunningInOld = !GitHubAPI.isTagLatest(version);
+			}
+			if(isRunningInOld) {
 				new BukkitRunnable() {
 					public void run() {
 						sendConsoleMessage(Level.WARNING, "Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
 						if(getConfig().getBoolean("auto-update")) {
 							if(updatePlugin(Bukkit.getConsoleSender(), "[PicoJobs] Plugin was updated to version "+ lastestVersion.toString() + " sucefully. Please restart the server to finish the update.")) {
-								sendConsoleMessage(Level.INFO, "Updating the plugin to the lastest version...");
+								sendConsoleMessage(Level.INFO, "Updating the plugin to the latest version...");
 							} else {
 								sendConsoleMessage(Level.WARNING, "An error occuried while updating the plugin.");
 							}

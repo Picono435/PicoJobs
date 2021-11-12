@@ -34,6 +34,7 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eImposta lo stipendio/metodo di un giocatore
   &e/jobsadmin editor &6- &eCrea una sessione web editor
   &e/jobsadmin applicatedits &6- &eApplica le modifiche di una sessione web editor
+  &e/jobmin debug &6- &eAbilita la modalità DEBUG del plugin
 member-commands: |-
   &6Elenco completo dei comandi:
   &e/jobs help &6- &eVisualizza questo messaggio
@@ -81,6 +82,7 @@ milk-work: "prendere il %a% di latte dalle vacche"
 kill_entity-work: "uccidi %a% entità"
 #When something is not find what should it appear
 none-format: "Nessuno"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "lavoro"
   editor: "editor"
   applyedits: "applicatedits"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #

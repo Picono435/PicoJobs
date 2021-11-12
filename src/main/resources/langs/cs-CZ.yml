@@ -30,10 +30,11 @@ admin-commands: |-
   &e/jobsadmin info <player> &6- &eGens informace o hráči
   &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
   &e/jobsadmin aktualizuje &6- &eInstalls aktualizaci pluginu
-  &e/jobsadmin o &6- &eGety informace o serveru a pluginu
+  &e/jobsadmin o &6- &eGets informace o serveru a pluginu
   &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &6- &eNastaví salary/metodu hráče
   &e/jobsadmin editor &6- &eVytvoří relaci webového editoru
-  &e/jobsadmin applyedits &6- &eApply the edits web editor session
+  &e/jobsadmin applyedits &6- &eApply the edits of the web editor sess
+  &e/jobsadmin debug &6- &eEPovolí DEBUG mód pluginu
 member-commands: |-
   &6Plný seznam příkazů:
   &e/job help &6- &eSee this
@@ -81,6 +82,7 @@ milk-work: "odebrat %a% mléka od krav"
 kill_entity-work: "zabij %a% entit"
 #When something is not find what should it appear
 none-format: "Nic"
+default-tag: ""
 #################################################################################
 ##
 #Command translations                                                          #
@@ -109,6 +111,7 @@ aliases:
   job: "práce"
   editor: "editor"
   applyedits: "použitelné úpravy"
+  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #
