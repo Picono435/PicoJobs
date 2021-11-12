@@ -71,11 +71,11 @@ repositories {
         url = 'https://repo.rosewooddev.io/repository/public/'
     }
 
+    mavenLocal();
+
     maven {
         url = 'https://repo.vshnv.tech/'
     }
-
-    mavenLocal()
 }
 
 dependencies {
