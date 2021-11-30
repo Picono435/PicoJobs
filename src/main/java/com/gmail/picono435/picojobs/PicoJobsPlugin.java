@@ -17,6 +17,7 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.*;
 
+import com.gmail.picono435.picojobs.storage.sql.file.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import io.github.slimjar.logging.ProcessLogger;
 import io.github.slimjar.resolver.data.Mirror;
@@ -186,6 +187,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 	        		return jobs.size();
 	        	}
 	        }));
+		}
+
+		if(getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("script.sql").toFile().exists() && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
+			try {
+				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).retrieveDataFrom(getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("script.sql").toFile());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 			
 		// REGISTERING COMMANDS
@@ -439,6 +448,20 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 	
 	public boolean updatePlugin(CommandSender p, String message) {
+		try {
+			if(PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
+				sendConsoleMessage(Level.INFO, "Backing up H2 database before update...");
+				if(!getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2").toFile().renameTo(new File("picojobs-h2-old"))) {
+					throw new Exception("Error renaming old database file...");
+				}
+				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).backupDataTo(getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("script").toFile());
+				sendConsoleMessage(Level.INFO, "Backed up H2 database. The update will now continue...");
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			sendConsoleMessage(Level.SEVERE, "Error backing up database...  DOWNLOAD WILL NOT BE COMPLETED, please make sure to back up your database and update the plugin manually.");
+		}
+
 		try {
 			URL url = new URL(PicoJobsPlugin.getInstance().getLastestDownloadUrl());
 			
