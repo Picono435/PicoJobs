@@ -32,7 +32,7 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 		try(Connection conn = getConnection()) {
 			PreparedStatement stm = conn.prepareStatement("SCRIPT TO ?");
 			stm.setString(1, file.getAbsolutePath());
-			stm.executeUpdate();
+			stm.execute();
 			stm.close();
 		}
 	}
@@ -41,7 +41,7 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 		try(Connection conn = getConnection()) {
 			PreparedStatement stm = conn.prepareStatement("RUNSCRIPT FROM ?");
 			stm.setString(1, file.getAbsolutePath());
-			stm.executeUpdate();
+			stm.execute();
 			stm.close();
 		}
 	}

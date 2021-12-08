@@ -1,29 +1,23 @@
 package com.gmail.picono435.picojobs;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.sql.PreparedStatement;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.*;
 
 import com.gmail.picono435.picojobs.storage.sql.file.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
-import io.github.slimjar.logging.ProcessLogger;
 import io.github.slimjar.resolver.data.Mirror;
 import io.github.slimjar.resolver.data.Repository;
 import io.github.slimjar.resolver.mirrors.MirrorSelector;
-import io.github.slimjar.resolver.mirrors.SimpleMirrorSelector;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
@@ -73,6 +67,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import io.github.slimjar.app.builder.ApplicationBuilder;
+import org.codehaus.plexus.util.FileUtils;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -87,6 +82,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	//PLUGIN
 	private static PicoJobsPlugin instance;
 	public static boolean isTestEnvironment = false;
+	private static boolean wasUpdated;
 	private String serverVersion;
 	private boolean oldVersion;
 	private String lastestPluginVersion;
@@ -182,19 +178,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 		PicoJobsAPI.getStorageManager().initializeStorageFactory();
 		if(!isTestEnvironment) {
 			metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
-	        	@Override
-	        	public Integer call() throws Exception {
-	        		return jobs.size();
-	        	}
-	        }));
-		}
-
-		if(getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("script.sql").toFile().exists() && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
-			try {
-				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).retrieveDataFrom(getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("script.sql").toFile());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				@Override
+				public Integer call() throws Exception {
+					return jobs.size();
+				}
+			}));
 		}
 			
 		// REGISTERING COMMANDS
@@ -228,6 +216,25 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onDisable() {
 		sendConsoleMessage(Level.INFO, "Disconnecting connection to storage...");
 		jobs.clear();
+
+		if(wasUpdated && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
+			try {
+				// Copy the current database to a -old file
+				FileUtils.copyFile(PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2.mv.db").toFile(), PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2-old.mv.db").toFile());
+				// Set the path where the script file will be located
+				Path scriptFile = PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toAbsolutePath();
+				// Backup database to script
+				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).backupDataTo(scriptFile.toFile());
+				PicoJobsAPI.getStorageManager().destroyStorageFactory();
+				// Delete the current database
+				PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2.mv.db").toFile().delete();
+				sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		PicoJobsAPI.getStorageManager().destroyStorageFactory();
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
@@ -449,20 +456,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	public boolean updatePlugin(CommandSender p, String message) {
 		try {
-			if(PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
-				sendConsoleMessage(Level.INFO, "Backing up H2 database before update...");
-				if(!getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2").toFile().renameTo(new File("picojobs-h2-old"))) {
-					throw new Exception("Error renaming old database file...");
-				}
-				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).backupDataTo(getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("script").toFile());
-				sendConsoleMessage(Level.INFO, "Backed up H2 database. The update will now continue...");
-			}
-		} catch(Exception ex) {
-			ex.printStackTrace();
-			sendConsoleMessage(Level.SEVERE, "Error backing up database...  DOWNLOAD WILL NOT BE COMPLETED, please make sure to back up your database and update the plugin manually.");
-		}
-
-		try {
+			wasUpdated = true;
 			URL url = new URL(PicoJobsPlugin.getInstance().getLastestDownloadUrl());
 			
 			Method getFileMethod = JavaPlugin.class.getDeclaredMethod("getFile");
