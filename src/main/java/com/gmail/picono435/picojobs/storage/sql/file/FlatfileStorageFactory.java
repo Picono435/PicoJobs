@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs.storage.sql.file;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,24 @@ public abstract class FlatfileStorageFactory extends StorageFactory {
 		} catch(Exception ex) {
 			PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "Error connecting to the storage. The plugin will not work correctly.");
 			return;
+		}
+	}
+
+	public void backupDataTo(File file) throws Exception {
+		try(Connection conn = getConnection()) {
+			PreparedStatement stm = conn.prepareStatement("SCRIPT TO ?");
+			stm.setString(1, file.getAbsolutePath());
+			stm.execute();
+			stm.close();
+		}
+	}
+
+	public void retrieveDataFrom(File file) throws Exception {
+		try(Connection conn = getConnection()) {
+			PreparedStatement stm = conn.prepareStatement("RUNSCRIPT FROM ?");
+			stm.setString(1, file.getAbsolutePath());
+			stm.execute();
+			stm.close();
 		}
 	}
 	
