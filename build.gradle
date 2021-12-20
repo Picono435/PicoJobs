@@ -102,7 +102,7 @@ dependencies {
     // Other libraries
     implementation 'com.github.mkremins:fanciful:18dc039f5b'
     slim 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
-    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0'
+    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.1'
     implementation 'org.apache.maven:maven-artifact:3.8.4'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
     slim 'org.slf4j:slf4j-simple:1.7.32'
