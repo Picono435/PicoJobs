@@ -41,7 +41,7 @@ member-commands: |-
   &e/jobs choose <job> &6- &eWybiera pracę
   &e/pracę &6- &eZobacz status/Akceptuj swoją pracę
   &e/pracę &e/pracę &6- &eSprawdź swoje wynagrodzenie
-  &e/roboty wycofaj &6- &ePobrać swoje wynagrodzenie
+  &e/roboty wycofaj &6- &ePobierz swoje wynagrodzenie
   &e/roboty pozostaw &6- &eOpuść pracę
 info-command: |-
   &6Status gracza %player_name%
