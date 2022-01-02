@@ -11,18 +11,18 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cHej! Nie masz uprawnień do wykonania tej komendy."
-ignore-action: "&cHej! Bądź leniwy i porozmawiaj z NPC."
+ignore-action: "&cHej! Nie bądź leniwy i porozmawiaj z NPC."
 choosed-job: "&aGratulacje! Wybrałeś zadanie %jobplayer_job%&a."
 accepted-work: "&aAkceptowałeś pracę %jobplayer_work%."
 no-salary: "&cNie masz wystarczająco dużo wynagrodzenia, aby dotrzeć! Przejdź do pracy ;("
 got-salary: "&aŚwietna robota! Właśnie otrzymałeś %jobplayer_salary% pensję!"
 finished-work: "&aGratulacje! Właśnie zakończyłeś swoją pracę. Użyj /jobs aby uzyskać więcej informacji na ten temat."
-need-level: "&cHej! Musisz zrobić %a% pracuje, aby wykonać tę akcję."
+need-level: "&cHej! Musisz zrobić %a% zadań, aby wykonać tę akcję."
 no-args: "&cHej! Użyj poprawnej składni."
 my-salary: "&aMasz %jobplayer_salary%$ wynagrodzenia."
 unknow-job: "&cTo zadanie nie zostało znalezione, użyj TAB COMPLETE, aby uzyskać listę zadań."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cMusisz poczekać więcej %cooldown_mtime% przed ponownym pobraniem wynagrodzenia."
+salary-cooldown: "&cMusisz poczekać jeszcze %cooldown_mtime% przed ponownym pobraniem wynagrodzenia."
 work-status: "&aOto co musisz zrobić: %jobplayer_work%"
 admin-commands: |-
   &6Pełna lista poleceń:
@@ -31,7 +31,7 @@ admin-commands: |-
   &e/jobsadmin przeładuj &6- &eOdśwież wszystkie możliwe konfiguracje.
   &e/jobsadmin aktualizacja &6- &eInstaluje aktualizację wtyczki
   &e/jobsadmin o &6- &eGets informacje o serwerze i wtyczce
-  &e/jobsadmin ustawione <salary | method | job> <player> <amount | job> &6- &eUstawia salary/metodę gracza
+  &e/jobsadmin ustawione <salary | method | job> <player> <amount | job> &6- &eUstawia wynagrodzenie/metodę gracza
   &e/jobsadmin edytor &6- &eTworzy sesję edytora sieciowego
   &e/jobsadmin apyedits &6- &eZastosuj edycje sesji edytora sieciowego
   &e/jobsadmin debugg &6- &eWłącza tryb DEBUG wtyczki
