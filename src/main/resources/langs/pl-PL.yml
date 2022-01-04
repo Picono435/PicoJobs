@@ -39,21 +39,21 @@ member-commands: |-
   &6Pełna lista poleceń:
   &e/jobs help &6- &eZobacz te wiadomości
   &e/jobs choose <job> &6- &eWybiera pracę
-  &e/pracę &6- &eZobacz status/Akceptuj swoją pracę
-  &e/pracę &e/pracę &6- &eSprawdź swoje wynagrodzenie
-  &e/roboty wycofaj &6- &ePobierz swoje wynagrodzenie
-  &e/roboty pozostaw &6- &eOpuść pracę
+  &e/jobs work &6- &eZobacz status/Akceptuj swoją pracę
+  &e/jobs salary &e/pracę &6- &eSprawdź swoje wynagrodzenie
+  &e/jobs withdraw &6- &ePobierz swoje wynagrodzenie
+  &e/jobs leave &6- &eOpuść pracę
 info-command: |-
   &6Status gracza %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
+  &eWynagrodzenie: %jobplayer_salary%
+  &eCzy Pracuje: %jobplayer_working%
   &ePraca: %jobplayer_work%
-  &eJob: %jobplayer_job%
-reload-command: "&aKonfiguracje, Zadania i Język zostały pomyślnie załadowane."
+  &eStanowisko: %jobplayer_job%
+reload-command: "&aKonfiguracje, Prace i Język zostały pomyślnie załadowane."
 player-not-found: "&cTen gracz nie jest online, proszę wpisać prawidłowego gracza."
 unknow-error: "&cWystąpił nieznany błąd, sprawdź konsolę, aby uzyskać więcej informacji."
 left-job: "&cNie jesteś bezrobotny! Zalecamy wybrać nową ofertę pracy lub stracisz dużo pieniędzy."
-already-updated: "&cWtyczka jest już w ostatniej wersji, aby uzyskać więcej informacji sprawdź naszą WIKI."
+already-updated: "&cWtyczka jest już w najnowszej wersji, aby uzyskać więcej informacji sprawdź naszą WIKI."
 update-started: "&aAktualizacja wtyczki PicoJobs rozpoczęta, proszę czekać..."
 updated-sucefully: "&aWtyczka została zaktualizowana, uruchom ponownie serwer, aby zakończyć aktualizację."
 sucefully: "&aAkcja została wykonana z pewnością."
@@ -66,15 +66,15 @@ invalid-arg: "&aWysłany argument jest nieprawidłowy. Proszę sprawdzić niepra
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "niszcz %a% bloków"
+break-work: "zniszcz %a% bloków"
 kill-work: "zabij %a% osób"
-fishing-work: "ryby %a% ryb"
-place-work: "umieść %a% bloków"
-craft-work: "twórz %a% przedmiotów"
+fishing-work: "wyłów %a% ryb"
+place-work: "postaw %a% bloków"
+craft-work: "stwórz %a% przedmiotów"
 tame-work: "oswoić %a% zwierząt"
 shear-work: "ścinaj %a% owiec"
 fill-work: "wypełnij %a% wiader"
-smelt-work: "przetapianie %a% przedmiotów"
+smelt-work: "przetop %a% przedmiotów"
 eat-work: "zjedz %a% przedmiotów"
 enchanting-work: "zaklęcie %a% przedmiotów"
 repair-work: "napraw %a% przedmiotów"
@@ -91,7 +91,7 @@ default-tag: ""
 #In this category you can add aliases for all the commands of the plugin
 aliases:
   jobs:
-    - "Zadania"
+    - "praca"
     - "praca"
   jobsadmin:
     - "jobsadmin"
@@ -99,7 +99,7 @@ aliases:
   choose: "wybierz"
   work: "praca"
   salary: "wynagrodzenie"
-  withdraw: "wycofaj"
+  withdraw: "wypłać"
   leave: "opuść"
   help: "pomoc"
   info: "informacje"
@@ -107,7 +107,7 @@ aliases:
   update: "aktualizuj"
   about: "o"
   set: "ustaw"
-  method: "Metoda"
+  method: "metoda"
   job: "praca"
   editor: "edytor"
   applyedits: "zastosowana edycja"
@@ -130,4 +130,4 @@ months: "miesiące"
 month: "miesiąc"
 years: "lata"
 year: "rok"
-and: "W przypadku gdy państwo członkowskie lub Szwajcaria stwierdzi, że dane państwo członkowskie lub Szwajcaria spełniają warunki określone w art. 4 ust. 1 lit. a) i b) oraz w art. 5 ust. 1 lit. b) i c) rozporządzenia (WE) nr 207/2009 oraz w art. 5 ust. 1 lit. b) i c) rozporządzenia (WE) nr 207/2009 oraz w art. 5 ust. 1 lit. b) tego rozporządzenia i art. 6 ust. 1 lit. b) tego rozporządzenia i c) tego rozporządzenia stosuje się od dnia 1 stycznia 2018 r."
+and: "i"
