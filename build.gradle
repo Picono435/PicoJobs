@@ -89,7 +89,7 @@ dependencies {
     slim 'com.h2database:h2:1.4.200'
     slim 'org.xerial:sqlite-jdbc:3.36.0.3'
     slim 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
-    slim 'mysql:mysql-connector-java:8.0.27'
+    slim 'mysql:mysql-connector-java:8.0.28'
     shadow implementation('org.spongepowered:configurate-core:4.1.2')
     shadow implementation('org.spongepowered:configurate-gson:4.1.2')
     shadow implementation('org.spongepowered:configurate-yaml:4.1.2')
