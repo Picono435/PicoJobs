@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.*;
@@ -66,7 +66,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import io.github.slimjar.app.builder.ApplicationBuilder;
-import org.codehaus.plexus.util.FileUtils;
+import org.h2.tools.RunScript;
+import org.h2.tools.Script;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -100,12 +101,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
 			ApplicationBuilder
 				.appending("PicoJobs")
-				.mirrorSelector(new MirrorSelector() {
-					@Override
-					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-						return collection;
-					}
-				})
+				.mirrorSelector((collection, collection1) -> collection)
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
 				.internalRepositories(Collections.singleton(new Repository(new URL("https://repo.maven.apache.org/maven2/"))))
 				.build();
@@ -115,7 +111,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 			e.printStackTrace();
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
-		wasUpdated = true;
 	}
 	
 	@Override
@@ -125,7 +120,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(checkLegacy() ) {
 			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
 		}
-		
+
 		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
 		loggingHandler = new ConsoleHandler();
@@ -175,6 +170,21 @@ public class PicoJobsPlugin extends JavaPlugin {
         // GENERATE JOBS FROM CONFIGURATION
 		sendConsoleMessage(Level.INFO, "Generating jobs from configuration...");
 		if(!generateJobsFromConfig()) return;
+
+		// Fix my dumb way to migrate the database! This will be removed asap.
+		if(PicoJobsAPI.getSettingsManager().getStorageMethod().equalsIgnoreCase("H2")) {
+			try {
+				if(PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toFile().exists()) {
+					RunScript.main("-url jdbc:h2:$f -script $script"
+							.replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString())
+							.replace("$script", PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toString())
+							.split(" "));
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
 		PicoJobsAPI.getStorageManager().initializeStorageFactory();
 		if(!isTestEnvironment) {
 			metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
@@ -219,18 +229,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 
 		if(wasUpdated && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
 			try {
-				// Copy the current database to a -old file
-				FileUtils.copyFile(PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2.mv.db").toFile(), PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2-old.mv.db").toFile());
-				// Set the path where the script file will be located
-				Path scriptFile = PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toAbsolutePath();
-				// Backup database to script
-				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).backupDataTo(scriptFile.toFile());
-				PicoJobsAPI.getStorageManager().destroyStorageFactory();
-				// Delete the current database
-				PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2.mv.db").toFile().delete();
-				sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
-				return;
-			} catch (Exception e) {
+				Script.main("-url jdbc:h2:$f -script $f.zip -options compression zip".replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString()).split(" "));
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
