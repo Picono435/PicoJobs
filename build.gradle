@@ -82,11 +82,11 @@ dependencies {
     // Slimjar
     implementation slimjar("1.2.6")
     // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT'
     // Storage Methods
     slim 'org.mongodb:mongodb-driver-sync:4.4.0'
     slim 'com.zaxxer:HikariCP:4.0.3'
-    slim 'com.h2database:h2:1.4.200'
+    slim 'com.h2database:h2:2.0.206'
     slim 'org.xerial:sqlite-jdbc:3.36.0.3'
     slim 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
     slim 'mysql:mysql-connector-java:8.0.27'
@@ -105,7 +105,7 @@ dependencies {
     slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0'
     implementation 'org.apache.maven:maven-artifact:3.8.4'
     implementation 'org.bstats:bstats-bukkit:2.2.1'
-    slim 'org.slf4j:slf4j-simple:1.7.32'
+    slim 'org.slf4j:slf4j-simple:1.7.33'
     slim 'org.slf4j:slf4j-api:1.7.32'
     testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
@@ -177,3 +177,5 @@ publishing {
         mavenLocal()
     }
 }
+
+slimJar.dependsOn(shadowJar)
