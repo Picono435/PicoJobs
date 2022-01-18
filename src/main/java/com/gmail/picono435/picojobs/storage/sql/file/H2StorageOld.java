@@ -10,7 +10,7 @@ import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import org.codehaus.plexus.util.FileUtils;
 
-public class H2Storage extends FlatfileStorageFactory {
+public class H2StorageOld extends FlatfileStorageFactory {
 	
 	@Override
 	protected boolean initializeStorage() throws Exception {

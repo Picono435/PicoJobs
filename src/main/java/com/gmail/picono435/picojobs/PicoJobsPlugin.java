@@ -8,12 +8,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.sql.PreparedStatement;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.*;
 
-import com.gmail.picono435.picojobs.storage.sql.file.H2Storage;
+import com.gmail.picono435.picojobs.storage.sql.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import io.github.slimjar.resolver.data.Mirror;
 import io.github.slimjar.resolver.data.Repository;
@@ -116,6 +115,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			e.printStackTrace();
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
+		wasUpdated = true;
 	}
 	
 	@Override
