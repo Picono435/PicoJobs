@@ -254,21 +254,35 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public Handler getLoggingHandler() {
 		return loggingHandler;
 	}
-	
-	public boolean isNewerThan(String version) {
+
+	/*
+	 * Same as having serverVersion >= specifiedVersion
+	 * Example: 1.18.1 >= 1.12.2
+	 *
+	 * @param version
+	 * @return
+	 */
+	public boolean isMoreThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) >= 0) {
+		if(serverVersionArt.compareTo(legacyVersion) >= 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public boolean isOlderThan(String version) {
+
+	/*
+	 * Same as having serverVersion <= specifiedVersion
+	 * Example: 1.18.1 <= 1.12.2
+	 *
+	 * @param version
+	 * @return
+	 */
+	public boolean isLessThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) <= 0) {
+		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
 			return true;
 		} else {
 			return false;
