@@ -13,6 +13,7 @@ import java.util.concurrent.Callable;
 import java.util.logging.*;
 
 import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
+import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
 import com.gmail.picono435.picojobs.storage.sql.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import io.github.slimjar.resolver.data.Mirror;
@@ -159,6 +160,7 @@ public class PicoJobsPlugin extends JavaPlugin {
         // SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
         PicoJobsAPI.registerEconomy(new ExpImplementation());
 		PicoJobsAPI.registerEconomy(new CommandImplementation());
+		PicoJobsAPI.registerEconomy(new ItemImplementation());
         VaultHook.setupVault();
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
