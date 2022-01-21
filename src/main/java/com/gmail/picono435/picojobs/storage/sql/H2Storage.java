@@ -5,12 +5,8 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.zaxxer.hikari.HikariDataSource;
 import org.h2.tools.RunScript;
 
-import java.io.File;
-import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
 
 public class H2Storage extends HikariStorageFactory {
 
@@ -28,11 +24,9 @@ public class H2Storage extends HikariStorageFactory {
 
         this.hikari = new HikariDataSource(config);
 
-        try(Connection conn = hikari.getConnection()) {
-            PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS " + configurationSection.getString("tablename") + " (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));");
+        try(Connection conn = hikari.getConnection();
+            PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS " + configurationSection.getString("tablename") + " (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));")) {
             stm.execute();
-            stm.close();
-            conn.close();
         }
         return false;
     }
