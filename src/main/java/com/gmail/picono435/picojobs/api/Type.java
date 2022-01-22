@@ -22,7 +22,7 @@ public enum Type {
 	ENCHANTING("material"),
 	REPAIR("material"),
 	MILK(""),
-	SWIM(""),
+	MOVE("material"),
 	KILL_ENTITY("entity");
 	
 	private final static Map<String, Type> BY_NAME = new HashMap<String, Type>();

@@ -13,17 +13,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class SwimListener implements Listener {
+public class MoveListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onSwim(PlayerMoveEvent e) {
+	public void onMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
-		if(p.getLocation().getBlock().getType() != Material.WATER && p.getLocation().getBlock().getType() != Material.LAVA) return;
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
-		if(!job.getTypes().contains(Type.SWIM)) return;
+		if(!job.getTypes().contains(Type.MOVE)) return;
+
+		if(!job.inWhitelist(p.getLocation().getBlock().getType())) return;
 
 		long distance = Math.round(Math.floor(e.getTo().distance(e.getFrom())));
 
