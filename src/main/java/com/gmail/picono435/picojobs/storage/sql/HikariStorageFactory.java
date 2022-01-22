@@ -44,13 +44,8 @@ public abstract class HikariStorageFactory extends StorageFactory {
         	stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	if(rs.next()) {
-        		String result = rs.getString("job");
-        		stm.close();
-        		conn.close();
-        		return result;
+				return rs.getString("job");
         	} else {
-        		stm.close();
-        		conn.close();
         		return null;
         	}
 		}
