@@ -31,20 +31,14 @@ public class BreakListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.BREAK)) return;
-		System.out.println(e.getBlock().getType().name());
 		if(PicoJobsPlugin.getInstance().isLessThan("1.12.2")) {
-			System.out.println("lul");
 			if(e.getBlock().getState().getData() instanceof Crops) {
 				if(((Crops)e.getBlock().getState().getData()).getState() != CropState.RIPE) return;
 			}
 		} else {
-			System.out.println("1");
 			if(e.getBlock().getBlockData() instanceof Ageable) {
-				System.out.println("2");
 				Ageable ageable = (Ageable) e.getBlock().getBlockData();
-				System.out.println(ageable.getAge() + " " + ageable.getMaximumAge());
 				if(ageable.getMaximumAge() != ageable.getAge()) return;
-				System.out.println("3");
 			}
 		}
 
@@ -57,7 +51,6 @@ public class BreakListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlaceBlock(BlockPlaceEvent e) {
-		System.out.println(e.getBlock().getType().name());
 		if(e.getBlock().getType() == Material.BEETROOT_SEEDS ||
 				e.getBlock().getType() == Material.MELON_SEEDS ||
 				e.getBlock().getType() == Material.PUMPKIN_SEEDS ||
