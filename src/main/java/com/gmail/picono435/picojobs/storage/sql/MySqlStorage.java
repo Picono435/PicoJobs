@@ -35,6 +35,5 @@ public class MySqlStorage extends HikariStorageFactory {
 	@Override
 	public void destroyStorage() {
 		hikari.close();
-		return;
 	}
 }
