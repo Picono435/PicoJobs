@@ -203,6 +203,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new EnchantListener(), this);
 		Bukkit.getPluginManager().registerEvents(new MilkListener(), this);
 		Bukkit.getPluginManager().registerEvents(new MoveListener(), this);
+		Bukkit.getPluginManager().registerEvents(new TradeListener(), this);
 		Bukkit.getPluginManager().registerEvents(new RepairListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SmeltListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
@@ -301,17 +302,17 @@ public class PicoJobsPlugin extends JavaPlugin {
 			debugMessage("Display name: " + displayname);
 			String tag = jobc.getString("tag");
 			debugMessage("Tag: " + tag);
-			List<Type> types;
-			if(jobc.contains("types")) {
-				types = Type.getTypes(jobc.getStringList("types"));
-			} else {
-				types = new ArrayList<Type>();
-			}
 			if(jobc.contains("type")) {
 				String typeString = jobc.getString("type");
-				types.add(Type.getType(typeString.toUpperCase(Locale.ROOT)));
+				jobc.set("types", Collections.singletonList(typeString));
+				try {
+					FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-			debugMessage("Types: " + types);
+			List<Type> types = Type.getTypes(jobc.getStringList("types"));
+			debugMessage("Types: " + Arrays.toString(types.toArray()));
 			double method = jobc.getDouble("method");
 			debugMessage("Method: " + method);
 			double salary = jobc.getDouble("salary");

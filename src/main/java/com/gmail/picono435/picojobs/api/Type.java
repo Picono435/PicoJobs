@@ -1,6 +1,9 @@
 package com.gmail.picono435.picojobs.api;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
+
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * Represents a job type
@@ -23,6 +26,7 @@ public enum Type {
 	REPAIR("material"),
 	MILK(""),
 	MOVE("material"),
+	TRADE("material"),
 	KILL_ENTITY("entity");
 	
 	private final static Map<String, Type> BY_NAME = new HashMap<String, Type>();
@@ -40,7 +44,11 @@ public enum Type {
 	public static List<Type> getTypes(List<String> names) {
 		List<Type> types = new ArrayList<Type>();
 		for(String name : names) {
-			types.add(getType(name));
+			if(BY_NAME.containsKey(name)) {
+				types.add(getType(name));
+			} else {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "The job type '" + name + "' does not exist. Make sure to use a valid job type.");
+			}
 		}
 		return types;
 	}
