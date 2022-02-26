@@ -52,7 +52,7 @@ jobs:
     # The tag of the job
     tag: "&c[E]"
     # The type of the job
-    type: "enchanting"
+    types: [enchanting]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -91,7 +91,7 @@ jobs:
     # The tag of the job
     tag: "&6[W]"
     # The type of the job
-    type: "break"
+    types: [break]
     # Put here the default kills, (this change depends on the frequency)
     method: 15
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -130,7 +130,7 @@ jobs:
     # The tag of the job
     tag: "&7[M]"
     # The type of the job
-    type: "break"
+    types: [break]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -187,7 +187,7 @@ jobs:
     # The tag of the job
     tag: "&d[B]"
     # The type of the job
-    type: "place"
+    types: [place]
     # Put here the default kills, (this change depends on the frequency)
     method: 35
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -226,7 +226,7 @@ jobs:
     # The tag of the job
     tag: "&3[D]"
     # The type of the job
-    type: "break"
+    types: [break]
     # Put here the default kills, (this change depends on the frequency)
     method: 25
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -265,7 +265,7 @@ jobs:
     # The tag of the job
     tag: "&a[C]"
     # The type of the job
-    type: "craft"
+    types: [craft]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -304,7 +304,7 @@ jobs:
     # The tag of the job
     tag: "&b[F]"
     # The type of the job
-    type: "fishing"
+    types: [fishing]
     # Put here the default kills, (this change depends on the frequency)
     method: 25
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -343,7 +343,7 @@ jobs:
     # The tag of the job
     tag: "&8[W]"
     # The type of the job
-    type: "repair"
+    types: [repair]
     # Put here the default kills, (this change depends on the frequency)
     method: 8
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -382,7 +382,7 @@ jobs:
     # The tag of the job
     tag: "&9[K]"
     # The type of the job
-    type: "kill"
+    types: [kill]
     # Put here the default kills, (this change depends on the frequency)
     method: 20
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
