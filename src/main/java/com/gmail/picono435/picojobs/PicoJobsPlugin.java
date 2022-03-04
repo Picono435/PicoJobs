@@ -341,7 +341,26 @@ public class PicoJobsPlugin extends JavaPlugin {
 			// CALCULATING OPTIONALS
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
-			List<String> whitelist = jobc.getStringList("whitelist");
+			Map<Type, List<String>> whitelist = new HashMap<>();
+			// Legacy: Will be removed in future update
+			if(jobc.contains("whitelist")) {
+				if(jobc.get("whitelist") instanceof List) {
+					List<String> white = jobc.getStringList("whitelist");
+					for(Type type : types) {
+						whitelist.put(type, white);
+						jobc.set("whitelist." + type.name(), white);
+						try {
+							FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				} else {
+					for(String type : jobc.getConfigurationSection("whitelist").getKeys(false)) {
+						whitelist.put(Type.getType(type), jobc.getConfigurationSection("whitelist").getStringList(type));
+					}
+				}
+			}
 
 			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
 

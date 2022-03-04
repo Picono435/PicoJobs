@@ -29,7 +29,7 @@ public class RepairListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.REPAIR)) return;
 		
-		if(!job.inWhitelist(e.getCurrentItem().getType())) return;
+		if(!job.inWhitelist(Type.REPAIR, e.getCurrentItem().getType())) return;
 		
 		for(int i = 0; i < e.getCurrentItem().getAmount(); i++) {
 			if(jp.simulateEvent()) {

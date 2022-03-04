@@ -34,7 +34,7 @@ public class SmeltListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.SMELT)) return;
 		
-		if(!job.inWhitelist(e.getCurrentItem().getType())) return;
+		if(!job.inWhitelist(Type.SMELT, e.getCurrentItem().getType())) return;
 		
 		for(int i = 0; i < e.getCurrentItem().getAmount(); i++) {
 			if(jp.simulateEvent()) {

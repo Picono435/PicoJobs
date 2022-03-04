@@ -23,7 +23,7 @@ public class EnchantListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.ENCHANTING)) return;
 		
-		if(!job.inWhitelist(e.getItem().getType())) return;
+		if(!job.inWhitelist(Type.ENCHANTING, e.getItem().getType())) return;
 		
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));

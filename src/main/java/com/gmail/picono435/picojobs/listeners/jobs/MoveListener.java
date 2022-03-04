@@ -24,7 +24,7 @@ public class MoveListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.MOVE)) return;
 
-		if(!job.inWhitelist(p.getLocation().getBlock().getType())) return;
+		if(!job.inWhitelist(Type.MOVE, p.getLocation().getBlock().getType())) return;
 
 		long distance = Math.round(Math.floor(e.getTo().distance(e.getFrom())));
 
