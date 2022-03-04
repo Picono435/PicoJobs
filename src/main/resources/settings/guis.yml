@@ -74,8 +74,8 @@ gui-settings:
           - "&7Check our &8&ndiscord&r&7 to"
           - "&7get more information"
           - ""
-          - "&7If you want to buy the premium"
-          - "&7version go to our &8&nwebsite"
+          - "&7Check our new and improved"
+          - "&7PiconoDev &8&nwebsite"
         action: none
         material: "BOOKSHELF"
         item-data: 0
@@ -138,8 +138,8 @@ gui-settings:
           - "&7Check our &8&ndiscord&r&7 to"
           - "&7get more information"
           - ""
-          - "&7If you want to buy the premium"
-          - "&7version go to our &8&nwebsite"
+          - "&7Check our new and improved"
+          - "&7PiconoDev &8&nwebsite"
         action: none
         material: "BOOKSHELF"
         item-data: 0
