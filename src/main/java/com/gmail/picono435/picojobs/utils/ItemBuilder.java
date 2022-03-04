@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -104,7 +106,11 @@ public ItemBuilder setInfinityDurability(){
 
    public ItemBuilder setLore(List<String> lore) {
      ItemMeta im = is.getItemMeta();
-     im.setLore(lore);
+     List<String> newLore = new ArrayList<>();
+     for(String l : lore) {
+         newLore.add(PlaceholderAPI.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', l)));
+     }
+     im.setLore(newLore);
      is.setItemMeta(im);
      return this;
    }

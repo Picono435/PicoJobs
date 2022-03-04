@@ -44,10 +44,10 @@ public enum Type {
 	public static List<Type> getTypes(List<String> names) {
 		List<Type> types = new ArrayList<Type>();
 		for(String name : names) {
-			if(BY_NAME.containsKey(name)) {
-				types.add(getType(name));
+			if(BY_NAME.containsKey(name.toUpperCase(Locale.ROOT))) {
+				types.add(getType(name.toUpperCase(Locale.ROOT)));
 			} else {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "The job type '" + name + "' does not exist. Make sure to use a valid job type.");
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
 			}
 		}
 		return types;

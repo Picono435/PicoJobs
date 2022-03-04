@@ -45,13 +45,14 @@ public class Job {
 	private Material item;
 	private int itemData;
 	private boolean enchanted;
+	private List<String> lore;
 	
 	// OPTIONAL
 	private boolean useWhitelist;
 	private List<Object> whitelist;
 	private List<String> stringWhitelist;
 
-	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, List<String> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -70,6 +71,7 @@ public class Job {
 		this.item = m;
 		this.itemData = itemData;
 		this.enchanted = enchanted;
+		this.lore = lore;
 
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
@@ -295,6 +297,16 @@ public class Job {
 	public boolean isEnchanted() {
 		return this.enchanted;
 	}
+
+	/**
+	 * Gets the item lore
+	 *
+	 * @return the item lore of the job item
+	 * @author Picono435
+	 */
+	public List<String> getLore() {
+		return this.lore;
+	}
 	
 	/**
 	 * Checks if it's whitelist or not
@@ -328,6 +340,7 @@ public class Job {
 		}
 		builder.setName(getDisplayName());
 		if(isEnchanted()) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+		builder.setLore(getLore());
 		builder.removeAttributes();
 		return builder.toItemStack();
 	}

@@ -305,6 +305,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(jobc.contains("type")) {
 				String typeString = jobc.getString("type");
 				jobc.set("types", Collections.singletonList(typeString));
+				jobc.set("type", null);
 				try {
 					FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
 				} catch (IOException e) {
@@ -335,13 +336,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String item = guic.getString("item");
 			int itemData = guic.getInt("item-data");
 			boolean enchanted = guic.getBoolean("enchanted");
+			List<String> lore = guic.getStringList("lore");
 			
 			// CALCULATING OPTIONALS
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
 			List<String> whitelist = jobc.getStringList("whitelist");
 
-			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
+			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
 
 			jobs.put(jobid, job);
 			

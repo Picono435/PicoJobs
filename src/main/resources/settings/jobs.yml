@@ -44,6 +44,11 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by hunting"
+        - "&8 animals"
+
       
   # This is a example of a enchanter job
   enchanter:
@@ -83,6 +88,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by enchanting"
+        - "&8 items"
       
   # This is a example of a woodcutter job
   woodcutter:
@@ -122,6 +131,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by cutting"
+        - "&8 trees"
       
   # This is a example of a miner job
   miner:
@@ -179,6 +192,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by mining"
+        - "&8 ores"
       
   # This is a example of a builder job
   builder:
@@ -218,6 +235,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by building"
+        - "&8 with bricks"
       
   # This is a example of a digger job
   digger:
@@ -257,6 +278,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by digging"
+        - "&8 dirt"
       
   # This is a example of a craftsman job
   craftsman:
@@ -296,6 +321,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by crafting"
+        - "&8 items"
       
   # This is a example of a fisherman job
   fisherman:
@@ -335,6 +364,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by fishing"
+        - "&8 fish"
       
   # This is a example of a weaponsmith job
   weaponsmith:
@@ -374,6 +407,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by repairing"
+        - "&8 tools"
       
   # This is a example of a killer job
   killer:
@@ -413,3 +450,7 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by killing"
+        - "&8 players"
