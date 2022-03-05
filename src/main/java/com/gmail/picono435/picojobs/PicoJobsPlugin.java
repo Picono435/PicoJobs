@@ -209,8 +209,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
-				
-		checkVersion();
+
+		if(getConfig().getBoolean("update-checker")) {
+			checkVersion();
+		}
 	}
 	
 	public void onDisable() {

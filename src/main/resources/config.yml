@@ -24,7 +24,9 @@ debug: false
 lang: "en-GB"
 # Here you can put the name of your server, this message will appier in the start of all messages. To disable just put nothing.
 prefix: "&6[PicoJobs] "
-# Here you can enable/disable the auto update
+# Here you can enable/disable the update checker
+update-checker: true
+# Here you can enable/disable the auto update (ignored if update-checker is false)
 auto-update: true
 
 #################################################################################
