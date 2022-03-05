@@ -31,7 +31,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["COW", "PIG", "CHICKEN", "SHEEP"]
+    whitelist:
+      kill_entity: ["COW", "PIG", "CHICKEN", "SHEEP"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "kill %a% animals"
     # Choose Job Menu settings
@@ -118,7 +119,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG"]
+    whitelist:
+      break: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG", "SPRUCE_WOOD", "SPRUCE_LOG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "cut %a% woods"
     # Choose Job Menu settings
@@ -162,24 +164,25 @@ jobs:
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      - gold_ore
-      - iron_ore
-      - coal_ore
-      - lapis_ore
-      - diamond_ore
-      - redstone_ore
-      - emerald_ore
-      - nether_quartz_ore
-      - nether_gold_ore
-      - copper_ore
-      - deepslate_gold_ore
-      - deepslate_iron_ore
-      - deepslate_coal_ore
-      - deepslate_lapis_ore
-      - deepslate_diamond_ore
-      - deepslate_redstone_ore
-      - deepslate_emerald_ore
-      - deepslate_copper_ore
+      break:
+        - gold_ore
+          - iron_ore
+          - coal_ore
+          - lapis_ore
+          - diamond_ore
+          - redstone_ore
+          - emerald_ore
+          - nether_quartz_ore
+          - nether_gold_ore
+          - copper_ore
+          - deepslate_gold_ore
+          - deepslate_iron_ore
+          - deepslate_coal_ore
+          - deepslate_lapis_ore
+          - deepslate_diamond_ore
+          - deepslate_redstone_ore
+          - deepslate_emerald_ore
+          - deepslate_copper_ore
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "mine %a% ores"
     # Choose Job Menu settings
@@ -222,7 +225,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["bricks"]
+    whitelist:
+      place: ["bricks"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "place %a% bricks"
     # Choose Job Menu settings
@@ -265,7 +269,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["dirt", "grass", "grass_block"]
+    whitelist:
+      break: ["dirt", "grass", "grass_block"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "dig %a% dirts"
     # Choose Job Menu settings
@@ -351,7 +356,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["NAME_TAG"]
+    whitelist:
+      fishing: ["NAME_TAG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "fish %a% fishes"
     # Choose Job Menu settings
@@ -437,7 +443,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["weaponsmith"]
+    whitelist:
+      kill: ["weaponsmith"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "kill %a% people"
     # Choose Job Menu settings
