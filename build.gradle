@@ -88,7 +88,7 @@ dependencies {
     compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
     // Other libraries
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
-    slim 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+    slim 'com.fasterxml.jackson.core:jackson-databind:2.13.2'
     slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.1'
     shadow implementation('org.apache.maven:maven-artifact:3.8.4')
     shadow implementation('org.bstats:bstats-bukkit:3.0.0')
