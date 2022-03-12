@@ -219,6 +219,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 		sendConsoleMessage(Level.INFO, "Disconnecting connection to storage...");
 		jobs.clear();
 
+		PicoJobsAPI.getStorageManager().destroyStorageFactory();
+
 		if(wasUpdated && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
 			try {
 				Script.main("-url jdbc:h2:$f -script $f.zip -options compression zip".replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString()).split(" "));
@@ -226,8 +228,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 				e.printStackTrace();
 			}
 		}
-
-		PicoJobsAPI.getStorageManager().destroyStorageFactory();
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
 	}
