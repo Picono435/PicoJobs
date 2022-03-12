@@ -344,8 +344,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
 			Map<Type, List<String>> whitelist = new HashMap<>();
-			// Legacy: Will be removed in future update
 			if(jobc.contains("whitelist")) {
+				// Legacy: Will be removed in future update
 				if(jobc.get("whitelist") instanceof List) {
 					List<String> white = jobc.getStringList("whitelist");
 					for(Type type : types) {
