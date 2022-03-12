@@ -106,6 +106,7 @@ dependencies {
 slimJar {
     relocate 'org.mongodb', 'com.gmail.picono435.picojobs.libs.mongodb'
     relocate 'com.zaxxer', 'com.gmail.picono435.picojobs.libs.zaxxer'
+    relocate 'org.h2', 'com.gmail.picono435.picojobs.libs.h2'
     relocate 'com.h2database', 'com.gmail.picono435.picojobs.libs.h2database'
     relocate 'org.xerial', 'com.gmail.picono435.picojobs.libs.xerial'
     relocate 'org.mariadb.jbdc', 'com.gmail.picono435.picojobs.libs.mariadb'
