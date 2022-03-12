@@ -101,7 +101,7 @@ public class PlayersManager {
 				if(!factory.playerExists(uuid)) {
 					factory.createPlayer(uuid);
 				}
-				JobPlayer jp = new JobPlayer(PicoJobsAPI.getJobsManager().getJob(factory.getJob(uuid)),
+				JobPlayer jp = new JobPlayer(factory.getJob(uuid),
 						factory.getMethod(uuid),
 						factory.getMethodLevel(uuid),
 						factory.getSalary(uuid), 

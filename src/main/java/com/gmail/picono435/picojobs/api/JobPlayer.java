@@ -28,8 +28,8 @@ public class JobPlayer {
 	private double salary;
 	private String errorMessage;
 	
-	public JobPlayer(Job job, double method, double level, double salary, boolean isWorking, UUID uuid) {
-		this.job = job;
+	public JobPlayer(String job, double method, double level, double salary, boolean isWorking, UUID uuid) {
+		this.job = PicoJobsAPI.getJobsManager().getJob(job);
 		this.method = method;
 		this.level = level;
 		this.salary = salary;

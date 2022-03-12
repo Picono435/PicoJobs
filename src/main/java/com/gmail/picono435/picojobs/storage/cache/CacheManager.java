@@ -1,8 +1,6 @@
 package com.gmail.picono435.picojobs.storage.cache;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.JobPlayer;
@@ -50,6 +48,22 @@ public class CacheManager {
 	 */
 	public void removeFromCache(UUID uuid) {
 		cache.remove(uuid);
+	}
+
+	/**
+	 * Gets all players from the cache system
+	 *
+	 * @return the job player uuid list of all jobplayers cached
+	 */
+	public List<UUID> getAllFromCache() {
+		return new ArrayList<>(cache.keySet());
+	}
+
+	/**
+	 * Clears all the cache saved in the plugin, make sure you know what you doing before calling this
+	 */
+	public void clearCache() {
+		cache.clear();
 	}
 
 }
