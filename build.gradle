@@ -90,7 +90,7 @@ dependencies {
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     slim 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
     slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.1'
-    shadow implementation('org.apache.maven:maven-artifact:3.8.4')
+    shadow implementation('org.apache.maven:maven-artifact:3.8.5')
     shadow implementation('org.bstats:bstats-bukkit:3.0.0')
     slim 'org.slf4j:slf4j-simple:1.7.36'
     slim 'org.slf4j:slf4j-api:1.7.36'
