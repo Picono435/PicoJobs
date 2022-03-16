@@ -167,6 +167,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 							.replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString())
 							.replace("$script", PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toString())
 							.split(" "));
+					PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toFile().deleteOnExit();
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
