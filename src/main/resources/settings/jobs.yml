@@ -31,7 +31,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["COW", "PIG", "CHICKEN", "SHEEP"]
+    whitelist:
+      kill_entity: ["COW", "PIG", "CHICKEN", "SHEEP"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "kill %a% animals"
     # Choose Job Menu settings
@@ -44,6 +45,11 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by hunting"
+        - "&8 animals"
+
       
   # This is a example of a enchanter job
   enchanter:
@@ -52,7 +58,7 @@ jobs:
     # The tag of the job
     tag: "&c[E]"
     # The type of the job
-    type: "enchanting"
+    types: [enchanting]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -83,6 +89,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by enchanting"
+        - "&8 items"
       
   # This is a example of a woodcutter job
   woodcutter:
@@ -91,7 +101,7 @@ jobs:
     # The tag of the job
     tag: "&6[W]"
     # The type of the job
-    type: "break"
+    types: [break]
     # Put here the default kills, (this change depends on the frequency)
     method: 15
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -109,7 +119,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG"]
+    whitelist:
+      break: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG", "SPRUCE_WOOD", "SPRUCE_LOG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "cut %a% woods"
     # Choose Job Menu settings
@@ -122,6 +133,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by cutting"
+        - "&8 trees"
       
   # This is a example of a miner job
   miner:
@@ -130,7 +145,7 @@ jobs:
     # The tag of the job
     tag: "&7[M]"
     # The type of the job
-    type: "break"
+    types: [break]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -149,24 +164,25 @@ jobs:
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      - gold_ore
-      - iron_ore
-      - coal_ore
-      - lapis_ore
-      - diamond_ore
-      - redstone_ore
-      - emerald_ore
-      - nether_quartz_ore
-      - nether_gold_ore
-      - copper_ore
-      - deepslate_gold_ore
-      - deepslate_iron_ore
-      - deepslate_coal_ore
-      - deepslate_lapis_ore
-      - deepslate_diamond_ore
-      - deepslate_redstone_ore
-      - deepslate_emerald_ore
-      - deepslate_copper_ore
+      break:
+        - gold_ore
+          - iron_ore
+          - coal_ore
+          - lapis_ore
+          - diamond_ore
+          - redstone_ore
+          - emerald_ore
+          - nether_quartz_ore
+          - nether_gold_ore
+          - copper_ore
+          - deepslate_gold_ore
+          - deepslate_iron_ore
+          - deepslate_coal_ore
+          - deepslate_lapis_ore
+          - deepslate_diamond_ore
+          - deepslate_redstone_ore
+          - deepslate_emerald_ore
+          - deepslate_copper_ore
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "mine %a% ores"
     # Choose Job Menu settings
@@ -179,6 +195,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by mining"
+        - "&8 ores"
       
   # This is a example of a builder job
   builder:
@@ -187,7 +207,7 @@ jobs:
     # The tag of the job
     tag: "&d[B]"
     # The type of the job
-    type: "place"
+    types: [place]
     # Put here the default kills, (this change depends on the frequency)
     method: 35
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -205,7 +225,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["bricks"]
+    whitelist:
+      place: ["bricks"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "place %a% bricks"
     # Choose Job Menu settings
@@ -218,6 +239,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by building"
+        - "&8 with bricks"
       
   # This is a example of a digger job
   digger:
@@ -226,7 +251,7 @@ jobs:
     # The tag of the job
     tag: "&3[D]"
     # The type of the job
-    type: "break"
+    types: [break]
     # Put here the default kills, (this change depends on the frequency)
     method: 25
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -244,7 +269,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["dirt", "grass", "grass_block"]
+    whitelist:
+      break: ["dirt", "grass", "grass_block"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "dig %a% dirts"
     # Choose Job Menu settings
@@ -257,6 +283,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by digging"
+        - "&8 dirt"
       
   # This is a example of a craftsman job
   craftsman:
@@ -265,7 +295,7 @@ jobs:
     # The tag of the job
     tag: "&a[C]"
     # The type of the job
-    type: "craft"
+    types: [craft]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -296,6 +326,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by crafting"
+        - "&8 items"
       
   # This is a example of a fisherman job
   fisherman:
@@ -304,7 +338,7 @@ jobs:
     # The tag of the job
     tag: "&b[F]"
     # The type of the job
-    type: "fishing"
+    types: [fishing]
     # Put here the default kills, (this change depends on the frequency)
     method: 25
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -322,7 +356,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["NAME_TAG"]
+    whitelist:
+      fishing: ["NAME_TAG"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "fish %a% fishes"
     # Choose Job Menu settings
@@ -335,6 +370,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by fishing"
+        - "&8 fish"
       
   # This is a example of a weaponsmith job
   weaponsmith:
@@ -343,7 +382,7 @@ jobs:
     # The tag of the job
     tag: "&8[W]"
     # The type of the job
-    type: "repair"
+    types: [repair]
     # Put here the default kills, (this change depends on the frequency)
     method: 8
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -374,6 +413,10 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by repairing"
+        - "&8 tools"
       
   # This is a example of a killer job
   killer:
@@ -382,7 +425,7 @@ jobs:
     # The tag of the job
     tag: "&9[K]"
     # The type of the job
-    type: "kill"
+    types: [kill]
     # Put here the default kills, (this change depends on the frequency)
     method: 20
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -400,7 +443,8 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    whitelist: ["weaponsmith"]
+    whitelist:
+      kill: ["weaponsmith"]
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     # work-message: "kill %a% people"
     # Choose Job Menu settings
@@ -413,3 +457,7 @@ jobs:
       item-data: 0
       # If you want to the item be enchanted or not
       enchanted: false
+      # The lore of the item ( what appears bellow, you can use placeholders here)
+      lore:
+        - "&8Earn by killing"
+        - "&8 players"

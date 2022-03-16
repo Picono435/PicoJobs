@@ -1,9 +1,6 @@
 package com.gmail.picono435.picojobs.api;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -45,13 +42,14 @@ public class Job {
 	private Material item;
 	private int itemData;
 	private boolean enchanted;
+	private List<String> lore;
 	
 	// OPTIONAL
 	private boolean useWhitelist;
-	private List<Object> whitelist;
-	private List<String> stringWhitelist;
+	private Map<Type, List<Object>> whitelist;
+	private Map<Type, List<String>> stringWhitelist;
 
-	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, boolean useWhitelist, List<String> whitelist) {
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -70,46 +68,52 @@ public class Job {
 		this.item = m;
 		this.itemData = itemData;
 		this.enchanted = enchanted;
+		this.lore = lore;
 
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
-			this.whitelist = new ArrayList<Object>();
-			for(Type type: this.types) {
+			this.whitelist = new HashMap<>();
+			for(Type type : whitelist.keySet()) {
 				String whitelistType = type.getWhitelistType();
+				List<Object> objects = new ArrayList<>();
 				if(whitelistType.equals("material")) {
-					for(String s : whitelist) {
+					for(String s : whitelist.get(type)) {
 						Material matNew = OtherUtils.matchMaterial(s);
 						if(matNew == null) continue;
-						this.whitelist.add(matNew);
+						objects.add(matNew);
 					}
+					this.whitelist.put(type, objects);
 				} else if(whitelistType.equals("entity")) {
-					for(String s : whitelist) {
+					for(String s : whitelist.get(type)) {
 						EntityType entityNew = OtherUtils.getEntityByName(s);
 						if(entityNew == null) continue;
-						this.whitelist.add(entityNew);
+						objects.add(entityNew);
 					}
+					this.whitelist.put(type, objects);
 				} else if(whitelistType.equals("job")) {
 					Job j = this;
 					new BukkitRunnable() {
 						public void run() {
-							for(String s : whitelist) {
+							for(String s : whitelist.get(type)) {
 								Job jobNew = PicoJobsAPI.getJobsManager().getJob(s);
 								if(jobNew == null) continue;
-								j.whitelist.add(jobNew);
+								objects.add(jobNew);
 							}
+							j.whitelist.put(type, objects);
 						}
 					}.runTask(PicoJobsPlugin.getInstance());
 				} else if(whitelistType.equals("color")) {
-					for(String s : whitelist) {
+					for(String s : whitelist.get(type)) {
 						DyeColor colorNew = DyeColor.valueOf(s.toUpperCase(Locale.ROOT));
 						if(colorNew == null) continue;
-						this.whitelist.add(colorNew);
+						objects.add(colorNew);
 					}
+					this.whitelist.put(type, objects);
 				}
 			}
 			this.stringWhitelist = whitelist;
 		} else {
-			this.whitelist = new ArrayList<Object>();
+			this.whitelist = new HashMap<>();
 		}
 	}
 	
@@ -295,6 +299,16 @@ public class Job {
 	public boolean isEnchanted() {
 		return this.enchanted;
 	}
+
+	/**
+	 * Gets the item lore
+	 *
+	 * @return the item lore of the job item
+	 * @author Picono435
+	 */
+	public List<String> getLore() {
+		return this.lore;
+	}
 	
 	/**
 	 * Checks if it's whitelist or not
@@ -316,7 +330,7 @@ public class Job {
 	@SuppressWarnings("deprecation")
 	public ItemStack getFormattedItem() {
 		ItemBuilder builder;
-		if(PicoJobsPlugin.getInstance().isOlderThan("1.12.2")) {
+		if(PicoJobsPlugin.getInstance().isLessThan("1.12.2")) {
 			int itemData = getItemData() - 1;
 			if(itemData == -1) {
 				builder = new ItemBuilder(getMaterial());
@@ -328,76 +342,81 @@ public class Job {
 		}
 		builder.setName(getDisplayName());
 		if(isEnchanted()) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+		builder.setLore(getLore());
 		builder.removeAttributes();
 		return builder.toItemStack();
 	}
 	
 	/**
 	 * Checks if a material is in the whitelist
-	 * 
+	 *
+	 * @param type the job type to get the whitelist from
 	 * @param material the material that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
 	 * @author Picono435
 	 */
-	public boolean inWhitelist(Material material) {
+	public boolean inWhitelist(Type type, Material material) {
 		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
 		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
 		if(this.useWhitelist) {
-			return this.whitelist.contains(material);
+			return this.whitelist.get(type).contains(material);
 		} else {
-			return !this.whitelist.contains(material);
+			return !this.whitelist.get(type).contains(material);
 		}
 	}
 	
 	/**
 	 * Checks if a entity is in the whitelist
-	 * 
+	 *
+	 * @param type the job type to get the whitelist from
 	 * @param entity the entity that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
 	 * @author Picono435
 	 */
-	public boolean inWhitelist(EntityType entity) {
+	public boolean inWhitelist(Type type, EntityType entity) {
 		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
 		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
 		if(this.useWhitelist) {
-			return this.whitelist.contains(entity);
+			return this.whitelist.get(type).contains(entity);
 		} else {
-			return !this.whitelist.contains(entity);
+			return !this.whitelist.get(type).contains(entity);
 		}
 	}
 	
 	/**
 	 * Checks if a dye color is in the whitelist
-	 * 
+	 *
+	 * @param type the job type to get the whitelist from
 	 * @param dyecolor the dye color that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
 	 * @author Picono435
 	 */
-	public boolean inWhitelist(DyeColor dyecolor) {
+	public boolean inWhitelist(Type type, DyeColor dyecolor) {
 		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
 		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
 		if(this.useWhitelist) {
-			return this.whitelist.contains(dyecolor);
+			return this.whitelist.get(type).contains(dyecolor);
 		} else {
-			return !this.whitelist.contains(dyecolor);
+			return !this.whitelist.get(type).contains(dyecolor);
 		}
 	}
 	
 	/**
 	 * Checks if a job is in the whitelist
-	 * 
+	 *
+	 * @param type the job type to get the whitelist from
 	 * @param job the job that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
 	 * @author Picono435
 	 */
-	public boolean inWhitelist(Job job) {
+	public boolean inWhitelist(Type type, Job job) {
 		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
 		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
 		if(job == null) return (this.useWhitelist) ? false : true;
 		if(this.useWhitelist) {
-			return this.whitelist.contains(job);
+			return this.whitelist.get(type).contains(job);
 		} else {
-			return !this.whitelist.contains(job);
+			return !this.whitelist.get(type).contains(job);
 		}
 	}
 	
@@ -407,20 +426,20 @@ public class Job {
 	 * @return the whitelist
 	 * @author Picono435
 	 */
-	public List<Object> getWhitelist() {
-		return this.whitelist;
+	public Map<Type, List<Object>> getWhitelist() {
+		return whitelist;
 	}
-	
+
 	/**
 	 * Gets the string whitelist
 	 * 
 	 * @return the string whitelist
 	 * @author Picono435
 	 */
-	public List<String> getStringWhitelist() {
-		return this.stringWhitelist;
+	public Map<Type, List<String>> getStringWhitelist() {
+		return stringWhitelist;
 	}
-	
+
 	/**
 	 * Gets a formatted whitelist string
 	 * 
@@ -428,6 +447,6 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWhitelistArray() {
-		return Arrays.toString(this.stringWhitelist.toArray());
+		return Arrays.toString(this.stringWhitelist.values().toArray());
 	}
 }

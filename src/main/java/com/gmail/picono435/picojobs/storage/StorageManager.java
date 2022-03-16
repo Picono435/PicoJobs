@@ -1,6 +1,5 @@
 package com.gmail.picono435.picojobs.storage;
 
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.logging.Level;
 
@@ -11,11 +10,7 @@ import com.gmail.picono435.picojobs.storage.file.HoconStorage;
 import com.gmail.picono435.picojobs.storage.file.JsonStorage;
 import com.gmail.picono435.picojobs.storage.file.YamlStorage;
 import com.gmail.picono435.picojobs.storage.mongodb.MongoStorage;
-import com.gmail.picono435.picojobs.storage.sql.MariaDbStorage;
-import com.gmail.picono435.picojobs.storage.sql.MySqlStorage;
-import com.gmail.picono435.picojobs.storage.sql.PostgreStorage;
-import com.gmail.picono435.picojobs.storage.sql.file.H2Storage;
-import com.gmail.picono435.picojobs.storage.sql.file.SqliteStorage;
+import com.gmail.picono435.picojobs.storage.sql.*;
 
 public class StorageManager {
 	

@@ -24,7 +24,7 @@ public class KillEntityListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.KILL_ENTITY)) return;
 		
-		if(!job.inWhitelist(e.getEntity().getType())) return;
+		if(!job.inWhitelist(Type.KILL_ENTITY, e.getEntity().getType())) return;
 		
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));

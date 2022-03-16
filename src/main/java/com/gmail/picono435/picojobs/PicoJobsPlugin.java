@@ -3,21 +3,20 @@ package com.gmail.picono435.picojobs;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.logging.*;
 
-import com.gmail.picono435.picojobs.storage.sql.file.H2Storage;
+import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
+import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
+import com.gmail.picono435.picojobs.listeners.jobs.*;
+import com.gmail.picono435.picojobs.storage.sql.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
-import io.github.slimjar.resolver.data.Mirror;
 import io.github.slimjar.resolver.data.Repository;
-import io.github.slimjar.resolver.mirrors.MirrorSelector;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
@@ -46,20 +45,6 @@ import com.gmail.picono435.picojobs.listeners.AliasesListeners;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
 import com.gmail.picono435.picojobs.listeners.CreatePlayerListener;
 import com.gmail.picono435.picojobs.listeners.ExecuteCommandListener;
-import com.gmail.picono435.picojobs.listeners.jobs.FisherListener;
-import com.gmail.picono435.picojobs.listeners.jobs.KillEntityListener;
-import com.gmail.picono435.picojobs.listeners.jobs.KillerListener;
-import com.gmail.picono435.picojobs.listeners.jobs.MilkListener;
-import com.gmail.picono435.picojobs.listeners.jobs.PlaceListener;
-import com.gmail.picono435.picojobs.listeners.jobs.RepairListener;
-import com.gmail.picono435.picojobs.listeners.jobs.ShearListener;
-import com.gmail.picono435.picojobs.listeners.jobs.SmeltListener;
-import com.gmail.picono435.picojobs.listeners.jobs.TameListener;
-import com.gmail.picono435.picojobs.listeners.jobs.BreakListener;
-import com.gmail.picono435.picojobs.listeners.jobs.CraftListener;
-import com.gmail.picono435.picojobs.listeners.jobs.EatListener;
-import com.gmail.picono435.picojobs.listeners.jobs.EnchantListener;
-import com.gmail.picono435.picojobs.listeners.jobs.FillListener;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.google.gson.JsonArray;
@@ -67,7 +52,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import io.github.slimjar.app.builder.ApplicationBuilder;
-import org.codehaus.plexus.util.FileUtils;
+import org.h2.tools.RunScript;
+import org.h2.tools.Script;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
@@ -101,12 +87,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
 			ApplicationBuilder
 				.appending("PicoJobs")
-				.mirrorSelector(new MirrorSelector() {
-					@Override
-					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-						return collection;
-					}
-				})
+				.mirrorSelector((collection, collection1) -> collection)
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
 				.internalRepositories(Collections.singleton(new Repository(new URL("https://repo.maven.apache.org/maven2/"))))
 				.build();
@@ -125,7 +106,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		if(checkLegacy() ) {
 			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
 		}
-		
+
 		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
 		loggingHandler = new ConsoleHandler();
@@ -162,6 +143,8 @@ public class PicoJobsPlugin extends JavaPlugin {
         
         // SETTING UP AND REQUIRED AND OPTIONAL DEPENDENCIES
         PicoJobsAPI.registerEconomy(new ExpImplementation());
+		PicoJobsAPI.registerEconomy(new CommandImplementation());
+		PicoJobsAPI.registerEconomy(new ItemImplementation());
         VaultHook.setupVault();
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
@@ -175,6 +158,22 @@ public class PicoJobsPlugin extends JavaPlugin {
         // GENERATE JOBS FROM CONFIGURATION
 		sendConsoleMessage(Level.INFO, "Generating jobs from configuration...");
 		if(!generateJobsFromConfig()) return;
+
+		// Fix my dumb way to migrate the database! This will be removed asap.
+		if(PicoJobsAPI.getSettingsManager().getStorageMethod().equalsIgnoreCase("H2")) {
+			try {
+				if(PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toFile().exists()) {
+					RunScript.main("-url jdbc:h2:$f -script $script"
+							.replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString())
+							.replace("$script", PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toString())
+							.split(" "));
+					PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toFile().deleteOnExit();
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
 		PicoJobsAPI.getStorageManager().initializeStorageFactory();
 		if(!isTestEnvironment) {
 			metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
@@ -204,38 +203,32 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new EatListener(), this);
 		Bukkit.getPluginManager().registerEvents(new EnchantListener(), this);
 		Bukkit.getPluginManager().registerEvents(new MilkListener(), this);
+		Bukkit.getPluginManager().registerEvents(new MoveListener(), this);
+		Bukkit.getPluginManager().registerEvents(new TradeListener(), this);
 		Bukkit.getPluginManager().registerEvents(new RepairListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SmeltListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
-				
-		checkVersion();
+
+		if(getConfig().getBoolean("update-checker")) {
+			checkVersion();
+		}
 	}
 	
 	public void onDisable() {
 		sendConsoleMessage(Level.INFO, "Disconnecting connection to storage...");
 		jobs.clear();
 
+		PicoJobsAPI.getStorageManager().destroyStorageFactory();
+
 		if(wasUpdated && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
 			try {
-				// Copy the current database to a -old file
-				FileUtils.copyFile(PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2.mv.db").toFile(), PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("picojobs-h2-old.mv.db").toFile());
-				// Set the path where the script file will be located
-				Path scriptFile = PicoJobsPlugin.getInstance().getDataFolder().toPath().resolve("storage").resolve("script").toAbsolutePath();
-				// Backup database to script
-				((H2Storage) PicoJobsAPI.getStorageManager().getStorageFactory()).backupDataTo(scriptFile.toFile());
-				PicoJobsAPI.getStorageManager().destroyStorageFactory();
-				// Delete the current database
-				PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2.mv.db").toFile().delete();
-				sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
-				return;
-			} catch (Exception e) {
+				Script.main("-url jdbc:h2:$f -script $f.zip -options compression zip".replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString()).split(" "));
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-
-		PicoJobsAPI.getStorageManager().destroyStorageFactory();
 		
 		sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
 	}
@@ -254,21 +247,35 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public Handler getLoggingHandler() {
 		return loggingHandler;
 	}
-	
-	public boolean isNewerThan(String version) {
+
+	/*
+	 * Same as having serverVersion >= specifiedVersion
+	 * Example: 1.18.1 >= 1.12.2
+	 *
+	 * @param version
+	 * @return
+	 */
+	public boolean isMoreThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) >= 0) {
+		if(serverVersionArt.compareTo(legacyVersion) >= 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public boolean isOlderThan(String version) {
+
+	/*
+	 * Same as having serverVersion <= specifiedVersion
+	 * Example: 1.18.1 <= 1.12.2
+	 *
+	 * @param version
+	 * @return
+	 */
+	public boolean isLessThan(String version) {
 		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
 		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(legacyVersion.compareTo(serverVersionArt) <= 0) {
+		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
 			return true;
 		} else {
 			return false;
@@ -298,17 +305,18 @@ public class PicoJobsPlugin extends JavaPlugin {
 			debugMessage("Display name: " + displayname);
 			String tag = jobc.getString("tag");
 			debugMessage("Tag: " + tag);
-			List<Type> types;
-			if(jobc.contains("types")) {
-				types = Type.getTypes(jobc.getStringList("types"));
-			} else {
-				types = new ArrayList<Type>();
-			}
 			if(jobc.contains("type")) {
 				String typeString = jobc.getString("type");
-				types.add(Type.getType(typeString.toUpperCase(Locale.ROOT)));
+				jobc.set("types", Collections.singletonList(typeString));
+				jobc.set("type", null);
+				try {
+					FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-			debugMessage("Types: " + types);
+			List<Type> types = Type.getTypes(jobc.getStringList("types"));
+			debugMessage("Types: " + Arrays.toString(types.toArray()));
 			double method = jobc.getDouble("method");
 			debugMessage("Method: " + method);
 			double salary = jobc.getDouble("salary");
@@ -331,13 +339,33 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String item = guic.getString("item");
 			int itemData = guic.getInt("item-data");
 			boolean enchanted = guic.getBoolean("enchanted");
+			List<String> lore = guic.getStringList("lore");
 			
 			// CALCULATING OPTIONALS
 			
 			boolean useWhitelist = jobc.getBoolean("use-whitelist");
-			List<String> whitelist = jobc.getStringList("whitelist");
+			Map<Type, List<String>> whitelist = new HashMap<>();
+			if(jobc.contains("whitelist")) {
+				// Legacy: Will be removed in future update
+				if(jobc.get("whitelist") instanceof List) {
+					List<String> white = jobc.getStringList("whitelist");
+					for(Type type : types) {
+						whitelist.put(type, white);
+						jobc.set("whitelist." + type.name(), white);
+						try {
+							FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				} else {
+					for(String type : jobc.getConfigurationSection("whitelist").getKeys(false)) {
+						whitelist.put(Type.getType(type), jobc.getConfigurationSection("whitelist").getStringList(type));
+					}
+				}
+			}
 
-			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, useWhitelist, whitelist);
+			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
 
 			jobs.put(jobid, job);
 			

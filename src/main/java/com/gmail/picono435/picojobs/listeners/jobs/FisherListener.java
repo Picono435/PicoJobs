@@ -26,7 +26,7 @@ public class FisherListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.FISHING)) return;
 		if(!(e.getCaught() instanceof Item)) return;
-		if(!job.inWhitelist(((Item)e.getCaught()).getItemStack().getType())) return;
+		if(!job.inWhitelist(Type.FISHING, ((Item)e.getCaught()).getItemStack().getType())) return;
 		
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));

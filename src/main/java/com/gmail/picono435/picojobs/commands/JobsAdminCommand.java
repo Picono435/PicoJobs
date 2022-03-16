@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import org.apache.commons.lang3.StringUtils;
@@ -93,6 +94,9 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			}
 			PicoJobsAPI.getStorageManager().destroyStorageFactory();
 			PicoJobsAPI.getStorageManager().initializeStorageFactory();
+			for(UUID uuid : PicoJobsAPI.getStorageManager().getCacheManager().getAllFromCache()) {
+				PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).setJob(PicoJobsAPI.getJobsManager().getJob(PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).getJob().getID()));
+			}
 			p.sendMessage(LanguageManager.getMessage("reload-command", pl));
 			return true;
 		}

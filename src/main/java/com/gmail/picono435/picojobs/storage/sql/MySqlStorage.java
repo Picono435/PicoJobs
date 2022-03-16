@@ -25,11 +25,9 @@ public class MySqlStorage extends HikariStorageFactory {
         
         this.hikari = new HikariDataSource(config);
         
-        try(Connection conn = hikari.getConnection()) {
-        	PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS " + configurationSection.getString("tablename") + " (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));");
+        try(Connection conn = hikari.getConnection();
+			PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS " + configurationSection.getString("tablename") + " (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));")) {
         	stm.execute();
-        	stm.close();
-        	conn.close();
         }
 		return false;
 	}
@@ -37,6 +35,5 @@ public class MySqlStorage extends HikariStorageFactory {
 	@Override
 	public void destroyStorage() {
 		hikari.close();
-		return;
 	}
 }

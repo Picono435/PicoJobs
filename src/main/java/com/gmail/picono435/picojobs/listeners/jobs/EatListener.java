@@ -23,7 +23,7 @@ public class EatListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.EAT)) return;
 		
-		if(!job.inWhitelist(e.getItem().getType())) return;
+		if(!job.inWhitelist(Type.EAT, e.getItem().getType())) return;
 		
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
