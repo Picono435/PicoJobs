@@ -106,7 +106,7 @@ aliases:
   reload: "reload"
   update: "aktualisieren"
   about: "über"
-  set: "setzen"
+  set: "setzt"
   method: "Methode"
   job: "job"
   editor: "editieren"
@@ -119,11 +119,11 @@ aliases:
 #################################################################################
 #In this category you can change all the time translations
 seconds: "Sekunden"
-second: "sekunde"
+second: "Sekunde"
 minutes: "Minuten"
 minute: "Minute"
-hours: "std"
-hour: "std"
+hours: "Stunden"
+hour: "Stunde"
 days: "Tage"
 day: "Tag"
 months: "Monate"
