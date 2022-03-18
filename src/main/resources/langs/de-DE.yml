@@ -53,7 +53,7 @@ reload-command: "&aKonfigurationen, Jobs & Sprache wurden erfolgreich neu gelade
 player-not-found: "&cDieser Spieler ist nicht online, bitte gib einen gültigen Spieler ein."
 unknow-error: "&cEin unbekannter Fehler ist aufgetreten, bitte überprüfen Sie die Konsole für weitere Informationen."
 left-job: "&cDu bist nicht arbeitslos! Wir empfehlen dir, einen neuen Job zu wählen oder viel Geld zu verlieren."
-already-updated: "&cDas Plugin ist bereits in der aktuellsten Version, für weitere Informationen schauen Sie sich unser WIKI an."
+already-updated: "&cDas Plugin ist bereits in der aktuellsten Version. Weitere Informationen dazu findest du im WIKI."
 update-started: "&aDie Aktualisierung des Plugins PicoJobs wurde gestartet, bitte warten..."
 updated-sucefully: "&aDas Plugin wurde erfolgreich aktualisiert, bitte starten Sie den Server neu, um die Aktualisierung abzuschließen."
 sucefully: "&aDie Aktion wurde erfolgreich durchgeführt."
