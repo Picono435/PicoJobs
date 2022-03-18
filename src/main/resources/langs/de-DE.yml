@@ -69,7 +69,7 @@ invalid-arg: "&aDas gesendete Argument ist ungültig. Bitte überprüfen Sie die
 break-work: "%a% Blöcke brechen\n\n-> Pausenarbeit\n################################################################################\n#\nNachrichten formatieren #\n#\n################################################################################\nIn dieser Kategorie können Sie die Formate von Platzhaltern und andere Dinge ändern\nAlle diese Meldungen funktionieren mit Player-Platzhaltern;) (PlaceholderAPI erforderlich)\nÄndern Sie, wie die Arbeiten angezeigt werden sollen. (Default, für einen bestimmten Job gehen Sie in settings/jobs. yml)"
 kill-work: "töte %a% Menschen"
 fishing-work: "fische %a% Fische"
-place-work: "stelle %a% Blöcke"
+place-work: "platziere %a% Blöcke"
 craft-work: "Stelle %a% Items her"
 tame-work: "zähme %a% Tiere"
 shear-work: "schere %a% Schafe"
