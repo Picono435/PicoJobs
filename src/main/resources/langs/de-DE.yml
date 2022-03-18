@@ -49,8 +49,8 @@ info-command: |-
   &eIst Arbeit: %jobplayer_working%
   &eArbeit: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aKonfigurationen, Jobs & Sprache wurden erfolgreich neu geladen."
-player-not-found: "&cDieser Spieler ist nicht online, bitte gib einen gültigen Spieler ein."
+reload-command: "&aKonfigurationen, Jobs und die Sprache wurden erfolgreich neu geladen."
+player-not-found: "&cDieser Spieler ist nicht online. Bitte gib einen gültigen Spielernamen ein!"
 unknow-error: "&cEin unbekannter Fehler ist aufgetreten, bitte überprüfen Sie die Konsole für weitere Informationen."
 left-job: "&cDu bist nicht arbeitslos! Wir empfehlen dir, einen neuen Job zu wählen oder viel Geld zu verlieren."
 already-updated: "&cDas Plugin ist bereits in der aktuellsten Version. Weitere Informationen dazu findest du im WIKI."
