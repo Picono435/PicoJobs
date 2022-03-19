@@ -45,8 +45,8 @@ member-commands: |-
   &e/jobs leave &6- &eJob kündigen
 info-command: |-
   &6Status des Spielers %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIst Arbeit: %jobplayer_working%
+  &eGehalt: %jobplayer_salary%
+  &eArbeitet: %jobplayer_working%
   &eArbeit: %jobplayer_work%
   &eJob: %jobplayer_job%
 reload-command: "&aKonfigurationen, Jobs und die Sprache wurden erfolgreich neu geladen."
