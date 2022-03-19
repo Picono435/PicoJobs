@@ -26,14 +26,14 @@ salary-cooldown: "&cDu musst noch %cooldown_mtime% warten, um dein Gehalt wieder
 work-status: "&aHier ist das, was Sie tun müssen: %jobplayer_work%"
 admin-commands: |-
   &6Liste der Befehle:
-  &e/jobsadmin help &6- &eSehen Sie diese Nachrichten
-  &e/jobsadmin info <player> &6- &eGets die Informationen über einen Spieler
-  &e/jobsadmin reload &6- &eNeuladen Sie alle möglichen Konfigurationen.
+  &e/jobsadmin help &6- &eZeigt Hilfestellungen an
+  &e/jobsadmin info <player> &6- &eRuft Informationen über einen Spieler ab
+  &e/jobsadmin reload &6- &eLädt alle Konfigurationen neu
   &e/jobsadmin update &6- &eInstalliert ein Update des Plugins
-  &e/jobsadmin about &6- &eGets information about the server and the plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eSets the salary/method of a player
-  &e/jobsadmin editor &6- &eCreates a web editor session
-  &e/jobsadmin applyedits &6- &eApply the edits of a web editor session
+  &e/jobsadmin about &6- &eRuft Informationen über das Plugin und den Server ab
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eLegt Gehalt -smethode eines Spielers fest
+  &e/jobsadmin editor &6- &eErstellt eine Web-Editor-Sitzung
+  &e/jobsadmin applyedits &6- &eÜbernimmt die Änderungen der Web-Editor-Sitzung
   &e/jobsadmin debug &6- &eAktiviert den DEBUG Modus des Plugins
 member-commands: |-
   &6Liste der Befehle:
