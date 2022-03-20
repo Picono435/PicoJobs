@@ -37,12 +37,12 @@ admin-commands: |-
   &e/jobsadmin debug &6- &eAktiviert den DEBUG Modus des Plugins
 member-commands: |-
   &6Liste der Befehle:
-  &e/jobs help &6- &eZeigt Hilfestellungen an
-  &e/jobs choose <job> &6- &eWählen eines Jobs
-  &e/jobs work &6- &eDein aktueller Status/Akzeptieren einer Arbeit
-  &e/jobs salary &6- &eCheckt dein Gehalt
-  &e/jobs withdraw &6- &eEmpfang deines Gehaltes
-  &e/jobs leave &6- &eJob kündigen
+  &e/jobs help &6- &eSehen Sie diese Nachrichten
+  &e/jobs wählen <job> &6- &eChooses your job
+  &e/jobs work &6- &eSiehe den Status/Akzeptieren Ihrer Arbeit
+  &e/jobs Gehalt &6- &ePrüfen Sie Ihr Gehalt
+  &e/jobs Abzug &6- &eRückzug Ihres Gehalts
+  &e/jobs leave &6- &eVerlässt den Job
 info-command: |-
   &6Status des Spielers %player_name%
   &eGehalt: %jobplayer_salary%
