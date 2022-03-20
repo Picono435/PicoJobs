@@ -15,7 +15,7 @@ ignore-action: "&cHey! Sei nicht faul und sprich mit dem NPC."
 choosed-job: "&aHerzlichen Glückwunsch! Du hast den Job %jobplayer_job%&a gewählt."
 accepted-work: "&aDu hast die Arbeit von %jobplayer_work% akzeptiert."
 no-salary: "&cDu hast nicht genug Gehalt, um es zu erhalten! Bitte gehe zur Arbeit ;("
-got-salary: "&aGute Arbeit! Du hast dein %jobplayer_salary% Gehalt erhalten!"
+got-salary: "Gute Arbeit! Du hast ein Gehalt von %jobplayer_salary% erhalten!"
 finished-work: "&aHerzlichen Glückwunsch! Du hast deine Arbeit beendet. Benutze /jobs um mehr Informationen darüber zu erhalten."
 need-level: "&cHey! Du musst %a% tun, um diese Aktion auszuführen."
 no-args: "&cHey! Bitte verwende eine gültige Syntax."
@@ -25,24 +25,24 @@ unknow-job: "&cDieser Job wurde nicht gefunden, bitte benutzen Sie das TAB COMPL
 salary-cooldown: "&cDu musst noch %cooldown_mtime% warten, um dein Gehalt wieder zu erhalten."
 work-status: "&aHier ist das, was Sie tun müssen: %jobplayer_work%"
 admin-commands: |-
-  &6Liste der Befehle:
-  &e/jobsadmin help &6- &eZeigt Hilfestellungen an
+  &6Vollständige Liste der Befehle:
+  &e/jobsadmin help &6- &eZeigt diese Meldung an
   &e/jobsadmin info <player> &6- &eRuft Informationen über einen Spieler ab
   &e/jobsadmin reload &6- &eLädt alle Konfigurationen neu
   &e/jobsadmin update &6- &eInstalliert ein Update des Plugins
   &e/jobsadmin about &6- &eRuft Informationen über das Plugin und den Server ab
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eLegt Gehalt -smethode eines Spielers fest
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eLegt Gehalt/Methode eines Spielers fest
   &e/jobsadmin editor &6- &eErstellt eine Web-Editor-Sitzung
   &e/jobsadmin applyedits &6- &eÜbernimmt die Änderungen der Web-Editor-Sitzung
-  &e/jobsadmin debug &6- &eAktiviert den DEBUG Modus des Plugins
+  &e/jobsadmin debug &6- &eAktiviert den DEBUG-Modus des Plugins
 member-commands: |-
-  &6Liste der Befehle:
-  &e/jobs help &6- &eSehen Sie diese Nachrichten
-  &e/jobs wählen <job> &6- &eChooses your job
-  &e/jobs work &6- &eSiehe den Status/Akzeptieren Ihrer Arbeit
-  &e/jobs Gehalt &6- &ePrüfen Sie Ihr Gehalt
-  &e/jobs Abzug &6- &eRückzug Ihres Gehalts
-  &e/jobs leave &6- &eVerlässt den Job
+  &6Vollständige Liste der Befehle:
+  &e/jobs help &6- &eZeigt diese Meldung an
+  &e/jobs choose <job> &6- &eWählen eines Jobs
+  &e/jobs work &6- &eDein aktueller Status/Akzeptieren einer Arbeit
+  &e/jobs salary &6- &eÜberprüfug deines Gehaltes
+  &e/jobs withdraw &6- &eAbhebung deines Gehaltes
+  &e/jobs leave &6- &eJob verlassen
 info-command: |-
   &6Status des Spielers %player_name%
   &eGehalt: %jobplayer_salary%
