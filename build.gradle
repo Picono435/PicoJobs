@@ -17,10 +17,10 @@ if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '1') {
         version versioning.info.build + "-DEV"
     } else {
-        version "1.0-beta-6"
+        version "1.0-beta-6a"
     }
 } else {
-    version versioning.info.build + "-DEV"
+    version "1.0-beta-6a"
 }
 
 repositories {
@@ -109,7 +109,7 @@ slimJar {
     relocate 'org.h2', 'com.gmail.picono435.picojobs.libs.h2'
     relocate 'com.h2database', 'com.gmail.picono435.picojobs.libs.h2database'
     relocate 'org.xerial', 'com.gmail.picono435.picojobs.libs.xerial'
-    relocate 'org.mariadb.jbdc', 'com.gmail.picono435.picojobs.libs.mariadb'
+    relocate 'org.mariadb.jdbc', 'com.gmail.picono435.picojobs.libs.mariadb'
     relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.mysql'
     relocate 'com.fasterxml.jackson', 'com.gmail.picono435.picojobs.libs.jackson'
     relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.slf4j'
