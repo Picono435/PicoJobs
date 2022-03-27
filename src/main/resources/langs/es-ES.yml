@@ -12,52 +12,52 @@
 #In this category you can change the general messages of the plugin
 no-permission: "&cNo tienes permiso para ejecutar ese comando."
 ignore-action: "&cNo seas vago y ve a hablar con el NPC."
-choosed-job: "&a¡Enhorabuena! Has elegido el trabajo de %jobplayer_job%&a."
-accepted-work: "&aHas aceptado el trabajo de %jobplayer_work%."
-no-salary: "&cNo has trabajado lo suficiente como para obtener tu salario. Por favor ve a trabajar ;("
-got-salary: "&a¡Buen trabajo! ¡Acabas de cobrar tu salario de %jobplayer_salary%!"
-finished-work: "&a¡Enhorabuena! Acabas de terminar tu trabajo. Usa /jobs para obtener más información al respecto."
-need-level: "&cNecesitas hacer %a% trabajos para ejecutar esa acción."
-no-args: "&cPor favor, usa una sintaxis válida."
-my-salary: "&aTienes %jobplayer_salary%$ de salario para cobrar."
-unknow-job: "&cEse trabajo no se ha encontrado, por favor usa la TAB COMPLETE para ver una lista de trabajos disponibles."
+choosed-job: "&a¡Genial! elegiste el trabajo: %jobplayer_job%&a."
+accepted-work: "&aAceptaste la siguiente tarea: %jobplayer_work%."
+no-salary: "&cNo tienes salario disponible para cobrar, completa tu tarea para tenerlo."
+got-salary: "&a¡Felicidades! Recibiste un salario de: %jobplayer_salary%, listo para cobrarlo."
+finished-work: "&a¡Bien hecho! Terminaste tu trabajo, usa /jobs para obtener mas informacion."
+need-level: "&cNecesitas hacer %a% trabajos para realizar esa accion."
+no-args: "&cLo has escrito mal, revisa y vuelve a intentar."
+my-salary: "&aTienes un salario de: %jobplayer_salary%$."
+unknow-job: "&cEse trabajo no existe, porfavor usa la tecla TAB para ver los trabajos disponibles."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cNecesitas esperar más de %cooldown_mtime% para poder cobrar de nuevo."
-work-status: "&aEsto es lo que necesitas hacer: %jobplayer_work%"
+salary-cooldown: "&cDebes esperar %cooldown_mtime% antes de poder cobrar tu salario nuevamente."
+work-status: "&aEsto es lo que debes hacer: %jobplayer_work%"
 admin-commands: |-
   &6Lista completa de comandos:
-  &e/jobsadmin help &6- &eVer estos mensajes
-  &e/jobsadmin info <player> &6- &eObtiene la información sobre un jugador
-  &e/jobsadmin recargar &6- &eRecargar todas las configuraciones posibles.
-  &e/jobsadmin update &6- &eInstala una actualización del plugin
-  &e/jobsadmin acerca de &6- &eObtiene información sobre el servidor y el plugin
-  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eEstablece el salario/método de un jugador
-  &e/jobsadmin editor &6- &eCrea una sesión de editor web
-  &e/jobsadmin aplicaciones&6- &eAplica las ediciones de un editor web
-  &e/jobsadmin debug &6- &eActiva el modo DEBUG del plugin
+  &e/jobsadmin help &6- &eVer este menu.
+  &e/jobsadmin info <player> &6- &eMuestra la informacion acerca de un jugador.
+  &e/jobsadmin reload &6- &eRecarga todas las configuraciones.
+  &e/jobsadmin update &6- &eInstala una actualizacion del plugin.
+  &e/jobsadmin about &6- &eMuestra informacion acerca del servidor y el plugin.
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eEstablece el salario/metodo/trabajo de un jugador.
+  &e/jobsadmin editor &6- &eCrea una sesion en el editor web.
+  &e/jobsadmin applyedits &6- &eAplica los cambios hechos en la sesion del editor web.
+  &e/jobsadmin debug &6- &eActiva el modo depuracion del plugin DEBUG MODE.
 member-commands: |-
   &6Lista completa de comandos:
-  &e/jobs help &6- &eVer estos mensajes
-  &e/jobs choose <job> &6- &eElegir tu trabajo
-  &e/jobs work &6- &eEstado de tu trabajo
-  &e/jobs salary &6- &eComprobar tu sueldo
-  &e/jobs withdraw &6- &eRetirar tu salario
-  &e/jobs leave &6- &eDejar tu trabajo
+  &e/jobs help &6- &eMuestra este menu.
+  &e/jobs choose <job> &6- &eElige un trabajo.
+  &e/jobs work &6- &eMuetra el estado/requisitos del trabajo.
+  &e/jobs salary &6- &eMuestra tu salario obtenido.
+  &e/jobs withdraw &6- &eCobra el salario obtenido.
+  &e/jobs leave &6- &eRenuncia al trabajo.
 info-command: |-
-  &6Estado del jugador %player_name%
+  &6Estado del jugador: %player_name%
   &eSalario: %jobplayer_salary%
-  &eTrabajando: %jobplayer_working%
-  &eTareas: %jobplayer_work%
+  &eEsta trabajando?: %jobplayer_working%
+  &eTrabajo: %jobplayer_work%
   &eTrabajo: %jobplayer_job%
-reload-command: "&aConfiguraciones, Trabajos e Idioma fueron recargados con éxito."
-player-not-found: "&cEse jugador no esta conectado, por favor pon un jugador válido."
-unknow-error: "&cSe ha producido un error desconocido, por favor revisa la consola para mas información."
-left-job: "&cEstás desempleado! Te recomendamos que elijas un nuevo trabajo o perderás mucho dinero."
-already-updated: "&cEl plugin ya está en la ultima versión, para más información, consulta nuestra WIKI."
-update-started: "&aLa actualización del plugin PicoJobs ha comenzado, por favor espere..."
-updated-sucefully: "&aEl plugin ha sido actualizado con éxito, por favor reinicie el servidor para finalizar la actualización."
-sucefully: "&aLa acción fue realizada con éxito."
-invalid-arg: "&aEl argumento enviado no es válido. Por favor, comprueba el error."
+reload-command: "&aLas configuraciones, trabajos e idioma han sido recargados."
+player-not-found: "&cEse jugador no esta conectado, usa el nombre de un jugador que si lo este."
+unknow-error: "&cUn error desconocido ha ocurrido, revisa la consola del servidor para obtener mas informacion."
+left-job: "&cYa tienes un trabajo, si continuas perderas todo el salario acumulado."
+already-updated: "&cYa posees la ultima verison del plugin, puedes obetener mas informacion en nuetra Wiki."
+update-started: "&aLa actualizacion del plugin PicoJobs ha empezado, espera un rato..."
+updated-sucefully: "&aEl plugin fue actualizado, reinicia el servidor para completar la actualizacion."
+sucefully: "&aAccion realizada correctamente."
+invalid-arg: "&aArgumento no valido, revisa en que parte te equivocaste."
 #################################################################################
 ##
 #Format messages                                                               #
@@ -67,21 +67,21 @@ invalid-arg: "&aEl argumento enviado no es válido. Por favor, comprueba el erro
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
 break-work: "romper %a% bloques"
-kill-work: "Asesinar a %a% jugadores"
-fishing-work: "peces %a% peces"
-place-work: "Coloca %a% bloques"
+kill-work: "asesinar %a% jugadores"
+fishing-work: "pescar %a% percados"
+place-work: "colocar %a% bloques"
 craft-work: "fabricar %a% objetos"
-tame-work: "domo %a% animales"
-shear-work: "Esquilar a %a% ovejas"
-fill-work: "Rellenar %a% cubos"
-smelt-work: "Fundir %a% objetos"
-eat-work: "Comer %a% objetos"
-enchanting-work: "Encantar %a% objetos"
-repair-work: "Reparar %a% objetos"
-milk-work: "Ordeñar a %a% vacas para obtener leche"
-kill_entity-work: "Matar a %a% entidades"
+tame-work: "domesticar/domar %a% animales"
+shear-work: "esquilar %a% ovejas"
+fill-work: "llenar %a% baldes"
+smelt-work: "fundir %a% objetos"
+eat-work: "comer %a% comida."
+enchanting-work: "encantar %a% objetos"
+repair-work: "reparar %a% objetos"
+milk-work: "beber %a% leche de vaca."
+kill_entity-work: "matar %a% mobs"
 #When something is not find what should it appear
-none-format: "Ninguna"
+none-format: "Ninguno."
 default-tag: ""
 #################################################################################
 ##
@@ -124,8 +124,8 @@ minutes: "minutos"
 minute: "minuto"
 hours: "horas"
 hour: "hora"
-days: "días"
-day: "día"
+days: "dias"
+day: "dia"
 months: "meses"
 month: "mes"
 years: "años"
