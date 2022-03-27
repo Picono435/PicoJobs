@@ -39,7 +39,7 @@ member-commands: |-
   &6Vollständige Liste der Befehle:
   &e/jobs help &6- &eZeigt diese Meldung an
   &e/jobs choose <job> &6- &eWählen eines Jobs
-  &e/jobs work &6- &eDein aktueller Status/Akzeptieren einer Arbeit
+  &e/jobs work &6- &eDein aktueller Status-/ Deine aktuelle Akzeptanz einer Arbeit
   &e/jobs salary &6- &eÜberprüfug deines Gehaltes
   &e/jobs withdraw &6- &eAbhebung deines Gehaltes
   &e/jobs leave &6- &eJob verlassen
