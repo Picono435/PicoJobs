@@ -19,7 +19,7 @@ got-salary: "Gute Arbeit! Du hast ein Gehalt von %jobplayer_salary% erhalten!"
 finished-work: "&aHerzlichen Glückwunsch! Du hast deine Arbeit beendet. Benutze /jobs um mehr Informationen darüber zu erhalten."
 need-level: "&cHey! Du musst %a% tun, um diese Aktion auszuführen."
 no-args: "&cHey! Bitte verwende eine gültige Syntax."
-my-salary: "Du hast ein Gehalt von %jobplayer_salary%$."
+my-salary: "&aDu hast ein Gehalt von %jobplayer_salary%$."
 unknow-job: "&cDieser Job wurde nicht gefunden, bitte benutzen Sie das TAB COMPLETE um eine Liste der Jobs zu erhalten."
 #In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cDu musst noch %cooldown_mtime% warten, um dein Gehalt wieder zu erhalten."
