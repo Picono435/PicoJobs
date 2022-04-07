@@ -53,6 +53,9 @@ storage:
   # |=> JSON
   # |=> HOCON
   storage-method: h2
+  # This option will reset the cache each time someone joins, this is useful if you are running a bungeecord server
+  # This feature is not fully tested in a production environment and it might cause issues
+  reset-cache-on-join: false
   # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
   remote-sql:
     host: localhost
