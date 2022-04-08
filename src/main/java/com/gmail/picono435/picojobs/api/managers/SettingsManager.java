@@ -48,7 +48,7 @@ public class SettingsManager {
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
 		this.salaryCooldown = config.getInt("salary-cooldown");
 		this.autoWorking = config.getBoolean("auto-working");
-		this.resetCacheOnJoin = config.getBoolean("reset-cache-on-join");
+		this.resetCacheOnJoin = config.getConfigurationSection("storage").getBoolean("reset-cache-on-join");
 		return true;
 	}
 	

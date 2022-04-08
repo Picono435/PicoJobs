@@ -23,7 +23,6 @@ public class CreatePlayerListener implements Listener {
 	@EventHandler()
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
-		
 		if(!PicoJobsAPI.getStorageManager().getCacheManager().playerExists(p.getUniqueId()) || PicoJobsAPI.getSettingsManager().isResetCacheOnJoin()) {
 			Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
 				try {
