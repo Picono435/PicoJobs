@@ -27,7 +27,7 @@ repositories {
     mavenCentral()
 
     maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/public/'
     }
 
     maven {
