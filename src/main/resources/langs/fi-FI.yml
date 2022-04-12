@@ -49,7 +49,7 @@ info-command: |-
   &eIs Working: %jobplayer_working%
   &eWork: %jobplayer_work%
   &eJob: %jobplayer_job%
-reload-command: "&aConfigurations, Jobs & Language uudelleenladattiin onnistuneesti."
+reload-command: "&aConfigurations, Jobs & Langues ont été rechargés avec succès."
 player-not-found: "&cTämä pelaaja ei ole paikalla, laita kelvollinen pelaaja."
 unknow-error: "&cTapahtui tuntematon virhe, ole hyvä ja tarkista konsoli saadaksesi lisätietoja."
 left-job: "&cEt ole työttömänä! Suosittelemme, että valitset uuden työpaikan tai menetät paljon rahaa."
