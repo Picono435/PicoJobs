@@ -21,8 +21,9 @@ need-level: "&Γεια! Πρέπει να κάνετε %a% λειτουργεί 
 no-args: "&Γεια! Παρακαλώ χρησιμοποιήστε μια έγκυρη σύνταξη."
 my-salary: "&aΈχετε %jobplayer_salary%$ μισθού."
 unknow-job: "&cΑυτή η εργασία δεν βρέθηκε, παρακαλώ χρησιμοποιήστε το TAB COMPLETE για να πάρετε μια λίστα εργασιών."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cΘα πρέπει να περιμένετε περισσότερα από %cooldown_mtime% για να λάβετε ξανά το μισθό σας."
+leave-cooldown: "&cΘα πρέπει να περιμένετε περισσότερα %cooldown_mtime% για να αφήσετε ξανά μια δουλειά."
 work-status: "&Εδώ είναι αυτό που πρέπει να κάνετε: %jobplayer_work%"
 admin-commands: |-
   &6Πλήρης λίστα εντολών:
