@@ -29,7 +29,7 @@ jobs:
          ../gradlew publishToMavenLocal
       - name: Tests with Gradle
         run: |
-           ls
+          ls
           ./gradlew test
       - name: Build with Gradle
         run: ./gradlew shadowJar
