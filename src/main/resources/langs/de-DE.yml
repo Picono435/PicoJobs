@@ -15,14 +15,15 @@ ignore-action: "&cHey! Sei nicht faul und sprich mit dem NPC."
 choosed-job: "&aHerzlichen Glückwunsch! Du hast den Job %jobplayer_job%&a gewählt."
 accepted-work: "&aDu hast die Arbeit von %jobplayer_work% akzeptiert."
 no-salary: "&cDu hast nicht genug Gehalt, um es zu erhalten! Bitte gehe zur Arbeit ;("
-got-salary: "&aGute Arbeit! Du hast ein Gehalt von %jobplayer_salary% erhalten!"
+got-salary: "Gute Arbeit! Du hast ein Gehalt von %jobplayer_salary% erhalten!"
 finished-work: "&aHerzlichen Glückwunsch! Du hast deine Arbeit beendet. Benutze /jobs um mehr Informationen darüber zu erhalten."
 need-level: "&cHey! Du musst %a% tun, um diese Aktion auszuführen."
 no-args: "&cHey! Bitte verwende eine gültige Syntax."
-my-salary: "&aDu hast ein Gehalt von %jobplayer_salary%$."
+my-salary: "Du hast ein Gehalt von %jobplayer_salary%$."
 unknow-job: "&cDieser Job wurde nicht gefunden, bitte benutzen Sie das TAB COMPLETE um eine Liste der Jobs zu erhalten."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cDu musst noch %cooldown_mtime% warten, um dein Gehalt wieder zu erhalten."
+leave-cooldown: "&cDu musst mehr %cooldown_mtime% warten, bevor du einen Job wieder verlässt."
 work-status: "&aHier ist das, was Sie tun müssen: %jobplayer_work%"
 admin-commands: |-
   &6Vollständige Liste der Befehle:
@@ -39,7 +40,7 @@ member-commands: |-
   &6Vollständige Liste der Befehle:
   &e/jobs help &6- &eZeigt diese Meldung an
   &e/jobs choose <job> &6- &eWählen eines Jobs
-  &e/jobs work &6- &eDein aktueller Status-/ Deine aktuelle Akzeptanz einer Arbeit
+  &e/jobs work &6- &eDein aktueller Status/Akzeptieren einer Arbeit
   &e/jobs salary &6- &eÜberprüfug deines Gehaltes
   &e/jobs withdraw &6- &eAbhebung deines Gehaltes
   &e/jobs leave &6- &eJob verlassen
