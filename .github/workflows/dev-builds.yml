@@ -26,7 +26,7 @@ jobs:
       - name: Publish slimJar to maven local
         run: |
          cd slimjar
-         run: chmod +x gradlew
+         chmod +x gradlew
          ./gradlew publishToMavenLocal
       - name: Tests with Gradle
         run: |
