@@ -27,6 +27,7 @@ jobs:
         run: |
          cd slimjar
          ../gradlew publishToMavenLocal
+         cd ..
       - name: Tests with Gradle
         run: ./gradlew test
       - name: Build with Gradle
