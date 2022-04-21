@@ -17,10 +17,10 @@ if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '1') {
         version versioning.info.build + "-DEV"
     } else {
-        version "1.0-beta-6a"
+        version "1.0-beta-6b"
     }
 } else {
-    version "1.0-beta-6a"
+    version "1.0-beta-6b"
 }
 
 repositories {
@@ -55,10 +55,6 @@ repositories {
     }
 
     mavenLocal();
-
-    maven {
-        url = 'https://repo.vshnv.tech/'
-    }
 }
 
 dependencies {
