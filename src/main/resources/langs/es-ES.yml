@@ -21,8 +21,9 @@ need-level: "&cNecesitas hacer %a% trabajos para realizar esa accion."
 no-args: "&cLo has escrito mal, revisa y vuelve a intentar."
 my-salary: "&aTienes un salario de: %jobplayer_salary%$."
 unknow-job: "&cEse trabajo no existe, porfavor usa la tecla TAB para ver los trabajos disponibles."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cDebes esperar %cooldown_mtime% antes de poder cobrar tu salario nuevamente."
+leave-cooldown: "&cNecesitas esperar más %cooldown_mtime% antes de dejar un trabajo de nuevo."
 work-status: "&aEsto es lo que debes hacer: %jobplayer_work%"
 admin-commands: |-
   &6Lista completa de comandos:
