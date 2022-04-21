@@ -29,8 +29,8 @@ jobs:
          ../gradlew publishToMavenLocal
       - name: Tests with Gradle
         run: |
-          ./gradlew test
            ls
+          ./gradlew test
       - name: Build with Gradle
         run: ./gradlew shadowJar
       - name: Publish Unit Test Results
