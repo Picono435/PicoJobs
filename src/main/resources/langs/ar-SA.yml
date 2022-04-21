@@ -21,8 +21,9 @@ need-level: "&cHey! تحتاج إلى القيام بـ %a% يعمل لتنفي�
 no-args: "&cHey! الرجاء استخدام بناء بناء صحيح."
 my-salary: "&aلديك %jobplayer_salary%دولار من الراتب."
 unknow-job: "&cلم يتم العثور على الوظيفة ، يرجى استخدام TB COMPLETE للحصول على قائمة بالوظائف."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cتحتاج إلى الانتظار أكثر من %cooldown_mtime% قبل الحصول على راتبك مرة أخرى."
+leave-cooldown: "&cتحتاج إلى الانتظار أكثر من %cooldown_mtime% قبل ترك الوظيفة مرة أخرى."
 work-status: "&aهنا ما عليك القيام به: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
