@@ -68,12 +68,6 @@ class SlimJarPlugin : Plugin<Project> {
         val slimJar = tasks.create(SLIM_JAR_TASK_NAME, SlimJar::class.java, slimConfig)
         // Auto adds the slimJar lib dependency
         afterEvaluate {
-            if (applyReleaseRepo) {
-                repositories.maven("https://repo.vshnv.tech/")
-            }
-            if (applySnapshotRepo) {
-                repositories.maven("https://repo.vshnv.tech/snapshots/")
-            }
         }
         project.dependencies.extra.set(
             "slimjar",
