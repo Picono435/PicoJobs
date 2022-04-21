@@ -21,8 +21,9 @@ need-level: "&cHej! Pro provedení této akce musíš udělat %a% práce."
 no-args: "&cHej! Použijte platnou syntaxi."
 my-salary: "&aMáte mzdu ve výši %jobplayer_salary%$."
 unknow-job: "&cTato práce nebyla nalezena, prosím použijte TAB COMPLETE pro získání seznamu pracovních míst."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cMusíš počkat více %cooldown_mtime% než budeš dostávat plat."
+leave-cooldown: "&cMusíte počkat více %cooldown_mtime% než znovu opustit pracovní pozici."
 work-status: "&aZde je to, co potřebujete udělat: %jobplayer_work%"
 admin-commands: |-
   &6Plný seznam příkazů:
