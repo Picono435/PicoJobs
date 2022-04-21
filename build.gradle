@@ -28,16 +28,10 @@ repositories {
 
     maven {
         url = 'https://oss.sonatype.org/content/repositories/snapshots'
-        content {
-            includeGroupByRegex "org\\.spigotmc.*"
-        }
     }
 
     maven {
         url = 'https://oss.sonatype.org/content/repositories/central'
-        content {
-            includeGroupByRegex "org\\.spigotmc.*"
-        }
     }
 
     maven {
