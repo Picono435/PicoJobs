@@ -28,30 +28,37 @@ repositories {
 
     maven {
         url = 'https://oss.sonatype.org/content/repositories/snapshots'
+        content {
+            includeGroupByRegex "org\\.spigotmc.*"
+        }
     }
 
     maven {
         url = 'https://oss.sonatype.org/content/repositories/central'
-    }
-
-    maven {
-        url = 'https://repo.citizensnpcs.co/'
+        content {
+            includeGroupByRegex "org\\.spigotmc.*"
+        }
     }
 
     maven {
         url = 'https://jitpack.io'
+        content {
+            includeGroupByRegex "com\\.github.*"
+        }
     }
 
     maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-    }
-
-    maven {
-        url = 'https://repo.codemc.org/repository/maven-public'
+        content {
+            includeGroupByRegex "me\\.clip.*"
+        }
     }
 
     maven {
         url = 'https://repo.rosewooddev.io/repository/public/'
+        content {
+            includeGroupByRegex "org\\.black_ixx.*"
+        }
     }
 
     mavenLocal();
