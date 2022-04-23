@@ -21,6 +21,7 @@ public class SettingsManager {
 	private ConfigurationSection remoteSqlConfiguration;
 	private ConfigurationSection mongodbConfiguration;
 	private int salaryCooldown;
+	private int leaveCooldown;
 	private boolean autoWorking;
 	private boolean resetCacheOnJoin;
 	
@@ -47,6 +48,7 @@ public class SettingsManager {
 		this.remoteSqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("remote-sql");
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
 		this.salaryCooldown = config.getInt("salary-cooldown");
+		this.leaveCooldown = config.getInt("leave-cooldown");
 		this.autoWorking = config.getBoolean("auto-working");
 		this.resetCacheOnJoin = config.getConfigurationSection("storage").getBoolean("reset-cache-on-join");
 		return true;
@@ -82,6 +84,10 @@ public class SettingsManager {
 	
 	public int getSalaryCooldown() {
 		return salaryCooldown;
+	}
+
+	public int getLeaveCooldown() {
+		return leaveCooldown;
 	}
 
 	public boolean isAutoWorking() {
