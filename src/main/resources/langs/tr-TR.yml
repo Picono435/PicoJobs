@@ -21,8 +21,9 @@ need-level: "&cHey! Bunu yapabilmek için %a% iş yapman gerek."
 no-args: "&cHey! Lütfen geçerli bir sözdizimi kullan."
 my-salary: "&a%jobplayer_salary% TL maaşın var."
 unknow-job: "&cBu mesleklerin bulunamadı, lütfen mesleklerin bir listesini almak için TAB TAMLAMASI kullan."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cMaaşını alabilmek için %cooldown_mtime% kadar beklemelisin"
+leave-cooldown: "&cYou need to wait more %cooldown_mtime% before leaving a job again."
 work-status: "&aİşte yapman gerekenler: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
