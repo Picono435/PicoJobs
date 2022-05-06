@@ -89,6 +89,8 @@ salary-cooldown: 600
 leave-cooldown: 100
 # Do you want it so you accept the job each time you complete a work or it automatically selects the work
 auto-working: false
+# Do BREAK job types allow placed block to be counted
+allow-placed: false
 
 #################################################################################
 #                                                                               #

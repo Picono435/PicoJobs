@@ -23,7 +23,7 @@ public class BreakListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onBreakBlock(BlockBreakEvent e) {
-		if(e.getBlock().getMetadata("PLACED").size() > 0) return;
+		if(PicoJobsAPI.getSettingsManager().isAllowPlaced() && e.getBlock().getMetadata("PLACED").size() > 0) return;
 
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);

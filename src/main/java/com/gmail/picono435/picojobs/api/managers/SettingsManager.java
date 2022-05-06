@@ -23,6 +23,7 @@ public class SettingsManager {
 	private int salaryCooldown;
 	private int leaveCooldown;
 	private boolean autoWorking;
+	private boolean allowPlaced;
 	private boolean resetCacheOnJoin;
 	
 	public SettingsManager(PicoJobsPlugin plugin) {
@@ -50,6 +51,7 @@ public class SettingsManager {
 		this.salaryCooldown = config.getInt("salary-cooldown");
 		this.leaveCooldown = config.getInt("leave-cooldown");
 		this.autoWorking = config.getBoolean("auto-working");
+		this.allowPlaced = config.getBoolean("allow-placed");
 		this.resetCacheOnJoin = config.getConfigurationSection("storage").getBoolean("reset-cache-on-join");
 		return true;
 	}
@@ -92,6 +94,10 @@ public class SettingsManager {
 
 	public boolean isAutoWorking() {
 		return autoWorking;
+	}
+
+	public boolean isAllowPlaced() {
+		return allowPlaced;
 	}
 
 	public boolean isResetCacheOnJoin() {
