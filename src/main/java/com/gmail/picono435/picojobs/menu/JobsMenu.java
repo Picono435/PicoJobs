@@ -34,12 +34,12 @@ public class JobsMenu {
 				p.openInventory(getNeedAcceptJobMenu(guiSettings, p, false));
 			}
 		} else {
-			p.openInventory(getChooseJobMenu(guiSettings));
+			p.openInventory(getChooseJobMenu(p, guiSettings));
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static Inventory getChooseJobMenu(ConfigurationSection guiSettings) {
+	public static Inventory getChooseJobMenu(Player p, ConfigurationSection guiSettings) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("choose-job");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		
@@ -60,7 +60,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', category.getString("item-name"))));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {
@@ -91,9 +91,9 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
 			}
-			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name"))));
 			if(toEdit) {
-				builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]");
+				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
 			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
@@ -156,9 +156,9 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
 			}
-			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name"))));
 			if(toEdit) {
-				builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]");
+				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
 			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
@@ -190,7 +190,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', category.getString("item-name"))));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {
