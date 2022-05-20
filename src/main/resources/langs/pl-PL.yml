@@ -11,49 +11,50 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cHej! Nie masz uprawnień do wykonania tej komendy."
-ignore-action: "&cHkażdego! Nie bądź leniwy i porozmawiaj z NPC."
-choosed-job: "&aCgratulacje! Wybrałeś zadanie %jobplayer_job%&a."
-accepted-work: "&aYou zaakceptował pracę %jobplayer_work%."
-no-salary: "&cYlub nie ma wystarczającej ilości wynagrodzenia, aby je otrzymać! Proszę iść do pracy ;("
-got-salary: "&aGreat Work! Właśnie otrzymałeś swoją pensję %jobplayer_salary%!"
+ignore-action: "&cHej! Nie bądź leniwy i porozmawiaj z NPC."
+choosed-job: "&aGratulacje! Wybrałeś zadanie %jobplayer_job%&a."
+accepted-work: "&aAkceptowałeś pracę %jobplayer_work%."
+no-salary: "&cNie masz wystarczająco dużo wynagrodzenia, aby dotrzeć! Przejdź do pracy ;("
+got-salary: "&aŚwietna robota! Właśnie otrzymałeś %jobplayer_salary% pensję!"
 finished-work: "&aGratulacje! Właśnie zakończyłeś swoją pracę. Użyj /jobs aby uzyskać więcej informacji na ten temat."
-need-level: "&cHkażdy! Musisz zrobić %a% pracuje, aby wykonać tę czynność."
-no-args: "&cHkażdy! Proszę użyć poprawnej składni."
-my-salary: "&aYlub ma %jobplayer_salary%$ wynagrodzenia."
-unknow-job: "&cTnie znaleziono pracy, użyj TAB COMPLETE, aby uzyskać listę ofert pracy."
+need-level: "&cHej! Musisz zrobić %a% pracuje, aby wykonać tę akcję."
+no-args: "&cHej! Użyj poprawnej składni."
+my-salary: "&aMasz %jobplayer_salary%$ wynagrodzenia."
+unknow-job: "&cTo zadanie nie zostało znalezione, użyj TAB COMPLETE, aby uzyskać listę zadań."
 #In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cYou musi poczekać więcej %cooldown_mtime% przed ponownym uzyskaniem wynagrodzenia."
-leave-cooldown: "&cYou musi poczekać więcej %cooldown_mtime% przed ponownym wyjściem z pracy."
+salary-cooldown: "&cMusisz poczekać jeszcze %cooldown_mtime% przed ponownym pobraniem wynagrodzenia."
+leave-cooldown: "&cMusisz poczekać więcej %cooldown_mtime% przed ponownym opuszczeniem pracy."
 work-status: "&aOto co musisz zrobić: %jobplayer_work%"
 admin-commands: |-
   &6Pełna lista poleceń:
   &e/jobsadmin help &6- &eZobacz te wiadomości
   &e/jobsadmin info <player> &6- &ePobiera informacje o graczu
-  &e/jobsadmin przeładuj &6- &eOdśwież wszystkie możliwe konfiguracje.
-  &e/jobsadmin aktualizacja &6- &eInstaluje aktualizację wtyczki
-  &e/jobsadmin o &6- &eGets informacje o serwerze i wtyczce
-  &e/jobsadmin ustawione <salary | method | job> <player> <amount | job> &6- &eUstawia salary/metodę gracza
-  &e/jobsadmin edytor &6- &eTworzy sesję edytora sieciowego
-  &e/jobsadmin apyedits &6- &eZastosuj edycje sesji edytora sieci web
+  &e/jobsadmin reload &6- &eOdświeża wszystkie możliwe konfiguracje.
+  &e/jobsadmin update &6- &eInstaluje aktualizację wtyczki
+  &e/jobsadmin about &6- &ePokazuje informacje o serwerze i wtyczce
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eUstawia wynagrodzenie/metodę gracza
+  &e/jobsadmin editor &6- &eTworzy sesję edytora sieciowego
+  &e/jobsadmin apyedits &6- &eZastosuj edycje sesji edytora sieciowego
+  &e/jobsadmin debug &6- &eWłącza tryb DEBUG wtyczki
 member-commands: |-
-  &6Full list komendy:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee status/Accept your work
-  &e/job pensary &6- &eCheck your wage
-  &e/jobs withdraw &6- &eWithdraw your penssion
-  &e/jobs leave &6- &eLeaves the job
+  &6Pełna lista poleceń:
+  &e/jobs help &6- &eZobacz te wiadomości
+  &e/jobs choose <job> &6- &eWybiera pracę
+  &e/jobs work &6- &eZobacz status/Akceptuj swoją pracę
+  &e/jobs salary &e/pracę &6- &eSprawdź swoje wynagrodzenie
+  &e/jobs withdraw &6- &ePobierz swoje wynagrodzenie
+  &e/jobs leave &6- &eOpuść pracę
 info-command: |-
   &6Status gracza %player_name%
-  &eSalarmy: %jobplayer_salary%
-  &eIs Pracuje: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
-reload-command: "&aCkonfiguracje, Zadania i Język zostały pomyślnie załadowane."
-player-not-found: "&cTkapelusz gracza nie jest online, proszę wpisać prawidłowego gracza."
+  &eWynagrodzenie: %jobplayer_salary%
+  &eCzy Pracuje: %jobplayer_working%
+  &ePraca: %jobplayer_work%
+  &eStanowisko: %jobplayer_job%
+reload-command: "&aKonfiguracje, Prace i Język zostały pomyślnie załadowane."
+player-not-found: "&cTen gracz nie jest online, proszę wpisać prawidłowego gracza."
 unknow-error: "&cWystąpił nieznany błąd, sprawdź konsolę, aby uzyskać więcej informacji."
 left-job: "&cNie jesteś bezrobotny! Zalecamy wybrać nową ofertę pracy lub stracisz dużo pieniędzy."
-already-updated: "&cTplugin jest już w ostatniej wersji, aby uzyskać więcej informacji sprawdź nasze WIKI."
+already-updated: "&cWtyczka jest już w najnowszej wersji, aby uzyskać więcej informacji sprawdź naszą WIKI."
 update-started: "&aAktualizacja wtyczki PicoJobs rozpoczęta, proszę czekać..."
 updated-sucefully: "&aWtyczka została zaktualizowana, uruchom ponownie serwer, aby zakończyć aktualizację."
 sucefully: "&aAkcja została wykonana z pewnością."
@@ -66,8 +67,8 @@ invalid-arg: "&aWysłany argument jest nieprawidłowy. Proszę sprawdzić niepra
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "niszczy %a% bloki"
-kill-work: "zabij %a% ludzi"
+break-work: "zniszcz %a% bloków"
+kill-work: "zabij %a% osób"
 fishing-work: "wyłów %a% ryb"
 place-work: "postaw %a% bloków"
 craft-work: "stwórz %a% przedmiotów"
