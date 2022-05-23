@@ -11,23 +11,23 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cHey! Du hast keine Berechtigung, diesen Befehl auszuführen."
-ignore-action: "&cHey! Sei nicht faul und sprich mit dem NPC."
-choosed-job: "&aHerzlichen Glückwunsch! Du hast den Job %jobplayer_job%&a gewählt."
-accepted-work: "&aDu hast die Arbeit von %jobplayer_work% akzeptiert."
-no-salary: "&cDu hast nicht genug Gehalt, um es zu erhalten! Bitte gehe zur Arbeit ;("
-got-salary: "Gute Arbeit! Du hast ein Gehalt von %jobplayer_salary% erhalten!"
-finished-work: "&aHerzlichen Glückwunsch! Du hast deine Arbeit beendet. Benutze /jobs um mehr Informationen darüber zu erhalten."
-need-level: "&cHey! Du musst %a% tun, um diese Aktion auszuführen."
-no-args: "&cHey! Bitte verwende eine gültige Syntax."
-my-salary: "Du hast ein Gehalt von %jobplayer_salary%$."
-unknow-job: "&cDieser Job wurde nicht gefunden, bitte benutzen Sie das TAB COMPLETE um eine Liste der Jobs zu erhalten."
+ignore-action: "&cHey! Sei nicht faul und sprech mit einen Arbeitgeber."
+choosed-job: "&aHerzlichen Glückwunsch! Du hast den Beruf %jobplayer_job%&a gewählt."
+accepted-work: "&aDu hast den Arbeitsauftrag %jobplayer_work% akzeptiert."
+no-salary: "&cDu hast nicht genug Gehalt, um es abzuheben. Bitte gehe arbeiten! ;("
+got-salary: "&aGroßartig! Du hast ein Gehalt von %jobplayer_salary% erhalten!"
+finished-work: "&aHerzlichen Glückwunsch! Du hast deinen Arbeitsauftrag beendet. Nutze /jobs um mehr Infos dazu erhalten."
+need-level: "&cHey! Du musst noch %a% Aufträge vollenden, um diese Aktion nutzen zu können."
+no-args: "&cHey! Bitte verwende eine gültige Syntax!"
+my-salary: "&aDu hast ein Gehalt von %jobplayer_salary%$."
+unknow-job: "&cDieser Beruf wurde nicht gefunden, bitte nutze TAB COMPLETE um eine Liste von Berufen zu erhalten."
 #In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cDu musst noch %cooldown_mtime% warten, um dein Gehalt wieder zu erhalten."
-leave-cooldown: "&cDu musst mehr %cooldown_mtime% warten, bevor du einen Job wieder verlässt."
-work-status: "&aHier ist das, was Sie tun müssen: %jobplayer_work%"
+salary-cooldown: "&cUm wieder ein Gehalt zu erhalten habe noch %cooldown_mtime% gedult."
+leave-cooldown: "&cBevor du deinen Beruf kündigst warte %cooldown_mtime%."
+work-status: "&aMomentan ist dein Auftrag: %jobplayer_work%"
 admin-commands: |-
-  &6Vollständige Liste der Befehle:
-  &e/jobsadmin help &6- &eZeigt diese Meldung an
+  &6Liste der Befehle:
+  &e/jobsadmin help &6- &eZeigt Meldung an
   &e/jobsadmin info <player> &6- &eRuft Informationen über einen Spieler ab
   &e/jobsadmin reload &6- &eLädt alle Konfigurationen neu
   &e/jobsadmin update &6- &eInstalliert ein Update des Plugins
@@ -37,28 +37,28 @@ admin-commands: |-
   &e/jobsadmin applyedits &6- &eÜbernimmt die Änderungen der Web-Editor-Sitzung
   &e/jobsadmin debug &6- &eAktiviert den DEBUG-Modus des Plugins
 member-commands: |-
-  &6Vollständige Liste der Befehle:
-  &e/jobs help &6- &eZeigt diese Meldung an
-  &e/jobs choose <job> &6- &eWählen eines Jobs
+  &6Liste der Befehle:
+  &e/jobs help &6- &eZeigt Meldung an
+  &e/jobs choose <job> &6- &eWählen eines Berufs
   &e/jobs work &6- &eDein aktueller Status/Akzeptieren einer Arbeit
-  &e/jobs salary &6- &eÜberprüfug deines Gehaltes
-  &e/jobs withdraw &6- &eAbhebung deines Gehaltes
-  &e/jobs leave &6- &eJob verlassen
+  &e/jobs salary &6- &eÜberprüfung deines Gehaltes
+  &e/jobs withdraw &6- &eAbhebung eines Gehaltes
+  &e/jobs leave &6- &eBeruf kündigen
 info-command: |-
   &6Status des Spielers %player_name%
   &eGehalt: %jobplayer_salary%
   &eArbeitet: %jobplayer_working%
-  &eArbeit: %jobplayer_work%
-  &eJob: %jobplayer_job%
-reload-command: "&aKonfigurationen, Jobs und die Sprache wurden erfolgreich neu geladen."
-player-not-found: "&cDieser Spieler ist nicht online. Bitte gib einen gültigen Spielernamen ein!"
-unknow-error: "&cEin unbekannter Fehler ist aufgetreten, bitte überprüfen Sie die Konsole für weitere Informationen."
-left-job: "&cDu bist nicht arbeitslos! Wir empfehlen dir, einen neuen Job zu wählen oder viel Geld zu verlieren."
+  &eBeruf: %jobplayer_work%
+  &eAuftrag: %jobplayer_job%
+reload-command: "&aKonfigurationen, Berufe und die Sprache wurden erfolgreich neu geladen."
+player-not-found: "&cDieser Spieler ist nicht online. Bitte gebe einen gültigen Spielernamen ein!"
+unknow-error: "&cEin unbekannter Fehler ist aufgetreten, bitte überprüfe die Konsole für weitere Informationen."
+left-job: "&cDu bist nicht arbeitslos! Wir empfehlen dir einen anderen Beruf zu wählen. Sonst verlierst du viel Geld."
 already-updated: "&cDas Plugin ist bereits in der aktuellsten Version. Weitere Informationen dazu findest du im WIKI."
 update-started: "&aDie Aktualisierung des Plugins PicoJobs wurde gestartet, bitte warten..."
-updated-sucefully: "&aDas Plugin wurde erfolgreich aktualisiert, bitte starten Sie den Server neu, um die Aktualisierung abzuschließen."
-sucefully: "&aDie Aktion wurde erfolgreich durchgeführt."
-invalid-arg: "&aDas gesendete Argument ist ungültig. Bitte überprüfen Sie die Mispell."
+updated-sucefully: "&aDas Plugin wurde erfolgreich aktualisiert, bitte starte den Server neu, um die Aktualisierung abzuschließen."
+sucefully: "&aDiese Aktion wurde erfolgreich durchgeführt."
+invalid-arg: "&aDas gesendete Argument ist ungültig. Überprüfte bitte ob du das Richtige verwendest."
 #################################################################################
 ##
 #Format messages                                                               #
@@ -67,20 +67,20 @@ invalid-arg: "&aDas gesendete Argument ist ungültig. Bitte überprüfen Sie die
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "%a% Blöcke brechen\n\n-> Pausenarbeit\n################################################################################\n#\nNachrichten formatieren #\n#\n################################################################################\nIn dieser Kategorie können Sie die Formate von Platzhaltern und andere Dinge ändern\nAlle diese Meldungen funktionieren mit Player-Platzhaltern;) (PlaceholderAPI erforderlich)\nÄndern Sie, wie die Arbeiten angezeigt werden sollen. (Default, für einen bestimmten Job gehen Sie in settings/jobs. yml)"
-kill-work: "töte %a% Menschen"
+break-work: "baue %a% Blöcke ab"
+kill-work: "töte %a% Personen"
 fishing-work: "fische %a% Fische"
 place-work: "platziere %a% Blöcke"
-craft-work: "Stelle %a% Items her"
+craft-work: "stelle %a% Dinge her"
 tame-work: "zähme %a% Tiere"
 shear-work: "schere %a% Schafe"
 fill-work: "fülle %a% Eimer"
-smelt-work: "schmelze %a% Items"
-eat-work: "%a% items essen"
-enchanting-work: "verzaubern %a% Elemente"
-repair-work: "repariere %a% Items"
-milk-work: "nehme %a% Milch von Kühen"
-kill_entity-work: "töte %a% Entitäten"
+smelt-work: "schmelze %a% Rohstoffe"
+eat-work: "esse %a% Lebensmittel"
+enchanting-work: "verzaubere %a% Dinge"
+repair-work: "repariere %a% Ausrüstungsteile"
+milk-work: "melke %a% Kühe"
+kill_entity-work: "töte %a% Wesen"
 #When something is not find what should it appear
 none-format: "Keine"
 default-tag: ""
@@ -97,21 +97,21 @@ aliases:
   jobsadmin:
     - "jobsadmin"
     - "jobadmin"
-  choose: "wählen"
-  work: "arbeiten"
-  salary: "gehalt"
-  withdraw: "abheben"
-  leave: "verlassen"
-  help: "helfen"
+  choose: "choose"
+  work: "work"
+  salary: "salary"
+  withdraw: "withdraw"
+  leave: "leave"
+  help: "help"
   info: "info"
   reload: "reload"
-  update: "aktualisieren"
-  about: "über"
-  set: "setzt"
-  method: "Methode"
+  update: "update"
+  about: "about"
+  set: "set"
+  method: "method"
   job: "job"
-  editor: "editieren"
-  applyedits: "beworben"
+  editor: "editor"
+  applyedits: "applyedits"
   debug: "debug"
 #################################################################################
 ##
@@ -119,16 +119,16 @@ aliases:
 ##
 #################################################################################
 #In this category you can change all the time translations
-seconds: "Sekunden"
-second: "Sekunde"
-minutes: "Minuten"
-minute: "Minute"
-hours: "Stunden"
-hour: "Stunde"
-days: "Tage"
-day: "Tag"
-months: "Monate"
-month: "Monat"
-years: "Jahre"
-year: "Jahr"
-and: "und"
+seconds: "seconds"
+second: "second"
+minutes: "minutes"
+minute: "minute"
+hours: "hours"
+hour: "hour"
+days: "days"
+day: "day"
+months: "months"
+month: "month"
+years: "years"
+year: "year"
+and: "and"
