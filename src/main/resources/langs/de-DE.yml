@@ -23,7 +23,7 @@ my-salary: "&aDu hast ein Gehalt von %jobplayer_salary%$."
 unknow-job: "&cDieser Beruf wurde nicht gefunden, bitte nutze TAB COMPLETE um eine Liste von Berufen zu erhalten."
 #In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cUm abermals ein Gehalt zu erhalten, habe noch %cooldown_mtime% Geduld."
-leave-cooldown: "&cBevor du deinen Beruf kündigst warte %cooldown_mtime%."
+leave-cooldown: "&cBevor du deinen Arbeitsauftrag beendest, warte %cooldown_mtime%."
 work-status: "&aMomentan ist dein Auftrag: %jobplayer_work%"
 admin-commands: |-
   &6Vollständige Liste der Befehle:
