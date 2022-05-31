@@ -22,7 +22,7 @@ import org.bstats.bukkit.Metrics;
 import org.bstats.charts.DrilldownPie;
 import org.bstats.charts.SingleLineChart;
 import org.bukkit.Bukkit;
-import com.gmail.picono435.picojobs.utils.ColorConverter;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.PluginDescriptionFile;
