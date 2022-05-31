@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
-import org.bukkit.ChatColor;
+import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -108,7 +108,7 @@ public ItemBuilder setInfinityDurability(){
      ItemMeta im = is.getItemMeta();
      List<String> newLore = new ArrayList<>();
      for(String l : lore) {
-         newLore.add(PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', l)));
+         newLore.add(PlaceholderAPIHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(l)));
      }
      im.setLore(newLore);
      is.setItemMeta(im);

@@ -2,7 +2,7 @@ package com.gmail.picono435.picojobs.api;
 
 import java.util.*;
 
-import org.bukkit.ChatColor;
+import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -134,7 +134,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getDisplayName() {
-		return ChatColor.translateAlternateColorCodes('&', this.displayname);
+		return ColorConverter.translateAlternateColorCodes(this.displayname);
 	}
 	
 	/**
@@ -144,7 +144,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getTag() {
-		return ChatColor.translateAlternateColorCodes('&', this.tag);
+		return ColorConverter.translateAlternateColorCodes(this.tag);
 	}
 	
 	/**
@@ -251,7 +251,7 @@ public class Job {
 		if(this.workMessage == null) {
 			work = LanguageManager.getFormat(configString, null);
 		} else {
-			work = PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', workMessage));
+			work = PlaceholderAPIHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(workMessage));
 		}
 		
 		return work;

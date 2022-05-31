@@ -13,7 +13,7 @@ import java.util.logging.Level;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
