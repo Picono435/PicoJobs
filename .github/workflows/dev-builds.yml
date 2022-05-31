@@ -29,10 +29,14 @@ jobs:
          chmod +x gradlew
          ./gradlew publishToMavenLocal
       - name: Tests with Gradle
+        env:
+          STABLE_BUILD: 1
         run: |
           ls
           ./gradlew test
       - name: Build with Gradle
+        env:
+          STABLE_BUILD: 1
         run: ./gradlew shadowJar
       - name: Publish Unit Test Results
         uses: mikepenz/action-junit-report@v1
