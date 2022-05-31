@@ -166,23 +166,23 @@ jobs:
     whitelist:
       break:
         - gold_ore
-          - iron_ore
-          - coal_ore
-          - lapis_ore
-          - diamond_ore
-          - redstone_ore
-          - emerald_ore
-          - nether_quartz_ore
-          - nether_gold_ore
-          - copper_ore
-          - deepslate_gold_ore
-          - deepslate_iron_ore
-          - deepslate_coal_ore
-          - deepslate_lapis_ore
-          - deepslate_diamond_ore
-          - deepslate_redstone_ore
-          - deepslate_emerald_ore
-          - deepslate_copper_ore
+        - iron_ore
+        - coal_ore
+        - lapis_ore
+        - diamond_ore
+        - redstone_ore
+        - emerald_ore
+        - nether_quartz_ore
+        - nether_gold_ore
+        - copper_ore
+        - deepslate_gold_ore
+        - deepslate_iron_ore
+        - deepslate_coal_ore
+        - deepslate_lapis_ore
+        - deepslate_diamond_ore
+        - deepslate_redstone_ore
+        - deepslate_emerald_ore
+        - deepslate_copper_ore
     # The work message that you want to use - OPTIONAL [default can be found in the language file]
     work-message: "mine %a% ores"
     # Choose Job Menu settings
