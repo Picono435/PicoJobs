@@ -26,13 +26,17 @@ public class JobPlayer {
 	private double level;
 	private boolean isWorking;
 	private double salary;
+	private long salaryCooldown;
+	private long leaveCooldown;
 	private String errorMessage;
 	
-	public JobPlayer(String job, double method, double level, double salary, boolean isWorking, UUID uuid) {
+	public JobPlayer(String job, double method, double level, double salary, long salaryCooldown, long leaveCooldown, boolean isWorking, UUID uuid) {
 		this.job = PicoJobsAPI.getJobsManager().getJob(job);
 		this.method = method;
 		this.level = level;
 		this.salary = salary;
+		this.salaryCooldown = salaryCooldown;
+		this.leaveCooldown = leaveCooldown;
 		this.isWorking = isWorking;
 		this.uuid = uuid;
 		this.errorMessage = "Error connecting to the storage. The plugin will not work correctly.";
@@ -256,6 +260,66 @@ public class JobPlayer {
 		PlayerWithdrawEvent event = new PlayerWithdrawEvent(this, Bukkit.getPlayer(uuid), salary);
 		Bukkit.getPluginManager().callEvent(event);
 		setSalary(getSalary() - salary);
+	}
+
+	/**
+	 * Gets the current salary cooldown of a player
+	 *
+	 * @return the salary
+	 * @author Picono435
+	 *
+	 */
+	public long getSalaryCooldown() {
+		return this.salaryCooldown;
+	}
+
+	/**
+	 * Sets the current salary cooldown of a player
+	 *
+	 * @param salaryCooldown the salary cooldown to set
+	 * @author Picono435
+	 *
+	 */
+	public void setSalaryCooldown(long salaryCooldown) {
+		this.salaryCooldown = salaryCooldown;
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setSalaryCooldown(uuid, salaryCooldown);
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
+			}
+		});
+	}
+
+	/**
+	 * Gets the current leave cooldown of a player
+	 *
+	 * @return the salary
+	 * @author Picono435
+	 *
+	 */
+	public long getLeaveCooldown() {
+		return this.leaveCooldown;
+	}
+
+	/**
+	 * Sets the current leave cooldown of a player
+	 *
+	 * @param leaveCooldown the leave cooldown to set
+	 * @author Picono435
+	 *
+	 */
+	public void setLeaveCooldown(long leaveCooldown) {
+		this.leaveCooldown = leaveCooldown;
+		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+			try {
+				PicoJobsAPI.getStorageManager().getStorageFactory().setLeaveCooldown(uuid, leaveCooldown);
+			} catch (Exception e) {
+				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	/**

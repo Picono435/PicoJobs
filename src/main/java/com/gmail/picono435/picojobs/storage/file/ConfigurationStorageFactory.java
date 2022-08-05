@@ -26,6 +26,8 @@ public abstract class ConfigurationStorageFactory extends StorageFactory {
 		this.root.node(uuid.toString(), "method").set(0D);
 		this.root.node(uuid.toString(), "level").set(0D);
 		this.root.node(uuid.toString(), "salary").set(0D);
+		this.root.node(uuid.toString(), "salary-cooldown").set(0L);
+		this.root.node(uuid.toString(), "leave-cooldown").set(0L);
 		this.root.node(uuid.toString(), "is-working").set(false);
 		this.loader.save(root);
 		return true;
@@ -62,6 +64,16 @@ public abstract class ConfigurationStorageFactory extends StorageFactory {
 	}
 
 	@Override
+	public long getSalaryCooldown(UUID uuid) throws Exception {
+		return this.root.node(uuid.toString(), "salary-cooldown").getLong();
+	}
+
+	@Override
+	public long getLeaveCooldown(UUID uuid) throws Exception {
+		return this.root.node(uuid.toString(), "leave-cooldown").getLong();
+	}
+
+	@Override
 	public boolean setJob(UUID uuid, String job) throws Exception {
 		this.root.node(uuid.toString(), "job").set(job);
 		this.loader.save(this.root);
@@ -92,6 +104,20 @@ public abstract class ConfigurationStorageFactory extends StorageFactory {
 	@Override
 	public boolean setSalary(UUID uuid, double salary) throws Exception {
 		this.root.node(uuid.toString(), "salary").set(salary);
+		this.loader.save(this.root);
+		return true;
+	}
+
+	@Override
+	public boolean setSalaryCooldown(UUID uuid, long salaryCooldown) throws Exception {
+		this.root.node(uuid.toString(), "salary-cooldown").set(salaryCooldown);
+		this.loader.save(this.root);
+		return true;
+	}
+
+	@Override
+	public boolean setLeaveCooldown(UUID uuid, long leaveCooldown) throws Exception {
+		this.root.node(uuid.toString(), "leave-cooldown").set(leaveCooldown);
 		this.loader.save(this.root);
 		return true;
 	}

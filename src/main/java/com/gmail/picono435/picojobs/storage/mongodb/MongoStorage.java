@@ -85,6 +85,20 @@ public class MongoStorage extends StorageFactory {
 	}
 
 	@Override
+	public long getSalaryCooldown(UUID uuid) throws Exception {
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getLong("salary-cooldown");
+	}
+
+	@Override
+	public long getLeaveCooldown(UUID uuid) throws Exception {
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
+		return result.getLong("leave-cooldown");
+	}
+
+	@Override
 	public boolean setJob(UUID uuid, String job) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("job", job)).getMatchedCount();
@@ -116,6 +130,20 @@ public class MongoStorage extends StorageFactory {
 	public boolean setSalary(UUID uuid, double salary) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("salary", salary)).getMatchedCount();
+		return rs >= 1;
+	}
+
+	@Override
+	public boolean setSalaryCooldown(UUID uuid, long salaryCooldown) throws Exception {
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("salary-cooldown", salaryCooldown)).getMatchedCount();
+		return rs >= 1;
+	}
+
+	@Override
+	public boolean setLeaveCooldown(UUID uuid, long leaveCooldown) throws Exception {
+		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
+		long rs = mongo.updateOne(new BasicDBObject("uuid", uuid.toString()), new BasicDBObject("leave-cooldown", leaveCooldown)).getMatchedCount();
 		return rs >= 1;
 	}
 
