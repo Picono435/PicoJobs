@@ -29,10 +29,13 @@ jobs:
       env:
           STABLE_BUILD: 0
     - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
+      uses: mikepenz/action-junit-report@v3
+      if: >
+        always() &&
+        github.event.sender.login != 'dependabot[bot]' &&
+        ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository )
       with:
-        files: build/test-results/**/*.xml
+        report_paths: '**/build/test-results/test/TEST-*.xml'
     - name: Upload Artifact
       uses: actions/upload-artifact@v2.2.2
       with:

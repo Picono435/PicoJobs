@@ -39,7 +39,7 @@ jobs:
           STABLE_BUILD: 1
         run: ./gradlew shadowJar
       - name: Publish Unit Test Results
-        uses: mikepenz/action-junit-report@v1
+        uses: mikepenz/action-junit-report@v3
         if: >
           always() &&
           github.event.sender.login != 'dependabot[bot]' &&
