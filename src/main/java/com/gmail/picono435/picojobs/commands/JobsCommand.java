@@ -23,9 +23,6 @@ import com.gmail.picono435.picojobs.menu.JobsMenu;
 import com.gmail.picono435.picojobs.utils.TimeFormatter;
 
 public class JobsCommand implements CommandExecutor, TabCompleter {
-
-	public static Map<UUID, Long> salaryCooldown = new HashMap<UUID, Long>();
-	public static Map<UUID, Long> leaveCooldown = new HashMap<UUID, Long>();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -179,10 +176,10 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.getMessage("no-args", p));
 			return;
 		}
-		if(salaryCooldown.containsKey(p.getUniqueId())) {
-			long a1 = salaryCooldown.get(p.getUniqueId()) + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
+		if(jp.getSalaryCooldown() != 0) {
+			long a1 = jp.getSalaryCooldown() + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
 			if(System.currentTimeMillis() >= a1) {
-				salaryCooldown.remove(p.getUniqueId());
+				jp.setSalaryCooldown(0);
 			} else {
 				p.sendMessage(LanguageManager.getMessage("salary-cooldown", p)
 						.replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()))
@@ -204,7 +201,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 		p.sendMessage(LanguageManager.getMessage("got-salary", p));
 		economy.deposit(p, salary);
 		jp.removeSalary(salary);
-		salaryCooldown.put(p.getUniqueId(), System.currentTimeMillis());
+		jp.setSalaryCooldown(System.currentTimeMillis());
 	}
 
 	public static void runLeaveJob(Player p, JobPlayer jp) {
@@ -212,17 +209,19 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.getMessage("no-args", p));
 			return;
 		}
-		if(JobsCommand.leaveCooldown.containsKey(p.getUniqueId())) {
-			long a1 = JobsCommand.leaveCooldown.get(p.getUniqueId()) + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getLeaveCooldown());
+		if(jp.getLeaveCooldown() != 0) {
+			long a1 = jp.getLeaveCooldown() + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
 			if(System.currentTimeMillis() >= a1) {
-				JobsCommand.leaveCooldown.remove(p.getUniqueId());
+				jp.setLeaveCooldown(0);
 			} else {
-				p.sendMessage(LanguageManager.getMessage("leave-cooldown", p).replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()).replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis()))));
+				p.sendMessage(LanguageManager.getMessage("leave-cooldown", p)
+						.replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()))
+						.replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis())));
 				return;
 			}
 		}
 		jp.removePlayerStats();
 		p.sendMessage(LanguageManager.getMessage("left-job", p));
-		JobsCommand.leaveCooldown.put(p.getUniqueId(), System.currentTimeMillis());
+		jp.setLeaveCooldown(System.currentTimeMillis());
 	}
 }
