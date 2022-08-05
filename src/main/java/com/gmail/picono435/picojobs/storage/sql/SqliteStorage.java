@@ -25,7 +25,11 @@ public class SqliteStorage extends HikariStorageFactory {
         }
 
         try(Connection conn = hikari.getConnection();
-            PreparedStatement stm = conn.prepareStatement("IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + configurationSection.getString("tablename") + "' AND COLUMN_NAME = 'salary-cooldown') BEGIN ALTER TABLE " + configurationSection.getString("tablename") + " ADD `salary-cooldown` LONG DEFAULT '0' AND ADD `leave-cooldown` LONG DEFAULT '0'  END;")) {
+            PreparedStatement stm = conn.prepareStatement("ALTER TABLE " + configurationSection.getString("tablename") + " ADD COLUMN IF NOT EXISTS `salary-cooldown` LONG DEFAULT '0';")) {
+            stm.execute();
+        }
+        try(Connection conn = hikari.getConnection();
+            PreparedStatement stm = conn.prepareStatement("ALTER TABLE " + configurationSection.getString("tablename") + " ADD COLUMN IF NOT EXISTS `leave-cooldown` LONG DEFAULT '0';")) {
             stm.execute();
         }
         return false;

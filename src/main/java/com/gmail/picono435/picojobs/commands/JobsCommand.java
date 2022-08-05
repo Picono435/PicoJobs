@@ -210,7 +210,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		if(jp.getLeaveCooldown() != 0) {
-			long a1 = jp.getLeaveCooldown() + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
+			long a1 = jp.getLeaveCooldown() + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getLeaveCooldown());
 			if(System.currentTimeMillis() >= a1) {
 				jp.setLeaveCooldown(0);
 			} else {
