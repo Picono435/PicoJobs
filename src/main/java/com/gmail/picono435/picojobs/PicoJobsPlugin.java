@@ -249,8 +249,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 
 	/**
-	 * Same as having serverVersion >= specifiedVersion
-	 * Example: 1.18.1 >= 1.12.2
+	 * Same as having serverVersion &gt;= specifiedVersion
+	 * Example: 1.18.1 &gt;= 1.12.2
 	 *
 	 * @param version
 	 * @return
@@ -266,8 +266,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 
 	/**
-	 * Same as having serverVersion <= specifiedVersion
-	 * Example: 1.18.1 <= 1.12.2
+	 * Same as having serverVersion &lt;= specifiedVersion
+	 * Example: 1.18.1 &lt;= 1.12.2
 	 *
 	 * @param version
 	 * @return
