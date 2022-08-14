@@ -24,6 +24,8 @@ gui-settings:
     item: "WHITE_STAINED_GLASS"
     # The item data of the background item, ONLY LEGACY VERSIONS
     item-data: 1
+    # The item custom model data of the background item, ONLY 1.14+
+    custom-model-data: 0
     # If the background item should be enchanted or not
     enchanted: false
     
@@ -62,6 +64,8 @@ gui-settings:
         material: "PAPER"
         # The item data of the item, ONLY LEGACY VERSIONS
         item-data: 0
+        # The item custom model data of the background item, ONLY 1.14+
+        custom-model-data: 0
         # If the item is enchanted or not
         enchanted: false
         
@@ -79,6 +83,7 @@ gui-settings:
         action: none
         material: "BOOKSHELF"
         item-data: 0
+        custom-model-data: 0
         enchanted: true
         
       accept-work:
@@ -91,6 +96,7 @@ gui-settings:
         action: acceptwork
         material: "REDSTONE_TORCH"
         item-data: 0
+        custom-model-data: 0
         enchanted: false
         
       leave-job:
@@ -103,6 +109,7 @@ gui-settings:
         action: leavejob
         material: "BARRIER"
         item-data: 0
+        custom-model-data: 0
         enchanted: true
         
   ##############################################
@@ -127,6 +134,7 @@ gui-settings:
         action: salary
         material: "PAPER"
         item-data: 0
+        custom-model-data: 0
         enchanted: false
         
       plugin-info:
@@ -143,6 +151,7 @@ gui-settings:
         action: none
         material: "BOOKSHELF"
         item-data: 0
+        custom-model-data: 0
         enchanted: true
         
       status-work:
@@ -155,6 +164,7 @@ gui-settings:
         action: none
         material: "REDSTONE_TORCH"
         item-data: 0
+        custom-model-data: 0
         enchanted: true
         
       leave-job:
@@ -167,4 +177,5 @@ gui-settings:
         action: leavejob
         material: "BARRIER"
         item-data: 0
+        custom-model-data: 0
         enchanted: true

@@ -59,6 +59,13 @@ public ItemBuilder setDurability(short dur){
      return this;
    }
 
+    public ItemBuilder setCustomModelData(int data){
+        ItemMeta im = is.getItemMeta();
+        im.setCustomModelData(data);
+        is.setItemMeta(im);
+        return this;
+    }
+
    public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level){
      is.addUnsafeEnchantment(ench, level);
      return this;

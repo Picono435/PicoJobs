@@ -91,6 +91,9 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
 			}
+			if(PicoJobsPlugin.getInstance().isMoreThan("1.14")) {
+				builder.setCustomModelData(itemConfig.getInt("custom-model-data"));
+			}
 			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name"))));
 			if(toEdit) {
 				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));

@@ -248,7 +248,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		return loggingHandler;
 	}
 
-	/*
+	/**
 	 * Same as having serverVersion >= specifiedVersion
 	 * Example: 1.18.1 >= 1.12.2
 	 *
@@ -265,7 +265,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		}
 	}
 
-	/*
+	/**
 	 * Same as having serverVersion <= specifiedVersion
 	 * Example: 1.18.1 <= 1.12.2
 	 *
