@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -34,12 +34,12 @@ public class JobsMenu {
 				p.openInventory(getNeedAcceptJobMenu(guiSettings, p, false));
 			}
 		} else {
-			p.openInventory(getChooseJobMenu(guiSettings));
+			p.openInventory(getChooseJobMenu(p, guiSettings));
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static Inventory getChooseJobMenu(ConfigurationSection guiSettings) {
+	public static Inventory getChooseJobMenu(Player p, ConfigurationSection guiSettings) {
 		ConfigurationSection category = guiSettings.getConfigurationSection("choose-job");
 		Inventory inv = Bukkit.createInventory(null, category.getInt("size"), category.getString("title"));
 		
@@ -60,7 +60,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(category.getString("item-name"))));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {
@@ -91,9 +91,12 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
 			}
-			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
+			if(PicoJobsPlugin.getInstance().isMoreThan("1.14")) {
+				builder.setCustomModelData(itemConfig.getInt("custom-model-data"));
+			}
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name"))));
 			if(toEdit) {
-				builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]");
+				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
 			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
@@ -101,7 +104,7 @@ public class JobsMenu {
 			builder.removeAttributes();
 			
 			List<String> lore = itemConfig.getStringList("lore");
-			lore = lore.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+			lore = lore.stream().map(s -> ColorConverter.translateAlternateColorCodes(s)).collect(Collectors.toList());
 			lore = PlaceholderAPIHook.setPlaceholders(p, lore);
 			builder.setLore(lore);
 			
@@ -125,7 +128,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
+			builder.setName(ColorConverter.translateAlternateColorCodes(category.getString("item-name")));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {
@@ -156,9 +159,9 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
 			}
-			builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name"))));
 			if(toEdit) {
-				builder.setName(ChatColor.translateAlternateColorCodes('&', itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]");
+				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
 			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
@@ -166,7 +169,7 @@ public class JobsMenu {
 			builder.removeAttributes();
 			
 			List<String> lore = itemConfig.getStringList("lore");
-			lore = lore.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+			lore = lore.stream().map(s -> ColorConverter.translateAlternateColorCodes(s)).collect(Collectors.toList());
 			lore = PlaceholderAPIHook.setPlaceholders(p, lore);
 			builder.setLore(lore);
 			
@@ -190,7 +193,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(ChatColor.translateAlternateColorCodes('&', category.getString("item-name")));
+			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(category.getString("item-name"))));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {

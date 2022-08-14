@@ -108,6 +108,34 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	}
 
 	@Override
+	public long getSalaryCooldown(UUID uuid) throws Exception {
+		try(Connection conn = hikari.getConnection();
+			PreparedStatement stm = conn.prepareStatement("SELECT `salary-cooldown` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?")) {
+			stm.setString(1, uuid.toString());
+			ResultSet rs = stm.executeQuery();
+			if(rs.next()) {
+				return rs.getLong("salary-cooldown");
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	@Override
+	public long getLeaveCooldown(UUID uuid) throws Exception {
+		try(Connection conn = hikari.getConnection();
+			PreparedStatement stm = conn.prepareStatement("SELECT `leave-cooldown` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?")) {
+			stm.setString(1, uuid.toString());
+			ResultSet rs = stm.executeQuery();
+			if(rs.next()) {
+				return rs.getLong("leave-cooldown");
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	@Override
 	public boolean setJob(UUID uuid, String job) throws Exception {
 		try(Connection conn = hikari.getConnection();
 			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `job`=? WHERE `uuid`=?")) {
@@ -159,6 +187,28 @@ public abstract class HikariStorageFactory extends StorageFactory {
         	stm.setString(2, uuid.toString());
         	int result = stm.executeUpdate();
         	return result >= 1;
+		}
+	}
+
+	@Override
+	public boolean setSalaryCooldown(UUID uuid, long salaryCooldown) throws Exception {
+		try(Connection conn = hikari.getConnection();
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `salary-cooldown`=? WHERE `uuid`=?")) {
+			stm.setLong(1, salaryCooldown);
+			stm.setString(2, uuid.toString());
+			int result = stm.executeUpdate();
+			return result >= 1;
+		}
+	}
+
+	@Override
+	public boolean setLeaveCooldown(UUID uuid, long leaveCooldown) throws Exception {
+		try(Connection conn = hikari.getConnection();
+			PreparedStatement stm = conn.prepareStatement("UPDATE " + configurationSection.getString("tablename") + " SET `leave-cooldown`=? WHERE `uuid`=?")) {
+			stm.setLong(1, leaveCooldown);
+			stm.setString(2, uuid.toString());
+			int result = stm.executeUpdate();
+			return result >= 1;
 		}
 	}
 	

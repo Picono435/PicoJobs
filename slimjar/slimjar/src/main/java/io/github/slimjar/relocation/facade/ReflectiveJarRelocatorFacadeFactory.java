@@ -33,9 +33,6 @@ import io.github.slimjar.resolver.data.Dependency;
 import io.github.slimjar.resolver.data.DependencyData;
 import io.github.slimjar.resolver.data.Repository;
 import io.github.slimjar.resolver.mirrors.SimpleMirrorSelector;
-import io.github.slimjar.resolver.data.Mirror;
-import io.github.slimjar.resolver.data.Repository;
-import io.github.slimjar.resolver.mirrors.MirrorSelector;
 import io.github.slimjar.util.Packages;
 
 import java.io.File;
@@ -128,12 +125,6 @@ public final class ReflectiveJarRelocatorFacadeFactory implements JarRelocatorFa
                 .dataProviderFactory((url) -> () -> ReflectiveJarRelocatorFacadeFactory.getJarRelocatorDependency(repositories))
                 .relocatorFactory((rules) -> new PassthroughRelocator())
                 .relocationHelperFactory((relocator) -> (dependency,file) -> file)
-                .mirrorSelector(new MirrorSelector() {
-					@Override
-					public Collection<Repository> select(Collection<Repository> collection, Collection<Mirror> collection1) throws MalformedURLException {
-						return collection;
-					}
-				})
                 .build();
         final Class<?> jarRelocatorClass = Class.forName(Packages.fix(JAR_RELOCATOR_PACKAGE), true, classLoader);
         final Class<?> relocationClass = Class.forName(Packages.fix(RELOCATION_PACKAGE), true, classLoader);

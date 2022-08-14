@@ -104,7 +104,9 @@ public class PlayersManager {
 				JobPlayer jp = new JobPlayer(factory.getJob(uuid),
 						factory.getMethod(uuid),
 						factory.getMethodLevel(uuid),
-						factory.getSalary(uuid), 
+						factory.getSalary(uuid),
+						factory.getSalaryCooldown(uuid),
+						factory.getLeaveCooldown(uuid),
 						factory.isWorking(uuid),
 						uuid);
 				completableFuture.complete(jp);

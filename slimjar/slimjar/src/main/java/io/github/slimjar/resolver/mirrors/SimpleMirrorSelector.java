@@ -34,7 +34,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public final class SimpleMirrorSelector implements MirrorSelector {
-    public static final String DEFAULT_CENTRAL_MIRROR_URL = "https://repo.vshnv.tech/";
+    public static final String DEFAULT_CENTRAL_MIRROR_URL = "https://repo.maven.apache.org/maven2/";
     public static final String CENTRAL_URL = "https://repo.maven.apache.org/maven2/";
     public static final String ALT_CENTRAL_URL = "https://repo1.maven.org/maven2/";
     private static final Collection<String> CENTRAL_REPO = Arrays.asList(CENTRAL_URL, ALT_CENTRAL_URL);

@@ -21,8 +21,9 @@ need-level: "&c嘿! 您需要先做完 %a% 工作才能进行这个行为。"
 no-args: "&c嘿! 请使用一个有效的语法。"
 my-salary: "&a你的薪水有：%jobplayer_salary%。"
 unknow-job: "&c未知职业，请使用 TAB 补全指令以获得职业列表。"
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&c你还需要等待 %cooldown_mtime% 才能再次拿到你的薪水。"
+leave-cooldown: "&c您需要等待更多 %cooldown_mtime% 才能再次离开作业。"
 work-status: "&a这里是你需要去做的事情： %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:

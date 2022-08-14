@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.ChatColor;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
+import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -59,6 +59,13 @@ public ItemBuilder setDurability(short dur){
      return this;
    }
 
+    public ItemBuilder setCustomModelData(int data){
+        ItemMeta im = is.getItemMeta();
+        im.setCustomModelData(data);
+        is.setItemMeta(im);
+        return this;
+    }
+
    public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level){
      is.addUnsafeEnchantment(ench, level);
      return this;
@@ -108,7 +115,7 @@ public ItemBuilder setInfinityDurability(){
      ItemMeta im = is.getItemMeta();
      List<String> newLore = new ArrayList<>();
      for(String l : lore) {
-         newLore.add(PlaceholderAPI.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', l)));
+         newLore.add(PlaceholderAPIHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(l)));
      }
      im.setLore(newLore);
      is.setItemMeta(im);

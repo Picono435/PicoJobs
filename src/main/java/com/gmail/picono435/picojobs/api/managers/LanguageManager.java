@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.bukkit.ChatColor;
+import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,7 +32,7 @@ public class LanguageManager {
     	if(chat == null) {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', chat));
+    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(chat));
     }
     
 	/**
@@ -49,7 +49,7 @@ public class LanguageManager {
     	if(chat == null) {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
+    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(chat));
     }
     
 	/**
@@ -60,7 +60,7 @@ public class LanguageManager {
 	 *
 	 */
     public static String getPrefix() {
-    	return ChatColor.translateAlternateColorCodes('&', PicoJobsAPI.getSettingsManager().getPrefix());
+    	return ColorConverter.translateAlternateColorCodes(PicoJobsAPI.getSettingsManager().getPrefix());
     }
     
     /**
@@ -75,7 +75,7 @@ public class LanguageManager {
     	if(message == null) {
     		message = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(null, ChatColor.translateAlternateColorCodes('&', message));
+    	return getPrefix() + PlaceholderAPIHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(message));
     }
     
     /**
@@ -92,7 +92,7 @@ public class LanguageManager {
     	if(chat == null) {
     		chat = "&cThe asked message was not found in the language file. Please contact an adminstrator of the server.";
     	}
-    	return PlaceholderAPIHook.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', chat));
+    	return PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(chat));
     }
     
     /**

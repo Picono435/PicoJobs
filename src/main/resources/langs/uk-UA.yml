@@ -11,18 +11,19 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cHey! Ви не маєте дозволу на виконання цієї команди."
-ignore-action: "&cХей! Не будьте ледачм та йдіть розмовлятити з NPC."
+ignore-action: "&cХей! Не ледачий і йдіть розмовляти з NPC."
 choosed-job: "&aВітаємо! Ви обрали завдання %jobplayer_job%&a."
 accepted-work: "&aВи прийняли роботу з %jobplayer_work%."
 no-salary: "&cУ вас недостатньо зарплатні! Будь ласка, йдіть до роботи ;("
 got-salary: "&aВідмінна робота! Ви щойно отримали вашу зарплату %jobplayer_salary%!"
-finished-work: "&aВітаємо! Ви щойно завершили роботу. Використовуйте /jobs, щоб отримати більше інформації."
+finished-work: "&aВітаємо! Ви щойно завершили роботу. Використовуйте /завдань, щоб отримати більше інформації."
 need-level: "&cХей! Ви повинні зробити %a% роботи для виконання цієї дії."
-no-args: "&cХей! Будь ласка, використовуйте правильний синтаксис!"
-my-salary: "&aУ Вас є %jobplayer_salary%$ зарплатні."
+no-args: "&cХей! Будь ласка, використайте правильний синтаксис."
+my-salary: "&aУ вас є %jobplayer_salary%$ зарплатні."
 unknow-job: "&cЦе завдання не знайдено, будь ласка, використовуйте TAB COMPLETE для отримання списку завдань."
-#In this message you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
+#In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
 salary-cooldown: "&cВи повинні почекати більше %cooldown_mtime% перед тим, як отримати вашу зарплату знову."
+leave-cooldown: "&cВам потрібно почекати ще %cooldown_mtime% перед тим, як вийти з завдання."
 work-status: "&aОсь що вам необхідно зробити: %jobplayer_work%"
 admin-commands: |-
   &6Full list of commands:
@@ -57,7 +58,7 @@ already-updated: "&cПлагін вже знаходиться в останні
 update-started: "&aОновлення плагіна PicoJobs запущено, будь ласка зачекайте..."
 updated-sucefully: "&aПлагін було успішно оновлено, будь ласка перезапустіть сервер, щоб завершити оновлення."
 sucefully: "&aЦя дія була успішно зроблена."
-invalid-arg: "&aПомилка синтаксису. Будь ласка, перевірте неправильну відповідь."
+invalid-arg: "&aНадіслано аргумент недопустимий. Будь ласка, перевірте неправильну відповідь."
 #################################################################################
 ##
 #Format messages                                                               #
@@ -69,10 +70,10 @@ invalid-arg: "&aПомилка синтаксису. Будь ласка, пер
 break-work: "зупинити %a% блоків"
 kill-work: "вбити %a% людей"
 fishing-work: "риби %a% риб"
-place-work: "розміняти %a% блоків"
+place-work: "розмістити %a% блоків"
 craft-work: "виробити %a% товарів"
 tame-work: "приручити %a% тварин"
-shear-work: "постригти %a% овець"
+shear-work: "стригти %a% овець"
 fill-work: "заповнити %a% відра"
 smelt-work: "переплавити %a% товарів"
 eat-work: "їжте %a% елементів"

@@ -24,7 +24,7 @@ public class FillListener implements Listener {
 		if(!PicoJobsPlugin.getInstance().isLessThan("1.17.1")) {
 			if(b == null || (!b.isLiquid())) return;
 		} else {
-			if(b == null || (!b.isLiquid() && b.getType() != Material.POWDER_SNOW)) return;
+			if(b == null || (!b.isLiquid() && b.getType().name().equals("POWDER_SNOW"))) return;
 		}
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);

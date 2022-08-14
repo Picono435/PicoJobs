@@ -58,36 +58,7 @@ public class ClickInventoryListener implements Listener {
 			String action = actionItems.get(e.getCurrentItem());
 			if(action == null) return;
 			if(action.equalsIgnoreCase("salary")) {
-				if(!jp.hasJob()) {
-					p.sendMessage(LanguageManager.getMessage("no-args", p));
-					return;
-				}
-				if(JobsCommand.salaryCooldown.containsKey(p.getUniqueId())) {
-					long a1 = JobsCommand.salaryCooldown.get(p.getUniqueId()) + TimeUnit.MINUTES.toMillis(PicoJobsAPI.getSettingsManager().getSalaryCooldown());
-					if(System.currentTimeMillis() >= a1) {
-						JobsCommand.salaryCooldown.remove(p.getUniqueId());
-					} else {
-						p.sendMessage(LanguageManager.getMessage("salary-cooldown", p).replace("%cooldown_mtime%", TimeFormatter.formatTimeInMinecraft(a1 - System.currentTimeMillis()).replace("%cooldown_time%", TimeFormatter.formatTimeInRealLife(a1 - System.currentTimeMillis()))));
-						p.closeInventory();
-						return;
-					}
-				}
-				double salary = jp.getSalary();
-				if(salary <= 0) {
-					p.sendMessage(LanguageManager.getMessage("no-salary", p));
-					return;
-				}
-				String economyString = jp.getJob().getEconomy();
-				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said" + " (" + economyString + ")" + ". Please contact an administrator in order to get more information."));
-					p.closeInventory();
-					return;
-				}
-				EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(economyString);
-				p.sendMessage(LanguageManager.getMessage("got-salary", p));
-				economy.deposit(p, salary);
-				jp.removeSalary(salary);
-				JobsCommand.salaryCooldown.put(p.getUniqueId(), System.currentTimeMillis());
+				JobsCommand.runWithdraw(p, jp);
 				p.closeInventory();
 				return;
 			}
@@ -98,8 +69,7 @@ public class ClickInventoryListener implements Listener {
 				return;
 			}
 			if(action.equalsIgnoreCase("leavejob")) {
-				jp.removePlayerStats();
-				p.sendMessage(LanguageManager.getMessage("left-job", p));
+				JobsCommand.runLeaveJob(p, jp);
 				p.closeInventory();
 				return;
 			}
@@ -117,28 +87,12 @@ public class ClickInventoryListener implements Listener {
 			String action = actionItems.get(e.getCurrentItem());
 			if(action == null) return;
 			if(action.equalsIgnoreCase("salary")) {
-				double salary = jp.getSalary();
-				if(salary <= 0) {
-					p.sendMessage(LanguageManager.getMessage("no-salary", p));
-					p.closeInventory();
-					return;
-				}
-				String economyString = jp.getJob().getEconomy();
-				if(!PicoJobsPlugin.getInstance().economies.containsKey(economyString)) {
-					p.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation said. Please contact an administrator for get more information."));
-					p.closeInventory();
-					return;
-				}
-				EconomyImplementation economy = PicoJobsPlugin.getInstance().economies.get(economyString);
-				p.sendMessage(LanguageManager.getMessage("got-salary", p));
-				economy.deposit(p, salary);
-				jp.removeSalary(salary);
+				JobsCommand.runWithdraw(p, jp);
 				p.closeInventory();
 				return;
 			}
 			if(action.equalsIgnoreCase("leavejob")) {
-				jp.removePlayerStats();
-				p.sendMessage(LanguageManager.getMessage("left-job", p));
+				JobsCommand.runLeaveJob(p, jp);
 				p.closeInventory();
 				return;
 			}

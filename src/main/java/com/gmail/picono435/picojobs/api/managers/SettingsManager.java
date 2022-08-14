@@ -15,12 +15,16 @@ public class SettingsManager {
 	private String prefix;
 	private String lang;
 	private String storageMethod;
+	private boolean automaticData;
 	private int commandAction;
 	private Map<String, Integer> allowedCommands = new HashMap<String, Integer>();
 	private ConfigurationSection remoteSqlConfiguration;
 	private ConfigurationSection mongodbConfiguration;
 	private int salaryCooldown;
+	private int leaveCooldown;
 	private boolean autoWorking;
+	private boolean allowPlaced;
+	private boolean resetCacheOnJoin;
 	
 	public SettingsManager(PicoJobsPlugin plugin) {
 		this.plugin = plugin;
@@ -45,7 +49,10 @@ public class SettingsManager {
 		this.remoteSqlConfiguration = config.getConfigurationSection("storage").getConfigurationSection("remote-sql");
 		this.mongodbConfiguration = config.getConfigurationSection("storage").getConfigurationSection("mongodb");
 		this.salaryCooldown = config.getInt("salary-cooldown");
+		this.leaveCooldown = config.getInt("leave-cooldown");
 		this.autoWorking = config.getBoolean("auto-working");
+		this.allowPlaced = config.getBoolean("allow-placed");
+		this.resetCacheOnJoin = config.getConfigurationSection("storage").getBoolean("reset-cache-on-join");
 		return true;
 	}
 	
@@ -81,7 +88,19 @@ public class SettingsManager {
 		return salaryCooldown;
 	}
 
+	public int getLeaveCooldown() {
+		return leaveCooldown;
+	}
+
 	public boolean isAutoWorking() {
 		return autoWorking;
+	}
+
+	public boolean isAllowPlaced() {
+		return allowPlaced;
+	}
+
+	public boolean isResetCacheOnJoin() {
+		return resetCacheOnJoin;
 	}
 }

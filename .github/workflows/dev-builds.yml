@@ -26,13 +26,20 @@ jobs:
       - name: Publish slimJar to maven local
         run: |
          cd slimjar
-         ../gradlew publishToMavenLocal
+         chmod +x gradlew
+         ./gradlew publishToMavenLocal
       - name: Tests with Gradle
-        run: ./gradlew test
+        env:
+          STABLE_BUILD: 1
+        run: |
+          ls
+          ./gradlew test
       - name: Build with Gradle
+        env:
+          STABLE_BUILD: 1
         run: ./gradlew shadowJar
       - name: Publish Unit Test Results
-        uses: mikepenz/action-junit-report@v1
+        uses: mikepenz/action-junit-report@v3
         if: >
           always() &&
           github.event.sender.login != 'dependabot[bot]' &&

@@ -53,6 +53,9 @@ storage:
   # |=> JSON
   # |=> HOCON
   storage-method: h2
+  # This option will reset the cache each time someone joins, this is useful if you are running a bungeecord server
+  # This feature is not fully tested in a production environment and it might cause issues
+  reset-cache-on-join: false
   # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
   remote-sql:
     host: localhost
@@ -82,8 +85,12 @@ storage:
 jobs-action: 3
 # What should be the salary cooldown in real life minutes 20 minutes = 1 minecraft day [DEFAULT: 600m=10h=30md]
 salary-cooldown: 600
+# What should be the job leave cooldown in real life minutes 20 minutes = 1 minecraft day [DEFAULT: 100m=~2h=5md]
+leave-cooldown: 100
 # Do you want it so you accept the job each time you complete a work or it automatically selects the work
 auto-working: false
+# Do BREAK job types allow placed block to be counted
+allow-placed: false
 
 #################################################################################
 #                                                                               #
