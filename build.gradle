@@ -17,10 +17,10 @@ if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '1') {
         version versioning.info.build + "-DEV"
     } else {
-        version "1.0-beta-7"
+        version "1.0-beta-7a"
     }
 } else {
-    version "1.0-beta-7"
+    version "1.0-beta-7a"
 }
 
 repositories {
