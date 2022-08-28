@@ -37,24 +37,24 @@ admin-commands: |-
   &e/jobsadmin applyedits &6- &eAplikuje úpravy z webového editoru
   &e/jobsadmin debug &6- &ePovolí DEBUG mód pluginu
 member-commands: |-
-  &6Plný seznam příkazů:
-  &e/job help &6- &eSee this
-  &e/job choose <job> &6- &eChooses your job
-  &6- &e/job work &eSee the status/Accept of your work
-  &e/job platy &6- &eCheck your paid
-  &e/job withdraw&6- &eWithdraw your pay
-  &eWithdraw your pay from &6- &eLeaves the job
+  &6Seznam příkazů:
+  &e/job help &6- &eUkáže toto
+  &e/job choose <job> &6- &eVyberte si práci
+  &6- &e/job work &ePodívejte se na stav/Přijímání vaší práce
+  &e/job salary &6- &eZkontrolujte svůj plat
+  &e/job withdraw&6- &eVyberte si svůj plat
+  &e/jobs leave &6- &eOpustí práci
 info-command: |-
   &6Stav hráče %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
+  &ePlat: %jobplayer_salary%
+  &ePracuje jako: %jobplayer_working%
+  &ePráce: %jobplayer_work%
+  &eÚkol: %jobplayer_job%
 reload-command: "&aKonfigurace, Úlohy a jazyk byly znovu načteny."
 player-not-found: "&cTento hráč není online, prosím vložte platného hráče."
 unknow-error: "&cVyskytla se neznámá chyba, zkontrolujte prosím konzoli pro více informací."
 left-job: "&cNejste nezaměstnaný! Doporučujeme si vybrat novou práci, nebo přijdete o mnoho peněz."
-already-updated: "&cPlugin je již v poslední verzi, pro více informací se podívejte na naši WIKI."
+already-updated: "&cPlugin už je aktualizovaný na poslední verzi, pro více informací se podívejte na naši WIKI."
 update-started: "&aAktualizace pluginu PicoJobs začala, prosím čekejte..."
 updated-sucefully: "&aDoplněk byl bezpečně aktualizován, prosím restartujte server pro dokončení aktualizace."
 sucefully: "&aAkce byla určitě provedena."
@@ -67,14 +67,14 @@ invalid-arg: "&aOdeslaný argument je neplatný. Zkontrolujte prosím chybné hl
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "přerušit %a% bloků"
+break-work: "zničit %a% bloků"
 kill-work: "zabít %a% lidí"
-fishing-work: "ryba %a% ryb"
+fishing-work: "vylovit %a% ryb"
 place-work: "umístit %a% bloků"
 craft-work: "vyrobit %a% položek"
 tame-work: "ochočit %a% zvířat"
 shear-work: "ostříhat %a% ovcí"
-fill-work: "vyplnit %a% kbelíků"
+fill-work: "naplnit %a% kbelíků"
 smelt-work: "tavit %a% položek"
 eat-work: "jíst %a% položek"
 enchanting-work: "okouzlující %a% položek"
