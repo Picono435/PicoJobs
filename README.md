@@ -2,6 +2,7 @@
 [releases]: https://github.com/Picono435/PicoJobs/releases
 [bukkitdev]: https://dev.bukkit.org/projects/picojobs
 [spigotmc]: https://spigotmc.org/resources/picojobs.82784/
+[modrinth]: https://modrinth.com/plugin/picojobs
 
 <div align="center">
  
@@ -14,7 +15,7 @@ The best RandomTP mod ever!
 
 [![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=BukkitDev&query=downloadCount&url=https://addons-ecs.forgesvc.net/api/v2/addon/385252&logo=CurseForge)][bukkitdev]
 [![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=SpigotMC&query=stats.downloads&url=https%3A%2F%2Fapi.spigotmc.org%2Fsimple%2F0.2%2Findex.php%3Faction%3DgetResource%26id%3D82784&logo=SpigotMC)][spigotmc]
-[![Modrinth Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=Modrinth&query=downloads&url=https%3A%2F%2Fapi.modrinth.com%2Fv2%2Fproject%2Fpicojobs&logo=Modrinth)][spigotmc]
+[![Modrinth Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=Modrinth&query=downloads&url=https%3A%2F%2Fapi.modrinth.com%2Fv2%2Fproject%2Fpicojobs&logo=Modrinth)][modrinth]
 [![GitHub Downloads (all releases)](https://img.shields.io/github/downloads/Picono435/PicoJobs/total?style=for-the-badge&amp;label=GitHub&amp;prefix=downloads%20&amp;color=4078c0&amp;logo=github)][releases]
 </div>
 
