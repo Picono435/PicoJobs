@@ -87,7 +87,7 @@ dependencies {
     shadow implementation('org.apache.maven:maven-artifact:3.8.6')
     shadow implementation('org.bstats:bstats-bukkit:3.0.0')
     slim 'org.slf4j:slf4j-simple:1.7.36'
-    slim 'org.slf4j:slf4j-api:1.7.36'
+    slim 'org.slf4j:slf4j-api:2.0.1'
     testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     testCompileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
