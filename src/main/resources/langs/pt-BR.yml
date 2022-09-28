@@ -37,13 +37,13 @@ admin-commands: |-
   &e/jobsadmin aplica edições &6- &eAplicar as edições de uma sessão de editor de web
   &e/jobsadmin debug &6- &eEnables o modo de BUG do plugin
 member-commands: |-
-  &6Full list of commands:
-  &e/jobs help &6- &eSee this messages
-  &e/jobs choose <job> &6- &eChooses your job
-  &e/jobs work &6- &eSee the status/Accept of your work
-  &e/jobs salary &6- &eCheck your salary
-  &e/jobs withdraw &6- &eWithdraw your salary
-  &e/jobs leave &6- &eLeaves the job
+  &6Flista completa de comandos:
+  &e/tarefas ajudam &6- &eSe esta mensagem
+  &e/tarefas escolhem <job> &6- &eCanula a sua profissão
+  & / trabalho e trabalha &6- &eSee o estado/aceitar a sua obra
+  &6- &eCverifica o seu salário
+  &e/resolução de tarefas &6- &eWithdraw seu salário
+  &e/saída de &eL
 info-command: |-
   &6Status do jogador %player_name%
   &eSalário: %jobplayer_salary%
