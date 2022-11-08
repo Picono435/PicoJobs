@@ -68,7 +68,7 @@ dependencies {
     slim 'org.mongodb:mongodb-driver-sync:4.7.1'
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:1.4.200'
-    slim 'org.xerial:sqlite-jdbc:3.39.2.0'
+    slim 'org.xerial:sqlite-jdbc:3.39.4.0'
     slim 'org.mariadb.jdbc:mariadb-java-client:3.0.7'
     slim 'mysql:mysql-connector-java:8.0.30'
     shadow implementation('org.spongepowered:configurate-core:4.1.2')
