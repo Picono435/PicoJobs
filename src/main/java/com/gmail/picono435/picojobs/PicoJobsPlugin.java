@@ -57,6 +57,10 @@ import org.h2.tools.Script;
 
 public class PicoJobsPlugin extends JavaPlugin {
 
+	private static PicoJobsPlugin instance;
+	public static boolean isTestEnvironment = false;
+	public static String EDITOR_STRING = "http://localhost:3011/editor";
+
 	public PicoJobsPlugin() {
         super();
     }
@@ -66,9 +70,7 @@ public class PicoJobsPlugin extends JavaPlugin {
     }
 	
 	//PLUGIN
-	private static PicoJobsPlugin instance;
-	public static boolean isTestEnvironment = false;
-	private static boolean wasUpdated;
+	private boolean wasUpdated;
 	private String serverVersion;
 	private boolean oldVersion;
 	private String lastestPluginVersion;

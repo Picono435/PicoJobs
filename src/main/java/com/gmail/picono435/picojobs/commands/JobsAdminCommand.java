@@ -6,11 +6,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Level;
 
+import com.gmail.picono435.picojobs.api.*;
+import com.google.gson.JsonArray;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,14 +18,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.JobPlayer;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.utils.DocConverter;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -210,9 +209,23 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			p.sendMessage(LanguageManager.formatMessage("&7Preparing a new editor session. Please wait..."));
 			String editor = createEditor(sender);
 			if(editor != null) {
-				p.sendMessage(LanguageManager.formatMessage("&aClick the link below to open the editor:\n&b&ehttp://www.piconodev.tk/editor/picojobs/" + editor));
+				p.sendMessage(LanguageManager.formatMessage("&aClick the link below to open the editor:\n&b&e" + PicoJobsPlugin.EDITOR_STRING + "/picojobs/" + editor));
 			} else {
 				p.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
+			}
+			return true;
+		}
+
+		if(subcmd.equalsIgnoreCase("applyedits") || subcmd.equalsIgnoreCase("ae")) {
+			// APPLYEDITS
+			if(args.length < 2) {
+				p.sendMessage(LanguageManager.getMessage("no-args", pl));
+				return true;
+			}
+			if(applyEditsFromEditor(sender, args[1])) {
+				p.sendMessage(LanguageManager.formatMessage("&aWeb editor data was applied to the jobs configuration successfully."));
+			} else {
+				p.sendMessage(LanguageManager.formatMessage("&cWeb editor data was not applied to the jobs configuration because of a unexpected error."));
 			}
 			return true;
 		}
@@ -315,22 +328,35 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			int spaceIndex = serverVersionString.indexOf("-");
 			serverVersionString = serverVersionString.substring(0, spaceIndex);
 			serverVersionString = StringUtils.substringBeforeLast(serverVersionString, ".");
-			
-			String jobsConfigYAML = DocConverter.convertFileToString(FileCreator.getJobsFile().getPath());
-			String jobsConfigJSON = DocConverter.convertYamlToJson(jobsConfigYAML);
-			
+
 			JsonParser parser = new JsonParser();
+			JsonObject jsonEditor = new JsonObject();
+			jsonEditor.addProperty("plugin", PicoJobsPlugin.getInstance().getName());
+			jsonEditor.addProperty("server", InetAddress.getLocalHost() + ":" + Bukkit.getServer().getPort());
+			jsonEditor.addProperty("author", sender.getName());
+			jsonEditor.addProperty("minecraftVersion", serverVersionString);
+
+			JsonArray jsonEconomies = new JsonArray();
+			for(String economy : PicoJobsPlugin.getInstance().economies.keySet()) {
+				jsonEconomies.add(economy);
+			}
+			jsonEditor.add("economies", jsonEconomies);
+
+			JsonObject jsonTypes = new JsonObject();
+			for(Type type : Type.values()) {
+				jsonTypes.addProperty(type.name(), type.getWhitelistType());
+			}
+			jsonEditor.add("types", jsonTypes);
+
 			JsonObject jsonJobs = new JsonObject();
-			jsonJobs.addProperty("plugin", PicoJobsPlugin.getInstance().getName());
-			jsonJobs.addProperty("server", InetAddress.getLocalHost() + ":" + Bukkit.getServer().getPort());
-			jsonJobs.addProperty("author", sender.getName());
-			jsonJobs.addProperty("minecraftVersion", serverVersionString);
-			jsonJobs.add("economies", new JsonObject());
-			jsonJobs.add("config", parser.parse(jobsConfigJSON));
+			for(Job job : PicoJobsAPI.getJobsManager().getJobs()) {
+				jsonJobs.add(job.getID(), job.toJsonObject());
+			}
+			jsonEditor.add("jobs", jsonJobs);
 			
 			String charset = "UTF-8";
 			
-			URL url = new URL("https://piconodev.pt/editor/picojobs/create");
+			URL url = new URL(PicoJobsPlugin.EDITOR_STRING + "/picojobs/create");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Accept-Charset", charset);
@@ -338,7 +364,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
             con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
             
-            String json = jsonJobs.toString();
+            String json = jsonEditor.toString();
             try (OutputStream output = con.getOutputStream()) {
                 output.write(json.getBytes(charset));
              }
@@ -356,6 +382,63 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	private boolean applyEditsFromEditor(CommandSender sender, String editor) {
+		try {
+			JsonParser parser = new JsonParser();
+			JsonObject jsonEditor = new JsonObject();
+			jsonEditor.addProperty("plugin", PicoJobsPlugin.getInstance().getName());
+			jsonEditor.addProperty("server", InetAddress.getLocalHost() + ":" + Bukkit.getServer().getPort());
+			jsonEditor.addProperty("author", sender.getName());
+			jsonEditor.addProperty("editor", editor);
+
+			String charset = "UTF-8";
+
+			URL url = new URL(PicoJobsPlugin.EDITOR_STRING + "/picojobs/get");
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Accept-Charset", charset);
+			con.setRequestProperty("Content-Type", "application/json;charset=" + charset);
+			con.setRequestProperty("Accept", "application/json");
+			con.setDoOutput(true);
+
+			String json = jsonEditor.toString();
+			try (OutputStream output = con.getOutputStream()) {
+				output.write(json.getBytes(charset));
+			}
+
+			try(BufferedReader br = new BufferedReader(
+					new InputStreamReader(con.getInputStream(), "utf-8"))) {
+				StringBuilder responseString = new StringBuilder();
+				String responseLine = null;
+				while ((responseLine = br.readLine()) != null) {
+					responseString.append(responseLine.trim());
+				}
+				JsonObject response = (JsonObject) parser.parse(responseString.toString());
+				FileConfiguration jobsConfiguration = new YamlConfiguration();
+				Map<String, ConfigurationSection> jobsSection = new HashMap<>();
+				if(response.get("status").getAsInt() == 3000) {
+					PicoJobsPlugin.getInstance().jobs.clear();
+					System.out.println(response);
+					JsonObject jobsObject = (JsonObject) response.get("data");
+					for(String jobID : jobsObject.keySet()) {
+						Job job = new Job(jobsObject.get(jobID).getAsJsonObject());
+						jobsSection.put(jobID, job.toYamlConfiguration());
+						PicoJobsPlugin.getInstance().jobs.put(jobID, job);
+					}
+					jobsConfiguration.createSection("jobs", jobsSection);
+					FileCreator.setJobsConfig(jobsConfiguration);
+					FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
+					return true;
+				} else {
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }

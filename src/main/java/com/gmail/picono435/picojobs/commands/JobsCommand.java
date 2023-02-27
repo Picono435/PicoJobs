@@ -77,7 +77,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 					p.sendMessage(LanguageManager.getMessage("unknow-job", p));
 					return true;
 				}
-				if(jobTry.requiresPermission() && !p.hasPermission("picojobs.job." + jobTry.getID())) {
+				if(jobTry.requirePermission() && !p.hasPermission("picojobs.job." + jobTry.getID())) {
 					p.sendMessage(LanguageManager.getMessage("no-permission", p));
 					return true;
 				}
@@ -161,7 +161,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 				if(args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase(choose)) {
 					List<String> list = new ArrayList<String>();
 					for(Job j : PicoJobsAPI.getJobsManager().getJobs()) {
-						if(j.requiresPermission() && !p.hasPermission("picojobs.job." + j.getID())) continue;
+						if(j.requirePermission() && !p.hasPermission("picojobs.job." + j.getID())) continue;
 						list.add(j.getID());
 					}
 					return list;

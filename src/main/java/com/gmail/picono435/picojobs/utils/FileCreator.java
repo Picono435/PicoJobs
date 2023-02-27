@@ -118,7 +118,11 @@ public class FileCreator {
 	public static FileConfiguration getJobsConfig() {
 		return jobs;
 	}
-	
+
+	public static void setJobsConfig(FileConfiguration jobs) {
+		FileCreator.jobs = jobs;
+	}
+
 	public static File getJobsFile() {
 		return jobs_file;
 	}

@@ -1,10 +1,17 @@
 package com.gmail.picono435.picojobs.api;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.gmail.picono435.picojobs.utils.ColorConverter;
+import com.gmail.picono435.picojobs.utils.FileCreator;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.*;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
@@ -31,7 +38,7 @@ public class Job {
 	private double method;
 	private double salary;
 	private double maxSalary;
-	private boolean requiresPermission;
+	private boolean requirePermission;
 	private double salaryFrequency;
 	private double methodFrequency;
 	private String economy;
@@ -47,9 +54,33 @@ public class Job {
 	// OPTIONAL
 	private boolean useWhitelist;
 	private Map<Type, List<Object>> whitelist;
-	private Map<Type, List<String>> stringWhitelist;
+	private Map<Type, List<String>> stringWhitelist = new HashMap<>();
 
-	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requiresPermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
+	public Job(JsonObject jsonObject) {
+		this(
+				jsonObject.get("id").getAsString(),
+				jsonObject.get("displayname").getAsString(),
+				jsonObject.get("tag").getAsString(),
+				jsonObject.get("types").getAsJsonArray().asList().stream().map(JsonElement::getAsString).map(Type::getType).collect(Collectors.toList()),
+				jsonObject.get("method").getAsDouble(),
+				jsonObject.get("salary").getAsDouble(),
+				jsonObject.get("maxSalary").getAsDouble(),
+				jsonObject.get("requirePermission").getAsBoolean(),
+				jsonObject.get("salaryFrequency").getAsDouble(),
+				jsonObject.get("methodFrequency").getAsDouble(),
+				jsonObject.get("economy").getAsString(),
+				jsonObject.get("workMessage") instanceof JsonNull ? null : jsonObject.get("workMessage").getAsString(),
+				jsonObject.get("gui").getAsJsonObject().get("slot").getAsInt(),
+				jsonObject.get("gui").getAsJsonObject().get("item").getAsString(),
+				jsonObject.get("gui").getAsJsonObject().get("itemData").getAsInt(),
+				jsonObject.get("gui").getAsJsonObject().get("enchanted").getAsBoolean(),
+				jsonObject.get("gui").getAsJsonObject().get("lore").getAsJsonArray().asList().stream().map(JsonElement::getAsString).collect(Collectors.toList()),
+				jsonObject.get("useWhitelist").getAsBoolean(),
+				(new Gson()).fromJson(jsonObject.get("whitelist").toString(), new TypeToken<Map<Type, List<String>>>(){}.getType())
+		);
+	}
+
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -57,7 +88,7 @@ public class Job {
 		this.method = method;
 		this.salary = salary;
 		this.maxSalary = maxSalary;
-		this.requiresPermission = requiresPermission;
+		this.requirePermission = requirePermission;
 		this.salaryFrequency = salaryFrequency;
 		this.methodFrequency = methodFrequency;
 		this.economy = economy;
@@ -76,20 +107,25 @@ public class Job {
 			for(Type type : whitelist.keySet()) {
 				String whitelistType = type.getWhitelistType();
 				List<Object> objects = new ArrayList<>();
+				List<String> filteredNames = new ArrayList<>();
 				if(whitelistType.equals("material")) {
 					for(String s : whitelist.get(type)) {
 						Material matNew = OtherUtils.matchMaterial(s);
 						if(matNew == null) continue;
+						filteredNames.add("minecraft:" + matNew.toString().toLowerCase());
 						objects.add(matNew);
 					}
 					this.whitelist.put(type, objects);
+					this.stringWhitelist.put(type, filteredNames);
 				} else if(whitelistType.equals("entity")) {
 					for(String s : whitelist.get(type)) {
 						EntityType entityNew = OtherUtils.getEntityByName(s);
 						if(entityNew == null) continue;
+						filteredNames.add("minecraft:" + entityNew.toString().toLowerCase());
 						objects.add(entityNew);
 					}
 					this.whitelist.put(type, objects);
+					this.stringWhitelist.put(type, filteredNames);
 				} else if(whitelistType.equals("job")) {
 					Job j = this;
 					new BukkitRunnable() {
@@ -97,21 +133,24 @@ public class Job {
 							for(String s : whitelist.get(type)) {
 								Job jobNew = PicoJobsAPI.getJobsManager().getJob(s);
 								if(jobNew == null) continue;
+								filteredNames.add(jobNew.getID());
 								objects.add(jobNew);
 							}
 							j.whitelist.put(type, objects);
+							j.stringWhitelist.put(type, filteredNames);
 						}
 					}.runTask(PicoJobsPlugin.getInstance());
 				} else if(whitelistType.equals("color")) {
 					for(String s : whitelist.get(type)) {
 						DyeColor colorNew = DyeColor.valueOf(s.toUpperCase(Locale.ROOT));
 						if(colorNew == null) continue;
+						filteredNames.add(colorNew.toString());
 						objects.add(colorNew);
 					}
 					this.whitelist.put(type, objects);
+					this.stringWhitelist.put(type, filteredNames);
 				}
 			}
-			this.stringWhitelist = whitelist;
 		} else {
 			this.whitelist = new HashMap<>();
 		}
@@ -195,8 +234,8 @@ public class Job {
 	 * @return true if it requires permission, false if not
 	 * @author Picono435
 	 */
-	public boolean requiresPermission() {
-		return this.requiresPermission;
+	public boolean requirePermission() {
+		return this.requirePermission;
 	}
 	
 	/**
@@ -448,5 +487,82 @@ public class Job {
 	 */
 	public String getWhitelistArray() {
 		return Arrays.toString(this.stringWhitelist.values().toArray());
+	}
+
+	public JsonObject toJsonObject() {
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("id", this.id);
+		jsonObject.addProperty("displayname", displayname);
+		jsonObject.addProperty("tag", tag);
+
+		JsonArray jsonTypes = new JsonArray();
+		for(Type type : this.types) jsonTypes.add(type.name());
+		jsonObject.add("types", jsonTypes);
+
+		jsonObject.addProperty("method", this.method);
+		jsonObject.addProperty("salary", this.salary);
+		jsonObject.addProperty("maxSalary", this.maxSalary);
+		jsonObject.addProperty("requirePermission", this.requirePermission);
+		jsonObject.addProperty("salaryFrequency", this.salaryFrequency);
+		jsonObject.addProperty("methodFrequency", this.methodFrequency);
+		jsonObject.addProperty("economy", this.economy);
+		jsonObject.addProperty("workMessage", this.workMessage);
+		jsonObject.addProperty("useWhitelist", this.useWhitelist);
+
+		JsonObject jsonWhitelist = new JsonObject();
+		for(Type type : stringWhitelist.keySet()) {
+			JsonArray jsonWhitelistArray = new JsonArray();
+			for(String string : stringWhitelist.get(type)) {
+				jsonWhitelistArray.add(string);
+			}
+			jsonWhitelist.add(type.name(), jsonWhitelistArray);
+		}
+		jsonObject.add("whitelist", jsonWhitelist);
+
+		JsonObject jsonGui = new JsonObject();
+		jsonGui.addProperty("slot", this.slot);
+		jsonGui.addProperty("item", "minecraft:" + this.item.name().toLowerCase());
+		jsonGui.addProperty("itemData", this.itemData);
+		jsonGui.addProperty("enchanted", this.enchanted);
+		JsonArray loreArray = new JsonArray();
+		lore.forEach(loreArray::add);
+		jsonGui.add("lore", loreArray);
+		jsonObject.add("gui", jsonGui);
+
+		return jsonObject;
+	}
+
+	public ConfigurationSection toYamlConfiguration() {
+		ConfigurationSection jobConfiguration = new YamlConfiguration();
+		jobConfiguration.set("id", this.id);
+		jobConfiguration.set("displayname", displayname);
+		jobConfiguration.set("tag", tag);
+
+		List<String> listTypes = new ArrayList<>();
+		for(Type type : this.types) listTypes.add(type.name());
+		jobConfiguration.set("types", listTypes);
+
+		jobConfiguration.set("method", this.method);
+		jobConfiguration.set("salary", this.salary);
+		jobConfiguration.set("max-salary", this.maxSalary);
+		jobConfiguration.set("require-permission", this.requirePermission);
+		jobConfiguration.set("salary-frequency", this.salaryFrequency);
+		jobConfiguration.set("method-frequency", this.methodFrequency);
+		jobConfiguration.set("economy", this.economy);
+		jobConfiguration.set("work-message", this.workMessage);
+		jobConfiguration.set("use-whitelist", this.useWhitelist);
+
+		for(Type type : stringWhitelist.keySet()) {
+			jobConfiguration.set("whitelist." + type.name(), stringWhitelist.get(type));
+		}
+
+		Map<String, Object> configGui = new HashMap<>();
+		configGui.put("slot", this.slot);
+		configGui.put("item", "minecraft:" + this.item.name().toLowerCase());
+		configGui.put("itemData", this.itemData);
+		configGui.put("enchanted", this.enchanted);
+		configGui.put("lore", lore);
+		jobConfiguration.createSection("gui", configGui);
+		return jobConfiguration;
 	}
 }
