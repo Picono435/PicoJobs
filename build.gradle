@@ -65,7 +65,7 @@ dependencies {
     // Spigot
     compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
     // Storage Methods
-    slim 'org.mongodb:mongodb-driver-sync:4.7.1'
+    slim 'org.mongodb:mongodb-driver-sync:4.9.0'
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:1.4.200'
     slim 'org.xerial:sqlite-jdbc:3.40.0.0'
