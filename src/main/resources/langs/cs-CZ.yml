@@ -11,50 +11,50 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cHej! Nemáte oprávnění k provedení tohoto příkazu."
-ignore-action: "&cHej! Nebuďte líní a nemluvte s NPC."
+ignore-action: "&cHej! Nebuďte líní a promluvte si s NPC."
 choosed-job: "&aGratulujeme! Vybrali jste pracovní pozici %jobplayer_job%&a."
 accepted-work: "&aPřijali jste práci %jobplayer_work%."
-no-salary: "&cNemáš dostatek platu, abys mohl získat! Prosím, jdi do práce ;("
+no-salary: "&cNemáš dostatek vyděláno, abys mohl peníze získat! Prosím, jdi do práce ;("
 got-salary: "&aSkvělá práce! Právě jste dostali svůj %jobplayer_salary% plat!"
 finished-work: "&aGratulujeme! Právě jste dokončili svou práci. Použij /jobs pro získání více informací o tom."
-need-level: "&cHej! Pro provedení této akce musíš udělat %a% práce."
+need-level: "&cHej! Pro provedení této akce musíš udělat %a%."
 no-args: "&cHej! Použijte platnou syntaxi."
 my-salary: "&aMáte mzdu ve výši %jobplayer_salary%$."
 unknow-job: "&cTato práce nebyla nalezena, prosím použijte TAB COMPLETE pro získání seznamu pracovních míst."
 #In cooldown messages you can use the placeholders: %cooldown_mtime% -> Minecraft Time // %cooldown_time% -> Real Life Time
-salary-cooldown: "&cMusíš počkat více %cooldown_mtime% než budeš dostávat plat."
-leave-cooldown: "&cMusíte počkat více %cooldown_mtime% než znovu opustit pracovní pozici."
+salary-cooldown: "&cMusíš počkat více %cooldown_mtime% než dostaneš plat."
+leave-cooldown: "&cMusíte počkat více %cooldown_mtime% než znovu opustite pracovní pozici."
 work-status: "&aZde je to, co potřebujete udělat: %jobplayer_work%"
 admin-commands: |-
-  &6Plný seznam příkazů:
+  &6Seznam příkazů:
   &e/jobsadmin help &6- &eViz tyto zprávy
-  &e/jobsadmin info <player> &6- &eGens informace o hráči
-  &e/jobsadmin znovu načte &6- &eReload všechny možné konfigurace.
-  &e/jobsadmin aktualizuje &6- &eInstalls aktualizaci pluginu
-  &e/jobsadmin o &6- &eGets informace o serveru a pluginu
-  &e/jobsadmin nastaveno <salary | method | job> <player> <amount | job> <amount | job> &6- &eNastaví salary/metodu hráče
+  &e/jobsadmin info <player> &6- &eUkáže informace o hráči
+  &e/jobsadmin reload &6- &ePřenačte všechny možné konfigurace.
+  &e/jobsadmin update &6- &eInstaluje aktualizaci pluginu
+  &e/jobsadmin about &6- &eZíská informace o serveru a pluginu
+  &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eNastaví salary/metodu hráče
   &e/jobsadmin editor &6- &eVytvoří relaci webového editoru
-  &e/jobsadmin applyedits &6- &eApply the edits of the web editor sess
-  &e/jobsadmin debug &6- &eEPovolí DEBUG mód pluginu
+  &e/jobsadmin applyedits &6- &eAplikuje úpravy z webového editoru
+  &e/jobsadmin debug &6- &ePovolí DEBUG mód pluginu
 member-commands: |-
-  &6Plný seznam příkazů:
-  &e/job help &6- &eSee this
-  &e/job choose <job> &6- &eChooses your job
-  &6- &e/job work &eSee the status/Accept of your work
-  &e/job platy &6- &eCheck your paid
-  &e/job withdraw&6- &eWithdraw your pay
-  &eWithdraw your pay from &6- &eLeaves the job
+  &6Seznam příkazů:
+  &e/job help &6- &eUkáže toto
+  &e/job choose <job> &6- &eVyberte si práci
+  &6- &e/job work &ePodívejte se na stav/Přijímání vaší práce
+  &e/job salary &6- &eZkontrolujte svůj plat
+  &e/job withdraw&6- &eVyberte si svůj plat
+  &e/jobs leave &6- &eOpustí práci
 info-command: |-
   &6Stav hráče %player_name%
-  &eSalary: %jobplayer_salary%
-  &eIs Working: %jobplayer_working%
-  &eWork: %jobplayer_work%
-  &eJob: %jobplayer_job%
+  &ePlat: %jobplayer_salary%
+  &ePracuje jako: %jobplayer_working%
+  &ePráce: %jobplayer_work%
+  &eÚkol: %jobplayer_job%
 reload-command: "&aKonfigurace, Úlohy a jazyk byly znovu načteny."
 player-not-found: "&cTento hráč není online, prosím vložte platného hráče."
 unknow-error: "&cVyskytla se neznámá chyba, zkontrolujte prosím konzoli pro více informací."
 left-job: "&cNejste nezaměstnaný! Doporučujeme si vybrat novou práci, nebo přijdete o mnoho peněz."
-already-updated: "&cPlugin je již v poslední verzi, pro více informací se podívejte na naši WIKI."
+already-updated: "&cPlugin už je aktualizovaný na poslední verzi, pro více informací se podívejte na naši WIKI."
 update-started: "&aAktualizace pluginu PicoJobs začala, prosím čekejte..."
 updated-sucefully: "&aDoplněk byl bezpečně aktualizován, prosím restartujte server pro dokončení aktualizace."
 sucefully: "&aAkce byla určitě provedena."
@@ -67,14 +67,14 @@ invalid-arg: "&aOdeslaný argument je neplatný. Zkontrolujte prosím chybné hl
 #In this category you can change the formats of placeholders and other things
 #All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
 #Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "přerušit %a% bloků"
+break-work: "zničit %a% bloků"
 kill-work: "zabít %a% lidí"
-fishing-work: "ryba %a% ryb"
+fishing-work: "vylovit %a% ryb"
 place-work: "umístit %a% bloků"
 craft-work: "vyrobit %a% položek"
 tame-work: "ochočit %a% zvířat"
 shear-work: "ostříhat %a% ovcí"
-fill-work: "vyplnit %a% kbelíků"
+fill-work: "naplnit %a% kbelíků"
 smelt-work: "tavit %a% položek"
 eat-work: "jíst %a% položek"
 enchanting-work: "okouzlující %a% položek"
