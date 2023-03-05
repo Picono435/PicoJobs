@@ -64,6 +64,7 @@ storage:
     username: root
     password: ""
     tablename: "jobplayers"
+    ssl: false
   # Remote MongoDB database configuration
   mongodb:
     # Here you need to put the MongoDB Connection URI

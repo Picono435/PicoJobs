@@ -5,7 +5,8 @@ import java.util.UUID;
 public abstract class StorageFactory {
 	
 	protected abstract boolean initializeStorage() throws Exception;
-	
+
+	public abstract boolean createTable() throws Exception;
 	public abstract boolean createPlayer(UUID uuid) throws Exception;
 	public abstract boolean playerExists(UUID uuid) throws Exception;
 	

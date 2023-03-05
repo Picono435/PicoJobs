@@ -59,7 +59,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 
 	private static PicoJobsPlugin instance;
 	public static boolean isTestEnvironment = false;
-	public static String EDITOR_STRING = "http://localhost:3011/editor";
+	public static String EDITOR_STRING = "https://piconodev.com/editor";
 
 	public PicoJobsPlugin() {
         super();

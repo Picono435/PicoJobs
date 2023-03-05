@@ -1,11 +1,21 @@
 package com.gmail.picono435.picojobs.api;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import javafx.util.Pair;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
+import java.util.List;
 
 public abstract class EconomyImplementation {
 
 	protected Plugin requiredPlugin;
+	/**
+	 * Required field is currently only used in PicoJobs editor but should be set for a better user experience
+	 */
+	protected Pair<String, RequiredFieldType> requiredField;
 	
 	  /**
 	   * Returns a upper case name of economy
@@ -57,4 +67,40 @@ public abstract class EconomyImplementation {
 	  public Plugin getRequiredPlugin() {
 	    return requiredPlugin;
 	  }
+
+	/**
+	 * Gets the required field in order to this implementation work correctly
+	 * Required field is currently only used in PicoJobs editor but should be set for a better user experience
+	 *
+	 * @return required field
+	 */
+	public Pair<String, RequiredFieldType> getRequiredField() {
+		return requiredField;
+	}
+
+	public enum RequiredFieldType {
+		STRING_LIST,
+		STRING,
+		INTEGER,
+		DOUBLE,
+		BOOLEAN;
+
+		public JsonElement getJsonElement(Object object) {
+			switch (this) {
+				case STRING_LIST:
+					JsonArray jsonArray = new JsonArray();
+					for(String s : (List<String>) object) jsonArray.add(s);
+					return jsonArray;
+				case STRING:
+					return new JsonPrimitive((String) object);
+				case INTEGER:
+					return new JsonPrimitive((int) object);
+				case DOUBLE:
+					return new JsonPrimitive((double) object);
+				case BOOLEAN:
+					return new JsonPrimitive((boolean) object);
+			}
+			return null;
+		}
+	}
 }

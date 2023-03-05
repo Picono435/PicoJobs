@@ -16,7 +16,15 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	protected ConfigurationSection configurationSection;
 	protected HikariDataSource hikari;
 	protected HikariConfig config = new HikariConfig();
-	
+
+	@Override
+	public boolean createTable() throws Exception {
+		try(Connection conn = hikari.getConnection();
+			PreparedStatement stm = conn.prepareStatement("CREATE TABLE IF NOT EXISTS " + configurationSection.getString("tablename") + " (`uuid` VARCHAR(255) NOT NULL, `job` TEXT DEFAULT NULL, `method` DOUBLE DEFAULT '0', `level` DOUBLE DEFAULT '0', `salary` DOUBLE DEFAULT '0', `salary-cooldown` LONG DEFAULT '0', `leave-cooldown` LONG DEFAULT '0', `is-working` BOOLEAN DEFAULT FALSE, PRIMARY KEY (`uuid`));")) {
+			return stm.execute();
+		}
+	}
+
 	@Override
 	public boolean createPlayer(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection();
@@ -26,7 +34,7 @@ public abstract class HikariStorageFactory extends StorageFactory {
         	return result >= 1;
 		}
 	}
-	
+
 	@Override
 	public boolean playerExists(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection();
