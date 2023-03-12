@@ -23,24 +23,26 @@ public class BreakListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onBreakBlock(BlockBreakEvent e) {
-		if(PicoJobsAPI.getSettingsManager().isAllowPlaced() && e.getBlock().getMetadata("PLACED").size() > 0) return;
-
 		Player p = e.getPlayer();
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(p);
 		if(!jp.hasJob()) return;
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.BREAK)) return;
-		if(PicoJobsPlugin.getInstance().isLessThan("1.12.2")) {
+		boolean isNaturalBlock = e.getBlock().getMetadata("PLACED").size() == 0;
+		if(PicoJobsPlugin.getInstance().isLegacyServer()) {
 			if(e.getBlock().getState().getData() instanceof Crops) {
-				if(((Crops)e.getBlock().getState().getData()).getState() != CropState.RIPE) return;
+				if (((Crops) e.getBlock().getState().getData()).getState() != CropState.RIPE) return;
+				isNaturalBlock = true;
 			}
 		} else {
 			if(e.getBlock().getBlockData() instanceof Ageable) {
 				Ageable ageable = (Ageable) e.getBlock().getBlockData();
 				if(ageable.getMaximumAge() != ageable.getAge()) return;
+				isNaturalBlock = true;
 			}
 		}
+		if(!isNaturalBlock) return;
 
 		if(!job.inWhitelist(Type.BREAK, e.getBlock().getType())) return;
 
@@ -51,14 +53,6 @@ public class BreakListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlaceBlock(BlockPlaceEvent e) {
-		if(e.getBlock().getType() == Material.BEETROOT_SEEDS ||
-				e.getBlock().getType() == Material.MELON_SEEDS ||
-				e.getBlock().getType() == Material.PUMPKIN_SEEDS ||
-				e.getBlock().getType() == Material.WHEAT_SEEDS ||
-				e.getBlock().getType() == Material.CARROT ||
-				e.getBlock().getType() == Material.POTATO ||
-				e.getBlock().getType() == Material.WHEAT
-		) return;
 		e.getBlock().setMetadata("PLACED", new FixedMetadataValue(PicoJobsPlugin.getInstance(), "YES"));
 	}
 }
