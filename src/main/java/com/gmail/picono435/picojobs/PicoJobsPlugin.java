@@ -249,40 +249,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public Handler getLoggingHandler() {
 		return loggingHandler;
 	}
-
-	/**
-	 * Same as having serverVersion &gt;= specifiedVersion
-	 * Example: 1.18.1 &gt;= 1.12.2
-	 *
-	 * @param version
-	 * @return
-	 */
-	public boolean isMoreThan(String version) {
-		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
-		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(serverVersionArt.compareTo(legacyVersion) >= 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Same as having serverVersion &lt;= specifiedVersion
-	 * Example: 1.18.1 &lt;= 1.12.2
-	 *
-	 * @param version
-	 * @return
-	 */
-	public boolean isLessThan(String version) {
-		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
-		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
-		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
 	public boolean isOldVersion() {
 		return oldVersion;
@@ -409,7 +375,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			String serverVersionString = Bukkit.getBukkitVersion();
 			int spaceIndex = serverVersionString.indexOf("-");
 			serverVersionString = serverVersionString.substring(0, spaceIndex);
-			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.12.2");
+			DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
 			DefaultArtifactVersion serverVersion = new DefaultArtifactVersion(serverVersionString);
 			if(serverVersion.compareTo(legacyVersion) <= 0) {
 				this.serverVersion = serverVersionString;
@@ -418,6 +384,56 @@ public class PicoJobsPlugin extends JavaPlugin {
 			this.serverVersion = serverVersionString;
 			return false;
 		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Same as having serverVersion &gt;= specifiedVersion
+	 * Example: 1.18.1 &gt;= 1.13.2
+	 *
+	 * @param version
+	 * @return
+	 */
+	public boolean isMoreThan(String version) {
+		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
+		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
+		if(serverVersionArt.compareTo(legacyVersion) >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Same as having serverVersion &lt;= specifiedVersion
+	 * Example: 1.18.1 &lt;= 1.13.2
+	 *
+	 * @param version
+	 * @return
+	 */
+	public boolean isLessThan(String version) {
+		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion(version);
+		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
+		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Checks if minecraft server that the plugin is running is
+	 * equal or inferior to 1.13.2
+	 *
+	 * @return true if it is a legacy server, false otherwise
+	 */
+	public boolean isLegacyServer() {
+		DefaultArtifactVersion legacyVersion = new DefaultArtifactVersion("1.13.2");
+		DefaultArtifactVersion serverVersionArt = new DefaultArtifactVersion(serverVersion);
+		if(serverVersionArt.compareTo(legacyVersion) <= 0) {
+			return true;
+		} else {
 			return false;
 		}
 	}
