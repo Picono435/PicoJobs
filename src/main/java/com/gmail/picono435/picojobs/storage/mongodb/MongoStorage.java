@@ -53,49 +53,49 @@ public class MongoStorage extends StorageFactory {
 	public String getJob(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getString("job");
+		return result.containsKey("job") ? result.getString("job") : null;
 	}
 
 	@Override
 	public double getMethod(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getDouble("method");
+		return result.containsKey("method") ? result.getDouble("method") : 0;
 	}
 
 	@Override
 	public double getMethodLevel(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getDouble("level");
+		return result.containsKey("level") ? result.getDouble("level") : 0;
 	}
 
 	@Override
 	public boolean isWorking(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getBoolean("is-working");
+		return result.containsKey("is-working") ? result.getBoolean("is-working") : false;
 	}
 
 	@Override
 	public double getSalary(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getDouble("salary");
+		return result.containsKey("salary") ? result.getDouble("salary") : 0;
 	}
 
 	@Override
 	public long getSalaryCooldown(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getLong("salary-cooldown");
+		return result.containsKey("salary-cooldown") ? result.getLong("salary-cooldown") : 0;
 	}
 
 	@Override
 	public long getLeaveCooldown(UUID uuid) throws Exception {
 		MongoCollection<Document> mongo = this.mongoClient.getDatabase(this.database).getCollection(this.collection);
 		Document result = mongo.find(new BasicDBObject("uuid", uuid.toString())).first();
-		return result.getLong("leave-cooldown");
+		return result.containsKey("leave-cooldown") ? result.getLong("leave-cooldown") : 0;
 	}
 
 	@Override
