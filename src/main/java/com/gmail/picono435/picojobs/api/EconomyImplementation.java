@@ -15,7 +15,7 @@ public abstract class EconomyImplementation {
 	/**
 	 * Required field is currently only used in PicoJobs editor but should be set for a better user experience
 	 */
-	protected Pair<String, RequiredFieldType> requiredField;
+	protected RequiredField requiredField;
 	
 	  /**
 	   * Returns a upper case name of economy
@@ -74,9 +74,29 @@ public abstract class EconomyImplementation {
 	 *
 	 * @return required field
 	 */
-	public Pair<String, RequiredFieldType> getRequiredField() {
+	public RequiredField getRequiredField() {
 		return requiredField;
 	}
+
+	public class RequiredField {
+
+		private String name;
+		private RequiredFieldType type;
+
+		public RequiredField(String name, RequiredFieldType type) {
+			this.name = name;
+			this.type = type;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public RequiredFieldType getType() {
+			return type;
+		}
+	}
+
 
 	public enum RequiredFieldType {
 		STRING_LIST,

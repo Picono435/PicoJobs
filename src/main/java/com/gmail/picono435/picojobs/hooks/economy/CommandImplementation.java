@@ -4,7 +4,6 @@ import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.utils.FileCreator;
-import javafx.util.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -14,7 +13,7 @@ public class CommandImplementation extends EconomyImplementation {
 
 	public CommandImplementation() {
 		this.requiredPlugin = Bukkit.getPluginManager().getPlugin("PicoJobs");
-		this.requiredField = new Pair<>("commands", RequiredFieldType.STRING_LIST);
+		this.requiredField = new RequiredField("commands", RequiredFieldType.STRING_LIST);
 	}
 	
 	@Override
