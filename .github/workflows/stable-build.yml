@@ -12,9 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up JDK 8
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'adopt'
@@ -37,7 +37,7 @@ jobs:
       with:
         report_paths: '**/build/test-results/test/TEST-*.xml'
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2.2.2
+      uses: actions/upload-artifact@v3
       with:
         name: Builds
         path: build/libs/*.jar
