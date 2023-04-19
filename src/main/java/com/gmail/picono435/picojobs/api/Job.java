@@ -7,7 +7,6 @@ import com.gmail.picono435.picojobs.utils.ColorConverter;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
-import javafx.util.Pair;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -508,8 +507,8 @@ public class Job {
 		jsonObject.addProperty("methodFrequency", this.methodFrequency);
 		jsonObject.addProperty("economy", this.economy);
 
-		Pair<String, EconomyImplementation.RequiredFieldType> economyImplementation = PicoJobsPlugin.getInstance().economies.get(this.getEconomy()).getRequiredField();
-		jsonObject.add("economyField", economyImplementation.getValue().getJsonElement(FileCreator.getJobsConfig().getStringList("jobs." + this.id + "." + economyImplementation.getKey())));
+		EconomyImplementation.RequiredField economyImplementation = PicoJobsPlugin.getInstance().economies.get(this.getEconomy()).getRequiredField();
+		jsonObject.add("economyField", economyImplementation.getType().getJsonElement(FileCreator.getJobsConfig().getStringList("jobs." + this.id + "." + economyImplementation.getName())));
 
 		jsonObject.addProperty("workMessage", this.workMessage);
 		jsonObject.addProperty("useWhitelist", this.useWhitelist);

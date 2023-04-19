@@ -3,7 +3,6 @@ package com.gmail.picono435.picojobs.api;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
-import javafx.util.Pair;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
