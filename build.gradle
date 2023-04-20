@@ -67,7 +67,7 @@ dependencies {
     // Storage Methods
     slim 'org.mongodb:mongodb-driver-sync:4.9.0'
     slim 'com.zaxxer:HikariCP:4.0.3'
-    slim 'com.h2database:h2:1.4.200'
+    slim 'com.h2database:h2:2.1.214'
     slim 'org.xerial:sqlite-jdbc:3.41.2.1'
     slim 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
     slim 'mysql:mysql-connector-java:8.0.32'
