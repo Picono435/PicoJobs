@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.logging.*;
+import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
 import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
@@ -76,7 +76,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private String lastestPluginVersion;
 	private String downloadUrl;
 	private Metrics metrics;
-	private Handler loggingHandler;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
 	//JOBS DATA
@@ -86,16 +85,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public void onLoad() {
 		instance = this;
 		try {
-			sendConsoleMessage(Level.INFO, "Loading dependencies, this might take some minutes when ran for the first time...");
+			this.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");
 			ApplicationBuilder
 				.appending("PicoJobs")
 				.mirrorSelector((collection, collection1) -> collection)
 				.downloadDirectoryPath(getDataFolder().toPath().resolve("libraries"))
 				.internalRepositories(Collections.singleton(new Repository(new URL("https://repo.maven.apache.org/maven2/"))))
 				.build();
-			sendConsoleMessage(Level.INFO, "All dependencies were loaded sucessfully.");
+			this.getLogger().info("All dependencies were loaded sucessfully.");
 		} catch (Exception e) {
-			sendConsoleMessage(Level.SEVERE, "An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
+			this.getLogger().severe("An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
 			e.printStackTrace();
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
@@ -103,34 +102,19 @@ public class PicoJobsPlugin extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		sendConsoleMessage(Level.INFO, "Plugin created by: Picono435#2011. Thank you for using it");
+		this.getLogger().info("Plugin created by: Picono435#2011. Thank you for using it");
 		
 		if(checkLegacy() ) {
-			sendConsoleMessage(Level.WARNING, "Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
+			this.getLogger().warning("Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
 		}
 
 		// CREATING AND CONFIGURING INTERNAL FILES
 		saveDefaultConfig();
-		loggingHandler = new ConsoleHandler();
-		loggingHandler.setFormatter(new SimpleFormatter() {
-			@Override
-			public synchronized String format(LogRecord record) {
-				if(record.getLevel() == Level.FINEST) {
-					return super.format(record);
-				}
-				return record.getMessage() + "\r\n";
-			}
-		});
-		this.getLogger().setUseParentHandlers(false);
-		this.getLogger().addHandler(loggingHandler);
-		if(getConfig().getBoolean("debug")) {
-			loggingHandler.setLevel(Level.FINEST);
-		}
-		debugMessage("Logger level set to: " + this.getLogger().getLevel());
+
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {
-			sendConsoleMessage(Level.WARNING, "You were using a old configuration file... Updating it and removing comments, for more information check our WIKI.");
+			this.getLogger().warning("You were using a old configuration file... Updating it and removing comments, for more information check our WIKI.");
 			getConfig().options().copyDefaults(true);
 			getConfig().set("config-version", getDescription().getVersion());
 			saveConfig();
@@ -158,7 +142,7 @@ public class PicoJobsPlugin extends JavaPlugin {
         }.runTaskLater(this, 1L);
         
         // GENERATE JOBS FROM CONFIGURATION
-		sendConsoleMessage(Level.INFO, "Generating jobs from configuration...");
+		this.getLogger().info("Generating jobs from configuration...");
 		if(!generateJobsFromConfig()) return;
 
 		// Fix my dumb way to migrate the database! This will be removed asap.
@@ -210,8 +194,8 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new RepairListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SmeltListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
-		
-		sendConsoleMessage(Level.INFO, "The plugin was succefully enabled.");
+
+		this.getLogger().info("The plugin was succefully enabled.");
 
 		if(getConfig().getBoolean("update-checker")) {
 			checkVersion();
@@ -219,7 +203,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	}
 	
 	public void onDisable() {
-		sendConsoleMessage(Level.INFO, "Disconnecting connection to storage...");
+		this.getLogger().info("Disconnecting connection to storage...");
 		jobs.clear();
 
 		PicoJobsAPI.getStorageManager().destroyStorageFactory();
@@ -232,22 +216,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 			}
 		}
 		
-		sendConsoleMessage(Level.INFO, "The plugin was succefully disabled.");
+		this.getLogger().info("The plugin was succefully disabled.");
 	}
 	
 	public static PicoJobsPlugin getInstance() {
 		return instance;
-	}
-	
-	public void sendConsoleMessage(Level level, String message) {
-		this.getLogger().log(level, message);
-	}
-	public void debugMessage(String message) {
-		this.getLogger().log(Level.FINEST, message);
-	}
-
-	public Handler getLoggingHandler() {
-		return loggingHandler;
 	}
 	
 	public boolean isOldVersion() {
@@ -265,14 +238,14 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public boolean generateJobsFromConfig() {
 		jobs.clear();
 		ConfigurationSection jobsc = FileCreator.getJobsConfig().getConfigurationSection("jobs");
-		sendConsoleMessage(Level.INFO, "Retrieving jobs from the config...");
+		this.getLogger().info("Retrieving jobs from the config...");
 		for(String jobid : jobsc.getKeys(false)) {
-			debugMessage("Retrieving job " + jobid + " from the config.");
+			this.getLogger().finest("Retrieving job " + jobid + " from the config.");
 			ConfigurationSection jobc = jobsc.getConfigurationSection(jobid);
 			String displayname = jobc.getString("displayname");
-			debugMessage("Display name: " + displayname);
+			this.getLogger().finest("Display name: " + displayname);
 			String tag = jobc.getString("tag");
-			debugMessage("Tag: " + tag);
+			this.getLogger().finest("Tag: " + tag);
 			if(jobc.contains("type")) {
 				String typeString = jobc.getString("type");
 				jobc.set("types", Collections.singletonList(typeString));
@@ -284,19 +257,19 @@ public class PicoJobsPlugin extends JavaPlugin {
 				}
 			}
 			List<Type> types = Type.getTypes(jobc.getStringList("types"));
-			debugMessage("Types: " + Arrays.toString(types.toArray()));
+			this.getLogger().finest("Types: " + Arrays.toString(types.toArray()));
 			double method = jobc.getDouble("method");
-			debugMessage("Method: " + method);
+			this.getLogger().finest("Method: " + method);
 			double salary = jobc.getDouble("salary");
-			debugMessage("Salary: " + salary);
+			this.getLogger().finest("Salary: " + salary);
 			double maxSalary = jobc.getDouble("max-salary");
-			debugMessage("MaxSalary: " + maxSalary);
+			this.getLogger().finest("MaxSalary: " + maxSalary);
 			boolean requiresPermission = jobc.getBoolean("require-permission");
-			debugMessage("RequiresPermission: " + requiresPermission);
+			this.getLogger().finest("RequiresPermission: " + requiresPermission);
 			double salaryFrequency = jobc.getDouble("salary-frequency");
-			debugMessage("SalaryFrequency: " + salaryFrequency);
+			this.getLogger().finest("SalaryFrequency: " + salaryFrequency);
 			double methodFrequency = jobc.getDouble("method-frequency");
-			debugMessage("MethodFrequency: " + methodFrequency);
+			this.getLogger().finest("MethodFrequency: " + methodFrequency);
 			String economy = jobc.getString("economy");
 			if(economy != null) {
 				economy = economy.toUpperCase(Locale.ROOT);
@@ -473,12 +446,12 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(isRunningInOld) {
 				new BukkitRunnable() {
 					public void run() {
-						sendConsoleMessage(Level.WARNING, "Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
+						PicoJobsPlugin.getInstance().getLogger().warning("Version: " + lastestVersion.toString() + " is out! You are still running version: " + pluginVersion.toString());
 						if(getConfig().getBoolean("auto-update")) {
 							if(updatePlugin(Bukkit.getConsoleSender(), "[PicoJobs] Plugin was updated to version "+ lastestVersion.toString() + " sucefully. Please restart the server to finish the update.")) {
-								sendConsoleMessage(Level.INFO, "Updating the plugin to the latest version...");
+								PicoJobsPlugin.getInstance().getLogger().info("Updating the plugin to the latest version...");
 							} else {
-								sendConsoleMessage(Level.WARNING, "An error occuried while updating the plugin.");
+								PicoJobsPlugin.getInstance().getLogger().warning("An error occuried while updating the plugin.");
 							}
 						}
 						return;
@@ -488,13 +461,13 @@ public class PicoJobsPlugin extends JavaPlugin {
 			} else {
 				new BukkitRunnable() {
 					public void run() {
-						sendConsoleMessage(Level.INFO, "You are using the latest version of the plugin.");
+						PicoJobsPlugin.getInstance().getLogger().info("You are using the latest version of the plugin.");
 						return;
 					}
 				}.runTaskLater(this, 40L);
 			}
 		} catch (Exception e) {
-			sendConsoleMessage(Level.WARNING, "Could not get the latest version.");
+			this.getLogger().warning("Could not get the latest version.");
 			e.printStackTrace();
 			return;
 		}

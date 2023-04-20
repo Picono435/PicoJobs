@@ -14,7 +14,7 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 if (System.getenv("STABLE_BUILD") != null) {
-    if (System.getenv("STABLE_BUILD") == '1') {
+    if (System.getenv("STABLE_BUILD") == '0') {
         version versioning.info.build + "-DEV"
     } else {
         version "1.0-beta-7a"
@@ -86,8 +86,6 @@ dependencies {
     slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2'
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
     shadow implementation('org.bstats:bstats-bukkit:3.0.1')
-    slim 'org.slf4j:slf4j-simple:2.0.7'
-    slim 'org.slf4j:slf4j-api:2.0.7'
     testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
     testCompileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
@@ -106,7 +104,6 @@ slimJar {
     relocate 'org.mariadb.jdbc', 'com.gmail.picono435.picojobs.libs.mariadb'
     relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.mysql'
     relocate 'com.fasterxml.jackson', 'com.gmail.picono435.picojobs.libs.jackson'
-    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.slf4j'
 }
 
 shadowJar {

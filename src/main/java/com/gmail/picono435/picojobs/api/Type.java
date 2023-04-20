@@ -47,7 +47,7 @@ public enum Type {
 			if(BY_NAME.containsKey(name.toUpperCase(Locale.ROOT))) {
 				types.add(getType(name.toUpperCase(Locale.ROOT)));
 			} else {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
+				PicoJobsPlugin.getInstance().getLogger().severe("The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
 			}
 		}
 		return types;
