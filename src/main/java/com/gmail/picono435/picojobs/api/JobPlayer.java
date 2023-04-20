@@ -103,7 +103,7 @@ public class JobPlayer {
 					PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
 				}
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -133,7 +133,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setMethod(uuid, method);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -163,7 +163,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setMethodLevel(uuid, level);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -202,7 +202,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setWorking(uuid, isWorking);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -232,7 +232,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setSalary(uuid, salary);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -286,7 +286,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setSalaryCooldown(uuid, salaryCooldown);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -316,7 +316,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setLeaveCooldown(uuid, leaveCooldown);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, errorMessage);
+				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});

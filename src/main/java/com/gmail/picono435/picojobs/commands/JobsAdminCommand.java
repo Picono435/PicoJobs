@@ -230,25 +230,6 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}
 
-		if(subcmd.equalsIgnoreCase("debug") || subcmd.equalsIgnoreCase(debugString)) {
-			// CREATE EDITOR
-			if(PicoJobsPlugin.getInstance().getConfig().getBoolean("debug")) {
-				p.sendMessage(LanguageManager.formatMessage("&7Disabling DEBUG mode..."));
-				PicoJobsPlugin.getInstance().getConfig().set("debug", false);
-				PicoJobsPlugin.getInstance().saveConfig();
-				PicoJobsPlugin.getInstance().getLoggingHandler().setLevel(Level.INFO);
-				PicoJobsPlugin.getInstance().debugMessage("Debug mode disabled.");
-				p.sendMessage(LanguageManager.formatMessage("&cThe &bDEBUG&c mode was disabled successfully. This will stop spamming your console with random messages."));
-			} else {
-				p.sendMessage(LanguageManager.formatMessage("&7Enabling DEBUG mode..."));
-				PicoJobsPlugin.getInstance().getConfig().set("debug", true);
-				PicoJobsPlugin.getInstance().saveConfig();
-				PicoJobsPlugin.getInstance().getLoggingHandler().setLevel(Level.FINEST);
-				PicoJobsPlugin.getInstance().debugMessage("Debug mode enabled.");
-				p.sendMessage(LanguageManager.formatMessage("&aThe &bDEBUG&a mode was enabled successfully. This may spam your console with random messages."));
-			}
-			return true;
-		}
 		p.sendMessage(LanguageManager.getFormat("admin-commands", pl));
 		return true;
 	}

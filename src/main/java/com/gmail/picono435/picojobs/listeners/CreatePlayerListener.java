@@ -29,7 +29,7 @@ public class CreatePlayerListener implements Listener {
 					JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayerFromStorage(p.getUniqueId()).get();
 					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(jp);
 				} catch (Exception ex) {
-					PicoJobsPlugin.getInstance().sendConsoleMessage(Level.SEVERE, "Error connecting to the storage. The plugin will not work correctly.");
+					PicoJobsPlugin.getInstance().getLogger().severe("Error connecting to the storage. The plugin will not work correctly.");
 					ex.printStackTrace();
 				}
 			});
