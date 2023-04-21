@@ -108,6 +108,20 @@ public class PlaceholderAPIHook {
         	workMessage = workMessage.replace("%a%", df.format(value));
         	return workMessage;
         }
+
+		if(identifier.equals("reqmethod")) {
+			Job job = jp.getJob();
+			if(job == null) {
+				return LanguageManager.getFormat("none-format", p);
+			}
+			double level = jp.getMethodLevel();
+			double req1 = level * job.getMethodFrequency();
+			if(req1 <= 0) req1 = 1;
+			int reqmethod = (int) (job.getMethod() * req1);
+			if(reqmethod == 0) reqmethod = 1;
+			double value = reqmethod - jp.getMethod();
+			return df.format(Math.round(value));
+		}
         
         if(identifier.equals("salary")) {
             return df.format(Math.round(jp.getSalary()));
