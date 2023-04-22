@@ -9,10 +9,11 @@ import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
 
+import com.gmail.picono435.picojobs.api.*;
 import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
 import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
+import com.gmail.picono435.picojobs.hooks.workzones.WorldGuardImplementation;
 import com.gmail.picono435.picojobs.listeners.jobs.*;
 import com.gmail.picono435.picojobs.storage.sql.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
@@ -30,10 +31,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.gmail.picono435.picojobs.api.EconomyImplementation;
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.commands.JobsAdminCommand;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
@@ -78,6 +75,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private Metrics metrics;
 	//DATA
 	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
+	public Map<String, WorkZoneImplementation> workZones = new HashMap<String, WorkZoneImplementation>();
 	//JOBS DATA
 	public Map<String, Job> jobs = new HashMap<String, Job>(); 
 	
@@ -134,10 +132,12 @@ public class PicoJobsPlugin extends JavaPlugin {
         VaultHook.setupVault();
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
+		PicoJobsAPI.registerWorkZone(new WorldGuardImplementation());
         PlaceholderAPIHook.setupPlaceholderAPI();
         new BukkitRunnable() {
         	public void run() {
         		Bukkit.getConsoleSender().sendMessage("[PicoJobs] " + economies.size() + " " + ChatColor.GREEN + "economy implementations successfully registered!");
+				Bukkit.getConsoleSender().sendMessage("[PicoJobs] " + workZones.size() + " " + ChatColor.GREEN + "work zones implementations successfully registered!");
         	}
         }.runTaskLater(this, 1L);
         
@@ -274,6 +274,10 @@ public class PicoJobsPlugin extends JavaPlugin {
 			if(economy != null) {
 				economy = economy.toUpperCase(Locale.ROOT);
 			}
+			String workZone = jobc.getString("work-zone");
+			if(workZone != null) {
+				workZone = workZone.toUpperCase(Locale.ROOT);
+			}
 			String workMessage = jobc.getString("work-message");
 			ConfigurationSection guic = jobc.getConfigurationSection("gui");
 			int slot = guic.getInt("slot");
@@ -306,7 +310,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 				}
 			}
 
-			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
+			Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workZone, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
 
 			jobs.put(jobid, job);
 			

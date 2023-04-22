@@ -10,8 +10,8 @@ plugins {
 
 group = 'com.gmail.picono435'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '0') {
@@ -56,6 +56,14 @@ repositories {
         }
     }
 
+    maven {
+        url "https://maven.enginehub.org/repo/"
+
+        content {
+            includeGroupByRegex "com\\.sk89q.*"
+        }
+    }
+
     mavenLocal();
 }
 
@@ -80,6 +88,7 @@ dependencies {
     compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
     compileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
     compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
+    compileOnly('com.sk89q.worldguard:worldguard-bukkit:7.0.8-SNAPSHOT') { transitive = true }
     // Other libraries
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     slim 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
@@ -93,6 +102,7 @@ dependencies {
     testCompileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
     testCompileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
     testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
+    testCompileOnly('com.sk89q.worldguard:worldguard-bukkit:7.0.8-SNAPSHOT') { transitive = true }
 }
 
 slimJar {

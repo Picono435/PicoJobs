@@ -3,6 +3,7 @@ package com.gmail.picono435.picojobs.api;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.gmail.picono435.picojobs.api.utils.RequiredField;
 import com.gmail.picono435.picojobs.utils.ColorConverter;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.google.common.reflect.TypeToken;
@@ -10,7 +11,7 @@ import com.google.gson.*;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -42,6 +43,7 @@ public class Job {
 	private double salaryFrequency;
 	private double methodFrequency;
 	private String economy;
+	private String workZone;
 	private String workMessage;
 	
 	// GUI SETTINGS
@@ -69,6 +71,7 @@ public class Job {
 				jsonObject.get("salaryFrequency").getAsDouble(),
 				jsonObject.get("methodFrequency").getAsDouble(),
 				jsonObject.get("economy").getAsString(),
+				jsonObject.get("workZone").getAsString(),
 				jsonObject.get("workMessage") instanceof JsonNull ? null : jsonObject.get("workMessage").getAsString(),
 				jsonObject.get("gui").getAsJsonObject().get("slot").getAsInt(),
 				jsonObject.get("gui").getAsJsonObject().get("item").getAsString(),
@@ -80,7 +83,7 @@ public class Job {
 		);
 	}
 
-	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workZone, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -92,6 +95,7 @@ public class Job {
 		this.salaryFrequency = salaryFrequency;
 		this.methodFrequency = methodFrequency;
 		this.economy = economy;
+		this.workZone = workZone;
 		this.workMessage = workMessage;
 
 		this.slot = slot;
@@ -275,6 +279,16 @@ public class Job {
 			return "VAULT";
 		}
 		return this.economy;
+	}
+
+	/**
+	 * Gets the work zone name of the job
+	 *
+	 * @return the work zone implementation name
+	 * @author Picono435
+	 */
+	public String getWorkZone() {
+		return this.workZone;
 	}
 	
 	/**
@@ -507,8 +521,12 @@ public class Job {
 		jsonObject.addProperty("methodFrequency", this.methodFrequency);
 		jsonObject.addProperty("economy", this.economy);
 
-		EconomyImplementation.RequiredField economyImplementation = PicoJobsPlugin.getInstance().economies.get(this.getEconomy()).getRequiredField();
+		RequiredField economyImplementation = PicoJobsPlugin.getInstance().economies.get(this.getEconomy()).getRequiredField();
 		jsonObject.add("economyField", economyImplementation.getType().getJsonElement(FileCreator.getJobsConfig().getStringList("jobs." + this.id + "." + economyImplementation.getName())));
+
+		jsonObject.addProperty("workZone", this.workZone);
+
+		// TO DO REQUIRED FIELD
 
 		jsonObject.addProperty("workMessage", this.workMessage);
 		jsonObject.addProperty("useWhitelist", this.useWhitelist);
@@ -553,6 +571,7 @@ public class Job {
 		jobConfiguration.set("salary-frequency", this.salaryFrequency);
 		jobConfiguration.set("method-frequency", this.methodFrequency);
 		jobConfiguration.set("economy", this.economy);
+		jobConfiguration.set("work-zone", this.workZone);
 		jobConfiguration.set("work-message", this.workMessage);
 		jobConfiguration.set("use-whitelist", this.useWhitelist);
 

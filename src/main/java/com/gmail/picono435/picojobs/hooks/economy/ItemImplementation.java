@@ -3,6 +3,7 @@ package com.gmail.picono435.picojobs.hooks.economy;
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.utils.RequiredField;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,7 +16,7 @@ public class ItemImplementation extends EconomyImplementation {
 
 	public ItemImplementation() {
 		this.requiredPlugin = Bukkit.getPluginManager().getPlugin("PicoJobs");
-		this.requiredField = new RequiredField("items", RequiredFieldType.STRING_LIST);
+		this.requiredField = new RequiredField("items", RequiredField.RequiredFieldType.STRING_LIST);
 	}
 	
 	@Override

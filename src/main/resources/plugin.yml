@@ -1,7 +1,7 @@
 name: '@name@'
 author: [Picono435]
 version: "@version@"
-softdepend: [Citizens, Vault, PlaceholderAPI, PlayerPoints, TokenManager]
+softdepend: [Citizens, Vault, PlaceholderAPI, PlayerPoints, TokenManager, WorldGuard]
 api-version: 1.13
 main: com.gmail.picono435.picojobs.PicoJobsPlugin
 #libraries:
