@@ -52,8 +52,7 @@ public class JobsAdminCommand implements CommandExecutor, TabCompleter {
 		String aboutString = LanguageManager.getSubCommandAlias("about");
 		String setString = LanguageManager.getSubCommandAlias("set");
 		String editorString = LanguageManager.getSubCommandAlias("editor");
-		String debugString = LanguageManager.getSubCommandAlias("debug");
-		
+
 		String salaryString = LanguageManager.getSubCommandAlias("salary");
 		String methodString = LanguageManager.getSubCommandAlias("method");
 		String jobString = LanguageManager.getSubCommandAlias("job");
