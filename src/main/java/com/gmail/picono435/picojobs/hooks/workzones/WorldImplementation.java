@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class WorldImplementation extends WorkZoneImplementation {
 
     public WorldImplementation() {
-        this.requiredPlugin = Bukkit.getPluginManager().getPlugin("WorldGuard");
+        this.requiredPlugin = Bukkit.getPluginManager().getPlugin("PicoJobs");
         this.requiredField = new RequiredField("world", RequiredField.RequiredFieldType.STRING);
     }
 
