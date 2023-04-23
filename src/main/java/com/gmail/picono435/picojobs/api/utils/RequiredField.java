@@ -29,6 +29,7 @@ public class RequiredField {
         STRING,
         INTEGER,
         DOUBLE,
+        LONG,
         BOOLEAN;
 
         public JsonElement getJsonElement(Object object) {
@@ -43,6 +44,8 @@ public class RequiredField {
                     return new JsonPrimitive((int) object);
                 case DOUBLE:
                     return new JsonPrimitive((double) object);
+                case LONG:
+                    return new JsonPrimitive((long) object);
                 case BOOLEAN:
                     return new JsonPrimitive((boolean) object);
             }
