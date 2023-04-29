@@ -10,8 +10,6 @@ plugins {
 
 group = 'com.gmail.picono435'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
-sourceCompatibility = '1.8'
-targetCompatibility = '17'
 
 if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '0') {
