@@ -11,6 +11,7 @@ import com.gmail.picono435.picojobs.api.events.PlayerFinishWorkEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerLeaveJobEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerStartWorkEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
+import org.bukkit.entity.Player;
 
 /**
  * Represents a player from PicoJobs
@@ -359,6 +360,21 @@ public class JobPlayer {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Checks if the JobPlayer is the right job zone
+	 *
+	 * @return true if it is in the work zone, false if not
+	 * @author Picono435
+	 *
+	 */
+	public boolean isInWorkZone(Player player) {
+		String workZone = this.job.getWorkZone();
+		if(workZone == null) return true;
+		WorkZoneImplementation workZoneImplementation = PicoJobsAPI.getWorkZone(workZone);
+		if(workZoneImplementation == null) return true;
+		return workZoneImplementation.isInWorkZone(player);
 	}
 	
 	/**

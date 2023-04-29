@@ -15,6 +15,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.stream.Collectors;
+
 public class WorldGuardImplementation extends WorkZoneImplementation {
 
     public WorldGuardImplementation() {
@@ -35,8 +37,7 @@ public class WorldGuardImplementation extends WorkZoneImplementation {
         String[] regionSplitted = region.split(":");
         if(regionSplitted.length > 1 && !regionSplitted[1].equals(location.getWorld().getName())) return false;
         RegionManager regionManager = WorldGuard.getInstance().getPlatform().getRegionContainer().get(BukkitAdapter.adapt(location.getWorld()));
-        ProtectedRegion protectedRegion = regionManager.getRegion(region);
         ApplicableRegionSet regionSet = regionManager.getApplicableRegions(BlockVector3.at(location.getX(), location.getY(), location.getZ()));
-        return regionSet.getRegions().contains(regionSplitted[0]);
+        return regionSet.getRegions().stream().filter(protectedRegion -> protectedRegion.getId().equals(regionSplitted[0])).count() >= 1;
     }
 }

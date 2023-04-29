@@ -29,7 +29,7 @@ public class BreakListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.BREAK)) return;
-		if(!PicoJobsAPI.getWorkZone(job.getWorkZone()).isInWorkZone(e.getPlayer())) return;
+		if(!jp.isInWorkZone(p)) return;
 		boolean isNaturalBlock = e.getBlock().getMetadata("PLACED").size() == 0;
 		if(PicoJobsPlugin.getInstance().isLegacyServer()) {
 			if(e.getBlock().getState().getData() instanceof Crops) {

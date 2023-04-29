@@ -288,7 +288,8 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWorkZone() {
-		return this.workZone;
+		if(this.workZone == null) return null;
+		return this.workZone.toUpperCase(Locale.ROOT);
 	}
 	
 	/**

@@ -1,7 +1,6 @@
 package com.gmail.picono435.picojobs.api;
 
 import com.gmail.picono435.picojobs.api.utils.RequiredField;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 

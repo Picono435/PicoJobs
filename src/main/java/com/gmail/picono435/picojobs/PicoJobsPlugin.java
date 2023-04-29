@@ -13,7 +13,9 @@ import java.util.concurrent.Callable;
 import com.gmail.picono435.picojobs.api.*;
 import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
 import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
+import com.gmail.picono435.picojobs.hooks.workzones.GriefPreventionImplementation;
 import com.gmail.picono435.picojobs.hooks.workzones.WorldGuardImplementation;
+import com.gmail.picono435.picojobs.hooks.workzones.WorldImplementation;
 import com.gmail.picono435.picojobs.listeners.jobs.*;
 import com.gmail.picono435.picojobs.storage.sql.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
@@ -132,7 +134,11 @@ public class PicoJobsPlugin extends JavaPlugin {
         VaultHook.setupVault();
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
+
+		PicoJobsAPI.registerWorkZone(new WorldImplementation());
 		PicoJobsAPI.registerWorkZone(new WorldGuardImplementation());
+		PicoJobsAPI.registerWorkZone(new GriefPreventionImplementation());
+
         PlaceholderAPIHook.setupPlaceholderAPI();
         new BukkitRunnable() {
         	public void run() {

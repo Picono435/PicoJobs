@@ -20,10 +20,9 @@ public class GriefPreventionImplementation extends WorkZoneImplementation {
 
     @Override
     public String getName() {
-        return "WORLDGUARD";
+        return "GRIEFPREVENTION";
     }
 
-    @Override
     public boolean isInWorkZone(Player player) {
         Location location = player.getLocation();
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);

@@ -17,7 +17,7 @@ public class WorldImplementation extends WorkZoneImplementation {
 
     @Override
     public String getName() {
-        return "WORLDGUARD";
+        return "WORLD";
     }
 
     @Override
