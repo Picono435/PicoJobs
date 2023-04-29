@@ -22,6 +22,7 @@ public class PlaceListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.PLACE)) return;
+		if(!jp.isInWorkZone(p)) return;
 		
 		if(!job.inWhitelist(Type.PLACE, e.getBlock().getType())) return;
 		

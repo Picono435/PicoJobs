@@ -33,6 +33,7 @@ public class SmeltListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.SMELT)) return;
+		if(!jp.isInWorkZone(p)) return;
 		
 		if(!job.inWhitelist(Type.SMELT, e.getCurrentItem().getType())) return;
 		

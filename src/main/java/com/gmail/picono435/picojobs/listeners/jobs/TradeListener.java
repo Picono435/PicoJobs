@@ -27,6 +27,7 @@ public class TradeListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.TRADE)) return;
+		if(!jp.isInWorkZone(p)) return;
 
 		if(!job.inWhitelist(Type.TRADE, e.getCurrentItem().getType())) return;
 

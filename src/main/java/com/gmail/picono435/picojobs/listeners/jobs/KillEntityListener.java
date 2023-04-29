@@ -23,6 +23,7 @@ public class KillEntityListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.KILL_ENTITY)) return;
+		if(!jp.isInWorkZone(p)) return;
 		
 		if(!job.inWhitelist(Type.KILL_ENTITY, e.getEntity().getType())) return;
 		

@@ -31,6 +31,7 @@ public class FillListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.FILL)) return;
+		if(!jp.isInWorkZone(p)) return;
 		if(jp.simulateEvent()) {
 			p.sendMessage(LanguageManager.getMessage("finished-work", p));
 		}

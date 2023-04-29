@@ -28,6 +28,7 @@ public class RepairListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.REPAIR)) return;
+		if(!jp.isInWorkZone(p)) return;
 		
 		if(!job.inWhitelist(Type.REPAIR, e.getCurrentItem().getType())) return;
 		

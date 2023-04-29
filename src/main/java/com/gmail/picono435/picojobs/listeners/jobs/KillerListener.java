@@ -23,6 +23,7 @@ public class KillerListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.KILL)) return;
+		if(!jp.isInWorkZone(p)) return;
 		
 		JobPlayer jdead = PicoJobsAPI.getPlayersManager().getJobPlayer(e.getEntity());
 		if(!job.inWhitelist(Type.KILL, jdead.getJob())) return;

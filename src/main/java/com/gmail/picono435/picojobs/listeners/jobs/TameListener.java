@@ -22,6 +22,7 @@ public class TameListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.TAME)) return;
+		if(!jp.isInWorkZone(p)) return;
 		
 		if(!job.inWhitelist(Type.TAME, e.getEntityType())) return;
 		

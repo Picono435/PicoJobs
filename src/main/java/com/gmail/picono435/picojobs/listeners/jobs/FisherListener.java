@@ -25,6 +25,7 @@ public class FisherListener implements Listener {
 		if(!jp.isWorking()) return;
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.FISHING)) return;
+		if(!jp.isInWorkZone(p)) return;
 		if(!(e.getCaught() instanceof Item)) return;
 		if(!job.inWhitelist(Type.FISHING, ((Item)e.getCaught()).getItemStack().getType())) return;
 		
