@@ -75,7 +75,7 @@ dependencies {
     slim 'com.zaxxer:HikariCP:4.0.3'
     slim 'com.h2database:h2:2.1.214'
     slim 'org.xerial:sqlite-jdbc:3.41.2.1'
-    slim 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
+    slim 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
     slim 'mysql:mysql-connector-java:8.0.32'
     shadow implementation('org.spongepowered:configurate-core:4.1.2')
     shadow implementation('org.spongepowered:configurate-gson:4.1.2')
