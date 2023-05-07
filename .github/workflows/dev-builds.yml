@@ -65,5 +65,5 @@ jobs:
           mkdir server-${{ matrix.minecraft-version }}
           cd server-${{ matrix.minecraft-version }}
           curl -O https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-          java -jar BuildTools.jar --rev 1.8.8
+          java -jar BuildTools.jar --rev ${{ matrix.minecraft-version }}
           java -jar spigot-1.8.8.jar
