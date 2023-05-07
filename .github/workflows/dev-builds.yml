@@ -33,7 +33,6 @@ jobs:
           STABLE_BUILD: 0
         run: ./gradlew build
       - name: Upload Artifact
-        if: matrix.java-version == '8'
         uses: actions/upload-artifact@v3
         with:
           name: Builds
@@ -43,27 +42,3 @@ jobs:
         if: success() || failure()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
-  # TIME TO TEST IN A MINECRAFT SERVER
-  minecraft-server:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - java-version: '8'
-            minecraft-version: '1.8.8'
-          - java-version: '17'
-            minecraft-version: '1.19.4'
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK ${{ matrix.java-version }}
-        uses: actions/setup-java@v3
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'adopt'
-      - name: Starting ${{ matrix.minecraft-version }} minecraft server
-        run: |
-          mkdir server-${{ matrix.minecraft-version }}
-          cd server-${{ matrix.minecraft-version }}
-          curl -O https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-          java -jar BuildTools.jar --rev ${{ matrix.minecraft-version }}
-          java -jar spigot-1.8.8.jar
