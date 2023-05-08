@@ -43,6 +43,13 @@ repositories {
     }
 
     maven {
+        url 'https://repo.papermc.io/repository/maven-public/'
+        content {
+            includeGroup 'com.github.seeseemelk'
+        }
+    }
+
+    maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
         content {
             includeGroupByRegex "me\\.clip.*"
@@ -100,7 +107,7 @@ dependencies {
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:2.29.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
     testCompileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
     testCompileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
