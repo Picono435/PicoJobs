@@ -17,17 +17,17 @@ jobs:
           distribution: 'adopt'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Publish slimJar to maven local
-        run: |
-         cd slimjar
-         chmod +x gradlew
-         ./gradlew publishToMavenLocal
       - name: Tests with Gradle
         env:
           STABLE_BUILD: 1
         run: |
           ls
           ./gradlew test
+      - name: Publish Unit Test Results
+        uses: mikepenz/action-junit-report@v3
+        if: success() || failure()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
       - name: Build with Gradle
         env:
           STABLE_BUILD: 0
@@ -37,8 +37,3 @@ jobs:
         with:
           name: Builds
           path: build/libs/*.jar
-      - name: Publish Unit Test Results
-        uses: mikepenz/action-junit-report@v3
-        if: success() || failure()
-        with:
-          report_paths: '**/build/test-results/test/TEST-*.xml'
