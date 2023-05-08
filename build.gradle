@@ -80,7 +80,7 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
     // Storage Methods
     slim 'org.mongodb:mongodb-driver-sync:4.9.1'
-    slim 'com.zaxxer:HikariCP:4.0.3'
+    slim 'com.zaxxer:HikariCP:5.0.1'
     slim 'com.h2database:h2:2.1.214'
     slim 'org.xerial:sqlite-jdbc:3.41.2.1'
     slim 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
