@@ -10,6 +10,8 @@ plugins {
 
 group = 'com.gmail.picono435'
 description = 'The best jobs plugin ever! You can customize every single thing on it.'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 if (System.getenv("STABLE_BUILD") != null) {
     if (System.getenv("STABLE_BUILD") == '0') {
@@ -59,6 +61,14 @@ repositories {
 
         content {
             includeGroupByRegex "com\\.sk89q.*"
+        }
+    }
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+        content {
+            includeGroup 'io.github.slimjar'
         }
     }
 
@@ -159,11 +169,45 @@ artifacts {
 publishing {
     publications {
         maven(MavenPublication) {
+            groupId = project.group
+            artifactId = 'picojobs'
+            version = project.version
             from components.java
+
+            pom {
+                name = "PicoJobs"
+                description = "An amazing plugin that allows you to create your own jobs for your players. The plugin is 100% configurable so you can change everything you see, it is also open-source if you want to take a look on how it's made."
+                url = "https://github.com/Picono435/PicoJobs"
+                licenses {
+                    license {
+                        name = "The MIT License"
+                        url = "https://opensource.org/licenses/MIT"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "picono435"
+                        name = "Picono435"
+                        email = "picono435@gmail.com"
+                    }
+                }
+                scm {
+                    connection = "https://github.com/Picono435/PicoJobs"
+                    developerConnection = "https://github.com/Picono435/PicoJobs.git"
+                    url = "https://github.com/Picono435/PicoJobs"
+                }
+            }
         }
     }
     repositories {
-        mavenLocal()
+        maven {
+            credentials {
+                username System.getenv("REPO_USER")
+                password System.getenv("REPO_PASSWORD")
+            }
+
+            url = 'https://repo.piconodev.com/repository/maven-releases/'
+        }
     }
 }
 

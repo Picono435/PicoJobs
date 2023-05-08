@@ -27,7 +27,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew shadowJar
       env:
-          STABLE_BUILD: 0
+          STABLE_BUILD: 1
     - name: Publish Unit Test Results
       uses: mikepenz/action-junit-report@v3
       if: >
