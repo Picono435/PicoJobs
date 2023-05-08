@@ -68,7 +68,7 @@ repositories {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
 
         content {
-            includeGroup 'io.github.slimjar'
+            includeGroup 'io.github.slimjar.slimjar'
         }
     }
 
