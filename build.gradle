@@ -47,6 +47,7 @@ repositories {
         content {
             includeGroup 'com.github.seeseemelk'
             includeGroup 'io.papermc.paper'
+            includeGroup 'net.md-5'
         }
     }
 
