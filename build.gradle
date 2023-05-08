@@ -99,7 +99,7 @@ dependencies {
     // Other libraries
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     slim 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
-    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2'
+    slim 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.0'
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
     testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:1.0.0'
