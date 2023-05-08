@@ -12,32 +12,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 8
-      uses: actions/setup-java@v3
-      with:
-        java-version: '8'
-        distribution: 'adopt'
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Tests with Gradle
-      run: ./gradlew test
-      env:
-          STABLE_BUILD: 0
-    - name: Build with Gradle
-      run: ./gradlew shadowJar
-      env:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'adopt'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Tests with Gradle
+        env:
           STABLE_BUILD: 1
-    - name: Publish Unit Test Results
-      uses: mikepenz/action-junit-report@v3
-      if: >
-        always() &&
-        github.event.sender.login != 'dependabot[bot]' &&
-        ( github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository )
-      with:
-        report_paths: '**/build/test-results/test/TEST-*.xml'
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Builds
-        path: build/libs/*.jar
+        run: |
+          ls
+          ./gradlew test
+      - name: Publish Unit Test Results
+        uses: mikepenz/action-junit-report@v3
+        if: success() || failure()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+      - name: Build with Gradle
+        env:
+          STABLE_BUILD: 1
+        run: ./gradlew build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Builds
+          path: build/libs/*.jar
+      - name: Publish to PiconoDev repository
+        env:
+          STABLE_BUILD: 1
+        run: ./gradlew publish
