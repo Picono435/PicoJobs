@@ -46,6 +46,7 @@ repositories {
         url 'https://repo.papermc.io/repository/maven-public/'
         content {
             includeGroup 'com.github.seeseemelk'
+            includeGroup 'io.papermc.paper'
         }
     }
 
