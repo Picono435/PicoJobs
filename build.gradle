@@ -65,14 +65,12 @@ repositories {
     }
 
     maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        url = 'https://repo.piconodev.com/repository/maven-releases/'
 
         content {
             includeGroup 'io.github.slimjar.slimjar'
         }
     }
-
-    mavenLocal();
 }
 
 dependencies {
