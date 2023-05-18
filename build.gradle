@@ -111,7 +111,7 @@ dependencies {
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:2.29.0'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:3.1.0'
     testCompileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
     testCompileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
     testCompileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
