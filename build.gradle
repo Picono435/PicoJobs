@@ -83,7 +83,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
 
     // Slimjar
     shadow implementation(slimjar("1.2.6"))
