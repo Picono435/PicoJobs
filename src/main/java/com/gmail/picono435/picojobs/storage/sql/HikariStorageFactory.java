@@ -28,9 +28,9 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	public boolean createPlayer(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection();
 			PreparedStatement stm = conn.prepareStatement("INSERT INTO " + configurationSection.getString("tablename") +  " (`uuid`) VALUES (?)")) {
-        	stm.setString(1, uuid.toString());
-        	int result = stm.executeUpdate();
-        	return result >= 1;
+			stm.setString(1, uuid.toString());
+			int result = stm.executeUpdate();
+			return result >= 1;
 		}
 	}
 
@@ -48,7 +48,7 @@ public abstract class HikariStorageFactory extends StorageFactory {
 	public String getJob(UUID uuid) throws Exception {
 		try(Connection conn = hikari.getConnection();
 			PreparedStatement stm = conn.prepareStatement("SELECT `job` FROM " + configurationSection.getString("tablename") + " WHERE `uuid`=?")) {
-        	stm.setString(1, uuid.toString());
+			stm.setString(1, uuid.toString());
         	ResultSet rs = stm.executeQuery();
         	if(rs.next()) {
 				return rs.getString("job");

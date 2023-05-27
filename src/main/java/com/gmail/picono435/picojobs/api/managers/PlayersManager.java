@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.api.managers;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -63,6 +64,41 @@ public class PlayersManager {
 					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
 				}
 			});
+		}
+		return jp;
+	}
+
+	/**
+	 * Get the JobPlayer object of a Player
+	 * It will first try to load from cache and than from storage
+	 *
+	 * @see PlayersManager#getJobPlayerFromStorage(UUID)
+	 *
+	 * @param uuid - the UUID of the player
+	 * @param wait - if true it will wait to receive the jobplayer from storage if not it will just send what is in the cache
+	 * @return the JobPlayer object, returns null if there is no JobPlayer
+	 * @author Picono435
+	 */
+	public JobPlayer getJobPlayer(UUID uuid, boolean wait) throws ExecutionException, InterruptedException {
+		JobPlayer jp = PicoJobsAPI.getStorageManager().getCacheManager().getFromCache(uuid);
+		if(jp == null) {
+			if(wait) {
+				JobPlayer result = getJobPlayerFromStorage(uuid).get();
+				if(result == null) {
+					PicoJobsPlugin.getInstance().getLogger().log(Level.WARNING, "An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be consequence of this error.");
+				} else {
+					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
+					jp = result;
+				}
+			} else {
+				getJobPlayerFromStorage(uuid).thenAcceptAsync(result -> {
+					if(result == null) {
+						PicoJobsPlugin.getInstance().getLogger().log(Level.WARNING, "An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be consequence of this error.");
+					} else {
+						PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
+					}
+				});
+			}
 		}
 		return jp;
 	}

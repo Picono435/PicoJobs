@@ -57,16 +57,7 @@ import org.h2.tools.Script;
 public class PicoJobsPlugin extends JavaPlugin {
 
 	private static PicoJobsPlugin instance;
-	public static boolean isTestEnvironment = false;
 	public static String EDITOR_STRING = "https://piconodev.com/editor";
-
-	public PicoJobsPlugin() {
-        super();
-    }
-
-    protected PicoJobsPlugin(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
-        super(loader, description, dataFolder, file);
-    }
 	
 	//PLUGIN
 	private boolean wasUpdated;
@@ -76,11 +67,11 @@ public class PicoJobsPlugin extends JavaPlugin {
 	private String downloadUrl;
 	private Metrics metrics;
 	//DATA
-	public Map<String, EconomyImplementation> economies = new HashMap<String, EconomyImplementation>();
-	public Map<String, WorkZoneImplementation> workZones = new HashMap<String, WorkZoneImplementation>();
+	public Map<String, EconomyImplementation> economies = new HashMap<>();
+	public Map<String, WorkZoneImplementation> workZones = new HashMap<>();
 	//JOBS DATA
-	public Map<String, Job> jobs = new HashMap<String, Job>(); 
-	
+	public Map<String, Job> jobs = new HashMap<String, Job>();
+
 	@Override
 	public void onLoad() {
 		instance = this;
@@ -122,7 +113,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 			LanguageManager.updateFile();
 		}
 		
-		if(!isTestEnvironment) {
+		if(!isTestEnvironment()) {
 			// STARTING BSTATS
 	        metrics = new Metrics(this, 8553);
 		}
@@ -167,7 +158,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		}
 
 		PicoJobsAPI.getStorageManager().initializeStorageFactory();
-		if(!isTestEnvironment) {
+		if(!isTestEnvironment()) {
 			metrics.addCustomChart(new SingleLineChart("created_jobs", new Callable<Integer>() {
 				@Override
 				public Integer call() throws Exception {
@@ -228,7 +219,16 @@ public class PicoJobsPlugin extends JavaPlugin {
 	public static PicoJobsPlugin getInstance() {
 		return instance;
 	}
-	
+
+	public boolean isTestEnvironment() {
+		for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+			if (element.getClassName().startsWith("org.junit.")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public boolean isOldVersion() {
 		return oldVersion;
 	}
@@ -320,7 +320,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 
 			jobs.put(jobid, job);
 			
-			if(!isTestEnvironment) {
+			if(!isTestEnvironment()) {
 				metrics.addCustomChart(new DrilldownPie("jobs", () -> {
 			        Map<String, Map<String, Integer>> map = new HashMap<>();
 			        Map<String, Integer> entry = new HashMap<>();

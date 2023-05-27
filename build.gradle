@@ -83,8 +83,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.1'
-
     // Slimjar
     shadow implementation(slimjar("1.2.6"))
     // Spigot
@@ -111,8 +109,9 @@ dependencies {
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:2.29.0'
-    testCompileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
+    testImplementation 'com.github.MockBukkit:MockBukkit:v1.19-SNAPSHOT'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:3.1.0'
     testCompileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
     testCompileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
     testCompileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
