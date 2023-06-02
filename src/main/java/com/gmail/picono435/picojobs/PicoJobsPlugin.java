@@ -13,6 +13,7 @@ import java.util.concurrent.Callable;
 import com.gmail.picono435.picojobs.api.*;
 import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
 import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
+import com.gmail.picono435.picojobs.hooks.workzones.BiomeImplementation;
 import com.gmail.picono435.picojobs.hooks.workzones.GriefPreventionImplementation;
 import com.gmail.picono435.picojobs.hooks.workzones.WorldGuardImplementation;
 import com.gmail.picono435.picojobs.hooks.workzones.WorldImplementation;
@@ -126,6 +127,7 @@ public class PicoJobsPlugin extends JavaPlugin {
         PlayerPointsHook.setupPlayerPoints();
         PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
 
+		PicoJobsAPI.registerWorkZone(new BiomeImplementation());
 		PicoJobsAPI.registerWorkZone(new WorldImplementation());
 		PicoJobsAPI.registerWorkZone(new WorldGuardImplementation());
 		PicoJobsAPI.registerWorkZone(new GriefPreventionImplementation());
