@@ -8,11 +8,13 @@ import com.gmail.picono435.picojobs.utils.FileCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class BiomeImplementation extends WorkZoneImplementation {
 
     public BiomeImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("PicoJobs");
-        this.requiredField = new RequiredField("biome", RequiredField.RequiredFieldType.STRING);
+        this.requiredField = new RequiredField("biome", RequiredField.RequiredFieldType.STRING_LIST);
     }
 
     @Override
@@ -23,7 +25,7 @@ public class BiomeImplementation extends WorkZoneImplementation {
     @Override
     public boolean isInWorkZone(Player player) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        String biome = FileCreator.getJobsConfig().getString("jobs." + jp.getJob().getID() + "." + requiredField.getName());
-        return player.getWorld().getBiome(player.getLocation()).getKey().toString().equals(biome);
+        List<String> regions = FileCreator.getJobsConfig().getStringList("jobs." + jp.getJob().getID() + "." + requiredField.getName());
+        return regions.contains(player.getWorld().getBiome(player.getLocation()).getKey().toString());
     }
 }
