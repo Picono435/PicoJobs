@@ -45,7 +45,7 @@ public class JobsCommand implements CommandExecutor, TabCompleter {
 		if(action == 1) {
 			p.sendMessage(LanguageManager.getMessage("ignore-action", p));
 			return true;
-		} else if(action == 2) {
+		} else if(action == 2 || PicoJobsPlugin.getInstance().isTestEnvironment()) {
 			if(args.length < 1) {
 				p.sendMessage(LanguageManager.getMessage("member-commands", p));
 				return true;
