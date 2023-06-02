@@ -11,11 +11,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class GriefPreventionImplementation extends WorkZoneImplementation {
 
     public GriefPreventionImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("GriefPrevention");
-        this.requiredField = new RequiredField("claim", RequiredField.RequiredFieldType.LONG);
+        this.requiredField = new RequiredField("claim", RequiredField.RequiredFieldType.LONG_LIST);
     }
 
     @Override
@@ -26,8 +28,8 @@ public class GriefPreventionImplementation extends WorkZoneImplementation {
     public boolean isInWorkZone(Player player) {
         Location location = player.getLocation();
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        long region = FileCreator.getJobsConfig().getLong("jobs." + jp.getJob().getID() + "." + requiredField.getName());
+        List<Long> regions = FileCreator.getJobsConfig().getLongList("jobs." + jp.getJob().getID() + "." + requiredField.getName());
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, true, null);
-        return region == claim.getID();
+        return regions.contains(claim.getID());
     }
 }
