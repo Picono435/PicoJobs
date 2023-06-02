@@ -14,7 +14,7 @@ public class WorldImplementation extends WorkZoneImplementation {
 
     public WorldImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("PicoJobs");
-        this.requiredField = new RequiredField("world", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField("worlds", RequiredField.RequiredFieldType.STRING_LIST);
     }
 
     @Override

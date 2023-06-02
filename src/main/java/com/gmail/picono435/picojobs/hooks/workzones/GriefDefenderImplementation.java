@@ -17,7 +17,7 @@ public class GriefDefenderImplementation extends WorkZoneImplementation {
 
     public GriefDefenderImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("GriefDefender");
-        this.requiredField = new RequiredField("claim", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField("claims", RequiredField.RequiredFieldType.STRING_LIST);
     }
 
     @Override

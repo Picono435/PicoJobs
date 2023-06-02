@@ -15,7 +15,7 @@ public class TownyImplementation extends WorkZoneImplementation {
 
     public TownyImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("Towny");
-        this.requiredField = new RequiredField("town", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField("towns", RequiredField.RequiredFieldType.STRING_LIST);
     }
 
     @Override

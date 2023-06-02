@@ -14,7 +14,7 @@ public class BiomeImplementation extends WorkZoneImplementation {
 
     public BiomeImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("PicoJobs");
-        this.requiredField = new RequiredField("biome", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField("biomes", RequiredField.RequiredFieldType.STRING_LIST);
     }
 
     @Override

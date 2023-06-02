@@ -18,7 +18,7 @@ public class WorldGuardImplementation extends WorkZoneImplementation {
 
     public WorldGuardImplementation() {
         this.requiredPlugin = Bukkit.getPluginManager().getPlugin("WorldGuard");
-        this.requiredField = new RequiredField("region", RequiredField.RequiredFieldType.STRING);
+        this.requiredField = new RequiredField("regions", RequiredField.RequiredFieldType.STRING);
     }
 
     @Override
