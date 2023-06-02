@@ -66,7 +66,7 @@ repositories {
     }
 
     maven {
-        url "https://maven.enginehub.org/repo/"
+        url = "https://maven.enginehub.org/repo/"
 
         content {
             includeGroupByRegex "com\\.sk89q.*"
@@ -78,6 +78,14 @@ repositories {
 
         content {
             includeGroup 'io.github.slimjar'
+        }
+    }
+
+    maven {
+        url = 'https://repo.glaremasters.me/repository/bloodshot'
+
+        content {
+            includeGroup 'com.griefdefender'
         }
     }
 }
@@ -105,6 +113,7 @@ dependencies {
     compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
     compileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
     compileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
+    compileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
     // Other libraries
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
@@ -118,6 +127,7 @@ dependencies {
     testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
     testCompileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
     testCompileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
+    testCompileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
 }
 
 slimJar {
