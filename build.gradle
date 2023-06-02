@@ -88,6 +88,14 @@ repositories {
             includeGroup 'com.griefdefender'
         }
     }
+
+    maven {
+        url = 'https://repo.glaremasters.me/repository/towny/'
+
+        content {
+            includeGroup 'com.palmergames.bukkit.towny'
+        }
+    }
 }
 
 dependencies {
@@ -114,6 +122,7 @@ dependencies {
     compileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
     compileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
     compileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
+    compileOnly('com.palmergames.bukkit.towny:towny:0.99.0.0') { transitive = false }
     // Other libraries
     shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
     shadow implementation('org.apache.maven:maven-artifact:3.9.1')
