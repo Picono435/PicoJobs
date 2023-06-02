@@ -31,6 +31,6 @@ public class GriefDefenderImplementation extends WorkZoneImplementation {
         List<String> regions = FileCreator.getJobsConfig().getStringList("jobs." + jp.getJob().getID() + "." + requiredField.getName());
         Claim claim = GriefDefender.getCore().getClaimAt(player.getLocation());
         if(claim == null || claim.isWilderness()) return regions.contains("wilderness");
-        return regions.contains(claim.toString());
+        return regions.contains(claim.getUniqueId().toString());
     }
 }
