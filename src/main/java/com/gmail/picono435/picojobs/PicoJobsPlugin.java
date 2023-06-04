@@ -192,6 +192,7 @@ public class PicoJobsPlugin extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new RepairListener(), this);
 		Bukkit.getPluginManager().registerEvents(new SmeltListener(), this);
 		Bukkit.getPluginManager().registerEvents(new KillEntityListener(), this);
+		Bukkit.getPluginManager().registerEvents(new StripLogsListener(), this);
 
 		this.getLogger().info("The plugin was succefully enabled.");
 

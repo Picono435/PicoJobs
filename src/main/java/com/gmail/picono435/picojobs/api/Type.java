@@ -27,7 +27,8 @@ public enum Type {
 	MILK(""),
 	MOVE("material"),
 	TRADE("material"),
-	KILL_ENTITY("entity");
+	KILL_ENTITY("entity"),
+	STRIP_LOGS("material");
 	
 	private final static Map<String, Type> BY_NAME = new HashMap<String, Type>();
 	
