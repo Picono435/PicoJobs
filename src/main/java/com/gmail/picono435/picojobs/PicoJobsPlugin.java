@@ -10,11 +10,10 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Callable;
 
-import com.gmail.picono435.picojobs.api.*;
-import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
-import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
 import com.gmail.picono435.picojobs.hooks.workzones.*;
 import com.gmail.picono435.picojobs.listeners.jobs.*;
+import com.gmail.picono435.picojobs.hooks.economy.CommandImplementation;
+import com.gmail.picono435.picojobs.hooks.economy.ItemImplementation;
 import com.gmail.picono435.picojobs.storage.sql.H2Storage;
 import com.gmail.picono435.picojobs.utils.GitHubAPI;
 import io.github.slimjar.resolver.data.Repository;
@@ -26,9 +25,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.gmail.picono435.picojobs.commands.JobsAdminCommand;

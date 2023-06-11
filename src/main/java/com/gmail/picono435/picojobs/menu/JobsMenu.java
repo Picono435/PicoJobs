@@ -3,8 +3,12 @@ package com.gmail.picono435.picojobs.menu;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bukkit.Bukkit;
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.utils.ColorConverter;
+import com.gmail.picono435.picojobs.utils.FileCreator;
+import com.gmail.picono435.picojobs.utils.OtherUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -12,15 +16,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.listeners.ClickInventoryListener;
-import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.ItemBuilder;
-import com.gmail.picono435.picojobs.utils.OtherUtils;
 
 public class JobsMenu {
 	

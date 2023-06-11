@@ -2,14 +2,12 @@ import org.apache.tools.ant.filters.*
 
 plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'io.github.slimjar' version '1.3.0'
+    id 'io.github.slimjar' version '1.3.0' apply false
     id 'java'
     id 'maven-publish'
     id 'net.nemerosa.versioning' version '3.0.0'
 }
 
-group = 'com.gmail.picono435'
-description = 'The best jobs plugin ever! You can customize every single thing on it.'
 sourceCompatibility = '17'
 targetCompatibility = '17'
 
@@ -23,171 +21,64 @@ if (System.getenv("STABLE_BUILD") != null) {
     version "1.0-beta-7a"
 }
 
-repositories {
-    mavenCentral()
+subprojects {
+    apply plugin: "com.github.johnrengelman.shadow"
+    apply plugin: "io.github.slimjar"
 
-    maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    repositories {
+        maven {
+            url = 'https://repo.piconodev.com/repository/maven-releases/'
 
-        content {
-            includeGroup 'org.bukkit'
-            includeGroup 'org.spigotmc'
+            content {
+                includeGroup 'io.github.slimjar'
+            }
         }
     }
 
-    maven {
-        url = 'https://jitpack.io'
-        content {
-            includeGroupByRegex "com\\.github.*"
-        }
+    dependencies {
+        // Slimjar
+        //shadow implementation(slimjar("1.2.6"))
+        // TODO: PLEASE SHADOW THIS SHIT
+        implementation 'org.apache.commons:commons-lang3:3.12.0'
+        implementation 'commons-io:commons-io:2.13.0'
+        implementation 'com.google.guava:guava:32.0.0-jre'
     }
 
-    maven {
-        url 'https://repo.papermc.io/repository/maven-public/'
-        content {
-            includeGroup 'com.github.seeseemelk'
-            includeGroup 'io.papermc.paper'
-            includeGroup 'net.md-5'
-        }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "maven-publish"
+
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.version
+    group = rootProject.group
+    description = rootProject.description
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        archiveClassifier.set('sources')
+        from sourceSets.main.allSource
     }
 
-    maven {
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-        content {
-            includeGroupByRegex "me\\.clip.*"
-        }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        archiveClassifier.set('javadoc')
+        from javadoc.destinationDir
     }
 
-    maven {
-        url = 'https://repo.rosewooddev.io/repository/public/'
-        content {
-            includeGroupByRegex "org\\.black_ixx.*"
-        }
-    }
-
-    maven {
-        url = "https://maven.enginehub.org/repo/"
-
-        content {
-            includeGroupByRegex "com\\.sk89q.*"
-        }
-    }
-
-    maven {
-        url = 'https://repo.piconodev.com/repository/maven-releases/'
-
-        content {
-            includeGroup 'io.github.slimjar'
-        }
-    }
-
-    maven {
-        url = 'https://repo.glaremasters.me/repository/bloodshot'
-
-        content {
-            includeGroup 'com.griefdefender'
-        }
-    }
-
-    maven {
-        url = 'https://repo.glaremasters.me/repository/towny/'
-
-        content {
-            includeGroup 'com.palmergames.bukkit.towny'
-        }
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
     }
 }
 
-dependencies {
-    // Slimjar
-    shadow implementation(slimjar("1.2.6"))
-    // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT'
-    // Storage Methods
-    slim 'org.mongodb:mongodb-driver-sync:4.9.1'
-    slim 'com.zaxxer:HikariCP:5.0.1'
-    slim 'com.h2database:h2:2.1.214'
-    slim 'org.xerial:sqlite-jdbc:3.41.2.1'
-    slim 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
-    slim 'mysql:mysql-connector-java:8.0.33'
-    shadow implementation('org.spongepowered:configurate-core:4.1.2')
-    shadow implementation('org.spongepowered:configurate-gson:4.1.2')
-    shadow implementation('org.spongepowered:configurate-yaml:4.1.2')
-    shadow implementation('org.spongepowered:configurate-hocon:4.1.2')
-    // Plugins API
-    compileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
-    compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
-    compileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
-    compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
-    compileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
-    compileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
-    compileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
-    compileOnly('com.palmergames.bukkit.towny:towny:0.99.0.0') { transitive = false }
-    // Other libraries
-    shadow implementation('com.github.mkremins:fanciful:18dc039f5b')
-    shadow implementation('org.apache.maven:maven-artifact:3.9.1')
-    shadow implementation('org.bstats:bstats-bukkit:3.0.2')
-    testImplementation 'com.github.MockBukkit:MockBukkit:v1.19-SNAPSHOT'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-    testImplementation 'com.github.seeseemelk:MockBukkit-v1.19:3.1.0'
-    testCompileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
-    testCompileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
-    testCompileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
-    testCompileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
-    testCompileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
-    testCompileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
-    testCompileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
-}
-
-slimJar {
-    relocate 'org.mongodb', 'com.gmail.picono435.picojobs.libs.mongodb'
-    relocate 'com.zaxxer', 'com.gmail.picono435.picojobs.libs.zaxxer'
-    relocate 'org.h2', 'com.gmail.picono435.picojobs.libs.h2'
-    relocate 'com.h2database', 'com.gmail.picono435.picojobs.libs.h2database'
-    relocate 'org.xerial', 'com.gmail.picono435.picojobs.libs.xerial'
-    relocate 'org.mariadb.jdbc', 'com.gmail.picono435.picojobs.libs.mariadb'
-    relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.mysql'
-}
-
-shadowJar {
+/*shadowJar {
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.metrics'
     relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.apache'
     relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.spongepowered'
     relocate 'com.github.mkremins', 'com.gmail.picono435.picojobs.libs.mkremins'
     relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.slimjar'
     archiveClassifier = ''
-}
-
-processResources {
-    filter ReplaceTokens, tokens: [
-            "name": project.property("name"),
-            "version": project.property("version"),
-            "description": project.property("description")
-    ]
-}
-
-test {
-    useJUnitPlatform()
-}
-
-rootProject.tasks.named("processResources") {
-    duplicatesStrategy = 'include'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier.set('sources')
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier.set('javadoc')
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
+}*/
 
 publishing {
     publications {
@@ -233,5 +124,3 @@ publishing {
         }
     }
 }
-
-compileTestJava.dependsOn(shadowJar)

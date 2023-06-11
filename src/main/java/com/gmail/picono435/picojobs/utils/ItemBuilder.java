@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
-import com.gmail.picono435.picojobs.utils.ColorConverter;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

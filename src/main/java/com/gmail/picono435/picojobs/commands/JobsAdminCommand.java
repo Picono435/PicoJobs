@@ -7,9 +7,14 @@ import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Level;
 
-import com.gmail.picono435.picojobs.api.*;
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.api.Job;
+import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.Type;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.google.gson.JsonArray;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
@@ -23,9 +28,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 

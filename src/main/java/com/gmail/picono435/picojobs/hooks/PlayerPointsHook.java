@@ -1,12 +1,12 @@
 package com.gmail.picono435.picojobs.hooks;
 
+import com.gmail.picono435.picojobs.hooks.economy.PointsImplementation;
 import org.black_ixx.playerpoints.PlayerPoints;
 import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.hooks.economy.PointsImplementation;
 
 public class PlayerPointsHook {
 	

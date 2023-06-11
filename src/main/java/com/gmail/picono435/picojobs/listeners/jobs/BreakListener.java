@@ -1,7 +1,7 @@
 package com.gmail.picono435.picojobs.listeners.jobs;
 
+import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import org.bukkit.CropState;
-import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.material.Crops;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;

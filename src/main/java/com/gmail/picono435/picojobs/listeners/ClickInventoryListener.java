@@ -2,23 +2,19 @@ package com.gmail.picono435.picojobs.listeners;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.utils.FileCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.commands.JobsCommand;
-import com.gmail.picono435.picojobs.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.utils.FileCreator;
-import com.gmail.picono435.picojobs.utils.TimeFormatter;
 
 public class ClickInventoryListener implements Listener {
 	

@@ -1,9 +1,8 @@
 package com.gmail.picono435.picojobs.hooks.expansions;
 
-import org.bukkit.entity.Player;
-
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.hooks.PlaceholderAPIHook;
+import org.bukkit.entity.Player;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 

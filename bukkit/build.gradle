@@ -1,0 +1,105 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id("java")
+}
+
+group = project.group
+version = project.version
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+
+    maven {
+        url = 'https://jitpack.io'
+        content {
+            includeGroupByRegex "com\\.github.*"
+        }
+    }
+
+    maven {
+        url 'https://repo.papermc.io/repository/maven-public/'
+        content {
+            includeGroup 'com.github.seeseemelk'
+            includeGroup 'io.papermc.paper'
+            includeGroup 'net.md-5'
+        }
+    }
+
+    maven {
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        content {
+            includeGroupByRegex "me\\.clip.*"
+        }
+    }
+
+    maven {
+        url = 'https://repo.rosewooddev.io/repository/public/'
+        content {
+            includeGroupByRegex "org\\.black_ixx.*"
+        }
+    }
+
+    maven {
+        url = "https://maven.enginehub.org/repo/"
+
+        content {
+            includeGroupByRegex "com\\.sk89q.*"
+        }
+    }
+
+    maven {
+        url = 'https://repo.glaremasters.me/repository/bloodshot'
+
+        content {
+            includeGroup 'com.griefdefender'
+        }
+    }
+
+    maven {
+        url = 'https://repo.glaremasters.me/repository/towny/'
+
+        content {
+            includeGroup 'com.palmergames.bukkit.towny'
+        }
+    }
+}
+
+dependencies {
+    // Spigot
+    compileOnly 'org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT'
+    // Plugins API
+    compileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
+    compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
+    compileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
+    compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
+    compileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
+    compileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
+    compileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
+    compileOnly('com.palmergames.bukkit.towny:towny:0.99.0.0') { transitive = false }
+    // Other libraries
+    shadow implementation('org.bstats:bstats-bukkit:3.0.2')
+}
+
+processResources {
+    filter ReplaceTokens, tokens: [
+            "name": project.property("name"),
+            "version": project.property("version"),
+            "description": project.property("description")
+    ]
+}
+
+rootProject.tasks.named("processResources") {
+    duplicatesStrategy = 'include'
+}
+
+compileTestJava.dependsOn(shadowJar)
