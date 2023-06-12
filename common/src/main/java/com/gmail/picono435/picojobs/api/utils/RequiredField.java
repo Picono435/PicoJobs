@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.common.api.utils;
+package com.gmail.picono435.picojobs.api.utils;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

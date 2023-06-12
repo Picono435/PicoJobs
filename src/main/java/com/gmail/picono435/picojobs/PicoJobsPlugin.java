@@ -94,9 +94,6 @@ public class PicoJobsPlugin extends JavaPlugin {
 			this.getLogger().warning("Checked that you are using a LEGACY spigot/bukkit version. We will use the old Material Support.");
 		}
 
-		// CREATING AND CONFIGURING INTERNAL FILES
-		saveDefaultConfig();
-
 		LanguageManager.createLanguageFile();
 		if(!FileCreator.generateFiles());
 		if(!getConfig().contains("config-version") || !getConfig().getString("config-version").equalsIgnoreCase(getDescription().getVersion())) {

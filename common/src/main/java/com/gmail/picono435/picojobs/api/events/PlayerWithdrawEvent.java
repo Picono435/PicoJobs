@@ -1,10 +1,10 @@
-package com.gmail.picono435.picojobs.common.api.events;
+package com.gmail.picono435.picojobs.api.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import com.gmail.picono435.picojobs.common.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 
 public final class PlayerWithdrawEvent extends Event {
     private static final HandlerList handlers = new HandlerList();

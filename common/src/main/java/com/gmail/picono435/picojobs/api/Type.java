@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.common.api;
+package com.gmail.picono435.picojobs.api;
 
 import java.util.*;
 

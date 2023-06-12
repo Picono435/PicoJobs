@@ -1,8 +1,10 @@
 package com.gmail.picono435.picojobs.common.file;
 
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import org.apache.commons.io.FileUtils;
 import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.File;
@@ -19,11 +21,14 @@ public class FileManager {
 
     private static YamlConfigurationLoader jobsLoader;
     private static CommentedConfigurationNode jobsNode;
+    private static YamlConfigurationLoader languageLoader;
+    private static CommentedConfigurationNode languageNode;
 
     public boolean init() {
         createConfigFile();
         createGUIFile();
         createJobsFile();
+        createLanguageFile(PicoJobsAPI.getSettingsManager().getLanguage());
         return true;
     }
 
@@ -67,5 +72,44 @@ public class FileManager {
         FileInformation fileInformation = createFile("settings" + File.separator + "jobs.yml");
         jobsLoader = fileInformation.getLoader();
         jobsNode = fileInformation.getRootNode();
+    }
+
+    private void createLanguageFile(String language) {
+        FileInformation fileInformation = createFile("langs" + File.separator + language + ".yml");
+        languageLoader = fileInformation.getLoader();
+        languageNode = fileInformation.getRootNode();
+    }
+
+    // TODO: Add migrations (Old ones are probably no longer needed)
+    public void migrateFiles() {
+        try {
+            URL defaultsInJarURL = this.getClass().getResource("config.yml");
+            YamlConfigurationLoader defaultsLoader = YamlConfigurationLoader.builder().url(defaultsInJarURL).build();
+            ConfigurationNode defaults = defaultsLoader.load();
+
+            configNode.mergeFrom(defaults);
+            configLoader.save(configNode);
+        } catch (IOException e) {
+            System.err.println("An error occurred while loading this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+        }
+    }
+
+    public static CommentedConfigurationNode getConfigNode() {
+        return configNode;
+    }
+
+    public static CommentedConfigurationNode getGuiNode() {
+        return guiNode;
+    }
+
+    public static CommentedConfigurationNode getJobsNode() {
+        return jobsNode;
+    }
+
+    public static CommentedConfigurationNode getLanguageNode() {
+        return languageNode;
     }
 }

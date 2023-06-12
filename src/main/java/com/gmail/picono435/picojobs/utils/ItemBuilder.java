@@ -114,7 +114,7 @@ public ItemBuilder setInfinityDurability(){
      ItemMeta im = is.getItemMeta();
      List<String> newLore = new ArrayList<>();
      for(String l : lore) {
-         newLore.add(PlaceholderAPIHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(l)));
+         newLore.add(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(l)));
      }
      im.setLore(newLore);
      is.setItemMeta(im);

@@ -1,19 +1,22 @@
-package com.gmail.picono435.picojobs.common.api.events;
+package com.gmail.picono435.picojobs.api.events;
 
-import com.gmail.picono435.picojobs.common.api.Job;
+import com.gmail.picono435.picojobs.api.Job;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import com.gmail.picono435.picojobs.common.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 
-public final class PlayerStartWorkEvent extends Event {
+public final class PlayerFinishWorkEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
+    private boolean cancel;
+    
     private JobPlayer jobPlayer;
     private Player player;
     private Job job;
     
-    public PlayerStartWorkEvent(JobPlayer jobPlayer, Player player, Job job) {
+    public PlayerFinishWorkEvent(JobPlayer jobPlayer, Player player, Job job) {
         this.jobPlayer = jobPlayer;
         this.player = player;
         this.job = job;
@@ -53,4 +56,12 @@ public final class PlayerStartWorkEvent extends Event {
     public static HandlerList getHandlerList() {
         return handlers;
     }
+
+	public boolean isCancelled() {
+		return cancel;
+	}
+
+	public void setCancelled(boolean cancel) {
+		this.cancel = cancel;
+	}
 }

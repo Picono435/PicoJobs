@@ -60,7 +60,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(category.getString("item-name"))));
+			builder.setName(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(category.getString("item-name"))));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {
@@ -94,9 +94,9 @@ public class JobsMenu {
 			if(PicoJobsPlugin.getInstance().isMoreThan("1.14")) {
 				builder.setCustomModelData(itemConfig.getInt("custom-model-data"));
 			}
-			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name"))));
+			builder.setName(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(itemConfig.getString("name"))));
 			if(toEdit) {
-				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
+				builder.setName(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
 			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
@@ -104,8 +104,8 @@ public class JobsMenu {
 			builder.removeAttributes();
 			
 			List<String> lore = itemConfig.getStringList("lore");
-			lore = lore.stream().map(s -> ColorConverter.translateAlternateColorCodes(s)).collect(Collectors.toList());
-			lore = PlaceholderAPIHook.setPlaceholders(p, lore);
+			lore = lore.stream().map(s -> PicoJobsCommon.getColorConverter().translateAlternateColorCodes(s)).collect(Collectors.toList());
+			lore = PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, lore);
 			builder.setLore(lore);
 			
 			ItemStack item = builder.toItemStack();
@@ -128,7 +128,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(ColorConverter.translateAlternateColorCodes(category.getString("item-name")));
+			builder.setName(PicoJobsCommon.getColorConverter().translateAlternateColorCodes(category.getString("item-name")));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {
@@ -159,9 +159,9 @@ public class JobsMenu {
 			} else {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(itemConfig.getString("material")));
 			}
-			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name"))));
+			builder.setName(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(itemConfig.getString("name"))));
 			if(toEdit) {
-				builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
+				builder.setName(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(itemConfig.getString("name").replace("[[", "")) + " [[" + itemName + "]]"));
 			}
 			
 			if(itemConfig.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
@@ -169,8 +169,8 @@ public class JobsMenu {
 			builder.removeAttributes();
 			
 			List<String> lore = itemConfig.getStringList("lore");
-			lore = lore.stream().map(s -> ColorConverter.translateAlternateColorCodes(s)).collect(Collectors.toList());
-			lore = PlaceholderAPIHook.setPlaceholders(p, lore);
+			lore = lore.stream().map(s -> PicoJobsCommon.getColorConverter().translateAlternateColorCodes(s)).collect(Collectors.toList());
+			lore = PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, lore);
 			builder.setLore(lore);
 			
 			ItemStack item = builder.toItemStack();
@@ -193,7 +193,7 @@ public class JobsMenu {
 				builder = new ItemBuilder(OtherUtils.matchMaterial(category.getString("item")));
 			}
 			if(category.getBoolean("enchanted")) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-			builder.setName(PlaceholderAPIHook.setPlaceholders(p, ColorConverter.translateAlternateColorCodes(category.getString("item-name"))));
+			builder.setName(PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(p, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(category.getString("item-name"))));
 			builder.removeAttributes();
 			for(int i = 0; i < inv.getSize(); i++) {
 				if(inv.getItem(i) == null || inv.getItem(i).getType() == Material.AIR) {

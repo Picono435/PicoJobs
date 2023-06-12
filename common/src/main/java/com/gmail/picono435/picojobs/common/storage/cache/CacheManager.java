@@ -2,9 +2,6 @@ package com.gmail.picono435.picojobs.common.storage.cache;
 
 import java.util.*;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.api.JobPlayer;
-
 public class CacheManager {
 
 	private Map<UUID, JobPlayer> cache = new HashMap<UUID, JobPlayer>();

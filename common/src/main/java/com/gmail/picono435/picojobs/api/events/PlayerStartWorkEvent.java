@@ -1,22 +1,22 @@
-package com.gmail.picono435.picojobs.common.api.events;
+package com.gmail.picono435.picojobs.api.events;
 
-import com.gmail.picono435.picojobs.common.api.Job;
+import com.gmail.picono435.picojobs.api.Job;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import com.gmail.picono435.picojobs.common.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 
-public final class PlayerLeaveJobEvent extends Event {
+public final class PlayerStartWorkEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     private JobPlayer jobPlayer;
     private Player player;
-    private Job oldJob;
+    private Job job;
     
-    public PlayerLeaveJobEvent(JobPlayer jobPlayer, Player player, Job oldJob) {
+    public PlayerStartWorkEvent(JobPlayer jobPlayer, Player player, Job job) {
         this.jobPlayer = jobPlayer;
         this.player = player;
-        this.oldJob = oldJob;
+        this.job = job;
     }
 
     /**
@@ -38,12 +38,12 @@ public final class PlayerLeaveJobEvent extends Event {
     }
    
     /**
-     * Gets the old job of the player
+     * Gets the job of the player in this event
      * 
-     * @return the old job
+     * @return the job
      */
-    public Job getOldJob() {
-    	return oldJob;
+    public Job getJob() {
+    	return job;
     }
 
     public HandlerList getHandlers() {

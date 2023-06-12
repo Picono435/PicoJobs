@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.common.api.managers;
+package com.gmail.picono435.picojobs.api.managers;
 
 import java.util.HashMap;
 import java.util.Map;

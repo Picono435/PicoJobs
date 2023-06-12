@@ -1,11 +1,11 @@
-package com.gmail.picono435.picojobs.common.api;
+package com.gmail.picono435.picojobs.api;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.common.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.common.api.utils.RequiredField;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.utils.RequiredField;
 import com.gmail.picono435.picojobs.utils.ColorConverter;
 import com.gmail.picono435.picojobs.utils.FileCreator;
 import com.gmail.picono435.picojobs.utils.OtherUtils;
@@ -175,7 +175,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getDisplayName() {
-		return ColorConverter.translateAlternateColorCodes(this.displayname);
+		return PicoJobsCommon.getColorConverter().translateAlternateColorCodes(this.displayname);
 	}
 	
 	/**
@@ -185,7 +185,7 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getTag() {
-		return ColorConverter.translateAlternateColorCodes(this.tag);
+		return PicoJobsCommon.getColorConverter().translateAlternateColorCodes(this.tag);
 	}
 	
 	/**
@@ -303,7 +303,7 @@ public class Job {
 		if(this.workMessage == null) {
 			work = LanguageManager.getFormat(configString, null);
 		} else {
-			work = PlaceholderHook.setPlaceholders(null, ColorConverter.translateAlternateColorCodes(workMessage));
+			work = PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
 		}
 		
 		return work;

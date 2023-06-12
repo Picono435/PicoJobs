@@ -1,15 +1,15 @@
-package com.gmail.picono435.picojobs.common.api;
+package com.gmail.picono435.picojobs.api;
 
 import java.util.UUID;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import org.bukkit.Bukkit;
 
-import com.gmail.picono435.picojobs.common.api.events.PlayerEnterJobEvent;
-import com.gmail.picono435.picojobs.common.api.events.PlayerFinishWorkEvent;
-import com.gmail.picono435.picojobs.common.api.events.PlayerLeaveJobEvent;
-import com.gmail.picono435.picojobs.common.api.events.PlayerStartWorkEvent;
-import com.gmail.picono435.picojobs.common.api.events.PlayerWithdrawEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerEnterJobEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerFinishWorkEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerLeaveJobEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerStartWorkEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
 import org.bukkit.entity.Player;
 
 /**

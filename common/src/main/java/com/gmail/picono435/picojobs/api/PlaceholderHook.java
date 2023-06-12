@@ -1,6 +1,6 @@
-package com.gmail.picono435.picojobs.common.api;
+package com.gmail.picono435.picojobs.api;
 
-import com.gmail.picono435.picojobs.common.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.NumberFormat;
@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-// TODO: Add support for  placeholderAPI
 public class PlaceholderHook {
 
-    public static String setPlaceholders(String player, String message) {
+    public static String setPlaceholders(UUID player, String message) {
         if(player == null) return message;
         String[] identifiers = StringUtils.substringsBetween(message, "%", "%");
         if(identifiers == null) return message;

@@ -1,12 +1,12 @@
-package com.gmail.picono435.picojobs.common.api;
+package com.gmail.picono435.picojobs.api;
 
 import java.util.Locale;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.common.api.managers.JobsManager;
-import com.gmail.picono435.picojobs.common.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.common.api.managers.PlayersManager;
-import com.gmail.picono435.picojobs.common.api.managers.SettingsManager;
+import com.gmail.picono435.picojobs.api.managers.JobsManager;
+import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.managers.PlayersManager;
+import com.gmail.picono435.picojobs.api.managers.SettingsManager;
 import com.gmail.picono435.picojobs.storage.StorageManager;
 
 /**

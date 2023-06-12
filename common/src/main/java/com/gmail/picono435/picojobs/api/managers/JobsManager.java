@@ -1,25 +1,18 @@
-package com.gmail.picono435.picojobs.common.api.managers;
+package com.gmail.picono435.picojobs.api.managers;
 
 import java.util.Collection;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.common.api.Job;
-
-import net.md_5.bungee.api.ChatColor;
+import com.gmail.picono435.picojobs.api.Job;
 
 public class JobsManager {
 	
 	@SuppressWarnings("unused")
-	private PicoJobsPlugin plugin;
-	
 	/**
 	 * Create the manager of jobs, with it you can change everything of jobs.
 	 * 
-	 * @param main - the main class of the plugin.
 	 * @author Picono435
 	 */
-	public JobsManager(PicoJobsPlugin main) {
-		plugin = main;
+	public JobsManager() {
 	}
 	
 	/**

@@ -1,5 +1,5 @@
-package com.gmail.picono435.picojobs.common.api;
-import com.gmail.picono435.picojobs.common.api.utils.RequiredField;
+package com.gmail.picono435.picojobs.api;
+import com.gmail.picono435.picojobs.api.utils.RequiredField;
 
 import java.util.UUID;
 

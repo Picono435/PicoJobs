@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.common.api.managers;
+package com.gmail.picono435.picojobs.api.managers;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -6,8 +6,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import com.gmail.picono435.picojobs.common.api.JobPlayer;
-import com.gmail.picono435.picojobs.common.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

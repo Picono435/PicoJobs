@@ -1,25 +1,22 @@
-package com.gmail.picono435.picojobs.common.api.events;
+package com.gmail.picono435.picojobs.api.events;
 
-import com.gmail.picono435.picojobs.common.api.Job;
+import com.gmail.picono435.picojobs.api.Job;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import com.gmail.picono435.picojobs.common.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.JobPlayer;
 
-public final class PlayerFinishWorkEvent extends Event implements Cancellable {
+public final class PlayerLeaveJobEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancel;
-    
     private JobPlayer jobPlayer;
     private Player player;
-    private Job job;
+    private Job oldJob;
     
-    public PlayerFinishWorkEvent(JobPlayer jobPlayer, Player player, Job job) {
+    public PlayerLeaveJobEvent(JobPlayer jobPlayer, Player player, Job oldJob) {
         this.jobPlayer = jobPlayer;
         this.player = player;
-        this.job = job;
+        this.oldJob = oldJob;
     }
 
     /**
@@ -41,12 +38,12 @@ public final class PlayerFinishWorkEvent extends Event implements Cancellable {
     }
    
     /**
-     * Gets the job of the player in this event
+     * Gets the old job of the player
      * 
-     * @return the job
+     * @return the old job
      */
-    public Job getJob() {
-    	return job;
+    public Job getOldJob() {
+    	return oldJob;
     }
 
     public HandlerList getHandlers() {
@@ -56,12 +53,4 @@ public final class PlayerFinishWorkEvent extends Event implements Cancellable {
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
-	public boolean isCancelled() {
-		return cancel;
-	}
-
-	public void setCancelled(boolean cancel) {
-		this.cancel = cancel;
-	}
 }
