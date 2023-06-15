@@ -2,15 +2,12 @@ package com.gmail.picono435.picojobs.api;
 
 import java.util.UUID;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
-import org.bukkit.Bukkit;
-
 import com.gmail.picono435.picojobs.api.events.PlayerEnterJobEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerFinishWorkEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerLeaveJobEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerStartWorkEvent;
 import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
-import org.bukkit.entity.Player;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 
 /**
  * Represents a player from PicoJobs
@@ -83,7 +80,8 @@ public class JobPlayer {
 	 *
 	 */
 	public void setJob(Job job) {
-		if(job == null) {
+		//TODO: Add events
+		/*if(job == null) {
 			PlayerLeaveJobEvent event = new PlayerLeaveJobEvent(this, Bukkit.getPlayer(uuid), job);
 			Bukkit.getPluginManager().callEvent(event);
 		}
@@ -91,11 +89,11 @@ public class JobPlayer {
 		Bukkit.getPluginManager().callEvent(event);
 		if(event.isCancelled()) {
 			return;
-		}
+		}*/
 		
 		this.job = job;
 		
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				if(job == null) {
 					PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, null);
@@ -103,7 +101,7 @@ public class JobPlayer {
 					PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
 				}
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -129,11 +127,11 @@ public class JobPlayer {
 	 */
 	public void setMethod(double method) {
 		this.method = method;
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setMethod(uuid, method);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -159,11 +157,11 @@ public class JobPlayer {
 	 */
 	public void setMethodLevel(double level) {
 		this.level = level;
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setMethodLevel(uuid, level);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -192,17 +190,18 @@ public class JobPlayer {
 	 *
 	 */
 	public void setWorking(boolean isWorking) {
-		if(isWorking) {
+		//TODO: Add events
+		/*if(isWorking) {
 			PlayerStartWorkEvent event = new PlayerStartWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
 			Bukkit.getPluginManager().callEvent(event);
-		}
+		}*/
 		
 		this.isWorking = isWorking;
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setWorking(uuid, isWorking);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -228,11 +227,11 @@ public class JobPlayer {
 	 */
 	public void setSalary(double salary) {
 		this.salary = salary;
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setSalary(uuid, salary);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -257,8 +256,9 @@ public class JobPlayer {
 	 *
 	 */
 	public void removeSalary(double salary) {
-		PlayerWithdrawEvent event = new PlayerWithdrawEvent(this, Bukkit.getPlayer(uuid), salary);
-		Bukkit.getPluginManager().callEvent(event);
+		//TODO: Add events
+		/*PlayerWithdrawEvent event = new PlayerWithdrawEvent(this, Bukkit.getPlayer(uuid), salary);
+		Bukkit.getPluginManager().callEvent(event);*/
 		setSalary(getSalary() - salary);
 	}
 
@@ -282,11 +282,11 @@ public class JobPlayer {
 	 */
 	public void setSalaryCooldown(long salaryCooldown) {
 		this.salaryCooldown = salaryCooldown;
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setSalaryCooldown(uuid, salaryCooldown);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -312,11 +312,11 @@ public class JobPlayer {
 	 */
 	public void setLeaveCooldown(long leaveCooldown) {
 		this.leaveCooldown = leaveCooldown;
-		Bukkit.getScheduler().runTaskAsynchronously(PicoJobsPlugin.getInstance(), () -> {
+		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setLeaveCooldown(uuid, leaveCooldown);
 			} catch (Exception e) {
-				PicoJobsPlugin.getInstance().getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().severe(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -341,11 +341,12 @@ public class JobPlayer {
 		if(reqmethod == 0) reqmethod = 1;
 		
 		if(getMethod() >= reqmethod) {
-			PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
+			//TODO: Add events
+			/*PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
 			Bukkit.getPluginManager().callEvent(event);
 			if(event.isCancelled()) {
 				return false;
-			}
+			}*/
 			double sal1 = level * getJob().getSalaryFrequency();
 			if(sal1 <= 0) sal1 = 1;
 			double salary = getJob().getSalary() * sal1;
@@ -368,7 +369,7 @@ public class JobPlayer {
 	 * @author Picono435
 	 *
 	 */
-	public boolean isInWorkZone(Player player) {
+	public boolean isInWorkZone(UUID player) {
 		String workZone = this.job.getWorkZone();
 		if(workZone == null) return true;
 		WorkZoneImplementation workZoneImplementation = PicoJobsAPI.getWorkZone(workZone);

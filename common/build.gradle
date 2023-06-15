@@ -6,6 +6,8 @@ repositories {
 }
 
 dependencies {
+    shadow implementation(slimjar("1.2.6"))
+
     // Storage Methods
     slim 'org.mongodb:mongodb-driver-sync:4.9.1'
     slim 'com.zaxxer:HikariCP:5.0.1'

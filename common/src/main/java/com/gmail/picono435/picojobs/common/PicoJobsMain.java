@@ -1,24 +1,23 @@
 package com.gmail.picono435.picojobs.common;
 
-import com.gmail.picono435.picojobs.api.EconomyImplementation;
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.Type;
-import com.gmail.picono435.picojobs.api.WorkZoneImplementation;
+import com.gmail.picono435.picojobs.api.*;
 import com.gmail.picono435.picojobs.common.file.FileManager;
+import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.common.platform.SoftwareHooker;
+import com.gmail.picono435.picojobs.common.utils.GitHubAPI;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.serialize.SerializationException;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 public class PicoJobsMain {
-
-    private boolean wasUpdated;
-    private String serverVersion;
-    private boolean oldVersion;
-    private String lastestPluginVersion;
-    private String downloadUrl;
 
     //DATA
     public Map<String, EconomyImplementation> economies = new HashMap<>();
@@ -37,9 +36,19 @@ public class PicoJobsMain {
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.ONE);
 
         PicoJobsCommon.getLogger().info("Generating jobs from the configuration files...");
-        if(!generateJobsFromConfig()) return;
+        try {
+            if(!generateJobsFromConfig()) return;
+        } catch (SerializationException e) {
+            throw new RuntimeException(e);
+        }
 
+        PicoJobsAPI.getStorageManager().initializeStorageFactory();
 
+        PicoJobsCommon.getLogger().info("The plugin was successfully loaded.");
+
+        if(FileManager.getConfigNode().node("update-checker").getBoolean()) {
+            checkVersion();
+        }
     }
 
     public boolean generateJobsFromConfig() throws SerializationException {
@@ -88,25 +97,12 @@ public class PicoJobsMain {
 
             // CALCULATING OPTIONALS
 
-            boolean useWhitelist = jobc.getBoolean("use-whitelist");
+            boolean useWhitelist = jobNode.node("use-whitelist").getBoolean();
             Map<Type, List<String>> whitelist = new HashMap<>();
-            if(jobc.contains("whitelist")) {
-                // Legacy: Will be removed in future update
-                if(jobc.get("whitelist") instanceof List) {
-                    List<String> white = jobc.getStringList("whitelist");
-                    for(Type type : types) {
-                        whitelist.put(type, white);
-                        jobc.set("whitelist." + type.name(), white);
-                        try {
-                            FileCreator.getJobsConfig().save(FileCreator.getJobsFile());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } else {
-                    for(String type : jobc.getConfigurationSection("whitelist").getKeys(false)) {
-                        whitelist.put(Type.getType(type), jobc.getConfigurationSection("whitelist").getStringList(type));
-                    }
+            if(!jobNode.node("whitelist").empty()) {
+                //TODO: CHECK IF THIS EVEN WORKS
+                for(Object type : jobNode.node("whitelist").childrenMap().keySet()) {
+                    whitelist.put(Type.getType((String)type), jobNode.node("whitelist", type).getList(String.class));
                 }
             }
 
@@ -114,36 +110,58 @@ public class PicoJobsMain {
 
             jobs.put(jobid, job);
 
-            if(!isTestEnvironment()) {
-                metrics.addCustomChart(new DrilldownPie("jobs", () -> {
-                    Map<String, Map<String, Integer>> map = new HashMap<>();
-                    Map<String, Integer> entry = new HashMap<>();
-                    entry.put(jobid, 1);
-                    for(Type type : types) {
-                        map.put(type.name(), entry);
-                    }
-                    return map;
-                }));
-
-                metrics.addCustomChart(new DrilldownPie("active_economy", () -> {
-                    Map<String, Map<String, Integer>> map = new HashMap<>();
-                    Map<String, Integer> entry = new HashMap<>();
-                    String eco = job.getEconomy();
-                    if(eco.equalsIgnoreCase("VAULT")) {
-                        if(VaultHook.isEnabled() && VaultHook.hasEconomyPlugin()) {
-                            entry.put(VaultHook.getEconomy().getName(), 1);
-                        } else {
-                            entry.put("Others", 1);
-                        }
-                        map.put("VAULT", entry);
-                    } else {
-                        entry.put(eco, 1);
-                        map.put(eco, entry);
-                    }
-                    return map;
-                }));
-            }
-        }
+            //TODO: Metrics for each job
+    }
         return true;
+}
+
+    private void checkVersion() {
+        try {
+            URL url = new URL("https://servermods.forgesvc.net/servermods/files?projectIds=385252");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(5000);
+            con.setInstanceFollowRedirects(false);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+
+            JsonParser parser = new JsonParser();
+            JsonArray jsonArray =  (JsonArray) parser.parse(content.toString());
+            JsonObject json = (JsonObject) jsonArray.get(jsonArray.size() - 1);
+            String version = json.get("name").getAsString();
+            version = version.replaceFirst("PicoJobs ", "");
+
+            DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(PicoJobsCommon.getVersion());
+            DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
+            String lastestPluginVersion = version;
+            String downloadUrl = json.get("downloadUrl").getAsString();
+            boolean isRunningInOld = lastestVersion.compareTo(pluginVersion) > 0;
+            if(PicoJobsCommon.getVersion().endsWith("-DEV")) {
+                isRunningInOld = !GitHubAPI.isTagLatest(version);
+            }
+            if(isRunningInOld) {
+                PicoJobsCommon.getLogger().warning("Version: " + lastestVersion + " is out! You are still running version: " + pluginVersion);
+                //TODO: Create an auto update for the bukkit version (and if possible for other platforms too)
+                if(FileManager.getConfigNode().node("auto-update").getBoolean() && PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
+                    /*if(updatePlugin(downloadUrl)) {
+                        PicoJobsCommon.getLogger().info("Updating the plugin to the latest version...");
+                    } else {
+                        PicoJobsCommon.getLogger().warning("An error occuried while updating the plugin.");
+                    }*/
+                }
+            } else {
+                PicoJobsCommon.getLogger().info("You are using the latest version of the plugin.");
+            }
+        } catch (Exception ex) {
+            PicoJobsCommon.getLogger().warning("Could not get the latest version.");
+            ex.printStackTrace();
+        }
     }
 }

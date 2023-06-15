@@ -3,6 +3,7 @@ package com.gmail.picono435.picojobs.api.managers;
 import java.util.Collection;
 
 import com.gmail.picono435.picojobs.api.Job;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 
 public class JobsManager {
 	
@@ -23,10 +24,10 @@ public class JobsManager {
 	 * @author Picono435
 	 */
 	public Job getJob(String jobname) {
-		if(!PicoJobsPlugin.getInstance().jobs.containsKey(jobname)) {
+		if(!PicoJobsCommon.getMainInstance().jobs.containsKey(jobname)) {
 			return null;
 		}
-		return PicoJobsPlugin.getInstance().jobs.get(jobname);
+		return PicoJobsCommon.getMainInstance().jobs.get(jobname);
 	}
 	
 	/**
@@ -54,7 +55,7 @@ public class JobsManager {
 	 */
 	public Job getJobByStrippedColorDisplayname(String displayname) {
 		for(Job job : getJobs()) {
-			if(ChatColor.stripColor(job.getDisplayName()).equals(displayname)) {
+			if(PicoJobsCommon.getColorConverter().stripColor(job.getDisplayName()).equals(displayname)) {
 				return job;
 			}
 		}
@@ -68,6 +69,6 @@ public class JobsManager {
 	 * @author Picono435
 	 */
 	public Collection<Job> getJobs() {
-		return PicoJobsPlugin.getInstance().jobs.values();
+		return PicoJobsCommon.getMainInstance().jobs.values();
 	}
 }

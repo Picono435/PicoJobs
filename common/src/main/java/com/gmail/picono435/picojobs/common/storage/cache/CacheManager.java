@@ -1,5 +1,8 @@
 package com.gmail.picono435.picojobs.common.storage.cache;
 
+import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+
 import java.util.*;
 
 public class CacheManager {
@@ -24,7 +27,7 @@ public class CacheManager {
 	 * @return the job player that was added to cache
 	 */
 	public JobPlayer addToCache(JobPlayer jp) {
-		PicoJobsPlugin.getInstance().getLogger().finest("Added JobPlayer to cache: U: " + jp.getUUID());
+		PicoJobsCommon.getLogger().finest("Added JobPlayer to cache: U: " + jp.getUUID());
 		return cache.put(jp.getUUID(), jp);
 	}
 	

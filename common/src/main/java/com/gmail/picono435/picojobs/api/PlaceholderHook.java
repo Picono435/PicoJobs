@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+/**
+ * This class will translate only PICOJOBS placeholders and not any placeholder
+ */
 public class PlaceholderHook {
 
     public static String setPlaceholders(UUID player, String message) {

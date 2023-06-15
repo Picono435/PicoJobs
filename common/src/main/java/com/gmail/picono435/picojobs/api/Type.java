@@ -1,5 +1,7 @@
 package com.gmail.picono435.picojobs.api;
 
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+
 import java.util.*;
 
 /**
@@ -45,7 +47,7 @@ public enum Type {
 			if(BY_NAME.containsKey(name.toUpperCase(Locale.ROOT))) {
 				types.add(getType(name.toUpperCase(Locale.ROOT)));
 			} else {
-				PicoJobsPlugin.getInstance().getLogger().severe("The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
+				PicoJobsCommon.getLogger().severe("The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
 			}
 		}
 		return types;

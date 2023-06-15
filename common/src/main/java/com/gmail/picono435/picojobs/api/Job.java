@@ -3,25 +3,16 @@ package com.gmail.picono435.picojobs.api;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.api.utils.RequiredField;
-import com.gmail.picono435.picojobs.utils.ColorConverter;
-import com.gmail.picono435.picojobs.utils.FileCreator;
-import com.gmail.picono435.picojobs.utils.OtherUtils;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
-
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import com.gmail.picono435.picojobs.utils.ItemBuilder;
+import org.spongepowered.configurate.ConfigurateException;
+import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.configurate.serialize.SerializationException;
+import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 /**
  * Represents a job.
@@ -47,6 +38,7 @@ public class Job {
 	
 	// GUI SETTINGS
 	private int slot;
+	//TODO: This must be formatted as minecraft:item or mod:item
 	private String item;
 	private int itemData;
 	private boolean enchanted;
@@ -105,54 +97,7 @@ public class Job {
 
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
-			this.whitelist = new HashMap<>();
-			for(Type type : whitelist.keySet()) {
-				String whitelistType = type.getWhitelistType();
-				List<Object> objects = new ArrayList<>();
-				List<String> filteredNames = new ArrayList<>();
-				if(whitelistType.equals("material")) {
-					for(String s : whitelist.get(type)) {
-						Material matNew = OtherUtils.matchMaterial(s);
-						if(matNew == null) continue;
-						filteredNames.add("minecraft:" + matNew.toString().toLowerCase());
-						objects.add(matNew);
-					}
-					this.whitelist.put(type, objects);
-					this.stringWhitelist.put(type, filteredNames);
-				} else if(whitelistType.equals("entity")) {
-					for(String s : whitelist.get(type)) {
-						EntityType entityNew = OtherUtils.getEntityByName(s);
-						if(entityNew == null) continue;
-						filteredNames.add("minecraft:" + entityNew.toString().toLowerCase());
-						objects.add(entityNew);
-					}
-					this.whitelist.put(type, objects);
-					this.stringWhitelist.put(type, filteredNames);
-				} else if(whitelistType.equals("job")) {
-					Job j = this;
-					new BukkitRunnable() {
-						public void run() {
-							for(String s : whitelist.get(type)) {
-								Job jobNew = PicoJobsAPI.getJobsManager().getJob(s);
-								if(jobNew == null) continue;
-								filteredNames.add(jobNew.getID());
-								objects.add(jobNew);
-							}
-							j.whitelist.put(type, objects);
-							j.stringWhitelist.put(type, filteredNames);
-						}
-					}.runTask(PicoJobsPlugin.getInstance());
-				} else if(whitelistType.equals("color")) {
-					for(String s : whitelist.get(type)) {
-						DyeColor colorNew = DyeColor.valueOf(s.toUpperCase(Locale.ROOT));
-						if(colorNew == null) continue;
-						filteredNames.add(colorNew.toString());
-						objects.add(colorNew);
-					}
-					this.whitelist.put(type, objects);
-					this.stringWhitelist.put(type, filteredNames);
-				}
-			}
+			this.whitelist = PicoJobsCommon.getWhitelistConverter().convertWhitelist(whitelist);
 		} else {
 			this.whitelist = new HashMap<>();
 		}
@@ -325,8 +270,8 @@ public class Job {
 	 * @return the material of the job item
 	 * @author Picono435
 	 */
-	public Material getMaterial() {
-		if(this.item == null) this.item = Material.STONE;
+	public String getMaterial() {
+		if(this.item == null) this.item = "minecraft:stone";
 		return this.item;
 	}
 	
@@ -372,14 +317,15 @@ public class Job {
 		return this.useWhitelist;
 	}
 	
-	
+
+	//TODO: What is this?
 	/**
 	 * Gets the formatted item of the job
 	 * 
 	 * @return the formatted item
 	 * @author Picono435
 	 */
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	public ItemStack getFormattedItem() {
 		ItemBuilder builder;
 		if(PicoJobsPlugin.getInstance().isLegacyServer()) {
@@ -397,59 +343,23 @@ public class Job {
 		builder.setLore(getLore());
 		builder.removeAttributes();
 		return builder.toItemStack();
-	}
+	}*/
 	
 	/**
-	 * Checks if a material is in the whitelist
+	 * Checks if a object is in the whitelist
 	 *
 	 * @param type the job type to get the whitelist from
-	 * @param material the material that you want to check
+	 * @param object the object that you want to check
 	 * @return true if it's in the whitelist or there is no whitelist, false if not
 	 * @author Picono435
 	 */
-	public boolean inWhitelist(Type type, Material material) {
+	public boolean inWhitelist(Type type, Object object) {
 		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
 		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
 		if(this.useWhitelist) {
-			return this.whitelist.get(type).contains(material);
+			return this.whitelist.get(type).contains(object);
 		} else {
-			return !this.whitelist.get(type).contains(material);
-		}
-	}
-	
-	/**
-	 * Checks if a entity is in the whitelist
-	 *
-	 * @param type the job type to get the whitelist from
-	 * @param entity the entity that you want to check
-	 * @return true if it's in the whitelist or there is no whitelist, false if not
-	 * @author Picono435
-	 */
-	public boolean inWhitelist(Type type, EntityType entity) {
-		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
-		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
-		if(this.useWhitelist) {
-			return this.whitelist.get(type).contains(entity);
-		} else {
-			return !this.whitelist.get(type).contains(entity);
-		}
-	}
-	
-	/**
-	 * Checks if a dye color is in the whitelist
-	 *
-	 * @param type the job type to get the whitelist from
-	 * @param dyecolor the dye color that you want to check
-	 * @return true if it's in the whitelist or there is no whitelist, false if not
-	 * @author Picono435
-	 */
-	public boolean inWhitelist(Type type, DyeColor dyecolor) {
-		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
-		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
-		if(this.useWhitelist) {
-			return this.whitelist.get(type).contains(dyecolor);
-		} else {
-			return !this.whitelist.get(type).contains(dyecolor);
+			return !this.whitelist.get(type).contains(object);
 		}
 	}
 	
@@ -502,7 +412,7 @@ public class Job {
 		return Arrays.toString(this.stringWhitelist.values().toArray());
 	}
 
-	public JsonObject toJsonObject() {
+	public JsonObject toJsonObject() throws SerializationException {
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("id", this.id);
 		jsonObject.addProperty("displayname", displayname);
@@ -520,8 +430,8 @@ public class Job {
 		jsonObject.addProperty("methodFrequency", this.methodFrequency);
 		jsonObject.addProperty("economy", this.economy);
 
-		RequiredField economyImplementation = PicoJobsPlugin.getInstance().economies.get(this.getEconomy()).getRequiredField();
-		jsonObject.add("economyField", economyImplementation.getType().getJsonElement(FileCreator.getJobsConfig().getStringList("jobs." + this.id + "." + economyImplementation.getName())));
+		RequiredField economyImplementation = PicoJobsCommon.getMainInstance().economies.get(this.getEconomy()).getRequiredField();
+		jsonObject.add("economyField", economyImplementation.getType().getJsonElement(FileManager.getJobsNode().node("jobs", id, economyImplementation.getName()).getList(String.class)));
 
 		jsonObject.addProperty("workZone", this.workZone);
 
@@ -542,7 +452,7 @@ public class Job {
 
 		JsonObject jsonGui = new JsonObject();
 		jsonGui.addProperty("slot", this.slot);
-		jsonGui.addProperty("item", "minecraft:" + this.item.name().toLowerCase());
+		jsonGui.addProperty("item", this.item.toLowerCase());
 		jsonGui.addProperty("itemData", this.itemData);
 		jsonGui.addProperty("enchanted", this.enchanted);
 		JsonArray loreArray = new JsonArray();
@@ -553,38 +463,36 @@ public class Job {
 		return jsonObject;
 	}
 
-	public ConfigurationSection toYamlConfiguration() {
-		ConfigurationSection jobConfiguration = new YamlConfiguration();
-		jobConfiguration.set("id", this.id);
-		jobConfiguration.set("displayname", displayname);
-		jobConfiguration.set("tag", tag);
+	public ConfigurationNode toYamlConfiguration() throws ConfigurateException {
+		ConfigurationNode jobConfiguration = YamlConfigurationLoader.builder().buildAndLoadString("");
+		jobConfiguration.node("id").set(this.id);
+		jobConfiguration.node("displayname").set(displayname);
+		jobConfiguration.node("tag").set(tag);
 
 		List<String> listTypes = new ArrayList<>();
 		for(Type type : this.types) listTypes.add(type.name());
-		jobConfiguration.set("types", listTypes);
+		jobConfiguration.node("types").set(listTypes);
 
-		jobConfiguration.set("method", this.method);
-		jobConfiguration.set("salary", this.salary);
-		jobConfiguration.set("max-salary", this.maxSalary);
-		jobConfiguration.set("require-permission", this.requirePermission);
-		jobConfiguration.set("salary-frequency", this.salaryFrequency);
-		jobConfiguration.set("method-frequency", this.methodFrequency);
-		jobConfiguration.set("economy", this.economy);
-		jobConfiguration.set("work-zone", this.workZone);
-		jobConfiguration.set("work-message", this.workMessage);
-		jobConfiguration.set("use-whitelist", this.useWhitelist);
+		jobConfiguration.node("method").set(this.method);
+		jobConfiguration.node("salary").set(this.salary);
+		jobConfiguration.node("max-salary").set(this.maxSalary);
+		jobConfiguration.node("require-permission").set(this.requirePermission);
+		jobConfiguration.node("salary-frequency").set(this.salaryFrequency);
+		jobConfiguration.node("method-frequency").set(this.methodFrequency);
+		jobConfiguration.node("economy").set(this.economy);
+		jobConfiguration.node("work-zone").set(this.workZone);
+		jobConfiguration.node("work-message").set(this.workMessage);
+		jobConfiguration.node("use-whitelist").set(this.useWhitelist);
 
 		for(Type type : stringWhitelist.keySet()) {
-			jobConfiguration.set("whitelist." + type.name(), stringWhitelist.get(type));
+			jobConfiguration.node("whitelist", type.name()).set(stringWhitelist.get(type));
 		}
 
-		Map<String, Object> configGui = new HashMap<>();
-		configGui.put("slot", this.slot);
-		configGui.put("item", "minecraft:" + this.item.name().toLowerCase());
-		configGui.put("itemData", this.itemData);
-		configGui.put("enchanted", this.enchanted);
-		configGui.put("lore", lore);
-		jobConfiguration.createSection("gui", configGui);
+		jobConfiguration.node("gui", slot).set(this.slot);
+		jobConfiguration.node("item").set(this.item);
+		jobConfiguration.node("itemData").set(this.itemData);
+		jobConfiguration.node("enchanted").set(this.enchanted);
+		jobConfiguration.node("lore").set(lore);
 		return jobConfiguration;
 	}
 }

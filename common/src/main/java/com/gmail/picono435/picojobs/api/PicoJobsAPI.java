@@ -2,12 +2,12 @@ package com.gmail.picono435.picojobs.api;
 
 import java.util.Locale;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
 import com.gmail.picono435.picojobs.api.managers.JobsManager;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.api.managers.PlayersManager;
 import com.gmail.picono435.picojobs.api.managers.SettingsManager;
-import com.gmail.picono435.picojobs.storage.StorageManager;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.common.storage.StorageManager;
 
 /**
  * Represents the API from PicoJobs plugin
@@ -17,10 +17,10 @@ import com.gmail.picono435.picojobs.storage.StorageManager;
  */
 public class PicoJobsAPI {
 	
-	private static JobsManager jobsManager = new JobsManager(PicoJobsPlugin.getInstance());
-	private static PlayersManager playersManager = new PlayersManager(PicoJobsPlugin.getInstance());
+	private static JobsManager jobsManager = new JobsManager();
+	private static PlayersManager playersManager = new PlayersManager();
 	private static LanguageManager languageManager = new LanguageManager();
-	private static SettingsManager settingsManager = new SettingsManager(PicoJobsPlugin.getInstance());
+	private static SettingsManager settingsManager = new SettingsManager();
 	private static StorageManager storageManager = new StorageManager();
 	
 	/**
@@ -82,8 +82,8 @@ public class PicoJobsAPI {
 	 */
 	public static boolean registerEconomy(EconomyImplementation economy) {
 		if(economy.getRequiredPlugin() == null) return false;
-		PicoJobsPlugin.getInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
-		PicoJobsPlugin.getInstance().getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
+		PicoJobsCommon.getMainInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
+		PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
 		return true;
 	}
 
@@ -96,8 +96,8 @@ public class PicoJobsAPI {
 	 */
 	public static boolean registerWorkZone(WorkZoneImplementation workZone) {
 		if(workZone.getRequiredPlugin() == null) return false;
-		PicoJobsPlugin.getInstance().workZones.put(workZone.getName().toUpperCase(Locale.ROOT), workZone);
-		PicoJobsPlugin.getInstance().getLogger().info("Registered " + workZone.getName().toUpperCase(Locale.ROOT) + " work zone implementation.");
+		PicoJobsCommon.getMainInstance().workZones.put(workZone.getName().toUpperCase(Locale.ROOT), workZone);
+		PicoJobsCommon.getLogger().info("Registered " + workZone.getName().toUpperCase(Locale.ROOT) + " work zone implementation.");
 		return true;
 	}
 
@@ -109,6 +109,6 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static WorkZoneImplementation getWorkZone(String name) {
-		return PicoJobsPlugin.getInstance().workZones.get(name);
+		return PicoJobsCommon.getMainInstance().workZones.get(name);
 	}
 }
