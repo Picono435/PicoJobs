@@ -2,11 +2,6 @@ package com.gmail.picono435.picojobs.api;
 
 import java.util.UUID;
 
-import com.gmail.picono435.picojobs.api.events.PlayerEnterJobEvent;
-import com.gmail.picono435.picojobs.api.events.PlayerFinishWorkEvent;
-import com.gmail.picono435.picojobs.api.events.PlayerLeaveJobEvent;
-import com.gmail.picono435.picojobs.api.events.PlayerStartWorkEvent;
-import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 
 /**
