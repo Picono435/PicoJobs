@@ -13,5 +13,5 @@ public enum ActionEnum {
 	
 	RENAMEITEM(),
 	SETLOREITEM(),
-	SETACTIONITEM;
+	SETACTIONITEM();
 }
