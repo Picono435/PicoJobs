@@ -5,6 +5,8 @@ import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class JobsCommand implements Command {
@@ -26,8 +28,15 @@ public class JobsCommand implements Command {
     }
 
     @Override
+    public List<String> getAliases() {
+        return Arrays.asList("jobs");
+    }
+
+    @Override
     public boolean onCommand(String cmd, String[] args, Sender sender) {
         int action = PicoJobsAPI.getSettingsManager().getCommandAction();
+
+        if(!sender.isPlayer()) return true;
 
         if(!sender.hasPermission("picojobs.use.basic")) {
             sender.sendMessage(LanguageManager.getMessage("no-permission"));
@@ -42,43 +51,70 @@ public class JobsCommand implements Command {
                 sender.sendMessage(LanguageManager.getMessage("member-commands", sender.getUUID()));
                 return true;
             }
-            String helpString = LanguageManager.getSubCommandAlias("help");
-            String chooseString = LanguageManager.getSubCommandAlias("choose");
-            String workString = LanguageManager.getSubCommandAlias("work");
-            String salaryString = LanguageManager.getSubCommandAlias("salary");
-            String withdrawString = LanguageManager.getSubCommandAlias("withdraw");
-            String leaveString = LanguageManager.getSubCommandAlias("leave");
 
-            if(args[0].equalsIgnoreCase("help") || args[0].equalsIgnoreCase(helpString)) {
+            if(this.helpCommand.getAliases().contains(args[0])) {
                 return this.helpCommand.onCommand(cmd, args, sender);
             }
 
-            if(args[0].equalsIgnoreCase("choose") || args[0].equalsIgnoreCase(chooseString)) {
+            if(this.chooseCommand.getAliases().contains(args[0])) {
                 return this.chooseCommand.onCommand(cmd, args, sender);
             }
 
-            if(args[0].equalsIgnoreCase("work") || args[0].equalsIgnoreCase(workString)) {
+            if(this.workCommand.getAliases().contains(args[0])) {
                 return this.workCommand.onCommand(cmd, args, sender);
             }
 
-            if(args[0].equalsIgnoreCase("salary") || args[0].equalsIgnoreCase(salaryString)) {
+            if(this.salaryCommand.getAliases().contains(args[0])) {
                 return this.workCommand.onCommand(cmd, args, sender);
             }
 
-            if(args[0].equalsIgnoreCase("withdraw") || args[0].equalsIgnoreCase(withdrawString)) {
+            if(this.withdrawCommand.getAliases().contains(args[0])) {
                 return this.withdrawCommand.onCommand(cmd, args, sender);
             }
 
-            if(args[0].equalsIgnoreCase("leave") || args[0].equalsIgnoreCase(leaveString)) {
+            if(this.leaveJobCommand.getAliases().contains(args[0])) {
                 return this.withdrawCommand.onCommand(cmd, args, sender);
             }
         }
 
-        return false;
+        return true;
     }
 
     @Override
     public List<String> getTabCompletions(String cmd, String[] args, Sender sender) {
-        return null;
+        List<String> tabCompletion = new ArrayList<>();
+        if(args.length < 1) {
+            tabCompletion.add("help");
+            tabCompletion.add("choose");
+            tabCompletion.add("work");
+            tabCompletion.add("salary");
+            tabCompletion.add("withdraw");
+            tabCompletion.add("leave");
+        } else {
+            if(this.helpCommand.getAliases().contains(args[0])) {
+                return this.helpCommand.getTabCompletions(cmd, args, sender);
+            }
+
+            if(this.chooseCommand.getAliases().contains(args[0])) {
+                return this.chooseCommand.getTabCompletions(cmd, args, sender);
+            }
+
+            if(this.workCommand.getAliases().contains(args[0])) {
+                return this.workCommand.getTabCompletions(cmd, args, sender);
+            }
+
+            if(this.salaryCommand.getAliases().contains(args[0])) {
+                return this.salaryCommand.getTabCompletions(cmd, args, sender);
+            }
+
+            if(this.withdrawCommand.getAliases().contains(args[0])) {
+                return this.withdrawCommand.getTabCompletions(cmd, args, sender);
+            }
+
+            if(this.leaveJobCommand.getAliases().contains(args[0])) {
+                return this.leaveJobCommand.getTabCompletions(cmd, args, sender);
+            }
+        }
+        return tabCompletion;
     }
 }

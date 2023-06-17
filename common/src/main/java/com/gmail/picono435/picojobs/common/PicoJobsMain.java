@@ -19,6 +19,7 @@ import java.util.*;
 
 public class PicoJobsMain {
 
+    public static String EDITOR_STRING = "https://piconodev.com/editor";
     //DATA
     public Map<String, EconomyImplementation> economies = new HashMap<>();
     public Map<String, WorkZoneImplementation> workZones = new HashMap<>();

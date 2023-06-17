@@ -1,4 +1,4 @@
-package com.gmail.picono435.picojobs.common.command.main;
+package com.gmail.picono435.picojobs.common.command.admin;
 
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.command.api.Command;
@@ -7,17 +7,17 @@ import com.gmail.picono435.picojobs.common.command.api.Sender;
 import java.util.Arrays;
 import java.util.List;
 
-public class HelpCommand implements Command {
+//TODO: Create the update command and system
+public class UpdateCommand implements Command {
 
     @Override
     public List<String> getAliases() {
-        return Arrays.asList("help", LanguageManager.getSubCommandAlias("help"));
+        return Arrays.asList("update", LanguageManager.getSubCommandAlias("update"));
     }
 
     @Override
     public boolean onCommand(String cmd, String[] args, Sender sender) {
-        sender.sendMessage(LanguageManager.getMessage("member-commands", sender.getUUID()));
-        return true;
+        return false;
     }
 
     @Override

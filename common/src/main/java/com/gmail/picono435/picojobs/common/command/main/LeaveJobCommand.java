@@ -7,10 +7,17 @@ import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.gmail.picono435.picojobs.common.utils.TimeFormatter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class LeaveJobCommand implements Command {
+
+    @Override
+    public List<String> getAliases() {
+        return Arrays.asList("leave", LanguageManager.getSubCommandAlias("leave"));
+    }
+
     @Override
     public boolean onCommand(String cmd, String[] args, Sender sender) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(sender.getUUID());

@@ -464,7 +464,7 @@ public class Job {
 	}
 
 	public ConfigurationNode toYamlConfiguration() throws ConfigurateException {
-		ConfigurationNode jobConfiguration = YamlConfigurationLoader.builder().buildAndLoadString("");
+		ConfigurationNode jobConfiguration = YamlConfigurationLoader.builder().build().load();
 		jobConfiguration.node("id").set(this.id);
 		jobConfiguration.node("displayname").set(displayname);
 		jobConfiguration.node("tag").set(tag);

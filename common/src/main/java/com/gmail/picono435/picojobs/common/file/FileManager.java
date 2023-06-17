@@ -4,6 +4,7 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import org.apache.commons.io.FileUtils;
 import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
@@ -95,6 +96,11 @@ public class FileManager {
                 e.getCause().printStackTrace();
             }
         }
+    }
+
+    public void saveJobsFile(ConfigurationNode node) throws ConfigurateException {
+        jobsLoader.save(node);
+        createJobsFile();
     }
 
     public static CommentedConfigurationNode getConfigNode() {

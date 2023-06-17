@@ -6,9 +6,16 @@ import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WorkCommand implements Command {
+
+    @Override
+    public List<String> getAliases() {
+        return Arrays.asList("work", LanguageManager.getSubCommandAlias("work"));
+    }
+
     @Override
     public boolean onCommand(String cmd, String[] args, Sender sender) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(sender.getUUID());

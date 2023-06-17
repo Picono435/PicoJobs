@@ -20,6 +20,7 @@ public class PlayersManager {
 	 * @author Picono435
 	 */
 	public JobPlayer getJobPlayer(UUID uuid) {
+		if(uuid == null) return null;
 		JobPlayer jp = PicoJobsAPI.getStorageManager().getCacheManager().getFromCache(uuid);
 		if(jp == null) {
 			getJobPlayerFromStorage(uuid).thenAcceptAsync(result -> {

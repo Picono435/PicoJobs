@@ -4,12 +4,21 @@ import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ChooseCommand implements Command {
+
+    @Override
+    public List<String> getAliases() {
+        return Arrays.asList("choose", LanguageManager.getSubCommandAlias("choose"));
+    }
+
     @Override
     public boolean onCommand(String cmd, String[] args, Sender sender) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(sender.getUUID());
@@ -37,6 +46,11 @@ public class ChooseCommand implements Command {
 
     @Override
     public List<String> getTabCompletions(String cmd, String[] args, Sender sender) {
-        return null;
+        List<String> tabCompletion = new ArrayList<>();
+        //TODO: Check if it is 1 or 2 lol
+        if(args.length == 1) {
+            tabCompletion.addAll(PicoJobsCommon.getMainInstance().jobs.keySet());
+        }
+        return tabCompletion;
     }
 }

@@ -19,6 +19,7 @@ public class PicoJobsCommon {
     private static File configDir;
     private static File updateDir;
     private static SchedulerAdapter schedulerAdapter;
+    private static PlatformAdapter platformAdapter;
     private static ColorConverter colorConverter;
     private static PlaceholderTranslator placeholderTranslator;
     private static WhitelistConverter whitelistConverter;
@@ -29,7 +30,7 @@ public class PicoJobsCommon {
     private static FileManager fileManager;
 
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker) {
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker) {
         if(PicoJobsCommon.version != null) return;
         PicoJobsCommon.version = version;
         PicoJobsCommon.platform = platform;
@@ -37,6 +38,7 @@ public class PicoJobsCommon {
         PicoJobsCommon.configDir = configDir;
         PicoJobsCommon.updateDir = updateDir;
         PicoJobsCommon.schedulerAdapter = schedulerAdapter;
+        PicoJobsCommon.platformAdapter = platformAdapter;
         PicoJobsCommon.colorConverter = colorConverter;
         PicoJobsCommon.placeholderTranslator = placeholderTranslator;
         PicoJobsCommon.whitelistConverter = whitelistConverter;
@@ -83,6 +85,10 @@ public class PicoJobsCommon {
 
     public static SchedulerAdapter getSchedulerAdapter() {
         return schedulerAdapter;
+    }
+
+    public static PlatformAdapter getPlatformAdapter() {
+        return platformAdapter;
     }
 
     public static ColorConverter getColorConverter() {
