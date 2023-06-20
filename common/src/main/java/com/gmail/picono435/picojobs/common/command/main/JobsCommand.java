@@ -2,8 +2,10 @@ package com.gmail.picono435.picojobs.common.command.main;
 
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
+import com.gmail.picono435.picojobs.common.inventory.JobsMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,7 +67,7 @@ public class JobsCommand implements Command {
             }
 
             if(this.salaryCommand.getAliases().contains(args[0])) {
-                return this.workCommand.onCommand(cmd, args, sender);
+                return this.salaryCommand.onCommand(cmd, args, sender);
             }
 
             if(this.withdrawCommand.getAliases().contains(args[0])) {
@@ -75,6 +77,8 @@ public class JobsCommand implements Command {
             if(this.leaveJobCommand.getAliases().contains(args[0])) {
                 return this.withdrawCommand.onCommand(cmd, args, sender);
             }
+        } else {
+            sender.openInventory(JobsMenu.getMenu(sender.getUUID()));
         }
 
         return true;
@@ -83,14 +87,15 @@ public class JobsCommand implements Command {
     @Override
     public List<String> getTabCompletions(String cmd, String[] args, Sender sender) {
         List<String> tabCompletion = new ArrayList<>();
-        if(args.length < 1) {
+        if(PicoJobsAPI.getSettingsManager().getCommandAction() != 2) return tabCompletion;
+        if(args.length == 1) {
             tabCompletion.add("help");
             tabCompletion.add("choose");
             tabCompletion.add("work");
             tabCompletion.add("salary");
             tabCompletion.add("withdraw");
             tabCompletion.add("leave");
-        } else {
+        } else if(args.length > 1) {
             if(this.helpCommand.getAliases().contains(args[0])) {
                 return this.helpCommand.getTabCompletions(cmd, args, sender);
             }
@@ -116,5 +121,13 @@ public class JobsCommand implements Command {
             }
         }
         return tabCompletion;
+    }
+
+    public LeaveJobCommand getLeaveJobCommand() {
+        return leaveJobCommand;
+    }
+
+    public WithdrawCommand getWithdrawCommand() {
+        return withdrawCommand;
     }
 }

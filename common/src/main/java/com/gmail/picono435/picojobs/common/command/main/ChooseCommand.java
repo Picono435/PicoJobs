@@ -47,8 +47,7 @@ public class ChooseCommand implements Command {
     @Override
     public List<String> getTabCompletions(String cmd, String[] args, Sender sender) {
         List<String> tabCompletion = new ArrayList<>();
-        //TODO: Check if it is 1 or 2 lol
-        if(args.length == 1) {
+        if(args.length == 2) {
             tabCompletion.addAll(PicoJobsCommon.getMainInstance().jobs.keySet());
         }
         return tabCompletion;

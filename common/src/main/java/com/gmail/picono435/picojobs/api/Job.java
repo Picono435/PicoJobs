@@ -7,6 +7,8 @@ import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.api.utils.RequiredField;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.file.FileManager;
+import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
+import com.gmail.picono435.picojobs.common.platform.whitelist.WhitelistInformation;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
 import org.spongepowered.configurate.ConfigurateException;
@@ -38,7 +40,6 @@ public class Job {
 	
 	// GUI SETTINGS
 	private int slot;
-	//TODO: This must be formatted as minecraft:item or mod:item
 	private String item;
 	private int itemData;
 	private boolean enchanted;
@@ -97,9 +98,12 @@ public class Job {
 
 		this.useWhitelist = useWhitelist;
 		if(whitelist != null) {
-			this.whitelist = PicoJobsCommon.getWhitelistConverter().convertWhitelist(whitelist);
+			WhitelistInformation whitelistInformation = PicoJobsCommon.getWhitelistConverter().convertWhitelist(whitelist, this);
+			this.whitelist = whitelistInformation.getObjectWhitelist();
+			this.stringWhitelist = whitelistInformation.getStringWhitelist();
 		} else {
 			this.whitelist = new HashMap<>();
+			this.stringWhitelist = new HashMap<>();
 		}
 	}
 	
@@ -248,7 +252,7 @@ public class Job {
 		if(this.workMessage == null) {
 			work = LanguageManager.getFormat(configString, null);
 		} else {
-			work = PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
+			work = Placeholders.setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
 		}
 		
 		return work;
@@ -318,32 +322,29 @@ public class Job {
 	}
 	
 
-	//TODO: What is this?
 	/**
 	 * Gets the formatted item of the job
 	 * 
 	 * @return the formatted item
 	 * @author Picono435
 	 */
-	/*@SuppressWarnings("deprecation")
-	public ItemStack getFormattedItem() {
-		ItemBuilder builder;
-		if(PicoJobsPlugin.getInstance().isLegacyServer()) {
+	public ItemAdapter getFormattedItem() {
+		ItemAdapter itemAdapter;
+		if(PicoJobsCommon.isLessThan("1.13.2")) {
 			int itemData = getItemData() - 1;
 			if(itemData == -1) {
-				builder = new ItemBuilder(getMaterial());
+				itemAdapter = new ItemAdapter(getMaterial());
 			} else {
-				builder = new ItemBuilder(getMaterial(), 1, (byte)itemData);
+				itemAdapter = new ItemAdapter(getMaterial(), 1, (byte)itemData);
 			}
 		} else {
-			builder = new ItemBuilder(getMaterial());
+			itemAdapter = new ItemAdapter(getMaterial());
 		}
-		builder.setName(getDisplayName());
-		if(isEnchanted()) builder.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
-		builder.setLore(getLore());
-		builder.removeAttributes();
-		return builder.toItemStack();
-	}*/
+		itemAdapter.setName(getDisplayName());
+		itemAdapter.setEnchanted(isEnchanted());
+		itemAdapter.setLore(PicoJobsCommon.getColorConverter().translateAlternateColorCodes(getLore()));
+		return itemAdapter;
+	}
 	
 	/**
 	 * Checks if a object is in the whitelist
@@ -400,6 +401,26 @@ public class Job {
 	 */
 	public Map<Type, List<String>> getStringWhitelist() {
 		return stringWhitelist;
+	}
+
+	/**
+	 * This is for internal use only
+	 *
+	 * @param type the type
+	 * @param objects the object representing what to add
+	 */
+	public void putInWhitelist(Type type, List<Object> objects) {
+		whitelist.put(type, objects);
+	}
+
+	/**
+	 * This is for internal use only
+	 *
+	 * @param type the type
+	 * @param strings the object representing what to add
+	 */
+	public void putInStringWhitelist(Type type, List<String> strings) {
+		stringWhitelist.put(type, strings);
 	}
 
 	/**

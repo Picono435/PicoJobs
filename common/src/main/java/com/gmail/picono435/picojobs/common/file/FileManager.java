@@ -58,25 +58,25 @@ public class FileManager {
     }
 
     private void createConfigFile() {
-        FileInformation fileInformation = createFile("config.yml");
+        FileInformation fileInformation = createFile("/config.yml");
         configLoader = fileInformation.getLoader();
         configNode = fileInformation.getRootNode();
     }
 
     private void createGUIFile() {
-        FileInformation fileInformation = createFile("settings" + File.separator + "guis.yml");
+        FileInformation fileInformation = createFile("/settings/guis.yml");
         guiLoader = fileInformation.getLoader();
         guiNode = fileInformation.getRootNode();
     }
 
     private void createJobsFile() {
-        FileInformation fileInformation = createFile("settings" + File.separator + "jobs.yml");
+        FileInformation fileInformation = createFile("/settings/jobs.yml");
         jobsLoader = fileInformation.getLoader();
         jobsNode = fileInformation.getRootNode();
     }
 
     private void createLanguageFile(String language) {
-        FileInformation fileInformation = createFile("langs" + File.separator + language + ".yml");
+        FileInformation fileInformation = createFile("/langs/" + language + ".yml");
         languageLoader = fileInformation.getLoader();
         languageNode = fileInformation.getRootNode();
     }
@@ -84,8 +84,8 @@ public class FileManager {
     // TODO: Add migrations (Old ones are probably no longer needed)
     public void migrateFiles() {
         try {
-            URL defaultsInJarURL = this.getClass().getResource("config.yml");
-            YamlConfigurationLoader defaultsLoader = YamlConfigurationLoader.builder().url(defaultsInJarURL).build();
+            URL inputUrl = getClass().getResource("config.yml");
+            YamlConfigurationLoader defaultsLoader = YamlConfigurationLoader.builder().url(inputUrl).build();
             ConfigurationNode defaults = defaultsLoader.load();
 
             configNode.mergeFrom(defaults);

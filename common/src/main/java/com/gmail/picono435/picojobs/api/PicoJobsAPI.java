@@ -81,7 +81,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static boolean registerEconomy(EconomyImplementation economy) {
-		if(economy.getRequiredPlugin() == null) return false;
+		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(economy.getRequiredPlugin())) return false;
 		PicoJobsCommon.getMainInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
 		PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
 		return true;
@@ -95,7 +95,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static boolean registerWorkZone(WorkZoneImplementation workZone) {
-		if(workZone.getRequiredPlugin() == null) return false;
+		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(workZone.getRequiredPlugin())) return false;
 		PicoJobsCommon.getMainInstance().workZones.put(workZone.getName().toUpperCase(Locale.ROOT), workZone);
 		PicoJobsCommon.getLogger().info("Registered " + workZone.getName().toUpperCase(Locale.ROOT) + " work zone implementation.");
 		return true;

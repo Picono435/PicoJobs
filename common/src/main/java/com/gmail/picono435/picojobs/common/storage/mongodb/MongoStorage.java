@@ -5,7 +5,6 @@ import java.util.UUID;
 import com.gmail.picono435.picojobs.common.storage.StorageFactory;
 import org.bson.BsonValue;
 import org.bson.Document;
-import org.bukkit.configuration.ConfigurationSection;
 
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.mongodb.BasicDBObject;
@@ -14,20 +13,21 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import org.spongepowered.configurate.ConfigurationNode;
 
 public class MongoStorage extends StorageFactory {
 	
-	private ConfigurationSection configurationSection;
+	private ConfigurationNode configurationNode;
 	private MongoClient mongoClient;
 	private String database;
 	private String collection;
 
 	@Override
 	protected boolean initializeStorage() throws Exception {
-		configurationSection = PicoJobsAPI.getSettingsManager().getMongoDBConfiguration();
-		String uri = configurationSection.getString("URI");
-		String database = configurationSection.getString("database");
-		String collection = configurationSection.getString("collection");
+		configurationNode = PicoJobsAPI.getSettingsManager().getMongoDBConfiguration();
+		String uri = configurationNode.node("URI").getString();
+		String database = configurationNode.node("database").getString();
+		String collection = configurationNode.node("collection").getString();
 		
 		this.mongoClient = MongoClients.create(MongoClientSettings.builder().applyConnectionString(new ConnectionString(uri)).build());
 		this.database = database;

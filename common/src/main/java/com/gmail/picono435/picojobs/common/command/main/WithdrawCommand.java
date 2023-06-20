@@ -45,7 +45,7 @@ public class WithdrawCommand implements Command {
         }
         String economyString = jp.getJob().getEconomy();
         if(!PicoJobsCommon.getMainInstance().economies.containsKey(economyString)) {
-            sender.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation " + " (" + economyString + ")" + ". Please contact an administrator in order to get more information."));
+            sender.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation (" + economyString + "). Please contact an administrator in order to get more information."));
             return true;
         }
         EconomyImplementation economy = PicoJobsCommon.getMainInstance().economies.get(economyString);

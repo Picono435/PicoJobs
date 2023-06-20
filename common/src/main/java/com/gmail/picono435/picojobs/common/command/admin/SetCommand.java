@@ -104,7 +104,7 @@ public class SetCommand implements Command {
     @Override
     public List<String> getTabCompletions(String cmd, String[] args, Sender sender) {
         List<String> tabCompletion = new ArrayList<>();
-        if(args.length < 3) {
+        if(args.length == 2) {
             tabCompletion.add("salary");
             tabCompletion.add("method");
             tabCompletion.add("job");

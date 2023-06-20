@@ -87,7 +87,7 @@ public class JobsAdminCommand implements Command {
     @Override
     public List<String> getTabCompletions(String cmd, String[] args, Sender sender) {
         List<String> tabCompletion = new ArrayList<>();
-        if(args.length < 1) {
+        if(args.length == 1) {
             tabCompletion.add("help");
             tabCompletion.add("info");
             tabCompletion.add("reload");
@@ -96,7 +96,7 @@ public class JobsAdminCommand implements Command {
             tabCompletion.add("set");
             tabCompletion.add("editor");
             tabCompletion.add("applyedits");
-        } else {
+        } else if(args.length > 1) {
             if(this.helpCommand.getAliases().contains(args[0])) {
                 return this.helpCommand.getTabCompletions(cmd, args, sender);
             }
