@@ -11,4 +11,6 @@ public interface PlatformAdapter {
     String getMinecraftVersion();
 
     String getPort();
+
+    boolean isPluginEnabled(String plugin);
 }

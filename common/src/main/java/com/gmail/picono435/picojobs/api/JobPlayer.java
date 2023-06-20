@@ -316,6 +316,10 @@ public class JobPlayer {
 			}
 		});
 	}
+
+	public boolean internalEvent(Type type, int amount) {
+		return false;
+	}
 	
 	/**
 	 * Simulates an event, for example it will simulate a caught fish or a break block from the plugin.

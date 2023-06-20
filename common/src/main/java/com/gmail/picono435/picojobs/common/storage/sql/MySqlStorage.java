@@ -7,12 +7,12 @@ public class MySqlStorage extends HikariStorageFactory {
 	
 	@Override
 	public boolean initializeStorage() throws Exception {
-		configurationSection = PicoJobsAPI.getSettingsManager().getRemoteSqlConfiguration();
-		String address = configurationSection.getString("host");
-		String port = configurationSection.getString("port");
-		String databaseName = configurationSection.getString("database");
-		String username = configurationSection.getString("username");
-		String password = configurationSection.getString("password");
+		configurationNode = PicoJobsAPI.getSettingsManager().getRemoteSqlConfiguration();
+		String address = configurationNode.node("host").getString();
+		String port = configurationNode.node("port").getString();
+		String databaseName = configurationNode.node("database").getString();
+		String username = configurationNode.node("username").getString();
+		String password = configurationNode.node("password").getString();
 		
 		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         config.setJdbcUrl("jdbc:mysql://" + address + ":" + port + "/" + databaseName);

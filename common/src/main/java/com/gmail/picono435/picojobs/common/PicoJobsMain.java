@@ -1,6 +1,8 @@
 package com.gmail.picono435.picojobs.common;
 
 import com.gmail.picono435.picojobs.api.*;
+import com.gmail.picono435.picojobs.common.command.admin.JobsAdminCommand;
+import com.gmail.picono435.picojobs.common.command.main.JobsCommand;
 import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.common.platform.SoftwareHooker;
@@ -25,16 +27,20 @@ public class PicoJobsMain {
     public Map<String, WorkZoneImplementation> workZones = new HashMap<>();
     //JOBS DATA
     public Map<String, Job> jobs = new HashMap<String, Job>();
+    private JobsCommand jobsCommand;
+    private JobsAdminCommand jobsAdminCommand;
 
     public void init() {
-        PicoJobsCommon.getLogger().info("Plugin created by: Picono435#2011. Thank you for using it");
-
-        if(!FileManager.getConfigNode().node("config-version").empty() || !FileManager.getConfigNode().node("config-version").getString().equalsIgnoreCase(PicoJobsCommon.getVersion())) {
+        if(FileManager.getConfigNode().node("config-version").empty() || !FileManager.getConfigNode().node("config-version").getString().equalsIgnoreCase(PicoJobsCommon.getVersion())) {
             PicoJobsCommon.getLogger().warning("You were using a old configuration file... Updating it with the new configurations of the current version.");
-            PicoJobsCommon.getFileManager().migrateFiles();
+            //PicoJobsCommon.getFileManager().migrateFiles();
         }
 
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.ONE);
+        PicoJobsCommon.getSchedulerAdapter().executeSync(() -> {
+            PicoJobsCommon.getLogger().info("[PicoJobs] " + economies.size() + " " + /*ChatColor.GREEN +*/ "economy implementations successfully registered!");
+            PicoJobsCommon.getLogger().info("[PicoJobs] " + workZones.size() + " " + /*ChatColor.GREEN +*/ "work zones implementations successfully registered!");
+        });
 
         PicoJobsCommon.getLogger().info("Generating jobs from the configuration files...");
         try {
@@ -43,13 +49,28 @@ public class PicoJobsMain {
             throw new RuntimeException(e);
         }
 
+        this.jobsCommand = new JobsCommand();
+        this.jobsAdminCommand = new JobsAdminCommand();
+
+        PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.TWO);
+
         PicoJobsAPI.getStorageManager().initializeStorageFactory();
+
+        PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.THREE);
 
         PicoJobsCommon.getLogger().info("The plugin was successfully loaded.");
 
         if(FileManager.getConfigNode().node("update-checker").getBoolean()) {
             checkVersion();
         }
+    }
+
+    public JobsCommand getJobsCommand() {
+        return jobsCommand;
+    }
+
+    public JobsAdminCommand getJobsAdminCommand() {
+        return jobsAdminCommand;
     }
 
     public boolean generateJobsFromConfig() throws SerializationException {
@@ -79,12 +100,12 @@ public class PicoJobsMain {
             double methodFrequency = jobNode.node("method-frequency").getDouble();
             PicoJobsCommon.getLogger().finest("MethodFrequency: " + methodFrequency);
             String economy = jobNode.node("economy").getString();
-            if(!economy.isEmpty()) {
+            if(economy != null) {
                 economy = economy.toUpperCase(Locale.ROOT);
             }
             PicoJobsCommon.getLogger().finest("Economy: " + economy);
             String workZone = jobNode.node("work-zone").getString();
-            if(!workZone.isEmpty()) {
+            if(workZone != null) {
                 workZone = workZone.toUpperCase(Locale.ROOT);
             }
             PicoJobsCommon.getLogger().finest("Work Zone: " + workZone);
@@ -140,15 +161,14 @@ public class PicoJobsMain {
             version = version.replaceFirst("PicoJobs ", "");
 
             DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(PicoJobsCommon.getVersion());
-            DefaultArtifactVersion lastestVersion = new DefaultArtifactVersion(version);
-            String lastestPluginVersion = version;
+            DefaultArtifactVersion latestVersion = new DefaultArtifactVersion(version);
             String downloadUrl = json.get("downloadUrl").getAsString();
-            boolean isRunningInOld = lastestVersion.compareTo(pluginVersion) > 0;
+            boolean isRunningInOld = latestVersion.compareTo(pluginVersion) > 0;
             if(PicoJobsCommon.getVersion().endsWith("-DEV")) {
                 isRunningInOld = !GitHubAPI.isTagLatest(version);
             }
             if(isRunningInOld) {
-                PicoJobsCommon.getLogger().warning("Version: " + lastestVersion + " is out! You are still running version: " + pluginVersion);
+                PicoJobsCommon.getLogger().warning("Version: " + latestVersion + " is out! You are still running version: " + pluginVersion);
                 //TODO: Create an auto update for the bukkit version (and if possible for other platforms too)
                 if(FileManager.getConfigNode().node("auto-update").getBoolean() && PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
                     /*if(updatePlugin(downloadUrl)) {

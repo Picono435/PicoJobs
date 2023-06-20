@@ -11,4 +11,6 @@ public interface Sender {
     boolean sendMessage(String message);
 
     UUID getUUID();
+
+    void openInventory(String inventory);
 }

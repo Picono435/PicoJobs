@@ -2,12 +2,11 @@ package com.gmail.picono435.picojobs.common.storage;
 
 import java.util.Locale;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.storage.cache.CacheManager;
 import com.gmail.picono435.picojobs.common.storage.file.JsonStorage;
 import com.gmail.picono435.picojobs.common.storage.file.YamlStorage;
 import com.gmail.picono435.picojobs.common.storage.sql.*;
-import com.gmail.picono435.picojobs.storage.sql.*;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.storage.file.HoconStorage;
 import com.gmail.picono435.picojobs.common.storage.mongodb.MongoStorage;
@@ -61,7 +60,7 @@ public class StorageManager {
 			break;
 		}
 		default: {
-			PicoJobsPlugin.getInstance().getLogger().warning("A valid storage method was not selected, please be sure to select only avaiable storage methods. Using H2 as the default storage method.");
+			PicoJobsCommon.getLogger().warning("A valid storage method was not selected, please be sure to select only avaiable storage methods. Using H2 as the default storage method.");
 			this.storageFactory = new H2Storage();
 			break;
 		}
@@ -69,7 +68,7 @@ public class StorageManager {
 		try {
 			this.storageFactory.initializeStorage();
 		} catch (Exception e) {
-			PicoJobsPlugin.getInstance().getLogger().severe("Error connecting to the storage. The plugin will not work correctly.");
+			PicoJobsCommon.getLogger().severe("Error connecting to the storage. The plugin will not work correctly.");
 			e.printStackTrace();
 		}
 		return storageFactory;

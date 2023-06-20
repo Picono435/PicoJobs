@@ -1,6 +1,6 @@
 package com.gmail.picono435.picojobs.common.storage.sql;
 
-import com.gmail.picono435.picojobs.PicoJobsPlugin;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -8,10 +8,10 @@ public class SqliteStorage extends HikariStorageFactory {
 
     @Override
     protected boolean initializeStorage() throws Exception {
-        configurationSection = PicoJobsAPI.getSettingsManager().getRemoteSqlConfiguration();
+        configurationNode = PicoJobsAPI.getSettingsManager().getRemoteSqlConfiguration();
 
         config.setDriverClassName("org.sqlite.JDBC");
-        config.setJdbcUrl("jdbc:sqlite:" + PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-sqlite.db"));
+        config.setJdbcUrl("jdbc:sqlite:" + PicoJobsCommon.getConfigDir().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-sqlite.db"));
 
         this.hikari = new HikariDataSource(config);
 
