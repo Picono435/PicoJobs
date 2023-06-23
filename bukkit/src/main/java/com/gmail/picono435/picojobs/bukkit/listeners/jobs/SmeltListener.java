@@ -1,11 +1,9 @@
 package com.gmail.picono435.picojobs.bukkit.listeners.jobs;
 
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.JobPlayer;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
-import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.bukkit.platform.BukkitSender;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.common.listeners.jobs.WorkListener;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,19 +25,6 @@ public class SmeltListener implements Listener {
 		}
 		if(event.getSlotType() != SlotType.RESULT) return;
 		Player player = (Player) event.getWhoClicked();
-		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player.getUniqueId());
-		if(!jp.hasJob()) return;
-		if(!jp.isWorking()) return;
-		Job job = jp.getJob();
-		if(!job.getTypes().contains(Type.SMELT)) return;
-		if(!jp.isInWorkZone(player.getUniqueId())) return;
-		
-		if(!job.inWhitelist(Type.SMELT, event.getCurrentItem().getType())) return;
-		
-		for(int i = 0; i < event.getCurrentItem().getAmount(); i++) {
-			if(jp.simulateEvent()) {
-				player.sendMessage(LanguageManager.getMessage("finished-work", player.getUniqueId()));
-			}
-		}
+		WorkListener.simulateWorkListener(new BukkitSender(player), Type.SMELT, event.getCurrentItem().getAmount(), event.getCurrentItem().getType());
 	}
 }

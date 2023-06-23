@@ -1,10 +1,8 @@
 package com.gmail.picono435.picojobs.bukkit.listeners.jobs;
 
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.JobPlayer;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
-import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.bukkit.platform.BukkitSender;
+import com.gmail.picono435.picojobs.common.listeners.jobs.WorkListener;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -20,17 +18,6 @@ public class MilkListener implements Listener {
 		Block b = event.getBlockClicked();
 		if(b.isLiquid()) return;
 		Player player = event.getPlayer();
-		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player.getUniqueId());
-		if(!jp.hasJob()) return;
-		if(!jp.isWorking()) return;
-		Job job = jp.getJob();
-		if(!job.getTypes().contains(Type.MILK)) return;
-
-		//if(!job.inWhitelist(Type.MILK, EntityType.COW)) return;
-
-		if(!jp.isInWorkZone(player.getUniqueId())) return;
-		if(jp.simulateEvent()) {
-			player.sendMessage(LanguageManager.getMessage("finished-work", player.getUniqueId()));
-		}
+		WorkListener.simulateWorkListener(new BukkitSender(player), Type.MILK, EntityType.COW);
 	}
 }

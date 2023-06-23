@@ -5,6 +5,8 @@ import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.bukkit.platform.BukkitSender;
+import com.gmail.picono435.picojobs.common.listeners.jobs.WorkListener;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,20 +23,6 @@ public class TradeListener implements Listener {
 		if(event.getSlotType() != InventoryType.SlotType.RESULT) return;
 		if(event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) return;
 		Player player = (Player) event.getWhoClicked();
-		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player.getUniqueId());
-		if(!jp.hasJob()) return;
-		if(!jp.isWorking()) return;
-		Job job = jp.getJob();
-		if(!job.getTypes().contains(Type.TRADE)) return;
-		if(!jp.isInWorkZone(player.getUniqueId())) return;
-
-		if(!job.inWhitelist(Type.TRADE, event.getCurrentItem().getType())) return;
-
-		for(int i = 0; i < event.getCurrentItem().getAmount(); i++) {
-			if(jp.simulateEvent()) {
-				player.sendMessage(LanguageManager.getMessage("finished-work", player.getUniqueId()));
-				return;
-			}
-		}
+		WorkListener.simulateWorkListener(new BukkitSender(player), Type.TRADE, event.getCurrentItem().getAmount(), event.getCurrentItem().getType());
 	}
 }

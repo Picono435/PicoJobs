@@ -6,7 +6,9 @@ import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.bukkit.PicoJobsBukkit;
+import com.gmail.picono435.picojobs.bukkit.platform.BukkitSender;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.common.listeners.jobs.WorkListener;
 import org.bukkit.CropState;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
@@ -23,12 +25,6 @@ public class BreakListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onBreakBlock(BlockBreakEvent event) {
 		Player player = event.getPlayer();
-		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player.getUniqueId());
-		if(!jp.hasJob()) return;
-		if(!jp.isWorking()) return;
-		Job job = jp.getJob();
-		if(!job.getTypes().contains(Type.BREAK)) return;
-		if(!jp.isInWorkZone(player.getUniqueId())) return;
 		boolean isNaturalBlock = event.getBlock().getMetadata("PLACED").size() == 0;
 		if(PicoJobsCommon.isLessThan("1.13.2")) {
 			if(event.getBlock().getState().getData() instanceof Crops) {
@@ -44,11 +40,7 @@ public class BreakListener implements Listener {
 		}
 		if(!isNaturalBlock) return;
 
-		if(!job.inWhitelist(Type.BREAK, event.getBlock().getType())) return;
-
-		if(jp.simulateEvent()) {
-			player.sendMessage(LanguageManager.getMessage("finished-work", player.getUniqueId()));
-		}
+		WorkListener.simulateWorkListener(new BukkitSender(player), Type.BREAK, event.getBlock().getType());
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
