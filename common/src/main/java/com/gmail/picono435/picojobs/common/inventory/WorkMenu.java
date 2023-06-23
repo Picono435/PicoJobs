@@ -17,7 +17,7 @@ public class WorkMenu {
 
     public static InventoryAdapter createMenu(InventoryAdapter inventoryAdapter, UUID player, String menu) {
         CommentedConfigurationNode node = FileManager.getGuiNode().node("gui-settings", menu);
-        inventoryAdapter.init(node.node("title").getString(), node.node("size").getInt());
+        inventoryAdapter.create(node.node("title").getString(), node.node("size").getInt());
 
         for(Object itemNameObject : node.node("items").childrenMap().keySet()) {
             String itemName = (String) itemNameObject;

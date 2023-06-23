@@ -1,8 +1,7 @@
 package com.gmail.picono435.picojobs.bukkit.hooks.placeholders;
 
-import com.gmail.picono435.picojobs.api.Placeholders;
+import com.gmail.picono435.picojobs.api.JobPlaceholders;
 import com.gmail.picono435.picojobs.bukkit.PicoJobsBukkit;
-import com.gmail.picono435.picojobs.bukkit.hooks.PlaceholderAPIHook;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
@@ -102,6 +101,6 @@ public class JobPlayerExpansion extends PlaceholderExpansion {
      */
     @Override
     public String onPlaceholderRequest(Player player, String identifier) {
-    	return Placeholders.translatePlaceholders(player.getUniqueId(), identifier);
+    	return JobPlaceholders.translatePlaceholders(player.getUniqueId(), identifier);
     }
 }

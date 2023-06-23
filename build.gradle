@@ -1,3 +1,6 @@
+//TODO: Javadocs
+//TODO: Relocate slimJar and shadowJar
+
 import org.apache.tools.ant.filters.*
 
 plugins {
@@ -5,17 +8,15 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'net.nemerosa.versioning' version '3.0.0'
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.2-SNAPSHOT" apply false
 }
 
 sourceCompatibility = '17'
 targetCompatibility = '17'
 
-if (System.getenv("STABLE_BUILD") != null) {
-    if (System.getenv("STABLE_BUILD") == '0') {
-        version versioning.info.build + "-DEV"
-    } else {
-        version "1.0-beta-7a"
-    }
+if (System.getenv("STABLE_BUILD") == '0') {
+    version versioning.info.build + "-DEV"
 } else {
     version "1.0-beta-7a"
 }
@@ -57,14 +58,8 @@ allprojects {
         from sourceSets.main.allSource
     }
 
-    /*task javadocJar(type: Jar, dependsOn: javadoc) {
-        archiveClassifier.set('javadoc')
-        from javadoc.destinationDir
-    }*/
-
     artifacts {
         archives sourcesJar
-        //archives javadocJar
     }
 
     processResources {
@@ -76,14 +71,27 @@ allprojects {
     }
 }
 
-/*shadowJar {
-    relocate 'org.bstats', 'com.gmail.picono435.picojobs.metrics'
-    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.apache'
-    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.spongepowered'
-    relocate 'com.github.mkremins', 'com.gmail.picono435.picojobs.libs.mkremins'
-    relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.slimjar'
-    archiveClassifier = ''
-}*/
+// Fabric, Forge & Quilt
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+configure([project(':common-mod'), project(':fabric'), project(':forge'), project(':quilt')]) {
+    apply plugin: "dev.architectury.loom"
+    apply plugin: "architectury-plugin"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        // The following line declares the mojmap mappings, you may use other mappings as well
+        mappings loom.officialMojangMappings()
+        // The following line declares the yarn mappings you may select this one as well.
+        // mappings "net.fabricmc:yarn:1.19.4+build.2:v2"
+    }
+}
 
 publishing {
     publications {

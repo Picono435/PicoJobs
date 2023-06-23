@@ -42,14 +42,14 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
 
                 Bukkit.getPluginManager().registerEvents(new AliasesListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new ExecuteCommandListener(), PicoJobsBukkit.getInstance());
-                Bukkit.getPluginManager().registerEvents(new InventoryMenuListener(), PicoJobsBukkit.getInstance());
-                Bukkit.getPluginManager().registerEvents(new JoinCacheListener(), PicoJobsBukkit.getInstance());
+                Bukkit.getPluginManager().registerEvents(new BukkitInventoryMenuListener(), PicoJobsBukkit.getInstance());
+                Bukkit.getPluginManager().registerEvents(new BukkitJoinCacheListener(), PicoJobsBukkit.getInstance());
 
                 Bukkit.getPluginManager().registerEvents(new BreakListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new TameListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new ShearListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new FillListener(), PicoJobsBukkit.getInstance());
-                Bukkit.getPluginManager().registerEvents(new KillerListener(), PicoJobsBukkit.getInstance());
+                Bukkit.getPluginManager().registerEvents(new KillListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new FisherListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new PlaceListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new CraftListener(), PicoJobsBukkit.getInstance());

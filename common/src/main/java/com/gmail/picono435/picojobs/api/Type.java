@@ -23,7 +23,7 @@ public enum Type {
 	EAT("material"),
 	ENCHANTING("material"),
 	REPAIR("material"),
-	MILK(""),
+	MILK("entity"),
 	MOVE("material"),
 	TRADE("material"),
 	KILL_ENTITY("entity"),
@@ -47,7 +47,7 @@ public enum Type {
 			if(BY_NAME.containsKey(name.toUpperCase(Locale.ROOT))) {
 				types.add(getType(name.toUpperCase(Locale.ROOT)));
 			} else {
-				PicoJobsCommon.getLogger().severe("The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
+				PicoJobsCommon.getLogger().error("The job type '" + name.toUpperCase(Locale.ROOT) + "' does not exist. Make sure to use a valid job type.");
 			}
 		}
 		return types;

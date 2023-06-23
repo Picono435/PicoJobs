@@ -27,7 +27,7 @@ public class CacheManager {
 	 * @return the job player that was added to cache
 	 */
 	public JobPlayer addToCache(JobPlayer jp) {
-		PicoJobsCommon.getLogger().finest("Added JobPlayer to cache: U: " + jp.getUUID());
+		PicoJobsCommon.getLogger().debug("Added JobPlayer to cache: U: " + jp.getUUID());
 		return cache.put(jp.getUUID(), jp);
 	}
 	

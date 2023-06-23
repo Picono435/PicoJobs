@@ -27,6 +27,7 @@ dependencies {
     slim implementation('org.spongepowered:configurate-hocon:4.1.2')
     slim implementation('org.apache.maven:maven-artifact:3.9.1')
 
+    shadow api('org.slf4j:slf4j-api:2.0.7')
     shadow api('org.apache.commons:commons-lang3:3.12.0')
     shadow api('commons-io:commons-io:2.13.0')
     shadow api('com.google.guava:guava:32.0.0-jre')

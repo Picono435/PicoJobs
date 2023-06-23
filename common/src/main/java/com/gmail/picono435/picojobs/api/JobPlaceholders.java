@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * This class will translate only PICOJOBS placeholders and not any placeholder
  */
-public class Placeholders {
+public class JobPlaceholders {
 
     public static String setPlaceholders(UUID player, String message) {
         if(player == null) return message;

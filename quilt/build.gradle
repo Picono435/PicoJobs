@@ -1,0 +1,89 @@
+repositories {
+    maven { url "https://maven.quiltmc.org/repository/release/" }
+}
+
+architectury {
+    platformSetupLoomIde()
+    loader("quilt")
+}
+
+loom {
+    accessWidenerPath = project(":common-mod").loom.accessWidenerPath
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentQuilt.extendsFrom common
+}
+
+dependencies {
+    implementation(project(":common"))
+
+    modImplementation "org.quiltmc:quilt-loader:${rootProject.quilt_loader_version}"
+    modApi "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${rootProject.quilt_fabric_api_version}"
+    modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}") {
+        // We must not pull Fabric Loader from Architectury Fabric
+        exclude group: "net.fabricmc"
+        exclude group: "net.fabricmc.fabric-api"
+    }
+
+    common(project(path: ":common-mod", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common-mod", configuration: "transformProductionQuilt")) { transitive false }
+}
+
+processResources {
+    inputs.property "group", group
+    inputs.property "version", project.version
+
+    filesMatching("quilt.mod.json") {
+        expand "group": group,
+                "version": project.version
+    }
+}
+
+shadowJar {
+    exclude "architectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier.set("dev-shadow")
+}
+
+remapJar {
+    injectAccessWidener = true
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    archiveClassifier.set(null)
+}
+
+jar {
+    archiveClassifier.set("dev")
+}
+
+sourcesJar {
+    def commonSources = project(":common-mod").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}
+
+publishing {
+    publications {
+        mavenQuilt(MavenPublication) {
+            artifactId = rootProject.archives_base_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}

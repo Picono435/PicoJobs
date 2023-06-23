@@ -25,7 +25,7 @@ public class PlayersManager {
 		if(jp == null) {
 			getJobPlayerFromStorage(uuid).thenAcceptAsync(result -> {
 				if(result == null) {
-					PicoJobsCommon.getLogger().warning("An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be a consequence of this error.");
+					PicoJobsCommon.getLogger().warn("An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be a consequence of this error.");
 				} else {
 					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
 				}
@@ -51,7 +51,7 @@ public class PlayersManager {
 			if(wait) {
 				JobPlayer result = getJobPlayerFromStorage(uuid).get();
 				if(result == null) {
-					PicoJobsCommon.getLogger().warning("An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be a consequence of this error.");
+					PicoJobsCommon.getLogger().warn("An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be a consequence of this error.");
 				} else {
 					PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
 					jp = result;
@@ -59,7 +59,7 @@ public class PlayersManager {
 			} else {
 				getJobPlayerFromStorage(uuid).thenAcceptAsync(result -> {
 					if(result == null) {
-						PicoJobsCommon.getLogger().warning("An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be a consequence of this error.");
+						PicoJobsCommon.getLogger().warn("An error occuried while trying to retrieve jobplayer " + uuid + ", the following stack traces will be a consequence of this error.");
 					} else {
 						PicoJobsAPI.getStorageManager().getCacheManager().addToCache(result);
 					}
@@ -97,7 +97,7 @@ public class PlayersManager {
 						uuid);
 				completableFuture.complete(jp);
 			} catch (Exception ex) {
-				PicoJobsCommon.getLogger().severe("Error connecting to the storage. The plugin will not work correctly.");
+				PicoJobsCommon.getLogger().error("Error connecting to the storage. The plugin will not work correctly.");
 				ex.printStackTrace();
 				completableFuture.cancel(true);
 			}

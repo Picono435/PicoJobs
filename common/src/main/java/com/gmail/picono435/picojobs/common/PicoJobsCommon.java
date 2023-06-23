@@ -7,11 +7,11 @@ import com.gmail.picono435.picojobs.common.platform.whitelist.WhitelistConverter
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.github.slimjar.resolver.data.Repository;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.net.URL;
 import java.util.Collections;
-import java.util.logging.Logger;
 
 public class PicoJobsCommon {
     // Platform specific features
@@ -56,15 +56,16 @@ public class PicoJobsCommon {
                     .build();
             PicoJobsCommon.getLogger().info("All dependencies were loaded sucessfully.");
         } catch (Exception ex) {
-            PicoJobsCommon.getLogger().severe("An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
+            PicoJobsCommon.getLogger().error("An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
             ex.printStackTrace();
         }
+
+        fileManager = new FileManager();
+        fileManager.init();
     }
 
     public static void onEnable() {
         PicoJobsCommon.getLogger().info("Plugin created by: Picono435#2011. Thank you for using it");
-        fileManager = new FileManager();
-        fileManager.init();
         mainInstance = new PicoJobsMain();
         mainInstance.init();
     }

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.gmail.picono435.picojobs.mod.listeners.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "InventoryMenuMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

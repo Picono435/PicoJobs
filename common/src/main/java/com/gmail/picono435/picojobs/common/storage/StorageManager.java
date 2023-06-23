@@ -60,7 +60,7 @@ public class StorageManager {
 			break;
 		}
 		default: {
-			PicoJobsCommon.getLogger().warning("A valid storage method was not selected, please be sure to select only avaiable storage methods. Using H2 as the default storage method.");
+			PicoJobsCommon.getLogger().warn("A valid storage method was not selected, please be sure to select only avaiable storage methods. Using H2 as the default storage method.");
 			this.storageFactory = new H2Storage();
 			break;
 		}
@@ -68,7 +68,7 @@ public class StorageManager {
 		try {
 			this.storageFactory.initializeStorage();
 		} catch (Exception e) {
-			PicoJobsCommon.getLogger().severe("Error connecting to the storage. The plugin will not work correctly.");
+			PicoJobsCommon.getLogger().error("Error connecting to the storage. The plugin will not work correctly.");
 			e.printStackTrace();
 		}
 		return storageFactory;

@@ -30,6 +30,9 @@ public class FillListener implements Listener {
 		Job job = jp.getJob();
 		if(!job.getTypes().contains(Type.FILL)) return;
 		if(!jp.isInWorkZone(player.getUniqueId())) return;
+
+		if(!job.inWhitelist(Type.FILL, b.getType())) return;
+
 		if(jp.simulateEvent()) {
 			player.sendMessage(LanguageManager.getMessage("finished-work", player.getUniqueId()));
 		}

@@ -22,8 +22,8 @@ public class BukkitSender implements Sender {
     }
 
     @Override
-    public boolean hasPermission(String string) {
-        return sender.hasPermission(string);
+    public boolean hasPermission(String permission) {
+        return sender.hasPermission(permission);
     }
 
     @Override
@@ -47,5 +47,11 @@ public class BukkitSender implements Sender {
         } else {
             player.openInventory(((BukkitInventoryAdapter)  WorkMenu.createMenu(new BukkitInventoryAdapter(), this.getUUID(), inventory)).getInventory());
         }
+    }
+
+    @Override
+    public void closeInventory() {
+        if(!isPlayer()) return;
+        ((Player) sender).closeInventory();
     }
 }

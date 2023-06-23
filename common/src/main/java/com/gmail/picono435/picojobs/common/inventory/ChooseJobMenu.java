@@ -14,7 +14,7 @@ public class ChooseJobMenu {
 
     public static InventoryAdapter createMenu(InventoryAdapter inventoryAdapter, UUID player) {
         CommentedConfigurationNode node = FileManager.getGuiNode().node("gui-settings", "choose-job");
-        inventoryAdapter.init(node.node("title").getString(), node.node("size").getInt());
+        inventoryAdapter.create(node.node("title").getString(), node.node("size").getInt());
 
         for(Job job : PicoJobsAPI.getJobsManager().getJobs()) {
             inventoryAdapter.setItem(job.getSlot(), job.getFormattedItem());

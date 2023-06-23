@@ -4,14 +4,21 @@ import com.gmail.picono435.picojobs.common.inventory.ClickAction;
 
 public interface InventoryAdapter {
 
-    void init(String title, int size);
+    void create(String title, int size);
 
     void setItem(int slot, ItemAdapter item);
 
     void setItem(int slot, ItemAdapter item, ClickAction clickAction);
 
-    int getSize();
+    ItemAdapter getItem(int slot);
 
     boolean isEmpty(int slot);
 
+    int getSize();
+
+    String getTitle();
+    
+    /*boolean isBuilding();
+
+    void setBuilding(boolean building);*/
 }

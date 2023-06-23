@@ -24,7 +24,7 @@ public class VaultHook {
             new BukkitRunnable() {
                 public void run() {
                     if(!setupVault()) {
-                        PicoJobsCommon.getLogger().warning("A economy plugin from VAULT was not found. The VAULT economy type will not work.");
+                        PicoJobsCommon.getLogger().warn("A economy plugin from VAULT was not found. The VAULT economy type will not work.");
                     }
                 }
             } .runTask(PicoJobsBukkit.getInstance());

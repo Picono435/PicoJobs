@@ -96,7 +96,7 @@ public class JobPlayer {
 					PicoJobsAPI.getStorageManager().getStorageFactory().setJob(uuid, job.getID());
 				}
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -126,7 +126,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setMethod(uuid, method);
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -156,7 +156,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setMethodLevel(uuid, level);
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -196,7 +196,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setWorking(uuid, isWorking);
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -226,7 +226,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setSalary(uuid, salary);
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -281,7 +281,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setSalaryCooldown(uuid, salaryCooldown);
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});
@@ -311,7 +311,7 @@ public class JobPlayer {
 			try {
 				PicoJobsAPI.getStorageManager().getStorageFactory().setLeaveCooldown(uuid, leaveCooldown);
 			} catch (Exception e) {
-				PicoJobsCommon.getLogger().severe(errorMessage);
+				PicoJobsCommon.getLogger().error(errorMessage);
 				e.printStackTrace();
 			}
 		});

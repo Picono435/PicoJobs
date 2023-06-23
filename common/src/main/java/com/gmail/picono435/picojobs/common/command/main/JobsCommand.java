@@ -130,4 +130,8 @@ public class JobsCommand implements Command {
     public WithdrawCommand getWithdrawCommand() {
         return withdrawCommand;
     }
+
+    public ChooseCommand getChooseCommand() {
+        return chooseCommand;
+    }
 }

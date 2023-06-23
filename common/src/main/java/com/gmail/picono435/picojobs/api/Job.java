@@ -252,7 +252,7 @@ public class Job {
 		if(this.workMessage == null) {
 			work = LanguageManager.getFormat(configString, null);
 		} else {
-			work = Placeholders.setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
+			work = JobPlaceholders.setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
 		}
 		
 		return work;
@@ -410,7 +410,7 @@ public class Job {
 	 * @param objects the object representing what to add
 	 */
 	public void putInWhitelist(Type type, List<Object> objects) {
-		whitelist.put(type, objects);
+		this.whitelist.put(type, objects);
 	}
 
 	/**
@@ -420,7 +420,7 @@ public class Job {
 	 * @param strings the object representing what to add
 	 */
 	public void putInStringWhitelist(Type type, List<String> strings) {
-		stringWhitelist.put(type, strings);
+		this.stringWhitelist.put(type, strings);
 	}
 
 	/**

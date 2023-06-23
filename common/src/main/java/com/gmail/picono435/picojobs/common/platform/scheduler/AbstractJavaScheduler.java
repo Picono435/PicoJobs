@@ -50,7 +50,7 @@ public abstract class AbstractJavaScheduler implements SchedulerAdapter {
         this.scheduler.shutdown();
         try {
             if (!this.scheduler.awaitTermination(1, TimeUnit.MINUTES)) {
-                PicoJobsCommon.getLogger().severe("Timed out waiting for the LuckPerms scheduler to terminate");
+                PicoJobsCommon.getLogger().error("Timed out waiting for the LuckPerms scheduler to terminate");
                 reportRunningTasks(thread -> thread.getName().equals("luckperms-scheduler"));
             }
         } catch (InterruptedException e) {
@@ -63,7 +63,7 @@ public abstract class AbstractJavaScheduler implements SchedulerAdapter {
         this.worker.shutdown();
         try {
             if (!this.worker.awaitTermination(1, TimeUnit.MINUTES)) {
-                PicoJobsCommon.getLogger().severe("Timed out waiting for the LuckPerms worker thread pool to terminate");
+                PicoJobsCommon.getLogger().error("Timed out waiting for the LuckPerms worker thread pool to terminate");
                 reportRunningTasks(thread -> thread.getName().startsWith("luckperms-worker-"));
             }
         } catch (InterruptedException e) {
@@ -74,7 +74,7 @@ public abstract class AbstractJavaScheduler implements SchedulerAdapter {
     private void reportRunningTasks(Predicate<Thread> predicate) {
         Thread.getAllStackTraces().forEach((thread, stack) -> {
             if (predicate.test(thread)) {
-                PicoJobsCommon.getLogger().warning("Thread " + thread.getName() + " is blocked, and may be the reason for the slow shutdown!\n" +
+                PicoJobsCommon.getLogger().warn("Thread " + thread.getName() + " is blocked, and may be the reason for the slow shutdown!\n" +
                         Arrays.stream(stack).map(el -> "  " + el).collect(Collectors.joining("\n"))
                 );
             }
@@ -96,7 +96,7 @@ public abstract class AbstractJavaScheduler implements SchedulerAdapter {
     private final class ExceptionHandler implements Thread.UncaughtExceptionHandler {
         @Override
         public void uncaughtException(Thread t, Throwable e) {
-            PicoJobsCommon.getLogger().warning("Thread " + t.getName() + " threw an uncaught exception");
+            PicoJobsCommon.getLogger().warn("Thread " + t.getName() + " threw an uncaught exception");
             e.printStackTrace();
         }
     }

@@ -32,8 +32,8 @@ public class PicoJobsMain {
 
     public void init() {
         if(FileManager.getConfigNode().node("config-version").empty() || !FileManager.getConfigNode().node("config-version").getString().equalsIgnoreCase(PicoJobsCommon.getVersion())) {
-            PicoJobsCommon.getLogger().warning("You were using a old configuration file... Updating it with the new configurations of the current version.");
-            //PicoJobsCommon.getFileManager().migrateFiles();
+            PicoJobsCommon.getLogger().warn("You were using a old configuration file... Updating it with the new configurations of the current version.");
+            //TODO: PicoJobsCommon.getFileManager().migrateFiles();
         }
 
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.ONE);
@@ -79,36 +79,36 @@ public class PicoJobsMain {
         PicoJobsCommon.getLogger().info("Retrieving jobs from the config...");
         for(Object jobidObject : jobsNode.childrenMap().keySet()) {
             String jobid = (String) jobidObject;
-            PicoJobsCommon.getLogger().finest("Retrieving job " + jobid + " from the config.");
+            PicoJobsCommon.getLogger().debug("Retrieving job " + jobid + " from the config.");
             ConfigurationNode jobNode = jobsNode.node(jobid);
             String displayname = jobNode.node("displayname").getString();
-            PicoJobsCommon.getLogger().finest("Display name: " + displayname);
+            PicoJobsCommon.getLogger().debug("Display name: " + displayname);
             String tag = jobNode.node("tag").getString();
-            PicoJobsCommon.getLogger().finest("Tag: " + tag);
+            PicoJobsCommon.getLogger().debug("Tag: " + tag);
             List<Type> types = Type.getTypes(jobNode.node("types").getList(String.class));
-            PicoJobsCommon.getLogger().finest("Types: " + Arrays.toString(types.toArray()));
+            PicoJobsCommon.getLogger().debug("Types: " + Arrays.toString(types.toArray()));
             double method = jobNode.node("method").getDouble();
-            PicoJobsCommon.getLogger().finest("Method: " + method);
+            PicoJobsCommon.getLogger().debug("Method: " + method);
             double salary = jobNode.node("salary").getDouble();
-            PicoJobsCommon.getLogger().finest("Salary: " + salary);
+            PicoJobsCommon.getLogger().debug("Salary: " + salary);
             double maxSalary = jobNode.node("max-salary").getDouble();
-            PicoJobsCommon.getLogger().finest("MaxSalary: " + maxSalary);
+            PicoJobsCommon.getLogger().debug("MaxSalary: " + maxSalary);
             boolean requiresPermission = jobNode.node("require-permission").getBoolean();
-            PicoJobsCommon.getLogger().finest("RequiresPermission: " + requiresPermission);
+            PicoJobsCommon.getLogger().debug("RequiresPermission: " + requiresPermission);
             double salaryFrequency = jobNode.node("salary-frequency").getDouble();
-            PicoJobsCommon.getLogger().finest("SalaryFrequency: " + salaryFrequency);
+            PicoJobsCommon.getLogger().debug("SalaryFrequency: " + salaryFrequency);
             double methodFrequency = jobNode.node("method-frequency").getDouble();
-            PicoJobsCommon.getLogger().finest("MethodFrequency: " + methodFrequency);
+            PicoJobsCommon.getLogger().debug("MethodFrequency: " + methodFrequency);
             String economy = jobNode.node("economy").getString();
             if(economy != null) {
                 economy = economy.toUpperCase(Locale.ROOT);
             }
-            PicoJobsCommon.getLogger().finest("Economy: " + economy);
+            PicoJobsCommon.getLogger().debug("Economy: " + economy);
             String workZone = jobNode.node("work-zone").getString();
             if(workZone != null) {
                 workZone = workZone.toUpperCase(Locale.ROOT);
             }
-            PicoJobsCommon.getLogger().finest("Work Zone: " + workZone);
+            PicoJobsCommon.getLogger().debug("Work Zone: " + workZone);
             String workMessage = jobNode.node("work-message").getString();
             ConfigurationNode guiNode = jobNode.node("gui");
             int slot = guiNode.node("slot").getInt();
@@ -168,20 +168,20 @@ public class PicoJobsMain {
                 isRunningInOld = !GitHubAPI.isTagLatest(version);
             }
             if(isRunningInOld) {
-                PicoJobsCommon.getLogger().warning("Version: " + latestVersion + " is out! You are still running version: " + pluginVersion);
+                PicoJobsCommon.getLogger().warn("Version: " + latestVersion + " is out! You are still running version: " + pluginVersion);
                 //TODO: Create an auto update for the bukkit version (and if possible for other platforms too)
                 if(FileManager.getConfigNode().node("auto-update").getBoolean() && PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
                     /*if(updatePlugin(downloadUrl)) {
                         PicoJobsCommon.getLogger().info("Updating the plugin to the latest version...");
                     } else {
-                        PicoJobsCommon.getLogger().warning("An error occuried while updating the plugin.");
+                        PicoJobsCommon.getLogger().warn("An error occuried while updating the plugin.");
                     }*/
                 }
             } else {
                 PicoJobsCommon.getLogger().info("You are using the latest version of the plugin.");
             }
         } catch (Exception ex) {
-            PicoJobsCommon.getLogger().warning("Could not get the latest version.");
+            PicoJobsCommon.getLogger().warn("Could not get the latest version.");
             ex.printStackTrace();
         }
     }

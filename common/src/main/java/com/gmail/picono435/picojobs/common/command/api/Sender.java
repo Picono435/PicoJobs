@@ -6,11 +6,13 @@ public interface Sender {
 
     boolean isPlayer();
 
-    boolean hasPermission(String string);
+    boolean hasPermission(String permission);
 
     boolean sendMessage(String message);
 
     UUID getUUID();
 
     void openInventory(String inventory);
+
+    void closeInventory();
 }
