@@ -1,2 +1,3 @@
 accessWidener   v2  named
 accessible field net/minecraft/commands/CommandSourceStack source Lnet/minecraft/commands/CommandSource;
+accessible method net/minecraft/world/item/AxeItem getStripped (Lnet/minecraft/world/level/block/state/BlockState;)Ljava/util/Optional;

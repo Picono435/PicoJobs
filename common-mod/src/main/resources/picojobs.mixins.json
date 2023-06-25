@@ -6,7 +6,15 @@
   "client": [
   ],
   "mixins": [
-    "InventoryMenuMixin"
+    "EatListener",
+    "EnchantListener",
+    "FishingListener",
+    "InventoryMenuMixin",
+    "MoveListener",
+    "RepairListener",
+    "ShearListener",
+    "StripLogsListener",
+    "TradeListener"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -35,22 +35,13 @@ public class PicoJobsMod {
 
         //TODO: BlockEvent.BREAK.register(new BreakListener());
         PlayerEvent.CRAFT_ITEM.register(new CraftListener());
-        //TODO: EAT JOB TYPE
-        //TODO: Enchant JOB TYPE
         PlayerEvent.FILL_BUCKET.register(new FillListener());
-        //TODO: FISH JOB TYPE
         EntityEvent.LIVING_DEATH.register(new KillEntityListener());
         EntityEvent.LIVING_DEATH.register(new KillListener());
         PlayerEvent.FILL_BUCKET.register(new MilkListener());
-        //TODO: MOVE JOB TYPE
         BlockEvent.PLACE.register(new PlaceListener());
-        //TODO: REPAIR JOB TYPE
-        //TODO: SHEAR JOB TYPE
         PlayerEvent.SMELT_ITEM.register(new SmeltListener());
-        //TODO: STRIP_LOGS JOB TYPE
         EntityEvent.ANIMAL_TAME.register(new TameListener());
-        //TODO: TRADE LISTENER
-
     }
 
     public static Logger getLogger() {

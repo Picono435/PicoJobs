@@ -3,6 +3,7 @@ package com.gmail.picono435.picojobs.mod.fabric;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.mod.PicoJobsMod;
+import com.gmail.picono435.picojobs.mod.fabric.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.mod.fabric.platform.FabricPlaceholderTranslator;
 import com.gmail.picono435.picojobs.mod.fabric.platform.FabricPlatformAdapter;
 import com.gmail.picono435.picojobs.mod.fabric.platform.FabricWhitelistConverter;
@@ -30,5 +31,7 @@ public class PicoJobsFabric implements ModInitializer {
                 new ModSoftwareHooker()
         );
         PicoJobsMod.init();
+
+        PlaceholdersHook.registerPlaceholders();
     }
 }

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractContainerMenu.class)
 public class InventoryMenuMixin {
 
-    @Inject(at = @At("HEAD"), method = "Lnet/minecraft/world/inventory/AbstractContainerMenu;doClick(IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "doClick(IILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V", cancellable = true)
     public void doClick(int slot, int j, ClickType clickType, Player player, CallbackInfo ci) {
         if(!((AbstractContainerMenu)((Object)this) instanceof ChestMenu)) return;
         ChestMenu chestMenu = (ChestMenu) ((Object)this);

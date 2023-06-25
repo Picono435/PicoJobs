@@ -104,7 +104,7 @@ public class JobPlaceholders {
         }
 
         if(identifier.equals("working")) {
-            return jp.isWorking() + "";
+            return String.valueOf(jp.isWorking());
         }
 
         return "[NULL_PLACEHOLDER]";
