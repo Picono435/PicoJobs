@@ -11,13 +11,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 
-public class MilkListener implements Listener {
+public class FillEntityListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onTakeMilk(PlayerBucketFillEvent  event) {
 		Block b = event.getBlockClicked();
 		if(b.isLiquid()) return;
 		Player player = event.getPlayer();
-		WorkListener.simulateWorkListener(new BukkitSender(player), Type.MILK, EntityType.COW);
+		WorkListener.simulateWorkListener(new BukkitSender(player), Type.FILL_ENTITY, EntityType.COW);
 	}
 }

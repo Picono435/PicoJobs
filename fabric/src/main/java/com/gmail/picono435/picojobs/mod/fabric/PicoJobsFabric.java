@@ -6,7 +6,7 @@ import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import com.gmail.picono435.picojobs.mod.fabric.hooks.PlaceholdersHook;
 import com.gmail.picono435.picojobs.mod.fabric.platform.FabricPlaceholderTranslator;
 import com.gmail.picono435.picojobs.mod.fabric.platform.FabricPlatformAdapter;
-import com.gmail.picono435.picojobs.mod.fabric.platform.FabricWhitelistConverter;
+import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
 import com.gmail.picono435.picojobs.mod.platform.ModColorConverter;
 import com.gmail.picono435.picojobs.mod.platform.ModSchedulerAdapter;
 import com.gmail.picono435.picojobs.mod.platform.ModSoftwareHooker;
@@ -27,7 +27,7 @@ public class PicoJobsFabric implements ModInitializer {
                 new FabricPlatformAdapter(),
                 new ModColorConverter(),
                 new FabricPlaceholderTranslator(),
-                new FabricWhitelistConverter(),
+                new ModWhitelistConverter(),
                 new ModSoftwareHooker()
         );
         PicoJobsMod.init();

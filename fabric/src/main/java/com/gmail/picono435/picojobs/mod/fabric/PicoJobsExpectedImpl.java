@@ -7,8 +7,8 @@ import net.minecraft.world.entity.player.Player;
 
 public class PicoJobsExpectedImpl {
     public static boolean hasPermission(Player player, String permission) {
-        boolean defaultValue = false;
-        if(permission.equals("picojobs.use.basic")) defaultValue = true;
+        int defaultValue = 0;
+        if(permission.equals("picojobs.admin")) defaultValue = 3;
         return Permissions.check(player, permission, defaultValue);
     }
 }

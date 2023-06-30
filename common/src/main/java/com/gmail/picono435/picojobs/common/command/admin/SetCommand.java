@@ -108,6 +108,10 @@ public class SetCommand implements Command {
             tabCompletion.add("salary");
             tabCompletion.add("method");
             tabCompletion.add("job");
+        } else if(args.length == 3) {
+            //TODO: add player list
+        } else if(args.length == 4) {
+            tabCompletion.addAll(PicoJobsCommon.getMainInstance().jobs.keySet());
         }
 
         return tabCompletion;

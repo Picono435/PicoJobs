@@ -11,23 +11,23 @@ import java.util.*;
  *
  */
 public enum Type {
-	BREAK("material"),
-	KILL("job"),
-	FISHING("material"),
-	PLACE("material"),
-	CRAFT("material"),
-	TAME("entity"),
-	SHEAR("color"),
-	FILL("material"),
-	SMELT("material"),
-	EAT("material"),
-	ENCHANTING("material"),
-	REPAIR("material"),
-	MILK("entity"),
-	MOVE("material"),
-	TRADE("material"),
-	KILL_ENTITY("entity"),
-	STRIP_LOGS("material");
+	BREAK(WhitelistType.BLOCK),
+	KILL(WhitelistType.JOB),
+	FISHING(WhitelistType.ITEM),
+	PLACE(WhitelistType.BLOCK),
+	CRAFT(WhitelistType.ITEM),
+	TAME(WhitelistType.ENTITY),
+	SHEAR(WhitelistType.DYE),
+	FILL(WhitelistType.BLOCK),
+	SMELT(WhitelistType.ITEM),
+	EAT(WhitelistType.ITEM),
+	ENCHANTING(WhitelistType.ITEM),
+	REPAIR(WhitelistType.ITEM),
+	FILL_ENTITY(WhitelistType.ENTITY),
+	MOVE(WhitelistType.BLOCK),
+	TRADE(WhitelistType.ITEM),
+	KILL_ENTITY(WhitelistType.ENTITY),
+	STRIP_LOGS(WhitelistType.BLOCK);
 	
 	private final static Map<String, Type> BY_NAME = new HashMap<String, Type>();
 	
@@ -53,13 +53,21 @@ public enum Type {
 		return types;
 	}
 	
-	private final String whitelistType;
+	private final WhitelistType whitelistType;
 	
-	private Type(String whitelistType) {
+	private Type(WhitelistType whitelistType) {
 		this.whitelistType = whitelistType;
 	}
 	
-	public String getWhitelistType() {
+	public WhitelistType getWhitelistType() {
 		return whitelistType;
+	}
+
+	public enum WhitelistType {
+		ITEM(),
+		BLOCK(),
+		ENTITY(),
+		DYE(),
+		JOB()
 	}
 }

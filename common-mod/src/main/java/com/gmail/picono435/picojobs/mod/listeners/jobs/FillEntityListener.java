@@ -12,11 +12,11 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class MilkListener implements PlayerEvent.FillBucket {
+public class FillEntityListener implements PlayerEvent.FillBucket {
     @Override
     public CompoundEventResult<ItemStack> fill(Player player, Level level, ItemStack stack, @Nullable HitResult target) {
         if(target == null || target.getType() != HitResult.Type.ENTITY) return CompoundEventResult.pass();
-        WorkListener.simulateWorkListener(new ModSender(player), Type.MILK, ((EntityHitResult) target).getEntity().getType());
+        WorkListener.simulateWorkListener(new ModSender(player), Type.FILL_ENTITY, ((EntityHitResult) target).getEntity().getType());
         return CompoundEventResult.pass();
     }
 }

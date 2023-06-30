@@ -131,4 +131,8 @@ public class JobsAdminCommand implements Command {
         }
         return tabCompletion;
     }
+
+    public SetCommand getSetCommand() {
+        return setCommand;
+    }
 }

@@ -1,9 +1,7 @@
 package com.gmail.picono435.picojobs.mod.command;
 
-import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
-import com.gmail.picono435.picojobs.mod.PicoJobsExpected;
 import com.gmail.picono435.picojobs.mod.platform.ModSender;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -19,13 +17,12 @@ import java.util.List;
 public class ModJobsCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        System.out.println("REGISTERING: " + PicoJobsAPI.getSettingsManager().getCommandAction());
         if(PicoJobsAPI.getSettingsManager().getCommandAction() == 2) {
             dispatcher.register(Commands.literal("jobs").requires(source -> ModSender.hasPermissionStatic(source.source, "picojobs.use.basic"))
                     .then(
                             Commands.literal("help").executes(ModJobsCommand::runCommand)
                     ).then(
-                            Commands.literal("choose").executes(ModJobsCommand::runCommand).then(
+                            Commands.literal("choose").then(
                                     Commands.argument("job", StringArgumentType.word())
                                             .suggests((context, builder) -> context.getSource() != null ? SharedSuggestionProvider.suggest(PicoJobsCommon.getMainInstance().getJobsCommand().getChooseCommand().getTabCompletions("jobs", new String[]{"choose", ""}, new ModSender(context.getSource().source)), builder) : Suggestions.empty())
                                             .executes(ModJobsCommand::runCommand)
@@ -62,7 +59,6 @@ public class ModJobsCommand {
                 }
                 i++;
             }
-            System.out.println(nodes);
             PicoJobsCommon.getMainInstance().getJobsCommand().onCommand(context.getNodes().get(0).getNode().getName(), nodes.toArray(new String[nodes.size()]), new ModSender(context.getSource().source));
             return 1;
         } catch (Exception ex) {

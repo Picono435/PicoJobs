@@ -13,7 +13,7 @@ jobs:
     # The tag of the job
     tag: "&e[H]"
     # The types of the job
-    types: [kill_entity, milk]
+    types: [kill_entity, fill_entity]
     # Put here the default kills, (this change depends on the frequency)
     method: 10
     # If the player requires a permission to get the job. List of permission nodes in https://github.com/Picono435/PicoJobs/wiki/Permissions
@@ -32,8 +32,9 @@ jobs:
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      kill_entity: ["COW", "PIG", "CHICKEN", "SHEEP"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+      kill_entity: ["minecraft:cow", "minecraft:pig", "minecraft:chicken", "minecraft:sheep"]
+      fill_entity: ["minecraft:cow"]
+    # The work message that you want to use
     work-message: "kill %a% animals"
     # Choose Job Menu settings
     gui:
@@ -76,9 +77,9 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    # whitelist: ["diamond_sword"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    # work-message: "enchant %a% items"
+    # whitelist: ["minecraft:diamond_sword"]
+    # The work message that you want to use
+    work-message: "enchant %a% items"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -120,8 +121,20 @@ jobs:
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      break: ["OAK_WOOD", "OAK_LOG", "BIRCH_WOOD", "BIRCH_LOG", "JUNGLE_WOOD", "JUNGLE_LOG", "ACACIA_WOOD", "ACACIA_LOG", "DARK_OAK_WOOD", "DARK_OAK_LOG", "SPRUCE_WOOD", "SPRUCE_LOG"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+      break:
+        - minecraft:oak_wood
+        - minecraft:oak_log
+        - minecraft:birch_wood
+        - minecraft:birch_log
+        - minecraft:jungle_wood
+        - minecraft:jungle_log
+        - minecraft:acacia_wood
+        - minecraft:acacia_log
+        - minecraft:dark_oak_wood
+        - minecraft:dark_oak_log
+        - minecraft:spruce_wood
+        - minecraft:spruce_log
+    # The work message that you want to use
     work-message: "cut %a% woods"
     # Choose Job Menu settings
     gui:
@@ -165,25 +178,25 @@ jobs:
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
       break:
-        - gold_ore
-        - iron_ore
-        - coal_ore
-        - lapis_ore
-        - diamond_ore
-        - redstone_ore
-        - emerald_ore
-        - nether_quartz_ore
-        - nether_gold_ore
-        - copper_ore
-        - deepslate_gold_ore
-        - deepslate_iron_ore
-        - deepslate_coal_ore
-        - deepslate_lapis_ore
-        - deepslate_diamond_ore
-        - deepslate_redstone_ore
-        - deepslate_emerald_ore
-        - deepslate_copper_ore
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+        - minecraft:gold_ore
+        - minecraft:iron_ore
+        - minecraft:coal_ore
+        - minecraft:lapis_ore
+        - minecraft:diamond_ore
+        - minecraft:redstone_ore
+        - minecraft:emerald_ore
+        - minecraft:nether_quartz_ore
+        - minecraft:nether_gold_ore
+        - minecraft:copper_ore
+        - minecraft:deepslate_gold_ore
+        - minecraft:deepslate_iron_ore
+        - minecraft:deepslate_coal_ore
+        - minecraft:deepslate_lapis_ore
+        - minecraft:eepslate_diamond_ore
+        - minecraft:deepslate_redstone_ore
+        - minecraft:deepslate_emerald_ore
+        - minecraft:deepslate_copper_ore
+    # The work message that you want to use
     work-message: "mine %a% ores"
     # Choose Job Menu settings
     gui:
@@ -226,8 +239,8 @@ jobs:
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      place: ["bricks"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+      place: ["minecraft:bricks"]
+    # The work message that you want to use
     work-message: "place %a% bricks"
     # Choose Job Menu settings
     gui:
@@ -270,8 +283,8 @@ jobs:
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      break: ["dirt", "grass", "grass_block"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
+      break: ["minecraft:dirt", "minecraft:grass", "minecraft:grass_block"]
+    # The work message that you want to use
     work-message: "dig %a% dirts"
     # Choose Job Menu settings
     gui:
@@ -313,9 +326,9 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    # whitelist: ["diamond_sword"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    # work-message: "craft %a% items"
+    # whitelist: ["minecraft:diamond_sword"]
+    # The work message that you want to use
+    work-message: "craft %a% items"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -357,9 +370,9 @@ jobs:
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
-      fishing: ["NAME_TAG"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    # work-message: "fish %a% fishes"
+      fishing: ["minecraft:name_tag"]
+    # The work message that you want to use
+    work-message: "fish %a% fishes"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -400,9 +413,9 @@ jobs:
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
-    # whitelist: ["diamond_sword"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    # work-message: "repair %a% items"
+    # whitelist: ["minecraft:diamond_sword"]
+    # The work message that you want to use
+    work-message: "repair %a% items"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go
@@ -445,8 +458,8 @@ jobs:
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
     whitelist:
       kill: ["weaponsmith"]
-    # The work message that you want to use - OPTIONAL [default can be found in the language file]
-    # work-message: "kill %a% people"
+    # The work message that you want to use
+    work-message: "kill %a% people"
     # Choose Job Menu settings
     gui:
       # The slot where the item will go

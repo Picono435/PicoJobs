@@ -1,9 +1,9 @@
 # This file is a language file, here you can change all the messages for this language
-# Placeholders only work with PlaceholderAPI, for more information see the comment down here.
+# Most messages that can be configured with this file will work with player and server placeholders
 #
 # NOTE:
-# In order to use any placeholder [ex: %jobplayer_job%, %player_name%] you will need to install the
-# plugin PlaceholderAPI (https://www.spigotmc.org/resources/placeholderapi.6245/)
+# In order to use any external placeholder [ex: %player_name%] you will need to install a
+# placeholder api plugin/mod. To know which check the wiki (TODO: WIKI)
 #
 #################################################################################
 #                                                                               #
@@ -66,22 +66,7 @@ invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 #                                                                               #
 #################################################################################
 # In this category you can change the formats of placeholders and other things
-# All these messages work with Player Placeholders ;) (PlaceholderAPI Required)
-# Change how the works should be displayed. (DEFAULT, to a specific job go into settings/jobs.yml)
-break-work: "break %a% blocks"
-kill-work: "kill %a% people"
-fishing-work: "fish %a% fishes"
-place-work: "place %a% blocks"
-craft-work: "craft %a% items"
-tame-work: "tame %a% animals"
-shear-work: "shear %a% sheeps"
-fill-work: "fill %a% buckets"
-smelt-work: "smelt %a% items"
-eat-work: "eat %a% items"
-enchanting-work: "enchant %a% items"
-repair-work: "repair %a% items"
-milk-work: "take %a% milks from cows"
-kill_entity-work: "kill %a% entities"
+# All these messages work with Player Placeholders (A placeholder API is required)
 # When something is not find what should it appear
 none-format: "None"
 default-tag: ""

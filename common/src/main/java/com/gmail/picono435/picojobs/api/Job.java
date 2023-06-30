@@ -8,7 +8,6 @@ import com.gmail.picono435.picojobs.api.utils.RequiredField;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
-import com.gmail.picono435.picojobs.common.platform.whitelist.WhitelistInformation;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
 import org.spongepowered.configurate.ConfigurateException;
@@ -47,8 +46,7 @@ public class Job {
 	
 	// OPTIONAL
 	private boolean useWhitelist;
-	private Map<Type, List<Object>> whitelist;
-	private Map<Type, List<String>> stringWhitelist = new HashMap<>();
+	private Map<Type, List<String>> whitelist = new HashMap<>();
 
 	public Job(JsonObject jsonObject) {
 		this(
@@ -97,14 +95,7 @@ public class Job {
 		this.lore = lore;
 
 		this.useWhitelist = useWhitelist;
-		if(whitelist != null) {
-			WhitelistInformation whitelistInformation = PicoJobsCommon.getWhitelistConverter().convertWhitelist(whitelist, this);
-			this.whitelist = whitelistInformation.getObjectWhitelist();
-			this.stringWhitelist = whitelistInformation.getStringWhitelist();
-		} else {
-			this.whitelist = new HashMap<>();
-			this.stringWhitelist = new HashMap<>();
-		}
+		this.whitelist = whitelist;
 	}
 	
 	/**
@@ -250,7 +241,7 @@ public class Job {
 		String work = "";
 		
 		if(this.workMessage == null) {
-			work = LanguageManager.getFormat(configString, null);
+			work = LanguageManager.formatMessage("do %a% actions");
 		} else {
 			work = JobPlaceholders.setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
 		}
@@ -355,82 +346,20 @@ public class Job {
 	 * @author Picono435
 	 */
 	public boolean inWhitelist(Type type, Object object) {
-		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
-		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
-		if(this.useWhitelist) {
-			return this.whitelist.get(type).contains(object);
-		} else {
-			return !this.whitelist.get(type).contains(object);
+		if(this.whitelist.size() <= 0) return !this.useWhitelist;
+		if(!this.whitelist.containsKey(type)) return !this.useWhitelist;
+		if(type.getWhitelistType() == Type.WhitelistType.JOB) {
+			if(this.whitelist.get(type).contains(((Job) object).getID())) {
+				return this.useWhitelist;
+			} else {
+				return !this.useWhitelist;
+			}
 		}
-	}
-	
-	/**
-	 * Checks if a job is in the whitelist
-	 *
-	 * @param type the job type to get the whitelist from
-	 * @param job the job that you want to check
-	 * @return true if it's in the whitelist or there is no whitelist, false if not
-	 * @author Picono435
-	 */
-	public boolean inWhitelist(Type type, Job job) {
-		if(this.whitelist == null) return (this.useWhitelist) ? false : true;
-		if(this.whitelist.size() <= 0) return (this.useWhitelist) ? false : true;
-		if(job == null) return (this.useWhitelist) ? false : true;
-		if(this.useWhitelist) {
-			return this.whitelist.get(type).contains(job);
+		if(PicoJobsCommon.getWhitelistConverter().inStringList(object, type, this.whitelist.get(type))) {
+			return this.useWhitelist;
 		} else {
-			return !this.whitelist.get(type).contains(job);
+			return !this.useWhitelist;
 		}
-	}
-	
-	/**
-	 * Gets the whitelist
-	 * 
-	 * @return the whitelist
-	 * @author Picono435
-	 */
-	public Map<Type, List<Object>> getWhitelist() {
-		return whitelist;
-	}
-
-	/**
-	 * Gets the string whitelist
-	 * 
-	 * @return the string whitelist
-	 * @author Picono435
-	 */
-	public Map<Type, List<String>> getStringWhitelist() {
-		return stringWhitelist;
-	}
-
-	/**
-	 * This is for internal use only
-	 *
-	 * @param type the type
-	 * @param objects the object representing what to add
-	 */
-	public void putInWhitelist(Type type, List<Object> objects) {
-		this.whitelist.put(type, objects);
-	}
-
-	/**
-	 * This is for internal use only
-	 *
-	 * @param type the type
-	 * @param strings the object representing what to add
-	 */
-	public void putInStringWhitelist(Type type, List<String> strings) {
-		this.stringWhitelist.put(type, strings);
-	}
-
-	/**
-	 * Gets a formatted whitelist string
-	 * 
-	 * @return a formatted string with the array
-	 * @author Picono435
-	 */
-	public String getWhitelistArray() {
-		return Arrays.toString(this.stringWhitelist.values().toArray());
 	}
 
 	public JsonObject toJsonObject() throws SerializationException {
@@ -462,9 +391,9 @@ public class Job {
 		jsonObject.addProperty("useWhitelist", this.useWhitelist);
 
 		JsonObject jsonWhitelist = new JsonObject();
-		for(Type type : stringWhitelist.keySet()) {
+		for(Type type : whitelist.keySet()) {
 			JsonArray jsonWhitelistArray = new JsonArray();
-			for(String string : stringWhitelist.get(type)) {
+			for(String string : whitelist.get(type)) {
 				jsonWhitelistArray.add(string);
 			}
 			jsonWhitelist.add(type.name(), jsonWhitelistArray);
@@ -505,8 +434,8 @@ public class Job {
 		jobConfiguration.node("work-message").set(this.workMessage);
 		jobConfiguration.node("use-whitelist").set(this.useWhitelist);
 
-		for(Type type : stringWhitelist.keySet()) {
-			jobConfiguration.node("whitelist", type.name()).set(stringWhitelist.get(type));
+		for(Type type : whitelist.keySet()) {
+			jobConfiguration.node("whitelist", type.name()).set(whitelist.get(type));
 		}
 
 		jobConfiguration.node("gui", slot).set(this.slot);

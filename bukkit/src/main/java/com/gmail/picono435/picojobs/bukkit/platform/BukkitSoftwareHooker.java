@@ -55,7 +55,7 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
                 Bukkit.getPluginManager().registerEvents(new CraftListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new EatListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new EnchantListener(), PicoJobsBukkit.getInstance());
-                Bukkit.getPluginManager().registerEvents(new MilkListener(), PicoJobsBukkit.getInstance());
+                Bukkit.getPluginManager().registerEvents(new FillEntityListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new MoveListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new TradeListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new RepairListener(), PicoJobsBukkit.getInstance());

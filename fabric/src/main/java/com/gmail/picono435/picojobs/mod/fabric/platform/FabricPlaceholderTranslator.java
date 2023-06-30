@@ -23,8 +23,10 @@ public class FabricPlaceholderTranslator implements PlaceholderTranslator {
             if(id.equals("cooldown_time") || id.equals("cooldown_mtime")) continue;
             toParseString = toParseString.replace("%" + id + "%", "%" + id.replace("_", ":") + "%");
         }
+        if(player == null) {
+            return Placeholders.parseText(Component.literal(toParseString), PlaceholderContext.of(PicoJobsMod.getServer().get()), Pattern.compile("(?<!((?<!(\\\\))\\\\))[%](?<id>[^%]+:[^%]+)[%]")).getString();
+        }
         return Placeholders.parseText(Component.literal(toParseString), PlaceholderContext.of(PicoJobsMod.getServer().get().getPlayerList().getPlayer(player)), Pattern.compile("(?<!((?<!(\\\\))\\\\))[%](?<id>[^%]+:[^%]+)[%]")).getString();
-
     }
 
     @Override

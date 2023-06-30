@@ -64,7 +64,7 @@ public class EditorCommand implements Command {
 
             JsonObject jsonTypes = new JsonObject();
             for(Type type : Type.values()) {
-                jsonTypes.addProperty(type.name(), type.getWhitelistType());
+                jsonTypes.addProperty(type.name(), type.getWhitelistType().name());
             }
             jsonEditor.add("types", jsonTypes);
 

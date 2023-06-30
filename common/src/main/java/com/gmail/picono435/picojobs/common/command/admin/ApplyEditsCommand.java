@@ -81,7 +81,6 @@ public class ApplyEditsCommand implements Command {
                 ConfigurationNode jobConfiguration = YamlConfigurationLoader.builder().build().load();
                 if(response.get("status").getAsInt() == 3000) {
                     PicoJobsCommon.getMainInstance().jobs.clear();
-                    System.out.println(response);
                     JsonObject jobsObject = (JsonObject) response.get("data");
                     for(String jobID : jobsObject.keySet()) {
                         Job job = new Job(jobsObject.get(jobID).getAsJsonObject());

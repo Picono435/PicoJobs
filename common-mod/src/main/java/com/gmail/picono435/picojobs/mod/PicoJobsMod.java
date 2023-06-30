@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.mod;
 
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.mod.command.ModJobsAdminCommand;
 import com.gmail.picono435.picojobs.mod.command.ModJobsCommand;
 import com.gmail.picono435.picojobs.mod.listeners.ModJoinCacheListener;
 import com.gmail.picono435.picojobs.mod.listeners.jobs.*;
@@ -25,20 +26,20 @@ public class PicoJobsMod {
         });
 
         CommandRegistrationEvent.EVENT.register((dispatcher, registry, selection) -> {
-            //TODO: Create commands
-            System.out.println("Workin on it...");
+            ModJobsAdminCommand.register(dispatcher);
             ModJobsCommand.register(dispatcher);
         });
 
         PlayerEvent.PLAYER_JOIN.register(new ModJoinCacheListener());
 
 
-        //TODO: BlockEvent.BREAK.register(new BreakListener());
+        BlockEvent.BREAK.register(new BreakListener());
+        BlockEvent.PLACE.register(new BreakListener());
         PlayerEvent.CRAFT_ITEM.register(new CraftListener());
         PlayerEvent.FILL_BUCKET.register(new FillListener());
         EntityEvent.LIVING_DEATH.register(new KillEntityListener());
         EntityEvent.LIVING_DEATH.register(new KillListener());
-        PlayerEvent.FILL_BUCKET.register(new MilkListener());
+        PlayerEvent.FILL_BUCKET.register(new FillEntityListener());
         BlockEvent.PLACE.register(new PlaceListener());
         PlayerEvent.SMELT_ITEM.register(new SmeltListener());
         EntityEvent.ANIMAL_TAME.register(new TameListener());

@@ -3,7 +3,7 @@ package com.gmail.picono435.picojobs.common;
 import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.common.platform.*;
 import com.gmail.picono435.picojobs.common.platform.scheduler.SchedulerAdapter;
-import com.gmail.picono435.picojobs.common.platform.whitelist.WhitelistConverter;
+import com.gmail.picono435.picojobs.common.platform.WhitelistConverter;
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.github.slimjar.resolver.data.Repository;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
