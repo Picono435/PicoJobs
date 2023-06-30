@@ -1,0 +1,35 @@
+group = project.group
+version = project.version
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url = 'https://repo.opencollab.dev/maven-snapshots/'
+
+        content {
+            includeGroup 'cn.nukkit'
+            includeGroupByRegex "com\\.nukkitx.*"
+            includeGroupByRegex "org\\.iq80.*"
+            includeGroup 'com.creeperface.nukkit.placeholderapi'
+        }
+    }
+}
+
+dependencies {
+    // Common & API project
+    shadow implementation(project(':common'))
+
+    compileOnly 'cn.nukkit:nukkit:1.0-SNAPSHOT'
+    compileOnly 'com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT'
+}
+
+shadowJar {
+    archiveClassifier.set("nukkit")
+}
+
+rootProject.tasks.named("processResources") {
+    duplicatesStrategy = 'include'
+}
+
+compileTestJava.dependsOn(shadowJar)

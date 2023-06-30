@@ -1,33 +1,33 @@
 modLoader = "javafml"
-loaderVersion = "[45,)"
+loaderVersion = "[46,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MIT License"
 
 [[mods]]
-modId = "examplemod"
+modId = "picojobs"
 version = "${version}"
-displayName = "Example Mod"
-authors = "Me!"
+displayName = "PicoJobs"
+authors = "Picono435"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+@description@
 '''
 #logoFile = ""
 
-[[dependencies.examplemod]]
+[[dependencies.picojobs]]
 modId = "forge"
 mandatory = true
-versionRange = "[45,)"
+versionRange = "[46,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.picojobs]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19.4,)"
+versionRange = "[1.20,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.picojobs]]
 modId = "architectury"
 mandatory = true
 versionRange = "[8.1.79,)"

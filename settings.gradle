@@ -16,4 +16,5 @@ include("common-mod")
 include("fabric")
 include("quilt")
 include("forge")
+include("nukkit")
 

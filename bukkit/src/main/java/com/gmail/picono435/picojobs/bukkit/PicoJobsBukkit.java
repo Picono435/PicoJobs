@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.LoggerFactory;
 
+//TODO: ON DISABLE
 public class PicoJobsBukkit extends JavaPlugin {
 
     private static PicoJobsBukkit instance;
