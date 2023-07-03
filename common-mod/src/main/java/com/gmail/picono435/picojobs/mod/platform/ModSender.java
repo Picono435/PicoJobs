@@ -4,6 +4,7 @@ import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.gmail.picono435.picojobs.common.inventory.ChooseJobMenu;
 import com.gmail.picono435.picojobs.common.inventory.WorkMenu;
 import com.gmail.picono435.picojobs.mod.PicoJobsExpected;
+import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
@@ -93,5 +94,10 @@ public class ModSender implements Sender {
     public void closeInventory() {
         if(!isPlayer()) return;
         ((Player) commandSource).closeContainer();
+    }
+
+    @Override
+    public void dispatchCommand(String command) {
+        //TODO: DISPATCH COMMAND
     }
 }

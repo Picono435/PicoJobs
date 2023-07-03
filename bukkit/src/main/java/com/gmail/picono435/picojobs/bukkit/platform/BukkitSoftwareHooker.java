@@ -19,7 +19,7 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
     @Override
     public void hookInPhase(Phase phase) {
         switch(phase) {
-            case ONE -> {
+            case ONE: {
                 PicoJobsAPI.registerEconomy(new ExpImplementation());
                 PicoJobsAPI.registerEconomy(new CommandImplementation());
                 PicoJobsAPI.registerEconomy(new ItemImplementation());
@@ -36,12 +36,12 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
 
                 PlaceholderAPIHook.setupPlaceholderAPI();
             }
-            case TWO -> {
+            case TWO: {
                 PicoJobsBukkit.getInstance().getCommand("jobs").setExecutor(new BukkitJobsCommand());
                 PicoJobsBukkit.getInstance().getCommand("jobsadmin").setExecutor(new BukkitJobsAdminCommand());
 
-                Bukkit.getPluginManager().registerEvents(new AliasesListener(), PicoJobsBukkit.getInstance());
-                Bukkit.getPluginManager().registerEvents(new ExecuteCommandListener(), PicoJobsBukkit.getInstance());
+                Bukkit.getPluginManager().registerEvents(new BukkitAliasesListener(), PicoJobsBukkit.getInstance());
+                Bukkit.getPluginManager().registerEvents(new BukkitExecuteCommandListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new BukkitInventoryMenuListener(), PicoJobsBukkit.getInstance());
                 Bukkit.getPluginManager().registerEvents(new BukkitJoinCacheListener(), PicoJobsBukkit.getInstance());
 
@@ -65,7 +65,7 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
                     Bukkit.getPluginManager().registerEvents(new StripLogsListener(), PicoJobsBukkit.getInstance());
                 }
             }
-            case THREE -> {
+            case THREE: {
 
             }
         }

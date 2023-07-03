@@ -4,5 +4,6 @@ public enum Platform {
     BUKKIT(),
     FORGE(),
     FABRIC(),
-    QUILT();
+    QUILT(),
+    NUKKIT();
 }

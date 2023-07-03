@@ -12,6 +12,7 @@ public class SettingsManager {
 	private String lang;
 	private String storageMethod;
 	private boolean automaticData;
+	// Command action is automatically set to 4 in nukkit if FakeInventories is not found
 	private int commandAction;
 	private Map<String, Integer> allowedCommands = new HashMap<String, Integer>();
 	private ConfigurationNode remoteSqlConfiguration;
@@ -35,7 +36,7 @@ public class SettingsManager {
 		this.prefix = configNode.node("prefix").getString();
 		this.lang = configNode.node("lang").getString();
 		this.storageMethod = configNode.node("storage", "storage-method").getString();
-		this.commandAction = configNode.node("jobs-action").getInt();
+		if(commandAction != 4) this.commandAction = configNode.node("jobs-action").getInt();
 		for(Object cmd : configNode.node("commands").childrenMap().keySet()) {
 			allowedCommands.put((String)cmd, configNode.node("commands", cmd).getInt());
 		}
@@ -90,5 +91,9 @@ public class SettingsManager {
 
 	public boolean isResetCacheOnJoin() {
 		return resetCacheOnJoin;
+	}
+
+	public void setCommandAction(int commandAction) {
+		this.commandAction = commandAction;
 	}
 }

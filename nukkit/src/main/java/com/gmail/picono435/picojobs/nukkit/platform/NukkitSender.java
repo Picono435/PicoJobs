@@ -1,19 +1,18 @@
-package com.gmail.picono435.picojobs.bukkit.platform;
+package com.gmail.picono435.picojobs.nukkit.platform;
 
+import cn.nukkit.Player;
+import cn.nukkit.command.CommandSender;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.gmail.picono435.picojobs.common.inventory.ChooseJobMenu;
 import com.gmail.picono435.picojobs.common.inventory.WorkMenu;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 
 import java.util.UUID;
 
-public class BukkitSender implements Sender {
-
+public class NukkitSender implements Sender {
     private CommandSender sender;
 
-    public BukkitSender(CommandSender sender) {
+    public NukkitSender(CommandSender sender) {
         this.sender = sender;
     }
 
@@ -44,20 +43,20 @@ public class BukkitSender implements Sender {
         if(!(sender instanceof Player)) return;
         Player player = (Player) sender;
         if(inventory.equals("choose-job")) {
-            player.openInventory(((BukkitInventoryAdapter) ChooseJobMenu.createMenu(new BukkitInventoryAdapter(), this.getUUID())).getInventory());
+            player.addWindow(((NukkitInventoryAdapter) ChooseJobMenu.createMenu(new NukkitInventoryAdapter(), player.getUniqueId())).getInventory());
         } else {
-            player.openInventory(((BukkitInventoryAdapter)  WorkMenu.createMenu(new BukkitInventoryAdapter(), this.getUUID(), inventory)).getInventory());
+            player.addWindow(((NukkitInventoryAdapter) WorkMenu.createMenu(new NukkitInventoryAdapter(), player.getUniqueId(), inventory)).getInventory());
         }
     }
 
     @Override
     public void closeInventory() {
         if(!isPlayer()) return;
-        ((Player) sender).closeInventory();
+        ((Player) sender).getInventory().close((Player) sender);
     }
 
     @Override
     public void dispatchCommand(String command) {
-        Bukkit.dispatchCommand(sender, command);
+        PicoJobsNukkit.getInstance().getServer().dispatchCommand(sender, command);
     }
 }

@@ -79,7 +79,7 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         }
 
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(itemAdapter.getName());
+        if(itemAdapter.getName() != null) itemMeta.setDisplayName(itemAdapter.getName());
         if(itemAdapter.getLore() != null) itemMeta.setLore(itemAdapter.getLore());
         if(PicoJobsCommon.isMoreThan("1.14") && itemAdapter.getData() != null) {
             itemMeta.setCustomModelData(itemAdapter.getData());

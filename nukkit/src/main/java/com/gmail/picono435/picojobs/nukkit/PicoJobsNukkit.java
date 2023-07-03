@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.nukkit;
 
 import cn.nukkit.plugin.PluginBase;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.nukkit.platform.*;
@@ -16,8 +17,8 @@ public class PicoJobsNukkit extends PluginBase {
 
         PicoJobsCommon.onLoad(
                 getDescription().getVersion(),
-                Platform.BUKKIT,
-                LoggerFactory.getLogger(PicoJobsNukkit.class),
+                Platform.NUKKIT,
+                LoggerFactory.getLogger(this.getName()),
                 getDataFolder(),
                 null,
                 new NukkitSchedulerAdapter(),
@@ -27,6 +28,11 @@ public class PicoJobsNukkit extends PluginBase {
                 new NukkitWhitelistConverter(),
                 new NukkitSoftwareHooker()
         );
+
+        if(getServer().getPluginManager().getPlugin("FakeInventories") == null || getServer().getPluginManager().getPlugin("FakeInventories").isDisabled()) {
+            PicoJobsCommon.getLogger().warn("PicoJobs requires the plugin FakeInventories to create inventories in nukkit. PicoJobs will automatically disable inventories because the plugin was not found.");
+            PicoJobsAPI.getSettingsManager().setCommandAction(4);
+        }
     }
 
     @Override

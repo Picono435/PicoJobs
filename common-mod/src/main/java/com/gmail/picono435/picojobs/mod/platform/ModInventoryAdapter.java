@@ -88,10 +88,12 @@ public class ModInventoryAdapter implements InventoryAdapter {
         }
 
         CompoundTag compoundTag = itemStack.getOrCreateTagElement("display");
-        compoundTag.putString("Name", Component.Serializer.toJson(Component.literal(itemAdapter.getName())));
-        ListTag loreTag = new ListTag();
-        loreTag.addAll(itemAdapter.getLore().stream().map((lore) -> StringTag.valueOf(Component.Serializer.toJson(Component.literal(lore)))).toList());
-        compoundTag.put("Lore", loreTag);
+        if(itemAdapter.getName() != null) compoundTag.putString("Name", Component.Serializer.toJson(Component.literal(itemAdapter.getName())));
+        if(itemAdapter.getLore() != null) {
+            ListTag loreTag = new ListTag();
+            loreTag.addAll(itemAdapter.getLore().stream().map((lore) -> StringTag.valueOf(Component.Serializer.toJson(Component.literal(lore)))).toList());
+            compoundTag.put("Lore", loreTag);
+        }
         if (itemAdapter.getData() != null) {
             itemStack.getTag().putInt("CustomModelData", itemAdapter.getData());
         }

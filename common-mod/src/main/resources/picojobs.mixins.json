@@ -12,7 +12,6 @@
     "InventoryMenuMixin",
     "MoveListener",
     "RepairListener",
-    "ShearListener",
     "StripLogsListener",
     "TradeListener"
   ],

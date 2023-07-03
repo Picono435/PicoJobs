@@ -88,10 +88,15 @@ dependencies {
 
 shadowJar {
     archiveClassifier.set("bukkit")
+
+    relocate 'org', 'com.gmail.picono435.picojobs.libs.org'
+    relocate('com', 'com.gmail.picono435.picojobs.libs.com') {
+        exclude '%regex[com.gmail.picono435.picojobs.*]'
+    }
+    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
+    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
 }
 
-rootProject.tasks.named("processResources") {
-    duplicatesStrategy = 'include'
-}
-
-compileTestJava.dependsOn(shadowJar)
+assemble.dependsOn shadowJar

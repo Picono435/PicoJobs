@@ -48,7 +48,7 @@ public class JobsCommand implements Command {
         if(action == 1) {
             sender.sendMessage(LanguageManager.getMessage("ignore-action", sender.getUUID()));
             return true;
-        } else if(action == 2) {
+        } else if(action == 2 || action == 4) {
             if(args.length < 1) {
                 sender.sendMessage(LanguageManager.getMessage("member-commands", sender.getUUID()));
                 return true;

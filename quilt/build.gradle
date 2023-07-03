@@ -35,11 +35,11 @@ dependencies {
 }
 
 processResources {
-    inputs.property "group", group
+    inputs.property "group", rootProject.group
     inputs.property "version", project.version
 
     filesMatching("quilt.mod.json") {
-        expand "group": group,
+        expand "group": rootProject.group,
                 "version": project.version
     }
 }
@@ -49,6 +49,15 @@ shadowJar {
 
     configurations = [project.configurations.shadowCommon]
     archiveClassifier.set("dev-shadow")
+
+    relocate 'org', 'com.gmail.picono435.picojobs.libs.org'
+    relocate('com', 'com.gmail.picono435.picojobs.libs.com') {
+        exclude '%regex[com.gmail.picono435.picojobs.*]'
+    }
+    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
+    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
 }
 
 remapJar {
@@ -71,19 +80,5 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
-    }
-}
-
-publishing {
-    publications {
-        mavenQuilt(MavenPublication) {
-            artifactId = rootProject.archives_base_name + "-" + project.name
-            from components.java
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
     }
 }

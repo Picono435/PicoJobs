@@ -15,4 +15,6 @@ public interface Sender {
     void openInventory(String inventory);
 
     void closeInventory();
+
+    void dispatchCommand(String command);
 }

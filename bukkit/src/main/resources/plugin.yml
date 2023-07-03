@@ -35,5 +35,5 @@ permissions:
     description: "Allow you to use the basics of the /jobs command"
     default: true
   picojobs.admin:
-    description: "Allow you to use the basics of the /jobs command"
+    description: "Allow you to use the /jobsadmin command"
     default: op

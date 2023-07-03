@@ -1,6 +1,9 @@
 group = project.group
 version = project.version
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 repositories {
     mavenCentral()
 
@@ -14,22 +17,40 @@ repositories {
             includeGroup 'com.creeperface.nukkit.placeholderapi'
         }
     }
+
+    maven {
+        url = 'https://jitpack.io'
+
+        content {
+            includeGroup 'com.github.IWareQ'
+        }
+    }
 }
 
 dependencies {
     // Common & API project
     shadow implementation(project(':common'))
 
-    compileOnly 'cn.nukkit:nukkit:1.0-SNAPSHOT'
-    compileOnly 'com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT'
+    compileOnly('cn.nukkit:nukkit:1.0-SNAPSHOT') { transitive false }
+    compileOnly('com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT')
+    compileOnly('com.github.IWareQ:FakeInventories:v1.1.4')
 }
 
 shadowJar {
     archiveClassifier.set("nukkit")
+
+    relocate 'org', 'com.gmail.picono435.picojobs.libs.org'
+    relocate('com', 'com.gmail.picono435.picojobs.libs.com') {
+        exclude '%regex[com.gmail.picono435.picojobs.*]'
+    }
+    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
+    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
 }
 
-rootProject.tasks.named("processResources") {
-    duplicatesStrategy = 'include'
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 8
 }
 
-compileTestJava.dependsOn(shadowJar)
+assemble.dependsOn shadowJar

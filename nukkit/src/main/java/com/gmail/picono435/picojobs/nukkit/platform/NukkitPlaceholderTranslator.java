@@ -1,8 +1,9 @@
 package com.gmail.picono435.picojobs.nukkit.platform;
 
-import com.creeperface.nukkit.placeholderapi.api.PlaceholderAPI;
+import com.gmail.picono435.picojobs.api.JobPlaceholders;
 import com.gmail.picono435.picojobs.common.platform.PlaceholderTranslator;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
+import com.gmail.picono435.picojobs.nukkit.hooks.PlaceholderAPIHook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,11 @@ import java.util.UUID;
 public class NukkitPlaceholderTranslator implements PlaceholderTranslator {
     @Override
     public String setPlaceholders(UUID player, String string) {
-        return PlaceholderAPI.getInstance().translateString(string, PicoJobsNukkit.getInstance().getServer().getPlayer(player).get());
+        if(PlaceholderAPIHook.isEnabled()) {
+            return PlaceholderAPIHook.translateString(string, PicoJobsNukkit.getInstance().getServer().getPlayer(player).get());
+        } else {
+            return JobPlaceholders.setPlaceholders(player, string);
+        }
     }
 
     @Override
