@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 group = project.group
 version = project.version
 
@@ -15,6 +17,7 @@ repositories {
 
     maven {
         url = 'https://jitpack.io'
+
         content {
             includeGroupByRegex "com\\.github.*"
         }
@@ -22,6 +25,7 @@ repositories {
 
     maven {
         url 'https://repo.papermc.io/repository/maven-public/'
+
         content {
             includeGroup 'com.github.seeseemelk'
             includeGroup 'io.papermc.paper'
@@ -31,6 +35,7 @@ repositories {
 
     maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+
         content {
             includeGroupByRegex "me\\.clip.*"
         }
@@ -38,6 +43,7 @@ repositories {
 
     maven {
         url = 'https://repo.rosewooddev.io/repository/public/'
+
         content {
             includeGroupByRegex "org\\.black_ixx.*"
         }
@@ -72,7 +78,7 @@ dependencies {
     // Common & API project
     shadow implementation(project(':common'))
     // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
+    compileOnly('org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT')
     // Plugins API
     compileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
     compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
@@ -89,10 +95,15 @@ dependencies {
 shadowJar {
     archiveClassifier.set("bukkit")
 
-    relocate 'org', 'com.gmail.picono435.picojobs.libs.org'
-    relocate('com', 'com.gmail.picono435.picojobs.libs.com') {
-        exclude '%regex[com.gmail.picono435.picojobs.*]'
-    }
+    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.org.spongepowered'
+    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.org.slf4j'
+    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.org.apache'
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
+    relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
+    relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'
+    relocate 'org.yaml', 'com.gmail.picono435.picojobs.libs.org.yaml'
+    relocate 'com.google', 'com.gmail.picono435.picojobs.libs.com.google'
+    relocate 'com.typesafe', 'com.gmail.picono435.picojobs.libs.com.typesafe'
     relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
     relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
     relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'

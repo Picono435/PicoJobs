@@ -2,20 +2,19 @@ package com.gmail.picono435.picojobs.nukkit.platform.logging;
 
 import cn.nukkit.plugin.PluginLogger;
 import cn.nukkit.utils.LogLevel;
+import cn.nukkit.utils.Logger;
 import cn.nukkit.utils.MainLogger;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
-import com.gmail.picono435.picojobs.nukkit.platform.NukkitInventoryAdapter;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 
-public class NukkitLoggerAdapter implements Logger {
+public class NukkitLoggerAdapter implements org.slf4j.Logger {
 
     private Logger mainLogger;
     private PluginLogger pluginLogger;
 
     public NukkitLoggerAdapter(PluginLogger pluginLogger) {
-        mainLogger = LoggerFactory.getLogger(MainLogger.class);
+        mainLogger = PicoJobsNukkit.getInstance().getServer().getLogger();
         this.pluginLogger = pluginLogger;
     }
 
@@ -26,7 +25,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isTraceEnabled() {
-        return mainLogger.isTraceEnabled();
+        return true;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isTraceEnabled(Marker marker) {
-        return mainLogger.isTraceEnabled(marker);
+        return true;
     }
 
     @Override
@@ -70,7 +69,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isDebugEnabled() {
-        return mainLogger.isDebugEnabled();
+        return true;
     }
 
     @Override
@@ -94,7 +93,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isDebugEnabled(Marker marker) {
-        return mainLogger.isDebugEnabled(marker);
+        return true;
     }
 
     @Override
@@ -114,7 +113,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isInfoEnabled() {
-        return mainLogger.isInfoEnabled();
+        return true;
     }
 
     @Override
@@ -138,7 +137,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isInfoEnabled(Marker marker) {
-        return mainLogger.isInfoEnabled(marker);
+        return true;
     }
 
     @Override
@@ -158,7 +157,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isWarnEnabled() {
-        return mainLogger.isWarnEnabled();
+        return true;
     }
 
     @Override
@@ -182,7 +181,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isWarnEnabled(Marker marker) {
-        return mainLogger.isWarnEnabled(marker);
+        return true;
     }
 
     @Override
@@ -202,7 +201,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isErrorEnabled() {
-        return mainLogger.isErrorEnabled();
+        return true;
     }
 
     @Override
@@ -226,7 +225,7 @@ public class NukkitLoggerAdapter implements Logger {
 
     @Override
     public boolean isErrorEnabled(Marker marker) {
-        return mainLogger.isErrorEnabled(marker);
+        return true;
     }
 
     @Override

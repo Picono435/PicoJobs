@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 public class NukkitLoggerFactory implements ILoggerFactory {
     @Override
     public Logger getLogger(String name) {
-        System.out.println("YO: " + name);
-        if(!name.equals("PicoJobs")) return null;
-        return new NukkitLoggerAdapter(PicoJobsNukkit.getInstance().getLogger());
+        return PicoJobsNukkit.getInstance().getLoggerAdapter();
     }
 }
