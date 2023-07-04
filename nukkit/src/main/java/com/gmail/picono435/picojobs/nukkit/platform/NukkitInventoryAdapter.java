@@ -15,15 +15,8 @@ import java.util.Arrays;
 
 public class NukkitInventoryAdapter implements InventoryAdapter {
 
-    private Inventory inventory;
+    private FakeInventory inventory;
     private String title;
-
-    public NukkitInventoryAdapter() {}
-
-    public NukkitInventoryAdapter(Inventory inventory, String title) {
-        this.inventory = inventory;
-        this.title = title;
-    }
 
     @Override
     public void create(String title, int size) {
@@ -35,6 +28,7 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
             PicoJobsCommon.getLogger().warn("GUI with title '" + title + "' will not have the correct size which can cause issues. Nukkit only supports inventories with size '54' or '27'.");
             inventory = new FakeInventory(InventoryType.CHEST, title);
         }
+        inventory.setDefaultItemHandler(((item, inventoryTransactionEvent) -> {}));
         this.title = title;
     }
 
@@ -46,7 +40,9 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
     @Override
     public void setItem(int slot, ItemAdapter item, ClickAction clickAction) {
         Item itemStack = toItem(item);
-        inventory.setItem(slot, itemStack);
+        inventory.setItem(slot, itemStack, (clickedItem, event) -> {
+            event.setCancelled(InventoryMenuListener.onBasicClick(new NukkitSender(event.getTransaction().getSource()), this, slot, itemStack));
+        });
         InventoryMenuListener.actionItems.put(itemStack, clickAction);
     }
 
@@ -78,7 +74,7 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
         if(itemAdapter.getAmount() != null) item.setCount(itemAdapter.getAmount());
 
         if(itemAdapter.getName() != null) item.setCustomName(itemAdapter.getName());
-        if(itemAdapter.getLore() != null) itemAdapter.setLore(itemAdapter.getLore());
+        if(itemAdapter.getLore() != null) item.setLore(itemAdapter.getLore().toArray(new String[itemAdapter.getLore().size()]));
         item.getNamedTag().putInt("HideFlags", 255);
 
         if(itemAdapter.isEnchanted()) item.addEnchantment(new EnchantmentBowPower());

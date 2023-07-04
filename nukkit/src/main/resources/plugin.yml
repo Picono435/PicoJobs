@@ -1,7 +1,7 @@
 #name, main, version and api are required
 name: @name@
 main: com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit
-#remember version and api is string, don't write it like this: 1.0.0, or there will be an exception
+load: STARTUP
 version: "@version@"
 api: ["1.0.5"]
 author: Picono435
@@ -13,12 +13,14 @@ website: https://piconodev.com
 softdepend: ["PlaceholderAPI", "FakeInventories"]
 
 commands:
-  example:
-    description: Example command
-    usage: "/example"
-    aliases: ["xample", "nukkitexample"]
-    permission: exampleplugin.command.example
-    permission-message: "You do not have the required permission to run /example"
+  jobs:
+    description: Basic main command of PicoJobs
+    usage: "/jobs"
+    aliases: [picojobs, piconojobs, job, empregos, emprego, picoempregos, piconoempregos]
+  jobsadmin:
+    description: Basic admin command of PicoJobs
+    usage: "/jobsadmin"
+    aliases: [picojobsadmin, piconojobsadmin, jobadmin, empregosadmin, empregoadmin, picoempregosadmin, piconoempregosadmin]
 permissions:
   picojobs.use.basic:
     description: "Allow you to use the basics of the /jobs command"

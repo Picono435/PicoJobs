@@ -7,7 +7,6 @@ import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 import com.gmail.picono435.picojobs.nukkit.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.nukkit.listeners.NukkitAliasesListener;
 import com.gmail.picono435.picojobs.nukkit.listeners.NukkitExecuteCommandListener;
-import com.gmail.picono435.picojobs.nukkit.listeners.NukkitInventoryMenuListener;
 import com.gmail.picono435.picojobs.nukkit.listeners.NukkitJoinCacheListener;
 import com.gmail.picono435.picojobs.nukkit.listeners.jobs.*;
 
@@ -31,12 +30,12 @@ public class NukkitSoftwareHooker implements SoftwareHooker {
                 PicoJobsAPI.registerWorkZone(new TownyImplementation());*/
 
                 PlaceholderAPIHook.setupPlaceholderAPI();
+                break;
             }
             case TWO: {
                 PluginManager pluginManager = PicoJobsNukkit.getInstance().getServer().getPluginManager();
                 pluginManager.registerEvents(new NukkitAliasesListener(), PicoJobsNukkit.getInstance());
                 pluginManager.registerEvents(new NukkitExecuteCommandListener(), PicoJobsNukkit.getInstance());
-                pluginManager.registerEvents(new NukkitInventoryMenuListener(), PicoJobsNukkit.getInstance());
                 pluginManager.registerEvents(new NukkitJoinCacheListener(), PicoJobsNukkit.getInstance());
 
                 pluginManager.registerEvents(new BreakListener(), PicoJobsNukkit.getInstance());
@@ -59,9 +58,10 @@ public class NukkitSoftwareHooker implements SoftwareHooker {
                     //TODO: CHECK THIS
                     pluginManager.registerEvents(new StripLogsListener(), PicoJobsNukkit.getInstance());
                 }
+                break;
             }
             case THREE: {
-
+                break;
             }
         }
     }

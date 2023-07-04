@@ -35,6 +35,7 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
                 PicoJobsAPI.registerWorkZone(new TownyImplementation());
 
                 PlaceholderAPIHook.setupPlaceholderAPI();
+                break;
             }
             case TWO: {
                 PicoJobsBukkit.getInstance().getCommand("jobs").setExecutor(new BukkitJobsCommand());
@@ -64,9 +65,10 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
                 if(PicoJobsCommon.isMoreThan("1.14")) {
                     Bukkit.getPluginManager().registerEvents(new StripLogsListener(), PicoJobsBukkit.getInstance());
                 }
+                break;
             }
             case THREE: {
-
+                break;
             }
         }
     }

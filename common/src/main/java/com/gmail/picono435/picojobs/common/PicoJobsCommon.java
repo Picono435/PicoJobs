@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs.common;
 
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.common.platform.*;
 import com.gmail.picono435.picojobs.common.platform.scheduler.SchedulerAdapter;
@@ -68,6 +69,23 @@ public class PicoJobsCommon {
         PicoJobsCommon.getLogger().info("Plugin created by: Picono435#2011. Thank you for using it");
         mainInstance = new PicoJobsMain();
         mainInstance.init();
+    }
+
+    public static void onDisable() {
+        PicoJobsCommon.getLogger().info("Disconnecting connection to storage...");
+        mainInstance.jobs.clear();
+
+        PicoJobsAPI.getStorageManager().destroyStorageFactory();
+
+        /*if(wasUpdated && PicoJobsAPI.getStorageManager().getStorageFactory() instanceof H2Storage) {
+            try {
+                Script.main("-url jdbc:h2:$f -script $f.zip -options compression zip".replace("$f", PicoJobsPlugin.getInstance().getDataFolder().toPath().toAbsolutePath().resolve("storage").resolve("picojobs-h2").toAbsolutePath().toString()).split(" "));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+        PicoJobsCommon.getLogger().info("The plugin was succefully disabled.");
     }
 
     /**
