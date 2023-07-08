@@ -90,14 +90,15 @@ dependencies {
     compileOnly('com.palmergames.bukkit.towny:towny:0.99.0.0') { transitive = false }
     // Other libraries
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
+    //shadow implementation('org.slf4j:slf4j-jdk14:2.0.7')
 }
 
 shadowJar {
     archiveClassifier.set("bukkit")
 
-    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.org.spongepowered'
-    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.org.slf4j'
-    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.org.apache'
+    relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
+    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
+    relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'

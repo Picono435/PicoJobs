@@ -34,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":common"))
+    shadowCommon(implementation(project(":common")))
 
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
@@ -52,9 +52,9 @@ shadowJar {
     configurations = [project.configurations.shadowCommon]
     archiveClassifier.set("dev-shadow")
 
-    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.org.spongepowered'
-    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.org.slf4j'
-    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.org.apache'
+    relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
+    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
+    relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'

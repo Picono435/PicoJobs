@@ -39,8 +39,9 @@ dependencies {
 shadowJar {
     archiveClassifier.set("nukkit")
 
-    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.org.spongepowered'
-    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.org.apache'
+    relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
+    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
+    relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'

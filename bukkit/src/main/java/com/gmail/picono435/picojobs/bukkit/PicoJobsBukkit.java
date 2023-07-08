@@ -1,9 +1,11 @@
 package com.gmail.picono435.picojobs.bukkit;
 
 import com.gmail.picono435.picojobs.bukkit.platform.*;
+import com.gmail.picono435.picojobs.bukkit.platform.BukkitLoggerAdapter;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.LoggerFactory;
 
@@ -14,11 +16,12 @@ public class PicoJobsBukkit extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
+        System.out.println(LoggerFactory.getILoggerFactory().getClass().getCanonicalName());
 
         PicoJobsCommon.onLoad(
                 getDescription().getVersion(),
                 Platform.BUKKIT,
-                LoggerFactory.getLogger(getLogger().getName()),
+                new BukkitLoggerAdapter((PluginLogger) PicoJobsBukkit.getInstance().getLogger()),
                 getDataFolder(),
                 Bukkit.getUpdateFolderFile(),
                 new BukkitSchedulerAdapter(),

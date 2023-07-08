@@ -42,7 +42,7 @@ public class PicoJobsForge {
         MinecraftForge.EVENT_BUS.register(this);
         EventBuses.registerModEventBus(PicoJobsMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         PicoJobsCommon.onLoad(
-                ModList.get().getModContainerById("modid").map(ModContainer::getModInfo).map(IModInfo::getVersion).map(ArtifactVersion::toString).orElse("[UNKNOWN]"),
+                "1.0-pre",
                 Platform.FORGE,
                 LoggerFactory.getLogger(PicoJobsMod.getLogger().getName()),
                 FMLPaths.CONFIGDIR.get().toFile(),

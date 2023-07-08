@@ -26,10 +26,11 @@ configurations {
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentForge.extendsFrom common
+    forgeRuntimeLibrary { extendsFrom project(':common').configurations.transitiveCommon }
 }
 
 dependencies {
-    forgeRuntimeLibrary(implementation(project(":common")))
+    shadowCommon(implementation(project(":common")))
 
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
@@ -53,9 +54,9 @@ shadowJar {
     configurations = [project.configurations.shadowCommon]
     archiveClassifier.set("dev-shadow")
 
-    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.org.spongepowered'
-    relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.org.slf4j'
-    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.org.apache'
+    relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
+    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
+    relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'
