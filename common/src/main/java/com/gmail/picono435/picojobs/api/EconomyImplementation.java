@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public abstract class EconomyImplementation {
 
-	protected String requiredPlugin;
+	protected String requiredPlugin = "PicoJobs";
 	/**
 	 * Required field is currently only used in PicoJobs editor but should be set for a better user experience
 	 */
