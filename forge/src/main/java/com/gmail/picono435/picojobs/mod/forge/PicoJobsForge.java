@@ -12,17 +12,15 @@ import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.server.permission.events.PermissionGatherEvent;
 import net.minecraftforge.server.permission.nodes.PermissionNode;
 import net.minecraftforge.server.permission.nodes.PermissionTypes;
-import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.slf4j.LoggerFactory;
+
+import java.net.URISyntaxException;
 
 @Mod(PicoJobsMod.MOD_ID)
 public class PicoJobsForge {
@@ -38,7 +36,7 @@ public class PicoJobsForge {
             (serverPlayer, uuid, permissionDynamicContexts) -> serverPlayer.hasPermissions(3));
 
 
-    public PicoJobsForge() {
+    public PicoJobsForge() throws URISyntaxException {
         MinecraftForge.EVENT_BUS.register(this);
         EventBuses.registerModEventBus(PicoJobsMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         PicoJobsCommon.onLoad(
@@ -54,6 +52,9 @@ public class PicoJobsForge {
                 new ModWhitelistConverter(),
                 new ModSoftwareHooker()
         );
+
+        System.out.println(PicoJobsForge.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().split(".jar")[0] + ".jar" + " HUH LA LA");
+
         PicoJobsMod.init();
     }
 

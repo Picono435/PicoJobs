@@ -54,9 +54,14 @@ shadowJar {
     configurations = [project.configurations.shadowCommon]
     archiveClassifier.set("dev-shadow")
 
+    dependencies {
+        exclude(dependency('org.slf4j:slf4j-api:2.0.7'))
+    }
+
     relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
     relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
     relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
+    //relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.org.slf4j'
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'

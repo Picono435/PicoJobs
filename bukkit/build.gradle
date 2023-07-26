@@ -90,7 +90,6 @@ dependencies {
     compileOnly('com.palmergames.bukkit.towny:towny:0.99.0.0') { transitive = false }
     // Other libraries
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
-    //shadow implementation('org.slf4j:slf4j-jdk14:2.0.7')
 }
 
 shadowJar {

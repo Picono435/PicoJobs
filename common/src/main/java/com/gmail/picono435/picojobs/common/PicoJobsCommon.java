@@ -53,7 +53,6 @@ public class PicoJobsCommon {
                     .appending("PicoJobs")
                     .mirrorSelector((collection, collection1) -> collection)
                     .downloadDirectoryPath(PicoJobsCommon.getConfigDir().toPath().resolve("libraries"))
-                    .internalRepositories(Collections.singleton(new Repository(new URL("https://repo.maven.apache.org/maven2/"))))
                     .build();
             PicoJobsCommon.getLogger().info("All dependencies were loaded sucessfully.");
         } catch (Exception ex) {

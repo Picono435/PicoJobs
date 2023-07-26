@@ -7,7 +7,6 @@ import com.gmail.picono435.picojobs.common.platform.Platform;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.slf4j.LoggerFactory;
 
 public class PicoJobsBukkit extends JavaPlugin {
 
@@ -16,8 +15,6 @@ public class PicoJobsBukkit extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        System.out.println(LoggerFactory.getILoggerFactory().getClass().getCanonicalName());
-
         PicoJobsCommon.onLoad(
                 getDescription().getVersion(),
                 Platform.BUKKIT,

@@ -26,10 +26,10 @@ subprojects {
 
     repositories {
         maven {
-            url = 'https://repo.piconodev.com/repository/maven-releases/'
+            url = 'https://repo.racci.dev/releases'
 
             content {
-                includeGroup 'io.github.slimjar'
+                includeGroup 'dev.racci.slimjar'
             }
         }
     }
