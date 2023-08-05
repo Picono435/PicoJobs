@@ -12,6 +12,6 @@ public class SpongeColorConverter implements ColorConverter {
 
     @Override
     public String stripColor(String string) {
-        return null;
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(string).content();
     }
 }

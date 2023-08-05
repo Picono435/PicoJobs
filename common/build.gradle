@@ -2,9 +2,6 @@ plugins {
     id("dev.racci.slimjar") version "1.5.4"
 }
 
-group = project.group
-version = project.version
-
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
@@ -69,5 +66,5 @@ tasks.withType(JavaCompile).configureEach {
     it.options.release = 8
 }
 
-assemble.dependsOn shadowJar
-tasks.slimJar.dependsOn jar
+tasks.jar.dependsOn tasks.slimJar
+tasks.sourcesJar.dependsOn tasks.slimJar

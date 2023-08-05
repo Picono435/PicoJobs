@@ -10,19 +10,21 @@ plugins {
     id 'net.nemerosa.versioning' version '3.0.0'
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.2-SNAPSHOT" apply false
+    //id("dev.racci.slimjar") version "1.5.4" apply false
 }
 
 sourceCompatibility = '17'
 targetCompatibility = '17'
 
 if (System.getenv("STABLE_BUILD") == '0') {
-    version versioning.info.build + "-DEV"
+    rootProject.version = versioning.info.build + "-DEV"
 } else {
-    version "1.0-pre"
+    rootProject.version = "1.0-pre"
 }
 
 subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
+    //apply plugin: 'dev.racci.slimjar'
 
     repositories {
         maven {
@@ -70,6 +72,7 @@ allprojects {
         ]
     }
 }
+
 
 // Fabric, Forge & Quilt
 architectury {

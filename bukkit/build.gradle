@@ -1,8 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
-group = project.group
-version = project.version
-
 repositories {
     mavenCentral()
 

@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.sponge.platform;
 
 import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.sponge.PicoJobsSponge;
+import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 
 import java.util.UUID;
@@ -14,17 +15,17 @@ public class SpongePlatformAdapter implements PlatformAdapter {
 
     @Override
     public String getPlatformVersion() {
-        return null;
+        return Sponge.platform().container(Platform.Component.API).metadata().version().getQualifier();
     }
 
     @Override
     public String getMinecraftVersion() {
-        return Sponge.platform().minecraftVersion().name();
+        return PicoJobsSponge.getInstance().getGame().platform().minecraftVersion().name();
     }
 
     @Override
     public String getPort() {
-        return null;
+        return PicoJobsSponge.getInstance().getGame().server().boundAddress().get().getPort() + "";
     }
 
     @Override
