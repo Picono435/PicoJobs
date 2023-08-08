@@ -1,5 +1,5 @@
 plugins {
-    id("dev.racci.slimjar") version "1.5.4"
+    id("dev.racci.slimjar") version "1.6.0"
 }
 
 sourceCompatibility = '1.8'
@@ -14,7 +14,7 @@ configurations {
 }
 
 dependencies {
-    transitiveCommon(shadow implementation(slimjar("1.5.4")))
+    transitiveCommon(shadow implementation(slimjar("1.6.0")))
 
     // Storage Methods
     transitiveCommon(slim('org.mongodb:mongodb-driver-sync:4.9.1'))
@@ -61,10 +61,17 @@ shadowJar {
     relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
     relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
 }
-
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 8
 }
 
-tasks.jar.dependsOn tasks.slimJar
-tasks.sourcesJar.dependsOn tasks.slimJar
+tasks.slimJar {
+    dependsOn(tasks.jar)
+    dependsOn(tasks.sourcesJar)
+}
+
+tasks.shadowJar {
+    from(tasks.slimJar.outputDirectory)
+}
+
+assemble.dependsOn shadowJar

@@ -7,7 +7,8 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 public class SpongeColorConverter implements ColorConverter {
     @Override
     public String translateAlternateColorCodes(String string) {
-        return LegacyComponentSerializer.legacyAmpersand().serialize(Component.text(string));
+        // We cant do anything in this side unfortunately. Color translating is under SpongeSender#sendMessage
+        return string;
     }
 
     @Override

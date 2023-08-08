@@ -92,5 +92,19 @@ tasks.withType(JavaCompile).configureEach {
     it.options.release = 8
 }
 
+// Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file
+sourceSets {
+    main {
+        resources {
+            srcDirs "C:/Users/picon/Desktop/Minecraft/Plugins/Workspaces/Published/PicoJobs/common/build/resources/slimjar"
+        }
+    }
+}
+
+project(':common').tasks.slimJar {
+    dependsOn(tasks.jar)
+    dependsOn(tasks.sourcesJar)
+}
+
 assemble.dependsOn shadowJar
 //TODO: slimjar.json is not being generated

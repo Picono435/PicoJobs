@@ -20,14 +20,21 @@ public class SpongePlaceholderTranslator implements PlaceholderTranslator {
 
     @Override
     public String setPlaceholders(UUID player, String string) {
-        Player playerInstance = PicoJobsSponge.getInstance().getGame().server().player(player).get();
+        Player playerInstance = null;
+        if(player != null) {
+            playerInstance = PicoJobsSponge.getInstance().getGame().server().player(player).get();
+        }
         String newString = string;
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);
         while(matcher.find()) {
             String placeholder = string.substring(matcher.start(), matcher.end());
             PicoJobsCommon.getLogger().error(placeholder + " HM?");
             if(PicoJobsSponge.getInstance().getPlaceholderParsers().containsKey(placeholder)) {
-                newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().associatedObject(playerInstance).build())));
+                if(playerInstance != null) {
+                    newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().associatedObject(playerInstance).build())));
+                } else {
+                    newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().build())));
+                }
             } else {
                 PicoJobsCommon.getLogger().warn("Could not find placeholder '" + placeholder + "'.");
             }

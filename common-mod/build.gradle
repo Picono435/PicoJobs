@@ -13,3 +13,17 @@ dependencies {
     modCompileOnly "dev.the-fireplace:Grand-Economy-Common:6.0.1+1.19"
     compileOnly "dev.the-fireplace:Fireplace-Lib-Common:7.0.3+1.19.2"
 }
+
+// Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file
+sourceSets {
+    main {
+        resources {
+            srcDirs "C:/Users/picon/Desktop/Minecraft/Plugins/Workspaces/Published/PicoJobs/common/build/resources/slimjar"
+        }
+    }
+}
+
+project(':common').tasks.slimJar {
+    dependsOn(tasks.jar)
+    dependsOn(tasks.sourcesJar)
+}
