@@ -18,7 +18,7 @@ targetCompatibility = '17'
 if (System.getenv("STABLE_BUILD") == '0') {
     rootProject.version = versioning.info.build + "-DEV"
 } else {
-    rootProject.version = "1.0-pre"
+    rootProject.version = "1.0-rc"
 }
 
 subprojects {

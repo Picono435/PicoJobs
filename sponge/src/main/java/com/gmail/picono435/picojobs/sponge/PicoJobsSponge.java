@@ -90,6 +90,7 @@ public class PicoJobsSponge {
         Stream<PlaceholderParser> placeholders = PlaceholderParsers.registry().stream();
         placeholders.forEach((parser) -> {
             String placeholder = "%" + parser.key(RegistryTypes.PLACEHOLDER_PARSER).asString().replace("_", "_").replace(":", "_") + "%";
+            if(placeholder.equals("%sponge_name%")) placeholder = "%player_name%";
             logger.error(placeholder);
             placeholderParsers.put(placeholder, parser);
         });
@@ -97,7 +98,7 @@ public class PicoJobsSponge {
     }
 
     @Listener
-    public void onRegisterRawCommands(final RegisterCommandEvent<Command.Raw> event){
+    public void onRegisterRawCommands(final RegisterCommandEvent<Command.Raw> event ){
         List<String> jobsAliases = LanguageManager.getCommandAliases("jobs");
         String jobFirstAliase = jobsAliases.get(0);
         jobsAliases.remove(0);
@@ -107,8 +108,12 @@ public class PicoJobsSponge {
         String jobAdminFirstAliase = jobsAdminAliases.get(0);
         jobsAliases.remove(0);
         event.register(this.pluginContainer, new SpongeJobsAdminCommand(), jobAdminFirstAliase, jobsAdminAliases.toArray(new String[0]));
+    }
 
-        //TODO: PlaceholderAPIHook.registerPlaceholders();
+    @Listener
+    public void onRegisterPlaceholders(final RegisterRegistryValueEvent event) {
+        System.out.println("REGISTERING PLACEHOLDERS");
+        PlaceholderAPIHook.registerPlaceholders();
     }
 
     @Listener

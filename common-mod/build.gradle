@@ -18,7 +18,7 @@ dependencies {
 sourceSets {
     main {
         resources {
-            srcDirs "C:/Users/picon/Desktop/Minecraft/Plugins/Workspaces/Published/PicoJobs/common/build/resources/slimjar"
+            srcDirs "../common/build/resources/slimjar"
         }
     }
 }
