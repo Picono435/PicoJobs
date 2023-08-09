@@ -114,9 +114,9 @@ sourceSets {
     }
 }
 
-/*project(':common').tasks.slimJar {
+project(':common').tasks.slimJar {
     dependsOn(tasks.jar)
     dependsOn(tasks.sourcesJar)
-}*/
+}
 
 assemble.dependsOn shadowJar
