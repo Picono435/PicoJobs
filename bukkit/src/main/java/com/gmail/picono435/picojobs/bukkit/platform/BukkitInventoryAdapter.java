@@ -99,7 +99,7 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         if(itemMeta.hasDisplayName()) itemAdapter.setName(itemMeta.getDisplayName());
         if(itemMeta.hasLore()) itemAdapter.setLore(itemMeta.getLore());
         if(PicoJobsCommon.isMoreThan("1.14")) {
-            if(itemMeta.hasCustomModelData()) itemMeta.setCustomModelData(itemAdapter.getData());
+            if(itemMeta.hasCustomModelData()) itemAdapter.setData(itemMeta.getCustomModelData());
         }
 
         if(itemStack.containsEnchantment(Enchantment.ARROW_DAMAGE)) itemAdapter.setEnchanted(true);
