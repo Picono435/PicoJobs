@@ -86,6 +86,11 @@ public class PicoJobsSponge {
     }
 
     @Listener
+    public void onServerStarting(final StartingEngineEvent<Server> event) {
+        PicoJobsCommon.onEnable();
+    }
+
+    @Listener
     public void onServerStart(final StartedEngineEvent<Server> event) {
         Stream<PlaceholderParser> placeholders = PlaceholderParsers.registry().stream();
         placeholders.forEach((parser) -> {
@@ -94,7 +99,6 @@ public class PicoJobsSponge {
             logger.error(placeholder);
             placeholderParsers.put(placeholder, parser);
         });
-        PicoJobsCommon.onEnable();
     }
 
     @Listener
@@ -112,7 +116,6 @@ public class PicoJobsSponge {
 
     @Listener
     public void onRegisterPlaceholders(final RegisterRegistryValueEvent event) {
-        System.out.println("REGISTERING PLACEHOLDERS");
         PlaceholderAPIHook.registerPlaceholders();
     }
 
@@ -127,6 +130,10 @@ public class PicoJobsSponge {
 
     public Game getGame() {
         return game;
+    }
+
+    public PluginContainer getPluginContainer() {
+        return pluginContainer;
     }
 
     public Map<String, PlaceholderParser> getPlaceholderParsers() {

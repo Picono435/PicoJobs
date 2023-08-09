@@ -11,7 +11,7 @@ pluginManagement {
 rootProject.name = 'PicoJobs'
 
 include("common")
-include("bukkit")
+include("sbukkit")
 include("common-mod")
 include("fabric")
 include("quilt")

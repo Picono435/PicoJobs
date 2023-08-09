@@ -39,7 +39,7 @@ public class ModInventoryAdapter implements InventoryAdapter {
     public void create(String title, int size) {
        this.title = title;
        this.size = size;
-        this.simpleContainer = new JobsContainer(size, this);
+       this.simpleContainer = new JobsContainer(size, this);
     }
 
     @Override

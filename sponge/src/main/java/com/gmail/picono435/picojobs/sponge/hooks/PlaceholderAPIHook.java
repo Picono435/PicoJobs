@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.sponge.hooks;
 
 import com.gmail.picono435.picojobs.api.JobPlaceholders;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.entity.living.player.Player;
@@ -9,7 +10,11 @@ import org.spongepowered.api.placeholder.PlaceholderParsers;
 
 public class PlaceholderAPIHook {
 
+    private static boolean alreadyRegistered;
+
     public static void registerPlaceholders() {
+        PicoJobsCommon.getLogger().error("So registering placeholders innit...");
+        if(alreadyRegistered) return;
         PlaceholderParsers.registry().register(ResourceKey.of("jobplayer", "job"),
                 PlaceholderParser.builder().parser((context) -> context.associatedObject()
                         .filter(x -> x instanceof Player)
@@ -52,5 +57,6 @@ public class PlaceholderAPIHook {
                         .map(player -> JobPlaceholders.translatePlaceholders(((Player) player).uniqueId(), "working"))
                         .map(string -> Component.text(string))
                         .orElse(Component.empty())).build());
+        alreadyRegistered = true;
     }
 }
