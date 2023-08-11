@@ -102,7 +102,7 @@ dependencies {
     // Slimjar
     shadow implementation(slimjar("1.2.6"))
     // Spigot
-    compileOnly 'org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT'
     // Storage Methods
     slim 'org.mongodb:mongodb-driver-sync:4.9.1'
     slim 'com.zaxxer:HikariCP:5.0.1'
