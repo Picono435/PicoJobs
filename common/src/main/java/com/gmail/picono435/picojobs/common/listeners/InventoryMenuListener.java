@@ -23,17 +23,16 @@ public class InventoryMenuListener {
 	 *
 	 * @param sender the clicker
 	 * @param inventoryAdapter the inventory
-	 * @param clickedSlot the clicked slot
 	 * @param item the item that got clicked
 	 * @return
 	 */
-	public static boolean onBasicClick(Sender sender, InventoryAdapter inventoryAdapter, int clickedSlot, Object item) {
+	public static boolean onBasicClick(Sender sender, InventoryAdapter inventoryAdapter, Object item) {
 		/*
 		 * Choose Jobs Menu Clicking Event
 		 */
 		if(inventoryAdapter.getTitle().equals(FileManager.getGuiNode().node("gui-settings", "choose-job", "title").getString())) {
 			JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(sender.getUUID());
-			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(inventoryAdapter.getItem(clickedSlot).getName());
+			Job job = PicoJobsAPI.getJobsManager().getJobByDisplayname(inventoryAdapter.toItemAdapter(item).getName());
 			if(job == null) return true;
 			if(job.requirePermission() && !sender.hasPermission("picojobs.job." + job.getID())) {
 				sender.sendMessage(LanguageManager.getMessage("no-permission", sender.getUUID()));

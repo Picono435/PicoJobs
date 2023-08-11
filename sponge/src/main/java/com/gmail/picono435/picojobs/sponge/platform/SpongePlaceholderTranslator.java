@@ -9,6 +9,7 @@ import org.spongepowered.api.placeholder.PlaceholderComponent;
 import org.spongepowered.api.placeholder.PlaceholderContext;
 import org.spongepowered.api.placeholder.PlaceholderParser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -31,9 +32,9 @@ public class SpongePlaceholderTranslator implements PlaceholderTranslator {
             PicoJobsCommon.getLogger().error(placeholder + " HM?");
             if(PicoJobsSponge.getInstance().getPlaceholderParsers().containsKey(placeholder)) {
                 if(playerInstance != null) {
-                    newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().associatedObject(playerInstance).build())));
+                    newString = newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().associatedObject(playerInstance).build())));
                 } else {
-                    newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().build())));
+                    newString = newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().build())));
                 }
             } else {
                 PicoJobsCommon.getLogger().warn("Could not find placeholder '" + placeholder + "'.");
@@ -44,6 +45,10 @@ public class SpongePlaceholderTranslator implements PlaceholderTranslator {
 
     @Override
     public List<String> setPlaceholders(UUID player, List<String> stringList) {
-        return null;
+        List<String> parsedList = new ArrayList<>();
+        for(String string : stringList) {
+            parsedList.add(setPlaceholders(player, string));
+        }
+        return parsedList;
     }
 }

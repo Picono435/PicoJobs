@@ -74,8 +74,19 @@ public class ModInventoryAdapter implements InventoryAdapter {
         return title;
     }
 
-    public boolean isBuilding() {
-        return building;
+    public ItemAdapter toItemAdapter(Object object) {
+        ItemStack itemStack = (ItemStack) object;
+        ItemAdapter itemAdapter;
+        itemAdapter = new ItemAdapter(BuiltInRegistries.ITEM.getKey(itemStack.getItem()).toString(), itemStack.getCount());
+
+        CompoundTag compoundTag = itemStack.getOrCreateTagElement("display");
+        if(compoundTag.contains("Name")) itemAdapter.setName(Component.Serializer.fromJson(compoundTag.getString("Name")).getString());
+        if(compoundTag.contains("Lore")) itemAdapter.setLore(((ListTag)compoundTag.get("Lore")).stream().map(Tag::getAsString).toList());
+        if(compoundTag.contains("CustomModelData")) itemAdapter.setData(compoundTag.getInt("CustomModelData"));
+
+        if (itemStack.isEnchanted()) itemAdapter.setEnchanted(true);
+
+        return itemAdapter;
     }
 
     public ItemStack toItemStack(ItemAdapter itemAdapter) {
@@ -102,20 +113,6 @@ public class ModInventoryAdapter implements InventoryAdapter {
         if (itemAdapter.isEnchanted()) itemStack.enchant(Enchantments.POWER_ARROWS, 1);
 
         return itemStack;
-    }
-
-    public ItemAdapter toItemAdapter(ItemStack itemStack) {
-        ItemAdapter itemAdapter;
-        itemAdapter = new ItemAdapter(BuiltInRegistries.ITEM.getKey(itemStack.getItem()).toString(), itemStack.getCount());
-
-        CompoundTag compoundTag = itemStack.getOrCreateTagElement("display");
-        if(compoundTag.contains("Name")) itemAdapter.setName(Component.Serializer.fromJson(compoundTag.getString("Name")).getString());
-        if(compoundTag.contains("Lore")) itemAdapter.setLore(((ListTag)compoundTag.get("Lore")).stream().map(Tag::getAsString).toList());
-        if(compoundTag.contains("CustomModelData")) itemAdapter.setData(compoundTag.getInt("CustomModelData"));
-
-        if (itemStack.isEnchanted()) itemAdapter.setEnchanted(true);
-
-        return itemAdapter;
     }
 
     public ChestMenu getChestMenu() {

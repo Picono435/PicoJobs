@@ -7,10 +7,7 @@ import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.serialize.SerializationException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WorkMenu {

@@ -66,6 +66,22 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         return this.title;
     }
 
+    public ItemAdapter toItemAdapter(Object object) {
+        ItemStack itemStack = (ItemStack) object;
+        ItemAdapter itemAdapter = new ItemAdapter(itemStack.getType().name().toLowerCase(Locale.ROOT), itemStack.getAmount(), (byte) itemStack.getDurability());
+
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        if(itemMeta.hasDisplayName()) itemAdapter.setName(itemMeta.getDisplayName());
+        if(itemMeta.hasLore()) itemAdapter.setLore(itemMeta.getLore());
+        if(PicoJobsCommon.isMoreThan("1.14")) {
+            if(itemMeta.hasCustomModelData()) itemAdapter.setData(itemMeta.getCustomModelData());
+        }
+
+        if(itemStack.containsEnchantment(Enchantment.ARROW_DAMAGE)) itemAdapter.setEnchanted(true);
+
+        return itemAdapter;
+    }
+
     public ItemStack toItemStack(ItemAdapter itemAdapter) {
         Material material = MatchUtils.matchMaterial(itemAdapter.getMaterial());
         if(material == null) material = Material.STONE;
@@ -90,21 +106,6 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         if(itemAdapter.isEnchanted()) itemStack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 
         return itemStack;
-    }
-
-    public ItemAdapter toItemAdapter(ItemStack itemStack) {
-        ItemAdapter itemAdapter = new ItemAdapter(itemStack.getType().name().toLowerCase(Locale.ROOT), itemStack.getAmount(), (byte) itemStack.getDurability());
-
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        if(itemMeta.hasDisplayName()) itemAdapter.setName(itemMeta.getDisplayName());
-        if(itemMeta.hasLore()) itemAdapter.setLore(itemMeta.getLore());
-        if(PicoJobsCommon.isMoreThan("1.14")) {
-            if(itemMeta.hasCustomModelData()) itemAdapter.setData(itemMeta.getCustomModelData());
-        }
-
-        if(itemStack.containsEnchantment(Enchantment.ARROW_DAMAGE)) itemAdapter.setEnchanted(true);
-
-        return itemAdapter;
     }
 
     public Inventory getInventory() {

@@ -18,7 +18,5 @@ public interface InventoryAdapter {
 
     String getTitle();
     
-    /*boolean isBuilding();
-
-    void setBuilding(boolean building);*/
+    ItemAdapter toItemAdapter(Object object);
 }

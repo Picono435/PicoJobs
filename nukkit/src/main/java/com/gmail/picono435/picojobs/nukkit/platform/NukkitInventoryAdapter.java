@@ -41,7 +41,7 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
     public void setItem(int slot, ItemAdapter item, ClickAction clickAction) {
         Item itemStack = toItem(item);
         inventory.setItem(slot, itemStack, (clickedItem, event) -> {
-            event.setCancelled(InventoryMenuListener.onBasicClick(new NukkitSender(event.getTransaction().getSource()), this, slot, itemStack));
+            event.setCancelled(InventoryMenuListener.onBasicClick(new NukkitSender(event.getTransaction().getSource()), this, itemStack));
         });
         InventoryMenuListener.actionItems.put(itemStack, clickAction);
     }
@@ -66,6 +66,19 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
         return this.title;
     }
 
+    @Override
+    public ItemAdapter toItemAdapter(Object object) {
+        Item item = (Item) object;
+        ItemAdapter itemAdapter = new ItemAdapter(item.getRuntimeEntry().getIdentifier(), item.getCount(), (byte) item.getDamage());
+
+        if(item.hasCustomName()) itemAdapter.setName(item.getCustomName());
+        if(item.getLore().length > 0) itemAdapter.setLore(Arrays.asList(item.getLore()));
+
+        if(item.hasEnchantment(19)) itemAdapter.setEnchanted(true);
+
+        return itemAdapter;
+    }
+
     public Item toItem(ItemAdapter itemAdapter) {
         String material = itemAdapter.getMaterial();
         if(itemAdapter.getDurability() != null) material = material + ":" + itemAdapter.getDurability();
@@ -80,17 +93,6 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
         if(itemAdapter.isEnchanted()) item.addEnchantment(new EnchantmentBowPower());
 
         return item;
-    }
-
-    public ItemAdapter toItemAdapter(Item item) {
-        ItemAdapter itemAdapter = new ItemAdapter(item.getRuntimeEntry().getIdentifier(), item.getCount(), (byte) item.getDamage());
-
-        if(item.hasCustomName()) itemAdapter.setName(item.getCustomName());
-        if(item.getLore().length > 0) itemAdapter.setLore(Arrays.asList(item.getLore()));
-
-        if(item.hasEnchantment(19)) itemAdapter.setEnchanted(true);
-
-        return itemAdapter;
     }
 
     public Inventory getInventory() {

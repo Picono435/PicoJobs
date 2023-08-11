@@ -16,6 +16,6 @@ public class JobsContainer extends SimpleContainer {
     }
 
     public boolean simulateClick(int slot, Player player) {
-        return InventoryMenuListener.onBasicClick(new ModSender(player), this.inventoryAdapter, slot, this.getItem(slot));
+        return InventoryMenuListener.onBasicClick(new ModSender(player), this.inventoryAdapter, this.getItem(slot));
     }
 }
