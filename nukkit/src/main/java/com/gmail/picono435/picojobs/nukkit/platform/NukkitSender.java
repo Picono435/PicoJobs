@@ -2,12 +2,14 @@ package com.gmail.picono435.picojobs.nukkit.platform;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
+import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.gmail.picono435.picojobs.common.inventory.ChooseJobMenu;
 import com.gmail.picono435.picojobs.common.inventory.WorkMenu;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class NukkitSender implements Sender {
     private CommandSender sender;
@@ -52,7 +54,7 @@ public class NukkitSender implements Sender {
     @Override
     public void closeInventory() {
         if(!isPlayer()) return;
-        ((Player) sender).getInventory().close((Player) sender);
+        PicoJobsCommon.getSchedulerAdapter().asyncLater(() -> ((Player) sender).getInventory().close((Player) sender), 10, TimeUnit.MILLISECONDS);
     }
 
     @Override

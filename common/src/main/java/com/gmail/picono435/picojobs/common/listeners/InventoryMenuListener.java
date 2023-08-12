@@ -40,7 +40,6 @@ public class InventoryMenuListener {
 			}
 			jp.setJob(job);
 			sender.sendMessage(LanguageManager.getMessage("choosed-job", sender.getUUID()));
-			PicoJobsCommon.getSchedulerAdapter().asyncLater(sender::closeInventory, 10, TimeUnit.MILLISECONDS);
 			sender.closeInventory();
 			return true;
 		}
@@ -56,20 +55,20 @@ public class InventoryMenuListener {
 			if(action == ClickAction.SALARY) {
 				PicoJobsCommon.getMainInstance().getJobsCommand().getWithdrawCommand().onCommand(null, null, sender);
 				actionItems.remove(item);
-				PicoJobsCommon.getSchedulerAdapter().asyncLater(sender::closeInventory, 10, TimeUnit.MILLISECONDS);
+				sender.closeInventory();
 				return true;
 			}
 			if(action == ClickAction.ACCEPTWORK) {
 				sender.sendMessage(LanguageManager.getMessage("accepted-work", sender.getUUID()));
 				jp.setWorking(true);
 				actionItems.remove(item);
-				PicoJobsCommon.getSchedulerAdapter().asyncLater(sender::closeInventory, 10, TimeUnit.MILLISECONDS);
+				sender.closeInventory();
 				return true;
 			}
 			if(action == ClickAction.LEAVEJOB) {
 				PicoJobsCommon.getMainInstance().getJobsCommand().getLeaveJobCommand().onCommand(null, null, sender);
 				actionItems.remove(item);
-				PicoJobsCommon.getSchedulerAdapter().asyncLater(sender::closeInventory, 10, TimeUnit.MILLISECONDS);
+				sender.closeInventory();
 				return true;
 			}
 			return true;
