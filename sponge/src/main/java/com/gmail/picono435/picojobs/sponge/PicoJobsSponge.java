@@ -11,20 +11,14 @@ import com.google.inject.Inject;
 import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.config.DefaultConfig;
-import org.spongepowered.api.data.DataRegistration;
-import org.spongepowered.api.data.Key;
-import org.spongepowered.api.data.value.Value;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.*;
 import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.placeholder.PlaceholderParsers;
 import org.spongepowered.api.registry.RegistryTypes;
-import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.plugin.PluginCandidate;
 import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.plugin.builtin.jvm.JVMPluginContainer;
@@ -46,7 +40,6 @@ public class PicoJobsSponge {
     private final Logger logger;
     private final Game game;
     private PluginContainer pluginContainer;
-    public static Key<Value<Integer>> PLACED_BLOCK;
     @Inject
     @DefaultConfig(sharedRoot = false)
     private Path configFilePath;
@@ -122,12 +115,6 @@ public class PicoJobsSponge {
     @Listener
     public void onRegisterPlaceholders(final RegisterRegistryValueEvent event) {
         PlaceholderAPIHook.registerPlaceholders();
-    }
-
-    @Listener
-    public void onRegisterData(final RegisterDataEvent event) {
-        PLACED_BLOCK = Key.from(this.pluginContainer, "placed_block", Integer.class);
-        event.register(DataRegistration.of(PLACED_BLOCK, ServerLocation.class));
     }
 
     @Listener

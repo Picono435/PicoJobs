@@ -1,5 +1,6 @@
 package com.gmail.picono435.picojobs.bukkit.platform;
 
+import com.gmail.picono435.picojobs.bukkit.PicoJobsBukkit;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.gmail.picono435.picojobs.common.inventory.ChooseJobMenu;
 import com.gmail.picono435.picojobs.common.inventory.WorkMenu;
@@ -53,7 +54,9 @@ public class BukkitSender implements Sender {
     @Override
     public void closeInventory() {
         if(!isPlayer()) return;
-        ((Player) sender).closeInventory();
+        Bukkit.getScheduler().runTaskLater(PicoJobsBukkit.getInstance(), () -> {
+            ((Player) sender).closeInventory();
+        }, 10);
     }
 
     @Override
