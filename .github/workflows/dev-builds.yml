@@ -43,3 +43,15 @@ jobs:
             quilt/build/libs/*-quilt.jar
             nukkit/build/libs/*-nukkit.jar
             sponge/build/libs/*-sponge.jar
+      - name: Stop The Gradle
+        run: ./gradlew --stop
+      - name: Gradle Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/architectury
+            ~/.gradle/loom-cache
+            ~/.gradle/8.2.1
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
