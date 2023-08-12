@@ -78,7 +78,7 @@ architectury {
     minecraft = rootProject.minecraft_version
 }
 
-configure([project(':common-mod'), project(':fabric'), project(':forge'), project(':quilt')]) {
+configure([project(':common-mod'), project(':fabric'), project(':forge')/*, project(':quilt')*/]) {
     apply plugin: "dev.architectury.loom"
     apply plugin: "architectury-plugin"
 
