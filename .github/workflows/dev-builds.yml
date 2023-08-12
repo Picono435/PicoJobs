@@ -36,10 +36,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Builds
-          path:
-            - sbukkit/build/libs/*-bukkit.jar
-            - fabric/build/libs/*-fabric.jar
-            - forge/build/libs/*-forge.jar
-            - quilt/build/libs/*-quilt.jar
-            - nukkit/build/libs/*-nukkit.jar
-            - sponge/build/libs/*-sponge.jar
+          path: |
+            sbukkit/build/libs/*-bukkit.jar
+            fabric/build/libs/*-fabric.jar
+            forge/build/libs/*-forge.jar
+            quilt/build/libs/*-quilt.jar
+            nukkit/build/libs/*-nukkit.jar
+            sponge/build/libs/*-sponge.jar
