@@ -11,7 +11,6 @@ public class NukkitJoinCacheListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onJoin(PlayerJoinEvent event) {
-        PicoJobsCommon.getLogger().error("1 " + event.getPlayer().getUniqueId() + " AAAAAAAAAAAAAAAAAAAAA");
         JoinCacheListener.onJoin(event.getPlayer().getUniqueId());
     }
 }

@@ -8,6 +8,7 @@ import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.registry.RegistryTypes;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SpongeWhitelistConverter implements WhitelistConverter {

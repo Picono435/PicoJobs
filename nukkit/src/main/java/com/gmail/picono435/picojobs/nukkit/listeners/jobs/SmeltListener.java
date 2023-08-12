@@ -16,8 +16,6 @@ public class SmeltListener implements Listener {
 	public void onSmelt(InventoryClickEvent event) {
 		if(event.getHeldItem() == null) return;
 		if(event.getInventory().getType() != InventoryType.FURNACE) return;
-		System.out.println(event.getSlot());
-		//TODO: Huh lala
 		if(event.getSlot() != 2) return;
 		Player player = (Player) event.getPlayer();
 		WorkListener.simulateWorkListener(new NukkitSender(player), Type.SMELT, event.getHeldItem().count, event.getHeldItem());

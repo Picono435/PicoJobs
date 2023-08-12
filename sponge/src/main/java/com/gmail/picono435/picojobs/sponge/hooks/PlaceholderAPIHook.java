@@ -13,7 +13,6 @@ public class PlaceholderAPIHook {
     private static boolean alreadyRegistered;
 
     public static void registerPlaceholders() {
-        PicoJobsCommon.getLogger().error("So registering placeholders innit...");
         if(alreadyRegistered) return;
         PlaceholderParsers.registry().register(ResourceKey.of("jobplayer", "job"),
                 PlaceholderParser.builder().parser((context) -> context.associatedObject()

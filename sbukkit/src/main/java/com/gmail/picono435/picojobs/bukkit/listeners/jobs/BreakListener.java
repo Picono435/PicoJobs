@@ -1,10 +1,6 @@
 package com.gmail.picono435.picojobs.bukkit.listeners.jobs;
 
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.JobPlayer;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.Type;
-import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.bukkit.PicoJobsBukkit;
 import com.gmail.picono435.picojobs.bukkit.platform.BukkitSender;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;

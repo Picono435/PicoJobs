@@ -29,7 +29,6 @@ public class SpongePlaceholderTranslator implements PlaceholderTranslator {
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(string);
         while(matcher.find()) {
             String placeholder = string.substring(matcher.start(), matcher.end());
-            PicoJobsCommon.getLogger().error(placeholder + " HM?");
             if(PicoJobsSponge.getInstance().getPlaceholderParsers().containsKey(placeholder)) {
                 if(playerInstance != null) {
                     newString = newString.replace(placeholder, LegacyComponentSerializer.legacyAmpersand().serialize(PicoJobsSponge.getInstance().getPlaceholderParsers().get(placeholder).parse(PlaceholderContext.builder().associatedObject(playerInstance).build())));

@@ -26,7 +26,6 @@ public abstract class HikariStorageFactory extends StorageFactory {
 
 	@Override
 	public boolean createPlayer(UUID uuid) throws Exception {
-		PicoJobsCommon.getLogger().error("ITS RUNNING TWO TIMES FOR SOME REASON BUT HEYO");
 		try(Connection conn = hikari.getConnection();
 			PreparedStatement stm = conn.prepareStatement("INSERT INTO " + configurationNode.node("tablename").getString() +  " (`uuid`) VALUES (?)")) {
 			stm.setString(1, uuid.toString());
