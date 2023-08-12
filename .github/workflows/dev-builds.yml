@@ -49,9 +49,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ~/.gradle/architectury
-            ~/.gradle/loom-cache
-            ~/.gradle/8.2.1
+            .gradle/architectury
+            .gradle/loom-cache
+            .gradle/8.2.1
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
