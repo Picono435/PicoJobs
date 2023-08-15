@@ -59,19 +59,20 @@ shadowJar {
     }
 
     relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
-    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
+    relocate 'com.google.common', 'com.gmail.picono435.picojobs.libs.com.google.common'
+    relocate 'com.google.errorprone', 'com.gmail.picono435.picojobs.libs.com.google.errorprone'
+    relocate 'com.google.gson', 'com.gmail.picono435.picojobs.libs.com.google.gson'
+    relocate 'com.google.j2objc', 'com.gmail.picono435.picojobs.libs.com.google.j2objc'
+    relocate 'com.google.thirdparty', 'com.gmail.picono435.picojobs.libs.com.google.thirdparty'
+    relocate 'com.typesafe.config', 'com.gmail.picono435.picojobs.libs.com.typesafe.config'
+    relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.io.github.slimjar'
+    relocate 'io.leangen.geantyref', 'com.gmail.picono435.picojobs.libs.io.github.geantyref'
+    relocate 'javax.annotation', 'com.gmail.picono435.picojobs.libs.javax.annotation'
     relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
-    //relocate 'org.slf4j', 'com.gmail.picono435.picojobs.libs.org.slf4j'
-    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
+    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
-    relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'
-    relocate 'org.yaml', 'com.gmail.picono435.picojobs.libs.org.yaml'
-    relocate 'com.google', 'com.gmail.picono435.picojobs.libs.com.google'
-    relocate 'com.typesafe', 'com.gmail.picono435.picojobs.libs.com.typesafe'
-    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
-    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
-    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
-    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
+    relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
+    relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
 }
 
 remapJar {

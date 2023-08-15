@@ -49,16 +49,6 @@ shadowJar {
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
     relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
-    /*relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
-    relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
-    relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'
-    relocate 'org.yaml', 'com.gmail.picono435.picojobs.libs.org.yaml'
-    relocate 'com.google', 'com.gmail.picono435.picojobs.libs.com.google'
-    relocate 'com.typesafe', 'com.gmail.picono435.picojobs.libs.com.typesafe'
-    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
-    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
-    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
-    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'*/
 }
 
 sponge {
