@@ -11,6 +11,7 @@ loom {
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
         mixinConfig "picojobs.mixins.json"
+        mixinConfig "picojobs-forge.mixins.json"
     }
 
     mods {
@@ -37,6 +38,8 @@ dependencies {
 
     common(project(path: ":common-mod", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common-mod", configuration: "transformProductionForge")) { transitive = false }
+
+    compileOnly('dev.racci.slimjar:slimjar:1.6.1')
 }
 
 processResources {

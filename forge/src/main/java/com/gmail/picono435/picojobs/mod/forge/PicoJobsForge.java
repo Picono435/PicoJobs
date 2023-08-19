@@ -9,9 +9,11 @@ import com.gmail.picono435.picojobs.mod.platform.ModColorConverter;
 import com.gmail.picono435.picojobs.mod.platform.ModSchedulerAdapter;
 import com.gmail.picono435.picojobs.mod.platform.ModSoftwareHooker;
 import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
+import cpw.mods.jarhandling.SecureJar;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -20,7 +22,10 @@ import net.minecraftforge.server.permission.nodes.PermissionNode;
 import net.minecraftforge.server.permission.nodes.PermissionTypes;
 import org.slf4j.LoggerFactory;
 
-import java.net.URISyntaxException;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.*;
 
 @Mod(PicoJobsMod.MOD_ID)
 public class PicoJobsForge {
@@ -36,24 +41,28 @@ public class PicoJobsForge {
             (serverPlayer, uuid, permissionDynamicContexts) -> serverPlayer.hasPermissions(3));
 
 
-    public PicoJobsForge() throws URISyntaxException {
+    public PicoJobsForge() throws URISyntaxException, IOException {
         MinecraftForge.EVENT_BUS.register(this);
         EventBuses.registerModEventBus(PicoJobsMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+
+        URL jarURL = ModList.get().getModFileById(PicoJobsMod.MOD_ID).getFile().getFilePath().toFile().toURL();
+        System.err.println(jarURL + " " + jarURL.getProtocol());
+        System.err.println(io.github.slimjar.injector.loader.InstrumentationInjectable.class.getClassLoader().getResource("loader-agent.isolated-jar"));
+
         PicoJobsCommon.onLoad(
                 "1.0-pre",
                 Platform.FORGE,
                 LoggerFactory.getLogger(PicoJobsMod.getLogger().getName()),
-                FMLPaths.CONFIGDIR.get().toFile(),
+                FMLPaths.CONFIGDIR.get().resolve("PicoJobs").toFile(),
                 null,
                 new ModSchedulerAdapter(),
                 new ForgePlatformAdapter(),
                 new ModColorConverter(),
                 new ForgePlaceholderTranslator(),
                 new ModWhitelistConverter(),
-                new ModSoftwareHooker()
+                new ModSoftwareHooker(),
+                jarURL
         );
-
-        System.out.println(PicoJobsForge.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().split(".jar")[0] + ".jar" + " HUH LA LA");
 
         PicoJobsMod.init();
     }
