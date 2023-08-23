@@ -5,12 +5,16 @@ import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.mod.forge.platform.ForgePlaceholderTranslator;
 import com.gmail.picono435.picojobs.mod.forge.platform.ForgePlatformAdapter;
+import com.gmail.picono435.picojobs.mod.forge.utils.ForgeDependencyInjector;
 import com.gmail.picono435.picojobs.mod.platform.ModColorConverter;
 import com.gmail.picono435.picojobs.mod.platform.ModSchedulerAdapter;
 import com.gmail.picono435.picojobs.mod.platform.ModSoftwareHooker;
 import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
 import cpw.mods.jarhandling.SecureJar;
 import dev.architectury.platform.forge.EventBuses;
+import io.github.slimjar.injector.DependencyInjector;
+import io.github.slimjar.injector.DependencyInjectorFactory;
+import io.github.slimjar.injector.helper.InjectionHelperFactory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -61,7 +65,8 @@ public class PicoJobsForge {
                 new ForgePlaceholderTranslator(),
                 new ModWhitelistConverter(),
                 new ModSoftwareHooker(),
-                jarURL
+                jarURL,
+                ForgeDependencyInjector::new
         );
 
         PicoJobsMod.init();

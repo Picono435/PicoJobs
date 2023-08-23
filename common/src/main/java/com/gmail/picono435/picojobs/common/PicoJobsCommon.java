@@ -6,6 +6,16 @@ import com.gmail.picono435.picojobs.common.platform.*;
 import com.gmail.picono435.picojobs.common.platform.scheduler.SchedulerAdapter;
 import com.gmail.picono435.picojobs.common.platform.WhitelistConverter;
 import io.github.slimjar.app.builder.ApplicationBuilder;
+import io.github.slimjar.app.builder.IsolatedApplicationBuilder;
+import io.github.slimjar.app.builder.IsolationConfiguration;
+import io.github.slimjar.app.module.TemporaryModuleExtractor;
+import io.github.slimjar.injector.DependencyInjector;
+import io.github.slimjar.injector.DependencyInjectorFactory;
+import io.github.slimjar.injector.agent.ByteBuddyInstrumentationFactory;
+import io.github.slimjar.injector.helper.InjectionHelperFactory;
+import io.github.slimjar.injector.loader.InjectableClassLoader;
+import io.github.slimjar.injector.loader.InjectableFactory;
+import io.github.slimjar.injector.loader.InstrumentationInjectable;
 import io.github.slimjar.resolver.data.Repository;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.slf4j.Logger;
@@ -33,10 +43,14 @@ public class PicoJobsCommon {
     private static FileManager fileManager;
 
     public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker) {
-        onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, null);
+        onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, null, null);
     }
 
     public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, URL jarURL) {
+        onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, jarURL, null);
+    }
+
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, URL jarURL, DependencyInjectorFactory dependencyInjectorFactory) {
         if(PicoJobsCommon.version != null) return;
         PicoJobsCommon.version = version;
         PicoJobsCommon.platform = platform;
@@ -52,15 +66,27 @@ public class PicoJobsCommon {
 
         PicoJobsCommon.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");
         try {
-            ApplicationBuilder applicationBuilder = ApplicationBuilder
-                    .appending("PicoJobs")
-                    .mirrorSelector((collection, collection1) -> collection)
+            ApplicationBuilder applicationBuilder;
+            if(platform == Platform.FORGE) {
+                applicationBuilder = ApplicationBuilder.injecting("PicoJobs",
+                        new InjectableClassLoader(new URL[]{new TemporaryModuleExtractor().extractModule(InstrumentationInjectable.class.getClassLoader().getResource(ByteBuddyInstrumentationFactory.AGENT_JAR), "loader-agent")}, PicoJobsCommon.class.getClassLoader()) {
+                            @Override
+                            public void inject(URL url) {
+                                super.inject(url);
+                            }
+                        });
+            } else {
+                applicationBuilder = ApplicationBuilder.appending("PicoJobs");
+            }
+            applicationBuilder.mirrorSelector((collection, collection1) -> collection)
                     .downloadDirectoryPath(PicoJobsCommon.getConfigDir().toPath().resolve("libraries"));
             if(jarURL != null) {
-                applicationBuilder.jarURL(jarURL).build();
-            } else {
-                applicationBuilder.build();
+                applicationBuilder.jarURL(jarURL);
             }
+            if(dependencyInjectorFactory != null) {
+                applicationBuilder.injectorFactory(dependencyInjectorFactory);
+            }
+            applicationBuilder.build();
             PicoJobsCommon.getLogger().info("All dependencies were loaded sucessfully.");
         } catch (Exception ex) {
             PicoJobsCommon.getLogger().error("An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");

@@ -21,41 +21,41 @@ public class StorageManager {
 	}
 	
 	public StorageFactory initializeStorageFactory() {
-		String method = PicoJobsAPI.getSettingsManager().getStorageMethod();
-		switch(method.toLowerCase(Locale.ROOT)) {
-		case("mysql"): {
+		StorageType storageType = StorageType.fromString(PicoJobsAPI.getSettingsManager().getStorageMethod());
+		switch(storageType) {
+		case MYSQL: {
 			this.storageFactory = new MySqlStorage();
 			break;
 		}
-		case("mariadb"): {
+		case MARIADB: {
 			this.storageFactory = new MariaDbStorage();
 			break;
 		}
-		case("postgre"): {
+		case POSTGRE: {
 			this.storageFactory = new PostgreStorage();
 			break;
 		}
-		case("mongodb"): {
+		case MONGODB: {
 			this.storageFactory = new MongoStorage();
 			break;
 		}
-		case("h2"): {
+		case H2: {
 			this.storageFactory = new H2Storage();
 			break;
 		}
-		case("sqlite"): {
+		case SQLITE: {
 			this.storageFactory = new SqliteStorage();
 			break;
 		}
-		case("yaml"): {
+		case YAML: {
 			this.storageFactory = new YamlStorage();
 			break;
 		}
-		case("json"): {
+		case JSON: {
 			this.storageFactory = new JsonStorage();
 			break;
 		}
-		case("hocon"): {
+		case HOCON: {
 			this.storageFactory = new HoconStorage();
 			break;
 		}
@@ -67,9 +67,9 @@ public class StorageManager {
 		}
 		try {
 			this.storageFactory.initializeStorage();
-		} catch (Exception e) {
+		} catch (Exception ex) {
 			PicoJobsCommon.getLogger().error("Error connecting to the storage. The plugin will not work correctly.");
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
 		return storageFactory;
 	}
