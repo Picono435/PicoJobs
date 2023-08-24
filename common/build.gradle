@@ -68,10 +68,8 @@ tasks.withType(JavaCompile).configureEach {
 tasks.slimJar {
     dependsOn(tasks.jar)
     dependsOn(tasks.sourcesJar)
-}
-
-tasks.shadowJar {
-    from(tasks.slimJar.outputDirectory)
+    dependsOn(tasks.shadowJar)
+    dependsOn(tasks.signShadow)
 }
 
 assemble.dependsOn shadowJar
