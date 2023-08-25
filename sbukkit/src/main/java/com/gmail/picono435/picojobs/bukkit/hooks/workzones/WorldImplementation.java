@@ -13,9 +13,10 @@ import java.util.UUID;
 
 public class WorldImplementation extends WorkZoneImplementation {
 
+    protected RequiredField<String> requiredField;
+
     public WorldImplementation() {
-        this.requiredPlugin = "PicoJobs";
-        this.requiredField = new RequiredField("worlds", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField<>("worlds");
     }
 
     @Override
@@ -26,12 +27,12 @@ public class WorldImplementation extends WorkZoneImplementation {
     @Override
     public boolean isInWorkZone(UUID player) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        List<String> regions = null;
-        try {
-            regions = FileManager.getJobsNode().node("jobs", jp.getJob().getID(), requiredField.getName()).getList(String.class);
-        } catch (SerializationException event) {
-            throw new RuntimeException(event);
-        }
+        List<String> regions = this.requiredField.getValueList(jp, String.class);
         return regions.contains(Bukkit.getPlayer(player).getWorld().getName());
+    }
+
+    @Override
+    public RequiredField<String> getRequiredField() {
+        return requiredField;
     }
 }

@@ -7,10 +7,6 @@ import java.util.UUID;
 public abstract class WorkZoneImplementation {
 
     protected String requiredPlugin;
-    /**
-     * Required field is currently only used in PicoJobs editor but should be set for a better user experience
-     */
-    protected RequiredField requiredField;
 
     /**
      * Returns a upper case name of economy
@@ -42,8 +38,8 @@ public abstract class WorkZoneImplementation {
      *
      * @return required field
      */
-    public RequiredField getRequiredField() {
-        return requiredField;
-    }
+    public RequiredField<?> getRequiredField() {
+        return null;
+    };
 
 }

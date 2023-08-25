@@ -6,6 +6,7 @@ import com.gmail.picono435.picojobs.mod.hooks.economy.CommandImplementation;
 import com.gmail.picono435.picojobs.mod.hooks.economy.ExpImplementation;
 import com.gmail.picono435.picojobs.mod.hooks.economy.GrandEconomyImplementation;
 import com.gmail.picono435.picojobs.mod.hooks.economy.ItemImplementation;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 
 public class ModSoftwareHooker implements SoftwareHooker {
     @Override
@@ -22,5 +23,11 @@ public class ModSoftwareHooker implements SoftwareHooker {
             case THREE -> {
             }
         }
+        hookInPhaseSpecific(phase);
+    }
+
+    @ExpectPlatform
+    public static void hookInPhaseSpecific(Phase phase) {
+        throw new AssertionError();
     }
 }

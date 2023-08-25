@@ -15,9 +15,11 @@ import java.util.UUID;
 
 public class TownyImplementation extends WorkZoneImplementation {
 
+    protected RequiredField<String> requiredField;
+
     public TownyImplementation() {
         this.requiredPlugin = "Towny";
-        this.requiredField = new RequiredField("towns", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField<>("towns");
     }
 
     @Override
@@ -29,12 +31,7 @@ public class TownyImplementation extends WorkZoneImplementation {
     public boolean isInWorkZone(UUID player) {
         Player onlinePlayer = Bukkit.getPlayer(player);
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        List<String> regions = null;
-        try {
-            regions = FileManager.getJobsNode().node("jobs", jp.getJob().getID(), requiredField.getName()).getList(String.class);
-        } catch (SerializationException event) {
-            throw new RuntimeException(event);
-        }
+        List<String> regions = this.requiredField.getValueList(jp, String.class);
         return regions.contains(TownyAPI.getInstance().getTown(onlinePlayer.getLocation()).getName());
     }
 }

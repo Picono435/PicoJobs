@@ -380,12 +380,11 @@ public class Job {
 		jsonObject.addProperty("methodFrequency", this.methodFrequency);
 		jsonObject.addProperty("economy", this.economy);
 
-		RequiredField economyImplementation = PicoJobsCommon.getMainInstance().economies.get(this.getEconomy()).getRequiredField();
-		jsonObject.add("economyField", economyImplementation.getType().getJsonElement(FileManager.getJobsNode().node("jobs", id, economyImplementation.getName()).getList(String.class)));
+		// TODO: Required Field of economy
 
 		jsonObject.addProperty("workZone", this.workZone);
 
-		// TO DO REQUIRED FIELD
+		// TODO: Required Field of workzone
 
 		jsonObject.addProperty("workMessage", this.workMessage);
 		jsonObject.addProperty("useWhitelist", this.useWhitelist);

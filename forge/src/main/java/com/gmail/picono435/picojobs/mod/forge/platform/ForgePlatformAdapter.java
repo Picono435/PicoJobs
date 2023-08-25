@@ -4,6 +4,7 @@ import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.LoadingModList;
 
 import java.util.UUID;
 
@@ -30,6 +31,6 @@ public class ForgePlatformAdapter implements PlatformAdapter {
 
     @Override
     public boolean isPluginEnabled(String plugin) {
-        return ModList.get().isLoaded(plugin);
+        return ModList.get().getModFileById(plugin.toLowerCase()) != null;
     }
 }

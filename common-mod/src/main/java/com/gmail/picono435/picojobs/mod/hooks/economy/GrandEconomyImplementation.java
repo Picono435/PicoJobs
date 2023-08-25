@@ -12,7 +12,6 @@ public class GrandEconomyImplementation extends EconomyImplementation {
 
     public GrandEconomyImplementation() {
         this.requiredPlugin = "grandeconomy";
-        this.economy = Injectors.INSTANCE.getAutoInjector("grandeconomy").getInstance(Economy.class);
     }
 
     @Override
@@ -22,16 +21,25 @@ public class GrandEconomyImplementation extends EconomyImplementation {
 
     @Override
     public double getBalance(UUID player) {
+        if(this.economy == null) {
+            this.economy = Injectors.INSTANCE.getAutoInjector("grandeconomy").getInstance(Economy.class);
+        }
         return this.economy.getBalance(player, true);
     }
 
     @Override
     public void deposit(UUID player, double amount) {
+        if(this.economy == null) {
+            this.economy = Injectors.INSTANCE.getAutoInjector("grandeconomy").getInstance(Economy.class);
+        }
         this.economy.addToBalance(player, amount, true);
     }
 
     @Override
     public void withdraw(UUID player, double amount) {
+        if(this.economy == null) {
+            this.economy = Injectors.INSTANCE.getAutoInjector("grandeconomy").getInstance(Economy.class);
+        }
         this.economy.takeFromBalance(player, amount, true);
     }
 }

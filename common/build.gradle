@@ -36,15 +36,6 @@ dependencies {
     transitiveCommon(shadow api('com.google.code.gson:gson:2.10.1'))
 }
 
-/*slimJar {
-    relocate 'org', 'com.gmail.picono435.picojobs.libs.org'
-    relocate 'com', 'com.gmail.picono435.picojobs.libs.com'
-    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
-    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
-    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
-    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
-}*/
-
 shadowJar {
     archiveClassifier.set("common")
 
@@ -69,7 +60,7 @@ tasks.slimJar {
     dependsOn(tasks.jar)
     dependsOn(tasks.sourcesJar)
     dependsOn(tasks.shadowJar)
-    dependsOn(tasks.signShadow)
+    //dependsOn(tasks.signShadow)
 }
 
 assemble.dependsOn shadowJar

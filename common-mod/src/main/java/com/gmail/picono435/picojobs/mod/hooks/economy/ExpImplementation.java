@@ -7,10 +7,6 @@ import java.util.UUID;
 
 public class ExpImplementation extends EconomyImplementation {
 	
-	public ExpImplementation() {
-		this.requiredPlugin = "PicoJobs";
-	}
-	
 	@Override
 	public String getName() {
 		return "EXP";

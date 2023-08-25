@@ -17,9 +17,11 @@ import java.util.UUID;
 
 public class GriefDefenderImplementation extends WorkZoneImplementation {
 
+    protected RequiredField<String> requiredField;
+
     public GriefDefenderImplementation() {
         this.requiredPlugin = "GriefDefender";
-        this.requiredField = new RequiredField("claims", RequiredField.RequiredFieldType.STRING_LIST);
+        this.requiredField = new RequiredField<>("claims");
     }
 
     @Override
@@ -29,14 +31,8 @@ public class GriefDefenderImplementation extends WorkZoneImplementation {
 
     public boolean isInWorkZone(UUID player) {
         Player onlinePlayer = Bukkit.getPlayer(player);
-        Location location = onlinePlayer.getLocation();
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        List<String> regions = null;
-        try {
-            regions = FileManager.getJobsNode().node("jobs", jp.getJob().getID(), requiredField.getName()).getList(String.class);
-        } catch (SerializationException event) {
-            throw new RuntimeException(event);
-        }
+        List<String> regions = this.requiredField.getValueList(jp, String.class);
         Claim claim = GriefDefender.getCore().getClaimAt(onlinePlayer.getLocation());
         if(claim == null || claim.isWilderness()) return regions.contains("wilderness");
         return regions.contains(claim.getUniqueId().toString());

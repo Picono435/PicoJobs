@@ -4,18 +4,17 @@ import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.utils.RequiredField;
-import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.mod.PicoJobsMod;
-import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.util.List;
 import java.util.UUID;
 
 public class CommandImplementation extends EconomyImplementation {
 
+	protected RequiredField<String> requiredField;
+
 	public CommandImplementation() {
-		this.requiredPlugin = "PicoJobs";
-		this.requiredField = new RequiredField("commands", RequiredField.RequiredFieldType.STRING_LIST);
+		this.requiredField = new RequiredField<>("commands");
 	}
 	
 	@Override
@@ -31,12 +30,7 @@ public class CommandImplementation extends EconomyImplementation {
 	@Override
 	public void deposit(UUID player, double amount) {
 		JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-		List<String> commands;
-		try {
-			commands = FileManager.getJobsNode().node("jobs", jp.getJob().getID(), "commands").getList(String.class);
-		} catch (SerializationException event) {
-			throw new RuntimeException(event);
-		}
+		List<String> commands = this.requiredField.getValueList(jp, String.class);
 		for(String command : commands) {
 			PicoJobsMod.getServer().get().getCommands().performCommand(PicoJobsMod.getServer().get().getCommands().getDispatcher().parse(command, PicoJobsMod.getServer().get().createCommandSourceStack()), command
 					.replace("%amount%", String.valueOf(amount))
@@ -47,5 +41,10 @@ public class CommandImplementation extends EconomyImplementation {
 
 	@Override
 	public void withdraw(UUID player, double amount) {}
+
+	@Override
+	public RequiredField<String> getRequiredField() {
+		return requiredField;
+	}
 
 }

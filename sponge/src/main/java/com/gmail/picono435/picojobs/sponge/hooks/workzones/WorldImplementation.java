@@ -1,13 +1,10 @@
-package com.gmail.picono435.picojobs.mod.hooks.workzones;
+package com.gmail.picono435.picojobs.sponge.hooks.workzones;
 
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.WorkZoneImplementation;
 import com.gmail.picono435.picojobs.api.utils.RequiredField;
-import com.gmail.picono435.picojobs.common.file.FileManager;
-import com.gmail.picono435.picojobs.mod.PicoJobsMod;
-import net.minecraft.world.level.storage.ServerLevelData;
-import org.spongepowered.configurate.serialize.SerializationException;
+import org.spongepowered.api.Sponge;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +26,7 @@ public class WorldImplementation extends WorkZoneImplementation {
     public boolean isInWorkZone(UUID player) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
         List<String> regions = this.requiredField.getValueList(jp, String.class);
-        return regions.contains(((ServerLevelData)PicoJobsMod.getServer().get().getPlayerList().getPlayer(player).serverLevel().getLevelData()).getLevelName());
+        return regions.contains(Sponge.server().player(player).get().serverLocation().world().properties().name());
     }
 
     @Override

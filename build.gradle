@@ -46,10 +46,10 @@ subprojects {
         configurations = [project.configurations.shadow]
     }
 
-    signing {
+    /*signing {
         useGpgCmd()
         sign configurations.shadow
-    }
+    }*/
 }
 
 allprojects {

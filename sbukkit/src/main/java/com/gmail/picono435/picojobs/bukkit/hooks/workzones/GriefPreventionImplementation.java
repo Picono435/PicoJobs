@@ -17,9 +17,11 @@ import java.util.UUID;
 
 public class GriefPreventionImplementation extends WorkZoneImplementation {
 
+    protected RequiredField<Long> requiredField;
+
     public GriefPreventionImplementation() {
         this.requiredPlugin = "GriefPrevention";
-        this.requiredField = new RequiredField("claims", RequiredField.RequiredFieldType.LONG_LIST);
+        this.requiredField = new RequiredField<>("claims");
     }
 
     @Override
@@ -31,12 +33,7 @@ public class GriefPreventionImplementation extends WorkZoneImplementation {
         Player onlinePlayer = Bukkit.getPlayer(player);
         Location location = onlinePlayer.getLocation();
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        List<Long> regions = null;
-        try {
-            regions = FileManager.getJobsNode().node("jobs", jp.getJob().getID(), requiredField.getName()).getList(Long.class);
-        } catch (SerializationException event) {
-            throw new RuntimeException(event);
-        }
+        List<Long> regions = this.requiredField.getValueList(jp, Long.class);
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, true, null);
         return regions.contains(claim.getID());
     }

@@ -5,16 +5,11 @@ import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.mod.forge.platform.ForgePlaceholderTranslator;
 import com.gmail.picono435.picojobs.mod.forge.platform.ForgePlatformAdapter;
-import com.gmail.picono435.picojobs.mod.forge.utils.ForgeDependencyInjector;
 import com.gmail.picono435.picojobs.mod.platform.ModColorConverter;
 import com.gmail.picono435.picojobs.mod.platform.ModSchedulerAdapter;
 import com.gmail.picono435.picojobs.mod.platform.ModSoftwareHooker;
 import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
-import cpw.mods.jarhandling.SecureJar;
 import dev.architectury.platform.forge.EventBuses;
-import io.github.slimjar.injector.DependencyInjector;
-import io.github.slimjar.injector.DependencyInjectorFactory;
-import io.github.slimjar.injector.helper.InjectionHelperFactory;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -27,8 +22,6 @@ import net.minecraftforge.server.permission.nodes.PermissionTypes;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.net.*;
 
 @Mod(PicoJobsMod.MOD_ID)
@@ -45,13 +38,12 @@ public class PicoJobsForge {
             (serverPlayer, uuid, permissionDynamicContexts) -> serverPlayer.hasPermissions(3));
 
 
-    public PicoJobsForge() throws URISyntaxException, IOException {
+    public PicoJobsForge() throws IOException {
         MinecraftForge.EVENT_BUS.register(this);
         EventBuses.registerModEventBus(PicoJobsMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
         URL jarURL = ModList.get().getModFileById(PicoJobsMod.MOD_ID).getFile().getFilePath().toFile().toURL();
         System.err.println(jarURL + " " + jarURL.getProtocol());
-        System.err.println(io.github.slimjar.injector.loader.InstrumentationInjectable.class.getClassLoader().getResource("loader-agent.isolated-jar"));
 
         PicoJobsCommon.onLoad(
                 "1.0-pre",
@@ -65,8 +57,7 @@ public class PicoJobsForge {
                 new ForgePlaceholderTranslator(),
                 new ModWhitelistConverter(),
                 new ModSoftwareHooker(),
-                jarURL,
-                ForgeDependencyInjector::new
+                jarURL
         );
 
         PicoJobsMod.init();

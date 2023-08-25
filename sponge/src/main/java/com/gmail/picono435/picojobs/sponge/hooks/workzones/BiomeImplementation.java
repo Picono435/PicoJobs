@@ -1,35 +1,35 @@
-package com.gmail.picono435.picojobs.mod.hooks.workzones;
+package com.gmail.picono435.picojobs.sponge.hooks.workzones;
 
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.WorkZoneImplementation;
 import com.gmail.picono435.picojobs.api.utils.RequiredField;
-import com.gmail.picono435.picojobs.common.file.FileManager;
-import com.gmail.picono435.picojobs.mod.PicoJobsMod;
-import net.minecraft.world.level.storage.ServerLevelData;
-import org.spongepowered.configurate.serialize.SerializationException;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.world.biome.Biomes;
 
 import java.util.List;
 import java.util.UUID;
 
-public class WorldImplementation extends WorkZoneImplementation {
+public class BiomeImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String> requiredField;
 
-    public WorldImplementation() {
-        this.requiredField = new RequiredField<>("worlds");
+    public BiomeImplementation() {
+        this.requiredField = new RequiredField<>("biomes");
     }
 
     @Override
     public String getName() {
-        return "WORLD";
+        return "BIOME";
     }
 
     @Override
     public boolean isInWorkZone(UUID player) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
         List<String> regions = this.requiredField.getValueList(jp, String.class);
-        return regions.contains(((ServerLevelData)PicoJobsMod.getServer().get().getPlayerList().getPlayer(player).serverLevel().getLevelData()).getLevelName());
+        Player onlinePlayer = Sponge.server().player(player).get();
+        return regions.contains(Biomes.registry(onlinePlayer.serverLocation().world()).findValueKey(onlinePlayer.world().biome(onlinePlayer.position().toInt())).get().asString());
     }
 
     @Override

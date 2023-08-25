@@ -7,11 +7,7 @@ import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import java.util.UUID;
 
 public class ExpImplementation extends EconomyImplementation {
-	
-	public ExpImplementation() {
-		this.requiredPlugin = "PicoJobs";
-	}
-	
+
 	@Override
 	public String getName() {
 		return "EXP";
