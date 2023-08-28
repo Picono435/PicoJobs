@@ -4,7 +4,7 @@
 #                                                                               #
 #################################################################################
 # In this category you can create, edit and change jobs for the plugin
-# If you want to know a full list of job types please go https://github.com/Picono435/PicoJobs/wiki/Types-of-jobs
+# If you want to know a full list of job types please go to https://github.com/Picono435/PicoJobs/wiki/Types-of-jobs
 jobs:
   # This is a example of a hunter job
   hunter:

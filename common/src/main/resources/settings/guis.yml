@@ -6,7 +6,6 @@
 # In this category you can change ALL the GUIs of the plugin
 # Remember that some configurations may be in the specific job configuration
 # For more information check our wiki (https://github.com/Picono435/PicoJobs/wiki)
-# PS: Only the first two GUIs have comments
 gui-settings:
   #######################
   # Choose Job Menu GUI #
