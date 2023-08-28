@@ -5,7 +5,9 @@ import com.gmail.picono435.picojobs.common.inventory.ChooseJobMenu;
 import com.gmail.picono435.picojobs.common.inventory.WorkMenu;
 import com.gmail.picono435.picojobs.mod.PicoJobsExpected;
 import com.gmail.picono435.picojobs.mod.PicoJobsMod;
+import com.mojang.brigadier.ParseResults;
 import net.minecraft.commands.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -53,7 +55,6 @@ public class ModSender implements Sender {
 
     @Override
     public void openInventory(String inventory) {
-        //TODO: Open inventory
         if(!isPlayer()) return;
         Player player = (Player) commandSource;
         final ModInventoryAdapter[] modInventoryAdapter = {null};
@@ -98,6 +99,13 @@ public class ModSender implements Sender {
 
     @Override
     public void dispatchCommand(String command) {
-        //TODO: DISPATCH COMMAND
+        CommandSourceStack commandSourceStack;
+        if(isPlayer()) {
+            commandSourceStack = ((Player) commandSource).createCommandSourceStack();
+        } else {
+            commandSourceStack = PicoJobsMod.getServer().get().createCommandSourceStack();
+        }
+        ParseResults<CommandSourceStack> parseResults = PicoJobsMod.getServer().get().getCommands().getDispatcher().parse(command, commandSourceStack);
+        PicoJobsMod.getServer().get().getCommands().performCommand(parseResults, command);
     }
 }
