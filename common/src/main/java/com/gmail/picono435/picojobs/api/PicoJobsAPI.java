@@ -2,10 +2,7 @@ package com.gmail.picono435.picojobs.api;
 
 import java.util.Locale;
 
-import com.gmail.picono435.picojobs.api.managers.JobsManager;
-import com.gmail.picono435.picojobs.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.api.managers.PlayersManager;
-import com.gmail.picono435.picojobs.api.managers.SettingsManager;
+import com.gmail.picono435.picojobs.api.managers.*;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.storage.StorageManager;
 
@@ -22,6 +19,7 @@ public class PicoJobsAPI {
 	private static LanguageManager languageManager = new LanguageManager();
 	private static SettingsManager settingsManager = new SettingsManager();
 	private static StorageManager storageManager = new StorageManager();
+	private static PlaceholderManager placeholderManager = new PlaceholderManager();
 	
 	/**
 	 * Use this method to get the JobsManager of the plugin, with it you can edit/get most of the things of a job. 
@@ -72,7 +70,17 @@ public class PicoJobsAPI {
 	public static StorageManager getStorageManager() {
 		return storageManager;
 	}
-	
+
+	/**
+	 * Use this method to get the PlaceholderManager of the plugin, with it you can translate any plugin placeholder.
+	 *
+	 * @return The placeholder manager of the plugin
+	 * @author Picono435
+	 */
+	public static PlaceholderManager getPlaceholderManager() {
+		return placeholderManager;
+	}
+
 	/**
 	 * Registers a Economy Implementation
 	 * 

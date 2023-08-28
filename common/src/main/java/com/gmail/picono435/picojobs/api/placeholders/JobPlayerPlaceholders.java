@@ -1,53 +1,37 @@
-package com.gmail.picono435.picojobs.api;
+package com.gmail.picono435.picojobs.api.placeholders;
 
+import com.gmail.picono435.picojobs.api.Job;
+import com.gmail.picono435.picojobs.api.JobPlayer;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
-import org.apache.commons.lang3.StringUtils;
+import com.gmail.picono435.picojobs.api.managers.PlaceholderManager;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 /**
  * This class will translate only PICOJOBS placeholders and not any placeholder
  */
-public class JobPlaceholders {
+public class JobPlayerPlaceholders extends PlaceholderExtension {
 
-    public static String setPlaceholders(UUID player, String message) {
-        if(player == null) return message;
-        String[] identifiers = StringUtils.substringsBetween(message, "%", "%");
-        if(identifiers == null) return message;
-        for(String identifier : identifiers) {
-            String defaultIdentifier =  "%" + identifier + "%";
-            if(!identifier.startsWith("jobplayer_")) continue;
-                identifier = identifier.replaceFirst("jobplayer_", "");
-                message = message.replace(defaultIdentifier, translatePlaceholders(player, identifier));
-            }
-        return message;
+    public final static String PREFIX = "jobplayer";
+    public final static String[] PLACEHOLDERS = {"job", "tag", "work", "reqmethod", "salary", "level", "working"};
+
+    @Override
+    public String getPrefix() {
+        return PREFIX;
     }
 
-    public static List<String> setPlaceholders(UUID player, List<String> messages) {
-        if(player == null) return messages;
-        List<String> newMessages = new ArrayList<String>();
-        for(String message : messages) {
-            String[] identifiers = StringUtils.substringsBetween(message, "%", "%");
-            if(identifiers != null) {
-                for(String identifier : identifiers) {
-                    String defaultIdentifier =  "%" + identifier + "%";
-                    if(!identifier.startsWith("jobplayer_")) continue;
-                    identifier = identifier.replaceFirst("jobplayer_", "");
-                    message = message.replace(defaultIdentifier, translatePlaceholders(player, identifier));
-                }
-            }
-            newMessages.add(message);
-        }
-        return newMessages;
+    @Override
+    public String[] getPlaceholders() {
+        return PLACEHOLDERS;
     }
 
-    public static String translatePlaceholders(UUID player, String identifier) {
+    public String translatePlaceholders(UUID player, String identifier) {
         NumberFormat df = NumberFormat.getNumberInstance(Locale.getDefault());
 
+        if(player == null) return null;
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
         if(jp == null) return null;
 
@@ -107,6 +91,6 @@ public class JobPlaceholders {
             return String.valueOf(jp.isWorking());
         }
 
-        return "[NULL_PLACEHOLDER]";
+        return PlaceholderManager.NULL_PLACEHOLDER;
     }
 }

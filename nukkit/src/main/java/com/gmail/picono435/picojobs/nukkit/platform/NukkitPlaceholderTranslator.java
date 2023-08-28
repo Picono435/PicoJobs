@@ -1,6 +1,8 @@
 package com.gmail.picono435.picojobs.nukkit.platform;
 
-import com.gmail.picono435.picojobs.api.JobPlaceholders;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.placeholders.JobPlayerPlaceholders;
+import com.gmail.picono435.picojobs.api.placeholders.PlaceholderExtension;
 import com.gmail.picono435.picojobs.common.platform.PlaceholderTranslator;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 import com.gmail.picono435.picojobs.nukkit.hooks.PlaceholderAPIHook;
@@ -15,7 +17,10 @@ public class NukkitPlaceholderTranslator implements PlaceholderTranslator {
         if(PlaceholderAPIHook.isEnabled()) {
             return PlaceholderAPIHook.translateString(string, PicoJobsNukkit.getInstance().getServer().getPlayer(player).get());
         } else {
-            return JobPlaceholders.setPlaceholders(player, string);
+            for(PlaceholderExtension extension : PicoJobsAPI.getPlaceholderManager().getExtensions()) {
+                string = extension.setPlaceholders(player, string);
+            }
+            return string;
         }
     }
 

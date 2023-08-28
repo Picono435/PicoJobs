@@ -4,9 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
-import com.gmail.picono435.picojobs.api.utils.RequiredField;
+import com.gmail.picono435.picojobs.api.placeholders.JobPlayerPlaceholders;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
-import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
@@ -243,7 +242,7 @@ public class Job {
 		if(this.workMessage == null) {
 			work = LanguageManager.formatMessage("do %a% actions");
 		} else {
-			work = JobPlaceholders.setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
+			work = PicoJobsAPI.getPlaceholderManager().getJobPlayerPlaceholders().setPlaceholders(null, PicoJobsCommon.getColorConverter().translateAlternateColorCodes(workMessage));
 		}
 		
 		return work;

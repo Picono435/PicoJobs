@@ -146,7 +146,8 @@ public class PicoJobsCommon {
         return platform;
     }
 
-    public static Logger getLogger() {
+    public static Logger
+    getLogger() {
         return logger;
     }
 
