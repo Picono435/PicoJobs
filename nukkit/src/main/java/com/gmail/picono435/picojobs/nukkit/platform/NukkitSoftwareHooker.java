@@ -1,10 +1,16 @@
 package com.gmail.picono435.picojobs.nukkit.platform;
 
 import cn.nukkit.plugin.PluginManager;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.SoftwareHooker;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 import com.gmail.picono435.picojobs.nukkit.hooks.PlaceholderAPIHook;
+import com.gmail.picono435.picojobs.nukkit.hooks.economy.CommandImplementation;
+import com.gmail.picono435.picojobs.nukkit.hooks.economy.ExpImplementation;
+import com.gmail.picono435.picojobs.nukkit.hooks.economy.ItemImplementation;
+import com.gmail.picono435.picojobs.nukkit.hooks.workzones.BiomeImplementation;
+import com.gmail.picono435.picojobs.nukkit.hooks.workzones.WorldImplementation;
 import com.gmail.picono435.picojobs.nukkit.listeners.NukkitAliasesListener;
 import com.gmail.picono435.picojobs.nukkit.listeners.NukkitExecuteCommandListener;
 import com.gmail.picono435.picojobs.nukkit.listeners.NukkitJoinCacheListener;
@@ -15,19 +21,12 @@ public class NukkitSoftwareHooker implements SoftwareHooker {
     public void hookInPhase(Phase phase) {
         switch(phase) {
             case ONE: {
-                /*PicoJobsAPI.registerEconomy(new ExpImplementation());
+                PicoJobsAPI.registerEconomy(new ExpImplementation());
                 PicoJobsAPI.registerEconomy(new CommandImplementation());
                 PicoJobsAPI.registerEconomy(new ItemImplementation());
-                VaultHook.setupVault();
-                PlayerPointsHook.setupPlayerPoints();
-                PicoJobsAPI.registerEconomy(new TokenManagerImplementation());
 
                 PicoJobsAPI.registerWorkZone(new BiomeImplementation());
                 PicoJobsAPI.registerWorkZone(new WorldImplementation());
-                PicoJobsAPI.registerWorkZone(new WorldGuardImplementation());
-                PicoJobsAPI.registerWorkZone(new GriefPreventionImplementation());
-                PicoJobsAPI.registerWorkZone(new GriefDefenderImplementation());
-                PicoJobsAPI.registerWorkZone(new TownyImplementation());*/
 
                 PlaceholderAPIHook.setupPlaceholderAPI();
                 break;
