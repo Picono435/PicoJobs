@@ -1,9 +1,9 @@
 # This file is a language file, here you can change all the messages for this language
-# Most messages that can be configured with this file will work with player and server placeholders
+# Most configurable messages in this file will work with player and server placeholders
 #
 # NOTE:
-# In order to use any external placeholder [ex: %player_name%] you will need to install a
-# placeholder api plugin/mod. To know which check the wiki (TODO: WIKI)
+# In order to use any external placeholder you might need to install a
+# placeholder api plugin/mod. For more information check the wiki (https://github.com/Picono435/PicoJobs/wiki/Placeholders)
 #
 #################################################################################
 #                                                                               #
@@ -66,8 +66,8 @@ invalid-arg: "&aThe argument sent is invalid. Please check the mispell."
 #                                                                               #
 #################################################################################
 # In this category you can change the formats of placeholders and other things
-# All these messages work with Player Placeholders (A placeholder API is required)
-# When something is not find what should it appear
+# All these messages work with Player Placeholders (A placeholder API might be required)
+# When something is not found what should appear
 none-format: "None"
 default-tag: ""
 
