@@ -120,6 +120,8 @@ sourceSets {
     }
 }
 
+evaluationDependsOn(':common')
+
 project(':common').tasks.slimJar {
     dependsOn(tasks.jar)
     dependsOn(tasks.sourcesJar)
