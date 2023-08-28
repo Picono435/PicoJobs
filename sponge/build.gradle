@@ -97,4 +97,3 @@ project(':common').tasks.slimJar {
 }
 
 assemble.dependsOn shadowJar
-//TODO: slimjar.json is not being generated
