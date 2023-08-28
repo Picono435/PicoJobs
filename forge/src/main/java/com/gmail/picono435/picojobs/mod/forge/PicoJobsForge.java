@@ -42,9 +42,6 @@ public class PicoJobsForge {
         MinecraftForge.EVENT_BUS.register(this);
         EventBuses.registerModEventBus(PicoJobsMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
-        URL jarURL = ModList.get().getModFileById(PicoJobsMod.MOD_ID).getFile().getFilePath().toFile().toURL();
-        System.err.println(jarURL + " " + jarURL.getProtocol());
-
         PicoJobsCommon.onLoad(
                 "1.0-pre",
                 Platform.FORGE,
@@ -56,8 +53,7 @@ public class PicoJobsForge {
                 new ModColorConverter(),
                 new ForgePlaceholderTranslator(),
                 new ModWhitelistConverter(),
-                new ModSoftwareHooker(),
-                jarURL
+                new ModSoftwareHooker()
         );
 
         PicoJobsMod.init();

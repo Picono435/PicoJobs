@@ -49,7 +49,7 @@ public class FileManager {
             CommentedConfigurationNode root = loader.load();
             return new FileInformation(loader, root);
         } catch (IOException e) {
-            System.err.println("An error occurred while loading this configuration: " + e.getMessage());
+            PicoJobsCommon.getLogger().error("An error occurred while loading this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -91,7 +91,7 @@ public class FileManager {
             configNode.mergeFrom(defaults);
             configLoader.save(configNode);
         } catch (IOException e) {
-            System.err.println("An error occurred while loading this configuration: " + e.getMessage());
+            PicoJobsCommon.getLogger().error("An error occurred while loading this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }

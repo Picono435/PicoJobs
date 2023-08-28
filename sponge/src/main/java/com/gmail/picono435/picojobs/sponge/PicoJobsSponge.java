@@ -81,7 +81,6 @@ public class PicoJobsSponge {
                 new SpongeSoftwareHooker(),
                 jarURL
             );
-        System.err.println(jarURL.toString());
         this.pluginContainer = event.plugin();
     }
 

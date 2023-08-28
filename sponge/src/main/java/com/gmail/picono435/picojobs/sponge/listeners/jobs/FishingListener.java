@@ -13,7 +13,6 @@ public class FishingListener {
     @Listener
     public void onFishing(FishingEvent.Stop event, @First ServerPlayer player) {
         if(event.transactions().size() <= 0) return;
-        //System.out.println(event.transactions().get(0).finalReplacement().type());
         WorkListener.simulateWorkListener(new SpongeSender(player), Type.FISHING, event.transactions().get(0).finalReplacement().type());
     }
 }
