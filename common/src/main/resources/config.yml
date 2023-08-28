@@ -1,13 +1,13 @@
 # IMPORTANT #
-# Our plugin uses PlaceholderAPI to make placeholders, it's not required but if you want to use it you will need to add it
+# Our plugin might require a external placeholder api mod/plugin to support external placeholders please check the wiki for more information
 # A detailed wiki of our plugin can be found here: https://github.com/Picono435/wiki
-# All the configurations are commented, but if you still need help check the wiki or send a message in our discord
+# All the configurations are commented, but if you still need help check the wiki or contact us through a message in our discord
 #
 # Remember that some configurations may be found in another files inside the settings folder.
-# Here you will only find basic configurations
+# Here you will only find basic and general configurations
 # IMPORTANT #
 
-# DO NOT CHANGE THIS
+# DO NOT CHANGE THIS SETTING
 config-version: "@version@"
 
 #################################################################################
@@ -20,7 +20,7 @@ config-version: "@version@"
 # A list of all the possible languages can be found here: https://github.com/Picono435/PicoJobs/tree/master/src/main/resources/langs
 # The translations can be INCORRECT or INCOMPLETE because they are made by the community, but you can always change them.
 lang: "en-GB"
-# Here you can put the name of your server, this message will appier in the start of all messages. To disable just put nothing.
+# Here you can put the name of your server, this message will appeaer in the start of all messages. To disable just put nothing.
 prefix: "&6[PicoJobs] "
 # Here you can enable/disable the update checker
 update-checker: true
@@ -51,8 +51,7 @@ storage:
   # |=> JSON
   # |=> HOCON
   storage-method: h2
-  # This option will reset the cache each time someone joins, this is useful if you are running a bungeecord server
-  # This feature is not fully tested in a production environment and it might cause issues
+  # This option will make sure data is retrieved and never cached, useful if you are running the same data through different servers
   reset-cache-on-join: false
   # Remote SQL databases (MySQL, MariaDB, PostgreSQL) configuration
   remote-sql:
@@ -77,8 +76,8 @@ storage:
 #                                                                               #
 #################################################################################
 # In this category you can change the basic configurations of the plugin
-# What should happen when execute /jobs command?
-# 1 = Ignore and send a message (This feature its not really useful yet, but it will be soon ;))
+# What should happen when executing /jobs command?
+# 1 = Ignore and send a message
 # 2 = Execute basic commands, enter a job, get salary etc... etc...
 # 3 = Open Jobs Menu
 jobs-action: 3
@@ -91,7 +90,7 @@ auto-working: false
 
 #################################################################################
 #                                                                               #
-# Commands allow                                                                #
+# Command prohibition                                                           #
 #                                                                               #
 #################################################################################
 # In this category you can select all the commands that can only be used after a specific level (amount of works done)
