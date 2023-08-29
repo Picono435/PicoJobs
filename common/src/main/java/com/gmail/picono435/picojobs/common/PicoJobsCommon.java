@@ -32,11 +32,11 @@ public class PicoJobsCommon {
     private static PicoJobsMain mainInstance;
     private static FileManager fileManager;
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, MetricsBase metricsBase) {
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker) {
         onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, null);
     }
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, MetricsBase metricsBase, URL jarURL) {
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, URL jarURL) {
         if(PicoJobsCommon.version != null) return;
         PicoJobsCommon.version = version;
         PicoJobsCommon.platform = platform;
@@ -49,7 +49,6 @@ public class PicoJobsCommon {
         PicoJobsCommon.placeholderTranslator = placeholderTranslator;
         PicoJobsCommon.whitelistConverter = whitelistConverter;
         PicoJobsCommon.softwareHooker = softwareHooker;
-        PicoJobsCommon.metricsBase = metricsBase;
 
         if(platform != Platform.FORGE) {
             PicoJobsCommon.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");
@@ -72,8 +71,9 @@ public class PicoJobsCommon {
         fileManager.init();
     }
 
-    public static void onEnable() {
-        PicoJobsCommon.getLogger().info("Plugin created by: Picono435#2011. Thank you for using it");
+    public static void onEnable(MetricsBase metricsBase) {
+        PicoJobsCommon.metricsBase = metricsBase;
+        PicoJobsCommon.getLogger().info("Plugin created by: picono435. Thank you for using it");
         mainInstance = new PicoJobsMain();
         mainInstance.init();
     }
@@ -168,6 +168,10 @@ public class PicoJobsCommon {
 
     public static SoftwareHooker getSoftwareHooker() {
         return softwareHooker;
+    }
+
+    public static MetricsBase getMetricsBase() {
+        return metricsBase;
     }
 
     public static PicoJobsMain getMainInstance() {

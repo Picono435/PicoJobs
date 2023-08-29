@@ -5,9 +5,13 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.plugin.PluginBase;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.Platform;
+import com.gmail.picono435.picojobs.nukkit.metrics.Metrics;
 import com.gmail.picono435.picojobs.nukkit.platform.*;
 import com.gmail.picono435.picojobs.nukkit.platform.logging.NukkitLoggerAdapter;
 import me.iwareq.fakeinventories.FakeInventories;
+import org.bstats.MetricsBase;
+
+import java.io.IOException;
 
 public class PicoJobsNukkit extends PluginBase {
 
@@ -36,7 +40,14 @@ public class PicoJobsNukkit extends PluginBase {
 
     @Override
     public void onEnable() {
-        PicoJobsCommon.onEnable();
+        MetricsBase metricsBase;
+        try {
+            metricsBase = new Metrics(this, 8553).getMetricsBase();
+        } catch (IOException exception) {
+            PicoJobsCommon.getLogger().error("Error while enabling bStats metrics. Enabling plugin without metrics.", exception);
+            metricsBase = null;
+        }
+        PicoJobsCommon.onEnable(metricsBase);
         FakeInventories fakeInventories = new FakeInventories();
         fakeInventories.init(this.getPluginLoader(), this.getServer(), this.getDescription(), this.getDataFolder(), this.getFile());
         fakeInventories.setEnabled(true);

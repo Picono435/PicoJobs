@@ -9,6 +9,8 @@ import com.gmail.picono435.picojobs.sponge.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.sponge.platform.*;
 import com.google.inject.Inject;
 import org.apache.logging.log4j.Logger;
+import org.bstats.MetricsBase;
+import org.bstats.sponge.Metrics;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Server;
@@ -39,6 +41,7 @@ public class PicoJobsSponge {
     private static PicoJobsSponge instance;
     private final Logger logger;
     private final Game game;
+    private final Metrics metrics;
     private PluginContainer pluginContainer;
     @Inject
     @DefaultConfig(sharedRoot = false)
@@ -47,10 +50,11 @@ public class PicoJobsSponge {
     private Map<String, PlaceholderParser> placeholderParsers = new HashMap<>();
 
     @Inject
-    public PicoJobsSponge(Logger logger, Game game) {
+    public PicoJobsSponge(Logger logger, Game game, Metrics.Factory metricsFactory) {
         instance = this;
         this.logger = logger;
         this.game = game;
+        this.metrics = metricsFactory.make(8553);
     }
 
     @Listener
@@ -86,7 +90,15 @@ public class PicoJobsSponge {
 
     @Listener
     public void onServerStarting(final StartingEngineEvent<Server> event) {
-        PicoJobsCommon.onEnable();
+        MetricsBase metricsBase;
+        try {
+            Field metricsBaseField = Metrics.class.getField("metricsBase");
+            metricsBase = (MetricsBase) metricsBaseField.get(this.metrics);
+        } catch (Exception exception) {
+            PicoJobsCommon.getLogger().error("Error while enabling bStats metrics. Enabling plugin without metrics.", exception);
+            metricsBase = null;
+        }
+        PicoJobsCommon.onEnable(metricsBase);
     }
 
     @Listener

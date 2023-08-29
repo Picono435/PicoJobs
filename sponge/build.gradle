@@ -25,6 +25,8 @@ dependencies {
     shadow implementation(project(':common'))
     // Sponge
     compileOnly 'org.spongepowered:spongeapi:8.2.0-SNAPSHOT'
+    // Other libraries
+    shadow implementation('org.bstats:bstats-sponge:3.0.2')
 }
 
 shadowJar {

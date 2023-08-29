@@ -25,7 +25,7 @@ dependencies {
     transitiveCommon(slim('mysql:mysql-connector-java:8.0.33'))
     transitiveCommon(shadow api('org.spongepowered:configurate-core:4.1.2'))
     transitiveCommon(shadow implementation('org.spongepowered:configurate-gson:4.1.2'))
-    transitiveCommon(shadow implementation('org.spongepowered:configurate-yaml:4.1.2'))
+    transitiveCommon(shadow api('org.spongepowered:configurate-yaml:4.1.2'))
     transitiveCommon(shadow implementation('org.spongepowered:configurate-hocon:4.1.2'))
 
     transitiveCommon(shadow implementation('org.apache.maven:maven-artifact:3.9.1'))

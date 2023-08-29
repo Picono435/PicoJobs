@@ -1,0 +1,11 @@
+# This is a custom Metrics class made by: Picono435 in order to support multi platform metrics for PicoJobs
+# If you find any issue please contact me and not bStats directly
+# bStats collects some data for plugin authors like how many servers are using their plugins.
+# To honor their work, you should not disable it.
+# This has nearly no effect on the server performance!
+# Check out https://bStats.org/ to learn more :)
+enabled: true
+serverUuid:
+logFailedRequests: false
+logSentData: false
+logResponseStatusText: false

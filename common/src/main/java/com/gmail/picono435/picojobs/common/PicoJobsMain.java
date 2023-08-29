@@ -11,6 +11,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.bstats.charts.DrilldownPie;
+import org.bstats.charts.SingleLineChart;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.serialize.SerializationException;
 
@@ -56,6 +58,11 @@ public class PicoJobsMain {
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.TWO);
 
         PicoJobsAPI.getStorageManager().initializeStorageFactory();
+
+        // bStats Metrics
+        if(PicoJobsCommon.getMetricsBase() != null) {
+            PicoJobsCommon.getMetricsBase().addCustomChart(new SingleLineChart("created_jobs", () -> jobs.size()));
+        }
 
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.THREE);
 
@@ -118,12 +125,9 @@ public class PicoJobsMain {
             boolean enchanted = guiNode.node("enchanted").getBoolean();
             List<String> lore = guiNode.node("lore").getList(String.class);
 
-            // CALCULATING OPTIONALS
-
             boolean useWhitelist = jobNode.node("use-whitelist").getBoolean();
             Map<Type, List<String>> whitelist = new HashMap<>();
             if(!jobNode.node("whitelist").empty()) {
-                //TODO: CHECK IF THIS EVEN WORKS
                 for(Object type : jobNode.node("whitelist").childrenMap().keySet()) {
                     whitelist.put(Type.getType((String)type), jobNode.node("whitelist", type).getList(String.class));
                 }
@@ -133,7 +137,35 @@ public class PicoJobsMain {
 
             jobs.put(jobid, job);
 
-            //TODO: Metrics for each job
+            if(PicoJobsCommon.getMetricsBase() != null) {
+                PicoJobsCommon.getMetricsBase().addCustomChart(new DrilldownPie("jobs", () -> {
+                    Map<String, Map<String, Integer>> map = new HashMap<>();
+                    Map<String, Integer> entry = new HashMap<>();
+                    entry.put(jobid, 1);
+                    for(Type type : types) {
+                        map.put(type.name(), entry);
+                    }
+                    return map;
+                }));
+
+                PicoJobsCommon.getMetricsBase().addCustomChart(new DrilldownPie("active_economy", () -> {
+                    Map<String, Map<String, Integer>> map = new HashMap<>();
+                    Map<String, Integer> entry = new HashMap<>();
+                    String eco = job.getEconomy();
+                    entry.put(eco, 1);
+                    map.put(eco, entry);
+                    return map;
+                }));
+
+                PicoJobsCommon.getMetricsBase().addCustomChart(new DrilldownPie("active_workzone", () -> {
+                    Map<String, Map<String, Integer>> map = new HashMap<>();
+                    Map<String, Integer> entry = new HashMap<>();
+                    String workz = job.getWorkZone();
+                    entry.put(workz, 1);
+                    map.put(workz, entry);
+                    return map;
+                }));
+            }
     }
         return true;
 }

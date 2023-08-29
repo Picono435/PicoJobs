@@ -5,12 +5,15 @@ import com.gmail.picono435.picojobs.mod.command.ModJobsAdminCommand;
 import com.gmail.picono435.picojobs.mod.command.ModJobsCommand;
 import com.gmail.picono435.picojobs.mod.listeners.ModJoinCacheListener;
 import com.gmail.picono435.picojobs.mod.listeners.jobs.*;
+import com.gmail.picono435.picojobs.mod.metrics.Metrics;
 import com.gmail.picono435.picojobs.mod.platform.ModSchedulerAdapter;
 import dev.architectury.event.events.common.*;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bstats.MetricsBase;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class PicoJobsMod {
@@ -22,7 +25,14 @@ public class PicoJobsMod {
         LifecycleEvent.SERVER_BEFORE_START.register((listener) -> {
             server = listener.getConnection().getServer();
             ((ModSchedulerAdapter)PicoJobsCommon.getSchedulerAdapter()).init();
-            PicoJobsCommon.onEnable();
+            MetricsBase metricsBase;
+            try {
+                metricsBase = new Metrics(8553).getMetricsBase();
+            } catch (IOException exception) {
+                PicoJobsCommon.getLogger().error("Error while enabling bStats metrics. Enabling plugin without metrics.", exception);
+                metricsBase = null;
+            }
+            PicoJobsCommon.onEnable(metricsBase);
         });
 
         CommandRegistrationEvent.EVENT.register((dispatcher, registry, selection) -> {
