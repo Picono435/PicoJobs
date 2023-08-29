@@ -11,7 +11,7 @@
 The best jobs plugin ever!
 
 [![Release](https://img.shields.io/github/v/release/Picono435/PicoJobs?style=for-the-badge&include_prereleases&sort=semver)][releases]
-[![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.19.x-1.8.x)][bukkitdev]
+[![Available For](https://img.shields.io/static/v1?label=Available%20For&style=for-the-badge&color=34aa2f&message=1.20.x-1.8.x)][bukkitdev]
 [![BukkitDev Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=BukkitDev&query=downloads.total&url=https://api.cfwidget.com/385252)][bukkitdev]
 [![SpigotMC Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=SpigotMC&query=stats.downloads&url=https%3A%2F%2Fapi.spigotmc.org%2Fsimple%2F0.2%2Findex.php%3Faction%3DgetResource%26id%3D82784&logo=SpigotMC)][spigotmc]
 [![Modrinth Downloads](https://img.shields.io/badge/dynamic/json?color=f16436&style=for-the-badge&label=Modrinth&query=downloads&url=https%3A%2F%2Fapi.modrinth.com%2Fv2%2Fproject%2Fpicojobs&logo=Modrinth)][modrinth]
