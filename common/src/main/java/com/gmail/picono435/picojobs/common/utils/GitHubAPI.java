@@ -17,18 +17,11 @@ public class GitHubAPI {
         con.setRequestMethod("GET");
         con.setConnectTimeout(5000);
         con.setReadTimeout(5000);
-        con.setInstanceFollowRedirects(false);
+        con.setInstanceFollowRedirects(true);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        /*String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        in.close();*/
+        BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObject =  (JsonObject) parser.parse(in);
+        JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
         String status = jsonObject.get("status").getAsString();
         switch(status) {
             case("diverged"):

@@ -83,7 +83,7 @@ public class FileManager {
 
     // TODO: Add migrations (Old ones are probably no longer needed)
     public void migrateFiles() {
-        try {
+        /*try {
             URL inputUrl = getClass().getResource("config.yml");
             YamlConfigurationLoader defaultsLoader = YamlConfigurationLoader.builder().url(inputUrl).build();
             ConfigurationNode defaults = defaultsLoader.load();
@@ -95,7 +95,7 @@ public class FileManager {
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
-        }
+        }*/
     }
 
     public void saveJobsFile(ConfigurationNode node) throws ConfigurateException {

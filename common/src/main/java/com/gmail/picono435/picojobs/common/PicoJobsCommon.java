@@ -6,23 +6,12 @@ import com.gmail.picono435.picojobs.common.platform.*;
 import com.gmail.picono435.picojobs.common.platform.scheduler.SchedulerAdapter;
 import com.gmail.picono435.picojobs.common.platform.WhitelistConverter;
 import io.github.slimjar.app.builder.ApplicationBuilder;
-import io.github.slimjar.app.builder.IsolatedApplicationBuilder;
-import io.github.slimjar.app.builder.IsolationConfiguration;
-import io.github.slimjar.app.module.TemporaryModuleExtractor;
-import io.github.slimjar.injector.DependencyInjector;
-import io.github.slimjar.injector.DependencyInjectorFactory;
-import io.github.slimjar.injector.agent.ByteBuddyInstrumentationFactory;
-import io.github.slimjar.injector.helper.InjectionHelperFactory;
-import io.github.slimjar.injector.loader.InjectableClassLoader;
-import io.github.slimjar.injector.loader.InjectableFactory;
-import io.github.slimjar.injector.loader.InstrumentationInjectable;
-import io.github.slimjar.resolver.data.Repository;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.bstats.MetricsBase;
 import org.slf4j.Logger;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Collections;
 
 public class PicoJobsCommon {
     // Platform specific features
@@ -37,16 +26,17 @@ public class PicoJobsCommon {
     private static PlaceholderTranslator placeholderTranslator;
     private static WhitelistConverter whitelistConverter;
     private static SoftwareHooker softwareHooker;
+    private static MetricsBase metricsBase;
 
     // Non-Platform specific
     private static PicoJobsMain mainInstance;
     private static FileManager fileManager;
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker) {
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, MetricsBase metricsBase) {
         onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, null);
     }
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, URL jarURL) {
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, MetricsBase metricsBase, URL jarURL) {
         if(PicoJobsCommon.version != null) return;
         PicoJobsCommon.version = version;
         PicoJobsCommon.platform = platform;
@@ -59,6 +49,7 @@ public class PicoJobsCommon {
         PicoJobsCommon.placeholderTranslator = placeholderTranslator;
         PicoJobsCommon.whitelistConverter = whitelistConverter;
         PicoJobsCommon.softwareHooker = softwareHooker;
+        PicoJobsCommon.metricsBase = metricsBase;
 
         if(platform != Platform.FORGE) {
             PicoJobsCommon.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");

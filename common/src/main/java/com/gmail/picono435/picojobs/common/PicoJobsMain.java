@@ -17,6 +17,7 @@ import org.spongepowered.configurate.serialize.SerializationException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.*;
 
 public class PicoJobsMain {
@@ -33,13 +34,13 @@ public class PicoJobsMain {
     public void init() {
         if(FileManager.getConfigNode().node("config-version").empty() || !FileManager.getConfigNode().node("config-version").getString().equalsIgnoreCase(PicoJobsCommon.getVersion())) {
             PicoJobsCommon.getLogger().warn("You were using a old configuration file... Updating it with the new configurations of the current version.");
-            //TODO: PicoJobsCommon.getFileManager().migrateFiles();
+            PicoJobsCommon.getFileManager().migrateFiles();
         }
 
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.ONE);
         PicoJobsCommon.getSchedulerAdapter().executeSync(() -> {
-            PicoJobsCommon.getLogger().info("[PicoJobs] " + economies.size() + " " + /*ChatColor.GREEN +*/ "economy implementations successfully registered!");
-            PicoJobsCommon.getLogger().info("[PicoJobs] " + workZones.size() + " " + /*ChatColor.GREEN +*/ "work zones implementations successfully registered!");
+            PicoJobsCommon.getLogger().info("[PicoJobs] " + economies.size() + " economy implementations successfully registered!");
+            PicoJobsCommon.getLogger().info("[PicoJobs] " + workZones.size() + " work zones implementations successfully registered!");
         });
 
         PicoJobsCommon.getLogger().info("Generating jobs from the configuration files...");
@@ -139,43 +140,45 @@ public class PicoJobsMain {
 
     private void checkVersion() {
         try {
-            URL url = new URL("https://servermods.forgesvc.net/servermods/files?projectIds=385252");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
-            con.setInstanceFollowRedirects(false);
+            URL url = new URL(String.format("https://api.modrinth.com/v2/project/picojobs/version?loaders=%s",
+                    URLEncoder.encode("[\"" + PicoJobsCommon.getPlatform().name().toLowerCase() + "\"]", "UTF-8")));
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            connection.setInstanceFollowRedirects(true);
+            connection.setRequestProperty("User-Agent", "Picono435/PicoJobs/" + PicoJobsCommon.getVersion() + " (piconodev.com)");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                content.append(inputLine);
+            int statusCode = connection.getResponseCode();
+            if(statusCode == 401) {
+                PicoJobsCommon.getLogger().warn("Could not access Modrinth API as the version in use has been permanently deprecated. Upgrade the plugin manually for an alternative.");
+                return;
             }
-            in.close();
 
-            JsonParser parser = new JsonParser();
-            JsonArray jsonArray =  (JsonArray) parser.parse(content.toString());
-            JsonObject json = (JsonObject) jsonArray.get(jsonArray.size() - 1);
-            String version = json.get("name").getAsString();
-            version = version.replaceFirst("PicoJobs ", "");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(PicoJobsCommon.getVersion());
-            DefaultArtifactVersion latestVersion = new DefaultArtifactVersion(version);
-            String downloadUrl = json.get("downloadUrl").getAsString();
-            boolean isRunningInOld = latestVersion.compareTo(pluginVersion) > 0;
+            JsonArray jsonArray = JsonParser.parseReader(reader).getAsJsonArray();
+            if(jsonArray.size() <= 0) {
+                PicoJobsCommon.getLogger().info("You are using the latest version of the plugin.");
+                return;
+            }
+            JsonObject json = jsonArray.get(0).getAsJsonObject();
+            String version = json.get("version_number").getAsString();
+
+            boolean isRunningOld;
             if(PicoJobsCommon.getVersion().endsWith("-DEV")) {
-                isRunningInOld = !GitHubAPI.isTagLatest(version);
+                isRunningOld = !GitHubAPI.isTagLatest(version);
+            } else {
+                DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(PicoJobsCommon.getVersion());
+                DefaultArtifactVersion latestVersion = new DefaultArtifactVersion(version);
+                System.out.println("Checking versions: " + pluginVersion.toString() + " " + latestVersion.toString());
+                isRunningOld = latestVersion.compareTo(pluginVersion) > 0;
             }
-            if(isRunningInOld) {
-                PicoJobsCommon.getLogger().warn("Version: " + latestVersion + " is out! You are still running version: " + pluginVersion);
-                //TODO: Create an auto update for the bukkit version (and if possible for other platforms too)
+            if(isRunningOld) {
+                PicoJobsCommon.getLogger().warn("Version: " + version + " is out! You are still running version: " + PicoJobsCommon.getVersion());
                 if(FileManager.getConfigNode().node("auto-update").getBoolean() && PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
-                    /*if(updatePlugin(downloadUrl)) {
-                        PicoJobsCommon.getLogger().info("Updating the plugin to the latest version...");
-                    } else {
-                        PicoJobsCommon.getLogger().warn("An error occuried while updating the plugin.");
-                    }*/
+                    String downloadUrl = json.getAsJsonArray("files").get(0).getAsJsonObject().get("url").getAsString();
+                    updatePlugin(downloadUrl, version);
                 }
             } else {
                 PicoJobsCommon.getLogger().info("You are using the latest version of the plugin.");
@@ -184,5 +187,9 @@ public class PicoJobsMain {
             PicoJobsCommon.getLogger().warn("Could not get the latest version.");
             ex.printStackTrace();
         }
+    }
+
+    public void updatePlugin(String downloadUrl, String newVersion) {
+
     }
 }

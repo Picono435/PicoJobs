@@ -34,6 +34,7 @@ dependencies {
     transitiveCommon(shadow api('commons-io:commons-io:2.13.0'))
     transitiveCommon(shadow api('com.google.guava:guava:32.0.0-jre'))
     transitiveCommon(shadow api('com.google.code.gson:gson:2.10.1'))
+    transitiveCommon(shadow api('org.bstats:bstats-base:3.0.2'))
 }
 
 shadowJar {

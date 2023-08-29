@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public abstract class WorkZoneImplementation {
 
-    protected String requiredPlugin;
+    protected String requiredPlugin = "PicoJobs";
 
     /**
      * Returns a upper case name of economy
