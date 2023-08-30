@@ -54,7 +54,6 @@ public class NukkitSoftwareHooker implements SoftwareHooker {
                 pluginManager.registerEvents(new SmeltListener(), PicoJobsNukkit.getInstance());
                 pluginManager.registerEvents(new KillEntityListener(), PicoJobsNukkit.getInstance());
                 if(PicoJobsCommon.isMoreThan("1.14")) {
-                    //TODO: CHECK THIS
                     pluginManager.registerEvents(new StripLogsListener(), PicoJobsNukkit.getInstance());
                 }
                 break;
