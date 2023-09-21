@@ -38,7 +38,8 @@ public class PicoJobsBukkit extends JavaPlugin {
     public void onEnable() {
         MetricsBase metricsBase;
         try {
-            Field metricsBaseField = Metrics.class.getField("metricsBase");
+            Field metricsBaseField = Metrics.class.getDeclaredField("metricsBase");
+            metricsBaseField.setAccessible(true);
             metricsBase = (MetricsBase) metricsBaseField.get(new Metrics(this, 8553));
         } catch (Exception exception) {
             PicoJobsCommon.getLogger().error("Error while enabling bStats metrics. Enabling plugin without metrics.", exception);

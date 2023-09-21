@@ -51,6 +51,8 @@ shadowJar {
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
     relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
+
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 sponge {

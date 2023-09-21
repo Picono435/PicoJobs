@@ -3,6 +3,8 @@ package com.gmail.picono435.picojobs.common.command.main;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.events.PlayerEmployedEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.command.api.Command;
@@ -39,7 +41,11 @@ public class ChooseCommand implements Command {
             sender.sendMessage(LanguageManager.getMessage("no-permission", sender.getUUID()));
             return true;
         }
-        jp.setJob(job);
+        PlayerEmployedEvent event = PicoJobsAPI.getEventsManager().consumeListeners(new PlayerEmployedEvent(jp, job));
+        if (event.isCancelled()) {
+            return true;
+        }
+        jp.setJob(event.getJob());
         sender.sendMessage(LanguageManager.getMessage("choosed-job", sender.getUUID()));
         return true;
     }

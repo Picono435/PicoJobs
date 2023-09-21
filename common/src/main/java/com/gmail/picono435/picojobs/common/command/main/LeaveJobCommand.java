@@ -2,6 +2,7 @@ package com.gmail.picono435.picojobs.common.command.main;
 
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.events.PlayerQuitJobEvent;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
@@ -36,6 +37,8 @@ public class LeaveJobCommand implements Command {
                 return true;
             }
         }
+        PlayerQuitJobEvent event = new PlayerQuitJobEvent(jp);
+        if (PicoJobsAPI.getEventsManager().consumeListeners(event).isCancelled()) return true;
         jp.removePlayerStats();
         sender.sendMessage(LanguageManager.getMessage("left-job", sender.getUUID()));
         jp.setLeaveCooldown(System.currentTimeMillis());

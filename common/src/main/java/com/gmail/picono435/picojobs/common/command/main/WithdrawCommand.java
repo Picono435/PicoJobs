@@ -3,6 +3,7 @@ package com.gmail.picono435.picojobs.common.command.main;
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
+import com.gmail.picono435.picojobs.api.events.PlayerWithdrawEvent;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.command.api.Command;
@@ -48,10 +49,14 @@ public class WithdrawCommand implements Command {
             sender.sendMessage(LanguageManager.formatMessage("&cWe did not find the economy implementation (" + economyString + "). Please contact an administrator in order to get more information."));
             return true;
         }
-        EconomyImplementation economy = PicoJobsCommon.getMainInstance().economies.get(economyString);
+        EconomyImplementation economy = PicoJobsAPI.getEconomy(economyString);
         sender.sendMessage(LanguageManager.getMessage("got-salary", sender.getUUID()));
-        economy.deposit(sender.getUUID(), salary);
-        jp.removeSalary(salary);
+        PlayerWithdrawEvent event = PicoJobsAPI.getEventsManager().consumeListeners(new PlayerWithdrawEvent(jp, salary));
+        if (event.isCancelled()) {
+            return true;
+        }
+        economy.deposit(sender.getUUID(), event.getSalary());
+        jp.removeSalary(event.getSalary());
         jp.setSalaryCooldown(System.currentTimeMillis());
         return true;
     }

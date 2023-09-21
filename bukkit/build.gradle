@@ -73,7 +73,7 @@ dependencies {
     // Common & API project
     shadow implementation(project(':common'))
     // Spigot
-    compileOnly('org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT')
+    compileOnly("org.spigotmc:spigot-api:${rootProject.minecraft_version}-R0.1-SNAPSHOT")
     // Plugins API
     compileOnly('me.clip:placeholderapi:2.11.3') { transitive = false }
     compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
@@ -109,6 +109,8 @@ shadowJar {
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
     relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
+
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 // Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file

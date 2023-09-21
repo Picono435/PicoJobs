@@ -2,6 +2,8 @@ package com.gmail.picono435.picojobs.api;
 
 import java.util.UUID;
 
+import com.gmail.picono435.picojobs.api.events.PlayerFinishedWorkingEvent;
+import com.gmail.picono435.picojobs.api.events.PlayerStartedWorkingEvent;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 
 /**
@@ -185,11 +187,10 @@ public class JobPlayer {
 	 *
 	 */
 	public void setWorking(boolean isWorking) {
-		//TODO: Add events
-		/*if(isWorking) {
-			PlayerStartWorkEvent event = new PlayerStartWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
-			Bukkit.getPluginManager().callEvent(event);
-		}*/
+		if(this.isWorking != isWorking && isWorking) {
+			PlayerStartedWorkingEvent event = new PlayerStartedWorkingEvent(this);
+			if (PicoJobsAPI.getEventsManager().consumeListeners(event).isCancelled()) return;
+		}
 		
 		this.isWorking = isWorking;
 		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
@@ -340,19 +341,17 @@ public class JobPlayer {
 		if(reqmethod == 0) reqmethod = 1;
 		
 		if(getMethod() >= reqmethod) {
-			//TODO: Add events
-			/*PlayerFinishWorkEvent event = new PlayerFinishWorkEvent(this, Bukkit.getPlayer(uuid), getJob());
-			Bukkit.getPluginManager().callEvent(event);
-			if(event.isCancelled()) {
-				return false;
-			}*/
 			double sal1 = level * getJob().getSalaryFrequency();
 			if(sal1 <= 0) sal1 = 1;
 			double salary = getJob().getSalary() * sal1;
 			if(salary > getJob().getMaxSalary()) {
 				salary = getJob().getMaxSalary();
 			}
-			setMethodLevel(level + 1);
+			PlayerFinishedWorkingEvent event = PicoJobsAPI.getEventsManager().consumeListeners(new PlayerFinishedWorkingEvent(this, (int) level));
+			if (event.isCancelled()) {
+				return false;
+			}
+			setMethodLevel(event.getNewLevel());
 			setMethod(0);
 			setWorking(false);
 			setSalary(getSalary() + salary);

@@ -20,7 +20,8 @@ public class PicoJobsAPI {
 	private static SettingsManager settingsManager = new SettingsManager();
 	private static StorageManager storageManager = new StorageManager();
 	private static PlaceholderManager placeholderManager = new PlaceholderManager();
-	
+	private static EventsManager eventsManager = new EventsManager();
+
 	/**
 	 * Use this method to get the JobsManager of the plugin, with it you can edit/get most of the things of a job. 
 	 * 
@@ -82,6 +83,16 @@ public class PicoJobsAPI {
 	}
 
 	/**
+	 * Use this method to get the EventsManager of the plugin, with it you can listen to any plugin event.
+	 *
+	 * @return The placeholder manager of the plugin
+	 * @author Picono435
+	 */
+	public static EventsManager getEventsManager() {
+		return eventsManager;
+	}
+
+	/**
 	 * Registers a Economy Implementation
 	 * 
 	 * @param economy the economy implementation
@@ -93,6 +104,17 @@ public class PicoJobsAPI {
 		PicoJobsCommon.getMainInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
 		PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
 		return true;
+	}
+
+	/**
+	 * Gets the work zone implementation by name
+	 *
+	 * @param name the name of the work zone
+	 * @return the work zone identified by that name
+	 * @author Picono435
+	 */
+	public static EconomyImplementation getEconomy(String name) {
+		return PicoJobsCommon.getMainInstance().economies.get(name);
 	}
 
 	/**
@@ -119,4 +141,6 @@ public class PicoJobsAPI {
 	public static WorkZoneImplementation getWorkZone(String name) {
 		return PicoJobsCommon.getMainInstance().workZones.get(name);
 	}
+
+
 }
