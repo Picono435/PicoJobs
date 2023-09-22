@@ -6,7 +6,10 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LoadingModList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ForgePlatformAdapter implements PlatformAdapter {
     @Override
@@ -32,5 +35,10 @@ public class ForgePlatformAdapter implements PlatformAdapter {
     @Override
     public boolean isPluginEnabled(String plugin) {
         return ModList.get().getModFileById(plugin.toLowerCase()) != null;
+    }
+
+    @Override
+    public List<String> getPlayerList() {
+        return List.of(PicoJobsMod.getServer().get().getPlayerNames());
     }
 }

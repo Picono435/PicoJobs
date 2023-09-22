@@ -1,5 +1,5 @@
 //TODO: Javadocs
-//TODO: Relocate slimJar and shadowJar
+//TODO: Relocate slimJar
 
 import org.apache.tools.ant.filters.*
 

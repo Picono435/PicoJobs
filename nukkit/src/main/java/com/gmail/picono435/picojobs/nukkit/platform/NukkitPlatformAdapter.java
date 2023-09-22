@@ -1,10 +1,13 @@
 package com.gmail.picono435.picojobs.nukkit.platform;
 
+import cn.nukkit.Player;
 import cn.nukkit.plugin.Plugin;
 import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class NukkitPlatformAdapter implements PlatformAdapter {
     @Override
@@ -32,5 +35,10 @@ public class NukkitPlatformAdapter implements PlatformAdapter {
     public boolean isPluginEnabled(String pluginString) {
         Plugin plugin = PicoJobsNukkit.getInstance().getServer().getPluginManager().getPlugin(pluginString);
         return plugin != null && plugin.isEnabled();
+    }
+
+    @Override
+    public List<String> getPlayerList() {
+        return PicoJobsNukkit.getInstance().getServer().getOnlinePlayers().values().stream().map(Player::getName).collect(Collectors.toList());
     }
 }

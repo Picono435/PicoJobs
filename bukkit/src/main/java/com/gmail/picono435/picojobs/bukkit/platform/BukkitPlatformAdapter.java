@@ -2,9 +2,12 @@ package com.gmail.picono435.picojobs.bukkit.platform;
 
 import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class BukkitPlatformAdapter implements PlatformAdapter {
     @Override
@@ -35,5 +38,10 @@ public class BukkitPlatformAdapter implements PlatformAdapter {
     public boolean isPluginEnabled(String pluginString) {
         Plugin plugin = Bukkit.getPluginManager().getPlugin(pluginString);
         return plugin != null && plugin.isEnabled();
+    }
+
+    @Override
+    public List<String> getPlayerList() {
+        return Bukkit.getOnlinePlayers().stream().map(Player::toString).collect(Collectors.toList());
     }
 }

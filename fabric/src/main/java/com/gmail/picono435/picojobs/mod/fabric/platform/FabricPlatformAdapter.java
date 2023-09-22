@@ -5,6 +5,7 @@ import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.impl.FabricLoaderImpl;
 
+import java.util.List;
 import java.util.UUID;
 
 public class FabricPlatformAdapter implements PlatformAdapter {
@@ -31,5 +32,10 @@ public class FabricPlatformAdapter implements PlatformAdapter {
     @Override
     public boolean isPluginEnabled(String plugin) {
         return FabricLoader.getInstance().isModLoaded(plugin);
+    }
+
+    @Override
+    public List<String> getPlayerList() {
+        return List.of(PicoJobsMod.getServer().get().getPlayerNames());
     }
 }

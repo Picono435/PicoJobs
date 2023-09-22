@@ -77,17 +77,6 @@ public class JobPlayer {
 	 *
 	 */
 	public void setJob(Job job) {
-		//TODO: Add events
-		/*if(job == null) {
-			PlayerLeaveJobEvent event = new PlayerLeaveJobEvent(this, Bukkit.getPlayer(uuid), job);
-			Bukkit.getPluginManager().callEvent(event);
-		}
-		PlayerEnterJobEvent event = new PlayerEnterJobEvent(this, Bukkit.getPlayer(uuid), job);
-		Bukkit.getPluginManager().callEvent(event);
-		if(event.isCancelled()) {
-			return;
-		}*/
-		
 		this.job = job;
 		
 		PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> {
@@ -252,9 +241,6 @@ public class JobPlayer {
 	 *
 	 */
 	public void removeSalary(double salary) {
-		//TODO: Add events
-		/*PlayerWithdrawEvent event = new PlayerWithdrawEvent(this, Bukkit.getPlayer(uuid), salary);
-		Bukkit.getPluginManager().callEvent(event);*/
 		setSalary(getSalary() - salary);
 	}
 

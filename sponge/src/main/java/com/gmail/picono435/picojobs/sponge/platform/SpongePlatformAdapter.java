@@ -4,8 +4,11 @@ import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.sponge.PicoJobsSponge;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class SpongePlatformAdapter implements PlatformAdapter {
     @Override
@@ -31,5 +34,10 @@ public class SpongePlatformAdapter implements PlatformAdapter {
     @Override
     public boolean isPluginEnabled(String plugin) {
         return Sponge.pluginManager().plugin(plugin).isPresent();
+    }
+
+    @Override
+    public List<String> getPlayerList() {
+        return Sponge.server().onlinePlayers().stream().map(ServerPlayer::name).collect(Collectors.toList());
     }
 }
