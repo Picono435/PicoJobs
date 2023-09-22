@@ -4,11 +4,11 @@ import com.gmail.picono435.picojobs.api.managers.PlaceholderManager;
 
 import java.util.UUID;
 
-//TODO: Actually do this cause I have no ideia on how to do it lol
+//TODO: This won't be released in the near future
 public class JobPlaceholders extends PlaceholderExtension {
 
     public static final String PREFIX = "job";
-    public final static String[] PLACEHOLDERS = {"salary"};
+    public final static String[] PLACEHOLDERS = {};
 
     @Override
     public String getPrefix() {

@@ -17,8 +17,9 @@ public class PlaceholderManager {
     }
 
     /**
-     * Gets the job placeholder extension (prefixed as job)
+     * Gets the job placeholder extension (prefixed as job).
      *
+     * This is a feature that will be added in the future
      * @return the job placeholder extension
      */
     public JobPlaceholders getJobPlaceholders() {
