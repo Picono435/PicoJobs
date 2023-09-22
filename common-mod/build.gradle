@@ -6,6 +6,16 @@ loom {
     accessWidenerPath = file("src/main/resources/picojobs.accesswidener")
 }
 
+repositories {
+    maven {
+        name "Modrinth"
+        url "https://api.modrinth.com/maven"
+        content {
+            includeGroup 'maven.modrinth'
+        }
+    }
+}
+
 dependencies {
     shadow(implementation(project(":common")))
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
@@ -14,6 +24,8 @@ dependencies {
     // Mods API
     modCompileOnly "dev.the-fireplace:Grand-Economy-Common:6.0.1+1.19"
     compileOnly "dev.the-fireplace:Fireplace-Lib-Common:7.0.3+1.19.2"
+
+    modCompileOnly("maven.modrinth:flan:1.20.1-1.8.7") { transitive = false }
 }
 
 // Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file
