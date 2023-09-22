@@ -16,6 +16,14 @@ repositories {
     }
 
     maven {
+        url = 'https://repo.opencollab.dev/maven-snapshots'
+
+        content {
+            includeGroup 'me.onebone'
+        }
+    }
+
+    maven {
         url = 'https://jitpack.io'
 
         content {
@@ -29,8 +37,13 @@ dependencies {
     shadow implementation(project(':common'))
 
     compileOnly('cn.nukkit:nukkit:1.0-SNAPSHOT') { transitive false }
-    compileOnly('com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT')
     shadow implementation('com.github.IWareQ:FakeInventories:v1.1.4')
+
+    // Plugins API
+    compileOnly('com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT')
+    compileOnly('me.onebone' +
+            ':economyapi:2.0.0-SNAPSHOT')
+
 }
 
 shadowJar {

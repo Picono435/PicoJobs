@@ -18,6 +18,14 @@ repositories {
             includeGroup 'org.spongepowered'
         }
     }
+
+    maven {
+        url = 'https://repo.glaremasters.me/repository/bloodshot'
+
+        content {
+            includeGroup 'com.griefdefender'
+        }
+    }
 }
 
 dependencies {

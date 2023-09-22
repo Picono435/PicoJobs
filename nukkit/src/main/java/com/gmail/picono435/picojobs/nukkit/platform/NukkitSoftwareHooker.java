@@ -7,6 +7,7 @@ import com.gmail.picono435.picojobs.common.platform.SoftwareHooker;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 import com.gmail.picono435.picojobs.nukkit.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.nukkit.hooks.economy.CommandImplementation;
+import com.gmail.picono435.picojobs.nukkit.hooks.economy.EconomyApiImplementation;
 import com.gmail.picono435.picojobs.nukkit.hooks.economy.ExpImplementation;
 import com.gmail.picono435.picojobs.nukkit.hooks.economy.ItemImplementation;
 import com.gmail.picono435.picojobs.nukkit.hooks.workzones.BiomeImplementation;
@@ -24,6 +25,7 @@ public class NukkitSoftwareHooker implements SoftwareHooker {
                 PicoJobsAPI.registerEconomy(new ExpImplementation());
                 PicoJobsAPI.registerEconomy(new CommandImplementation());
                 PicoJobsAPI.registerEconomy(new ItemImplementation());
+                PicoJobsAPI.registerEconomy(new EconomyApiImplementation());
 
                 PicoJobsAPI.registerWorkZone(new BiomeImplementation());
                 PicoJobsAPI.registerWorkZone(new WorldImplementation());

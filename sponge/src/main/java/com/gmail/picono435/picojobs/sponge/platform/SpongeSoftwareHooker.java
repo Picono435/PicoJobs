@@ -8,6 +8,7 @@ import com.gmail.picono435.picojobs.sponge.hooks.economy.CommandImplementation;
 import com.gmail.picono435.picojobs.sponge.hooks.economy.ExpImplementation;
 import com.gmail.picono435.picojobs.sponge.hooks.economy.ItemImplementation;
 import com.gmail.picono435.picojobs.sponge.hooks.workzones.BiomeImplementation;
+import com.gmail.picono435.picojobs.sponge.hooks.workzones.GriefDefenderImplementation;
 import com.gmail.picono435.picojobs.sponge.hooks.workzones.WorldImplementation;
 import com.gmail.picono435.picojobs.sponge.listeners.SpongeExecuteCommandListener;
 import com.gmail.picono435.picojobs.sponge.listeners.SpongeJoinCacheListener;
@@ -26,6 +27,7 @@ public class SpongeSoftwareHooker implements SoftwareHooker {
 
                 PicoJobsAPI.registerWorkZone(new BiomeImplementation());
                 PicoJobsAPI.registerWorkZone(new WorldImplementation());
+                PicoJobsAPI.registerWorkZone(new GriefDefenderImplementation());
                 break;
             case TWO:
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new SpongeExecuteCommandListener());
