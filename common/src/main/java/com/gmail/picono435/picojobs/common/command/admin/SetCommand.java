@@ -35,7 +35,7 @@ public class SetCommand implements Command {
                 sender.sendMessage(LanguageManager.getMessage("no-args", sender.getUUID()));
                 return true;
             }
-            JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(PicoJobsCommon.getPlatformAdapter().getPlayerUUID(args[2]));
+            JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(PicoJobsCommon.getPlatformAdapter().getPlayerUUID(args[2]).orElse(null));
             if(jp == null)  {
                 sender.sendMessage(LanguageManager.getMessage("player-not-found", sender.getUUID()));
                 return true;
@@ -57,7 +57,7 @@ public class SetCommand implements Command {
                 sender.sendMessage(LanguageManager.getMessage("no-args", sender.getUUID()));
                 return true;
             }
-            JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(PicoJobsCommon.getPlatformAdapter().getPlayerUUID(args[2]));
+            JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(PicoJobsCommon.getPlatformAdapter().getPlayerUUID(args[2]).orElse(null));
             if(jp == null)  {
                 sender.sendMessage(LanguageManager.getMessage("player-not-found", sender.getUUID()));
                 return true;
@@ -79,7 +79,7 @@ public class SetCommand implements Command {
                 sender.sendMessage(LanguageManager.getMessage("no-args", sender.getUUID()));
                 return true;
             }
-            JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(PicoJobsCommon.getPlatformAdapter().getPlayerUUID(args[2]));
+            JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(PicoJobsCommon.getPlatformAdapter().getPlayerUUID(args[2]).orElse(null));
             if(jp == null)  {
                 sender.sendMessage(LanguageManager.getMessage("player-not-found", sender.getUUID()));
                 return true;

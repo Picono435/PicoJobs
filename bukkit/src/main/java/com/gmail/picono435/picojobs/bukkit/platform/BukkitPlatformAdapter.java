@@ -6,14 +6,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class BukkitPlatformAdapter implements PlatformAdapter {
     @Override
-    public UUID getPlayerUUID(String playername) {
-        if(Bukkit.getPlayer(playername) == null) return null;
-        return Bukkit.getPlayer(playername).getUniqueId();
+    public Optional<UUID> getPlayerUUID(String playername) {
+        if(Bukkit.getPlayer(playername) == null) return Optional.empty();
+        return Optional.of(Bukkit.getPlayer(playername).getUniqueId());
     }
 
     @Override

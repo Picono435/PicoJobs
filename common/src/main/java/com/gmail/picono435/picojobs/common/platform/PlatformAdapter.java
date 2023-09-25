@@ -1,11 +1,12 @@
 package com.gmail.picono435.picojobs.common.platform;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PlatformAdapter {
 
-    UUID getPlayerUUID(String playername);
+    Optional<UUID> getPlayerUUID(String playername);
 
     String getPlatformVersion();
 

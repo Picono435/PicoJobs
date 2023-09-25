@@ -5,6 +5,7 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common-mod").loom.accessWidenerPath
+    //systemProperty("fabric.classPathGroups", ".." + File.pathSeparator + "config" + File.pathSeparator + "PicoJobs" + File.pathSeparator + "libraries")
 }
 
 configurations {
@@ -39,7 +40,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
-    shadowCommon(modImplementation("eu.pb4:placeholder-api:2.1.1+1.20"))
+    shadowCommon(modImplementation("eu.pb4:placeholder-api:2.1.1+1.20")) { transitive = false }
     shadowCommon(modImplementation("me.lucko:fabric-permissions-api:0.2-SNAPSHOT")) { transitive = false }
 
     common(project(path: ":common-mod", configuration: "namedElements")) { transitive false }
@@ -71,13 +72,14 @@ shadowJar {
     relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
     relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
     relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 remapJar {
     injectAccessWidener = true
     input.set shadowJar.archiveFile
     dependsOn shadowJar
-    archiveClassifier.set(null)
+    archiveClassifier.set("fabric")
 }
 
 jar {

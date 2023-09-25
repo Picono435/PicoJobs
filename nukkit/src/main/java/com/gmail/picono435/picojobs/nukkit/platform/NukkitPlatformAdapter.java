@@ -6,14 +6,15 @@ import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.nukkit.PicoJobsNukkit;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class NukkitPlatformAdapter implements PlatformAdapter {
     @Override
-    public UUID getPlayerUUID(String playername) {
-        if(PicoJobsNukkit.getInstance().getServer().getPlayerExact(playername) == null) return null;
-        return PicoJobsNukkit.getInstance().getServer().getPlayerExact(playername).getUniqueId();
+    public Optional<UUID> getPlayerUUID(String playername) {
+        if(PicoJobsNukkit.getInstance().getServer().getPlayerExact(playername) == null) return Optional.empty();
+        return Optional.of(PicoJobsNukkit.getInstance().getServer().getPlayerExact(playername).getUniqueId());
     }
 
     @Override

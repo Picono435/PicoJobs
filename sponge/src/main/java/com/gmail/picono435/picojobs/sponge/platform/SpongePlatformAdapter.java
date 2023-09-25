@@ -5,15 +5,18 @@ import com.gmail.picono435.picojobs.sponge.PicoJobsSponge;
 import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.util.Identifiable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class SpongePlatformAdapter implements PlatformAdapter {
     @Override
-    public UUID getPlayerUUID(String playername) {
-        return PicoJobsSponge.getInstance().getGame().server().player(playername).get().uniqueId();
+    public Optional<UUID> getPlayerUUID(String playername) {
+        Optional<ServerPlayer> optional = PicoJobsSponge.getInstance().getGame().server().player(playername);
+        return optional.map(Identifiable::uniqueId);
     }
 
     @Override

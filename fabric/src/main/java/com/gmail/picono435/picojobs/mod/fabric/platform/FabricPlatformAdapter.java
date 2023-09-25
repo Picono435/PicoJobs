@@ -4,14 +4,21 @@ import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.impl.FabricLoaderImpl;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class FabricPlatformAdapter implements PlatformAdapter {
     @Override
-    public UUID getPlayerUUID(String playername) {
-        return PicoJobsMod.getServer().get().getPlayerList().getPlayerByName(playername).getUUID();
+    public Optional<UUID> getPlayerUUID(String playername) {
+        ServerPlayer player = PicoJobsMod.getServer().get().getPlayerList().getPlayerByName(playername);
+        if(player == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(player.getUUID());
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.gmail.picono435.picojobs.common.command.api.Sender;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class InfoCommand implements Command {
@@ -23,12 +24,12 @@ public class InfoCommand implements Command {
             return true;
         }
         String playername = args[1];
-        UUID player = PicoJobsCommon.getPlatformAdapter().getPlayerUUID(playername);
-        if(player == null) {
+        Optional<UUID> player = PicoJobsCommon.getPlatformAdapter().getPlayerUUID(playername);
+        if(!player.isPresent()) {
             sender.sendMessage(LanguageManager.getMessage("player-not-found", sender.getUUID()));
             return true;
         }
-        sender.sendMessage(LanguageManager.getFormat("info-command", sender.getUUID()));
+        sender.sendMessage(LanguageManager.getFormat("info-command", player.get()));
         return true;
     }
 

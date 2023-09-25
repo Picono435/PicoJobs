@@ -2,19 +2,23 @@ package com.gmail.picono435.picojobs.mod.forge.platform;
 
 import com.gmail.picono435.picojobs.common.platform.PlatformAdapter;
 import com.gmail.picono435.picojobs.mod.PicoJobsMod;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.fml.loading.LoadingModList;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class ForgePlatformAdapter implements PlatformAdapter {
     @Override
-    public UUID getPlayerUUID(String playername) {
-        return PicoJobsMod.getServer().get().getPlayerList().getPlayerByName(playername).getUUID();
+    public Optional<UUID> getPlayerUUID(String playername) {
+        ServerPlayer player = PicoJobsMod.getServer().get().getPlayerList().getPlayerByName(playername);
+        if(player == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(player.getUUID());
+        }
     }
 
     @Override

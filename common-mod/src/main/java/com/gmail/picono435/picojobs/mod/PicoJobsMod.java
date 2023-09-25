@@ -42,7 +42,6 @@ public class PicoJobsMod {
 
         PlayerEvent.PLAYER_JOIN.register(new ModJoinCacheListener());
 
-
         BlockEvent.BREAK.register(new BreakListener());
         BlockEvent.PLACE.register(new BreakListener());
         PlayerEvent.CRAFT_ITEM.register(new CraftListener());

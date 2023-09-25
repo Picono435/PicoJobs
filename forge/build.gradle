@@ -102,12 +102,13 @@ shadowJar {
     relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
     relocate 'org.sqlite', 'com.gmail.picono435.picojobs.libs.org.sqlite'
     relocate 'waffle', 'com.gmail.picono435.picojobs.libs.waffle'
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
-    archiveClassifier.set(null)
+    archiveClassifier.set("forge")
 }
 
 jar {
