@@ -19,7 +19,7 @@ public class SpongeJobsCommand implements Command.Raw {
 
     @Override
     public CommandResult process(CommandCause cause, ArgumentReader.Mutable arguments) {
-        if(!(cause.audience() instanceof Player)) return CommandResult.error(Component.text("Console Only."));
+        if(!(cause.audience() instanceof Player)) return CommandResult.error(Component.text("Player Only."));
         if(PicoJobsCommon.getMainInstance().getJobsCommand().onCommand("jobs", arguments.remaining().split(" "), new SpongeSender(cause.audience()))) {
             return CommandResult.success();
         } else {

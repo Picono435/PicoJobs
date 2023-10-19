@@ -8,6 +8,7 @@ import com.gmail.picono435.picojobs.sponge.command.SpongeJobsCommand;
 import com.gmail.picono435.picojobs.sponge.hooks.PlaceholderAPIHook;
 import com.gmail.picono435.picojobs.sponge.platform.*;
 import com.google.inject.Inject;
+import net.kyori.adventure.text.Component;
 import org.apache.logging.log4j.Logger;
 import org.bstats.MetricsBase;
 import org.bstats.sponge.Metrics;
@@ -21,6 +22,9 @@ import org.spongepowered.api.event.lifecycle.*;
 import org.spongepowered.api.placeholder.PlaceholderParser;
 import org.spongepowered.api.placeholder.PlaceholderParsers;
 import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.service.permission.PermissionDescription;
+import org.spongepowered.api.service.permission.PermissionService;
+import org.spongepowered.api.util.Tristate;
 import org.spongepowered.plugin.PluginCandidate;
 import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.plugin.builtin.jvm.JVMPluginContainer;
@@ -92,13 +96,27 @@ public class PicoJobsSponge {
     public void onServerStarting(final StartingEngineEvent<Server> event) {
         MetricsBase metricsBase;
         try {
-            Field metricsBaseField = Metrics.class.getField("metricsBase");
+            Field metricsBaseField = Metrics.class.getDeclaredField("metricsBase");
+            metricsBaseField.setAccessible(true);
             metricsBase = (MetricsBase) metricsBaseField.get(this.metrics);
         } catch (Exception exception) {
             PicoJobsCommon.getLogger().error("Error while enabling bStats metrics. Enabling plugin without metrics.", exception);
             metricsBase = null;
         }
         PicoJobsCommon.onEnable(metricsBase);
+
+        PermissionDescription.Builder builder = game.server().serviceProvider().provide(PermissionService.class).get().newDescriptionBuilder(this.pluginContainer);
+        builder.id("picojobs.use.basic")
+                .description(Component.text("Allow you to use the basics of the /jobs command"))
+                .assign(PermissionDescription.ROLE_USER, true)
+                .defaultValue(Tristate.TRUE)
+                .register();
+
+        builder.id("picojobs.admin")
+                .description(Component.text("Allow you to use the /jobsadmin command"))
+                .assign(PermissionDescription.ROLE_ADMIN, true)
+                .defaultValue(Tristate.FALSE)
+                .register();
     }
 
     @Listener

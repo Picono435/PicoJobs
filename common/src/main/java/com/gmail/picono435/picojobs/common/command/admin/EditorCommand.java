@@ -62,6 +62,12 @@ public class EditorCommand implements Command {
             }
             jsonEditor.add("economies", jsonEconomies);
 
+            JsonArray jsonWorkzones = new JsonArray();
+            for(String workzone : PicoJobsCommon.getMainInstance().workZones.keySet()) {
+                jsonEconomies.add(workzone);
+            }
+            jsonEditor.add("workzones", jsonWorkzones);
+
             JsonObject jsonTypes = new JsonObject();
             for(Type type : Type.values()) {
                 jsonTypes.addProperty(type.name(), type.getWhitelistType().name());

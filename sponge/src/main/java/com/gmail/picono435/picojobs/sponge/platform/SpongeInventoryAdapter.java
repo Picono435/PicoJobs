@@ -22,6 +22,7 @@ import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.registry.RegistryTypes;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
@@ -62,7 +63,12 @@ public class SpongeInventoryAdapter implements InventoryAdapter {
         }
         this.title = title;
         this.size = size;
-        this.inventory = ViewableInventory.builder().type(containerType).completeStructure().plugin(PicoJobsSponge.getInstance().getPluginContainer()).build();
+        ViewableInventory.Builder.EndStep endStep = ViewableInventory.builder().type(containerType).completeStructure().plugin(PicoJobsSponge.getInstance().getPluginContainer());
+        try {
+            this.inventory = (Inventory) endStep.getClass().getMethod("build").invoke(endStep);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
