@@ -37,7 +37,7 @@ public class RequiredField<T> {
         try {
             if(FileManager.getJobsNode().node("jobs", jobPlayer.getJob().getID(), this.name).empty()) {
                 if(this.defaultValue == null) {
-                    PicoJobsCommon.getLogger().error("The required economy field '" + this.name + "' in job '" + jobPlayer.getJob().getID() + "' was not found.");
+                    PicoJobsCommon.getLogger().error("The required economy/workzone field '" + this.name + "' in job '" + jobPlayer.getJob().getID() + "' was not found.");
                 } else {
                     return this.defaultValue;
                 }
@@ -53,7 +53,7 @@ public class RequiredField<T> {
         try {
             if(FileManager.getJobsNode().node("jobs", jobPlayer.getJob().getID(), this.name).empty()) {
                 if(this.defaultValue == null) {
-                    PicoJobsCommon.getLogger().error("The required economy field '" + this.name + "' in job '" + jobPlayer.getJob().getID() + "' was not found.");
+                    PicoJobsCommon.getLogger().error("The required economy/workzone field '" + this.name + "' in job '" + jobPlayer.getJob().getID() + "' was not found.");
                 } else {
                     return Collections.singletonList(this.defaultValue);
                 }

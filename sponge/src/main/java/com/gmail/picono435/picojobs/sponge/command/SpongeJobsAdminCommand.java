@@ -5,6 +5,7 @@ import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.sponge.platform.SpongeSender;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.spongepowered.api.SystemSubject;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandCompletion;
@@ -42,7 +43,7 @@ public class SpongeJobsAdminCommand implements Command.Raw {
 
     @Override
     public boolean canExecute(CommandCause cause) {
-        return cause.hasPermission("picojobs.admin");
+        return cause.hasPermission("picojobs.admin") || cause.audience() instanceof SystemSubject;
     }
 
     @Override

@@ -110,9 +110,12 @@ public class PicoJobsMain {
             String economy = jobNode.node("economy").getString();
             if(economy != null) {
                 economy = economy.toUpperCase(Locale.ROOT);
+                if(economy.equals("DEFAULT")) {
+                    economy = PicoJobsCommon.getPlatform().getDefaultEconomy();
+                }
             }
             PicoJobsCommon.getLogger().debug("Economy: " + economy);
-            String workZone = jobNode.node("work-zone").getString();
+            String workZone = jobNode.node("workzone").getString();
             if(workZone != null) {
                 workZone = workZone.toUpperCase(Locale.ROOT);
             }

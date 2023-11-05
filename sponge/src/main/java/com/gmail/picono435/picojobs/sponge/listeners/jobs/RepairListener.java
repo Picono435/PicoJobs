@@ -10,12 +10,14 @@ import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.item.inventory.container.ClickContainerEvent;
 import org.spongepowered.api.item.inventory.ContainerTypes;
 
+import java.util.Arrays;
+
 public class RepairListener {
 
     @Listener
     public void onRepair(ClickContainerEvent event, @First ServerPlayer player) {
         if(event.container().type() != ContainerTypes.ANVIL.get()) return;
         if(event.slot().get().get(Keys.SLOT_INDEX).get() != 2) return;
-        WorkListener.simulateWorkListener(new SpongeSender(player), Type.REPAIR, event.container().cursor().get().quantity(), event.container().cursor().get().type());
+        WorkListener.simulateWorkListener(new SpongeSender(player), Type.REPAIR, event.cursorTransaction().original().quantity(), event.cursorTransaction().original().type());
     }
 }

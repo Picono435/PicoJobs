@@ -3,9 +3,11 @@ package com.gmail.picono435.picojobs.common.command.admin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.common.PicoJobsMain;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.gmail.picono435.picojobs.common.file.FileManager;
+import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,11 @@ public class ReloadCommand implements Command {
         if(!PicoJobsCommon.getFileManager().init()) {
             sender.sendMessage(LanguageManager.getMessage("unknow-error", sender.getUUID()));
             return true;
+        }
+        try {
+            PicoJobsCommon.getMainInstance().generateJobsFromConfig();
+        } catch (SerializationException e) {
+            throw new RuntimeException(e);
         }
         PicoJobsAPI.getStorageManager().destroyStorageFactory();
         PicoJobsAPI.getStorageManager().initializeStorageFactory();

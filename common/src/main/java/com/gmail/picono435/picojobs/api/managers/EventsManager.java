@@ -25,6 +25,7 @@ public class EventsManager {
     }
 
     public <T extends JobPlayerEvent> T consumeListeners(T event) {
+        if(!registedListeners.containsKey(event.getClass())) return event;
         for(JobPlayerEvent.Listener<?> listener : registedListeners.get(event.getClass())) {
             ((JobPlayerEvent.Listener<T>)listener).onEvent(event);
         }

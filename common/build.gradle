@@ -1,5 +1,5 @@
 plugins {
-    id("dev.racci.slimjar") version "1.6.1"
+    id("dev.racci.slimjar") version "1.6.2-SNAPSHOT"
 }
 
 sourceCompatibility = '1.8'
@@ -14,7 +14,7 @@ configurations {
 }
 
 dependencies {
-    transitiveCommon(shadow implementation(slimjar("1.6.1")))
+    transitiveCommon(shadow implementation(slimjar("1.6.2-SNAPSHOT")))
 
     // Storage Methods
     transitiveCommon(slim('org.mongodb:mongodb-driver-sync:4.9.1'))

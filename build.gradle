@@ -19,7 +19,7 @@ targetCompatibility = '17'
 if (System.getenv("STABLE_BUILD") == '0') {
     rootProject.version = versioning.info.build + "-DEV"
 } else {
-    rootProject.version = "1.0-rc"
+    rootProject.version = "1.0-pre"
 }
 
 subprojects {
@@ -28,11 +28,8 @@ subprojects {
 
     repositories {
         maven {
-            url = 'https://repo.racci.dev/releases'
-
-            content {
-                includeGroup 'dev.racci.slimjar'
-            }
+            name = "PiconoDev Repository"
+            url "https://repo.piconodev.com/repository/maven-snapshots"
         }
     }
 

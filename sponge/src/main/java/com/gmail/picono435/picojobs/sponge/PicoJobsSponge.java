@@ -31,7 +31,10 @@ import org.spongepowered.plugin.builtin.jvm.JVMPluginContainer;
 import org.spongepowered.plugin.builtin.jvm.Plugin;
 import org.spongepowered.plugin.builtin.jvm.locator.JVMPluginResource;
 
+import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -67,16 +70,29 @@ public class PicoJobsSponge {
         URL jarURL = null;
         org.slf4j.Logger slf4jLogger = LoggerFactory.getLogger(logger.getName());
         try {
-            Field privateField = JVMPluginContainer.class.getDeclaredField("candidate");
-            privateField.setAccessible(true);
-            PluginCandidate<JVMPluginResource> candidate = (PluginCandidate<JVMPluginResource>) privateField.get(event.plugin());
-            jarURL = candidate.resource().path().toUri().toURL();
-        } catch (Exception e) {
-            slf4jLogger.error("Unfortunately PicoJobs sponge version does not work with forge. To use FORGE please install the forge version of the plugin.");
-            e.printStackTrace();
+            if(event.plugin() instanceof JVMPluginContainer) {
+                Field privateField = JVMPluginContainer.class.getDeclaredField("candidate");
+                privateField.setAccessible(true);
+                PluginCandidate<JVMPluginResource> candidate = (PluginCandidate<JVMPluginResource>) privateField.get(event.plugin());
+                jarURL = candidate.resource().path().toUri().toURL();
+            } else if(event.plugin().getClass().isAssignableFrom(Class.forName("org.spongepowered.forge.launch.plugin.PluginModContainer"))) {
+                Object modInfo = event.plugin().getClass().getMethod("getModInfo").invoke(event.plugin());
+                Object modFileInfo = modInfo.getClass().getMethod("getOwningFile").invoke(modInfo);
+                Object modFile = modFileInfo.getClass().getMethod("getFile").invoke(modFileInfo);
+                Path path = (Path) modFile.getClass().getMethod("getFilePath").invoke(modFile);
+                jarURL = path.toUri().toURL();
+            } else {
+                slf4jLogger.error("This should never happen! Make sure to report this issue in https://github.com/Picono435/PicoJobs/issues. Maybe you are using a custom plugin loader?");
+                return;
+            }
+        } catch(Exception ex) {
+            slf4jLogger.error("There was an issue getting the JAR file of the plugin. Make sure to report this issue in https://github.com/Picono435/PicoJobs/issues with the following error.");
+            ex.printStackTrace();
+            return;
         }
+        System.out.println(jarURL.toString());
         PicoJobsCommon.onLoad(
-                event.plugin().metadata().version().getQualifier(),
+                event.plugin().metadata().version().toString(),
                 Platform.SPONGE,
                 slf4jLogger,
                 configFilePath.getParent().toFile(),
@@ -115,7 +131,8 @@ public class PicoJobsSponge {
         builder.id("picojobs.admin")
                 .description(Component.text("Allow you to use the /jobsadmin command"))
                 .assign(PermissionDescription.ROLE_ADMIN, true)
-                .defaultValue(Tristate.FALSE)
+                .assign(PermissionDescription.ROLE_USER, false)
+                .defaultValue(Tristate.UNDEFINED)
                 .register();
     }
 

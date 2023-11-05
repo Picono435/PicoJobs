@@ -43,6 +43,7 @@ public class SpongeSoftwareHooker implements SoftwareHooker {
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new KillListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new MoveListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new PlaceListener());
+                Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new CraftListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new RepairListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new ShearListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new SmeltListener());

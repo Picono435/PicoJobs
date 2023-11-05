@@ -8,6 +8,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class SpongePlatformAdapter implements PlatformAdapter {
 
     @Override
     public String getPlatformVersion() {
-        return Sponge.platform().container(Platform.Component.API).metadata().version().getQualifier();
+        return Sponge.platform().container(Platform.Component.API).metadata().version().toString();
     }
 
     @Override
@@ -36,7 +37,7 @@ public class SpongePlatformAdapter implements PlatformAdapter {
 
     @Override
     public boolean isPluginEnabled(String plugin) {
-        return Sponge.pluginManager().plugin(plugin).isPresent();
+        return Sponge.pluginManager().plugin(plugin.toLowerCase(Locale.ROOT)).isPresent();
     }
 
     @Override

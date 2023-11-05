@@ -27,7 +27,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -73,7 +73,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -116,7 +116,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -172,7 +172,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -234,7 +234,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -278,7 +278,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -322,7 +322,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.8
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -365,7 +365,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.4
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -409,7 +409,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.6
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     # use-whitelist: true
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL
@@ -452,7 +452,7 @@ jobs:
     # The method frequency of the job
     method-frequency: 0.8
     # The payment method that should be used. For more information check here https://github.com/Picono435/PicoJobs/wiki/Economy-Types
-    economy: VAULT
+    economy: DEFAULT
     # Use whitelist or blacklist - OPTIONAL [requires="whitelist"]
     use-whitelist: false
     # The block whitelist/blacklist, depending on what is in use-whitelist - OPTIONAL

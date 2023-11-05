@@ -236,7 +236,6 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWorkMessage() {
-		String configString = types.get(0).name().toLowerCase() + "-work";
 		String work = "";
 		
 		if(this.workMessage == null) {
