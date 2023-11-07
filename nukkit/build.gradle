@@ -41,8 +41,7 @@ dependencies {
 
     // Plugins API
     compileOnly('com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT')
-    compileOnly('me.onebone' +
-            ':economyapi:2.0.0-SNAPSHOT')
+    compileOnly('me.onebone:economyapi:2.0.0-SNAPSHOT')
 
 }
 
