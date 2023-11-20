@@ -1,5 +1,5 @@
 plugins {
-    id("dev.racci.slimjar") version "1.6.2-SNAPSHOT"
+    id("dev.racci.slimjar") version "1.6.3-SNAPSHOT"
 }
 
 sourceCompatibility = '1.8'
@@ -14,7 +14,7 @@ configurations {
 }
 
 dependencies {
-    transitiveCommon(shadow implementation(slimjar("1.6.2-SNAPSHOT")))
+    transitiveCommon(shadow implementation(slimjar("1.6.3-SNAPSHOT")))
 
     // Storage Methods
     transitiveCommon(slim('org.mongodb:mongodb-driver-sync:4.9.1'))
@@ -22,7 +22,7 @@ dependencies {
     transitiveCommon(slim('com.h2database:h2:2.1.214'))
     transitiveCommon(slim('org.xerial:sqlite-jdbc:3.41.2.1'))
     transitiveCommon(slim('org.mariadb.jdbc:mariadb-java-client:3.1.4'))
-    transitiveCommon(slim('mysql:mysql-connector-java:8.0.33'))
+    transitiveCommon(slim('com.mysql:mysql-connector-j:8.0.33'))
     transitiveCommon(shadow api('org.spongepowered:configurate-core:4.1.2'))
     transitiveCommon(shadow implementation('org.spongepowered:configurate-gson:4.1.2'))
     transitiveCommon(shadow api('org.spongepowered:configurate-yaml:4.1.2'))

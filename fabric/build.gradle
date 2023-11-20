@@ -5,7 +5,6 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common-mod").loom.accessWidenerPath
-    //systemProperty("fabric.classPathGroups", ".." + File.pathSeparator + "config" + File.pathSeparator + "PicoJobs" + File.pathSeparator + "libraries")
 }
 
 configurations {
@@ -87,7 +86,7 @@ jar {
 }
 
 sourcesJar {
-    def commonSources = project(":common-mod").sourcesJar
+    def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
 }

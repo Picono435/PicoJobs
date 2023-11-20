@@ -12,12 +12,6 @@ loom {
 
         mixinConfig "picojobs.mixins.json"
     }
-
-    mods {
-        main {
-            sourceSet project(':common').sourceSets.main
-        }
-    }
 }
 
 configurations {
@@ -111,12 +105,8 @@ remapJar {
     archiveClassifier.set("forge")
 }
 
-jar {
-    archiveClassifier.set("dev")
-}
-
 sourcesJar {
-    def commonSources = project(":common-mod").sourcesJar
+    def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
 }
