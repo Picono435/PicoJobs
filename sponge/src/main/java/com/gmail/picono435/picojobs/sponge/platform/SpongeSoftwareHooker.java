@@ -34,10 +34,10 @@ public class SpongeSoftwareHooker implements SoftwareHooker {
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new SpongeJoinCacheListener());
 
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new BreakListener());
-                // EAT LISTENER
+                // TODO: EAT LISTENER
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new EnchantListener());
-                // FILL ENTITY LISTENER
-                // FILL LISTENER
+                // TODO: FILL ENTITY LISTENER
+                // TODO: FILL LISTENER
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new FishingListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new KillEntityListener());
                 Sponge.eventManager().registerListeners(PicoJobsSponge.getInstance().getPluginContainer(), new KillListener());

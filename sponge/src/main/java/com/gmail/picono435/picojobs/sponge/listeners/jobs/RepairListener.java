@@ -17,7 +17,7 @@ public class RepairListener {
     @Listener
     public void onRepair(ClickContainerEvent event, @First ServerPlayer player) {
         if(event.container().type() != ContainerTypes.ANVIL.get()) return;
-        if(event.slot().get().get(Keys.SLOT_INDEX).get() != 2) return;
-        WorkListener.simulateWorkListener(new SpongeSender(player), Type.REPAIR, event.cursorTransaction().original().quantity(), event.cursorTransaction().original().type());
+        if(event.transactions().get(0).slot().get(Keys.SLOT_INDEX).get() != 2) return;
+        WorkListener.simulateWorkListener(new SpongeSender(player), Type.REPAIR, event.transactions().get(0).original().quantity(), event.transactions().get(0).original().type());
     }
 }

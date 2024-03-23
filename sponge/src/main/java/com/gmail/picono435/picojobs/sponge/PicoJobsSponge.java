@@ -90,7 +90,7 @@ public class PicoJobsSponge {
             ex.printStackTrace();
             return;
         }
-        System.out.println(jarURL.toString());
+
         PicoJobsCommon.onLoad(
                 event.plugin().metadata().version().toString(),
                 Platform.SPONGE,

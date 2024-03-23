@@ -21,7 +21,8 @@ public class ShearListener {
         if(!event.context().get(EventContextKeys.USED_ITEM).isPresent()) return;
         if(event.context().get(EventContextKeys.USED_ITEM).get().type() != ItemTypes.SHEARS.get()) return;
         /*System.out.println(Arrays.toString(event.cause().all().toArray()));
-        System.out.println(Arrays.toString(event.context().keySet().toArray()));*/
+        System.out.println(Arrays.toString(event.context().keySet().toArray()));
+        System.out.println(Arrays.toString(event.transactions().toArray()));*/
         WorkListener.simulateWorkListener(new SpongeSender(player), Type.SHEAR, ((Sheep) event.entity()).color().get());
     }
 }

@@ -12,7 +12,8 @@ public class MoveListener {
 
     @Listener
     public void onMove(MoveEntityEvent event, @Getter("entity") ServerPlayer player) {
-        long distance = Math.round(Math.floor(event.destinationPosition().distance(event.originalDestinationPosition())));
+        //TODO: Actually get this rolling
+        long distance = Math.round(Math.floor(event.destinationPosition().distance(event.originalPosition())));
         WorkListener.simulateWorkListener(new SpongeSender(player), Type.MOVE, (int)distance, event.entity().world().block(event.destinationPosition().toInt()).type());
     }
 }
