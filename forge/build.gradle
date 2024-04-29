@@ -60,43 +60,6 @@ shadowJar {
 
     configurations = [project.configurations.shadowCommon, project(':common').configurations.slim]
     archiveClassifier.set("dev-shadow")
-
-    dependencies {
-        exclude(dependency('org.slf4j:slf4j-api:2.0.7'))
-        exclude(dependency('dev.racci.slimjar:slimjar:1.6.1'))
-    }
-
-    relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
-    relocate 'com.google.common', 'com.gmail.picono435.picojobs.libs.com.google.common'
-    relocate 'com.google.errorprone', 'com.gmail.picono435.picojobs.libs.com.google.errorprone'
-    relocate 'com.google.gson', 'com.gmail.picono435.picojobs.libs.com.google.gson'
-    relocate 'com.google.j2objc', 'com.gmail.picono435.picojobs.libs.com.google.j2objc'
-    relocate 'com.google.thirdparty', 'com.gmail.picono435.picojobs.libs.com.google.thirdparty'
-    relocate 'com.typesafe.config', 'com.gmail.picono435.picojobs.libs.com.typesafe.config'
-    relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.io.github.slimjar'
-    relocate 'io.leangen.geantyref', 'com.gmail.picono435.picojobs.libs.io.github.geantyref'
-    relocate 'javax.annotation', 'com.gmail.picono435.picojobs.libs.javax.annotation'
-    relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
-    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
-    relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
-    relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
-    relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
-
-    // Forge Relocations
-    relocate 'com.github.benmanes.caffeine', 'com.gmail.picono435.picojobs.libs.com.github.benmanes.caffeine'
-    relocate 'com.google.protobuf', 'com.gmail.picono435.picojobs.libs.com.google.protobuf'
-    relocate 'com.mongodb', 'com.gmail.picono435.picojobs.libs.com.mongodb'
-    relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.com.mysql'
-    relocate 'com.sun.jna', 'com.gmail.picono435.picojobs.libs.com.sun.jna'
-    relocate 'com.zaxxer.hikari', 'com.gmail.picono435.picojobs.libs.com.zaxxer.hikari'
-    relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
-    relocate 'org.h2', 'com.gmail.picono435.picojobs.libs.org.h2'
-    relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
-    relocate 'org.mariadb.jdbc', 'com.gmail.picono435.picojobs.libs.org.mariadb.jdbc'
-    relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
-    relocate 'org.sqlite', 'com.gmail.picono435.picojobs.libs.org.sqlite'
-    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.waffle'
-    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 remapJar {

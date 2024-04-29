@@ -12,7 +12,6 @@ import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -22,7 +21,6 @@ import net.minecraftforge.server.permission.nodes.PermissionTypes;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.*;
 
 @Mod(PicoJobsMod.MOD_ID)
 public class PicoJobsForge {

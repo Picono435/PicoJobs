@@ -94,25 +94,8 @@ shadowJar {
     archiveClassifier.set("bukkit")
 
     dependencies {
-        exclude(dependency('org.slf4j:slf4j-api:2.0.7'))
+        exclude(dependency('org.slf4j:slf4j-api:'))
     }
-
-    relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
-    relocate 'com.google.common', 'com.gmail.picono435.picojobs.libs.com.google.common'
-    relocate 'com.google.errorprone', 'com.gmail.picono435.picojobs.libs.com.google.errorprone'
-    relocate 'com.google.gson', 'com.gmail.picono435.picojobs.libs.com.google.gson'
-    relocate 'com.google.j2objc', 'com.gmail.picono435.picojobs.libs.com.google.j2objc'
-    relocate 'com.google.thirdparty', 'com.gmail.picono435.picojobs.libs.com.google.thirdparty'
-    relocate 'com.typesafe.config', 'com.gmail.picono435.picojobs.libs.com.typesafe.config'
-    relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.io.github.slimjar'
-    relocate 'io.leangen.geantyref', 'com.gmail.picono435.picojobs.libs.io.github.geantyref'
-    relocate 'javax.annotation', 'com.gmail.picono435.picojobs.libs.javax.annotation'
-    relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
-    relocate 'org.apache.maven', 'com.gmail.picono435.picojobs.libs.org.apache.maven'
-    relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
-    relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
-    relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
-    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 // Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file

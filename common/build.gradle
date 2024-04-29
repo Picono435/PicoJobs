@@ -53,6 +53,7 @@ shadowJar {
     relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
     relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
 }
+
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 8
 }

@@ -2,6 +2,7 @@
 //TODO: Relocate slimJar
 
 import org.apache.tools.ant.filters.*
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
@@ -25,6 +26,7 @@ if (System.getenv("STABLE_BUILD") == '0') {
 subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'signing'
+    apply plugin: 'base'
 
     repositories {
         maven {
@@ -41,6 +43,25 @@ subprojects {
         archiveBaseName.set(rootProject.archives_base_name)
         archiveVersion.set(rootProject.version)
         configurations = [project.configurations.shadow]
+    }
+
+    tasks.withType(ShadowJar).configureEach {
+        relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
+        relocate 'com.google.common', 'com.gmail.picono435.picojobs.libs.com.google.common'
+        relocate 'com.google.errorprone', 'com.gmail.picono435.picojobs.libs.com.google.errorprone'
+        relocate 'com.google.gson', 'com.gmail.picono435.picojobs.libs.com.google.gson'
+        relocate 'com.google.j2objc', 'com.gmail.picono435.picojobs.libs.com.google.j2objc'
+        relocate 'com.google.thirdparty', 'com.gmail.picono435.picojobs.libs.com.google.thirdparty'
+        relocate 'com.typesafe.config', 'com.gmail.picono435.picojobs.libs.com.typesafe.config'
+        relocate 'io.github.slimjar', 'com.gmail.picono435.picojobs.libs.io.github.slimjar'
+        relocate 'io.leangen.geantyref', 'com.gmail.picono435.picojobs.libs.io.github.geantyref'
+        relocate 'javax.annotation', 'com.gmail.picono435.picojobs.libs.javax.annotation'
+        relocate 'org.apache.commons', 'com.gmail.picono435.picojobs.libs.org.apache.commons'
+        relocate 'org.apache.maven.artifact', 'com.gmail.picono435.picojobs.libs.org.apache.maven.artifact'
+        relocate 'org.apache.maven.repository', 'com.gmail.picono435.picojobs.libs.org.apache.maven.repository'
+        relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
+        relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
+        relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
     }
 
     /*signing {
@@ -104,6 +125,29 @@ configure([project(':common-mod'), project(':fabric'), project(':forge')]) {
 
     architectury {
         minecraft = rootProject.minecraft_version
+    }
+
+    tasks.withType(ShadowJar).configureEach {
+        relocate 'com.github.benmanes.caffeine', 'com.gmail.picono435.picojobs.libs.com.github.benmanes.caffeine'
+        relocate 'com.google.protobuf', 'com.gmail.picono435.picojobs.libs.com.google.protobuf'
+        relocate 'google.protobuf', 'com.gmail.picono435.picojobs.libs.google.protobuf'
+        relocate 'com.mongodb', 'com.gmail.picono435.picojobs.libs.com.mongodb'
+        relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.com.mysql'
+        relocate 'com.sun.jna', 'com.gmail.picono435.picojobs.libs.com.sun.jna'
+        relocate 'com.zaxxer.hikari', 'com.gmail.picono435.picojobs.libs.com.zaxxer.hikari'
+        relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
+        relocate 'org.h2', 'com.gmail.picono435.picojobs.libs.org.h2'
+        relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
+        relocate 'org.mariadb.jdbc', 'com.gmail.picono435.picojobs.libs.org.mariadb.jdbc'
+        relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
+        relocate 'org.sqlite', 'com.gmail.picono435.picojobs.libs.org.sqlite'
+        relocate 'waffle', 'com.gmail.picono435.picojobs.libs.waffle'
+        relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
+
+        dependencies {
+            exclude(dependency('org.slf4j:slf4j-api'))
+            exclude(dependency('dev.racci.slimjar:slimjar'))
+        }
     }
 }
 

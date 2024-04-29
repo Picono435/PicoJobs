@@ -53,7 +53,7 @@ public class PicoJobsCommon {
         PicoJobsCommon.whitelistConverter = whitelistConverter;
         PicoJobsCommon.softwareHooker = softwareHooker;
 
-        if(platform != Platform.FORGE) {
+        if(platform.isSlimDependencies()) {
             PicoJobsCommon.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");
             try {
                 ApplicationBuilder applicationBuilder = ApplicationBuilder.appending("PicoJobs")
