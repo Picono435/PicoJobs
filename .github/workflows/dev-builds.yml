@@ -28,19 +28,34 @@ jobs:
         if: success() || failure()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
-      - name: Build with Gradle
+      - name: Build Bukkit
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build
+        run: ./gradlew build :bukkit:build
+      - name: Build Fabric
+        env:
+          STABLE_BUILD: 0
+        run: ./gradlew build :fabric:build
+      - name: Build Forge
+        env:
+          STABLE_BUILD: 0
+        run: ./gradlew build :forge:build
+      - name: Build Nukkit
+        env:
+          STABLE_BUILD: 0
+        run: ./gradlew build :nukkit:build
+      - name: Build Sponge
+        env:
+          STABLE_BUILD: 0
+        run: ./gradlew build :sponge:build
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Builds
           path: |
-            sbukkit/build/libs/*-bukkit.jar
+            bukkit/build/libs/*-bukkit.jar
             fabric/build/libs/*-fabric.jar
             forge/build/libs/*-forge.jar
-            quilt/build/libs/*-quilt.jar
             nukkit/build/libs/*-nukkit.jar
             sponge/build/libs/*-sponge.jar
       - name: Stop The Gradle
