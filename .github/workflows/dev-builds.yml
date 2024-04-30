@@ -18,36 +18,46 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Tests with Gradle
+        uses: burrunan/gradle-cache-action@v1
         env:
-          STABLE_BUILD: 1
-        run: |
-          ls
-          ./gradlew test
+          STABLE_BUILD: 0
+        with:
+          arguments: test
       - name: Publish Unit Test Results
         uses: mikepenz/action-junit-report@v3
         if: success() || failure()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
       - name: Build Bukkit
+        uses: burrunan/gradle-cache-action@v1
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build :bukkit:build
+        with:
+          arguments: :bukkit:build
       - name: Build Fabric
+        uses: burrunan/gradle-cache-action@v1
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build :fabric:build
+        with:
+          arguments: :fabric:build
       - name: Build Forge
+        uses: burrunan/gradle-cache-action@v1
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build :forge:build
+        with:
+          arguments: :forge:build
       - name: Build Nukkit
+        uses: burrunan/gradle-cache-action@v1
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build :nukkit:build
+        with:
+          arguments: :nukkit:build
       - name: Build Sponge
+        uses: burrunan/gradle-cache-action@v1
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build :sponge:build
+        with:
+          arguments: :sponge:build
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -60,13 +70,3 @@ jobs:
             sponge/build/libs/*-sponge.jar
       - name: Stop The Gradle
         run: ./gradlew --stop
-      - name: Gradle Cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            .gradle/architectury
-            .gradle/loom-cache
-            .gradle/8.2.1
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
