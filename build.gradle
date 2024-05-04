@@ -10,7 +10,7 @@ plugins {
     id 'maven-publish'
     id 'net.nemerosa.versioning' version '3.1.0'
     id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'dev.architectury.loom' version '1.5-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.6-SNAPSHOT' apply false
     id 'signing'
 }
 
@@ -62,6 +62,10 @@ subprojects {
         relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
         relocate 'org.codehaus.plexus', 'com.gmail.picono435.picojobs.libs.org.codehaus.plexus'
         relocate 'org.yaml.snakeyaml', 'com.gmail.picono435.picojobs.libs.org.yaml.snakeyaml'
+    }
+
+    tasks.withType(JavaExec).configureEach {
+        systemProperty("bstats.relocatecheck", "false")
     }
 
     /*signing {

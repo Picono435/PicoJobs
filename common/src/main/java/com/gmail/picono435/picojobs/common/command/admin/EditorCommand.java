@@ -8,6 +8,7 @@ import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.PicoJobsMain;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -47,26 +48,30 @@ public class EditorCommand implements Command {
 
     private String createEditor(Sender sender) {
         try {
+            Gson gson = new Gson();
+
             String serverVersionString = PicoJobsCommon.getPlatformAdapter().getMinecraftVersion();
 
             JsonParser parser = new JsonParser();
             JsonObject jsonEditor = new JsonObject();
             jsonEditor.addProperty("plugin", "PicoJobs");
             jsonEditor.addProperty("server", InetAddress.getLocalHost() + ":" + PicoJobsCommon.getPlatformAdapter().getPort());
+            jsonEditor.addProperty("platform", PicoJobsCommon.getPlatform().name());
             jsonEditor.addProperty("author", String.valueOf(sender.getUUID()));
             jsonEditor.addProperty("minecraftVersion", serverVersionString);
 
-            JsonArray jsonEconomies = new JsonArray();
-            for(String economy : PicoJobsCommon.getMainInstance().economies.keySet()) {
-                jsonEconomies.add(economy);
-            }
+            JsonArray jsonItems = gson.toJsonTree(PicoJobsCommon.getRegistryCollector().getItemList()).getAsJsonArray();
+            jsonEditor.add("items", jsonItems);
+
+            JsonArray jsonEntities = gson.toJsonTree(PicoJobsCommon.getRegistryCollector().getEntityList()).getAsJsonArray();
+            jsonEditor.add("entities", jsonEntities);
+
+            JsonArray jsonEconomies = gson.toJsonTree(PicoJobsCommon.getMainInstance().economies.keySet()).getAsJsonArray();
+            jsonEconomies.add("DEFAULT");
             jsonEditor.add("economies", jsonEconomies);
 
-            JsonArray jsonWorkzones = new JsonArray();
-            for(String workzone : PicoJobsCommon.getMainInstance().workZones.keySet()) {
-                jsonEconomies.add(workzone);
-            }
-            jsonEditor.add("workzones", jsonWorkzones);
+            JsonArray jsonWorkZones = gson.toJsonTree(PicoJobsCommon.getMainInstance().workZones.keySet()).getAsJsonArray();
+            jsonEditor.add("workzones", jsonWorkZones);
 
             JsonObject jsonTypes = new JsonObject();
             for(Type type : Type.values()) {

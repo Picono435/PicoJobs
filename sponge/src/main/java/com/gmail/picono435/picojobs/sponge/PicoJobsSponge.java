@@ -103,6 +103,7 @@ public class PicoJobsSponge {
                 new SpongePlaceholderTranslator(),
                 new SpongeWhitelistConverter(),
                 new SpongeSoftwareHooker(),
+                new SpongeRegistryCollector(),
                 jarURL
             );
         this.pluginContainer = event.plugin();

@@ -6,6 +6,7 @@ import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.PicoJobsMain;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
+import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.spongepowered.configurate.ConfigurationNode;
@@ -48,10 +49,10 @@ public class ApplyEditsCommand implements Command {
 
     private boolean applyEditsFromEditor(Sender sender, String editor) {
         try {
-            JsonParser parser = new JsonParser();
             JsonObject jsonEditor = new JsonObject();
             jsonEditor.addProperty("plugin", "PicoJobs");
             jsonEditor.addProperty("server", InetAddress.getLocalHost() + ":" + PicoJobsCommon.getPlatformAdapter().getPort());
+            jsonEditor.addProperty("platform", PicoJobsCommon.getPlatform().name());
             jsonEditor.addProperty("author", String.valueOf(sender.getUUID()));
             jsonEditor.addProperty("editor", editor);
 
@@ -77,19 +78,22 @@ public class ApplyEditsCommand implements Command {
                 while ((responseLine = br.readLine()) != null) {
                     responseString.append(responseLine.trim());
                 }
-                JsonObject response = (JsonObject) parser.parse(responseString.toString());
-                ConfigurationNode jobConfiguration = YamlConfigurationLoader.builder().build().load();
-                if(response.get("status").getAsInt() == 3000) {
+                JsonObject response = (JsonObject) JsonParser.parseString(responseString.toString());
+                ConfigurationNode jobConfiguration = FileManager.getJobsNode();
+                jobConfiguration.node("jobs").set(null);
+
+                if(response.get("status").getAsInt() == 200) {
                     PicoJobsCommon.getMainInstance().jobs.clear();
                     JsonObject jobsObject = (JsonObject) response.get("data");
                     for(String jobID : jobsObject.keySet()) {
                         Job job = new Job(jobsObject.get(jobID).getAsJsonObject());
-                        jobConfiguration.node("jobs", jobID).set(job.toYamlConfiguration());
+                        job.toYamlConfiguration(jobConfiguration.node("jobs", jobID));
                         PicoJobsCommon.getMainInstance().jobs.put(jobID, job);
                     }
                     PicoJobsCommon.getFileManager().saveJobsFile(jobConfiguration);
                     return true;
                 } else {
+                    PicoJobsCommon.getLogger().error("Failed to apply edits from the editor because of an issue in the editor server. Error code: " + response.get("status").getAsInt());
                     return false;
                 }
             }

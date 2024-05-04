@@ -30,7 +30,8 @@ public class PicoJobsBukkit extends JavaPlugin {
                 new BukkitColorConverter(),
                 new BukkitPlaceholderTranslator(),
                 new BukkitWhitelistConverter(),
-                new BukkitSoftwareHooker()
+                new BukkitSoftwareHooker(),
+                new BukkitRegistryCollector()
         );
     }
 

@@ -29,17 +29,18 @@ public class PicoJobsCommon {
     private static PlaceholderTranslator placeholderTranslator;
     private static WhitelistConverter whitelistConverter;
     private static SoftwareHooker softwareHooker;
+    private static RegistryCollector registryCollector;
     private static MetricsBase metricsBase;
 
     // Non-Platform specific
     private static PicoJobsMain mainInstance;
     private static FileManager fileManager;
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker) {
-        onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, null);
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, RegistryCollector registryCollector) {
+        onLoad(version, platform, logger, configDir, updateDir, schedulerAdapter, platformAdapter, colorConverter, placeholderTranslator, whitelistConverter, softwareHooker, registryCollector, null);
     }
 
-    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, URL jarURL) {
+    public static void onLoad(String version, Platform platform, Logger logger, File configDir, File updateDir, SchedulerAdapter schedulerAdapter, PlatformAdapter platformAdapter, ColorConverter colorConverter, PlaceholderTranslator placeholderTranslator, WhitelistConverter whitelistConverter, SoftwareHooker softwareHooker, RegistryCollector registryCollector, URL jarURL) {
         if(PicoJobsCommon.version != null) return;
         PicoJobsCommon.version = version;
         PicoJobsCommon.platform = platform;
@@ -52,6 +53,7 @@ public class PicoJobsCommon {
         PicoJobsCommon.placeholderTranslator = placeholderTranslator;
         PicoJobsCommon.whitelistConverter = whitelistConverter;
         PicoJobsCommon.softwareHooker = softwareHooker;
+        PicoJobsCommon.registryCollector = registryCollector;
 
         if(platform.isSlimDependencies()) {
             PicoJobsCommon.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");
@@ -171,6 +173,10 @@ public class PicoJobsCommon {
 
     public static SoftwareHooker getSoftwareHooker() {
         return softwareHooker;
+    }
+
+    public static RegistryCollector getRegistryCollector() {
+        return registryCollector;
     }
 
     public static MetricsBase getMetricsBase() {

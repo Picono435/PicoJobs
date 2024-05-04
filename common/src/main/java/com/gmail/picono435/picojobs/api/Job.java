@@ -60,8 +60,8 @@ public class Job {
 				jsonObject.get("salaryFrequency").getAsDouble(),
 				jsonObject.get("methodFrequency").getAsDouble(),
 				jsonObject.get("economy").getAsString(),
-				jsonObject.get("workZone").getAsString(),
-				jsonObject.get("workMessage") instanceof JsonNull ? null : jsonObject.get("workMessage").getAsString(),
+				jsonObject.get("workZone").isJsonNull() ? null : jsonObject.get("workZone").getAsString(),
+				jsonObject.get("workMessage").isJsonNull() ? null : jsonObject.get("workMessage").getAsString(),
 				jsonObject.get("gui").getAsJsonObject().get("slot").getAsInt(),
 				jsonObject.get("gui").getAsJsonObject().get("item").getAsString(),
 				jsonObject.get("gui").getAsJsonObject().get("itemData").getAsInt(),
@@ -410,8 +410,7 @@ public class Job {
 		return jsonObject;
 	}
 
-	public ConfigurationNode toYamlConfiguration() throws ConfigurateException {
-		ConfigurationNode jobConfiguration = YamlConfigurationLoader.builder().build().load();
+	public ConfigurationNode toYamlConfiguration(ConfigurationNode jobConfiguration) throws ConfigurateException {
 		jobConfiguration.node("id").set(this.id);
 		jobConfiguration.node("displayname").set(displayname);
 		jobConfiguration.node("tag").set(tag);
@@ -435,11 +434,11 @@ public class Job {
 			jobConfiguration.node("whitelist", type.name()).set(whitelist.get(type));
 		}
 
-		jobConfiguration.node("gui", slot).set(this.slot);
-		jobConfiguration.node("item").set(this.item);
-		jobConfiguration.node("itemData").set(this.itemData);
-		jobConfiguration.node("enchanted").set(this.enchanted);
-		jobConfiguration.node("lore").set(lore);
+		jobConfiguration.node("gui", "slot").set(this.slot);
+		jobConfiguration.node("gui", "item").set(this.item);
+		jobConfiguration.node("gui", "itemData").set(this.itemData);
+		jobConfiguration.node("gui", "enchanted").set(this.enchanted);
+		jobConfiguration.node("gui", "lore").set(lore);
 		return jobConfiguration;
 	}
 }

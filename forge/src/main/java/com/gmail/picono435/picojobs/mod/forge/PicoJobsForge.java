@@ -5,10 +5,7 @@ import com.gmail.picono435.picojobs.mod.PicoJobsMod;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import com.gmail.picono435.picojobs.mod.forge.platform.ForgePlaceholderTranslator;
 import com.gmail.picono435.picojobs.mod.forge.platform.ForgePlatformAdapter;
-import com.gmail.picono435.picojobs.mod.platform.ModColorConverter;
-import com.gmail.picono435.picojobs.mod.platform.ModSchedulerAdapter;
-import com.gmail.picono435.picojobs.mod.platform.ModSoftwareHooker;
-import com.gmail.picono435.picojobs.mod.platform.ModWhitelistConverter;
+import com.gmail.picono435.picojobs.mod.platform.*;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -51,7 +48,8 @@ public class PicoJobsForge {
                 new ModColorConverter(),
                 new ForgePlaceholderTranslator(),
                 new ModWhitelistConverter(),
-                new ModSoftwareHooker()
+                new ModSoftwareHooker(),
+                new ModRegistryCollector()
         );
 
         PicoJobsMod.init();

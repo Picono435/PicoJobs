@@ -34,7 +34,8 @@ public class PicoJobsNukkit extends PluginBase {
                 new NukkitColorConverter(),
                 new NukkitPlaceholderTranslator(),
                 new NukkitWhitelistConverter(),
-                new NukkitSoftwareHooker()
+                new NukkitSoftwareHooker(),
+                new NukkitRegistryCollector()
         );
     }
 

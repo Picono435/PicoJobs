@@ -44,6 +44,9 @@ dependencies {
 
     // Mods API
     compileOnly('org.spongepowered:spongeapi:8.2.0-SNAPSHOT')
+
+    // Just to make it work in run tasks
+    forgeRuntimeLibrary(project(":common"))
 }
 
 processResources {
