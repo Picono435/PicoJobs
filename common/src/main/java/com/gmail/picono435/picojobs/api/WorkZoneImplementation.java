@@ -1,6 +1,6 @@
 package com.gmail.picono435.picojobs.api;
 
-import com.gmail.picono435.picojobs.api.utils.RequiredField;
+import com.gmail.picono435.picojobs.api.field.RequiredField;
 
 import java.util.UUID;
 
@@ -38,7 +38,7 @@ public abstract class WorkZoneImplementation {
      *
      * @return required field
      */
-    public RequiredField<?> getRequiredField() {
+    public RequiredField<?, ?> getRequiredField() {
         return null;
     };
 

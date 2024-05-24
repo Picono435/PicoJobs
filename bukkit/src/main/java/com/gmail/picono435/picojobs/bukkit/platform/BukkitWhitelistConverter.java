@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.bukkit.platform;
 
 import com.gmail.picono435.picojobs.api.Type;
+import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegegacyUtils;
 import com.gmail.picono435.picojobs.common.platform.WhitelistConverter;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -14,13 +15,13 @@ public class BukkitWhitelistConverter implements WhitelistConverter {
         switch(type.getWhitelistType()) {
             case ITEM:
             case BLOCK: {
-                return whitelist.contains(((Material) object).getKey().toString());
+                return whitelist.contains(NamespacedLegegacyUtils.getKeyByEnum((Material) object));
             }
             case ENTITY: {
-                return whitelist.contains(((EntityType) object).getKey().toString());
+                return whitelist.contains(NamespacedLegegacyUtils.getKeyByEnum((EntityType) object));
             }
             case DYE: {
-                return whitelist.contains(((DyeColor) object).name().toLowerCase().toString());
+                return whitelist.contains(((DyeColor) object).name().toLowerCase(Locale.ROOT).toString());
             }
         }
         return false;

@@ -29,7 +29,7 @@ public class BukkitSoftwareHooker implements SoftwareHooker {
 
                 PicoJobsAPI.registerWorkZone(new BiomeImplementation());
                 PicoJobsAPI.registerWorkZone(new WorldImplementation());
-                PicoJobsAPI.registerWorkZone(new WorldGuardImplementation());
+                // TODO: PicoJobsAPI.registerWorkZone(new WorldGuard6Implementation());
                 PicoJobsAPI.registerWorkZone(new GriefPreventionImplementation());
                 PicoJobsAPI.registerWorkZone(new GriefDefenderImplementation());
                 PicoJobsAPI.registerWorkZone(new TownyImplementation());

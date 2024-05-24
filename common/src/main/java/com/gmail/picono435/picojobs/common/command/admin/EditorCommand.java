@@ -1,17 +1,13 @@
 package com.gmail.picono435.picojobs.common.command.admin;
 
-import com.gmail.picono435.picojobs.api.Job;
-import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.api.Type;
+import com.gmail.picono435.picojobs.api.*;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
+import com.gmail.picono435.picojobs.api.field.RequiredField;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.PicoJobsMain;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -66,11 +62,26 @@ public class EditorCommand implements Command {
             JsonArray jsonEntities = gson.toJsonTree(PicoJobsCommon.getRegistryCollector().getEntityList()).getAsJsonArray();
             jsonEditor.add("entities", jsonEntities);
 
-            JsonArray jsonEconomies = gson.toJsonTree(PicoJobsCommon.getMainInstance().economies.keySet()).getAsJsonArray();
-            jsonEconomies.add("DEFAULT");
+            JsonObject jsonEconomies = new JsonObject();
+            jsonEconomies.add("DEFAULT", new JsonObject());
+            for(String economy : PicoJobsCommon.getMainInstance().economies.keySet()) {
+                EconomyImplementation economyImplementation = PicoJobsCommon.getMainInstance().economies.get(economy);
+                JsonObject jsonObject = new JsonObject();
+                RequiredField<?, ?> requiredField = economyImplementation.getRequiredField();
+                if(requiredField != null) jsonObject = requiredField.toJsonObject();
+                jsonEconomies.add("field", jsonObject);
+            }
             jsonEditor.add("economies", jsonEconomies);
 
-            JsonArray jsonWorkZones = gson.toJsonTree(PicoJobsCommon.getMainInstance().workZones.keySet()).getAsJsonArray();
+            JsonObject jsonWorkZones = new JsonObject();
+            jsonWorkZones.add("DEFAULT", new JsonObject());
+            for(String economy : PicoJobsCommon.getMainInstance().workZones.keySet()) {
+                WorkZoneImplementation economyImplementation = PicoJobsCommon.getMainInstance().workZones.get(economy);
+                JsonObject jsonObject = new JsonObject();
+                RequiredField<?, ?> requiredField = economyImplementation.getRequiredField();
+                if(requiredField != null) jsonObject = requiredField.toJsonObject();
+                jsonWorkZones.add("field", jsonObject);
+            }
             jsonEditor.add("workzones", jsonWorkZones);
 
             JsonObject jsonTypes = new JsonObject();

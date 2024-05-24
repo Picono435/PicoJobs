@@ -3,7 +3,8 @@ package com.gmail.picono435.picojobs.sponge.hooks.economy;
 import com.gmail.picono435.picojobs.api.EconomyImplementation;
 import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
-import com.gmail.picono435.picojobs.api.utils.RequiredField;
+import com.gmail.picono435.picojobs.api.field.RequiredField;
+import com.gmail.picono435.picojobs.api.field.type.StringRequiredFieldType;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.exception.CommandException;
 
@@ -12,10 +13,10 @@ import java.util.UUID;
 
 public class CommandImplementation extends EconomyImplementation {
 
-    protected RequiredField<String> requiredField;
+    protected RequiredField<String, String> requiredField;
 
     public CommandImplementation() {
-        this.requiredField = new RequiredField<>("commands");
+        this.requiredField = new RequiredField<>("commands", new StringRequiredFieldType(), true);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class CommandImplementation extends EconomyImplementation {
     @Override
     public void deposit(UUID player, double amount) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
-        List<String> commands = this.requiredField.getValueList(jp, String.class);
+        List<String> commands = this.requiredField.getValueList(jp.getJob());
         for(String command : commands) {
             try {
                 Sponge.server().commandManager().process(Sponge.systemSubject(), command
@@ -48,7 +49,7 @@ public class CommandImplementation extends EconomyImplementation {
     public void withdraw(UUID player, double amount) {}
 
     @Override
-    public RequiredField<String> getRequiredField() {
+    public RequiredField<String, String> getRequiredField() {
         return requiredField;
     }
 

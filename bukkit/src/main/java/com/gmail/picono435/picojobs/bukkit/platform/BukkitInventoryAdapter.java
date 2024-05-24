@@ -1,6 +1,6 @@
 package com.gmail.picono435.picojobs.bukkit.platform;
 
-import com.gmail.picono435.picojobs.bukkit.utils.MatchUtils;
+import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegegacyUtils;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.inventory.ClickAction;
 import com.gmail.picono435.picojobs.common.listeners.InventoryMenuListener;
@@ -83,7 +83,7 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
     }
 
     public ItemStack toItemStack(ItemAdapter itemAdapter) {
-        Material material = MatchUtils.matchMaterial(itemAdapter.getMaterial());
+        Material material = NamespacedLegegacyUtils.matchMaterial(itemAdapter.getMaterial());
         if(material == null) material = Material.STONE;
         ItemStack itemStack;
         if(itemAdapter.getDurability() != null) {

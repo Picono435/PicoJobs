@@ -1,10 +1,9 @@
 package com.gmail.picono435.picojobs.bukkit.hooks.workzones;
 
-import com.gmail.picono435.picojobs.api.JobPlayer;
+/*import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.WorkZoneImplementation;
-import com.gmail.picono435.picojobs.api.utils.RequiredField;
-import com.gmail.picono435.picojobs.common.file.FileManager;
+import com.gmail.picono435.picojobs.api.field.RequiredField;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldguard.WorldGuard;
@@ -16,15 +15,16 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.UUID;*/
 
-public class WorldGuardImplementation extends WorkZoneImplementation {
+// TODO: This will have to be made in an external plugin
+public class WorldGuardImplementation /*extends WorkZoneImplementation*/ {
 
-    protected RequiredField<String> requiredField;
+    /*protected RequiredField<String> requiredField;
 
     public WorldGuardImplementation() {
         this.requiredPlugin = "WorldGuard";
-        this.requiredField = new RequiredField<>("regions");
+        this.requiredField = new RequiredField<>(String.class, true, "regions");
     }
 
     @Override
@@ -44,5 +44,5 @@ public class WorldGuardImplementation extends WorkZoneImplementation {
             if(regionSet.getRegions().stream().map(ProtectedRegion::getId).toList().contains(region)) return true;
         }
         return false;
-    }
+    }*/
 }
