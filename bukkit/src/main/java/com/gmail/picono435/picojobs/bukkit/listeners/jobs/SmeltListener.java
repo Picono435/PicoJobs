@@ -18,7 +18,7 @@ public class SmeltListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onCraftItem(InventoryClickEvent event) {
 		if(event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) return;
-		if(!PicoJobsCommon.isMoreThan("1.14")) {
+		if(PicoJobsCommon.isMoreThan("1.14")) {
 			if(event.getInventory().getType() != InventoryType.FURNACE && event.getInventory().getType() != InventoryType.valueOf("BLAST_FURNACE") && event.getInventory().getType() != InventoryType.valueOf("SMOKER")) return;
 		} else {
 			if(event.getInventory().getType() != InventoryType.FURNACE) return;
