@@ -10,11 +10,14 @@ import com.gmail.picono435.picojobs.common.command.api.Sender;
 import com.google.gson.*;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,11 +31,18 @@ public class EditorCommand implements Command {
     @Override
     public boolean onCommand(String cmd, String[] args, Sender sender) {
         sender.sendMessage(LanguageManager.formatMessage("&7Preparing a new editor session. Please wait..."));
-        String editor = createEditor(sender);
-        if(editor != null) {
+        Object editor = createEditor(sender);
+        if(editor instanceof String) {
             sender.sendMessage(LanguageManager.formatMessage("&aClick the link below to open the editor:\n&b&e" + PicoJobsMain.EDITOR_STRING + "/picojobs/" + editor));
+        } else if(editor instanceof Integer) {
+            int errorCode = (int) editor;
+            if(errorCode == 501) {
+                sender.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
+            } else {
+                sender.sendMessage(LanguageManager.formatMessage("&cAn unexpected error occured while connecting with the PicoJobs editor. For more information check server logs."));
+            }
         } else {
-            sender.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
+            sender.sendMessage(LanguageManager.formatMessage("&cAn unexpected error occured while connecting with the PicoJobs editor. For more information check server logs."));
         }
         return true;
     }
@@ -42,13 +52,12 @@ public class EditorCommand implements Command {
         return null;
     }
 
-    private String createEditor(Sender sender) {
+    private Object createEditor(Sender sender) {
         try {
             Gson gson = new Gson();
 
             String serverVersionString = PicoJobsCommon.getPlatformAdapter().getMinecraftVersion();
 
-            JsonParser parser = new JsonParser();
             JsonObject jsonEditor = new JsonObject();
             jsonEditor.addProperty("plugin", "PicoJobs");
             jsonEditor.addProperty("server", InetAddress.getLocalHost() + ":" + PicoJobsCommon.getPlatformAdapter().getPort());
@@ -65,22 +74,16 @@ public class EditorCommand implements Command {
             JsonObject jsonEconomies = new JsonObject();
             jsonEconomies.add("DEFAULT", new JsonObject());
             for(String economy : PicoJobsCommon.getMainInstance().economies.keySet()) {
-                EconomyImplementation economyImplementation = PicoJobsCommon.getMainInstance().economies.get(economy);
-                JsonObject jsonObject = new JsonObject();
-                RequiredField<?, ?> requiredField = economyImplementation.getRequiredField();
-                if(requiredField != null) jsonObject = requiredField.toJsonObject();
-                jsonEconomies.add("field", jsonObject);
+                RequiredField<?, ?> requiredField = PicoJobsAPI.getEconomy(economy).getRequiredField();
+                jsonEconomies.add(economy, requiredField != null ? requiredField.toJsonObject() : new JsonObject());
             }
             jsonEditor.add("economies", jsonEconomies);
 
             JsonObject jsonWorkZones = new JsonObject();
             jsonWorkZones.add("DEFAULT", new JsonObject());
-            for(String economy : PicoJobsCommon.getMainInstance().workZones.keySet()) {
-                WorkZoneImplementation economyImplementation = PicoJobsCommon.getMainInstance().workZones.get(economy);
-                JsonObject jsonObject = new JsonObject();
-                RequiredField<?, ?> requiredField = economyImplementation.getRequiredField();
-                if(requiredField != null) jsonObject = requiredField.toJsonObject();
-                jsonWorkZones.add("field", jsonObject);
+            for(String workzone : PicoJobsCommon.getMainInstance().workzones.keySet()) {
+                RequiredField<?, ?> requiredField = PicoJobsAPI.getWorkZone(workzone).getRequiredField();
+                jsonWorkZones.add(workzone, requiredField != null ? requiredField.toJsonObject() : new JsonObject());
             }
             jsonEditor.add("workzones", jsonWorkZones);
 
@@ -96,30 +99,32 @@ public class EditorCommand implements Command {
             }
             jsonEditor.add("jobs", jsonJobs);
 
-            String charset = "UTF-8";
+            Charset charset = StandardCharsets.UTF_8;
 
             URL url = new URL(PicoJobsMain.EDITOR_STRING + "/picojobs/create");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Accept-Charset", charset);
-            con.setRequestProperty("Content-Type", "application/json;charset=" + charset);
-            con.setRequestProperty("Accept", "application/json");
-            con.setDoOutput(true);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Accept-Charset", charset.name());
+            connection.setRequestProperty("Content-Type", "application/json;charset=" + charset.name());
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
 
             String json = jsonEditor.toString();
-            try (OutputStream output = con.getOutputStream()) {
+            try (OutputStream output = connection.getOutputStream()) {
                 output.write(json.getBytes(charset));
             }
 
             try(BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                    new InputStreamReader(connection.getInputStream(), charset))) {
                 StringBuilder responseString = new StringBuilder();
                 String responseLine = null;
                 while ((responseLine = br.readLine()) != null) {
                     responseString.append(responseLine.trim());
                 }
-                JsonObject response = (JsonObject) parser.parse(responseString.toString());
+                JsonObject response = (JsonObject) JsonParser.parseString(responseString.toString());
                 return response.get("editor").getAsString();
+            } catch (IOException exception) {
+                return connection.getResponseCode();
             }
         } catch (Exception e) {
             e.printStackTrace();

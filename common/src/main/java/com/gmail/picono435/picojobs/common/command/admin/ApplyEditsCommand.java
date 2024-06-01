@@ -1,6 +1,7 @@
 package com.gmail.picono435.picojobs.common.command.admin;
 
 import com.gmail.picono435.picojobs.api.Job;
+import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.PicoJobsMain;
@@ -10,7 +11,6 @@ import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.spongepowered.configurate.ConfigurationNode;
-import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,6 +20,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class ApplyEditsCommand implements Command {
 
@@ -37,7 +38,7 @@ public class ApplyEditsCommand implements Command {
         if(applyEditsFromEditor(sender, args[1])) {
             sender.sendMessage(LanguageManager.formatMessage("&aWeb editor data was applied to the jobs configuration successfully."));
         } else {
-            sender.sendMessage(LanguageManager.formatMessage("&cWeb editor data was not applied to the jobs configuration because of a unexpected error."));
+            sender.sendMessage(LanguageManager.formatMessage("&cWeb editor data was not applied to the jobs configuration because of an unexpected error."));
         }
         return true;
     }
@@ -91,6 +92,12 @@ public class ApplyEditsCommand implements Command {
                         PicoJobsCommon.getMainInstance().jobs.put(jobID, job);
                     }
                     PicoJobsCommon.getFileManager().saveJobsFile(jobConfiguration);
+
+                    // Cache Reload
+                    for(UUID uuid : PicoJobsAPI.getStorageManager().getCacheManager().getAllFromCache()) {
+                        if(PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).getJob() == null) continue;
+                        PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).setJob(PicoJobsAPI.getJobsManager().getJob(PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).getJob().getID()));
+                    }
                     return true;
                 } else {
                     PicoJobsCommon.getLogger().error("Failed to apply edits from the editor because of an issue in the editor server. Error code: " + response.get("status").getAsInt());
