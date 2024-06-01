@@ -95,9 +95,7 @@ dependencies {
 shadowJar {
     archiveClassifier.set("bukkit")
 
-    dependencies {
-        exclude(dependency('org.slf4j:slf4j-api:'))
-    }
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
 // Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file
