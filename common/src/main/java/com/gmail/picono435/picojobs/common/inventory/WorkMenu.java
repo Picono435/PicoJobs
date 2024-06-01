@@ -12,9 +12,14 @@ import java.util.stream.Collectors;
 
 public class WorkMenu {
 
+    public static Map<String, ClickAction> actions = new HashMap<>();
+
     public static InventoryAdapter createMenu(InventoryAdapter inventoryAdapter, UUID player, String menu) {
         CommentedConfigurationNode node = FileManager.getGuiNode().node("gui-settings", menu);
         inventoryAdapter.create(node.node("title").getString(), node.node("size").getInt());
+
+        boolean createActions = false;
+        if(actions.isEmpty()) createActions = true;
 
         for(Object itemNameObject : node.node("items").childrenMap().keySet()) {
             String itemName = (String) itemNameObject;
@@ -48,7 +53,11 @@ public class WorkMenu {
             lore = PicoJobsCommon.getPlaceholderTranslator().setPlaceholders(player, lore);
             itemAdapter.setLore(lore);
 
-            inventoryAdapter.setItem(itemNode.node("slot").getInt() - 1, itemAdapter, ClickAction.valueOf(itemNode.node("action").getString().toUpperCase(Locale.ROOT)));
+            inventoryAdapter.setItem(itemNode.node("slot").getInt() - 1, itemAdapter);
+
+            if(createActions) {
+                actions.put(itemAdapter.getName(), ClickAction.valueOf(itemNode.node("action").getString().toUpperCase(Locale.ROOT)));
+            }
         }
 
         if(node.node("put-background-item").getBoolean()) {

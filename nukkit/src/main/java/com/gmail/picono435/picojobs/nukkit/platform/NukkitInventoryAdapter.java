@@ -5,8 +5,6 @@ import cn.nukkit.inventory.InventoryType;
 import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.bow.EnchantmentBowPower;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
-import com.gmail.picono435.picojobs.common.inventory.ClickAction;
-import com.gmail.picono435.picojobs.common.listeners.InventoryMenuListener;
 import com.gmail.picono435.picojobs.common.platform.inventory.InventoryAdapter;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import me.iwareq.fakeinventories.FakeInventory;
@@ -35,15 +33,6 @@ public class NukkitInventoryAdapter implements InventoryAdapter {
     @Override
     public void setItem(int slot, ItemAdapter item) {
         inventory.setItem(slot, toItem(item));
-    }
-
-    @Override
-    public void setItem(int slot, ItemAdapter item, ClickAction clickAction) {
-        Item itemStack = toItem(item);
-        inventory.setItem(slot, itemStack, (clickedItem, event) -> {
-            event.setCancelled(InventoryMenuListener.onBasicClick(new NukkitSender(event.getTransaction().getSource()), this, itemStack));
-        });
-        InventoryMenuListener.actionItems.put(itemStack, clickAction);
     }
 
     @Override

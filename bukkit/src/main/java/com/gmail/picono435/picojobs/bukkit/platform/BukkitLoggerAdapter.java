@@ -54,11 +54,11 @@ public final class BukkitLoggerAdapter extends LegacyAbstractLogger implements L
 
     private static final long serialVersionUID = -8053026990503422791L;
 
-    transient final PluginLogger logger;
+    transient final java.util.logging.Logger logger;
 
     // WARN: JDK14LoggerAdapter constructor should have only package access so
     // that only JDK14LoggerFactory be able to create one.
-    public BukkitLoggerAdapter(PluginLogger logger) {
+    public BukkitLoggerAdapter(java.util.logging.Logger logger) {
         this.logger = logger;
         this.name = logger.getName();
     }

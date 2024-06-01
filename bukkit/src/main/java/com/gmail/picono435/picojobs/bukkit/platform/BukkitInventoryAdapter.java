@@ -2,8 +2,6 @@ package com.gmail.picono435.picojobs.bukkit.platform;
 
 import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegegacyUtils;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
-import com.gmail.picono435.picojobs.common.inventory.ClickAction;
-import com.gmail.picono435.picojobs.common.listeners.InventoryMenuListener;
 import com.gmail.picono435.picojobs.common.platform.inventory.InventoryAdapter;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import org.bukkit.Bukkit;
@@ -37,13 +35,6 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
     @Override
     public void setItem(int slot, ItemAdapter item) {
         inventory.setItem(slot, toItemStack(item));
-    }
-
-    @Override
-    public void setItem(int slot, ItemAdapter item, ClickAction clickAction) {
-        ItemStack itemStack = toItemStack(item);
-        inventory.setItem(slot, itemStack);
-        InventoryMenuListener.actionItems.put(itemStack, clickAction);
     }
 
     @Override
