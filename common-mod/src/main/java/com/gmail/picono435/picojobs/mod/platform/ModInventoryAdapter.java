@@ -1,7 +1,5 @@
 package com.gmail.picono435.picojobs.mod.platform;
 
-import com.gmail.picono435.picojobs.common.inventory.ClickAction;
-import com.gmail.picono435.picojobs.common.listeners.InventoryMenuListener;
 import com.gmail.picono435.picojobs.common.platform.inventory.InventoryAdapter;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import com.gmail.picono435.picojobs.mod.container.JobsContainer;
@@ -45,13 +43,6 @@ public class ModInventoryAdapter implements InventoryAdapter {
     @Override
     public void setItem(int slot, ItemAdapter item) {
         this.simpleContainer.setItem(slot, toItemStack(item));
-    }
-
-    @Override
-    public void setItem(int slot, ItemAdapter item, ClickAction clickAction) {
-        ItemStack itemStack = toItemStack(item);
-        this.simpleContainer.setItem(slot, itemStack);
-        InventoryMenuListener.actionItems.put(itemStack, clickAction);
     }
 
     @Override

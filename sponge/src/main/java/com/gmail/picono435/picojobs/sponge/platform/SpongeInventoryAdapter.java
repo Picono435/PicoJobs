@@ -1,14 +1,10 @@
 package com.gmail.picono435.picojobs.sponge.platform;
 
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
-import com.gmail.picono435.picojobs.common.inventory.ClickAction;
-import com.gmail.picono435.picojobs.common.listeners.InventoryMenuListener;
 import com.gmail.picono435.picojobs.common.platform.inventory.InventoryAdapter;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import com.gmail.picono435.picojobs.sponge.PicoJobsSponge;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.item.ItemType;
@@ -23,7 +19,6 @@ import org.spongepowered.api.item.inventory.type.ViewableInventory;
 import org.spongepowered.api.registry.RegistryTypes;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.function.Supplier;
@@ -74,13 +69,6 @@ public class SpongeInventoryAdapter implements InventoryAdapter {
     @Override
     public void setItem(int slot, ItemAdapter item) {
         this.inventory.set(slot, toItemStack(item));
-    }
-
-    @Override
-    public void setItem(int slot, ItemAdapter item, ClickAction clickAction) {
-        ItemStack itemStack = toItemStack(item);
-        this.inventory.set(slot, itemStack);
-        InventoryMenuListener.actionItems.put(itemStack, clickAction);
     }
 
     @Override
