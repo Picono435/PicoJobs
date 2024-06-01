@@ -3,10 +3,9 @@ package com.gmail.picono435.picojobs.common.command.admin;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
-import com.gmail.picono435.picojobs.common.PicoJobsMain;
 import com.gmail.picono435.picojobs.common.command.api.Command;
 import com.gmail.picono435.picojobs.common.command.api.Sender;
-import com.gmail.picono435.picojobs.common.file.FileManager;
+import com.gmail.picono435.picojobs.common.inventory.WorkMenu;
 import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.util.Arrays;
@@ -31,6 +30,7 @@ public class ReloadCommand implements Command {
         } catch (SerializationException e) {
             throw new RuntimeException(e);
         }
+        WorkMenu.actions.clear();
         PicoJobsAPI.getStorageManager().destroyStorageFactory();
         PicoJobsAPI.getStorageManager().initializeStorageFactory();
         for(UUID uuid : PicoJobsAPI.getStorageManager().getCacheManager().getAllFromCache()) {
