@@ -22,7 +22,7 @@ public class PicoJobsBukkit extends JavaPlugin {
         PicoJobsCommon.onLoad(
                 getDescription().getVersion(),
                 Platform.BUKKIT,
-                new BukkitLoggerAdapter((PluginLogger) PicoJobsBukkit.getInstance().getLogger()),
+                new BukkitLoggerAdapter(PicoJobsBukkit.getInstance().getLogger()),
                 getDataFolder(),
                 Bukkit.getUpdateFolderFile(),
                 new BukkitSchedulerAdapter(),

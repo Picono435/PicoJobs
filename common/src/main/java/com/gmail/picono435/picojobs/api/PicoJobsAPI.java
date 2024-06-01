@@ -102,6 +102,7 @@ public class PicoJobsAPI {
 	public static boolean registerEconomy(EconomyImplementation economy) {
 		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(economy.getRequiredPlugin())) return false;
 		PicoJobsCommon.getMainInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
+		economy.onRegister();
 		PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
 		return true;
 	}
@@ -120,14 +121,15 @@ public class PicoJobsAPI {
 	/**
 	 * Registers a Work Zone Implementation
 	 *
-	 * @param workZone the work zone implementation
+	 * @param workzone the work zone implementation
 	 * @return whether is successful or not
 	 * @author Picono435
 	 */
-	public static boolean registerWorkZone(WorkZoneImplementation workZone) {
-		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(workZone.getRequiredPlugin())) return false;
-		PicoJobsCommon.getMainInstance().workZones.put(workZone.getName().toUpperCase(Locale.ROOT), workZone);
-		PicoJobsCommon.getLogger().info("Registered " + workZone.getName().toUpperCase(Locale.ROOT) + " work zone implementation.");
+	public static boolean registerWorkZone(WorkZoneImplementation workzone) {
+		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(workzone.getRequiredPlugin())) return false;
+		PicoJobsCommon.getMainInstance().workzones.put(workzone.getName().toUpperCase(Locale.ROOT), workzone);
+		workzone.onRegister();
+		PicoJobsCommon.getLogger().info("Registered " + workzone.getName().toUpperCase(Locale.ROOT) + " work zone implementation.");
 		return true;
 	}
 
@@ -139,7 +141,7 @@ public class PicoJobsAPI {
 	 * @author Picono435
 	 */
 	public static WorkZoneImplementation getWorkZone(String name) {
-		return PicoJobsCommon.getMainInstance().workZones.get(name);
+		return PicoJobsCommon.getMainInstance().workzones.get(name);
 	}
 
 

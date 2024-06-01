@@ -3,9 +3,11 @@ package com.gmail.picono435.picojobs.api;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.gmail.picono435.picojobs.api.field.RequiredField;
 import com.gmail.picono435.picojobs.api.managers.LanguageManager;
 import com.gmail.picono435.picojobs.api.placeholders.JobPlayerPlaceholders;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
+import com.gmail.picono435.picojobs.common.PicoJobsMain;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
@@ -33,7 +35,7 @@ public class Job {
 	private double salaryFrequency;
 	private double methodFrequency;
 	private String economy;
-	private String workZone;
+	private String workzone;
 	private String workMessage;
 	
 	// GUI SETTINGS
@@ -46,6 +48,9 @@ public class Job {
 	// OPTIONAL
 	private boolean useWhitelist;
 	private Map<Type, List<String>> whitelist = new HashMap<>();
+
+	// INTERNAL ONLY
+	private JsonElement[] jsonReqFields = new JsonElement[2];
 
 	public Job(JsonObject jsonObject) {
 		this(
@@ -60,7 +65,7 @@ public class Job {
 				jsonObject.get("salaryFrequency").getAsDouble(),
 				jsonObject.get("methodFrequency").getAsDouble(),
 				jsonObject.get("economy").getAsString(),
-				jsonObject.get("workZone").isJsonNull() ? null : jsonObject.get("workZone").getAsString(),
+				jsonObject.get("workzone").isJsonNull() ? null : jsonObject.get("workzone").getAsString(),
 				jsonObject.get("workMessage").isJsonNull() ? null : jsonObject.get("workMessage").getAsString(),
 				jsonObject.get("gui").getAsJsonObject().get("slot").getAsInt(),
 				jsonObject.get("gui").getAsJsonObject().get("item").getAsString(),
@@ -70,9 +75,21 @@ public class Job {
 				jsonObject.get("useWhitelist").getAsBoolean(),
 				(new Gson()).fromJson(jsonObject.get("whitelist").toString(), new TypeToken<Map<Type, List<String>>>(){}.getType())
 		);
+
+		if(jsonObject.has("economy_field")) {
+			jsonReqFields[0] = jsonObject.get("economy_field");
+		} else {
+			jsonReqFields[0] = null;
+		}
+
+		if(jsonObject.has("workzone_field")) {
+			jsonReqFields[1] = jsonObject.get("workzone_field");
+		} else {
+			jsonReqFields[1] = null;
+		}
 	}
 
-	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workZone, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workzone, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -84,7 +101,7 @@ public class Job {
 		this.salaryFrequency = salaryFrequency;
 		this.methodFrequency = methodFrequency;
 		this.economy = economy;
-		this.workZone = workZone;
+		this.workzone = workzone;
 		this.workMessage = workMessage;
 
 		this.slot = slot;
@@ -213,7 +230,7 @@ public class Job {
 	 */
 	public String getEconomy() {
 		if(this.economy == null) {
-			return "VAULT";
+			return "DEFAULT";
 		}
 		return this.economy;
 	}
@@ -225,8 +242,8 @@ public class Job {
 	 * @author Picono435
 	 */
 	public String getWorkZone() {
-		if(this.workZone == null) return null;
-		return this.workZone.toUpperCase(Locale.ROOT);
+		if(this.workzone == null) return null;
+		return this.workzone.toUpperCase(Locale.ROOT);
 	}
 	
 	/**
@@ -360,7 +377,9 @@ public class Job {
 		}
 	}
 
-	public JsonObject toJsonObject() throws SerializationException {
+	public JsonObject toJsonObject() {
+		Gson gson = new Gson();
+
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("id", this.id);
 		jsonObject.addProperty("displayname", displayname);
@@ -376,13 +395,34 @@ public class Job {
 		jsonObject.addProperty("requirePermission", this.requirePermission);
 		jsonObject.addProperty("salaryFrequency", this.salaryFrequency);
 		jsonObject.addProperty("methodFrequency", this.methodFrequency);
+
 		jsonObject.addProperty("economy", this.economy);
+		EconomyImplementation economyImplementation = PicoJobsAPI.getEconomy(this.economy);
+		if(economyImplementation != null) {
+			RequiredField<?, ?> economyField = economyImplementation.getRequiredField();
+			if(economyField != null) {
+				if(economyField.isList()) {
+					JsonArray jsonArray = gson.toJsonTree(economyField.getPrimitiveList(this)).getAsJsonArray();
+					jsonObject.add("economy_field", jsonArray);
+				} else {
+					jsonObject.add("economy_field", gson.toJsonTree(economyField.getPrimitive(this)));
+				}
+			}
+		}
 
-		// TODO: Required Field of economy
-
-		jsonObject.addProperty("workZone", this.workZone);
-
-		// TODO: Required Field of workzone
+		jsonObject.addProperty("workzone", this.workzone);
+		WorkZoneImplementation workzoneImplementation = PicoJobsAPI.getWorkZone(this.workzone);
+		if(workzoneImplementation != null) {
+			RequiredField<?, ?> workzoneField = workzoneImplementation.getRequiredField();
+			if(workzoneField != null) {
+				if(workzoneField.isList()) {
+					JsonArray jsonArray = gson.toJsonTree(workzoneField.getPrimitiveList(this)).getAsJsonArray();
+					jsonObject.add("workzone_field", jsonArray);
+				} else {
+					jsonObject.add("workzone_field", gson.toJsonTree(workzoneField.getPrimitive(this)));
+				}
+			}
+		}
 
 		jsonObject.addProperty("workMessage", this.workMessage);
 		jsonObject.addProperty("useWhitelist", this.useWhitelist);
@@ -411,6 +451,8 @@ public class Job {
 	}
 
 	public ConfigurationNode toYamlConfiguration(ConfigurationNode jobConfiguration) throws ConfigurateException {
+		Gson gson = new Gson();
+
 		jobConfiguration.node("id").set(this.id);
 		jobConfiguration.node("displayname").set(displayname);
 		jobConfiguration.node("tag").set(tag);
@@ -425,8 +467,37 @@ public class Job {
 		jobConfiguration.node("require-permission").set(this.requirePermission);
 		jobConfiguration.node("salary-frequency").set(this.salaryFrequency);
 		jobConfiguration.node("method-frequency").set(this.methodFrequency);
+
 		jobConfiguration.node("economy").set(this.economy);
-		jobConfiguration.node("work-zone").set(this.workZone);
+		if(jsonReqFields[0] != null) {
+			EconomyImplementation economyImplementation = PicoJobsAPI.getEconomy(this.economy);
+			if(economyImplementation != null) {
+				RequiredField<?, ?> economyField = economyImplementation.getRequiredField();
+				if(economyField != null) {
+					if(economyField.isList()) {
+						jobConfiguration.node(economyField.getName()).set(gson.fromJson(jsonReqFields[0].getAsJsonArray(), List.class));
+					} else {
+						jobConfiguration.node(economyField.getName()).set(gson.fromJson(jsonReqFields[0], economyField.getType().getPrimitiveType()));
+					}
+				}
+			}
+		}
+
+		jobConfiguration.node("workzone").set(this.workzone);
+		if(jsonReqFields[1] != null) {
+			WorkZoneImplementation workzoneImplementation = PicoJobsAPI.getWorkZone(this.workzone);
+			if(workzoneImplementation != null) {
+				RequiredField<?, ?> workzoneField = workzoneImplementation.getRequiredField();
+				if(workzoneField != null) {
+					if(workzoneField.isList()) {
+						jobConfiguration.node(workzoneField.getName()).set(gson.fromJson(jsonReqFields[1].getAsJsonArray(), List.class));
+					} else {
+						jobConfiguration.node(workzoneField.getName()).set(gson.fromJson(jsonReqFields[1], workzoneField.getType().getPrimitiveType()));
+					}
+				}
+			}
+		}
+
 		jobConfiguration.node("work-message").set(this.workMessage);
 		jobConfiguration.node("use-whitelist").set(this.useWhitelist);
 

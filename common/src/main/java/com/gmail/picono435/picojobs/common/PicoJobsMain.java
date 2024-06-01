@@ -25,10 +25,12 @@ import java.util.*;
 public class PicoJobsMain {
 
     //TODO: Set editor string to the right one
-    public static String EDITOR_STRING = "https://piconodev.com/editor";
+    //public static String EDITOR_STRING = "https://piconodev.com/editor";
+    public static String EDITOR_STRING = "http://localhost:3011/editor";
+
     //DATA
     public Map<String, EconomyImplementation> economies = new HashMap<>();
-    public Map<String, WorkZoneImplementation> workZones = new HashMap<>();
+    public Map<String, WorkZoneImplementation> workzones = new HashMap<>();
     //JOBS DATA
     public Map<String, Job> jobs = new HashMap<String, Job>();
     private JobsCommand jobsCommand;
@@ -43,7 +45,7 @@ public class PicoJobsMain {
         PicoJobsCommon.getSoftwareHooker().hookInPhase(SoftwareHooker.Phase.ONE);
         PicoJobsCommon.getSchedulerAdapter().executeSync(() -> {
             PicoJobsCommon.getLogger().info("[PicoJobs] " + economies.size() + " economy implementations successfully registered!");
-            PicoJobsCommon.getLogger().info("[PicoJobs] " + workZones.size() + " work zones implementations successfully registered!");
+            PicoJobsCommon.getLogger().info("[PicoJobs] " + workzones.size() + " work zones implementations successfully registered!");
         });
 
         PicoJobsCommon.getLogger().info("Generating jobs from the configuration files...");
@@ -116,11 +118,11 @@ public class PicoJobsMain {
                 }
             }
             PicoJobsCommon.getLogger().debug("Economy: " + economy);
-            String workZone = jobNode.node("workzone").getString();
-            if(workZone != null) {
-                workZone = workZone.toUpperCase(Locale.ROOT);
+            String workzone = jobNode.node("workzone").getString();
+            if(workzone != null) {
+                workzone = workzone.toUpperCase(Locale.ROOT);
             }
-            PicoJobsCommon.getLogger().debug("Work Zone: " + workZone);
+            PicoJobsCommon.getLogger().debug("Work Zone: " + workzone);
             String workMessage = jobNode.node("work-message").getString();
             ConfigurationNode guiNode = jobNode.node("gui");
             int slot = guiNode.node("slot").getInt();
@@ -137,7 +139,7 @@ public class PicoJobsMain {
                 }
             }
 
-            Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workZone, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
+            Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workzone, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
 
             jobs.put(jobid, job);
 
@@ -207,7 +209,6 @@ public class PicoJobsMain {
             } else {
                 DefaultArtifactVersion pluginVersion = new DefaultArtifactVersion(PicoJobsCommon.getVersion());
                 DefaultArtifactVersion latestVersion = new DefaultArtifactVersion(version);
-                System.out.println("Checking versions: " + pluginVersion.toString() + " " + latestVersion.toString());
                 isRunningOld = latestVersion.compareTo(pluginVersion) > 0;
             }
             if(isRunningOld) {

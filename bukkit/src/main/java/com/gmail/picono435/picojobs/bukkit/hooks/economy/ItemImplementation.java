@@ -18,31 +18,32 @@ import java.util.UUID;
 public class ItemImplementation extends EconomyImplementation {
 
 	protected RequiredField<String, Material> requiredField;
-
-	public ItemImplementation() {
-		this.requiredField = new RequiredField<>("items", new RequiredFieldType<String, Material>(String.class, Material.class) {
-            @Override
-            public Material toValue(@Nonnull String primitive) {
-                return NamespacedLegegacyUtils.matchMaterial(primitive);
-            }
-
-            @Nonnull
-			@Override
-            public String toPrimitive(Material value) {
-                return NamespacedLegegacyUtils.getKeyByEnum(value);
-            }
-
-            @Nonnull
-			@Override
-            public List<Material> getSuggestions() {
-                return Arrays.asList(Material.values());
-            }
-        }, true);
-	}
 	
 	@Override
 	public String getName() {
 		return "ITEM";
+	}
+
+	@Override
+	public void onRegister() {
+		this.requiredField = new RequiredField<>("items", new RequiredFieldType<String, Material>(String.class, Material.class) {
+			@Override
+			public Material toValue(@Nonnull String primitive) {
+				return NamespacedLegegacyUtils.matchMaterial(primitive);
+			}
+
+			@Nonnull
+			@Override
+			public String toPrimitive(Material value) {
+				return NamespacedLegegacyUtils.getKeyByEnum(value);
+			}
+
+			@Nonnull
+			@Override
+			public List<Material> getSuggestions() {
+				return Arrays.asList(Material.values());
+			}
+		}, true);
 	}
 
 	@Override

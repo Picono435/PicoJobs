@@ -20,7 +20,13 @@ public class ItemImplementation extends EconomyImplementation {
 
     protected RequiredField<String, ItemType> requiredField;
 
-    public ItemImplementation() {
+    @Override
+    public String getName() {
+        return "ITEM";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("items", new RequiredFieldType<String, ItemType>(String.class, ItemType.class) {
             @Override
             public ItemType toValue(@Nonnull String primitive) {
@@ -39,11 +45,6 @@ public class ItemImplementation extends EconomyImplementation {
                 return ItemTypes.registry().stream().collect(Collectors.toList());
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "ITEM";
     }
 
     @Override

@@ -21,6 +21,15 @@ public class GriefDefenderImplementation extends WorkZoneImplementation {
 
     public GriefDefenderImplementation() {
         this.requiredPlugin = "GriefDefender";
+    }
+
+    @Override
+    public String getName() {
+        return "GRIEFDEFENDER";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("claims", new RequiredFieldType<String, Claim>(String.class, Claim.class) {
             @Nullable
             @Override
@@ -44,11 +53,6 @@ public class GriefDefenderImplementation extends WorkZoneImplementation {
                 return suggestions;
             }
         }, true, null);
-    }
-
-    @Override
-    public String getName() {
-        return "GRIEFDEFENDER";
     }
 
     public boolean isInWorkZone(UUID player) {

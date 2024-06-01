@@ -354,11 +354,11 @@ public class JobPlayer {
 	 *
 	 */
 	public boolean isInWorkZone(UUID player) {
-		String workZone = this.job.getWorkZone();
-		if(workZone == null) return true;
-		WorkZoneImplementation workZoneImplementation = PicoJobsAPI.getWorkZone(workZone);
-		if(workZoneImplementation == null) return true;
-		return workZoneImplementation.isInWorkZone(player);
+		String workzone = this.job.getWorkZone();
+		if(workzone == null) return true;
+		WorkZoneImplementation workzoneImplementation = PicoJobsAPI.getWorkZone(workzone);
+		if(workzoneImplementation == null) return true;
+		return workzoneImplementation.isInWorkZone(player);
 	}
 	
 	/**

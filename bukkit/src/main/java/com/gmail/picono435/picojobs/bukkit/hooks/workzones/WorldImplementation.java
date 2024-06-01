@@ -16,7 +16,13 @@ public class WorldImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, World> requiredField;
 
-    public WorldImplementation() {
+    @Override
+    public String getName() {
+        return "WORLD";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("worlds", new RequiredFieldType<String, World>(String.class, World.class) {
             @Override
             public World toValue(@Nonnull String primitive) {
@@ -35,11 +41,6 @@ public class WorldImplementation extends WorkZoneImplementation {
                 return Bukkit.getWorlds();
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "WORLD";
     }
 
     @Override

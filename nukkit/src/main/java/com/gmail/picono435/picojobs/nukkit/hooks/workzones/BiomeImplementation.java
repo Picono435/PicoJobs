@@ -20,7 +20,13 @@ public class BiomeImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, Biome> requiredField;
 
-    public BiomeImplementation() {
+    @Override
+    public String getName() {
+        return "BIOME";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("biomes", new RequiredFieldType<String, Biome>(String.class, Biome.class) {
             @Override
             public Biome toValue(@Nonnull String primitive) {
@@ -39,11 +45,6 @@ public class BiomeImplementation extends WorkZoneImplementation {
                 return Arrays.stream(EnumBiome.values()).map(enumBiome -> enumBiome.biome).collect(Collectors.toList());
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "BIOME";
     }
 
     @Override

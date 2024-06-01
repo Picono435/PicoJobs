@@ -19,7 +19,13 @@ public class BiomeImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, Biome> requiredField;
 
-    public BiomeImplementation() {
+    @Override
+    public String getName() {
+        return "BIOME";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("biomes", new RequiredFieldType<String, Biome>(String.class, Biome.class) {
             @Override
             public Biome toValue(@Nonnull String primitive) {
@@ -41,16 +47,11 @@ public class BiomeImplementation extends WorkZoneImplementation {
     }
 
     @Override
-    public String getName() {
-        return "BIOME";
-    }
-
-    @Override
     public boolean isInWorkZone(UUID player) {
         JobPlayer jp = PicoJobsAPI.getPlayersManager().getJobPlayer(player);
         List<Biome> regions = this.requiredField.getValueList(jp.getJob());
         Player onlinePlayer = Bukkit.getPlayer(player);
-        return regions.contains(onlinePlayer.getWorld().getBiome(onlinePlayer.getLocation()));
+        return regions.contains(onlinePlayer.getWorld().getBiome(onlinePlayer.getLocation().getBlockX(), onlinePlayer.getLocation().getBlockZ()));
     }
 
     @Override

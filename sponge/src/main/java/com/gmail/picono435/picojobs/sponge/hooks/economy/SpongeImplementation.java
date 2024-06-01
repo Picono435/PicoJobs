@@ -29,6 +29,15 @@ public class SpongeImplementation extends EconomyImplementation {
 
     public SpongeImplementation() {
         this.requiredPlugin = "spongeapi";
+    }
+
+    @Override
+    public String getName() {
+        return "SPONGE";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("currency", new RequiredFieldType<String, Currency>(String.class, Currency.class) {
             @Nullable
             @Override
@@ -57,11 +66,6 @@ public class SpongeImplementation extends EconomyImplementation {
                 return optionalRegistry.map(currencyRegistry -> currencyRegistry.stream().collect(Collectors.toList())).orElseGet(ArrayList::new);
             }
         }, false, "DEFAULT");
-    }
-
-    @Override
-    public String getName() {
-        return "SPONGE";
     }
 
     @Override

@@ -8,11 +8,20 @@ public abstract class EconomyImplementation {
 	protected String requiredPlugin = "PicoJobs";
 
 	/**
-	 * Returns a upper case name of economy
+	 * Returns an upper case name of the implementation
 	 *
 	 * @return economy name
 	 */
 	public abstract String getName();
+
+	/**
+	 * This method is automatically called during the implementation registry
+	 * proccess if the required plugin for this implementation is found and enabled. <br>
+	 * <br>
+	 * This should be where you set up the required field for your implementation.
+	 *
+	 */
+	public void onRegister() {}
 
 	/**
 	 * Gets the money balance of specified player

@@ -22,6 +22,15 @@ public class GriefPreventionImplementation extends WorkZoneImplementation {
 
     public GriefPreventionImplementation() {
         this.requiredPlugin = "GriefPrevention";
+    }
+
+    @Override
+    public String getName() {
+        return "GRIEFPREVENTION";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("claims", new RequiredFieldType<Long, Claim>(Long.class, Claim.class) {
             @Override
             public Claim toValue(@Nonnull Long primitive) {
@@ -43,10 +52,6 @@ public class GriefPreventionImplementation extends WorkZoneImplementation {
     }
 
     @Override
-    public String getName() {
-        return "GRIEFPREVENTION";
-    }
-
     public boolean isInWorkZone(UUID player) {
         Player onlinePlayer = Bukkit.getPlayer(player);
         Location location = onlinePlayer.getLocation();

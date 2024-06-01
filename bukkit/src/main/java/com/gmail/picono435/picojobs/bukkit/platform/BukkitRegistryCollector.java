@@ -7,16 +7,17 @@ import org.bukkit.entity.EntityType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class BukkitRegistryCollector implements RegistryCollector {
 
     @Override
     public List<String> getItemList() {
-        return Arrays.stream(Material.values()).map(material -> "minecraft:" + material.name().toLowerCase(Locale.ROOT)).toList();
+        return Arrays.stream(Material.values()).map(material -> "minecraft:" + material.name().toLowerCase(Locale.ROOT)).collect(Collectors.toList());
     }
 
     @Override
     public List<String> getEntityList() {
-        return Arrays.stream(EntityType.values()).map(material -> "minecraft:" + (material.getName() == null ? "unknown" : material.getName().toLowerCase(Locale.ROOT))).toList();
+        return Arrays.stream(EntityType.values()).map(material -> "minecraft:" + (material.getName() == null ? "unknown" : material.getName().toLowerCase(Locale.ROOT))).collect(Collectors.toList());
     }
 }

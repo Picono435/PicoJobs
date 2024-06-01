@@ -23,7 +23,13 @@ public class BiomeImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, Biome> requiredField;
 
-    public BiomeImplementation() {
+    @Override
+    public String getName() {
+        return "BIOME";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("biomes", new RequiredFieldType<String, Biome>(String.class, Biome.class) {
             @Nullable
             @Override
@@ -43,11 +49,6 @@ public class BiomeImplementation extends WorkZoneImplementation {
                 return Sponge.game().registry(RegistryTypes.BIOME).stream().collect(Collectors.toList());
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "BIOME";
     }
 
     @Override

@@ -18,8 +18,14 @@ import java.util.UUID;
 public class ItemImplementation extends EconomyImplementation {
 
 	protected RequiredField<String, Item> requiredField;
+	
+	@Override
+	public String getName() {
+		return "ITEM";
+	}
 
-	public ItemImplementation() {
+	@Override
+	public void onRegister() {
 		this.requiredField = new RequiredField<>("items", new RequiredFieldType<>(String.class, Item.class) {
 			@Override
 			public Item toValue(@Nonnull String primitive) {
@@ -38,11 +44,6 @@ public class ItemImplementation extends EconomyImplementation {
 				return List.of();
 			}
 		}, true);
-	}
-	
-	@Override
-	public String getName() {
-		return "ITEM";
 	}
 
 	@Override

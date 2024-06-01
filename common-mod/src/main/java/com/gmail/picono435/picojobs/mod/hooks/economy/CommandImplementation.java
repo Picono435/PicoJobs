@@ -14,13 +14,14 @@ public class CommandImplementation extends EconomyImplementation {
 
 	protected RequiredField<String, String> requiredField;
 
-	public CommandImplementation() {
-		this.requiredField = new RequiredField<>("commands", new StringRequiredFieldType(), true);
-	}
-	
 	@Override
 	public String getName() {
 		return "COMMAND";
+	}
+
+	@Override
+	public void onRegister() {
+		this.requiredField = new RequiredField<>("commands", new StringRequiredFieldType(), true);
 	}
 
 	@Override

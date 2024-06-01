@@ -17,7 +17,13 @@ public class WorldImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, Level> requiredField;
 
-    public WorldImplementation() {
+    @Override
+    public String getName() {
+        return "WORLD";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("worlds", new RequiredFieldType<String, Level>(String.class, Level.class) {
             @Override
             public Level toValue(@Nonnull String primitive) {
@@ -36,11 +42,6 @@ public class WorldImplementation extends WorkZoneImplementation {
                 return new ArrayList<>(PicoJobsNukkit.getInstance().getServer().getLevels().values());
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "WORLD";
     }
 
     @Override

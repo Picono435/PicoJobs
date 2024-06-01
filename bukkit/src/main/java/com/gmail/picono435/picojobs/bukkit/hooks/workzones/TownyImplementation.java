@@ -20,6 +20,15 @@ public class TownyImplementation extends WorkZoneImplementation {
 
     public TownyImplementation() {
         this.requiredPlugin = "Towny";
+    }
+
+    @Override
+    public String getName() {
+        return "TOWNY";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("towns", new RequiredFieldType<String, Town>(String.class, Town.class) {
             @Override
             public Town toValue(@Nonnull String primitive) {
@@ -38,11 +47,6 @@ public class TownyImplementation extends WorkZoneImplementation {
                 return TownyAPI.getInstance().getTowns();
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "TOWNY";
     }
 
     @Override

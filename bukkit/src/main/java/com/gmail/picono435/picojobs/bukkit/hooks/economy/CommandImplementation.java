@@ -14,7 +14,8 @@ public class CommandImplementation extends EconomyImplementation {
 
 	protected RequiredField<String, String> requiredField;
 
-	public CommandImplementation() {
+	@Override
+	public void onRegister() {
 		this.requiredField = new RequiredField<>("commands", new StringRequiredFieldType(), true);
 	}
 	

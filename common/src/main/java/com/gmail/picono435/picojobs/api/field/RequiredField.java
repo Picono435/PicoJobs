@@ -3,9 +3,7 @@ package com.gmail.picono435.picojobs.api.field;
 import com.gmail.picono435.picojobs.api.Job;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.file.FileManager;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import org.spongepowered.configurate.serialize.SerializationException;
 
 import javax.annotation.Nonnull;
@@ -41,6 +39,10 @@ public class RequiredField<P, V> {
         return name;
     }
 
+    public RequiredFieldType<P, V> getType() {
+        return requiredFieldType;
+    }
+
     public P getDefaultValue() {
         return defaultValue;
     }
@@ -50,38 +52,48 @@ public class RequiredField<P, V> {
     }
 
     @Nullable
-    public V getValue(Job job) {
+    public P getPrimitive(Job job) {
         try {
             if(FileManager.getJobsNode().node("jobs", job.getID(), this.name).empty()) {
                 if(this.defaultValue == null) {
                     PicoJobsCommon.getLogger().error(FIELD_NOT_FOUND, this.name, job.getID());
                 } else {
-                    return requiredFieldType.toValue(this.defaultValue);
+                    return this.defaultValue;
                 }
             }
-            // TODO: Check for null
-            return requiredFieldType.toValue(FileManager.getJobsNode().node("jobs", job.getID(), this.name).get(requiredFieldType.getPrimitiveType()));
+
+            return FileManager.getJobsNode().node("jobs", job.getID(), this.name).get(requiredFieldType.getPrimitiveType());
         } catch (SerializationException e) {
             PicoJobsCommon.getLogger().error(SERIALIZATION_ERROR, name, job.getID());
-            return requiredFieldType.toValue(this.defaultValue);
+            return this.defaultValue;
         }
     }
 
     @Nonnull
-    public List<V> getValueList(Job job) {
+    public List<P> getPrimitiveList(Job job) {
         try {
             if(FileManager.getJobsNode().node("jobs", job.getID(), this.name).empty()) {
                 if(this.defaultValue == null) {
                     PicoJobsCommon.getLogger().error(FIELD_NOT_FOUND, this.name, job.getID());
                 } else {
-                    return Collections.singletonList(requiredFieldType.toValue(this.defaultValue));
+                    return Collections.singletonList(this.defaultValue);
                 }
             }
-            return requiredFieldType.toValueList(FileManager.getJobsNode().node("jobs", job.getID(), this.name).getList(requiredFieldType.getPrimitiveType()));
+            return FileManager.getJobsNode().node("jobs", job.getID(), this.name).getList(requiredFieldType.getPrimitiveType());
         } catch (SerializationException e) {
             PicoJobsCommon.getLogger().error(SERIALIZATION_ERROR, name, job.getID());
-            return Collections.singletonList(requiredFieldType.toValue(this.defaultValue));
+            return Collections.singletonList(this.defaultValue);
         }
+    }
+
+    @Nullable
+    public V getValue(Job job) {
+        return requiredFieldType.toValue(getPrimitive(job));
+    }
+
+    @Nonnull
+    public List<V> getValueList(Job job) {
+        return requiredFieldType.toValueList(getPrimitiveList(job));
     }
 
     public JsonObject toJsonObject() {
@@ -90,7 +102,13 @@ public class RequiredField<P, V> {
         jsonObject.addProperty("name", name);
 
         if(!this.name.equalsIgnoreCase("items")) {
-            JsonArray jsonSuggestions = gson.toJsonTree(this.requiredFieldType.getPrimitiveSuggestions()).getAsJsonArray();
+            JsonArray jsonSuggestions = new JsonArray();
+            for(P suggestion : this.requiredFieldType.getPrimitiveSuggestions()) {
+                JsonObject jsonSuggestion = new JsonObject();
+                jsonSuggestion.add("name", gson.toJsonTree(suggestion));
+                jsonSuggestion.add("id", gson.toJsonTree(suggestion));
+                jsonSuggestions.add(jsonSuggestion);
+            }
             jsonObject.add("suggestions", jsonSuggestions);
         }
 

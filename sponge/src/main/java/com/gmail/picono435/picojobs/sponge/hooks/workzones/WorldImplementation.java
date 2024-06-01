@@ -19,7 +19,13 @@ public class WorldImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, ServerWorld> requiredField;
 
-    public WorldImplementation() {
+    @Override
+    public String getName() {
+        return "WORLD";
+    }
+
+    @Override
+    public void onRegister() {
         this.requiredField = new RequiredField<>("worlds", new RequiredFieldType<String, ServerWorld>(String.class, ServerWorld.class) {
             @Override
             @Nullable
@@ -39,11 +45,6 @@ public class WorldImplementation extends WorkZoneImplementation {
                 return new ArrayList<>(Sponge.server().worldManager().worlds());
             }
         }, true);
-    }
-
-    @Override
-    public String getName() {
-        return "WORLD";
     }
 
     @Override

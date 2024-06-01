@@ -21,7 +21,13 @@ public class ItemImplementation extends EconomyImplementation {
 
 	protected RequiredField<String, Item> requiredField;
 
-	public ItemImplementation() {
+	@Override
+	public String getName() {
+		return "ITEM";
+	}
+
+	@Override
+	public void onRegister() {
 		this.requiredField = new RequiredField<>("items", new RequiredFieldType<String, Item>(String.class, Item.class) {
 			@Override
 			public Item toValue(@Nonnull String primitive) {
@@ -40,11 +46,6 @@ public class ItemImplementation extends EconomyImplementation {
 				return Arrays.stream(ItemID.class.getFields()).map(field -> "minecraft:" + field.getName().toLowerCase(Locale.ROOT)).map(RuntimeItems::getLegacyIdFromLegacyString).map(Item::get).collect(Collectors.toList());
 			}
 		}, true);
-	}
-	
-	@Override
-	public String getName() {
-		return "ITEM";
 	}
 
 	@Override
