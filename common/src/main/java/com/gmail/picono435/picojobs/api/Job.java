@@ -76,14 +76,14 @@ public class Job {
 				(new Gson()).fromJson(jsonObject.get("whitelist").toString(), new TypeToken<Map<Type, List<String>>>(){}.getType())
 		);
 
-		if(jsonObject.has("economy_field")) {
-			jsonReqFields[0] = jsonObject.get("economy_field");
+		if(jsonObject.has("economyField")) {
+			jsonReqFields[0] = jsonObject.get("economyField");
 		} else {
 			jsonReqFields[0] = null;
 		}
 
-		if(jsonObject.has("workzone_field")) {
-			jsonReqFields[1] = jsonObject.get("workzone_field");
+		if(jsonObject.has("workzoneField")) {
+			jsonReqFields[1] = jsonObject.get("workzoneField");
 		} else {
 			jsonReqFields[1] = null;
 		}
@@ -403,9 +403,9 @@ public class Job {
 			if(economyField != null) {
 				if(economyField.isList()) {
 					JsonArray jsonArray = gson.toJsonTree(economyField.getPrimitiveList(this)).getAsJsonArray();
-					jsonObject.add("economy_field", jsonArray);
+					jsonObject.add("economyField", jsonArray);
 				} else {
-					jsonObject.add("economy_field", gson.toJsonTree(economyField.getPrimitive(this)));
+					jsonObject.add("economyField", gson.toJsonTree(economyField.getPrimitive(this)));
 				}
 			}
 		}
@@ -417,9 +417,9 @@ public class Job {
 			if(workzoneField != null) {
 				if(workzoneField.isList()) {
 					JsonArray jsonArray = gson.toJsonTree(workzoneField.getPrimitiveList(this)).getAsJsonArray();
-					jsonObject.add("workzone_field", jsonArray);
+					jsonObject.add("workzoneField", jsonArray);
 				} else {
-					jsonObject.add("workzone_field", gson.toJsonTree(workzoneField.getPrimitive(this)));
+					jsonObject.add("workzoneField", gson.toJsonTree(workzoneField.getPrimitive(this)));
 				}
 			}
 		}
