@@ -12,8 +12,10 @@ public class BukkitInventoryMenuListener implements Listener {
 	@EventHandler()
 	public void onInventoryClick(InventoryClickEvent event) {
 		if(event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta()) return;
-		event.setCancelled(InventoryMenuListener.onBasicClick(new BukkitSender(event.getWhoClicked()),
+		if(InventoryMenuListener.onBasicClick(new BukkitSender(event.getWhoClicked()),
 				new BukkitInventoryAdapter(event.getInventory(), event.getView().getTitle()),
-				event.getCurrentItem()));
+				event.getCurrentItem())) {
+			event.setCancelled(true);
+		}
 	}
 }
