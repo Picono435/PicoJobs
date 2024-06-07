@@ -19,7 +19,7 @@ dependencies {
     // Storage Methods
     transitiveCommon(slim('org.mongodb:mongodb-driver-sync:4.9.1'))
     transitiveCommon(slim('com.zaxxer:HikariCP:4.0.3')) // TODO: Support HikariCP v5.0.1 (Java 17)
-    transitiveCommon(slim('com.h2database:h2:2.2.224'))
+    transitiveCommon(slim('com.h2database:h2:2.1.214'))
     transitiveCommon(slim('org.xerial:sqlite-jdbc:3.46.0.0'))
     transitiveCommon(slim('org.mariadb.jdbc:mariadb-java-client:3.4.0'))
     transitiveCommon(slim('com.mysql:mysql-connector-j:8.4.0'))
