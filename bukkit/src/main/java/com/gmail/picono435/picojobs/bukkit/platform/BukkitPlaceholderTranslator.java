@@ -14,7 +14,7 @@ public class BukkitPlaceholderTranslator implements PlaceholderTranslator {
     @Override
     public String setPlaceholders(UUID player, String string) {
         if(PlaceholderAPIHook.isEnabled()) {
-            return PlaceholderAPI.setPlaceholders(Bukkit.getPlayer(player), string);
+            return PlaceholderAPI.setPlaceholders(player == null ? null : Bukkit.getPlayer(player), string);
         } else {
             for(PlaceholderExtension extension : PicoJobsAPI.getPlaceholderManager().getExtensions()) {
                 string = extension.setPlaceholders(player, string);
@@ -26,7 +26,7 @@ public class BukkitPlaceholderTranslator implements PlaceholderTranslator {
     @Override
     public List<String> setPlaceholders(UUID player, List<String> stringList) {
         if(PlaceholderAPIHook.isEnabled()) {
-            return PlaceholderAPI.setPlaceholders(Bukkit.getPlayer(player), stringList);
+            return PlaceholderAPI.setPlaceholders(player == null ? null : Bukkit.getPlayer(player), stringList);
         } else {
             for(PlaceholderExtension extension : PicoJobsAPI.getPlaceholderManager().getExtensions()) {
                 stringList = extension.setPlaceholders(player, stringList);
