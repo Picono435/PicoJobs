@@ -6,10 +6,12 @@ import org.apache.commons.io.FileUtils;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.ConfigurationNode;
+import org.spongepowered.configurate.yaml.NodeStyle;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class FileManager {
@@ -81,21 +83,21 @@ public class FileManager {
         languageNode = fileInformation.getRootNode();
     }
 
-    // TODO: Add migrations (Old ones are probably no longer needed)
     public void migrateFiles() {
-        /*try {
-            URL inputUrl = getClass().getResource("config.yml");
-            YamlConfigurationLoader defaultsLoader = YamlConfigurationLoader.builder().url(inputUrl).build();
-            ConfigurationNode defaults = defaultsLoader.load();
+        try {
+            URL inputUrl = getClass().getResource("/config.yml").toURI().toURL();
+            YamlConfigurationLoader defaultsLoader = YamlConfigurationLoader.builder().nodeStyle(NodeStyle.FLOW).url(inputUrl).build();
+            CommentedConfigurationNode defaults = defaultsLoader.load();
 
             configNode.mergeFrom(defaults);
+            configNode.node("config-version").set(defaults.node("config-version").getString());
             configLoader.save(configNode);
-        } catch (IOException e) {
+        } catch (Exception e) {
             PicoJobsCommon.getLogger().error("An error occurred while loading this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
-        }*/
+        }
     }
 
     public void saveJobsFile(ConfigurationNode node) throws ConfigurateException {
