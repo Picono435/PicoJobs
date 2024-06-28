@@ -112,7 +112,6 @@ aliases:
   job: "lavoro"
   editor: "editor"
   applyedits: "applicatedits"
-  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #
