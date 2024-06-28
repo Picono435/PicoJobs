@@ -10,7 +10,7 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cEi! Você não tem permissão para executar esse comando."
+no-permission: "&cHolho! Você não tem permissão para executar esse comando."
 ignore-action: "&cEi! Não seja preguiçoso e vá falar com o NPC."
 choosed-job: "&aParabéns! Você escolheu o trabalho %jobplayer_job%&a."
 accepted-work: "&aVocê aceitou o trabalho de %jobplayer_work%."
@@ -112,7 +112,6 @@ aliases:
   job: "tarefa"
   editor: "Editor"
   applyedits: "aplicações"
-  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #
