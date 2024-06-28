@@ -32,8 +32,8 @@ admin-commands: |-
   &e/jobsadmin reîncărcare &6- &eReîncarcă toate configurațiile posibile.
   Actualizare &/jobsadmin &6- &eInstaleaza o actualizare a plugin-ului
   &e/jobsadmin despre &6- &fFace informatii despre server si plugin-ul
-  &/ jobsadmin set <salary | method | job> <player> <amount | job> <amount | job> 
-   - &e&6- &eSeteaza editorul unui player
+  &/ jobsadmin set <salary | method | job> <player> <amount | job> <amount | job>
+  - &e&6- &eSeteaza editorul unui player
   &e/jobsadmin &6- &eCreaza o sesiune de editor web
   &/jobsadmin applyediti &6- &eAplica editarile unei sesiuni de editor web
   /sjobmin &6- &6- &e/sjobmin de &6- Activează modul DEG
@@ -113,7 +113,6 @@ aliases:
   job: "sarcină"
   editor: "editor"
   applyedits: "aplituri"
-  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #
