@@ -11,7 +11,7 @@
 #################################################################################
 #In this category you can change the general messages of the plugin
 no-permission: "&cHé ! Vous n'avez pas la permission d'exécuter cette commande."
-ignore-action: "&cHé ! Ne soyez pas paresseux et allez parler avec le PNJ."
+ignore-action: "&cH! Ne soyez pas paresseux et allez parler avec le PNJ."
 choosed-job: "&aFélicitations ! Vous avez choisi le job %jobplayer_job%&a."
 accepted-work: "&aVous avez accepté le travail de %jobplayer_work%."
 no-salary: "&cVous n'avez pas assez de salaire pour obtenir ! Veuillez aller au travail ;("
@@ -112,7 +112,6 @@ aliases:
   job: "emploi"
   editor: "éditeur"
   applyedits: "appliquer les modifications"
-  debug: "debug"
 #################################################################################
 ##
 #Time translations                                                             #
