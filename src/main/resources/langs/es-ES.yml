@@ -10,12 +10,12 @@
 ##
 #################################################################################
 #In this category you can change the general messages of the plugin
-no-permission: "&cHey! No tienes permiso para ejecutar ese comando."
+no-permission: "E No tienes permiso para ejecutar ese comando."
 ignore-action: "&cHabla con el NPC."
-choosed-job: "&a¡Genial! elegiste el trabajo: %jobplayer_job%&a."
-accepted-work: "&aAceptaste la siguiente tarea: %jobplayer_work%."
-no-salary: "&cNo tienes salario disponible para cobrar, completa tu tarea para tenerlo."
-got-salary: "&a¡Felicidades! Recibiste un salario de: %jobplayer_salary%, listo para cobrarlo."
+choosed-job: "¡Genial! elegiste el trabajo: %jobplayer_job%."
+accepted-work: "Aceptaste la siguiente tarea: %jobplayer_work%."
+no-salary: "No tienes salario disponible para cobrar, completa tu tarea para tenerlo"
+got-salary: "&a¡Buen trabajo! ¡Acabas de obtener tu salario de %jobplayer_salary%!"
 finished-work: "&a¡Bien hecho! Terminaste tu trabajo, usa /jobs para obtener mas informacion."
 need-level: "&cNecesitas hacer %a% trabajos para realizar esa accion."
 no-args: "&cLo has escrito mal, revisa y vuelve a intentar."
