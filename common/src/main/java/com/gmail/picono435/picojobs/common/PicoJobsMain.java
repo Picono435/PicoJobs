@@ -18,8 +18,13 @@ import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
 import java.util.*;
 
 public class PicoJobsMain {
@@ -215,7 +220,8 @@ public class PicoJobsMain {
                 PicoJobsCommon.getLogger().warn("Version: " + version + " is out! You are still running version: " + PicoJobsCommon.getVersion());
                 if(FileManager.getConfigNode().node("auto-update").getBoolean() && PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
                     String downloadUrl = json.getAsJsonArray("files").get(0).getAsJsonObject().get("url").getAsString();
-                    updatePlugin(downloadUrl, version);
+                    String filename = json.getAsJsonArray("files").get(0).getAsJsonObject().get("filename").getAsString();
+                    PicoJobsCommon.getSchedulerAdapter().executeAsync(() -> updatePlugin(downloadUrl, filename));
                 }
             } else {
                 PicoJobsCommon.getLogger().info("You are using the latest version of the plugin.");
@@ -226,7 +232,35 @@ public class PicoJobsMain {
         }
     }
 
-    public void updatePlugin(String downloadUrl, String newVersion) {
+    public void updatePlugin(String downloadUrl, String filename) {
+        try {
+            if(PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
+                PicoJobsCommon.getLogger().info("Downloading new version...");
+                ReadableByteChannel readableByteChannel = Channels.newChannel(new URL(downloadUrl).openStream());
+                PicoJobsCommon.getConfigDir().getParentFile().toPath().resolve("update").toFile().mkdirs();
 
+                boolean isPaper;
+                try {
+                    Class.forName("io.papermc.paper.ServerBuildInfo");
+                    isPaper = true;
+                } catch (ClassNotFoundException ex) {
+                    isPaper = false;
+                }
+
+                if(!isPaper) {
+                    filename = new File(PicoJobsMain.class.getProtectionDomain().getCodeSource().getLocation()
+                            .toURI()).getName();
+                }
+
+                try(FileOutputStream fileOutputStream = new FileOutputStream(PicoJobsCommon.getConfigDir().getParentFile().toPath().resolve("update").resolve(filename).toFile())) {
+                    FileChannel fileChannel = fileOutputStream.getChannel();
+                    fileChannel.transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+                }
+                PicoJobsCommon.getLogger().info("Latest version downloaded to the update folder. Restart the server to finish the update proccess.");
+            }
+        } catch (Exception exception) {
+            PicoJobsCommon.getLogger().warn("Could not download the latest version.");
+            exception.printStackTrace();
+        }
     }
 }
