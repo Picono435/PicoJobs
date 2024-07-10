@@ -37,7 +37,7 @@ dependencies {
     shadow implementation(project(':common'))
 
     compileOnly('cn.nukkit:nukkit:1.0-SNAPSHOT') { transitive false }
-    shadow implementation('com.github.IWareQ:FakeInventories:v1.1.8')
+    shadow implementation('com.github.IWareQ:FakeInventories:v1.1.5')
 
     // Plugins API
     compileOnly('com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT')

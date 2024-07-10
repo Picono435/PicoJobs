@@ -7,7 +7,6 @@ import com.gmail.picono435.picojobs.common.platform.Platform;
 import org.bstats.MetricsBase;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
