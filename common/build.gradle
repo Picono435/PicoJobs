@@ -1,0 +1,68 @@
+plugins {
+    id("dev.racci.slimjar") version "1.6.3-SNAPSHOT"
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly.extendsFrom transitiveCommon
+}
+
+dependencies {
+    transitiveCommon(shadow implementation(slimjar("1.6.3-SNAPSHOT")))
+
+    // Storage Methods
+    transitiveCommon(slim('org.mongodb:mongodb-driver-sync:4.9.1'))
+    transitiveCommon(slim('com.zaxxer:HikariCP:4.0.3')) // TODO: Support HikariCP v5.0.1 (Java 17)
+    transitiveCommon(slim('com.h2database:h2:2.1.214'))
+    transitiveCommon(slim('org.xerial:sqlite-jdbc:3.46.0.0'))
+    transitiveCommon(slim('org.mariadb.jdbc:mariadb-java-client:3.4.0'))
+    transitiveCommon(slim('com.mysql:mysql-connector-j:8.4.0'))
+    transitiveCommon(shadow api('org.spongepowered:configurate-core:4.1.2'))
+    transitiveCommon(shadow implementation('org.spongepowered:configurate-gson:4.1.2'))
+    transitiveCommon(shadow api('org.spongepowered:configurate-yaml:4.1.2'))
+    transitiveCommon(shadow implementation('org.spongepowered:configurate-hocon:4.1.2'))
+
+    transitiveCommon(shadow implementation('org.apache.maven:maven-artifact:3.9.1'))
+    transitiveCommon(shadow api('org.slf4j:slf4j-api:2.0.7'))
+    transitiveCommon(shadow api('org.apache.commons:commons-lang3:3.12.0'))
+    transitiveCommon(shadow api('commons-io:commons-io:2.13.0'))
+    transitiveCommon(shadow api('com.google.guava:guava:32.0.0-jre'))
+    transitiveCommon(shadow api('com.google.code.gson:gson:2.10.1'))
+    transitiveCommon(shadow api('org.bstats:bstats-base:3.0.2'))
+}
+
+shadowJar {
+    archiveClassifier.set("common")
+
+    relocate 'org.spongepowered', 'com.gmail.picono435.picojobs.libs.org.spongepowered'
+    relocate 'org.apache', 'com.gmail.picono435.picojobs.libs.org.apache'
+    relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
+    relocate 'org.checkerframework', 'com.gmail.picono435.picojobs.libs.org.checkerframework'
+    relocate 'org.codehaus', 'com.gmail.picono435.picojobs.libs.org.codehaus'
+    relocate 'org.yaml', 'com.gmail.picono435.picojobs.libs.org.yaml'
+    relocate 'com.google', 'com.gmail.picono435.picojobs.libs.com.google'
+    relocate 'com.typesafe', 'com.gmail.picono435.picojobs.libs.com.typesafe'
+    relocate 'google', 'com.gmail.picono435.picojobs.libs.google'
+    relocate 'javax', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'waffle', 'com.gmail.picono435.picojobs.libs.javax'
+    relocate 'io', 'com.gmail.picono435.picojobs.libs.io'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 8
+}
+
+tasks.slimJar {
+    dependsOn(tasks.jar)
+    dependsOn(tasks.sourcesJar)
+    dependsOn(tasks.shadowJar)
+    //dependsOn(tasks.signShadow)
+}
+
+assemble.dependsOn shadowJar

@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "com.gmail.picono435.picojobs.mod.listeners.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "EatListener",
+    "EnchantListener",
+    "FishingListener",
+    "InventoryMenuMixin",
+    "MoveListener",
+    "RepairListener",
+    "StripLogsListener",
+    "TradeListener"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

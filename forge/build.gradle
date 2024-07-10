@@ -1,0 +1,84 @@
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+loom {
+    accessWidenerPath = project(":common-mod").loom.accessWidenerPath
+
+    forge {
+        convertAccessWideners = true
+        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+
+        mixinConfig "picojobs.mixins.json"
+    }
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+    forgeRuntimeLibrary { extendsFrom project(':common').configurations.transitiveCommon }
+}
+
+repositories {
+    maven {
+        url 'https://repo.spongepowered.org/repository/maven-public/'
+
+        content {
+            includeGroup 'org.spongepowered'
+        }
+    }
+}
+
+dependencies {
+    shadowCommon(implementation(project(":common")))
+
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+
+    common(project(path: ":common-mod", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common-mod", configuration: "transformProductionForge")) { transitive = false }
+
+    // Mods API
+    compileOnly('org.spongepowered:spongeapi:8.2.0-SNAPSHOT')
+
+    // Just to make it work in run tasks
+    forgeRuntimeLibrary(project(":common"))
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+    exclude "architectury.common.json"
+
+    configurations = [project.configurations.shadowCommon, project(':common').configurations.slim]
+    archiveClassifier.set("dev-shadow")
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    archiveClassifier.set("forge")
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}

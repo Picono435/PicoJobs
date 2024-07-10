@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "picojobs",
+  "version": "@version@",
+  "name": "@name@",
+  "description": "@description@",
+  "authors": [
+    "Picono435"
+  ],
+  "contact": {
+    "homepage": "https://piconodev.com",
+    "sources": "https://github.com/Picono435/PicoJobs"
+  },
+  "license": "MIT License",
+  "icon": "assets/picojobs/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.gmail.picono435.picojobs.mod.fabric.PicoJobsFabric"
+    ]
+  },
+  "mixins": [
+    "picojobs.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.20",
+    "architectury": ">=8.1.79"
+  }
+}

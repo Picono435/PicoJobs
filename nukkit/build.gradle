@@ -1,0 +1,72 @@
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url = 'https://repo.opencollab.dev/main'
+
+        content {
+            includeGroup 'cn.nukkit'
+            includeGroupByRegex "com\\.nukkitx.*"
+            includeGroupByRegex "org\\.iq80.*"
+            includeGroup 'com.creeperface.nukkit.placeholderapi'
+        }
+    }
+
+    maven {
+        url = 'https://repo.opencollab.dev/maven-snapshots'
+
+        content {
+            includeGroup 'me.onebone'
+        }
+    }
+
+    maven {
+        url = 'https://jitpack.io'
+
+        content {
+            includeGroup 'com.github.IWareQ'
+        }
+    }
+}
+
+dependencies {
+    // Common & API project
+    shadow implementation(project(':common'))
+
+    compileOnly('cn.nukkit:nukkit:1.0-SNAPSHOT') { transitive false }
+    shadow implementation('com.github.IWareQ:FakeInventories:v1.1.5')
+
+    // Plugins API
+    compileOnly('com.creeperface.nukkit.placeholderapi:PlaceholderAPI:1.4-SNAPSHOT')
+    compileOnly('me.onebone:economyapi:2.0.0-SNAPSHOT')
+
+}
+
+shadowJar {
+    archiveClassifier.set("nukkit")
+
+    relocate 'me.iwareq', 'com.gmail.picono435.libs.me.iwareq'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 8
+}
+
+// Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file
+sourceSets {
+    main {
+        resources {
+            srcDirs "../common/build/resources/slimjar"
+        }
+    }
+}
+
+project(':common').tasks.slimJar {
+    dependsOn(tasks.jar)
+    dependsOn(tasks.sourcesJar)
+}
+
+assemble.dependsOn shadowJar

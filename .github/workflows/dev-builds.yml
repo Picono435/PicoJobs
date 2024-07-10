@@ -18,22 +18,55 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Tests with Gradle
+        uses: burrunan/gradle-cache-action@v1
         env:
-          STABLE_BUILD: 1
-        run: |
-          ls
-          ./gradlew test
+          STABLE_BUILD: 0
+        with:
+          arguments: test
       - name: Publish Unit Test Results
         uses: mikepenz/action-junit-report@v3
         if: success() || failure()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
-      - name: Build with Gradle
+      - name: Build Bukkit
+        uses: burrunan/gradle-cache-action@v1
         env:
           STABLE_BUILD: 0
-        run: ./gradlew build
+        with:
+          arguments: :bukkit:build
+      - name: Build Fabric
+        uses: burrunan/gradle-cache-action@v1
+        env:
+          STABLE_BUILD: 0
+        with:
+          arguments: :fabric:build
+      - name: Build Forge
+        uses: burrunan/gradle-cache-action@v1
+        env:
+          STABLE_BUILD: 0
+        with:
+          arguments: :forge:build
+      - name: Build Nukkit
+        uses: burrunan/gradle-cache-action@v1
+        env:
+          STABLE_BUILD: 0
+        with:
+          arguments: :nukkit:build
+      - name: Build Sponge
+        uses: burrunan/gradle-cache-action@v1
+        env:
+          STABLE_BUILD: 0
+        with:
+          arguments: :sponge:build
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Builds
-          path: build/libs/*.jar
+          path: |
+            bukkit/build/libs/*-bukkit.jar
+            fabric/build/libs/*-fabric.jar
+            forge/build/libs/*-forge.jar
+            nukkit/build/libs/*-nukkit.jar
+            sponge/build/libs/*-sponge.jar
+      - name: Stop The Gradle
+        run: ./gradlew --stop
