@@ -52,7 +52,7 @@ info-command: |-
 reload-command: "&aConfigurações, tarefas e linguagem foram recarregadas com sucesso."
 player-not-found: "&cEsse jogador não está online, por favor coloque um jogador válido."
 unknow-error: "&cUm erro desconhecido occurioso, por favor, verifique o console para mais informações."
-left-job: "&cYou are now unemployed! Make sure to get a new job and start earning money again."
+left-job: "&cVocê está agora desempregado! Certifique-se de obter um novo emprego e começar a ganhar dinheiro novamente."
 already-updated: "&cO plugin já está na versão mais recente, para mais informações, verifique nosso WIKI."
 update-started: "&aA atualização do plugin PicoJobs iniciou, por favor aguarde..."
 updated-sucefully: "&aO plugin foi atualizado sucedemente, por favor reinicie o servidor para terminar a atualização."
