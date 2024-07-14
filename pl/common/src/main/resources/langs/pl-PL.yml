@@ -52,7 +52,7 @@ info-command: |-
 reload-command: "&aKonfiguracje, Prace i Język zostały pomyślnie załadowane."
 player-not-found: "&cTen gracz nie jest online, proszę wpisać prawidłowego gracza."
 unknow-error: "&cWystąpił nieznany błąd, sprawdź konsolę, aby uzyskać więcej informacji."
-left-job: "&cYou are now unemployed! Make sure to get a new job and start earning money again."
+left-job: "&cJesteś teraz bezrobotny! Upewnij się, że otrzymasz nową pracę i zacznij zarabiać pieniądze ponownie."
 already-updated: "&cWtyczka jest już w najnowszej wersji, aby uzyskać więcej informacji sprawdź nasze WIKI."
 update-started: "&aAktualizacja wtyczki PicoJobs rozpoczęta, proszę czekać..."
 updated-sucefully: "&aWtyczka została zaktualizowana, uruchom ponownie serwer, aby zakończyć aktualizację."
