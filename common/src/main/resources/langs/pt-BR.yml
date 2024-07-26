@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eDefine o salário/método de um jogador
   &e/jobsadmin editor &6- &eCria uma sessão de editor da web
   &e/jobsadmin aplica edições &6- &eAplicar as edições de uma sessão de editor de web
-  &e/jobsadmin debug &6- &eEnables o modo de BUG do plugin
 member-commands: |-
   &6Flista completa de comandos:
   &e/tarefas ajudam &6- &eSe esta mensagem

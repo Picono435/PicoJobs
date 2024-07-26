@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eStäller in en spelares lön/metod
   &e/jobsadmin editor &6- &eSkapar en webbeditor session
   &e/jobsadmin tillämpar &6- &eTillämpa redigeringen av en webbredaktörssession
-  &e/jobsadmin debug &6- &eAktiverar DEBUG-läget för insticksprogrammet
 member-commands: |-
   &6Fullständig lista över kommandon:
   &e/jobs help &6- &eSe detta meddelande

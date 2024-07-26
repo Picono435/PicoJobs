@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eNastaví salary/metodu hráče
   &e/jobsadmin editor &6- &eVytvoří relaci webového editoru
   &e/jobsadmin applyedits &6- &eAplikuje úpravy z webového editoru
-  &e/jobsadmin debug &6- &ePovolí DEBUG mód pluginu
 member-commands: |-
   &6Seznam příkazů:
   &e/job help &6- &eUkáže toto

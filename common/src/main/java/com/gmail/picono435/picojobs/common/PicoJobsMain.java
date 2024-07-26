@@ -29,9 +29,8 @@ import java.util.*;
 
 public class PicoJobsMain {
 
-    //TODO: Set editor string to the right one
-    //public static String EDITOR_STRING = "https://piconodev.com/editor";
-    public static String EDITOR_STRING = "http://localhost:3011/editor";
+    public static String EDITOR_STRING = "https://piconodev.com/editor";
+    //public static String EDITOR_STRING = "http://localhost:3011/editor";
 
     //DATA
     public Map<String, EconomyImplementation> economies = new HashMap<>();

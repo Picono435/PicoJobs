@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eUstawia wynagrodzenie/metodę gracza
   &e/jobsadmin editor &6- &eTworzy sesję edytora sieciowego
   &e/jobsadmin apyedits &6- &eZastosuj edycje sesji edytora sieciowego
-  &e/jobsadmin debug &6- &eWłącza tryb DEBUG wtyczki
 member-commands: |-
   &6Pełna lista poleceń:
   &e/jobs help &6- &eZobacz te wiadomości

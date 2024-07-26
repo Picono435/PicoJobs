@@ -34,7 +34,6 @@ admin-commands: |-
   &/jobsadmin sett <salary | method | job> <player> <amount | job> &6- & eSets the salary/method of a player
   &jobsadmin editor &6- &eCreates a web editor session
   &jobe/sadmin appledits &6- &eApply the redditits of a webeditor session
-  &e/jobsadmin debug 6&e&eAktivere
 member-commands: |-
   &6Full liste over kommandoer:
   &e/Jobber hjelper &6- &eSe denne meldingene

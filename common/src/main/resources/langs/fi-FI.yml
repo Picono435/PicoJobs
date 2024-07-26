@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin asetukset <salary | method | job> <player> <amount | job> &6- &eAsettaa pelaajan
   &e/jobsadmin editori &6- &eLuo web-editori-istunnon
   &e/jobsadmin applyedits &6- &eHae web-editori-istunnon muokkaukset
-  &e/jobsadmin debug &6- &eSallii lisäosan DEBUG-tilan
 member-commands: |-
   &6Täysi lista komennoista:
   &e/jobs help &6- &eSee this messages

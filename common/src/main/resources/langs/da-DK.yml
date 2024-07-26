@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin sæt <salary | method | job> <player> <amount | job> &6- &eIndstiller løn/metode for en spiller
   &e/jobsadmin editor &6- &eCreates a web editor session
   &e/jobsadmin applyedits &6- &eAnvend redigeringer af en web editor session
-  &e/jobsadmin debug &6- &eEnables the DEBUG mode of the plugin
 member-commands: |-
   &6Fuld liste over kommandoer:
   &e/jobs help &6- &eSe disse meddelelser

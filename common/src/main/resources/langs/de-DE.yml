@@ -34,7 +34,6 @@ admin-commands: |-
   &e/jobsadmin set <salary | method | job> <player> <amount | job> &6- &eLegt Gehalt/Methode eines Spielers fest
   &e/jobsadmin editor &6- &eErstellt eine Web-Editor-Sitzung
   &e/jobsadmin applyedits &6- &eÜbernimmt die Änderungen der Web-Editor-Sitzung
-  &e/jobsadmin debug &6- &eAktiviert den DEBUG-Modus des Plugins
 member-commands: |-
   &6Vollständige Liste der Befehle:
   &e/jobs help &6- &eZeigt diese Meldung an

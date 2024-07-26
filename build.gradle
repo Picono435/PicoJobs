@@ -1,6 +1,3 @@
-//TODO: Javadocs
-//TODO: Relocate slimJar
-
 import org.apache.tools.ant.filters.*
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
