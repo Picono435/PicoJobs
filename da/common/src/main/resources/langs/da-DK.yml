@@ -52,7 +52,7 @@ info-command: |-
 reload-command: "&aConfigurations, Jobs & Sprog blev genindlæst med succes."
 player-not-found: "&cDen spiller er ikke online, angiv venligst en gyldig spiller."
 unknow-error: "&cDer opstod en unknow fejl, tjek venligst konsollen for mere information."
-left-job: "&cDu er nu arbejdsløst! Sørg for at få et nyt job og begynde at tjene penge igen."
+left-job: "&cYou are now unemployed! Make sure to get a new job and start earning money again."
 already-updated: "&cPlugin'et er allerede i den nyeste version, for mere information tjek vores WIKI."
 update-started: "&aOpdateringen af plugin PicoJobs startede, vent venligst..."
 updated-sucefully: "&aPlugin blev opdateret sucefuld, genstart venligst serveren for at afslutte opdateringen."
