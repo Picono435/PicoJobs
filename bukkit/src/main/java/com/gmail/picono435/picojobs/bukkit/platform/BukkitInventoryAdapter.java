@@ -4,8 +4,11 @@ import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegegacyUtils;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.inventory.InventoryAdapter;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
+import com.google.common.collect.MultimapBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -13,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class BukkitInventoryAdapter implements InventoryAdapter {
 
@@ -68,7 +72,7 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
             if(itemMeta.hasCustomModelData()) itemAdapter.setData(itemMeta.getCustomModelData());
         }
 
-        if(itemStack.containsEnchantment(Enchantment.ARROW_DAMAGE)) itemAdapter.setEnchanted(true);
+        if(itemStack.containsEnchantment(Enchantment.FIRE_ASPECT)) itemAdapter.setEnchanted(true);
 
         return itemAdapter;
     }
@@ -91,10 +95,15 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         if(PicoJobsCommon.isMoreThan("1.14") && itemAdapter.getData() != null) {
             itemMeta.setCustomModelData(itemAdapter.getData());
         }
+
+        if(itemAdapter.isEnchanted()) itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
+
+        if(PicoJobsCommon.isMoreThan("1.20.5")) {
+            itemMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, new AttributeModifier("dummy", 0, AttributeModifier.Operation.ADD_SCALAR));
+        }
+
         itemMeta.addItemFlags(ItemFlag.values());
         itemStack.setItemMeta(itemMeta);
-
-        if(itemAdapter.isEnchanted()) itemStack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
 
         return itemStack;
     }
