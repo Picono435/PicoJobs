@@ -56,7 +56,7 @@ public class BukkitSender implements Sender {
         if(!isPlayer()) return;
         Bukkit.getScheduler().runTaskLater(PicoJobsBukkit.getInstance(), () -> {
             ((Player) sender).closeInventory();
-        }, 10);
+        }, 1);
     }
 
     @Override
