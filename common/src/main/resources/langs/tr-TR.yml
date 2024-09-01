@@ -52,7 +52,7 @@ info-command: |-
 reload-command: "&aYapılandırmalar, Meslek ve Dil başarıyla yeniden yüklendi."
 player-not-found: "&cBu oyuncu çevrimiçi değil, lütfen geçerli bir oyuncu girin."
 unknow-error: "&cBilinmeyen bir hata oluştu, daha fazla bilgi için lütfen konsolu kontrol edin."
-left-job: "&cYou are now unemployed! Make sure to get a new job and start earning money again."
+left-job: ""
 already-updated: "&cThe plugin is already in the latest version, for more information check our WIKI."
 update-started: "&aPicoJobs eklentisinin güncellemesi başladı, lütfen bekleyin..."
 updated-sucefully: "&aEklenti yeterince güncellendi, lütfen güncellemeyi bitirmek için sunucuyu yeniden başlatın"
