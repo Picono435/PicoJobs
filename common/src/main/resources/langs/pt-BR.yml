@@ -78,7 +78,7 @@ aliases:
     - "Trabalhos"
     - "tarefa"
   jobsadmin:
-    - "jobsadmin"
+    - "Administrador de empregos"
     - "jobadmin"
   choose: "Selecionar"
   work: "Trabalho"
