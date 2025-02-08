@@ -101,9 +101,15 @@ public class PicoJobsAPI {
 	 */
 	public static boolean registerEconomy(EconomyImplementation economy) {
 		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(economy.getRequiredPlugin())) return false;
-		PicoJobsCommon.getMainInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
-		economy.onRegister();
-		PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
+		try {
+			economy.onRegister();
+			PicoJobsCommon.getMainInstance().economies.put(economy.getName().toUpperCase(Locale.ROOT), economy);
+			PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
+		} catch (Exception exception) {
+			PicoJobsCommon.getLogger().error("Could not register " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation due to an unexpected error.");
+			PicoJobsCommon.getLogger().error("Exception details:", exception);
+		}
+
 		return true;
 	}
 
@@ -127,9 +133,14 @@ public class PicoJobsAPI {
 	 */
 	public static boolean registerWorkZone(WorkZoneImplementation workzone) {
 		if(!PicoJobsCommon.getPlatformAdapter().isPluginEnabled(workzone.getRequiredPlugin())) return false;
-		PicoJobsCommon.getMainInstance().workzones.put(workzone.getName().toUpperCase(Locale.ROOT), workzone);
-		workzone.onRegister();
-		PicoJobsCommon.getLogger().info("Registered " + workzone.getName().toUpperCase(Locale.ROOT) + " work zone implementation.");
+		try {
+			workzone.onRegister();
+			PicoJobsCommon.getMainInstance().workzones.put(workzone.getName().toUpperCase(Locale.ROOT), workzone);
+			PicoJobsCommon.getLogger().info("Registered " + workzone.getName().toUpperCase(Locale.ROOT) + " workzone implementation.");
+		} catch (Throwable throwable) {
+			PicoJobsCommon.getLogger().error("Could not register " + workzone.getName().toUpperCase(Locale.ROOT) + " workzone implementation due to an unexpected error.");
+			PicoJobsCommon.getLogger().error("Exception details:", throwable);
+		}
 		return true;
 	}
 
