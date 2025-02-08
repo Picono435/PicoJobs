@@ -18,11 +18,11 @@ The best jobs plugin ever!
 [![GitHub Downloads (all releases)](https://img.shields.io/github/downloads/Picono435/PicoJobs/total?style=for-the-badge&amp;label=GitHub&amp;prefix=downloads%20&amp;color=4078c0&amp;logo=github)][releases]
 </div>
 
-PicoJobs is a jobs plugin 100% configurable that allow you to join in a job and earn more money! You can setup this plugin in almost all the server minigames, like Factions, RankUP, FullPvP, and SkyWars too!. Unfornatly the plugin is still in devolpment but there are already some BETA and ALPHA versions that you can download [here](https://dev.bukkit.org/projects/picojobs).
+PicoJobs is a 100% configurable jobs plugin that allows you to join a job and earn money! You can set up this plugin in almost any server minigame, including Factions, RankUP, FullPvP, and even SkyWars. Unfortunately, the plugin is still in development, but there are already some BETA and ALPHA versions available for download here.
 
 **Dependencies:**
 
-Our plugin does not require any dependency, but it's highly recommend use a valid [economy implementation](https://github.com/Picono435/PicoJobs/wiki/Economy-Types) and/or PlaceholderAPI to use our placeholders in any plugin.
+Our plugin does not require any dependency, but it's highly recommended to use a valid [economy implementation](https://github.com/Picono435/PicoJobs/wiki/Economy-Types) and/or PlaceholderAPI to use the plugin's placeholders.
 
 **Links and Informations:**
 
