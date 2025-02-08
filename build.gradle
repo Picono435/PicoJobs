@@ -2,12 +2,12 @@ import org.apache.tools.ant.filters.*
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.gradleup.shadow' version '8.3.6'
     id 'java-library'
     id 'maven-publish'
     id 'net.nemerosa.versioning' version '3.1.0'
     id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'dev.architectury.loom' version '1.6-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.9-SNAPSHOT' apply false
     id 'signing'
 }
 
@@ -17,11 +17,11 @@ targetCompatibility = '17'
 if (System.getenv("STABLE_BUILD") == '0') {
     rootProject.version = versioning.info.build + "-DEV"
 } else {
-    rootProject.version = "1.0-pre"
+    rootProject.version = "1.0-pre-1"
 }
 
 subprojects {
-    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'com.gradleup.shadow'
     apply plugin: 'signing'
     apply plugin: 'base'
 
@@ -32,9 +32,7 @@ subprojects {
         }
     }
 
-    configurations {
-        shadow
-    }
+    //configurations.create('shadow')
 
     shadowJar {
         archiveBaseName.set(rootProject.archives_base_name)
