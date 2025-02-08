@@ -107,7 +107,7 @@ public class PicoJobsAPI {
 			PicoJobsCommon.getLogger().info("Registered " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation.");
 		} catch (Exception exception) {
 			PicoJobsCommon.getLogger().error("Could not register " + economy.getName().toUpperCase(Locale.ROOT) + " economy implementation due to an unexpected error.");
-			PicoJobsCommon.getLogger().error("Exception details:", exception);
+			PicoJobsCommon.getLogger().debug("Exception details:", exception);
 		}
 
 		return true;
@@ -139,7 +139,7 @@ public class PicoJobsAPI {
 			PicoJobsCommon.getLogger().info("Registered " + workzone.getName().toUpperCase(Locale.ROOT) + " workzone implementation.");
 		} catch (Throwable throwable) {
 			PicoJobsCommon.getLogger().error("Could not register " + workzone.getName().toUpperCase(Locale.ROOT) + " workzone implementation due to an unexpected error.");
-			PicoJobsCommon.getLogger().error("Exception details:", throwable);
+			PicoJobsCommon.getLogger().debug("Exception details:", throwable);
 		}
 		return true;
 	}
