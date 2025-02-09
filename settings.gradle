@@ -12,9 +12,9 @@ rootProject.name = 'PicoJobs'
 
 include("common")
 include("bukkit")
-include("common-mod")
-include("fabric")
-include("forge")
+// include("common-mod")
+// include("fabric")
+// include("forge")
 include("nukkit")
 include("sponge")
 

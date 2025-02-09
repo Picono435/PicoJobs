@@ -11,8 +11,8 @@ plugins {
     id 'signing'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+sourceCompatibility = '21'
+targetCompatibility = '21'
 
 if (System.getenv("STABLE_BUILD") == '0') {
     rootProject.version = versioning.info.build + "-DEV"
@@ -96,7 +96,7 @@ allprojects {
     }
 }
 
-configure([project(':common-mod'), project(':fabric'), project(':forge')]) {
+configure([/*project(':common-mod'), project(':fabric'), project(':forge')*/]) {
     apply plugin: "architectury-plugin"
     apply plugin: "dev.architectury.loom"
 
@@ -115,7 +115,7 @@ configure([project(':common-mod'), project(':fabric'), project(':forge')]) {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.release = 17
+        options.release = 21
     }
 
     java {

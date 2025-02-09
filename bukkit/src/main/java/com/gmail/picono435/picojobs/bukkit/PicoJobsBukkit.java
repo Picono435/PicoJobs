@@ -2,6 +2,9 @@ package com.gmail.picono435.picojobs.bukkit;
 
 import com.gmail.picono435.picojobs.bukkit.platform.*;
 import com.gmail.picono435.picojobs.bukkit.platform.BukkitLoggerAdapter;
+import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegacyUtils;
+import com.gmail.picono435.picojobs.bukkit.utils.NamespacedRegistryUtils;
+import com.gmail.picono435.picojobs.bukkit.utils.NamespacedUtils;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.Platform;
 import org.bstats.MetricsBase;
@@ -14,6 +17,7 @@ import java.lang.reflect.Field;
 public class PicoJobsBukkit extends JavaPlugin {
 
     private static PicoJobsBukkit instance;
+    private static NamespacedUtils namespacedUtils;
 
     @Override
     public void onLoad() {
@@ -32,6 +36,12 @@ public class PicoJobsBukkit extends JavaPlugin {
                 new BukkitSoftwareHooker(),
                 new BukkitRegistryCollector()
         );
+
+        if(PicoJobsCommon.isMoreThan("1.20.1")) { // Why 1.20.1? Because it's when Registry#stream was implemented
+            namespacedUtils = new NamespacedRegistryUtils();
+        } else {
+            namespacedUtils = new NamespacedLegacyUtils();
+        }
     }
 
     @Override
@@ -55,5 +65,9 @@ public class PicoJobsBukkit extends JavaPlugin {
 
     public static PicoJobsBukkit getInstance() {
         return instance;
+    }
+
+    public static NamespacedUtils getNamespacedUtils() {
+        return namespacedUtils;
     }
 }

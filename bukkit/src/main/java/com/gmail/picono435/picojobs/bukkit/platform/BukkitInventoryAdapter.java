@@ -1,22 +1,22 @@
 package com.gmail.picono435.picojobs.bukkit.platform;
 
-import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegegacyUtils;
+import com.gmail.picono435.picojobs.bukkit.PicoJobsBukkit;
 import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.platform.inventory.InventoryAdapter;
 import com.gmail.picono435.picojobs.common.platform.inventory.ItemAdapter;
-import com.google.common.collect.MultimapBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class BukkitInventoryAdapter implements InventoryAdapter {
 
@@ -78,7 +78,7 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
     }
 
     public ItemStack toItemStack(ItemAdapter itemAdapter) {
-        Material material = NamespacedLegegacyUtils.matchMaterial(itemAdapter.getMaterial());
+        Material material = PicoJobsBukkit.getNamespacedUtils().matchMaterial(itemAdapter.getMaterial());
         if(material == null) material = Material.STONE;
         ItemStack itemStack;
         if(itemAdapter.getDurability() != null) {
@@ -99,7 +99,17 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         if(itemAdapter.isEnchanted()) itemMeta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
 
         if(PicoJobsCommon.isMoreThan("1.20.5")) {
-            itemMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, new AttributeModifier("dummy", 0, AttributeModifier.Operation.ADD_SCALAR));
+            Attribute attribute;
+            if(PicoJobsCommon.isMoreThan("1.21.3")) {
+                attribute = Attribute.MOVEMENT_SPEED;
+            } else {
+                attribute = Attribute.valueOf("GENERIC_MOVEMENT_SPEED");
+            }
+            if(PicoJobsCommon.isMoreThan("1.21")) {
+                itemMeta.addAttributeModifier(attribute, new AttributeModifier(NamespacedKey.fromString("hide_attributes"), 0, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlotGroup.ANY));
+            } else {
+                itemMeta.addAttributeModifier(attribute, new AttributeModifier("dummy", 0, AttributeModifier.Operation.ADD_SCALAR));
+            }
         }
 
         itemMeta.addItemFlags(ItemFlag.values());

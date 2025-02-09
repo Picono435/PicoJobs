@@ -37,7 +37,7 @@ public class EditorCommand implements Command {
         } else if(editor instanceof Integer) {
             int errorCode = (int) editor;
             if(errorCode == 501) {
-                sender.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord or/and ou wiki."));
+                sender.sendMessage(LanguageManager.formatMessage("&cThis feature is not yet avaiable for public. For more information check our discord and wiki."));
             } else {
                 sender.sendMessage(LanguageManager.formatMessage("&cAn unexpected error occured while connecting with the PicoJobs editor. For more information check server logs."));
             }

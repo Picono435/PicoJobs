@@ -39,7 +39,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
-    modImplementation include("eu.pb4:placeholder-api:2.2.0+${rootProject.minecraft_version}")
+    modImplementation include("eu.pb4:placeholder-api:2.5.2+1.21.3")
     modImplementation include('me.lucko:fabric-permissions-api:0.3.1')
 
     common(project(path: ":common-mod", configuration: "namedElements")) { transitive false }

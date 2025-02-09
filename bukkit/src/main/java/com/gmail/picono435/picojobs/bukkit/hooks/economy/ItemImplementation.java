@@ -5,7 +5,7 @@ import com.gmail.picono435.picojobs.api.JobPlayer;
 import com.gmail.picono435.picojobs.api.PicoJobsAPI;
 import com.gmail.picono435.picojobs.api.field.RequiredField;
 import com.gmail.picono435.picojobs.api.field.RequiredFieldType;
-import com.gmail.picono435.picojobs.bukkit.utils.NamespacedLegegacyUtils;
+import com.gmail.picono435.picojobs.bukkit.PicoJobsBukkit;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -29,19 +29,19 @@ public class ItemImplementation extends EconomyImplementation {
 		this.requiredField = new RequiredField<>("items", new RequiredFieldType<String, Material>(String.class, Material.class) {
 			@Override
 			public Material toValue(@Nonnull String primitive) {
-				return NamespacedLegegacyUtils.matchMaterial(primitive);
+				return PicoJobsBukkit.getNamespacedUtils().matchMaterial(primitive);
 			}
 
 			@Nonnull
 			@Override
 			public String toPrimitive(Material value) {
-				return NamespacedLegegacyUtils.getKeyByEnum(value);
+				return PicoJobsBukkit.getNamespacedUtils().getKeyFromObject(value);
 			}
 
 			@Nonnull
 			@Override
 			public List<Material> getSuggestions() {
-				return Arrays.asList(Material.values());
+				return PicoJobsBukkit.getNamespacedUtils().getMaterials();
 			}
 		}, true);
 	}
