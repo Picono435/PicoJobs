@@ -14,7 +14,7 @@ public class MariaDbStorage extends HikariStorageFactory {
 		String username = configurationNode.node("username").getString();
 		String password = configurationNode.node("password").getString();
 
-		config.setDataSourceClassName("org.mariadb.jdbc.MariaDbDataSource");
+		config.setDataSourceClassName("org.mariadb.jdbc.Driver");
         config.addDataSourceProperty("serverName", address);
         config.addDataSourceProperty("port", port);
         config.addDataSourceProperty("databaseName", databaseName);
