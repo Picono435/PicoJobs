@@ -132,6 +132,7 @@ public class PicoJobsMain {
             int slot = guiNode.node("slot").getInt();
             String item = guiNode.node("item").getString();
             int itemData = guiNode.node("item-data").getInt();
+            int customModelData = guiNode.node("custom-model-data").getInt();
             boolean enchanted = guiNode.node("enchanted").getBoolean();
             List<String> lore = guiNode.node("lore").getList(String.class);
 
@@ -143,7 +144,7 @@ public class PicoJobsMain {
                 }
             }
 
-            Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workzone, workMessage, slot, item, itemData, enchanted, lore, useWhitelist, whitelist);
+            Job job = new Job(jobid, displayname, tag, types, method, salary, maxSalary, requiresPermission, salaryFrequency, methodFrequency, economy, workzone, workMessage, slot, item, itemData, customModelData, enchanted, lore, useWhitelist, whitelist);
 
             jobs.put(jobid, job);
 

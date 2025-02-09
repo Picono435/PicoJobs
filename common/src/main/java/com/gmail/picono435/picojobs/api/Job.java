@@ -42,6 +42,7 @@ public class Job {
 	private int slot;
 	private String item;
 	private int itemData;
+	private int customModelData;
 	private boolean enchanted;
 	private List<String> lore;
 	
@@ -70,6 +71,7 @@ public class Job {
 				jsonObject.get("gui").getAsJsonObject().get("slot").getAsInt(),
 				jsonObject.get("gui").getAsJsonObject().get("item").getAsString(),
 				jsonObject.get("gui").getAsJsonObject().get("itemData").getAsInt(),
+				jsonObject.get("gui").getAsJsonObject().get("customModelData").getAsInt(),
 				jsonObject.get("gui").getAsJsonObject().get("enchanted").getAsBoolean(),
 				jsonObject.get("gui").getAsJsonObject().get("lore").getAsJsonArray().asList().stream().map(JsonElement::getAsString).collect(Collectors.toList()),
 				jsonObject.get("useWhitelist").getAsBoolean(),
@@ -89,7 +91,7 @@ public class Job {
 		}
 	}
 
-	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workzone, String workMessage, int slot, String item, int itemData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
+	public Job(String id, String displayname, String tag, List<Type> types, double method, double salary, double maxSalary, boolean requirePermission, double salaryFrequency, double methodFrequency, String economy, String workzone, String workMessage, int slot, String item, int itemData, int customModelData, boolean enchanted, List<String> lore, boolean useWhitelist, Map<Type, List<String>> whitelist) {
 		this.id = id;
 		this.displayname = displayname;
 		this.tag = tag;
@@ -107,6 +109,7 @@ public class Job {
 		this.slot = slot;
 		this.item = item;
 		this.itemData = itemData;
+		this.customModelData = customModelData;
 		this.enchanted = enchanted;
 		this.lore = lore;
 
@@ -296,6 +299,16 @@ public class Job {
 	public int getItemData() {
 		return this.itemData;
 	}
+
+	/**
+	 * Gets the custom model data for the job item
+	 *
+	 * @return the custom model data of the job item
+	 * @author Picono435
+	 */
+	public int getCustomModelData() {
+		return this.customModelData;
+	}
 	
 	/**
 	 * Checks if the job item is enchanted or not
@@ -348,6 +361,11 @@ public class Job {
 		}
 		itemAdapter.setName(getDisplayName());
 		itemAdapter.setEnchanted(isEnchanted());
+
+		if(PicoJobsCommon.isMoreThan("1.14")) {
+			itemAdapter.setData(getCustomModelData());
+		}
+
 		itemAdapter.setLore(PicoJobsCommon.getColorConverter().translateAlternateColorCodes(getLore()));
 		return itemAdapter;
 	}
@@ -441,6 +459,7 @@ public class Job {
 		jsonGui.addProperty("slot", this.slot);
 		jsonGui.addProperty("item", this.item.toLowerCase());
 		jsonGui.addProperty("itemData", this.itemData);
+		jsonGui.addProperty("customModelData", this.customModelData);
 		jsonGui.addProperty("enchanted", this.enchanted);
 		JsonArray loreArray = new JsonArray();
 		lore.forEach(loreArray::add);
@@ -507,7 +526,8 @@ public class Job {
 
 		jobConfiguration.node("gui", "slot").set(this.slot);
 		jobConfiguration.node("gui", "item").set(this.item);
-		jobConfiguration.node("gui", "itemData").set(this.itemData);
+		jobConfiguration.node("gui", "item-data").set(this.itemData);
+		jobConfiguration.node("gui", "custom-model-data").set(this.customModelData);
 		jobConfiguration.node("gui", "enchanted").set(this.enchanted);
 		jobConfiguration.node("gui", "lore").set(lore);
 		return jobConfiguration;
