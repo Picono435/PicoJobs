@@ -34,18 +34,18 @@ jobs:
           STABLE_BUILD: 0
         with:
           arguments: :bukkit:build
-      - name: Build Fabric
-        uses: burrunan/gradle-cache-action@v1
-        env:
-          STABLE_BUILD: 0
-        with:
-          arguments: :fabric:build
-      - name: Build Forge
-        uses: burrunan/gradle-cache-action@v1
-        env:
-          STABLE_BUILD: 0
-        with:
-          arguments: :forge:build
+#      - name: Build Fabric
+#        uses: burrunan/gradle-cache-action@v1
+#        env:
+#          STABLE_BUILD: 0
+#        with:
+#          arguments: :fabric:build
+#      - name: Build Forge
+#        uses: burrunan/gradle-cache-action@v1
+#        env:
+#          STABLE_BUILD: 0
+#        with:
+#          arguments: :forge:build
       - name: Build Nukkit
         uses: burrunan/gradle-cache-action@v1
         env:
