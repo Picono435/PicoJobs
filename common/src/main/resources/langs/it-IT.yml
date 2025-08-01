@@ -80,7 +80,7 @@ aliases:
     - "lavoro"
   jobsadmin:
     - "jobsadmin"
-    - "jobadmin"
+    - "lavorami"
   choose: "scegli"
   work: "lavoro"
   salary: "stipendio"
@@ -90,7 +90,7 @@ aliases:
   info: "info"
   reload: "reload"
   update: "aggiorna"
-  about: "about"
+  about: "info"
   set: "imposta"
   method: "metodo"
   job: "lavoro"
