@@ -93,7 +93,6 @@ public class ApplyEditsCommand implements Command {
                     }
                     PicoJobsCommon.getFileManager().saveJobsFile(jobConfiguration);
 
-                    // Cache Reload
                     for(UUID uuid : PicoJobsAPI.getStorageManager().getCacheManager().getAllFromCache()) {
                         if(PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).getJob() == null) continue;
                         PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).setJob(PicoJobsAPI.getJobsManager().getJob(PicoJobsAPI.getPlayersManager().getJobPlayer(uuid).getJob().getID()));

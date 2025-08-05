@@ -30,12 +30,9 @@ import java.util.*;
 public class PicoJobsMain {
 
     public static String EDITOR_STRING = "https://piconodev.com/editor";
-    //public static String EDITOR_STRING = "http://localhost:3011/editor";
 
-    //DATA
     public Map<String, EconomyImplementation> economies = new HashMap<>();
     public Map<String, WorkZoneImplementation> workzones = new HashMap<>();
-    //JOBS DATA
     public Map<String, Job> jobs = new HashMap<String, Job>();
     private JobsCommand jobsCommand;
     private JobsAdminCommand jobsAdminCommand;
@@ -66,7 +63,6 @@ public class PicoJobsMain {
 
         PicoJobsAPI.getStorageManager().initializeStorageFactory();
 
-        // bStats Metrics
         if(PicoJobsCommon.getMetricsBase() != null) {
             PicoJobsCommon.getMetricsBase().addCustomChart(new SingleLineChart("created_jobs", () -> jobs.size()));
         }

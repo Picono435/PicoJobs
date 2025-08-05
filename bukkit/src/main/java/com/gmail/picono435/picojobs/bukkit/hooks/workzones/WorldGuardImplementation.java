@@ -17,7 +17,6 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.UUID;*/
 
-// TODO: This will have to be made in an external plugin
 public class WorldGuardImplementation /*extends WorkZoneImplementation*/ {
 
     /*protected RequiredField<String> requiredField;

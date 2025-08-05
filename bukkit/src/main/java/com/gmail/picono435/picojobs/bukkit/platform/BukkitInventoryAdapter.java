@@ -63,8 +63,8 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
 
     public ItemAdapter toItemAdapter(Object object) {
         ItemStack itemStack = (ItemStack) object;
-        ItemAdapter itemAdapter = new ItemAdapter(itemStack.getType().name().toLowerCase(Locale.ROOT), itemStack.getAmount(), (byte) itemStack.getDurability());
-
+        ItemAdapter itemAdapter = new ItemAdapter(itemStack.getType().name().toLowerCase(Locale.ROOT), itemStack.getAmount());
+        
         ItemMeta itemMeta = itemStack.getItemMeta();
         if(itemMeta.hasDisplayName()) itemAdapter.setName(itemMeta.getDisplayName());
         if(itemMeta.hasLore()) itemAdapter.setLore(itemMeta.getLore());
@@ -82,7 +82,14 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
         if(material == null) material = Material.STONE;
         ItemStack itemStack;
         if(itemAdapter.getDurability() != null) {
-            itemStack = new ItemStack(material, itemAdapter.getAmount(), itemAdapter.getDurability());
+            itemStack = new ItemStack(material, itemAdapter.getAmount());
+            if(itemStack.getItemMeta() != null) {
+                ItemMeta meta = itemStack.getItemMeta();
+                if(meta instanceof org.bukkit.inventory.meta.Damageable) {
+                    ((org.bukkit.inventory.meta.Damageable) meta).setDamage(itemAdapter.getDurability());
+                    itemStack.setItemMeta(meta);
+                }
+            }
         } else if(itemAdapter.getAmount() != null) {
             itemStack = new ItemStack(material, itemAdapter.getAmount());
         } else {
@@ -100,15 +107,11 @@ public class BukkitInventoryAdapter implements InventoryAdapter {
 
         if(PicoJobsCommon.isMoreThan("1.20.5")) {
             Attribute attribute;
-            if(PicoJobsCommon.isMoreThan("1.21.3")) {
-                attribute = Attribute.MOVEMENT_SPEED;
-            } else {
-                attribute = Attribute.valueOf("GENERIC_MOVEMENT_SPEED");
-            }
+            attribute = Attribute.MOVEMENT_SPEED;
             if(PicoJobsCommon.isMoreThan("1.21")) {
                 itemMeta.addAttributeModifier(attribute, new AttributeModifier(NamespacedKey.fromString("hide_attributes"), 0, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlotGroup.ANY));
             } else {
-                itemMeta.addAttributeModifier(attribute, new AttributeModifier("dummy", 0, AttributeModifier.Operation.ADD_SCALAR));
+                itemMeta.addAttributeModifier(attribute, new AttributeModifier(NamespacedKey.fromString("dummy"), 0, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlotGroup.ANY));
             }
         }
 

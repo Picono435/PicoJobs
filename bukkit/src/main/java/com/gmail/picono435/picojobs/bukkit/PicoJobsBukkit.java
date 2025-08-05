@@ -37,7 +37,7 @@ public class PicoJobsBukkit extends JavaPlugin {
                 new BukkitRegistryCollector()
         );
 
-        if(PicoJobsCommon.isMoreThan("1.20.1")) { // Why 1.20.1? Because it's when Registry#stream was implemented
+        if(PicoJobsCommon.isMoreThan("1.20.1")) {
             namespacedUtils = new NamespacedRegistryUtils();
         } else {
             namespacedUtils = new NamespacedLegacyUtils();

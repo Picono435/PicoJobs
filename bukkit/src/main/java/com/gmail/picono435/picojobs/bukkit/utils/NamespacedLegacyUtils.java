@@ -28,7 +28,7 @@ public class NamespacedLegacyUtils extends NamespacedUtils {
             Object key = method.invoke(value);
             return key.toString();
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            return "minecraft:" + ((Enum<?>)value).name().toLowerCase(Locale.ROOT); // value is always an enum in legacy versions
+            return "minecraft:" + ((Enum<?>)value).name().toLowerCase(Locale.ROOT);
         }
     }
 
@@ -40,7 +40,6 @@ public class NamespacedLegacyUtils extends NamespacedUtils {
         return matchObject(name, EntityType.class);
     }
 
-    // Biome is no longer an enum so this was all converted into reflection so it compiles in 1.21.4
     public Biome matchBiome(final String name) {
         try {
             Method matchObjectMethod = this.getClass().getMethod("matchObject", String.class, Class.class);

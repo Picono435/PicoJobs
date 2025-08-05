@@ -7,7 +7,6 @@ import com.gmail.picono435.picojobs.common.command.api.Sender;
 import java.util.Arrays;
 import java.util.List;
 
-//TODO: Create the update command and system
 public class UpdateCommand implements Command {
 
     @Override

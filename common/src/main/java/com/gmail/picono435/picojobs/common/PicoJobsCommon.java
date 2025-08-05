@@ -5,7 +5,7 @@ import com.gmail.picono435.picojobs.common.file.FileManager;
 import com.gmail.picono435.picojobs.common.platform.*;
 import com.gmail.picono435.picojobs.common.platform.scheduler.SchedulerAdapter;
 import com.gmail.picono435.picojobs.common.platform.WhitelistConverter;
-import io.github.slimjar.app.builder.ApplicationBuilder;
+import com.gmail.picono435.picojobs.common.utils.DependencyDownloader;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bstats.MetricsBase;
 import org.slf4j.Logger;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.net.URL;
 
 public class PicoJobsCommon {
-    // Platform specific features
     private static String version;
     private static Platform platform;
     private static Logger logger;
@@ -29,7 +28,6 @@ public class PicoJobsCommon {
     private static RegistryCollector registryCollector;
     private static MetricsBase metricsBase;
 
-    // Non-Platform specific
     private static PicoJobsMain mainInstance;
     private static FileManager fileManager;
 
@@ -53,20 +51,7 @@ public class PicoJobsCommon {
         PicoJobsCommon.registryCollector = registryCollector;
 
         if(platform.isSlimDependencies()) {
-            PicoJobsCommon.getLogger().info("Loading dependencies, this might take some minutes when ran for the first time...");
-            try {
-                ApplicationBuilder applicationBuilder = ApplicationBuilder.appending("PicoJobs")
-                        .mirrorSelector((collection, collection1) -> collection)
-                        .downloadDirectoryPath(PicoJobsCommon.getConfigDir().toPath().resolve("libraries"));
-                if(jarURL != null) {
-                    applicationBuilder.jarURL(jarURL);
-                }
-                applicationBuilder.build();
-                PicoJobsCommon.getLogger().info("All dependencies were loaded sucessfully.");
-            } catch (Exception ex) {
-                PicoJobsCommon.getLogger().error("An error occuried while loading SLIMJAR, go into https://github.com/Picono435/PicoJobs/wiki/Common-Issues#dependency-loading-issues with the following error:");
-                ex.printStackTrace();
-            }
+            DependencyDownloader.downloadAndLoadDependencies();
         }
 
         fileManager = new FileManager();

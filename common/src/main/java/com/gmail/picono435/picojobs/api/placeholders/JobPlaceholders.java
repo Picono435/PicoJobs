@@ -4,7 +4,6 @@ import com.gmail.picono435.picojobs.api.managers.PlaceholderManager;
 
 import java.util.UUID;
 
-//TODO: This won't be released in the near future
 public class JobPlaceholders extends PlaceholderExtension {
 
     public static final String PREFIX = "job";

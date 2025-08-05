@@ -23,7 +23,7 @@ public class NamespacedRegistryUtils extends NamespacedUtils {
         if (value instanceof Keyed) {
             return ((Keyed) value).getKey().toString();
         }
-        return "minecraft:stone"; // This should be impossible to arrive as any object passed here in the modern versions should be Keyed
+        return "minecraft:stone";
     }
 
     public Material matchMaterial(final String name) {

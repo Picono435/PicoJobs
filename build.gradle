@@ -6,13 +6,13 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'net.nemerosa.versioning' version '3.1.0'
-    id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'dev.architectury.loom' version '1.9-SNAPSHOT' apply false
     id 'signing'
 }
 
-sourceCompatibility = '21'
-targetCompatibility = '21'
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 if (System.getenv("STABLE_BUILD") == '0') {
     rootProject.version = versioning.info.build + "-DEV"
@@ -28,11 +28,10 @@ subprojects {
     repositories {
         maven {
             name = "PiconoDev Repository"
-            url "https://repo.piconodev.com/repository/maven-snapshots"
+            url = uri("https://repo.piconodev.com/repository/maven-snapshots")
         }
     }
 
-    //configurations.create('shadow')
 
     shadowJar {
         archiveBaseName.set(rootProject.archives_base_name)
@@ -73,7 +72,9 @@ allprojects {
     apply plugin: 'java-library'
     apply plugin: 'signing'
 
-    archivesBaseName = rootProject.archives_base_name
+    base {
+        archivesName = rootProject.archives_base_name
+    }
     version = rootProject.version
     group = rootProject.group
     description = rootProject.description
@@ -96,59 +97,7 @@ allprojects {
     }
 }
 
-configure([/*project(':common-mod'), project(':fabric'), project(':forge')*/]) {
-    apply plugin: "architectury-plugin"
-    apply plugin: "dev.architectury.loom"
 
-    base {
-        archivesName = rootProject.archives_base_name
-    }
-
-    loom {
-        silentMojangMappingsLicense()
-    }
-
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        mappings loom.officialMojangMappings()
-    }
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-        options.release = 21
-    }
-
-    java {
-        withSourcesJar()
-    }
-
-    architectury {
-        minecraft = rootProject.minecraft_version
-    }
-
-    tasks.withType(ShadowJar).configureEach {
-        relocate 'com.github.benmanes.caffeine', 'com.gmail.picono435.picojobs.libs.com.github.benmanes.caffeine'
-        relocate 'com.google.protobuf', 'com.gmail.picono435.picojobs.libs.com.google.protobuf'
-        relocate 'google.protobuf', 'com.gmail.picono435.picojobs.libs.google.protobuf'
-        relocate 'com.mongodb', 'com.gmail.picono435.picojobs.libs.com.mongodb'
-        relocate 'com.mysql', 'com.gmail.picono435.picojobs.libs.com.mysql'
-        relocate 'com.sun.jna', 'com.gmail.picono435.picojobs.libs.com.sun.jna'
-        relocate 'com.zaxxer.hikari', 'com.gmail.picono435.picojobs.libs.com.zaxxer.hikari'
-        relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
-        relocate 'org.h2', 'com.gmail.picono435.picojobs.libs.org.h2'
-        relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
-        relocate 'org.mariadb.jdbc', 'com.gmail.picono435.picojobs.libs.org.mariadb.jdbc'
-        relocate 'org.bson', 'com.gmail.picono435.picojobs.libs.org.bson'
-        relocate 'org.sqlite', 'com.gmail.picono435.picojobs.libs.org.sqlite'
-        relocate 'waffle', 'com.gmail.picono435.picojobs.libs.waffle'
-        relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
-
-        dependencies {
-            exclude(dependency('org.slf4j:slf4j-api'))
-            exclude(dependency('dev.racci.slimjar:slimjar'))
-        }
-    }
-}
 
 publishing {
     publications {
@@ -186,11 +135,11 @@ publishing {
     repositories {
         maven {
             credentials {
-                username System.getenv("REPO_USER")
-                password System.getenv("REPO_PASSWORD")
+                username = System.getenv("REPO_USER")
+                password = System.getenv("REPO_PASSWORD")
             }
 
-            url = 'https://repo.piconodev.com/repository/maven-releases/'
+            url = uri('https://repo.piconodev.com/repository/maven-releases/')
         }
     }
 }

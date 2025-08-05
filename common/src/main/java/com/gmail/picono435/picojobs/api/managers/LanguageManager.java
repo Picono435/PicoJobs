@@ -8,7 +8,6 @@ import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 import com.gmail.picono435.picojobs.common.file.FileManager;
 import org.spongepowered.configurate.serialize.SerializationException;
 
-// TODO: Create a way to reset admin commands and member commands lang settings
 public class LanguageManager {
 
 	/**

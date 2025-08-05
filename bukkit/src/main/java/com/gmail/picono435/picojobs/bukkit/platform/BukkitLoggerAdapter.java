@@ -56,8 +56,6 @@ public final class BukkitLoggerAdapter extends LegacyAbstractLogger implements L
 
     transient final java.util.logging.Logger logger;
 
-    // WARN: JDK14LoggerAdapter constructor should have only package access so
-    // that only JDK14LoggerFactory be able to create one.
     public BukkitLoggerAdapter(java.util.logging.Logger logger) {
         this.logger = logger;
         this.name = logger.getName();
@@ -109,27 +107,6 @@ public final class BukkitLoggerAdapter extends LegacyAbstractLogger implements L
         return logger.isLoggable(Level.SEVERE);
     }
 
-    // /**
-    // * Log the message at the specified level with the specified throwable if any.
-    // * This method creates a LogRecord and fills in caller date before calling
-    // * this instance's JDK14 logger.
-    // *
-    // * See bug report #13 for more details.
-    // *
-    // * @param level
-    // * @param msg
-    // * @param t
-    // */
-    // private void log(String callerFQCN, Level level, String msg, Throwable t) {
-    // // millis and thread are filled by the constructor
-    // LogRecord record = new LogRecord(level, msg);
-    // record.setLoggerName(getName());
-    // record.setThrown(t);
-    // // Note: parameters in record are not set because SLF4J only
-    // // supports a single formatting style
-    // fillCallerData(callerFQCN, record);
-    // logger.log(record);
-    // }
 
     /**
      * Log the message at the specified level with the specified throwable if any.
@@ -142,17 +119,12 @@ public final class BukkitLoggerAdapter extends LegacyAbstractLogger implements L
     }
 
     private void innerNormalizedLoggingCallHandler(String fqcn, org.slf4j.event.Level level, Marker marker, String msg, Object[] args, Throwable throwable) {
-        // millis and thread are filled by the constructor
         Level julLevel = slf4jLevelToJULLevel(level);
         String formattedMessage = MessageFormatter.basicArrayFormat(msg, args);
         LogRecord record = new LogRecord(julLevel, formattedMessage);
 
-        // https://jira.qos.ch/browse/SLF4J-13
         record.setLoggerName(getName());
         record.setThrown(throwable);
-        // Note: parameters in record are not set because SLF4J only
-        // supports a single formatting style
-        // See also https://jira.qos.ch/browse/SLF4J-10
         fillCallerData(fqcn, record);
         logger.log(record);
     }
@@ -203,8 +175,6 @@ public final class BukkitLoggerAdapter extends LegacyAbstractLogger implements L
 
         if (found != -1) {
             StackTraceElement ste = steArray[found];
-            // setting the class name has the side effect of setting
-            // the needToInferCaller variable to false.
             record.setSourceClassName(ste.getClassName());
             record.setSourceMethodName(ste.getMethodName());
         }
@@ -263,8 +233,6 @@ public final class BukkitLoggerAdapter extends LegacyAbstractLogger implements L
      * @since 1.7.15
      */
     public void log(LoggingEvent event) {
-        // assumes that the invocation is made from a substitute logger
-        // this assumption might change in the future with the advent of a fluent API
         Level julLevel = slf4jLevelToJULLevel(event.getLevel());
         if (logger.isLoggable(julLevel)) {
             LogRecord record = eventToRecord(event, julLevel);

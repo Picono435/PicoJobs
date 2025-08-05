@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-// This is a LEGACY Biome implementation that only works for minecraft versions 1.21.3 and later
 public class BiomeImplementation extends WorkZoneImplementation {
 
     protected RequiredField<String, Biome> requiredField;

@@ -1,11 +1,13 @@
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 repositories {
     mavenCentral()
 
     maven {
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
 
         content {
             includeGroup 'org.bukkit'
@@ -14,7 +16,7 @@ repositories {
     }
 
     maven {
-        url = 'https://jitpack.io'
+        url = uri('https://jitpack.io')
 
         content {
             includeGroupByRegex "com\\.github.*"
@@ -22,7 +24,7 @@ repositories {
     }
 
     maven {
-        url 'https://repo.papermc.io/repository/maven-public/'
+        url = uri('https://repo.papermc.io/repository/maven-public/')
 
         content {
             includeGroup 'com.github.seeseemelk'
@@ -32,7 +34,7 @@ repositories {
     }
 
     maven {
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        url = uri('https://repo.extendedclip.com/content/repositories/placeholderapi/')
 
         content {
             includeGroupByRegex "me\\.clip.*"
@@ -40,7 +42,7 @@ repositories {
     }
 
     maven {
-        url = 'https://repo.rosewooddev.io/repository/public/'
+        url = uri('https://repo.rosewooddev.io/repository/public/')
 
         content {
             includeGroupByRegex "org\\.black_ixx.*"
@@ -48,7 +50,7 @@ repositories {
     }
 
     maven {
-        url = "https://maven.enginehub.org/repo/"
+        url = uri("https://maven.enginehub.org/repo/")
 
         content {
             includeGroupByRegex "com\\.sk89q.*"
@@ -57,7 +59,7 @@ repositories {
     }
 
     maven {
-        url = 'https://repo.glaremasters.me/repository/bloodshot'
+        url = uri('https://repo.glaremasters.me/repository/bloodshot')
 
         content {
             includeGroup 'com.griefdefender'
@@ -65,7 +67,7 @@ repositories {
     }
 
     maven {
-        url = 'https://repo.glaremasters.me/repository/towny/'
+        url = uri('https://repo.glaremasters.me/repository/towny/')
 
         content {
             includeGroup 'com.palmergames.bukkit.towny'
@@ -74,21 +76,16 @@ repositories {
 }
 
 dependencies {
-    // Common & API project
     shadow implementation(project(':common'))
-    // Spigot
     compileOnly("org.spigotmc:spigot-api:${rootProject.minecraft_version}-R0.1-SNAPSHOT")
-    // Plugins API
     compileOnly('me.clip:placeholderapi:2.11.6') { transitive = false }
     compileOnly('com.github.MilkBowl:VaultAPI:1.7.1') { transitive = false }
     compileOnly('org.black_ixx:playerpoints:3.2.5') { transitive = false }
     compileOnly('com.github.Realizedd:TokenManager:3.2.4') { transitive = false }
-    // TODO: Add worlguard compability probably a different plugin in the future
-    //  compileOnly('com.sk89q.worldguard:worldguard-bukkit:7.1.0-SNAPSHOT') { transitive = true }
     compileOnly('com.github.TechFortress:GriefPrevention:16.18.1') { transitive = false }
     compileOnly('com.griefdefender:api:2.1.0-SNAPSHOT') { transitive = false }
     compileOnly('com.palmergames.bukkit.towny:towny:0.99.0.0') { transitive = false }
-    // Other libraries
+    compileOnly('org.apache.commons:commons-lang3:3.12.0')
     shadow implementation('org.bstats:bstats-bukkit:3.0.2')
 }
 
@@ -98,20 +95,6 @@ shadowJar {
     relocate 'org.bstats', 'com.gmail.picono435.picojobs.libs.org.bstats'
 }
 
-// Temporary fix to add slimjar.json and slimjar-resolutions.json files into the jar file
-sourceSets {
-    main {
-        resources {
-            srcDirs "../common/build/resources/slimjar"
-        }
-    }
-}
-
 evaluationDependsOn(':common')
-
-project(':common').tasks.slimJar {
-    dependsOn(tasks.jar)
-    dependsOn(tasks.sourcesJar)
-}
 
 assemble.dependsOn shadowJar

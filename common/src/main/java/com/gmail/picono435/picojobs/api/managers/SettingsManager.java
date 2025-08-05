@@ -12,7 +12,6 @@ public class SettingsManager {
 	private String lang;
 	private String storageMethod;
 	private boolean automaticData;
-	// Command action is automatically set to 4 in nukkit if FakeInventories is not found
 	private int commandAction;
 	private Map<String, Integer> allowedCommands = new HashMap<String, Integer>();
 	private ConfigurationNode remoteSqlConfiguration;

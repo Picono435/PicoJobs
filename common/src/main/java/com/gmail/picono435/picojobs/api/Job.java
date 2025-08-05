@@ -38,7 +38,6 @@ public class Job {
 	private String workzone;
 	private String workMessage;
 	
-	// GUI SETTINGS
 	private int slot;
 	private String item;
 	private int itemData;
@@ -46,11 +45,9 @@ public class Job {
 	private boolean enchanted;
 	private List<String> lore;
 	
-	// OPTIONAL
 	private boolean useWhitelist;
 	private Map<Type, List<String>> whitelist = new HashMap<>();
 
-	// INTERNAL ONLY
 	private JsonElement[] jsonReqFields = new JsonElement[2];
 
 	public Job(JsonObject jsonObject) {
