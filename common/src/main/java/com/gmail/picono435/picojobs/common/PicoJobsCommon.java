@@ -18,7 +18,7 @@ public class PicoJobsCommon {
     private static Platform platform;
     private static Logger logger;
     private static File configDir;
-    private static File updateDir;
+
     private static SchedulerAdapter schedulerAdapter;
     private static PlatformAdapter platformAdapter;
     private static ColorConverter colorConverter;
@@ -41,7 +41,6 @@ public class PicoJobsCommon {
         PicoJobsCommon.platform = platform;
         PicoJobsCommon.logger = logger;
         PicoJobsCommon.configDir = configDir;
-        PicoJobsCommon.updateDir = updateDir;
         PicoJobsCommon.schedulerAdapter = schedulerAdapter;
         PicoJobsCommon.platformAdapter = platformAdapter;
         PicoJobsCommon.colorConverter = colorConverter;
