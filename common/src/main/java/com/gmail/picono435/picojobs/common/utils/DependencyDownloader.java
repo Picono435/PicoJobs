@@ -4,12 +4,11 @@ import com.gmail.picono435.picojobs.common.PicoJobsCommon;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +69,7 @@ public class DependencyDownloader {
         
         PicoJobsCommon.getLogger().info("Downloading: " + fileName);
         
-        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        HttpURLConnection connection = (HttpURLConnection) URI.create(url).toURL().openConnection();
         connection.setRequestProperty("User-Agent", "PicoJobs-DependencyDownloader/1.0");
         connection.setConnectTimeout(10000);
         connection.setReadTimeout(30000);
