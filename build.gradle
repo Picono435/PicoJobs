@@ -1,5 +1,4 @@
 import org.apache.tools.ant.filters.*
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     id 'com.gradleup.shadow' version '8.3.6'
@@ -39,7 +38,7 @@ subprojects {
         configurations = [project.configurations.shadow]
     }
 
-    tasks.withType(ShadowJar).configureEach {
+    tasks.withType(com.gradleup.shadow.tasks.ShadowJar).configureEach {
         relocate 'org.spongepowered.configurate', 'com.gmail.picono435.picojobs.libs.org.spongepowered.configurate'
         relocate 'com.google.common', 'com.gmail.picono435.picojobs.libs.com.google.common'
         relocate 'com.google.errorprone', 'com.gmail.picono435.picojobs.libs.com.google.errorprone'
