@@ -18,13 +18,12 @@ import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
 import java.util.*;
 
 public class PicoJobsMain {
@@ -179,8 +178,8 @@ public class PicoJobsMain {
 
     private void checkVersion() {
         try {
-            URL url = new URL(String.format("https://api.modrinth.com/v2/project/picojobs/version?loaders=%s",
-                    URLEncoder.encode("[\"" + PicoJobsCommon.getPlatform().name().toLowerCase() + "\"]", "UTF-8")));
+            URL url = URI.create(String.format("https://api.modrinth.com/v2/project/picojobs/version?loaders=%s",
+                    URLEncoder.encode("[\"" + PicoJobsCommon.getPlatform().name().toLowerCase() + "\"]", "UTF-8"))).toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(5000);
@@ -232,7 +231,7 @@ public class PicoJobsMain {
         try {
             if(PicoJobsCommon.getPlatform() == Platform.BUKKIT) {
                 PicoJobsCommon.getLogger().info("Downloading new version...");
-                ReadableByteChannel readableByteChannel = Channels.newChannel(new URL(downloadUrl).openStream());
+                ReadableByteChannel readableByteChannel = Channels.newChannel(URI.create(downloadUrl).toURL().openStream());
                 PicoJobsCommon.getConfigDir().getParentFile().toPath().resolve("update").toFile().mkdirs();
 
                 boolean isPaper;
