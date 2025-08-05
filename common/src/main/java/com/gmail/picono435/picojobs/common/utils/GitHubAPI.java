@@ -7,12 +7,13 @@ import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 
 public class GitHubAPI {
 
     public static boolean isTagLatest(String tagName) throws Exception {
-        URL url = new URL("https://api.github.com/repos/Picono435/PicoJobs/compare/" + tagName + "..." + PicoJobsCommon.getVersion().replace("-DEV", ""));
+        URL url = URI.create("https://api.github.com/repos/Picono435/PicoJobs/compare/" + tagName + "..." + PicoJobsCommon.getVersion().replace("-DEV", "")).toURL();
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setConnectTimeout(5000);
